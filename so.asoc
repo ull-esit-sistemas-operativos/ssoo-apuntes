@@ -1,12 +1,6 @@
-Curso académico
+== Introducción
 
-[[introducción]]
-[[anchor]]Introducción
-----------------------
-
-[[funciones-del-sistema-operativo]]
-Funciones del sistema operativo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Funciones del sistema operativo
 
 Es habitual cuando hablamos de un elemento tan complejo como un sistema
 operativo que resulte más sencillo definirlo por lo qué hace que por lo
@@ -33,9 +27,7 @@ Con el fin de entender cuáles son las funciones de un sistema operativo;
 se puede explorar su papel desde dos puntos de vista: el del sistema
 informático y el del usuario.
 
-[[punto-de-vista-del-sistema-informático]]
-[[anchor-1]]Punto de vista del sistema informático
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Punto de vista del sistema informático
 
 Desde el punto de vista del sistema informático, el sistema operativo es
 el programa más íntimamente relacionado con el hardware. En este
@@ -57,9 +49,7 @@ Además, como programa encargado del control de la ejecución de los
 programas de los usuarios, el sistema operativo tiene la tarea de
 prevenir errores y el uso inadecuado del ordenador.
 
-[[punto-de-vista-del-usuario]]
-Punto de vista del usuario
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Punto de vista del usuario
 
 Sin embargo, la función del sistema operativo desde el punto de vista
 del usuario varía de acuerdo con la interfaz utilizada. Por ejemplo, los
@@ -92,9 +82,7 @@ aplicación software o un aparato. Más información en
 http://es.wikipedia.org/wiki/Usabilidad.], aunque el rendimiento por
 tiempo de vida de la batería también es importante.
 
-[[definición-de-sistema-operativo]]
-Definición de sistema operativo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Definición de sistema operativo
 
 No existe una definición universal de lo qué es un sistema operativo.
 Hay quién considera que es lo que el fabricante nos vende cuando decimos
@@ -149,13 +137,9 @@ recursos, que se corresponden con las funciones del sistema operativo
 desde el punto de vista del sistema informático vistas en el tema
 link:#anchor-1[1.1.1], son la labor del sistema operativo__.
 
-[[tipos-de-sistemas-operativos]]
-Tipos de sistemas operativos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Tipos de sistemas operativos
 
-[[mainframe]]
-[[anchor-7]][[anchor-3]][[anchor-7]]Mainframe
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Mainframe
 
 Los *ordenadores centrales* o _*mainframes*_ fueron los primeros
 computadores utilizados en muchas aplicaciones comerciales y
@@ -173,9 +157,7 @@ su alta fiabilidad. Estas máquinas pueden funcionar durante años sin
 problemas ni interrupciones y las reparaciones se realizan sin detener
 su funcionamiento.
 
-[[sistemas-de-procesamiento-por-lotes]]
-Sistemas de procesamiento por lotes
-+++++++++++++++++++++++++++++++++++
+===== Sistemas de procesamiento por lotes
 
 Los *sistemas de procesamiento por lotes* o **sistemas en **__*batch*__
 fueron los primeros ordenadores (véase el apartado
@@ -201,9 +183,7 @@ operaciones de E/S para obtener los datos requeridos para sus cálculos
 –por ejemplo guardados en tarjetas perforadas– por lo que se pierde
 mucho tiempo esperando a que estén disponibles dichos datos.
 
-[[sistemas-multiprogramados]]
-Sistemas multiprogramados
-+++++++++++++++++++++++++
+===== Sistemas multiprogramados
 
 Con la aparición de la tecnología de los discos magnéticos se pudo
 mantener todos los trabajos en el disco y no en tarjetas perforadas
@@ -244,9 +224,7 @@ Un ejemplo de este tipo de sistemas operativos es el IBM OS/360 que fue
 liberado en 1966 para utilizarlo en los _mainframes_ IBM System/360
 (véase el apartado link:#anchor-9[1.4.3]).
 
-[[sistemas-de-tiempo-compartido]]
-Sistemas de tiempo compartido
-+++++++++++++++++++++++++++++
+===== Sistemas de tiempo compartido
 
 La mayor parte de los sistemas actuales son **sistemas de tiempo
 compartido**. Los sistemas anteriores ofrecían un uso eficiente de la
@@ -307,9 +285,7 @@ en los minicomputadores AS/400, son algunos ejemplos de sistemas
 operativos de tiempo compartido (véase el apartado
 link:#anchor-15[1.4.4]).
 
-[[sistemas-de-escritorio]]
-[[anchor-2]]Sistemas de escritorio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas de escritorio
 
 Los *sistemas de escritorio* aparecieron en los primeros años de la
 década de 1970 y carecían de las características necesarias para ser
@@ -342,9 +318,7 @@ en 1977– hasta los actuales GNU/Linux, Microsoft Windows 7 y Apple
 macOS, pasando por MS-DOS, IBM OS/2 y las diversas versiones de
 Microsoft Windows (véase el apartado link:#anchor-17[1.4.5]).
 
-[[sistemas-distribuidos]]
-Sistemas distribuidos
-^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas distribuidos
 
 En la actualidad es común el uso de redes –por ejemplo Internet o la red
 de área local de una oficina– para interconectar ordenadores
@@ -355,9 +329,7 @@ con otros procesadores a través de líneas de comunicación__, como redes
 Ethernet o líneas telefónicas. Estos sistemas son comúnmente denominados
 **sistemas distribuidos**.
 
-[[tipos-de-sistemas-informáticos-distribuidos]]
-Tipos de sistemas informáticos distribuidos
-+++++++++++++++++++++++++++++++++++++++++++
+===== Tipos de sistemas informáticos distribuidos
 
 Sin entrar en detalles los sistemas distribuidos pueden ser clasificados
 en dos grandes tipos:
@@ -394,9 +366,7 @@ en los sistemas de redes entre iguales la carga se distribuye entre los
 diversos nodos de la red. Ejemplos de este tipo de sistemas son las
 redes eDonkey y BitTorrent.
 
-[[sistemas-operativos-para-sistemas-distribuidos]]
-Sistemas operativos para sistemas distribuidos
-++++++++++++++++++++++++++++++++++++++++++++++
+===== Sistemas operativos para sistemas distribuidos
 
 Desde el punto de vista de los sistemas operativos para sistemas
 distribuidos es necesario hacer la siguiente distinción:
@@ -424,9 +394,7 @@ microkernel (véase el apartado link:#anchor-5[2.3.3]) escrito por Andrew
 S. Tanenbaum en Vrije Universiteit. Más información en
 http://www.cs.vu.nl/pub/amoeba/.]__.
 
-[[sistemas-de-tiempo-real]]
-[[anchor-18]]Sistemas de tiempo real
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas de tiempo real
 
 Se utilizan cuando tenemos requerimientos rígidos de tiempo en la
 ejecución de las tareas o en el procesamiento de flujos de datos. Por lo
@@ -469,9 +437,7 @@ mayor parte de los sistemas operativos de propósito general pues es
 compatible con la memoria virtual y otras facilidades propias de los
 sistemas de tiempo compartido.
 
-[[sistemas-de-mano]]
-[[anchor-4]]Sistemas de mano
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas de mano
 
 Los sistemas de mano incluyen a los __tablets__, lectores de libros
 electrónicos y teléfonos móviles. Los desarrolladores de sistemas de
@@ -481,63 +447,43 @@ los dispositivos y la alimentación mediante el uso de baterías. Debido a
 esas limitaciones muchos sistemas de mano tienen poca cantidad de
 memoria, procesadores lentos y pantallas pequeñas.
 
-[[historia-de-los-sistemas-operativos]]
-Historia de los sistemas operativos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Historia de los sistemas operativos
 
 La historia de los sistemas operativos se puede dividir en 5 grandes
 etapas o generaciones.
 
-[[ª-generación-1945-55]]
-1ª Generación (1945-55)
-^^^^^^^^^^^^^^^^^^^^^^^
+==== 1ª Generación (1945-55)
 
-[[características]]
-Características
-+++++++++++++++
+===== Características
 
 * Sin sistema operativo.
 * Sólo hardware, sin lenguajes de programación.
 
-[[ejemplos]]
-Ejemplos
-++++++++
+===== Ejemplos
 
 * _Mainframe_ IBM 701 y 704.
 
-[[ª-generación-1955-64]]
-[[anchor-3]]2ª Generación (1955-64)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== 2ª Generación (1955-64)
 
-[[características-1]]
-Características
-+++++++++++++++
+===== Características
 
 * Sistemas operativos de procesamiento por lotes.
 * Sistema operativo básico. Se utilizan lenguajes de programación.
 
-[[ejemplos-1]]
-Ejemplos
-++++++++
+===== Ejemplos
 
 * El primer sistema operativo fue desarrollado por General Motors
 Research Laboratory en 1956 para su _mainframe_ IBM 701 (véase la ) con
 el fin de automatizar la carga de los trabajos.
 
-[[ª-generación-1965-1968]]
-[[anchor-9]]3ª Generación (1965-1968)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== 3ª Generación (1965-1968)
 
-[[características-2]]
-Características
-+++++++++++++++
+===== Características
 
 * Sistemas operativos multiprogramados.
 * Más lenguajes de programación y multiprogramación.
 
-[[ejemplos-2]]
-Ejemplos
-++++++++
+===== Ejemplos
 
 * **IBM OS/360**. Desarrollado por IBM para su _mainframe_ System/360.
 ** Fue el primero en hacer los dispositivos de almacenamiento de acceso
@@ -550,23 +496,17 @@ de código y miles de componentes de software. La experiencia negativa
 del desarrollo del IBM OS/360 condujo al nacimiento de la __ingeniería
 del software__.
 
-[[ª-generación]]
-[[anchor-15]]4ª Generación
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== 4ª Generación
 
 Esta generación abarca desde mediados de los años 60 hasta finales de la
 década de los 70.
 
-[[características-3]]
-Características
-+++++++++++++++
+===== Características
 
 * Sistemas operativos de tiempo compartido.
 * Aparecen los programas interactivos y las máquinas virtuales.
 
-[[ejemplos-3]]
-Ejemplos
-++++++++
+===== Ejemplos
 
 * **MULTICS**. Fue anunciado en 1964 como el primer sistema operativo de
 propósito general fruto de la colaboración entre el MIT, General
@@ -626,15 +566,11 @@ e Intel Itanium.
 termino en desuso hace referencia a máquinas multiusuario de rango
 medio, entre los _m__ainframes___ y los sistemas de escritorio.
 
-[[º-generación-años-1980-1990-y-2000]]
-[[anchor-17]]5º Generación (años 1980, 1990 y 2000):
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== 5º Generación (años 1980, 1990 y 2000):
 
 Esta generación abarca desde la década de los 80 hasta la actualidad.
 
-[[características-4]]
-Características
-+++++++++++++++
+===== Características
 
 * Sistemas operativos de escritorio y ordenadores personales
 (PC)footnote:[Se puede observar una muestra de la interfaz gráfica de
@@ -642,9 +578,7 @@ usuario de algunos estos sistemas en https://goo.gl/rDNHeS.].
 * Monousuario, multitarea, sistemas distribuidos, sistemas paralelos,
 sistemas de tiempo real, etc.
 
-[[ejemplos-4]]
-Ejemplos
-++++++++
+===== Ejemplos
 
 * **CP/M**. Sistema operativo estándar para la primera generación de
 microcomputadoresfootnote:[Una microcomputadora es un ordenador que
@@ -810,13 +744,9 @@ denomina Darwin. Concretamente se trata de un sistema FreeBSD portado
 para correr sobre el núcleo Mach.] de OpenStep es la base del sistema
 operativo macOS de Apple.
 
-[[estructura-de-los-sistemas-operativos]]
-Estructura de los sistemas operativos
--------------------------------------
+== Estructura de los sistemas operativos
 
-[[organización-de-los-sistemas-operativos]]
-Organización de los sistemas operativos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Organización de los sistemas operativos
 
 El estudio de la organización interna de los sistemas operativos
 requiere del análisis de tres aspectos diferentes:
@@ -838,9 +768,7 @@ sistema operativo proporciona, no entraremos en ello puesto que cada uno
 ofrece servicios diferentes, aunque siempre es posible identificar unos
 pocos tipos comunes a todos.
 
-[[interfaz-de-programación-de-aplicaciones]]
-Interfaz de programación de aplicaciones
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Interfaz de programación de aplicaciones
 
 Un sistema operativo proporciona un entorno controlado para la ejecución
 de programas. Dicho entorno debe proporcionar ciertos servicios que
@@ -1023,9 +951,7 @@ la tarea solicitada mediante el funcionamiento coordinado de los
 diferentes componentes del sistema (véase el apartado
 link:#anchor-27[2.1.2]).
 
-[[invocación-de-las-llamadas-al-sistema]]
-Invocación de las llamadas al sistema
-+++++++++++++++++++++++++++++++++++++
+===== Invocación de las llamadas al sistema
 
 Generalmente una llamada al sistema se invoca mediante una instrucción
 específica en lenguaje ensamblador que genera una
@@ -1090,9 +1016,7 @@ nunca debe confiar en que los procesos hagan su trabajo correctamente. A
 fin de cuentas una de las funciones del sistema operativo es el control
 de dichos procesos.
 
-[[componentes-del-sistema]]
-[[anchor-6]][[anchor-27]][[anchor-6]]Componentes del sistema
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Componentes del sistema
 
 Como ya hemos comentado en diversas ocasiones en este tema, el sistema
 operativo ofrece una serie de servicios a través del funcionamiento
@@ -1101,9 +1025,7 @@ cuentas, crear un software tan complejo como un sistema operativo no es
 sencillo, por ello resulta más práctico dividirlo en piezas más pequeñas
 especializadas en aspectos concretos de la gestión del sistema.
 
-[[gestión-de-procesos]]
-[[anchor-35]]Gestión de procesos
-++++++++++++++++++++++++++++++++
+===== Gestión de procesos
 
 La gestión de los procesos es un elemento central de todo sistema
 operativo ya que el _proceso_ es la unidad de trabajo en cualquier
@@ -1146,9 +1068,7 @@ relacionadas con la gestión de procesos:
 * Proporcionar mecanismos para la comunicación entre procesos.
 * Proporcionar mecanismos para el tratamiento de interbloqueos.
 
-[[gestión-de-la-memoria-principal]]
-[[anchor-37]]Gestión de la memoria principal
-++++++++++++++++++++++++++++++++++++++++++++
+===== Gestión de la memoria principal
 
 La memoria principal es un recurso fundamental para las operaciones de
 cualquier sistema operativo moderno. Esto es así porque generalmente es
@@ -1176,9 +1096,7 @@ no.
 espacio en la misma.
 * Asignar y liberar espacio de la memoria principal según sea necesario.
 
-[[gestión-del-sistema-de-archivos]]
-[[anchor-38]]Gestión del sistema de archivos
-++++++++++++++++++++++++++++++++++++++++++++
+===== Gestión del sistema de archivos
 
 Los ordenadores pueden almacenar información en diferentes tipos de
 medios físicos –por ejemplo en discos magnéticos, en CD/DVD-ROM, en
@@ -1209,9 +1127,7 @@ para la manipulación de archivos y directorios.
 * Copias de seguridad de los archivos en sistemas de almacenamiento
 estables y seguros.
 
-[[gestión-del-sistema-de-es]]
-[[anchor-39]]Gestión del sistema de E/S
-++++++++++++++++++++++++++++++++++++++++
+===== Gestión del sistema de E/S
 
 __El *sistema de E/S* oculta las peculiaridades del hardware al resto
 del sistema__. El sistema de E/S consta de:
@@ -1249,9 +1165,7 @@ primitivas que emplean para manipular los archivos.
 * _Controladores de dispositivo_ que son quiénes conocen las
 peculiaridades específicas del dispositivo para el que ha sido creado.
 
-[[gestión-del-almacenamiento-secundario]]
-Gestión del almacenamiento secundario
-+++++++++++++++++++++++++++++++++++++
+===== Gestión del almacenamiento secundario
 
 Los programas que se desean ejecutar deben estar en la memoria
 principal, o __almacenamiento primario__, pero ésta es demasiado pequeña
@@ -1271,18 +1185,14 @@ relacionadas con la gestión del almacenamiento secundario:
 * Asignación del espacio de almacenamiento.
 * Planificación del acceso al disco.
 
-[[gestión-de-rgestión-de-red]]
-Gestión de r[[anchor-40]]Gestión de red
-+++++++++++++++++++++++++++++++++++++++
+===== Gestión de red
 
 _El componente de red se responsabiliza de la comunicación entre los
 procesadores en sistemas interconectados mediante una red de
 ordenadores_ –por ejemplo en Internet o la red de área local de una
 oficina–.
 
-[[pprotección-y-seguridad]]
-P[[anchor-41]]Protección y seguridad
-++++++++++++++++++++++++++++++++++++
+===== Protección y seguridad
 
 __*Protección* es cualquier mecanismo para controlar el acceso de los
 procesos y usuarios a los recursos definidos por el sistema__. Estos son
@@ -1315,9 +1225,7 @@ sistema para evitar que éste pueda dar servició a los usuarios
 legítimos.], robo de identidad y uso no autorizado del sistema, entre
 muchos otros tipos de ataque.
 
-[[interfaz-de-usuario]]
-Interfaz de usuario
-^^^^^^^^^^^^^^^^^^^
+==== Interfaz de usuario
 
 Aunque cada sistema operativo ofrece servicios diferentes, vamos a
 detenernos en uno común e importante para todos los sistemas que han
@@ -1366,9 +1274,7 @@ procesadores de texto, hojas de cálculo, sistemas de base de datos,
 juegos, etc. Ha esta colección de aplicaciones se la suele conocer con
 el término de _utilidades del sistema_ o __programas de aplicación__.
 
-[[operación-del-sistema-operativo]]
-Operación del sistema operativo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Operación del sistema operativo
 
 __Los sistemas operativos modernos pertenecen a un tipo de software que
 se dice que está controlado mediante interrupciones__:
@@ -1399,9 +1305,7 @@ datos de otro programa o el propio sistema operativo. Por eso es
 necesario establecer mecanismos de protección frente a los errores en
 los programas que se ejecutan en el sistema.
 
-[[operación-en-modo-dual]]
-[[anchor-21]][[anchor-42]][[anchor-21]]Operación en modo dual
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Operación en modo dual
 
 Para evitar este tipo de problemas es necesario poder distinguir entre
 la ejecución de código del sistema operativo y del código de los
@@ -1468,9 +1372,7 @@ programa falla de alguna forma, como por ejemplo intentando utilizar una
 instrucciones ilegal o de acceder a una zona de memoria inválida, el
 sistema operativo lo hace terminar de manera anormal.
 
-[[protección-de-la-memoria]]
-[[anchor-31]]Protección de la memoria
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Protección de la memoria
 
 La memoria principal debe acomodar tanto el sistema operativo como a los
 diferentes procesos de los usuarios. Por eso la memoria normalmente se
@@ -1523,9 +1425,7 @@ a zonas a las que no debería tenerlo. El acceso a la memoria en un modo
 no autorizado se considera una instrucción privilegiada, por lo que ese
 tipo de acceso desde el modo usuario siempre genera una excepción.
 
-[[el-temporizador]]
-El temporizador
-^^^^^^^^^^^^^^^
+==== El temporizador
 
 __El *temporizador* se utiliza para poder estar seguros de que el
 sistema operativo es capaz de mantener el control de la CPU__, puesto
@@ -1541,18 +1441,14 @@ interrupción como un error y terminar de manera anormal el programa.
 Indudablemente las instrucciones que pueden modificar el contenido del
 temporizador son instrucciones privilegiadas.
 
-[[sistemas-operativos-por-su-estructura]]
-Sistemas operativos por su estructura
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Sistemas operativos por su estructura
 
 Ya hemos discutido anteriormente acerca de los componentes más comunes
 en un sistema operativo (véase el apartado link:#anchor-27[2.1.2]). En
 esta sección comentaremos su organización e interconexión dentro del
 núcleo.
 
-[[estructura-sencilla]]
-Estructura sencilla
-^^^^^^^^^^^^^^^^^^^
+==== Estructura sencilla
 
 __Los sistemas con *estructura sencilla* no tienen una estructura bien
 definida__. Es decir, los interfaces y niveles de funcionalidad no están
@@ -1583,9 +1479,7 @@ creciendo más allá de las previsiones originales. Lo cierto es que con
 mejor soporte del hardware se puede dividir el sistema operativo en
 piezas más pequeñas y apropiadas que las del MSDOS y UNIX original.
 
-[[estructura-en-capas]]
-Estructura en capas
-^^^^^^^^^^^^^^^^^^^
+==== Estructura en capas
 
 __Un método para dividir el sistema operativo en piezas más pequeñas,
 con el fin de hacerlo más modular, es partirlo en capas__. Las capas se
@@ -1626,9 +1520,7 @@ sistemas de estructura sencilla__. En cada capa los parámetros son
 modificados y los datos necesarios deben de ser transferidos, por lo que
 cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.
 
-[[microkernel]]
-[[anchor-23]][[anchor-5]][[anchor-23]]Microkernel
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Microkernel
 
 __Los sistemas *microkernel* eliminan todos los componentes no
 esenciales del núcleo y los implementa como programas de nivel de
@@ -1688,9 +1580,7 @@ tareas críticas. Además siguen existiendo algunos proyectos de
 investigación dirigidos a resolver los problemas de rendimiento
 asociados a los núcleos microkernel.
 
-[[estructura-modular]]
-Estructura modular
-^^^^^^^^^^^^^^^^^^
+==== Estructura modular
 
 Los sistemas de *estructura modular* tienen divido el núcleo en módulos,
 cada uno de los cuales implementa funciones y servicios concretos, a
@@ -1715,13 +1605,9 @@ Por lo tanto también __deben ser considerados como sistemas
 Este tipo de estructura es la utilizada en los UNIX modernos, como
 Oracle/Sun Microsystems Solaris, Linux (véase la ) y macOS.
 
-[[gestión-de-procesos-1]]
-[[anchor-44]]Gestión de procesos
---------------------------------
+== Gestión de procesos
 
-[[procesos]]
-Procesos
-~~~~~~~~
+=== Procesos
 
 Los primeros sistemas informáticos sólo permitían que un programa se
 ejecutara de cada vez. Dicho programa tenía un control completo sobre el
@@ -1752,9 +1638,7 @@ Sin embargo en lo que resta de tema no estableceremos ningún tipo de
 distinción entre ellos. Al fin y al cabo todos son simples procesos de
 cara al resto del sistema.
 
-[[el-proceso]]
-[[anchor-45]]El proceso
-^^^^^^^^^^^^^^^^^^^^^^^
+==== El proceso
 
 Como ya hemos comentado con anterioridad, __un *proceso* es un programa
 en ejecución__. Sin embargo los procesos no son sólo el código del
@@ -1786,9 +1670,7 @@ apartado link:#anchor-6[2.1.2]). Ambos tendrán la misma sección _text_
 pero el contador de programas, la pila, la sección __data__, etc.
 contendrán valores diferentes.
 
-[[estados-de-los-procesos]]
-Estados de los procesos
-^^^^^^^^^^^^^^^^^^^^^^^
+==== Estados de los procesos
 
 Los procesos tienen un *estado* que cambia a lo largo de su ejecución y
 está definido parcialmente por la actividad actual del propio proceso.
@@ -1809,9 +1691,7 @@ liberen los recursos que le fueron asignados.
 
 El diagrama de estado de los procesos se muestra en la .
 
-[[bloque-de-control-de-proceso]]
-Bloque de control de proceso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Bloque de control de proceso
 
 __El *bloque de control de proceso* o *PCB* (Process Control Block) es
 una estructura de datos que representa a cada proceso en el sistema
@@ -1839,9 +1719,7 @@ ejecución del proceso, etc.
 * **Información de estado de la E/S**. Incluye la lista de dispositivos
 de E/S reservados por el proceso, la lista de archivos abiertos, etc.
 
-[[colas-de-planificación]]
-Colas de planificación
-^^^^^^^^^^^^^^^^^^^^^^
+==== Colas de planificación
 
 En los sistemas operativos hay diferentes *colas de planificación* para
 los procesos en distintos **estados**.
@@ -1894,9 +1772,7 @@ al de preparado_ y son insertados en la __cola de preparados__.
 es eliminado de todas las colas mientras el PCB y los recursos asignados
 son liberados.
 
-[[planificación-de-procesos]]
-[[anchor-47]]Planificación de procesos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación de procesos
 
 Durante su ejecución, los procesos se mueven entre las diversas colas de
 planificación a criterio del sistema operativo como parte de la tarea de
@@ -1921,9 +1797,7 @@ posteriormente__. A este esquema se le denomina *intercambio* –o
 __swapping__– y puede ser necesario utilizarlo cuando escasea la
 memoria.
 
-[[cambio-de-contexto]]
-Cambio de contexto
-^^^^^^^^^^^^^^^^^^
+==== Cambio de contexto
 
 __El *cambio de contexto* es la tarea de asignar a la CPU un proceso
 distinto al que la tiene asignada en el momento actual__. Esto implica
@@ -1948,17 +1822,13 @@ el juegos de registros de la CPU puede ser mapeado sobre un banco de
 registros mucho más extenso. Esto permite que la CPU almacene de forma
 eficiente el valor de los registros de más de un proceso.].
 
-[[operaciones-sobre-los-procesos]]
-[[anchor-36]]Operaciones sobre los procesos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Operaciones sobre los procesos
 
 En general los procesos pueden ser creados y eliminados dinámicamente,
 por lo que los sistemas operativos deben proporcionar mecanismos para la
 creación y terminación de los mismos.
 
-[[creación-de-procesos]]
-Creación de procesos
-++++++++++++++++++++
+===== Creación de procesos
 
 __Un proceso –denominado **padre**– puede crear múltiples procesos –los
 **hijos**– utilizando una llamada al sistema específica para la creación
@@ -2060,9 +1930,7 @@ nuevos procesos tiene un coste alto en ese sistema operativo. En
 Microsoft Windows la forma adecuada de realizar varias tareas al mismo
 tiempo es utilizando hilos (véase el apartado link:#anchor-50[3.3]).].
 
-[[terminación-de-procesos]]
-Terminación de procesos
-+++++++++++++++++++++++
+===== Terminación de procesos
 
 Un proceso termina cuando se lo indica al sistema operativo con la
 llamada al sistema __exit()__. En ese momento puede devolver un valor de
@@ -2088,9 +1956,7 @@ se le reasigna como padre el proceso _*init*_ –con PID 1–. Al menos en
 GNU/Linux, los intentos de matar a este último son ignorados por el
 sistema.]**, donde todos los procesos que cuelgan de uno dado terminan.
 
-[[procesos-cooperativos]]
-[[anchor-13]]Procesos cooperativos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Procesos cooperativos
 
 Desde el punto de vista de la cooperación podemos clasificar los
 procesos en dos grupos:
@@ -2103,9 +1969,7 @@ independiente.
 por otros procesos ejecutados en el sistema__. Los procesos que
 comparten datos siempre son cooperativos.
 
-[[motivaciones-para-la-colaboración-entre-procesos]]
-Motivaciones para la colaboración entre procesos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Motivaciones para la colaboración entre procesos
 
 Hay diversos motivos para proporcionar un entorno que permita la
 cooperación de los procesos:
@@ -2130,9 +1994,7 @@ tanto para __comunicar unos con otros__ (véase los apartados
 link:#anchor-49[3.2.2] y link:#anchor-5[3.2.3]) como para __sincronizar
 sus acciones__ (véase el apartado link:#anchor-12[3.3.3]).
 
-[[memoria-compartida]]
-[[anchor-49]]Memoria compartida
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Memoria compartida
 
 _La *memoria compartida* es una estrategia para comunicar procesos dónde
 uno de ellos gana acceso a regiones de la memoria del otro_ (véase la ).
@@ -2160,9 +2022,7 @@ velocidad de la memoria principal.__
 * **Conveniencia**__, puesto que el mecanismo de comunicación sólo
 requiere leer y escribir de la memoria__.
 
-[[comunicación-entre-procesos]]
-[[anchor-5]]Comunicación entre procesos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Comunicación entre procesos
 
 __La *comunicación entre procesos* o *IPC* (Interprocess Communication)
 es un mecanismo para que los procesos puedan compartir información y
@@ -2178,9 +2038,7 @@ y un servidor Web en Internet.
 La mejor forma de proporcionar IPC es utilizando un sistema de paso de
 mensajes (véase la ).
 
-[[sistema-de-paso-de-mensajes]]
-Sistema de paso de mensajes
-+++++++++++++++++++++++++++
+===== Sistema de paso de mensajes
 
 _La función de un *sistema de paso de mensajes* es permitir que los
 procesos se comuniquen sin necesidad de recurrir a la compartición de
@@ -2216,9 +2074,7 @@ recepción:
 * __Comunicación síncrona o asíncrona__.
 * __Buffering explícito o automático__.
 
-[[referenciación]]
-Referenciación
-++++++++++++++
+===== Referenciación
 
 Los procesos que se quiera comunicar debe tener una forma de
 referenciarse el uno al otro. Para ello puede utilizar la comunicación
@@ -2284,9 +2140,7 @@ recibe el mensaje_ si dos o más procesos ejecutan _receive()_ al mismo
 tiempo. La elección puede ser aleatoria o mediante algún algoritmo, por
 ejemplo por turnos.
 
-[[buffering]]
-Buffering
-+++++++++
+===== Buffering
 
 Los mensajes intercambiados durante el proceso de comunicación residen
 en una cola temporal. Básicamente hay tres formas de implementar dicha
@@ -2309,9 +2163,7 @@ ser lo suficientemente grande para que podamos considerar que las colas
 son infinitas.] infinita__, lo que permite que el transmisor nunca
 espere.
 
-[[sincronización]]
-Sincronización
-++++++++++++++
+===== Sincronización
 
 La comunicación entre dos procesos tiene lugar por medio de las llamadas
 _send()_ y __receive()__; de tal forma que generalmente la primera se
@@ -2342,13 +2194,9 @@ Diferentes combinaciones de _send()_ y _receive()_ son posibles. Es
 decir, transmisión y recepción pueden ser síncronas o asíncronas de
 manera independiente.
 
-[[ejemplos-de-mecanismos-comunicación-entre-procesos]]
-[[anchor-48]]Ejemplos de mecanismos comunicación entre procesos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Ejemplos de mecanismos comunicación entre procesos
 
-[[tuberías]]
-Tuberías
-++++++++
+===== Tuberías
 
 Las *tuberías* son un mecanismo de IPC de _comunicación indirecta_ que
 está incluido en muchos sistemas operativos. La comunicación es de
@@ -2379,9 +2227,7 @@ Por simplicidad las tuberías son tratadas de forma similar a los
 archivos por lo que en ambos casos se utilizar las mismas primitivas de
 E/S _–read()_ y __write()__–.
 
-[[señales-en-sistemas-operativos-posix]]
-Señales en sistemas operativos POSIX
-++++++++++++++++++++++++++++++++++++
+===== Señales en sistemas operativos POSIX
 
 En POSIX la forma más sencilla de comunicar dos procesos del mismo
 sistema es mediante el envío de una *señal* de uno al otro.
@@ -2423,9 +2269,7 @@ debe reinicializarse, empezar a realizar el trabajo para el que fue
 diseñado o escribir su estado interno en un sitio conocido del
 almacenamiento.
 
-[[sockets]]
-[[anchor-51]]Sockets
-++++++++++++++++++++
+===== Sockets
 
 __Un *socket* es un punto final en una comunicación bidireccional entre
 procesos__. Para que una pareja de procesos se pueda comunicar son
@@ -2471,9 +2315,7 @@ Los _sockets_ implementan _buffering automático_ y admiten tanto
 _comunicación síncrona_ como __asíncrona__, aunque el comportamiento
 final de la interfaz depende de la tecnología de red utilizada.
 
-[[hiloshilos]]
-[[anchor-50]]Hilos[[anchor-52]][[anchor-50]]Hilos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Hilos
 
 Hasta el momento el modelo de proceso que hemos descrito asume que
 tenemos un sólo *hilo* de ejecución, es decir, que se ejecuta en la CPU
@@ -2485,9 +2327,7 @@ muchos sistemas operativos modernos han extendido el concepto de proceso
 para permitir múltiples hilos de ejecución en cada uno. Los procesos con
 varios hilos pueden realizar varias tareas a la vez.
 
-[[introducción-1]]
-Introducción
-^^^^^^^^^^^^
+==== Introducción
 
 __El hilo es la unidad básica de uso de la CPU en los sistemas
 operativos multihilo__. De los recursos de un proceso es privado a cada
@@ -2507,9 +2347,7 @@ Sin embargo todos los hilos de un mismo proceso comparten (véase la ):
 * **Otras secciones de datos**, como el montón.
 * Y *otros recursos del proceso* como archivos abiertos y señales.
 
-[[beneficios]]
-Beneficios
-++++++++++
+===== Beneficios
 
 Muchos son los beneficios que aporta la programación multihilo:
 
@@ -2536,9 +2374,7 @@ distintos procesadores. Por el contrario un proceso monohilo sólo se
 puede ejecutar en una CPU a la vez, independientemente de cuantas estén
 disponibles para ejecutarlo.
 
-[[soporte-multihilo]]
-Soporte multihilo
-+++++++++++++++++
+===== Soporte multihilo
 
 __Las *librerías de hilos* proporcionan al programador la API para crear
 y gestionar los hilos de su proceso__. Hay dos formas fundamentales de
@@ -2569,9 +2405,7 @@ de ambos tipos, dependiendo solamente del sistema donde se
 implementefootnote:[POSIX Threads se implementa en el núcleo en los
 sistemas Linux y en la mayor parte de los UNIX actuales.].
 
-[[modelos-multihilo]]
-Modelos multihilo
-^^^^^^^^^^^^^^^^^
+==== Modelos multihilo
 
 Las distintas formas de implementar los hilos comentadas anteriormente
 –en espacio de usuario o en el núcleo– no son excluyentes ya que en un
@@ -2581,9 +2415,7 @@ soportan de ninguna forma múltiples hilos de ejecución–. Así que en
 general debe existir una relación entre los hilos de usuario y los del
 núcleo. A continuación veremos tres formas de establecer dicha relación.
 
-[[muchos-a-uno]]
-Muchos a uno
-++++++++++++
+===== Muchos a uno
 
 __En un sistema operativo cuyo núcleo no soporta múltiples hilos de
 ejecución la única posibilidad es utilizar una librería de hilos
@@ -2643,9 +2475,7 @@ en los sistemas multihilo, ya que debido a su bajo coste en recursos y a
 su alta eficiencia son ideales cuando la cantidad de hilos a crear –el
 nivel de concurrencia– va a ser previsiblemente muy alta .
 
-[[uno-a-uno]]
-Uno a uno
-+++++++++
+===== Uno a uno
 
 ___Si el núcleo del sistema operativo soporta hilos de ejecución, lo más
 común es que estos sean visibles directamente en el espacio de usuario.
@@ -2672,9 +2502,7 @@ multihilo modernos. Linux, Microsoft Windows 95/98/NT/2000/XP y
 superiores, y Solaris 9 y superiores, son ejemplos de sistemas
 operativos que los utilizan.
 
-[[muchos-a-muchos]]
-Muchos a muchos
-+++++++++++++++
+===== Muchos a muchos
 
 ___En teoría debería ser posible aprovechar lo mejor de los dos modelos
 anteriores. Por eso __en el modelo *muchos a muchos* se mapean los hilos
@@ -2723,9 +2551,7 @@ desarrolladores de Linux han preferido concentrar sus esfuerzos en
 conseguir un planificador de CPU más eficiente, así como en reducir los
 costes de la creación de hilos de núcleo.
 
-[[sincronización-1]]
-[[anchor-12]]Sincronización
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sincronización
 
 Hemos comentado anteriormente que los hilos comparten el espacio de
 direcciones del proceso al que pertenecen. Al mismo tiempo distintos
@@ -2737,9 +2563,7 @@ discutir __c__ó__mo se puede asegurar la ejecución ordenada de hilos y/o
 procesos cooperativos que comparten regiones de la memoria, con el fin
 de mantener la consistencia de los datos__.
 
-[[el-problema-de-las-secciones-críticas]]
-El problema de las secciones críticas
-+++++++++++++++++++++++++++++++++++++
+===== El problema de las secciones críticas
 
 __Llamamos *condición de carrera* a la situación donde varios procesos o
 hilos pueden acceder y manipular los mismos datos concurrentemente, y
@@ -2815,9 +2639,7 @@ de la variable __count__.
 
 |=======================================================================
 
-[[semáforos]]
-Semáforos
-+++++++++
+===== Semáforos
 
 Para que las operaciones sobre los datos compartidos se ejecuten de
 manera ordenada, el sistema operativo debe proporcionar a los
@@ -2882,13 +2704,9 @@ crítica requiere poco tiempo. Además son muy eficientes al no obligar a
 hacer cambios de contexto entre hilos, lo que podría necesitar un tiempo
 considerable.
 
-[[otras-consideraciones-sobre-los-hilos]]
-Otras consideraciones sobre los hilos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Otras consideraciones sobre los hilos
 
-[[datos-específicos-de-hilo]]
-Datos específicos de hilo
-+++++++++++++++++++++++++
+===== Datos específicos de hilo
 
 Los hilos de un mismo proceso comparten los datos del mismo, siendo este
 uno de los principales beneficios de la programación multihilo. Por
@@ -2900,9 +2718,7 @@ librerías de hilos, incluyendo el API Win32 y Pthreads, aunque no es
 común que sean soportados directamente por los distintos lenguajes de
 programación.
 
-[[cancelación-de-hilos]]
-Cancelación de hilos
-++++++++++++++++++++
+===== Cancelación de hilos
 
 __La *cancelación* es la operación de terminar un hilo antes de que
 termine su trabajo__. Por ejemplo, en un navegador web un hilo se puede
@@ -2924,9 +2740,7 @@ terminología de Pthreads a estos puntos se los denomina *puntos de
 cancelación* –o __cancellation points__– y muchas llamadas al sistema lo
 son por si mismas.
 
-[[funciones-reentrantes-y-seguras-en-hilos]]
-Funciones reentrantes y seguras en hilos
-++++++++++++++++++++++++++++++++++++++++
+===== Funciones reentrantes y seguras en hilos
 
 A la hora de utilizar una librería en un programa multihilo es necesario
 que tengamos en cuenta los conceptos de reentrante y de seguridad de
@@ -2965,9 +2779,7 @@ seguramente no será reentrante aunque si segura en hilos. Mientras que
 una función que sólo utilice variables locales y que no invoque a otras
 funciones seguramente será reentrante y segura en hilos.
 
-[[las-llamadas-al-sistema-fork-y-exec-en-procesos-multihilo]]
-Las llamadas al sistema fork( ) y exec( ) en procesos multihilo
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===== Las llamadas al sistema fork( ) y exec( ) en procesos multihilo
 
 ¿Qué debe ocurrir si un hilo de un proceso multihilo ejecuta la llamada
 __fork()__? ¿el nuevo proceso debe duplicar todos los hilos? ¿o debe
@@ -2985,9 +2797,7 @@ tienen una segunda llamada no estándar, denominada __forkall()__, capaz
 de duplicar todos los hilos del proceso padre. Obviamente sólo resulta
 conveniente emplearla si no se va a utilizar la llamada __exec()__.
 
-[[manejo-de-señales-en-procesos-multihilo]]
-Manejo de señales en procesos multihilo
-+++++++++++++++++++++++++++++++++++++++
+===== Manejo de señales en procesos multihilo
 
 Una señal se utiliza en UNIX para informar a un proceso cuando un evento
 a ocurrido. Existen dos tipos de señales:
@@ -3026,9 +2836,7 @@ las señales necesitan ser manejadas una sola vez, normalmente sólo
 llegan al primer hilo al que se le asigna la CPU y que no las esté
 bloqueando.
 
-[[planificación-de-la-cpu]]
-[[anchor-8]][[anchor-11]][[anchor-8]]Planificación de la CPU
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Planificación de la CPU
 
 __El *planificador de la CPU* o *planificador de corto plazo* selecciona
 de la cola de preparados el siguiente proceso o hilo del núcleo a
@@ -3046,9 +2854,7 @@ núcleo y no los procesos**. Por ello todo lo que comentemos a partir de
 ahora se aplica de la misma manera a los hilos de núcleo, en aquellos
 sistemas operativos que los soportan.
 
-[[planificación-expropiativa]]
-[[anchor-22]][[anchor-53]][[anchor-22]]Planificación expropiativa
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación expropiativa
 
 Las decisiones de planificación _se deben tomar necesariamente_ en los
 siguientes casos:
@@ -3104,9 +2910,7 @@ las estructuras del mismo permanezcan consistentes, pero es un modelo
 pobre en sistemas de tiempo real o multiprocesador. Exploraremos otras
 soluciones más adelante (véase el apartado link:#anchor-55[3.4.6]).
 
-[[el-asignador]]
-[[anchor-43]]El asignador
-^^^^^^^^^^^^^^^^^^^^^^^^^
+==== El asignador
 
 __El *asignador* es el componente que da el control de la CPU al proceso
 seleccionado por el planificador de corto plazo__. Esta tarea implica
@@ -3122,9 +2926,7 @@ iniciar otro sea lo más corto posible. __Al tiempo que transcurre desde
 que un proceso es escogido para ser planificado en la CPU hasta que es
 asignado a la misma se lo denomina *latencia de asignación*__.
 
-[[criterios-de-planificación]]
-[[anchor-16]]Criterios de planificación
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Criterios de planificación
 
 Los diferentes algoritmos de planificación de la CPU tienen diversas
 propiedades que pueden favorecer a una clase de procesos respecto a
@@ -3135,9 +2937,7 @@ de CPU pero la elección de uno u otro puede crear una diferencia
 sustancial a la hora de juzgar cual es el mejor. A continuación
 presentamos los criterios más comunes.
 
-[[criterios-a-maximizar]]
-Criterios a maximizar
-+++++++++++++++++++++
+===== Criterios a maximizar
 
 * **Uso de CPU**: Un buen __planificador debería mantener la CPU lo más
 ocupada posible__. El uso de CPU es la proporción de tiempo que se usa
@@ -3158,9 +2958,7 @@ __tasa de procesamiento__.
 |====
 |====
 
-[[criterios-a-minimizar]]
-Criterios a minimizar
-+++++++++++++++++++++
+===== Criterios a minimizar
 
 * ***Tiempo de ejecución***: Es el __intervalo de tiempo que transcurre
 desde que el proceso es cargado hasta que termina__.
@@ -3175,9 +2973,7 @@ tiempo que se tarda en responder y no el tiempo de E/S, mientras que el
 tiempo de ejecución sí suele estar limitado por la velocidad de los
 dispositivos E/S.
 
-[[elección-del-criterio-adecuado]]
-Elección del criterio adecuado
-++++++++++++++++++++++++++++++
+===== Elección del criterio adecuado
 
 En función del tipo de sistema o de la clase de trabajos que se van a
 ejecutar puede ser conveniente medir la eficiencia del sistema usando un
@@ -3225,9 +3021,7 @@ de respuesta promedio, puesto que para los usuarios un sistema con un
 tiempo de respuesta predecible es más deseable que uno muy rápido en
 promedio pero con una varianza muy alta.
 
-[[ciclo-de-ráfagas-de-cpu-y-de-es]]
-[[anchor-56]][[anchor-57]][[anchor-56]]Ciclo de ráfagas de CPU y de E/S
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Ciclo de ráfagas de CPU y de E/S
 
 El éxito de la planificación de CPU depende en gran medida de la
 siguiente propiedad que podemos observar en los procesos: __La ejecución
@@ -3280,9 +3074,7 @@ porque siempre escogen al proceso con la ráfaga de CPU más corta de
 entre los que esperan en la cola de preparados.], Según las definiciones
 anteriores, estos procesos son precisamente los limitados por la E/S.
 
-[[planificación]]
-Planificación
-^^^^^^^^^^^^^
+==== Planificación
 
 Hasta el momento hemos considerado la cola de preparados como una
 estructura donde los procesos que están preparados para ser ejecutados
@@ -3408,9 +3200,7 @@ Precisamente una cuestión interesante es la indicada en éste último
 punto ¿cómo seleccionar la cola que debe escoger al siguiente proceso
 que debe ser ejecutado?.
 
-[[prioridad-fija]]
-Prioridad fija
-++++++++++++++
+===== Prioridad fija
 
 Aunque existen muchas maneras de clasificar los procesos entre las
 diferentes colas, lo más común en los sistemas operativos modernos es
@@ -3539,9 +3329,7 @@ tipo de planificación con __prioridad fija no es capaz de hacerlo ya que
 la prioridad de los procesos viene determinada exclusivamente por
 criterios externos al funcionamiento del sistema operativo__.
 
-[[prioridad-dinámica]]
-Prioridad dinámica
-++++++++++++++++++
+===== Prioridad dinámica
 
 La mayor parte de los sistemas operativos modernos de propósito
 generalfootnote:[Microsoft Windows, macOS, Oracle/Sun Microsystems
@@ -3576,9 +3364,7 @@ cola durante su tiempo de vida. __A la planificación de múltiples
 niveles donde los procesos pueden cambiar de una cola a otra se la
 denomina *planificación con colas multinivel realimentadas*__.
 
-[[planificación-por-reparto-proporcional]]
-Planificación por reparto proporcional
-++++++++++++++++++++++++++++++++++++++
+===== Planificación por reparto proporcional
 
 Hasta el momento hemos hablado de planificadores que se concentran en
 cuál es el proceso más importante que debe ser ejecutado en cada
@@ -3609,18 +3395,14 @@ desde la versión 2.6.23 utiliza un tipo de *planificador equitativo
 ponderado* denominado CFS (**Completely Fair Scheduler**) o
 *planificador completamente justo.*]**__.
 
-[[planificación-de-tiempo-real]]
-[[anchor-55]]Planificación de tiempo real
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación de tiempo real
 
 En el apartado link:#anchor-18[1.3.4] discutimos la importancia de los
 sistemas de tiempo real. A continuación, describiremos las
 funcionalidades necesarias para soportar la ejecución de procesos en
 tiempo real dentro de un sistema operativo de propósito general.
 
-[[tiempo-real-estricto]]
-Tiempo real estricto
-++++++++++++++++++++
+===== Tiempo real estricto
 
 Los sistemas de *tiempo real estricto* son necesarios para realizar
 tareas críticas que deben ser completadas dentro de unos márgenes de
@@ -3643,9 +3425,7 @@ para ejecutar una tarea. Por tanto, el __tiempo real estricto no es
 compatible con los sistemas operativos de propósito general__, como los
 de tiempo compartido.
 
-[[tiempo-real-flexible]]
-Tiempo real flexible
-++++++++++++++++++++
+===== Tiempo real flexible
 
 La ejecución de procesos de *tiempo real flexible* es menos restrictiva.
 Tan sólo requiere que los procesos críticos reciban mayor prioridad que
@@ -3701,7 +3481,7 @@ sistema pueden ser muy complejas y requerir mucho tiempo para ser
 completadas. Con el objetivo de resolverlo existen diversas
 alternativas:
 
-Puntos de expropiación
+====== Puntos de expropiación
 
 Una posibilidad es __hacer que el código del núcleo sea expropiable__.
 Esto se consigue introduciendo *puntos de expropiación* en diversos
@@ -3717,7 +3497,7 @@ estructuras de datos. Sin embargo esto limita el número de puntos que
 pueden ser colocados, por lo que la latencia de asignación puede seguir
 siendo muy alta para algunas tareas muy complejas del código del núcleo.
 
-Núcleo expropiable
+====== Núcleo expropiable
 
 Otra posibilidad es __diseñar un núcleo completamente expropiable__.
 Puesto que en este caso la ejecución de cualquier tarea en el núcleo
@@ -3763,9 +3543,7 @@ usar puntos de expropiación o nada de lo anterior. De esta forma Linux
 está preparado tanto para servidores como para sistemas de escritorio o
 de tiempo real.
 
-[[planificación-en-sistemas-multiprocesador]]
-Planificación en sistemas multiprocesador
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación en sistemas multiprocesador
 
 Para tratar el problema de la planificación en los sistemas
 multiprocesador nos limitaremos al caso de los __sistemas
@@ -3948,13 +3726,9 @@ con la prioridad relativa del hilo en cuestión____.
 
 |=======================================================================
 
-[[gestión-de-la-memoria]]
-Gestión de la memoria
----------------------
+== Gestión de la memoria
 
-[[memoria-principal]]
-[[anchor-75]]Memoria principal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Memoria principal
 
 La memoria es un recurso central para el funcionamiento de un sistema
 operativo moderno, puesto que es el único medio de almacenamiento al que
@@ -3988,9 +3762,7 @@ ejecución es solicitada por los usuarios. Excepto por eso, el
 procedimiento normal de ejecución de un programa es el mismo que para
 los __sistemas multiprogramados__.
 
-[[reubicaciónreubicación-de-las-direcciones]]
-Reubicación[[anchor-76]]Reubicación de las direcciones
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Reubicación de las direcciones
 
 La mayor parte de los sistemas permiten que un proceso de usuario resida
 en cualquier parte de la memoria física. Así, aunque el espacio de
@@ -4074,9 +3846,7 @@ espacios de direcciones virtuales nos estamos asegurando de que el
 código en memoria de los procesos de un mismo programa siempre es el
 mismo, por lo que se puede compartir la memoria física que ocupan.
 
-[[enlazado-dinámico-y-librerías-compartidas]]
-Enlazado dinámico y librerías compartidas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Enlazado dinámico y librerías compartidas
 
 Fundamentalmente existen dos tipos de enlazado:
 
@@ -4150,18 +3920,14 @@ actualizadas pero compatibles, mientras los nuevos programas se ejecuten
 con las versiones más recientes e incompatibles con los viejos
 programas. A este sistema se lo conoce como **librerías compartidas**.
 
-[[paginación]]
-[[anchor-77]][[anchor-46]][[anchor-77]]Paginación
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Paginación
 
 El mapeo entre direcciones virtuales y físicas puede realizarse de
 diversas maneras. La forma más extendida es __la **paginación**, que no
 es sino un esquema de gestión de la memoria que permite que el espacio
 de direcciones físico de un proceso no sea continuo__.
 
-[[método-básico]]
-[[anchor-77]]Método básico
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Método básico
 
 En la paginación __la memoria física se divide en bloques de tamaño fijo
 denominados **marcos**, mientras que el espacio de direcciones virtual
@@ -4191,9 +3957,7 @@ página es de 2__^_n_^__, los __m - n __bits de mayor orden del espacio
 de direcciones indican el __número de página__, mientras que los _n_
 bits de menor orden indican el _desplazamiento_ (véase la )
 
-[[desde-el-punto-de-vista-de-los-procesos]]
-Desde el punto de vista de los procesos
-+++++++++++++++++++++++++++++++++++++++
+===== Desde el punto de vista de los procesos
 
 Cada página de un proceso requiere un marco. Por tanto, cuando un
 proceso llega al sistema:
@@ -4217,9 +3981,7 @@ física, que además puede almacenar a otros programas. __Esto es posible
 porque en cada momento la tabla de páginas sólo contiene las páginas del
 proceso actual__.
 
-[[desde-el-punto-de-vista-del-sistema-operativo]]
-Desde el punto de vista del sistema operativo
-+++++++++++++++++++++++++++++++++++++++++++++
+===== Desde el punto de vista del sistema operativo
 
 Puesto que el sistema operativo es quién gestiona la memoria física,
 __éste debe mantenerse al tanto de las particularidades de su uso__:
@@ -4247,9 +4009,7 @@ dirección debe ser mapeada manualmente para producir la dirección física
 correspondiente que será utilizada por el hardware para realizar la
 operación.
 
-[[tamaño-de-las-páginas]]
-Tamaño de las páginas
-+++++++++++++++++++++
+===== Tamaño de las páginas
 
 Una decisión de diseño importante es escoger el tamaño de las páginas
 adecuado:
@@ -4274,9 +4034,7 @@ cada marco es de 4 KB, podemos determinar que el sistema es capaz de
 direccionar 2^44^ bytes –o 16 TB– de memoria física, para lo que es
 necesario disponer de una tabla de páginas de 4 MB.
 
-[[soporte-hardware-de-la-tabla-de-páginas]]
-Soporte hardware de la tabla de páginas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Soporte hardware de la tabla de páginas
 
 La implementación en hardware de la tabla de páginas puede realizarse de
 diversas maneras:
@@ -4319,9 +4077,7 @@ cambio de contexto sea más rápido –respecto al uso de registros para
 almacenar la tabla de páginas– puesto que sólo es necesario carga un
 único registro más –el PTBR– durante el mismo.
 
-[[protección]]
-Protección
-^^^^^^^^^^
+==== Protección
 
 La protección de las páginas _se consigue mediante unos *bits de
 protección* asociados a cada entrada de la tabla de páginas_ y
@@ -4400,9 +4156,7 @@ cuanto el proceso no las vaya a utilizar. La falta de marco es indicada
 por el sistema operativo utilizando el bit de válido para denegar el
 acceso__.
 
-[[páginas-compartidas]]
-Páginas compartidas
-^^^^^^^^^^^^^^^^^^^
+==== Páginas compartidas
 
 Una de las ventajas importantes de la paginación es la posibilidad de
 compartir páginas entre procesos. Para conseguir esto basta con que
@@ -4417,9 +4171,7 @@ Compartir páginas no sólo permite ahorrar memoria pues en __los sistemas
 operativos modernos la memoria compartida (véase el apartado
 link:#anchor-49[3.2.2]) se implementa mediante páginas compartidas__.
 
-[[paginación-bajo-demanda]]
-Paginación bajo demanda
-~~~~~~~~~~~~~~~~~~~~~~~
+=== Paginación bajo demanda
 
 La _paginación bajo demanda_ es la técnica con la que frecuentemente se
 implementa la _memoria virtual_ en los sistemas con paginación. El
@@ -4429,9 +4181,7 @@ exista separación entre la memoria física y la manera en la que los
 procesos perciben la memoria es un requisito para poder implementar la
 memoria virtual__.
 
-[[memoria-virtual]]
-[[anchor-10]]Memoria virtual
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Memoria virtual
 
 __La *memoria virtual* es una técnica que permite la ejecución de
 procesos sin que éstos tengan que ser cargados completamente en la
@@ -4465,9 +4215,7 @@ ejecutar al mismo tiempo, con el correspondiente incremento en el uso de
 la CPU y en el rendimiento del sistema_ y sin efectos negativos en el
 tiempo de respuesta y en el de ejecución.
 
-[[método-básico-1]]
-[[anchor-41]]Método básico
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Método básico
 
 __En la paginación bajo demanda las páginas individuales, en las que se
 dividen los espacios de direcciones virtuales de los diferentes
@@ -4542,9 +4290,7 @@ principales ventajas de la _paginación bajo demanda pura_ son:
 * El inicio de la ejecución de un proceso es mucho más rápido que si se
 cargara todo el proceso desde el principio.
 
-[[requerimientos-de-la-paginación-bajo-demanda]]
-Requerimientos de la paginación bajo demanda
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Requerimientos de la paginación bajo demanda
 
 Los requerimientos hardware para que un sistema operativo pueda soportar
 la paginación bajo demanda son:
@@ -4568,9 +4314,7 @@ sido realizada parcialmente. Si además ambos bloques se superpusieran,
 no se podría reiniciar la instrucción completa. Las posibles soluciones
 a este problema deben ser implementadas en el hardware.
 
-[[rendimiento-de-la-paginación-bajo-demanda]]
-Rendimiento de la paginación bajo demanda
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Rendimiento de la paginación bajo demanda
 
 Indudablemente el rendimiento de un sistema con paginación bajo demanda
 se ve afectado por el número de fallos de páginas. En el peor de los
@@ -4579,9 +4323,7 @@ página distinta empeorando notablemente el rendimiento. Sin embargo esto
 no ocurre puesto que los programas tienden a tener localidad de
 referencia (véase el apartado link:#anchor-78[4.5.9]).
 
-[[tiempo-de-acceso-efectivo]]
-Tiempo de acceso efectivo
-+++++++++++++++++++++++++
+===== Tiempo de acceso efectivo
 
 El rendimiento de un sistema con paginación bajo demanda está
 relacionado con el concepto de *tiempo de acceso efectivo* a la memoria.
@@ -4650,9 +4392,7 @@ paginación bajo demanda. Por tanto __es necesario mantener la tasa de
 fallos de página lo más baja posible para mantener un rendimiento
 adecuado__.
 
-[[manejo-y-uso-del-espacio-de-intercambio]]
-Manejo y uso del espacio de intercambio
-+++++++++++++++++++++++++++++++++++++++
+===== Manejo y uso del espacio de intercambio
 
 __Otro aspecto fundamental que afecta al rendimiento de la paginación
 bajo demanda es el uso del espacio de intercambio__. Cuando un proceso
@@ -4689,9 +4429,7 @@ conseguir un buen compromiso entre el tamaño del espacio de intercambio
 y el rendimiento. Por eso se utiliza en la mayor parte de los sistemas
 operativos modernos.
 
-[[copy-on-write]]
-[[anchor-79]]Copy-on-write
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Copy-on-write
 
 __El *copy-on-write* o copia durante la escritura permite la creación
 rápida de nuevos procesos, minimizando la cantidad de páginas que deben
@@ -4755,9 +4493,7 @@ El _copy-on-write_ __es especialmente interesante si a continuación se
 va a utilizar la llamada al sistema exec() puesto que si es así copiar
 el espacio de direcciones completo es una pérdida de tiempo__.
 
-[[archivos-mapeados-en-memoria]]
-[[anchor-19]]Archivos mapeados en memoria
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Archivos mapeados en memoria
 
 __Los *archivos mapeados en memoria* permiten acceder a un archivo como
 parte del espacio de direcciones virtuales de un proceso__. Algunas de
@@ -4802,9 +4538,7 @@ abierto el archivo, Linux trata toda la E/S a archivos como mapeada en
 memoria, permitiendo que el acceso a los mismos tenga lugar a través del
 eficiente componente de gestión de la memoria.
 
-[[reemplazo-de-página]]
-Reemplazo de página
-^^^^^^^^^^^^^^^^^^^
+==== Reemplazo de página
 
 Hasta el momento hemos considerado que disponemos de memoria física
 suficiente para atender cualquier fallo de página pero ¿qué pasa cuando
@@ -4855,9 +4589,7 @@ reemplazamos cuando no hay marcos suficientes.
 Obviamente estos algoritmos deben ser escogidos de forma que mantengan
 la tasa de fallos de página lo más baja posible.
 
-[[algoritmos-de-reemplazo-de-páginas]]
-[[anchor-79]]Algoritmos de reemplazo de páginas
-+++++++++++++++++++++++++++++++++++++++++++++++
+===== Algoritmos de reemplazo de páginas
 
 Existen diversos criterios para escoger la página que reemplazamos
 cuando no hay suficientes marcos disponibles. En cualquier caso __el
@@ -4921,9 +4653,7 @@ algoritmos *LFU* (Least Frequently Used) –cuando se escogen las páginas
 utilizadas con menos frecuencia– y *MFU* (Most Frequently Used) –cuando
 se escogen las páginas utilizadas con más frecuencia–.
 
-[[algoritmos-de-buffering-de-páginas]]
-Algoritmos de buffering de páginas
-++++++++++++++++++++++++++++++++++
+===== Algoritmos de buffering de páginas
 
 Existen otros procedimientos que pueden ser utilizados, junto con alguno
 de los algoritmos de reemplazo comentados, con el objetivo de mejorar su
@@ -4949,9 +4679,7 @@ espacio de intercambio no esté ocupado__. Este esquema aumenta la
 probabilidad de que una página esté limpia cuando sea seleccionada por
 el algoritmo de reemplazo, evitando la escritura en disco.
 
-[[reemplazo-local-frente-a-global]]
-Reemplazo local frente a global
-+++++++++++++++++++++++++++++++
+===== Reemplazo local frente a global
 
 Cuando un proceso necesita un marco el algoritmo de reemplazo puede
 tanto extraerlo de cualquier proceso como ser obligado a considerar sólo
@@ -4977,9 +4705,7 @@ significativa.
 Generalmente __el reemplazo global proporciona mayor rendimiento por lo
 que es el método más utilizado__.
 
-[[asignación-de-marcos-de-página]]
-Asignación de marcos de página
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Asignación de marcos de página
 
 La cuestión que queda por resolver es cómo repartir los marcos de
 memoria física libre entre los diferentes procesos con el fin de cubrir
@@ -5015,16 +4741,12 @@ arquitectura, el proceso dejará de ser útil debido a la elevada tasa de
 fallos de página, que será mayor cuantos menos marcos tenga asignados.
 Cuando eso ocurre se dice que el proceso está __hiperpaginando__.
 
-[[hiperpaginación]]
-[[anchor-78]]Hiperpaginación
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Hiperpaginación
 
 Se dice que __un proceso sufre de *hiperpaginación* cuando gasta más
 tiempo paginando que ejecutándos__e.
 
-[[causas-de-la-hiperpaginación]]
-Causas de la hiperpaginación
-++++++++++++++++++++++++++++
+===== Causas de la hiperpaginación
 
 En los primeros sistemas multiprogramados que implementaron la
 paginación bajo demanda era posible que se diera el siguiente caso:
@@ -5060,9 +4782,7 @@ maximizar el uso de la CPU, ya que estos sistemas carecen de dicho
 planificador. Sea como fuere, __en ambos casos los procesos
 hiperpaginarán si no se les asigna un número suficiente de marcos__.
 
-[[soluciones-a-la-hiperpaginación]]
-Soluciones a la hiperpaginación
-+++++++++++++++++++++++++++++++
+===== Soluciones a la hiperpaginación
 
 Para el problema de la hiperpaginación existen diversas soluciones:
 
@@ -5077,9 +4797,7 @@ mínimos de marcos, que a priori no es conocido. Una de las estrategias
 que pretenden estimar dicho número es el **modelo de conjunto de
 trabajo**.
 
-[[modelo-del-conjunto-de-trabajo]]
-Modelo del conjunto de trabajo
-++++++++++++++++++++++++++++++
+===== Modelo del conjunto de trabajo
 
 Para entender el modelo de conjunto de trabajo es necesario comenzar
 definiendo el **modelo de localidad**. El modelo de localidad establece
@@ -5128,9 +4846,7 @@ localidad.
 * Si _Δ_ es muy grande, el conjunto de trabajo se superpondrían a varias
 localidades.
 
-[[uso-del-conjunto-del-trabajo-para-evitar-la-hiperpaginación]]
-Uso del conjunto del trabajo para evitar la hiperpaginación
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===== Uso del conjunto del trabajo para evitar la hiperpaginación
 
 El uso del conjunto de trabajo es bastante sencillo:
 
@@ -5165,18 +4881,14 @@ páginas con el bit de referencia a 1 forman parte de la localidad del
 programa y por tanto serán el conjunto de trabajo a lo largo del
 siguiente periodo.
 
-[[otras-consideraciones]]
-Otras consideraciones
-^^^^^^^^^^^^^^^^^^^^^
+==== Otras consideraciones
 
 Ya hemos comentado que las principales decisiones que deben ser tomadas
 en el diseño de un sistema con paginación bajo demanda son la elección
 del algoritmo de reemplazo y la del de asignación de marcos de página.
 Sin embargo hay otras consideraciones que deben ser tenidas en cuenta.
 
-[[prepaginado]]
-Prepaginado
-+++++++++++
+===== Prepaginado
 
 __El *prepaginado* es una técnica que consiste en cargar múltiples
 páginas junto con la página demandada en cada fallo de página__. Esas
@@ -5201,9 +4913,7 @@ En general el único inconveniente del prepaginado es que debe ser
 ajustarlo para que el coste del mismo sea inferior al de servir los
 fallos de página.
 
-[[aplicaciones-en-modo-raw]]
-Aplicaciones en modo RAW
-++++++++++++++++++++++++
+===== Aplicaciones en modo RAW
 
 __Algunas aplicaciones al acceder a sus datos a través de los mecanismos
 de memoria virtual del sistema operativo ofrecen peor rendimiento del
@@ -5222,9 +4932,7 @@ la memoria. Sin embargo, hay que tener en cuenta que la mayor parte de
 las aplicaciones siempre funcionan mejor utilizando los servicios
 convencionales ofrecidos por el sistema operativo.
 
-[[tamaño-de-las-páginas-1]]
-Tamaño de las páginas
-+++++++++++++++++++++
+===== Tamaño de las páginas
 
 Como ya comentamos al estudiar el método básico de paginación (véase el
 apartado link:#anchor-77[4.4.1]), una decisión de diseño importante es
@@ -5267,9 +4975,7 @@ código y sus datos. De esta forma se minimiza el número de entradas de
 la TLB que utilizan, con el fin de disponer de más entradas libres para
 los procesos en ejecución.] cuando corren sobre dicha arquitectura.
 
-[[efecto-de-la-estructura-de-los-programas]]
-Efecto de la estructura de los programas
-++++++++++++++++++++++++++++++++++++++++
+===== Efecto de la estructura de los programas
 
 __Los programas estructurados con un buena localidad de referencia
 pueden mejorar su rendimiento en los sistemas con paginación bajo
@@ -5330,9 +5036,7 @@ en la misma página._
 ** __El cargador puede situar las _funciones_ __en la memoria __de _tal_
 forma que __en lo posible no __crucen los bordes de las páginas__.
 
-[[interbloqueo-de-es]]
-Interbloqueo de E/S
-+++++++++++++++++++
+===== Interbloqueo de E/S
 
 __Supongamos que un proceso solicita una operación de E/S sobre el
 contenido de alguna de las páginas de su espacio de direcciones y que la
@@ -5370,9 +5074,7 @@ descartar dichos consejos si el conjunto de marcos libres llega a ser
 demasiado pequeño o si un proceso concreto pide bloquear demasiadas
 páginas.
 
-[[interfaz-de-gestión-de-la-memoria]]
-Interfaz de gestión de la memoria
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Interfaz de gestión de la memoria
 
 Gracias a la abstracción de las técnicas de memoria virtual –como la
 paginación bajo demanda– desde el punto de vista de los procesos en
@@ -5403,9 +5105,7 @@ objetos, etc. Para esos casos __utilizar directamente mmap() no es una
 solución puesto que la fragmentación interna con llevaría un importante
 derroche de recursos__.
 
-[[uso-del-espacio-de-direcciones-virtual-del-proceso]]
-Uso del espacio de direcciones virtual del proceso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Uso del espacio de direcciones virtual del proceso
 
 Los procesos pueden utilizar diversas ubicaciones dentro de su espacio
 de direcciones virtual para almacenar los datos que necesitan para su
@@ -5442,9 +5142,7 @@ los operadores _new_ y _delete_ utilizan sus propios algoritmos de
 gestión de la memoria del montón más optimizados que _malloc()_ y
 _free()_ para la creación y destrucción de objetos de manera eficiente.
 
-[[gestión-de-la-memoria-del-montón]]
-[[anchor-78]]Gestión de la memoria del montón
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Gestión de la memoria del montón
 
 Para ilustrar cómo se gestiona la memoria del _montón_ utilizaremos como
 ejemplo el mecanismo empleado por la _librería de__l__ sistema_ de los
@@ -5509,9 +5207,7 @@ junto con algún tipo de estructura de datos que mantenga los huecos
 libres ordenados por tamaño__, de manera que puedan ser encontrados
 eficientemente.
 
-[[fragmentación]]
-Fragmentación
-^^^^^^^^^^^^^
+==== Fragmentación
 
 Las estrategia comentada no sufre de _fragmentación interna_ porque se
 asigna exactamente la cantidad de memoria solicitada. Sin embargo si
@@ -5537,22 +5233,16 @@ memoria libre quedara en un único hueco, sería necesario modificar en
 tiempo de ejecución las direcciones virtuales utilizadas por el proceso
 en cada puntero o referencia a los bloques de memoria en el montón.
 
-[[gestión-del-almacgestión-del-almacenamiento]]
-Gestión del almac[[anchor-14]]Gestión del almacenamiento
---------------------------------------------------------
+== Gestión del almacenamiento
 
-[[dispositivos-de-almacenamiento]]
-Dispositivos de almacenamiento
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Dispositivos de almacenamiento
 
 Los ordenadores pueden almacenar información en diferentes soportes de
 almacenamiento –por ejemplo en discos magnéticos, en DVD, en memorias de
 estado sólido, etc.–. Cada uno tiene propiedades físicas diferentes que
 pasamos a comentar brevemente a continuación.
 
-[[discos-magnéticos]]
-Discos magnéticos
-^^^^^^^^^^^^^^^^^
+==== Discos magnéticos
 
 Los discos magnéticos son el tipo principal de almacenamiento
 secundario, generalmente en la forma de lo que se denominan discos
@@ -5573,9 +5263,7 @@ lectura hasta el sector de interés que la lectura y transferencia de los
 datos almacenados a la memoria RAM. Por lo tanto el tiempo de acceso
 aleatorio al disco es mucho mayor que el de acceso secuencial.
 
-[[discos-ópticos]]
-Discos ópticos
-^^^^^^^^^^^^^^
+==== Discos ópticos
 
 Los discos ópticos –CD, DVD, BluRay, etc.– consisten en un disco
 circular en el cual la información se almacena haciendo uso de surcos
@@ -5588,9 +5276,7 @@ extendiéndose desde el interior hacia el exterior. Dado que el láser
 siempre debe desplazarse sobre la espiral, el acceso aleatorio a los
 datos es más lento que con otras tecnologías de disco.
 
-[[memorias-de-estado-sólido]]
-[[anchor-83]]Memorias de estado sólido
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Memorias de estado sólido
 
 Una memoria de estado sólido –memoria USB, SSD, etc.– es un dispositivo
 de almacenamiento que usa una memoria no volátil, como las __memorias
@@ -5603,9 +5289,7 @@ sistema informático, emulan una interfaz y un modo de direccionamiento
 similar al utilizado por los discos magnéticos –es decir, usando pistas,
 sectores y cilindros.– por temas de compatibilidad.
 
-[[archivos-y-sistemas-de-archivos]]
-Archivos y sistemas de archivos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Archivos y sistemas de archivos
 
 Teniendo en cuenta la gran diversidad de dispositivos de almacenamiento
 que existen, para que el sistema informático sea cómodo de utilizar el
@@ -5637,9 +5321,7 @@ información relativa a los archivos almacenados –nombre, ubicación en el
 disco, permisos, etc.– y que se encarga de organizarlos, generalmente
 haciendo uso de una estructura de directorios.
 
-[[volúmenes-de-datos]]
-Volúmenes de datos
-~~~~~~~~~~~~~~~~~~
+=== Volúmenes de datos
 
 Los dispositivos de almacenamiento comentados anteriormente pueden ser
 utilizados al 100% con un único sistema de archivos. Sin embargo, en
@@ -5659,9 +5341,7 @@ mayor tamaño compuesta a partir de varios dispositivos.
 A continuación comentaremos brevemente las tecnologías utilizadas con
 mayor frecuencia para construir estos volúmenes.
 
-[[raid]]
-RAID
-^^^^
+==== RAID
 
 La tecnología *RAID* (__Redundant Array of Inexpensive Disks__) permite
 combinar varios discos duros para mejorar las prestaciones a través del
@@ -5746,9 +5426,7 @@ múltiples sistemas de archivos o combinarlo en estructuras de mayor
 tamaño, para lo cuál se pueden utilizar alguna de las técnicas que
 veremos a continuación.
 
-[[particiones]]
-Particiones
-^^^^^^^^^^^
+==== Particiones
 
 __Un disco, un conjunto RAID o cualquier otro dispositivo de
 almacenamiento se puede dividir en regiones para utilizar en cada una de
@@ -5766,9 +5444,7 @@ información. Eso es todo lo que necesita el sistema operativo para
 determinar los límites de la región ocupada por cada sistema de
 archivos.
 
-[[volúmenes-dinámicos]]
-Volúmenes dinámicos
-^^^^^^^^^^^^^^^^^^^
+==== Volúmenes dinámicos
 
 Según la tecnología que se utilice para particionar es posible
 encontrarse con una serie de restricciones comunes:
@@ -5794,17 +5470,13 @@ con el objeto de mejorar las prestaciones, a través del paralelismo en
 el acceso, y/o mejorar la fiabilidad a través del almacenamiento de
 información redundante.
 
-[[sistemas-de-archivos]]
-Sistemas de archivos
-~~~~~~~~~~~~~~~~~~~~
+=== Sistemas de archivos
 
 Cada volumen puede albergar un sistema de archivos. A continuación
 estudiaremos los elementos más comunes a la mayor parte de los sistemas
 de archivos.
 
-[[estructura-de-un-sistema-de-archivos]]
-[[anchor-84]]Estructura de un sistema de archivos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Estructura de un sistema de archivos
 
 Un sistema de archivos suele estar compuesto de varios niveles
 diferentes. En la se muestra un ejemplo típico de la estructura de un
@@ -5865,9 +5537,7 @@ utilizados en los soportes removibles. Por ejemplo el ISO-9660,
 utilizado por la mayor parte de los CD-ROM, o el UFS (__Universal File
 System__), utilizado por los DVD-ROM.
 
-[[estructuras-de-metadatos]]
-[[anchor-85]]Estructuras de metadatos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Estructuras de metadatos
 
 Para implementar un sistema de archivos se utilizan diversas estructuras
 de metadatos alojadas tanto en el disco como en la memoria. Estas
@@ -5926,9 +5596,7 @@ entrada ____correspondiente del mismo archivo en____ la ____tabla____
 global de archivos abiertos____, así como otras informaciones
 adicionales que son particulares de cada proceso.
 
-[[montaje-de-sistemas-de-archivos]]
-[[anchor-86]]Montaje de sistemas de archivos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Montaje de sistemas de archivos
 
 Un sistema de archivos debe _montarse_ para que sus archivos sean
 accesibles a los procesos del sistema. El proceso de montaje incluye los
@@ -5961,18 +5629,14 @@ pincha una memoria flash en un puerto USB–. Además, en algunos se
 permite que el administrador del equipo ejecute operaciones de montaje
 manuales.
 
-[[archivos]]
-Archivos
-^^^^^^^^
+==== Archivos
 
 Cada sistema de archivos almacena en disco una tabla donde cada entrada
 guarda un bloque de control de archivo o FCB (File Control Block) por
 archivo. Concretamente, en cada FCB se almacena diversa información
 acerca del archivo al que representa.
 
-[[atributos-de-archivos]]
-Atributos de archivos
-+++++++++++++++++++++
+===== Atributos de archivos
 
 La colección de atributos asociada a un archivo varía de un sistema
 operativo a otro, pero típicamente son los siguientes:
@@ -6002,9 +5666,7 @@ del nombre de un archivo y del identificador de su FCB. Dicho
 identificador permite localizar el FCB en la tabla de contenidos del
 volumen, que contiene el resto de los atributos del archivo.
 
-[[operaciones-con-los-archivos]]
-Operaciones con los archivos
-++++++++++++++++++++++++++++
+===== Operaciones con los archivos
 
 Un archivo es un tipo abstracto de datos sobre el que pueden realizarse
 diversas operaciones. Concretamente __el sistema operativo proporciona
@@ -6083,9 +5745,7 @@ cada llamada al sistema __close()__, de forma que cuando alcance cero
 querrá decir que la entrada puede ser eliminada de la tabla global de
 archivos abiertos.
 
-[[tipos-de-archivo]]
-Tipos de archivo
-++++++++++++++++
+===== Tipos de archivo
 
 Cuando se diseña un sistema operativo es necesario considerar si debe
 reconocer y soportar el concepto de tipo de archivo. Si el sistema
@@ -6118,9 +5778,7 @@ tipo de contenido de un archivo, por lo que pueden ser utilizadas o
 ignoradas por cada aplicación concreta, en función de las preferencias
 de sus desarrolladores.
 
-[[estructura-de-directorios]]
-Estructura de directorios
-^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Estructura de directorios
 
 Algunos sistemas de archivos pueden almacenar millones de archivos en
 terabytes de disco. Para gestionar todos esos datos necesitamos
@@ -6132,9 +5790,7 @@ contenidos del volumen__, donde se almacenan los FCB__.__ A continuación
 vamos a estudiar los diversos esquemas para definir la estructura lógica
 del sistema de directorios.
 
-[[directorios-de-un-nivel]]
-Directorios de un nivel
-+++++++++++++++++++++++
+===== Directorios de un nivel
 
 __En la estructura de directorios de un nivel todos los archivos están
 contenidos en un único directorio__. Esto presenta algunas limitaciones:
@@ -6150,9 +5806,7 @@ número de archivos.
 Este esquema fue utilizado por la primera versión del sistema operativo
 MSDOS.
 
-[[directorio-de-dos-niveles]]
-Directorio de dos niveles
-+++++++++++++++++++++++++
+===== Directorio de dos niveles
 
 __En la estructura de directorios de dos niveles cada usuario tiene su
 propio **directorio de archivos ****de usuario** o *UFD* (User File
@@ -6181,9 +5835,7 @@ archivos contenidos en los directorios de otros usuarios.
 organizados sus datos a media que se incrementa el número de archivos
 personales.
 
-[[directorios-con-estructura-de-árbol]]
-Directorios con estructura de árbol
-+++++++++++++++++++++++++++++++++++
+===== Directorios con estructura de árbol
 
 __La estructura de directorio de dos niveles puede generalizarse en la
 estructura de directorios en árbol de altura arbitraria__. Esto permite
@@ -6223,9 +5875,7 @@ el directorio de trabajo actual.
 Este tipo de estructura de directorios es la utilizada por MSDOS y por
 las distintas versiones de Microsoft Windows.
 
-[[directorios-en-grafo-acíclico]]
-Directorios en grafo acíclico
-+++++++++++++++++++++++++++++
+===== Directorios en grafo acíclico
 
 La estructura de directorio en grafo acíclico es una generalización
 natural del esquema con estructura en árbol. A diferencia de éste
@@ -6296,9 +5946,7 @@ para este fin, puesto que al ser distinguibles del directorio original
 podemos evitar los ciclos si mientras se explora se ignorar dichos
 enlaces.
 
-[[directorios-en-forma-de-grafo-general]]
-Directorios en forma de grafo general
-+++++++++++++++++++++++++++++++++++++
+===== Directorios en forma de grafo general
 
 Uno de los principales problemas de la estructura de directorios en
 grafo acíclico es garantizar que no exista ningún ciclo. Esto es
@@ -6331,9 +5979,7 @@ no se pueden distinguir de la original y, por tanto, no se pueden
 ignorar__–__ lo más sencillo es que el sistema operativo no permita
 crear múltiples referencias a un mismo directorio.
 
-[[compartición-de-archivos]]
-Compartición de archivos
-~~~~~~~~~~~~~~~~~~~~~~~~
+=== Compartición de archivos
 
 Como ya hemos comentado, el que los usuarios puedan compartir archivos
 es algo muy deseable pues permite que éstos puedan colaborar en la
@@ -6341,9 +5987,7 @@ realización de una tarea determinada. Sin embargo al añadir esta
 característica hay que tener en cuenta algunos aspectos que deben ser
 resueltos en el diseño del sistema operativo.
 
-[[múltiples-usuarios-y-protección]]
-Múltiples usuarios y protección
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Múltiples usuarios y protección
 
 Cuando un sistema operativo admite múltiples usuarios y utiliza una
 estructura de directorio que permite que éstos compartan archivos, cobra
@@ -6432,9 +6076,7 @@ puede tener que recordar puede ser muy grande. No olvidemos que si se
 utiliza la misma contraseña para todos los archivo, desde el momento en
 que esa contraseña sea descubierta todos los archivos serán accesibles.
 
-[[semántica-de-coherencia]]
-Semántica de coherencia
-^^^^^^^^^^^^^^^^^^^^^^^
+==== Semántica de coherencia
 
 __La *semántica de coherencia* especifica cuando las modificaciones que
 un usuario realice en los archivos serán observables por los otros
@@ -6496,9 +6138,7 @@ contenido no puede ser modificado. Así podemos estar seguros de que el
 contenido de un archivo inmutable es fijo. La implementación de esta
 semántica en un sistema distribuido es muy simple.
 
-[[bloqueos-de-archivo]]
-Bloqueos de archivo
-^^^^^^^^^^^^^^^^^^^
+==== Bloqueos de archivo
 
 Algunos sistemas operativos proporcionan funciones para bloquear un
 archivo –o determinadas porciones de un archivo– abierto. Esto permite
@@ -6549,9 +6189,7 @@ Como regla general los sistemas operativos Microsoft Windows implementan
 un mecanismo de bloqueo obligatorio, mientras que los sistemas UNIX
 emplean bloqueos sugeridos.
 
-[[coherencia]]
-Coherencia
-~~~~~~~~~~
+=== Coherencia
 
 Como hemos comentado anteriormente, parte de los metadatos se almacena
 en la memoria principal para acelerar el acceso. Dicha información
@@ -6566,9 +6204,7 @@ sistema de archivos en un estado incoherente, pues el estado real de
 algunos archivos no sería el que se describe en la estructura de
 metadatos.
 
-[[comprobación-de-coherencia]]
-Comprobación de coherencia
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Comprobación de coherencia
 
 __El *comprobador de coherencia* comprueba la estructura de metadatos y
 tratar de corregir todas las incoherencias que detecte__.
@@ -6595,9 +6231,7 @@ proceso quería escribir en el archivo. El sistema operativo puede
 copiarlos a búferes internos en la memoria para escribirlos en disco más
 adelante, evitando interrumpir el proceso durante más tiempo.
 
-[[soft-updates]]
-Soft Updates
-^^^^^^^^^^^^
+==== Soft Updates
 
 Para mejorar la eficiencia del sistema de archivos, sin comprometer la
 coherencia en caso de fallo, los distintos sabores de los sistemas UNIX
@@ -6617,9 +6251,7 @@ que apuntaría a un FCB inválido. Mientras que de esta manera el sistema
 de archivos permanecerá consistente aunque el sistema falle entre ambas
 operaciones.
 
-[[sistemas-de-archivos-basados-en-registro]]
-Sistemas de archivos basados en registro
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas de archivos basados en registro
 
 Otra solución al problema de la coherencia consiste en aplicar técnicas
 de recuperación basadas en registro durante las actualizaciones de los
@@ -6700,9 +6332,7 @@ operaciones de escritura sobre el registro, de forma similar a como se
 hace con los __soft updates__, de tal forma que asegura la coherencia
 del registro.
 
-[[sistemas-de-archivos-basados-en-copia-durante-la-escritura]]
-Sistemas de archivos basados en copia durante la escritura
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas de archivos basados en copia durante la escritura
 
 __Las técnicas anteriores son necesarias para preservar la coherencia
 porque la modificación de los metadatos se _hace sobrescribiendo los
@@ -6773,9 +6403,7 @@ propiamente dicho– sino que además facilita que puedan ofrecer
 características adicionales, como la creación de copias instantáneas del
 volumen.
 
-[[implementación-de-sistemas-de-archivos]]
-Implementación de sistemas de archivos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Implementación de sistemas de archivos
 
 Como ya se ha comentado, un sistema de archivos suele estar compuesto de
 varios niveles diferentes. En la se muestra un ejemplo de la estructura
@@ -6789,9 +6417,7 @@ en el apartado link:#anchor-85[5.4.2].
 A continuación vamos a profundizar aun más en las estructuras y
 operaciones utilizadas para implementar los sistemas de archivos
 
-[[implementación-de-directorios]]
-Implementación de directorios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Implementación de directorios
 
 Cada directorio suele contener una estructura de datos que relaciona el
 nombre de cada archivo que contiene con el identificador de su FCB.
@@ -6801,9 +6427,7 @@ del volumen, que contiene el resto de los atributos del archivo.
 En esta sección vamos a estudiar las formas más comunes de implementar
 la estructura de datos de un directorio.
 
-[[lista-lineal]]
-Lista lineal
-++++++++++++
+===== Lista lineal
 
 El método mas simple para implementar un directorio __consiste en
 utilizar un__a__ lista lineal __o vector __de nombres de archivos junto
@@ -6847,9 +6471,7 @@ sólo se almacena el nombre del archivo o subdirectorio y el
 identificador del _inodo_ –el FCB, esos sistemas de archivo–
 correspondiente.
 
-[[tabla-de-dispersión]]
-Tabla de dispersión
-+++++++++++++++++++
+===== Tabla de dispersión
 
 En los directorios implementados con una tabla de dispersión también
 __se almacenan las entradas de directorio en una lista lineal, pero al
@@ -6869,9 +6491,7 @@ valor para la función de dispersión– a cambio de que las búsquedas sean
 un poco más lentas. En cualquier caso, éste método será normalmente más
 rápido que una búsqueda lineal por todo el directorio.
 
-[[árbol-b]]
-Árbol B
-+++++++
+===== Árbol B
 
 Para mantener el directorio ordenado, algunos sistemas de archivos
 modernos utilizan estructuras de datos en árbol más sofisticadas, como
@@ -6905,9 +6525,7 @@ para todas las rutas _por el árbol___.
 caso la implementación es un poco más compleja:
 |=======================================================================
 
-[[métodos-de-asignación]]
-Métodos de asignación
-^^^^^^^^^^^^^^^^^^^^^
+==== Métodos de asignación
 
 El siguiente problema es _cómo_ asignar el espacio disponible en el
 disco a los archivos almacenados, de forma que el espacio sea utilizado
@@ -6918,9 +6536,7 @@ Como la unidad mínima de asignación de espacio a un archivo es el
 bloque, la fragmentación interna suele ser un problema común a todos los
 métodos que veremos a continuación.
 
-[[asignación-contigua]]
-Asignación contigua
-+++++++++++++++++++
+===== Asignación contigua
 
 __La *asignación contigua* requiere que cada archivo ocupe un conjunto
 contiguo de bloques en el disco__. Esto es muy eficiente, puesto que el
@@ -6979,9 +6595,7 @@ un archivo, menos reposicionamientos del cabezal del disco son
 necesarios para leerlos. Por ejemplo, en ext4 el espacio se asigna a los
 archivos en extensiones de hasta 128MB en bloques, generalmente, de 4KB.
 
-[[asignación-enlazada]]
-Asignación enlazada
-+++++++++++++++++++
+===== Asignación enlazada
 
 __En la *asignación enlazada* cada archivo es una lista enlazada de
 bloques de disco__, pudiendo estos bloques estar dispersos por todo el
@@ -7048,9 +6662,7 @@ partir de la información en la FAT.
 
 |=======================================================================
 
-[[asignación-indexada]]
-Asignación indexada
-+++++++++++++++++++
+===== Asignación indexada
 
 __El mecanismo de *asignación indexada* agrupa todos los punteros de la
 asignación enlazada en una única ubicación__: el **bloque de índices**.
@@ -7107,9 +6719,7 @@ asignación indexada con esquema combinado. Concretamente el mecanismo en
 ext2 se implementa de la siguiente manera:
 |=======================================================================
 
-[[gestión-del-espacio-libre]]
-Gestión del espacio libre
-^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Gestión del espacio libre
 
 Puesto que el espacio en disco es limitado, necesitamos poder reutilizar
 el espacio de los archivos borrados. Para controlar el espacio libre en
@@ -7119,9 +6729,7 @@ explora la lista de espacio libre hasta obtener la cantidad de espacio
 requerida y asignamos ese espacio al nuevo archivo. A continuación
 estudiaremos como puede ser implementada esa lista.
 
-[[vector-de-bits]]
-Vector de bits
-++++++++++++++
+===== Vector de bits
 
 __La lista de espacio libre puede ser implementada como un *vector de
 bits* o **mapa de bits**, donde cada bloque es representado por un
@@ -7146,9 +6754,7 @@ decir, ext, ext2, ext3, etc.____– ____utilizan mapas de bits tanto para
 gestionar los bloques de datos libres como las entradas disponibles en
 la tabla de __inodos__.___
 
-[[lista-enlazada]]
-Lista enlazada
-++++++++++++++
+===== Lista enlazada
 
 Otra técnica __consiste en enlazar todos los bloques de disco libres__.
 Para eso se puede mantener un puntero al primer bloque libre en una
@@ -7167,9 +6773,7 @@ El método FAT incorpora el control de bloques libres dentro de la
 __tabla de asignación de archivos__, por lo que no se necesita ningún
 método adicional
 
-[[agrupamiento]]
-Agrupamiento
-++++++++++++
+===== Agrupamiento
 
 __Una modificación de la técnica basada en la lista enlazada consiste en
 almacenar las direcciones de n bloques libres en el primer bloque
@@ -7179,9 +6783,7 @@ libres. Así, podrían localizarse rápidamente las direcciones de un gran
 número de bloques libres, lo cual mejora la eficiencia respecto a la
 técnica de lista enlazada.
 
-[[recuento]]
-Recuento
-++++++++
+===== Recuento
 
 Generalmente los bloques son asignados o liberados en bloques contiguos,
 especialmente si el espacio es asignado mediante asignación contigua o
@@ -7196,9 +6798,7 @@ mantenerlas ordenadas por el tamaño de la extensión a la que apuntan.
 Así el sistema operativo puede localizar rápidamente el espacio libre
 necesario para satisfacer una necesidad de espacio concreta.
 
-[[sistemas-de-archivos-virtuales]]
-Sistemas de archivos virtuales
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Sistemas de archivos virtuales
 
 En el apartado link:#anchor-86[5.4.3] vimos cómo el sistema operativo
 __monta__ sistemas de archivos de tal forma que aparenten estar
@@ -7269,9 +6869,7 @@ ____inodo____ real del archivo en el sistema de archivos____– ___para
 llevar acabo la operación indicada, según las especificidades del
 sistema de archivos.__
 
-[[planificación-de-disco]]
-__Planificación de disco__
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== __Planificación de disco__
 
 Como ya hemos comentado, es responsabilidad del sistema operativo usar
 los recursos del hardware de forma eficiente. Eso incluye planificar los
@@ -7281,9 +6879,7 @@ para atender la demanda de los distintos procesos al mismo tiempo; pero
 también, intentar obtener el menor tiempo de acceso y el mayor ancho de
 banda posible en el acceso a los discos.
 
-[[rendimiento-del-acceso-a-disco]]
-*Rendimiento del acceso a disco*
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== *Rendimiento del acceso a disco*
 
 ___En un disco duro magnético el __**_*tiempo de acceso al disco*_**__
 T__~_d_~__ viene determinado por el __**_*tiempo de búsqueda*_**__
@@ -7315,9 +6911,7 @@ viene determinado por las características de la memoria, entre otros
 factores, lo que hace que las diferencias entre accesos secuenciales y
 accesos aleatorios sean mucho menos significativas.
 
-[[cola-de-es-al-disco]]
-Cola de E/S al disco
-^^^^^^^^^^^^^^^^^^^^
+==== Cola de E/S al disco
 
 Cuando se solicita una operación de E/S sobre el almacenamiento el
 sistema operativo puede atender la petición sobre la marcha si la
@@ -7329,9 +6923,7 @@ La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de
 E/S de la cola si se quiere acceder al disco de la forma más eficaz
 posible?
 
-[[planificación-fcfs]]
-Planificación FCFS
-^^^^^^^^^^^^^^^^^^
+==== Planificación FCFS
 
 En la planificación [[anchor-87]]En la planificación *FCFS* (__First
 Come, First Served__) o _primero que llega, primero servido_ la cola es
@@ -7347,9 +6939,7 @@ reordenar las solicitudes no proporciona una mejora significativa del
 rendimiento, o cuando se utilizan controladoras de disco inteligentes
 que pueden reordenar las solicitudes según su propio criterio.
 
-[[planificación-sstf]]
-Planificación SSTF
-^^^^^^^^^^^^^^^^^^
+==== Planificación SSTF
 
 En la planificación [[anchor-88]]En la planificación **SSTF**
 (___Sortest_ _Seek Time First___) o algoritmo de ___tiempo de búsqueda
@@ -7365,9 +6955,7 @@ El problema de SSTF es que _puede provocar inanición de algunas
 solicitudes _si van llegando constantemente nuevas solicitudes sobre
 regiones cercanas a donde está actualmente la cabeza__ del disco.
 
-[[planificación-scan-y-c-scan]]
-Planificación SCAN y C-SCAN
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación SCAN y C-SCAN
 
 En la planificación [[anchor-89]]En la planificación **SCAN** o
 algoritmo de __exploración__ o del __ascensor__ ___el_ brazo del disco
@@ -7389,9 +6977,7 @@ empezar se la denomina __**_*C-SCAN*_**__. El resultado es que el tiempo
 que tiene que esperar una solicitud para ser atendida es más uniforme
 que con el algoritmo SCAN.
 
-[[planificación-look-y-c-look]]
-Planificación LOOK y C-LOOK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación LOOK y C-LOOK
 
 En teoría los algoritmos SCAN y C-SCAN hacen que el brazo recorra los
 cilindros del primero al último. Sin embargo realmente no se suelen
@@ -7401,9 +6987,7 @@ siguiendo la misma dirección, el brazo invierte la dirección sin llegar
 hasta el extremo del disco___. A estas variantes de SCAN y C-SCAN se las
 denomina **LOOK** y ***C-LOOK***, respecitvamente.
 
-[[planificación-n-step-scan-n-step-look-y-fscan]]
-Planificación N-Step-SCAN, N-Step-LOOK y FSCAN
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==== Planificación N-Step-SCAN, N-Step-LOOK y FSCAN
 
 Los algoritmos __**_*N-Step-SCAN*_**__ y __**_*N-Step-LOOK*_**__ son
 variantes de los algoritmos SCAN y LOOK, respectivamente, donde se
@@ -7432,9 +7016,7 @@ FSCAN, N-Step-SCAN y N-Step-LOOK separan las solicitudes en dos colas,
 haciendo que las nuevas tengan que esperar, el brazo siempre continua su
 barrido hacia el extremo del disco.
 
-[[planificación-cfq]]
-Planificación CFQ
-^^^^^^^^^^^^^^^^^
+==== Planificación CFQ
 
 ____El planificador __**_*CFQ*_**_ (Completely Fair Queuing) se diseñó
 para compartir de forma equitativa el ancho de banda entre todos los
@@ -7457,7 +7039,7 @@ cuanto de cada una. Las solicitudes extraídas se insertan en la cola de
 envío, donde se ordenar para minimizar el ___tiempo de búsqueda___,
 antes de ser enviadas _al_ dispositivo.
 
-Bibliografía
+== Bibliografía
 
 La mayor parte de los contenidos de este documento están basados en las
 siguientes referencias bibliográficas:
