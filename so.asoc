@@ -54,7 +54,7 @@ prevenir errores y el uso inadecuado del ordenador.
 Sin embargo, la función del sistema operativo desde el punto de vista
 del usuario varía de acuerdo con la interfaz utilizada. Por ejemplo, los
 usuarios que se sientan frente a un sistema de escritorio (véase el
-apartado link:#anchor-2[1.3.2]) disponen de monitor, teclado, ratón y
+apartado <<_sistemas_de_escritorio>>) disponen de monitor, teclado, ratón y
 una unidad central. Estos sistemas se diseñan buscando la máxima
 productividad en equipos donde un usuario monopoliza todos los recursos;
 por lo que el sistema operativo se diseña considerando fundamentalmente
@@ -64,8 +64,8 @@ en el aprovechamiento de los recursos.
 En otros casos un usuario se sienta frente a un terminalfootnote:[Los
 terminales son sistemas informáticos utilizados para la conexión de los
 usuarios a un __mainframe__. Sólo suelen disponer de los recursos
-necesarios para realizar esa tarea. ] conectado a un _mainframe_ (véase
-el apartado link:#anchor-3[1.3.1]), mientras muchos otros acceden al
+necesarios para realizar esa tarea.] conectado a un _mainframe_ (véase
+el apartado <<_mainframe>>), mientras muchos otros acceden al
 mismo sistema a través de otros terminales. Por tanto, todos los
 usuarios comparten los recursos del sistema informático y pueden
 intercambiar información. En esos casos el sistema operativo debe
@@ -74,7 +74,7 @@ garantizar que toda la CPU, memoria y E/S sean empleadas de forma
 eficiente, y que ningún usuario utiliza más que lo que le corresponde.
 
 Otro ejemplo son los sistemas de mano (véase el apartado
-link:#anchor-4[1.3.5]), por ejemplo __tablets__ y teléfonos móviles. A
+<<_sistemas_de_mano>>), por ejemplo __tablets__ y teléfonos móviles. A
 causa de las limitaciones de la interfaz, en el diseño del sistema
 operativo debe primar la usabilidadfootnote:[La usabilidad es la medida
 de la facilidad de uso de un producto o servicio, típicamente una
@@ -102,9 +102,9 @@ algunos casos ésta definición no incluye como parte del sistema
 operativo algunas características que intuitivamente solemos considerar
 dentro del mismo. Por ejemplo, si aplicamos esta definición a los
 sistemas operativos de estructura microkernel (véase el apartado
-link:#anchor-5[2.3.3]), no podríamos decir que servicios como la
+<<_microkernel>>), no podríamos decir que servicios como la
 comunicación en red, la gestión del sistema de archivos y la gestión de
-la memoria (véanse el apartado link:#anchor-6[2.1.2]) son proporcionados
+la memoria (véanse el apartado <<_componentes_del_sistema>>) son proporcionados
 por el sistema operativo. Aunque pueda parecer lo contrario, la cuestión
 de qué incluye y qué no incluye un sistema operativo no carece de
 importancia, como se demostró durante el caso del Departamento de
@@ -135,7 +135,7 @@ comunes, como controlar los dispositivos de E/S o reservar porciones de
 la memoria. Esas __funciones comunes de control y asignación de
 recursos, que se corresponden con las funciones del sistema operativo
 desde el punto de vista del sistema informático vistas en el tema
-link:#anchor-1[1.1.1], son la labor del sistema operativo__.
+<<_punto_de_vista_del_sistema_informático>>, son la labor del sistema operativo__.
 
 === Tipos de sistemas operativos
 
@@ -161,7 +161,7 @@ su funcionamiento.
 
 Los *sistemas de procesamiento por lotes* o **sistemas en **__*batch*__
 fueron los primeros ordenadores (véase el apartado
-link:#anchor-3[1.4.2]). Eran enormes máquinas operadas desde una consola
+<<_mainframe>>). Eran enormes máquinas operadas desde una consola
 y conectados a lectores de tarjetas perforadasfootnote:[Mas información
 sobre la forma de trabajo con tarjetas perforadas en
 http://goo.gl/S9FTOk.], dispositivos de cinta e impresoras. El trabajo,
@@ -214,14 +214,14 @@ el siguiente trabajo que debe ser cargado para mantener llena la
 memoria.
 * La **planificación de la CPU**. Se encarga de elegir el siguiente
 trabajo que debe ser ejecutado en la CPU de entre los disponibles en la
-memoria (véase el apartado link:#anchor-8[3.4]).
+memoria (véase el apartado <<_planificación_de_la_cpu>>).
 * La **gestión de la memoria**. Es necesaria puesto que la memoria tiene
 que ser repartida entre los trabajos que deben ser alojados en la misma
-(véase el apartado link:#anchor-6[2.1.2]).
+(véase el apartado <<_componentes_del_sistema>>).
 
 Un ejemplo de este tipo de sistemas operativos es el IBM OS/360 que fue
 liberado en 1966 para utilizarlo en los _mainframes_ IBM System/360
-(véase el apartado link:#anchor-9[1.4.3]).
+(véase el apartado <<_segunda_generación>>).
 
 ===== Sistemas de tiempo compartido
 
@@ -259,22 +259,22 @@ complejidad por diversas razones:
 
 * _Varios trabajos deben estar en memoria al mismo tiempo_  el sistema
 operativo requiere mecanismos de *gestión de la memoria* y *protección*
-(véase el apartado link:#anchor-6[2.1.2]).
+(véase el apartado <<_componentes_del_sistema>>).
 * _Para tener un tiempo de respuesta razonable los trabajos en memoria
 deben poder ser guardados o recuperados desde el disco que sirve como
 almacenamiento de respaldo_  el sistema operativo puede utilizar
-técnicas de *memoria virtual* (véase el apartado link:#anchor-10[4.5.1])
+técnicas de *memoria virtual* (véase el apartado <<_memoria_virtual>>)
 para poder ejecutar trabajos que no están completamente cargados en
 memoria.
 * _La CPU debe ser compartida entre los trabajos_  el sistema operativo
 requiere mecanismos de *planificación de la CPU* (véase el apartado
-link:#anchor-11[3.4]).
+<<_planificación_de_la_cpu>>).
 * _La ejecución de los trabajos debe ser ordenada_  el sistema
 operativo debe proporcionar mecanismos de *sincronización* (véase el
-apartado link:#anchor-12[3.3.3]) y *comunicación* (véase el apartado
-link:#anchor-13[3.2]).
+apartado <<_sincronización>>) y *comunicación* (véase el apartado
+<<_procesos_cooperativos>>).
 * _El sistema debe disponer de un *sistema de archivos*_ (véase el tema
-link:#anchor-14[5]), que a su vez debe residir en un conjunto de discos
+<<_gestión_del_almacgestión_del_almacenamiento>>), que a su vez debe residir en un conjunto de discos
  el sistema operativo requiere mecanismos de **gestión de discos**.
 
 Las primeras versiones de UNIX –liberado por primera vez en 1970– el
@@ -282,7 +282,7 @@ sistema operativo VMS –desarrollado en 1978– para los VAX de Digital
 Equipment Corportation y el IBM OS/400 –introducido en 1988– utilizado
 en los minicomputadores AS/400, son algunos ejemplos de sistemas
 operativos de tiempo compartido (véase el apartado
-link:#anchor-15[1.4.4]).
+<<tercera_generación>>).
 
 ==== Sistemas de escritorio
 
@@ -300,7 +300,7 @@ entre un comando de un usuario –por ejemplo un click– y la respuesta del
 sistema a dicho comando. En ocasiones este tiempo se minimiza a costa de
 un uso menos eficiente de los recursos del sistema por lo que no es un
 objetivo deseable para diseñar un mainframe. Mas información en el tema
-link:#anchor-16[3.4.3].] y la facilidad de uso__.
+<<_criterios_de_planificación>>.] y la facilidad de uso__.
 
 Pese a estas diferencias __los sistemas operativos de escritorio se han
 beneficiado del desarrollo de los sistemas operativos para mainframes__.
@@ -315,7 +315,7 @@ protección de los datos de los usuarios.
 Los ejemplos de este tipo de sistemas operativos van desde CP/M –lanzado
 en 1977– hasta los actuales GNU/Linux, Microsoft Windows 7 y Apple
 macOS, pasando por MS-DOS, IBM OS/2 y las diversas versiones de
-Microsoft Windows (véase el apartado link:#anchor-17[1.4.5]).
+Microsoft Windows (véase el apartado <<_cuarta_generación>>).
 
 ==== Sistemas distribuidos
 
@@ -388,7 +388,7 @@ este tipo de sistemas operativos el usuario no sabe en qué ordenador se
 ejecutan sus procesos, ni dónde se almacenan sus archivos, ni qué equipo
 tiene conectado los distintos periféricos a los que tiene acceso. Un
 ejemplo de sistema operativo distribuido es __Amoeba__footnote:[Amoeba es
-un sistema operativo de investigación distribuido de estructura microkernel (véase el apartado link:#anchor-5[2.3.3]) escrito por Andrew S. Tanenbaum en Vrije Universiteit. Más información en http://www.cs.vu.nl/pub/amoeba/.].
+un sistema operativo de investigación distribuido de estructura microkernel (véase el apartado <<_microkernel>>) escrito por Andrew S. Tanenbaum en Vrije Universiteit. Más información en http://www.cs.vu.nl/pub/amoeba/.].
 
 ==== Sistemas de tiempo real
 
@@ -448,6 +448,7 @@ memoria, procesadores lentos y pantallas pequeñas.
 La historia de los sistemas operativos se puede dividir en 5 grandes
 etapas o generaciones.
 
+[[primera_generación]]
 ==== 1ª Generación (1945-55)
 
 ===== Características
@@ -459,6 +460,7 @@ etapas o generaciones.
 
 * _Mainframe_ IBM 701 y 704.
 
+[[segunda_generación]]
 ==== 2ª Generación (1955-64)
 
 ===== Características
@@ -472,6 +474,7 @@ etapas o generaciones.
 Research Laboratory en 1956 para su _mainframe_ IBM 701 (véase la ) con
 el fin de automatizar la carga de los trabajos.
 
+[[tercera_generación]]
 ==== 3ª Generación (1965-1968)
 
 ===== Características
@@ -492,6 +495,7 @@ de código y miles de componentes de software. La experiencia negativa
 del desarrollo del IBM OS/360 condujo al nacimiento de la __ingeniería
 del software__.
 
+[[cuarta_generación]]
 ==== 4ª Generación
 
 Esta generación abarca desde mediados de los años 60 hasta finales de la
@@ -513,7 +517,7 @@ usuario, listas de control de acceso individuales para cada archivo,
 enlazado dinámico, etc.
 ** Eliminó la separación entre el espacio de direcciones de los procesos
 y los archivos. En un sistema moderno eso sería como si cada archivo
-estuviera mapeado en memoria (véase el apartado link:#anchor-19[4.5.6]).
+estuviera mapeado en memoria (véase el apartado <<_archivos_mapeados_en_memoria>>).
 * **VM/CMS**. Es un sistema de IBM utilizado en los _mainframe_
 System/360, System/370, System/390 y zSeries.
 ** El desarrollo comenzó en 1965 y la primera versión estuvo disponible
@@ -598,7 +602,7 @@ posteriormente desarrollado por IBM en exclusiva. Se creó como el
 sistema operativo predilecto para la segunda generación de ordenadores
 personales de IBM, equipados con procesador Intel 80286.
 ** OS/2 fue pensado como un sucesor con operación en modo dual (véase el
-apartado link:#anchor-21[2.2.1]) de MS-DOS y Microsoft Windows 2.0.
+apartado <<_operación_en_modo_dual>>) de MS-DOS y Microsoft Windows 2.0.
 ** OS/2 1.0 fue anunciado en abril y liberado en diciembre de 1987 como
 un sistema operativo en modo texto. La interfaz gráfica de usuario
 prometida –denominada Presentation Manager– se introdujo en la versión
@@ -643,7 +647,7 @@ versión de MS-DOS específica; aunque este hecho se intentaba mantener
 oculto. Entre las características de Windows 95 se pueden destacar:
 mejoras significativas en la interfaz de usuario, nombres de archivo de
 hasta 256 caracteres con conservación de mayúsculas y minúsculas y
-multitarea expropiativa (véase el apartado link:#anchor-22[3.4.1]) para
+multitarea expropiativa (véase el apartado <<_planificación_expropiativa>>) para
 las aplicaciones de 32-bit.
 ** Windows 98 fue liberado el 25 de junio de 1998.
 ** Windows Me, liberado el 14 de septiembre de 2000, fue la última
@@ -671,7 +675,7 @@ permitió la adopción tardía de la API de Windows, tal y como hemos
 comentado anteriormente.
 ** Windows NT 3.1 –la primera versión de Windows NT, liberada el 13 de
 julio de 1993– era un sistema operativo microkernel (véase el apartado
-link:#anchor-23[2.3.3]) multiplataforma que corría sobre procesadores
+<<_microkernel>>) multiplataforma que corría sobre procesadores
 Intel IA-32, DEC Alpha, MIPS R4000 y PowerPC.
 ** Windows NT 4.0 fue la última versión en soportar plataformas
 distintas a Intel IA-32. Aunque el desarrollo de Windows 2000 para Alpha
@@ -686,7 +690,7 @@ fue el primer sistema operativo de la familia NT al que se le eliminaron
 las siglas del nombre por motivos de marketing. El objetivo era
 favorecer la unificación de las dos familias de sistemas operativos
 Windows –Windows 9x y Windows NT– alrededor de la tecnología NT.
-** Windows XP [[anchor-24]]Windows XP –o Windows NT 5.1– completó el
+** Windows XP –o Windows NT 5.1– completó el
 proceso de unificación de las dos familias de sistemas operativos
 Windows, forzando la extinción de la familia Windows 9x al sustituirla
 con una versión de Windows XP, denominada Windows XP Home Edition,
@@ -715,7 +719,7 @@ kernel denominado Hurd, pero sigue en desarrollo.
 Universidad Carnegie-Mellon (CMU). El proyecto en CMU se desarrolló
 desde 1985 hasta 1994.
 ** Mach explora el concepto que denominamos como microkernel (véase el
-apartado link:#anchor-23[2.3.3]).
+apartado <<_microkernel>>).
 ** En algún momento se pensó que Mach podría dominar el universo de los
 sistema operativos debido a las ventajas de los sistemas microkernel. El
 mayor esfuerzo para conseguirlo hasta la fecha es GNU/Hurd pero lleva
@@ -737,10 +741,9 @@ operativo macOS de Apple.
 El estudio de la organización interna de los sistemas operativos
 requiere del análisis de tres aspectos diferentes:
 
-1.  [[anchor-25]]Los componentes del sistema operativo y sus
-interconexiones[[anchor-26]][[anchor-25]]Los componentes del sistema
+1.  Los componentes del sistema
 operativo y sus interconexiones (véase el apartado
-link:#anchor-27[2.1.2]).
+<<_componentes_del_sistema>>).
 2.  Los servicios que el sistema operativo proporciona a través del
 funcionamiento coordinado de dichos componentes (véase la ).
 3.  La interfaz de programación que el sistema operativo ofrece a
@@ -809,8 +812,7 @@ de la librería del sistema (véase la ).
 
 |=======================================================================
 
-__La *librería del sistema* forma parte del sistema operativo y contiene
-un conjunto de clases y/o funciones __[[anchor-30]]__La *librería del
+__La *librería del
 sistema* forma parte del sistema operativo y contiene un conjunto de
 clases y/o funciones –generalmente más primitivas que las de la librería
 estándar de los lenguajes de programación– que los programas deben
@@ -889,14 +891,11 @@ fueran cualquier otro método o función del programa. Sin embargo, el
 código del núcleo del sistema operativo suele estar en una ubicación
 diferente que, desde el punto de vista de los programas, no es conocida
 y generalmente está protegida frente a accesos indebidos (véase el
-apartado link:#anchor-31[2.2.2]). Eso significa que para que la librería
+apartado <<_protección_de_la_memoria>>). Eso significa que para que la librería
 del sistema invoque los servicios que necesita hace falta un
 procedimiento diferente, denominado **llamada al sistema**.
 
-__Las *llamadas al sistema* proporcionan una interfaz con la que los
-procesos pueden invocar los servicios que el sistema operativo ofrece__.
-Estas llamadas están habitualmente disponibles como instrucciones en
-lenguaje ensamblador [[anchor-32]]__Las *llamadas al sistema*
+__Las *llamadas al sistema*
 proporcionan una interfaz con la que los procesos pueden invocar los
 servicios que el sistema operativo ofrece__. Estas llamadas están
 habitualmente disponibles como instrucciones en lenguaje ensamblador
@@ -905,9 +904,7 @@ directamente. En su lugar invocan las funciones de la librería del
 sistema, que a su vez son las encargadas de hacer las llamadas al
 sistema necesarias.
 
-En las figuras y se ilustra el papel de todos los elementos comentados
-con el ejemplo de programas en C, C++ y Python que invocan los métodos
-__fopen()__, _std::ofstream::open()_ y [[anchor-33]]En las figuras y se
+En las figuras y se
 ilustra el papel de todos los elementos comentados con el ejemplo de
 programas en C, C++ y Python que invocan los métodos __fopen()__,
 _std::ofstream::open()_ y _open()_ de la librería estándar de estos
@@ -916,17 +913,11 @@ llamada al sistema que hace que el sistema operativo tome el control,
 deteniendo la ejecución del proceso que la solicita. Entonces se realiza
 la tarea solicitada mediante el funcionamiento coordinado de los
 diferentes componentes del sistema (véase el apartado
-link:#anchor-27[2.1.2]).
+<<_componentes_del_sistema>>).
 
 ===== Invocación de las llamadas al sistema
 
-Generalmente una llamada al sistema se invoca mediante una instrucción
-específica en lenguaje ensamblador que genera una
-**excepción**footnote:[Una _excepción_ es una interrupción generada por
-software, que puede ser debida a un error –por ejemplo una división por
-cero o un acceso no válido a memoria– o a una llamada al sistema de un
-proceso para que se ejecute un servicio del sistema operativo.] –por
-ejemplo la instrucción _syscall_ en la [[anchor-34]]Generalmente una
+Generalmente una
 llamada al sistema se invoca mediante una instrucción específica en
 lenguaje ensamblador que genera una **excepción**footnote:[Una
 _excepción_ es una interrupción generada por software, que puede ser
@@ -1022,7 +1013,7 @@ apartado link:#mainframe[1.3.1]) hacen referencia al mismo concepto. Sin
 embargo más adelante veremos que el segundo es mucho más general que el
 primero puesto que un proceso puede colaborar con otros procesos para
 desarrollar un trabajo determinado (véase el apartado
-link:#anchor-36[3.1.7]).
+<<_operaciones_sobre_los_procesos>>).
 
 Responsabilidades de la gestión de procesos
 
@@ -1319,7 +1310,7 @@ se carga el sistema operativo e inicia su ejecución.
 2.  __El sistema operativo debe cambiar al modo usuario –poniendo el bit
 de modo a 1– antes de ceder el control a un proceso de usuario__. Esto
 ocurre cuando es necesario que un proceso de usuario continúe o inicie
-su ejecución (véase el apartado link:#anchor-43[3.4.2]).
+su ejecución (véase el apartado <<_el_asignador>>).
 3.  _El hardware conmuta a modo privilegiado cuando ocurre una
 interrupción o una excepción_ –poniendo el bit de modo a 0– antes de
 pasar el control al código del sistema operativo que se encargará de
@@ -1411,7 +1402,7 @@ temporizador son instrucciones privilegiadas.
 === Sistemas operativos por su estructura
 
 Ya hemos discutido anteriormente acerca de los componentes más comunes
-en un sistema operativo (véase el apartado link:#anchor-27[2.1.2]). En
+en un sistema operativo (véase el apartado <<_componentes_del_sistema>>). En
 esta sección comentaremos su organización e interconexión dentro del
 núcleo.
 
@@ -1497,7 +1488,7 @@ algún mecanismo de comunicación. En estos sistemas la función principal
 del núcleo es precisamente proporcionar dicho mecanismo de comunicación
 entre el programa cliente y los diversos servicios del sistema.
 Generalmente esta comunicación se implementa mediante paso de mensajes
-(véase el apartado link:#anchor-13[3.2]).
+(véase el apartado <<_procesos_cooperativos>>).
 
 Entre los beneficios de estos sistemas operativos se incluyen:
 
@@ -1519,7 +1510,7 @@ podía mostrar diferentes personalidades o _entornos operativos_ –OS/2,
 POSIX y DOS– a través del uso de subsistemas ambientales, que también se
 ejecutaban como procesos de usuario. Las aplicaciones de Microsoft
 Windows NT se comunicaban con estos subsistemas utilizando una forma de
-IPC (véase el apartado link:#anchor-5[3.2.3]) denominada LPC (__Local
+IPC (véase el apartado <<_microkernel>>) denominada LPC (__Local
 Procedure Call__), una forma local y optimizada de RPCfootnote:[La RPC
 (__Remote Procedure Call__) es una mecanismo de llamada a procedimiento
 diseñado para ser utilizado entre sistemas conectados por redes de
@@ -1633,7 +1624,7 @@ que __un *programa* no es un proceso ya que es una entidad pasiva, como
 un archivo en disco que contiene el código que algún día será ejecutado
 en la CPU__. Por lo tanto dos procesos pueden estar asociados al mismo
 programa pero no por eso dejan de ser distintos procesos (véase el
-apartado link:#anchor-6[2.1.2]). Ambos tendrán la misma sección _text_
+apartado <<_componentes_del_sistema>>). Ambos tendrán la misma sección _text_
 pero el contador de programas, la pila, la sección __data__, etc.
 contendrán valores diferentes.
 
@@ -1677,7 +1668,7 @@ punteros al PCB del proceso padre y de los procesos hijos, etc.
 requerida para la gestión de la memoria. Por ejemplo los valores de los
 registros base y límite que definen el área de la memoria física que
 ocupa el proceso, la tabla de páginas –en el caso de que se use
-paginación (véase el apartado link:#anchor-46[4.4])– o la tabla de
+paginación (véase el apartado <<_paginación>>)– o la tabla de
 segmentos –en el caso de que se utilice segmentación– etc.
 * **Información de registro**. Esta información incluye la cantidad de
 CPU usada, límites de tiempo en el uso de la CPU, estadísticas de la
@@ -1859,9 +1850,9 @@ olvidar que muchos de los recursos de un sistema POSIX se muestran de
 cara a los procesos que los utilizan como archivos. Por lo tanto, el
 proceso hijo no sólo tiene acceso a los archivos abiertos por el padre
 antes de la llamada al _fork()_ sino también a tuberías (véase el
-apartado link:#anchor-48[3.2.4]), sockets (véase el apartado
-link:#anchor-48[3.2.4]) y regiones de memoria compartida (véase el
-apartado link:#anchor-49[3.2.2]), entre otros muchos recursos. Todos
+apartado <<_ejemplos_de_mecanismos_comunicación_entre_procesos>>), sockets (véase el apartado
+<<_ejemplos_de_mecanismos_comunicación_entre_procesos>>) y regiones de memoria compartida (véase el
+apartado <<_memoria_compartida>>), entre otros muchos recursos. Todos
 estos son mecanismos que los procesos pueden utilizar para comunicarse.
 
 Tanto padre como hijo continúan la ejecución en la siguiente instrucción
@@ -1895,7 +1886,7 @@ argumentosfootnote:[Esta decisión de diseño en el API principal de
 Microsoft Windows estuvo motivada por el hecho de que la creación de
 nuevos procesos tiene un coste alto en ese sistema operativo. En
 Microsoft Windows la forma adecuada de realizar varias tareas al mismo
-tiempo es utilizando hilos (véase el apartado link:#anchor-50[3.3]).].
+tiempo es utilizando hilos (véase el apartado <<_hilos>>).].
 
 ===== Terminación de procesos
 
@@ -1958,8 +1949,8 @@ en paralelo.
 
 Las ejecución concurrente de procesos cooperativos requiere mecanismos
 tanto para __comunicar unos con otros__ (véase los apartados
-link:#anchor-49[3.2.2] y link:#anchor-5[3.2.3]) como para __sincronizar
-sus acciones__ (véase el apartado link:#anchor-12[3.3.3]).
+<<_memoria_compartida>> y <<_microkernel>>) como para __sincronizar
+sus acciones__ (véase el apartado <<_sincronización>>).
 
 ==== Memoria compartida
 
@@ -1967,7 +1958,7 @@ _La *memoria compartida* es una estrategia para comunicar procesos dónde
 uno de ellos gana acceso a regiones de la memoria del otro_ (véase la ).
 Puesto que normalmente el sistema operativo intenta evitar que un
 proceso pueda tener acceso a la memoria de otro proceso (véase el
-apartado link:#anchor-31[2.2.2]), para que pueda haber memoria
+apartado <<_protección_de_la_memoria>>), para que pueda haber memoria
 compartida es necesario que los dos procesos estén de acuerdo en
 eliminar dicha restricción.
 
@@ -1978,7 +1969,7 @@ información leyendo y escribiendo datos en la misma, pero:
 compartida la determinan los procesos en comunicación_ y no el sistema
 operativo.
 * _Los procesos son responsables de sincronizarse_ (véase el apartado
-link:#anchor-12[3.3.3]) para no escribir en el mismo sitio al mismo
+<<_sincronización>>) para no escribir en el mismo sitio al mismo
 tiempo, lo que que podría generar inconsistencias.
 
 Las principales ventajas de la memoria compartida frente a otros
@@ -2593,7 +2584,7 @@ aleatorio. No debemos olvidar que la ejecución concurrente se puede dar
 bien porque tenemos una sistema multiprocesador, donde ambos hilos se
 ejecutan a la vez, o bien porque tenemos un sistema monoprocesador,
 donde uno de los hilos puede ser interrumpido en cualquier momento
-(véase el apartado link:#anchor-53[3.4.1]) para asignar la CPU al otro.
+(véase el apartado <<_planificación_expropiativa>>) para asignar la CPU al otro.
 Un posible entrelazado de las instrucciones en lenguaje máquina podría
 ser:
 
@@ -2658,7 +2649,7 @@ incrementado__. Este tipo de *espera ocupada* sólo se utiliza en el caso
 de esperas previsiblemente cortas, puesto que se desperdician ciclos de
 CPU que otro hilo podría utilizar de forma más productiva. Por eso, para
 evitar que las esperas ocupadas sean demasiado largas, los sistema
-operativos nunca expropian (véase el apartado link:#anchor-53[3.4.1])
+operativos nunca expropian (véase el apartado <<_planificación_expropiativa>>)
 hilos que se estén ejecutando dentro de secciones críticas controladas
 por semáforos con este tipo de espera.
 
@@ -2787,12 +2778,6 @@ llegar las señales para ser manejadas? Obviamente las señales síncronas,
 por su propia naturaleza, deben ser enviadas al hilo que las genera.
 Pero con las señales asíncronas la cosa no está tan clara. Dependiendo
 del caso algunas deben ser capturadas por un sólo hilo, mientras que
-otras –como aquellas que ordenan terminar el proceso[[anchor-54]]La
-pregunta es: ¿cuándo se tienen múltiples hilos a cuál de ellos deben
-llegar las señales para ser manejadas? Obviamente las señales síncronas,
-por su propia naturaleza, deben ser enviadas al hilo que las genera.
-Pero con las señales asíncronas la cosa no está tan clara. Dependiendo
-del caso algunas deben ser capturadas por un sólo hilo, mientras que
 otras –como aquellas que ordenan terminar el proceso– deben ser enviadas
 a todos.
 
@@ -2862,7 +2847,7 @@ dificultades adicionales:
 
 * Puesto que un proceso puede ser expropiado en cualquier momento, el
 sistema operativo debe proporcionar _mecanismos de sincronización_
-(véase el apartado link:#anchor-12[3.3.3]) para coordinar el acceso a
+(véase el apartado <<_sincronización>>) para coordinar el acceso a
 datos compartidos que podrían estar siendo modificados por el proceso
 que abandona la CPU.
 * ¿Qué pasa si un proceso va a ser expropiado cuando se está ejecutando
@@ -2875,7 +2860,7 @@ espera a que la llamada se complete o se bloquee pasando el proceso al
 estado de __esperando__. Esto permite núcleos simples y garantiza que
 las estructuras del mismo permanezcan consistentes, pero es un modelo
 pobre en sistemas de tiempo real o multiprocesador. Exploraremos otras
-soluciones más adelante (véase el apartado link:#anchor-55[3.4.6]).
+soluciones más adelante (véase el apartado <<_planificación_de_tiempo_real>>).
 
 ==== El asignador
 
@@ -3017,9 +3002,7 @@ intensivo de la misma y a penas pasa tiempo esperando por la E/S__.
 Esta distinción entre tipos de procesos puede ser importante en la
 selección de un algoritmo de planificación de CPU adecuado. En general:
 
-* __El algoritmo escogido debe favorecer __[[anchor-58]]__El algoritmo
-escogido debe favorecer __[[anchor-59]]__El algoritmo escogido debe
-favorecer __[[anchor-58]]__El algoritmo escogido debe favorecer
+* __El algoritmo escogido debe favorecer
 –planificándolos antes– a los procesos limitados por la E/S__, evitando
 así que los procesos limitados por la CPU –que son los que tienden a
 usarla más tiempo– la acaparen. Si eso ocurriera, los procesos limitados
@@ -3047,9 +3030,9 @@ Hasta el momento hemos
 considerado la cola de preparados como una estructura donde los procesos
 que están preparados para ser ejecutados se ordenan y se escogen según
 el criterio del algoritmo de planificación. Aunque a lo largo de todo el
-tema link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo
+tema <<_gestión_de_procesos>> se puede haber intuido que dicha cola es de tipo
 FIFO –lo que se conoce como algoritmo de planificación FCFS o __First
-Come, First Served__– ya al principio del apartado link:#anchor-8[3.4]
+Come, First Served__– ya al principio del apartado <<_planificación_de_la_cpu>>
 indicamos que no tiene porqué ser así pues existen muchos otros
 algoritmos –SJF o __Shortest-Job First__, SRTF o __Shortest-Remaing-Time
 First__, RR o R__ound-Robin__, por prioridades, etc.– que pueden ser
@@ -3089,7 +3072,7 @@ aquella cola que coincide con su prioridad__.
 * __El planificador escoge primero siempre la cola de prioridad más alta
 que no esté vacía__.
 
-[[anchor-64]]Definición de las prioridades
+====== Definición de las prioridades
 
 Las prioridades se suelen indicar con números enteros en un rango fijo.
 Por ejemplo [0-7], [0-31], [0-139] o [0-4095]. En algunos sistemas
@@ -3107,7 +3090,7 @@ la cantidad de dinero pagada para el uso del sistema u otros factores
 políticos. ___A este tipo de prioridades se las denomina definidas
 externamente___.
 
-Planificación expropiativa o cooperativa
+====== Planificación expropiativa o cooperativa
 
 La planificación con prioridades puede ser expropiativa o cooperativa.
 __En el caso expropiativo cuando un proceso llega a la cola de
@@ -3118,7 +3101,7 @@ nuevos procesos simplemente son insertados en la cola que les
 corresponde en base a su prioridad, independientemente de si tienen o no
 mayor prioridad que el que se esté ejecutando.
 
-Planificación entre procesos con la misma prioridad
+====== Planificación entre procesos con la misma prioridad
 
 Cada cola en cada nivel de prioridad puede tener cualquier algoritmo de
 planificación de CPU, lo que virtualmente significa que el abanico de
@@ -3132,7 +3115,7 @@ etiquetadas como de tiempo real– tienen tanto una cola FCFS como una
 cola RR. En cada prioridad primero se planifican los procesos de la cola
 FCFS y después lo de la cola RR.].
 
-En la planificación [[anchor-65]]En la planificación *FCFS* (__First
+En la planificación *FCFS* (__First
 Come, First Served__) o _primero que llega, primero servido_ la cola es
 FIFO:
 
@@ -3141,7 +3124,7 @@ corresponde__.
 * __El proceso asignado a la CPU se coge siempre del principio de la
 cola seleccionada__.
 
-El algoritmo [[anchor-66]]El algoritmo *RR* (__Round-Robin__) es similar
+El algoritmo *RR* (__Round-Robin__) es similar
 al FCFS pero utilizando el temporizador para expropiar la CPU a los
 procesos a intervalos regulares, alternando así entre ellos de manera
 que se da a todos los procesos la oportunidad de ejecutarse. Como se
@@ -3189,14 +3172,14 @@ actualmente se utilizan tiempos de cuanto de entre 10 y 100 ms. Estos
 tiempos son mucho mayores que los tiempos de cambios de contexto, que
 generalmente son inferiores a 10µs.].
 
-Muerte por inanición y otros inconvenientes
+====== Muerte por inanición y otros inconvenientes
 
 El principal problema de este tipo de planificación es el _bloqueo
 indefinido_ o **muerte por inanición**, puesto que el algoritmo puede
 dejar a los procesos de baja prioridad esperando indefinidamente si hay
 un conjunto de procesos de mayor prioridad demandando CPU continuamente.
 
-Además, como vimos en el apartado link:#anchor-56[3.4.4], es conveniente
+Además, como vimos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_e_s>>, es conveniente
 favorecer a los procesos limitados por la E/S frente a los procesos
 limitados por la CPU para evitar el _efecto convoy_ y para mejorar los
 tiempos tanto de espera como de respuesta promedio. Lamentablemente este
@@ -3262,7 +3245,7 @@ interesante priorizar unos procesos frente a otros, tanto por motivos
 ajenos al sistema operativo como por motivos internos. Por ejemplo se
 puede querer favorecer a los procesos limitados por la E/S para mejorar
 la eficiencia del sistema, tal y como comentamos en el apartado
-link:#anchor-56[3.4.4]. La _planificación equitativa_ resuelve este
+<<_ciclo_de_ráfagas_de_cpu_y_de_e_s>>. La _planificación equitativa_ resuelve este
 problema asignando proporcionalmente más tiempo de CPU a los procesos
 con mayor prioridad. __A esta generalización del planificador equitativo
 se la conoce como **planificador equitativo ponderado****footnote:[Linux
@@ -3272,18 +3255,14 @@ ponderado* denominado CFS (**Completely Fair Scheduler**) o
 
 ==== Planificación de tiempo real
 
-En el apartado link:#anchor-18[1.3.4] discutimos la importancia de los
+En el apartado <<_sistemas_de_tiempo_real>> discutimos la importancia de los
 sistemas de tiempo real. A continuación, describiremos las
 funcionalidades necesarias para soportar la ejecución de procesos en
 tiempo real dentro de un sistema operativo de propósito general.
 
 ===== Tiempo real estricto
 
-Los sistemas de *tiempo real estricto* son necesarios para realizar
-tareas críticas que deben ser completadas dentro de unos márgenes de
-tiempo preestablecidos. Generalmente las tareas son entregas al sistema
-operativo junto con una declaración de las restricciones de tiempo
-–periodicidad y límite de tiempo[[anchor-67]]Los sistemas de *tiempo
+Los sistemas de *tiempo
 real estricto* son necesarios para realizar tareas críticas que deben
 ser completadas dentro de unos márgenes de tiempo preestablecidos.
 Generalmente las tareas son entregas al sistema operativo junto con una
@@ -3302,15 +3281,7 @@ de tiempo compartido.
 
 ===== Tiempo real flexible
 
-La ejecución de procesos de *tiempo real flexible* es menos restrictiva.
-Tan sólo requiere que los procesos críticos reciban mayor prioridad que
-los que no lo son. Esto es compatible con los sistemas de tiempo
-compartido, aunque __puede generar excesos en la cantidad de recursos
-asignados a los procesos de tiempo real, así como inanición y grandes
-retardos en la ejecución del resto de los procesos__. Sin embargo esto
-nos permite conseguir sistemas de propósito general que soporten
-multimedia, videojuegos y otras tareas que no funcionarían de manera
-[[anchor-68]]La ejecución de procesos de *tiempo real flexible* es menos
+La ejecución de procesos de *tiempo real flexible* es menos
 restrictiva. Tan sólo requiere que los procesos críticos reciban mayor
 prioridad que los que no lo son. Esto es compatible con los sistemas de
 tiempo compartido, aunque __puede generar excesos en la cantidad de
@@ -3340,11 +3311,7 @@ real.]__, que sí puede afectar a los procesos de tiempo no real.
 rápido comenzará a ejecutarse el proceso de tiempo real después de ser
 seleccionado por el planificador de la CPU.
 
-Mientras que el primer requerimiento es bastante sencillo de conseguir,
-el segundo es mucho más complejo. Muchos sistemas operativos tienen un
-núcleo no expropiable. Estos núcleos no pueden realizar un cambio de
-contexto mientras se está ejecutando código del núcleo –por ejemplo
-debido a una llamada al sistema[[anchor-69]]Mientras que el primer
+Mientras que el primer
 requerimiento es bastante sencillo de conseguir, el segundo es mucho más
 complejo. Muchos sistemas operativos tienen un núcleo no expropiable.
 Estos núcleos no pueden realizar un cambio de contexto mientras se está
@@ -3433,9 +3400,7 @@ aparecer limitaciones en la planificación. Por ejemplo:
 * Un dispositivo de E/S puede estar conectado mediante un bus privado a
 un procesador en particular. En ese caso los procesos que quieren
 utilizar ese dispositivo deben ejecutarse en dicho procesador.
-* Los procesadores SMTfootnote:[El _HyperThreading_ disponible en
-algunos procesadores de Intel es una implementación de la tecnología
-__Simultaneous Multithreading__.] ([[anchor-72]]Los procesadores
+* Los procesadores
 SMTfootnote:[El _HyperThreading_ disponible en algunos procesadores de
 Intel es una implementación de la tecnología __Simultaneous
 Multithreading__.] (__Simultaneous Multithreading__) permiten la
@@ -3480,11 +3445,7 @@ esquema requiere el uso mecanismos de sincronización debido a que hay
 estructuras de datos que se comparten entre todos los núcleos. En caso
 contrario varios procesadores podrían escoger y ejecuta el mismo proceso
 a la vez.
-** Por el contrario otros sistemas disponen de __una cola de preparados
-para cada procesador__. El mayor inconveniente de esta solución es que
-puede generar desequilibrios entre los procesadores, ya que un
-procesador puede acabar desocupado –con la cola de preparados
-vacía[[anchor-73]]Por el contrario otros sistemas disponen de __una cola
+** Por el contrario otros sistemas disponen de __una cola
 de preparados para cada procesador__. El mayor inconveniente de esta
 solución es que puede generar desequilibrios entre los procesadores, ya
 que un procesador puede acabar desocupado –con la cola de preparados
@@ -3515,9 +3476,7 @@ nuevo proceso. Sin embargo, con el fin de mantener la carga de trabajo
 equilibrada entre todos los procesadores es necesario disponer de
 algunos mecanismos de **balanceo de carga**. Por ejemplo:
 
-* En la *migración comandada* o _push migration_ un tarea específica
-–que se ejecuta con menor frecuencia que el planificador de la
-CPU[[anchor-74]]En la *migración comandada* o _push migration_ un tarea
+* En la *migración comandada* o _push migration_ un tarea
 específica –que se ejecuta con menor frecuencia que el planificador de
 la CPU– estima la carga de trabajo de cada CPU y en caso de encontrar
 algún desequilibrio mueve algunos procesos de la cola de preparados de
@@ -3613,7 +3572,7 @@ moverse de la memoria al disco y viceversa durante su ejecución, con el
 objetivo de ajustar las necesidades de memoria manteniendo la
 utilización de la CPU lo más alta posible.
 
-Como ya comentamos en el aparatado link:#anchor-7[1.3.1], en los
+Como ya comentamos en el aparatado <<_mainframe>>, en los
 *sistemas multiprogramados* existe una *cola de entrada* que se define
 __como aquella formada por el conjunto de procesos en disco que esperan
 para ser cargados en la memoria para su ejecución__.
@@ -3681,7 +3640,7 @@ de hardware especial que suele estar presente en la mayor parte de las
 CPU modernas, por lo que la inmensa mayoría de los sistemas operativos
 modernos de propósito general utilizan este método.
 
-En el apartado link:#anchor-31[2.2.2] vimos en lo sistemas operativos
+En el apartado <<_protección_de_la_memoria>> vimos en lo sistemas operativos
 modernos, como medida de protección, los procesos no tienen acceso libre
 a la memoria física. En lugar de eso el sistema operativo –asistido por
 la MMU (Memory-Management Unit)– proporciona a cada proceso un _espacio
@@ -4011,7 +3970,7 @@ comparado por la MMU durante la traducción con el número de página de
 cada dirección virtual, de manera que las páginas con entradas más allá
 de la última almacenada en la tabla son consideradas ilegales.
 
-En realidad, tal y como vimos en el apartado link:#anchor-45[3.1.1],
+En realidad, tal y como vimos en el apartado <<_el_proceso>>,
 __lo más común es que los procesos tengan un espacio de direcciones
 virtual disperso como el de la __. En la misma podemos observar como el
 sistema operativo ubica los diferentes componentes del proceso de una
@@ -4041,7 +4000,7 @@ procesos.
 
 Compartir páginas no sólo permite ahorrar memoria pues en __los sistemas
 operativos modernos la memoria compartida (véase el apartado
-link:#anchor-49[3.2.2]) se implementa mediante páginas compartidas__.
+<<_memoria_compartida>>) se implementa mediante páginas compartidas__.
 
 === Paginación bajo demanda
 
@@ -4192,7 +4151,7 @@ se ve afectado por el número de fallos de páginas. En el peor de los
 casos, en cada instrucción un proceso puede intentar acceder a una
 página distinta empeorando notablemente el rendimiento. Sin embargo esto
 no ocurre puesto que los programas tienden a tener localidad de
-referencia (véase el apartado link:#anchor-78[4.5.9]).
+referencia (véase el apartado <<_hiperpaginación>>).
 
 ===== Tiempo de acceso efectivo
 
@@ -4391,7 +4350,7 @@ soporte de __copy-on-write__, lo que permite a los procesos compartir un
 archivo en modo de sólo lectura pero disponiendo de sus propias copias
 de aquellas páginas que modifiquen. Indudablemente para que los procesos
 puedan compartir datos es necesario que exista algún tipo de
-coordinación (véase el apartado link:#anchor-12[3.3.3]).
+coordinación (véase el apartado <<_sincronización>>).
 
 Algunos sistemas operativos ofrecen el servicio de mapeo de archivos en
 la memoria sólo a través de una llamada al sistema concreta, permitiendo
@@ -4417,7 +4376,7 @@ no quedan marcos libres?. En ese caso el código que da servicio a la
 excepción de fallo de página debe escoger alguna página, intercambiarla
 con el disco y utilizar el marco de la misma para cargar la nueva
 página. Es decir, debemos modificar la función que ejecuta los pasos
-descritos en el apartado link:#anchor-41[4.5.2] de la siguiente manera:
+descritos en el apartado <<_protección_y_seguridad>> de la siguiente manera:
 
 ["arabic", start=4]
 .  __Si la página es legal, debe ser cargada desde el disco__.
@@ -4481,10 +4440,7 @@ criterio da lugar al algoritmo FIFO de reemplazo que no siempre tiene un
 buen rendimiento puesto que la página más antigua no necesariamente es
 la que se va a tardar más tiempo en necesitar –que sería la elección
 óptima–.
-* _Reemplazar la página que hace más tiempo que fue utilizada_ bajo la
-hipótesis de que si una página no ha sido usada durante un gran periodo
-de tiempo, entonces es poco probable que vaya a serlo en el futuro.
-[[anchor-80]]__Reemplazar la página que hace más tiempo que fue
+* __Reemplazar la página que hace más tiempo que fue
 utilizada__ bajo la hipótesis de que si una página no ha sido usada
 durante un gran periodo de tiempo, entonces es poco probable que vaya a
 serlo en el futuro. Este criterio da lugar a la familia de algoritmos
@@ -4513,11 +4469,7 @@ bit de referencia– y dentro de cada clase las no modificadas antes que
 las modificadas –para lo que utilizan el valor del bit de modificado–
 para evitar en lo posible reemplazar páginas cuyo contenido tiene que
 ser escrito en disco.
-* _Reemplazar la página que ha sido usada con mayor o menos frecuencia_
-utilizando contadores de referencias para cada página –almacenados en la
-tabla de páginas– que sos actualizados por el hardware en cada
-referencia. Este criterio da lugar a los algoritmos *LFU* (Least
-Frequently Used) [[anchor-81]]__Reemplazar la página que ha sido usada
+* __Reemplazar la página que ha sido usada
 con mayor o menos frecuencia__ utilizando contadores de referencias para
 cada página –almacenados en la tabla de páginas– que sos actualizados
 por el hardware en cada referencia. Este criterio da lugar a los
@@ -4545,7 +4497,7 @@ forma las páginas podrían ser recuperadas directamente desde la lista si
 fallara alguna antes de que su marco fuera utilizado por otra página.
 Esto permite reducir los efectos de que el algoritmo de reemplazo escoja
 una víctima equivocada.
-* __Se puede mantener__[[anchor-82]]__Se puede mantener una lista de
+* __Se puede mantener una lista de
 páginas modificadas e ir escribiéndolas cuando el dispositivo del
 espacio de intercambio no esté ocupado__. Este esquema aumenta la
 probabilidad de que una página esté limpia cuando sea seleccionada por
@@ -4807,7 +4759,7 @@ convencionales ofrecidos por el sistema operativo.
 ===== Tamaño de las páginas
 
 Como ya comentamos al estudiar el método básico de paginación (véase el
-apartado link:#anchor-77[4.4.1]), una decisión de diseño importante es
+apartado <<_paginación>>), una decisión de diseño importante es
 escoger el tamaño adecuado para las páginas:
 
 * **Con páginas grandes**:
@@ -5954,7 +5906,7 @@ __La *semántica de coherencia* especifica cuando las modificaciones que
 un usuario realice en los archivos serán observables por los otros
 usuarios__. La semántica de coherencia está directamente relacionada con
 los algoritmos de sincronización de procesos (véase tema
-link:#anchor-12[3.3.3]). Sin embargo es normal que esos complejos
+<<_sincronización>>). Sin embargo es normal que esos complejos
 algoritmos no se implementen en el caso de la E/S de archivo, debido a
 la alta latencia y las bajas velocidades de la transferencia de los
 discos y de las redes.
@@ -6282,9 +6234,9 @@ varios niveles diferentes. En la se muestra un ejemplo de la estructura
 de un sistema de archivos diseñado en niveles. Cada nivel utiliza las
 funciones de los niveles inferiores y proporciona nuevas funciones a los
 niveles superiores. Estos niveles han sido descritos en el apartado
-link:#anchor-84[5.4.1], mientras que las estructuras de metadatos
+<<_estructura_de_un_sistema_de_archivos>>, mientras que las estructuras de metadatos
 utilizadas tanto en la memoria como en disco fueron tratadas brevemente
-en el apartado link:#anchor-85[5.4.2].
+en el apartado <<_estructuras_de_metadatos>>.
 
 A continuación vamos a profundizar aun más en las estructuras y
 operaciones utilizadas para implementar los sistemas de archivos
@@ -6417,7 +6369,7 @@ cabezal del disco.
 
 * _El problema de la asignación contigua puede verse como un caso
 concreto del problema de la asignación dinámica del almacenamiento_
-(véase el apartado link:#anchor-78[4.6.2]). Es decir, que en un momento
+(véase el apartado <<_hiperpaginación>>). Es decir, que en un momento
 dado tendremos una petición de tamaño __n__ que deberemos satisfacer con
 una lista de huecos libres de tamaño variable. Como ya estudiamos
 anteriormente, las estrategias más comunes son las de el __primer
@@ -6672,7 +6624,7 @@ necesario para satisfacer una necesidad de espacio concreta.
 
 ==== Sistemas de archivos virtuales
 
-En el apartado link:#anchor-86[5.4.3] vimos cómo el sistema operativo
+En el apartado <<_montaje_de_sistemas_de_archivos>> vimos cómo el sistema operativo
 __monta__ sistemas de archivos de tal forma que aparenten estar
 integrados en una única estructura de directorios, permitiendo a los
 usuarios moverse de forma transparente entre distintos dispositivos y
@@ -6778,7 +6730,7 @@ petición, a más __tiempo de acceso al disco__ menor es el ___ancho de
 banda___.
 
 En los dispositivos de almacenamiento basados en memorias de estado
-sólido (véase el apartado link:#anchor-83[5.1.3]) el tiempo de acceso
+sólido (véase el apartado <<_memorias_de_estado_sólido>>) el tiempo de acceso
 viene determinado por las características de la memoria, entre otros
 factores, lo que hace que las diferencias entre accesos secuenciales y
 accesos aleatorios sean mucho menos significativas.
@@ -6797,7 +6749,7 @@ posible?
 
 ==== Planificación FCFS
 
-En la planificación [[anchor-87]]En la planificación *FCFS* (__First
+En la planificación *FCFS* (__First
 Come, First Served__) o _primero que llega, primero servido_ la cola es
 FIFO. Es decir, ___se atienden las solicitudes en orden de llegada___.
 Es la planificación más simple y es equitativa ___–____pues se atiende a
@@ -6813,7 +6765,7 @@ que pueden reordenar las solicitudes según su propio criterio.
 
 ==== Planificación SSTF
 
-En la planificación [[anchor-88]]En la planificación **SSTF**
+En la planificación **SSTF**
 (___Sortest_ _Seek Time First___) o algoritmo de ___tiempo de búsqueda
 más corto___, de toda cola se selecciona la solicitud con el menor
 _tiempo de búsqueda_ desde la posición actual de la cabeza. Como el
@@ -6829,7 +6781,7 @@ regiones cercanas a donde está actualmente la cabeza__ del disco.
 
 ==== Planificación SCAN y C-SCAN
 
-En la planificación [[anchor-89]]En la planificación **SCAN** o
+En la planificación **SCAN** o
 algoritmo de __exploración__ o del __ascensor__ ___el_ brazo del disco
 comienza en un extremo del disco y se mueve hacia el otro atendiendo
 solicitudes a medida que __pasa por cada __cilindro__, hasta llegar al
@@ -6981,7 +6933,7 @@ URL http://goo.gl/RwZwL
 ________________________________________________________________________________________________
 
 ______________________________________________________________________________________________________
-“[[anchor-90]]“C dynamic memory allocation”[en línea]. Wikipedia (en),
+“C dynamic memory allocation”[en línea]. Wikipedia (en),
 [2011]. URL http://goo.gl/OkFJ3
 ______________________________________________________________________________________________________
 
