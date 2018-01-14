@@ -172,8 +172,7 @@ a ejecutar según iba quedando disponible el ordenador. Finalmente, el
 resultado de cada programa debía ser devuelto al programador
 correspondiente.
 
-* El sistema operativo permanecía siempre residente en memoria (véase la
-).
+* El sistema operativo permanecía siempre residente en memoria (véase la).
 * La __única tarea __del sistema operativo __era transferir
 automáticamente el control de un trabajo al siguiente__.
 * _El mayor inconveniente de éste tipo de sistemas era que la CPU
@@ -371,7 +370,7 @@ redes eDonkey y BitTorrent.
 Desde el punto de vista de los sistemas operativos para sistemas
 distribuidos es necesario hacer la siguiente distinción:
 
-* _Lo**s ****sistemas operativos de red **ofrecen a las aplicaciones que
+* _Los **sistemas operativos de red **ofrecen a las aplicaciones que
 corren sobre ellos servicios de acceso a redes de ordenadores._ Por
 ejemplo, implementan algún mecanismo que permita a diferentes procesos
 en diferentes ordenadores intercambiar mensajes. Además suelen
@@ -381,18 +380,15 @@ operativos de red son autónomos, aunque conocen la existencia de la red
 y están en disposición de comunicarse con otros ordenadores de la misma.
 Este tipo de sistemas operativos son los más utilizados en los tipos de
 sistemas distribuidos comentados anteriormente.
-* __Los** ****sistemas operativos distribuidos **crean en el usuario la
+* __Los **sistemas operativos distribuidos **crean en el usuario la
 ilusión de estar en un sólo ordenador__, aunque en realidad el sistema
 operativo controla todos los ordenadores de la red dando al usuario
 acceso transparente a los recursos en todos los equipos de la misma. Con
 este tipo de sistemas operativos el usuario no sabe en qué ordenador se
 ejecutan sus procesos, ni dónde se almacenan sus archivos, ni qué equipo
 tiene conectado los distintos periféricos a los que tiene acceso. Un
-ejemplo de sistema operativo distribuido es __Amoebafootnote:[Amoeba es
-un sistema operativo de investigación distribuido de estructura
-microkernel (véase el apartado link:#anchor-5[2.3.3]) escrito por Andrew
-S. Tanenbaum en Vrije Universiteit. Más información en
-http://www.cs.vu.nl/pub/amoeba/.]__.
+ejemplo de sistema operativo distribuido es __Amoeba__footnote:[Amoeba es
+un sistema operativo de investigación distribuido de estructura microkernel (véase el apartado link:#anchor-5[2.3.3]) escrito por Andrew S. Tanenbaum en Vrije Universiteit. Más información en http://www.cs.vu.nl/pub/amoeba/.].
 
 ==== Sistemas de tiempo real
 
@@ -528,11 +524,7 @@ de tener su propio _mainframe_ personal.
 encima de VM.
 * **UNIX**. Desarrollado originalmente por Bell Labs en 1970 para los
 sistemas PDP-11/20.
-** La autoría del mismo se le atribuye a un grupo de programadores,
-liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS
-pero a menor escala después de que Bell Labs abandonara el proyecto en
-1969. Inicialmente se llamó UNICS y fue desarrollado para los sistemas
-PDP-7 (véase la ).
+** La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS pero a menor escala después de que Bell Labs abandonara el proyecto en 1969. Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7 (véase la ).
 ** La primer versión, como muchos otros sistemas operativos anteriores,
 estaba implementada en ensamblador. Dennis Ritchie y Brian Kernighan
 diseñaron un nuevo lenguaje llamado «C» especialmente pensado para que
@@ -551,20 +543,14 @@ ARPANET en la abierta Internet.
 ** En la actualidad se puede considerar que hay dos grandes familias de
 UNIX. Por un lado AT&T UNIX System V, del que derivan sistemas tales
 como SCO OpenServer, Oracle/Sun Microsystems Solaris Operating
-Environment y SCO UnixWare. Y por el otro, BSDfootnote:[La siglas BSD
-provienen de Berkeley Software Distribution.] del que derivan FreeBSD,
-NetBSD, OpenBSD, Darwin y DragonFly BSD, entre muchos otros.
-* **VMS**. Es un sistema operativo diseñado originalmente por
-[[anchor-20]]**VMS**. Es un sistema operativo diseñado originalmente por
-Digital Equipment Corporation –ahora propiedad de HP– en 1978 para
-operar en sistemas VAX. Posteriormente fue portado a sistemas DEC Alpha
+Environment y SCO UnixWare. Y por el otro, BSDfootnote:[La siglas BSD provienen de Berkeley Software Distribution.] del que derivan FreeBSD, NetBSD, OpenBSD, Darwin y DragonFly BSD, entre muchos otros.
+* **VMS**. Es un sistema operativo diseñado originalmente por –ahora propiedad de HP– en 1978 para operar en sistemas VAX. Posteriormente fue portado a sistemas DEC Alpha
 e Intel Itanium.
-* **IBM OS/400**. Es un sistema utilizado en la familia IBM AS/400
-–ahora llamada iSeries–.
+* **IBM OS/400**. Es un sistema utilizado en la familia IBM AS/400 –ahora llamada iSeries–.
 ** OS/400 y AS/400 fueron introducidos en el mercado en 1988.
 ** La familia IBM AS/400 es una familia de minicomputadores. Este
 termino en desuso hace referencia a máquinas multiusuario de rango
-medio, entre los _m__ainframes___ y los sistemas de escritorio.
+medio, entre los _mainframes_ y los sistemas de escritorio.
 
 ==== 5º Generación (años 1980, 1990 y 2000):
 
@@ -795,26 +781,7 @@ herramientas de desarrollo de cada lenguaje de programación, y
 constituyen la _interfaz de programación de aplicaciones_ (API) del
 lenguaje al que acompañan.
 
-Las librerías estándar necesitan acceder a los servicios del sistema
-operativo para, a su vez, dar servicio a los programas que las usan. Es
-decir, cuando un programa invoca alguna función o método de la librería
-estándar que lo acompaña, es muy probable que ésta necesite invocar uno
-o más servicios del sistema operativo para atender la petición
-convenientemente. Para ello las librerías estándar utilizan la _librería
-del sistema_ [[anchor-28]]Las librerías estándar necesitan acceder a los
-servicios del sistema operativo para, a su vez, dar servicio a los
-programas que las usan. Es decir, cuando un programa invoca alguna
-función o método de la librería estándar que lo acompaña, es muy
-probable que ésta necesite invocar uno o más servicios del sistema
-operativo para atender la petición convenientemente. Para ello las
-librerías estándar utilizan la _librería del sistema_ [[anchor-29]]Las
-librerías estándar necesitan acceder a los servicios del sistema
-operativo para, a su vez, dar servicio a los programas que las usan. Es
-decir, cuando un programa invoca alguna función o método de la librería
-estándar que lo acompaña, es muy probable que ésta necesite invocar uno
-o más servicios del sistema operativo para atender la petición
-convenientemente. Para ello las librerías estándar utilizan la _librería
-del sistema_ [[anchor-28]]Las librerías estándar necesitan acceder a los
+Las librerías estándar necesitan acceder a los
 servicios del sistema operativo para, a su vez, dar servicio a los
 programas que las usan. Es decir, cuando un programa invoca alguna
 función o método de la librería estándar que lo acompaña, es muy
@@ -1746,12 +1713,12 @@ través de un diagrama de colas como el de la . Analizándolo podemos
 tener una idea clara del flujo típico de los procesos dentro del
 sistema:
 
-1.  __Un nuevo proceso llega al sistema__. El proceso es colocado en la
+. __Un nuevo proceso llega al sistema__. El proceso es colocado en la
 __cola de preparados__. Allí espera hasta que es seleccionado para su
 ejecución y se le asigna la CPU. Mientras se ejecuta pueden ocurrir
 varias cosas:
 
-* ** _El proceso puede solicitar una operación de E/S_ por lo que
+** _El proceso puede solicitar una operación de E/S_ por lo que
 abandona la CPU y es colocado en la _cola de dispositivo_
 correspondiente. No debemos olvidar que aunque en nuestro diagrama no
 exista más que una de estas colas, en un sistema operativo real suele
@@ -1766,9 +1733,9 @@ ejecución.
 de la interrupción del temporizador que indica que lleva demasiado
 tiempo ejecutándose– y colocado en la __cola de preparados__.
 
-1.  _Cuando la espera concluye_ los procesos pasan del _estado de espera
+. _Cuando la espera concluye_ los procesos pasan del _estado de espera
 al de preparado_ y son insertados en la __cola de preparados__.
-2.  __El proceso repite este ciclo hasta que termina__. En ese momento
+. __El proceso repite este ciclo hasta que termina__. En ese momento
 es eliminado de todas las colas mientras el PCB y los recursos asignados
 son liberados.
 
@@ -3076,99 +3043,7 @@ anteriores, estos procesos son precisamente los limitados por la E/S.
 
 ==== Planificación
 
-Hasta el momento hemos considerado la cola de preparados como una
-estructura donde los procesos que están preparados para ser ejecutados
-se ordenan y se escogen según el criterio del algoritmo de
-planificación. Aunque a lo largo de todo el tema link:#anchor-44[3] se
-puede haber intuido que dicha cola es de tipo FIFO [[anchor-60]]Hasta el
-momento hemos considerado la cola de preparados como una estructura
-donde los procesos que están preparados para ser ejecutados se ordenan y
-se escogen según el criterio del algoritmo de planificación. Aunque a lo
-largo de todo el tema link:#anchor-44[3] se puede haber intuido que
-dicha cola es de tipo FIFO –lo que se conoce como algoritmo de
-planificación FCFS o __First Come, First Served__– ya al principio del
-apartado link:#anchor-8[3.4] indicamos que no tiene porqué ser así pues
-existen muchos otros algoritmos [[anchor-61]]Hasta el momento hemos
-considerado la cola de preparados como una estructura donde los procesos
-que están preparados para ser ejecutados se ordenan y se escogen según
-el criterio del algoritmo de planificación. Aunque a lo largo de todo el
-tema link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo
-FIFO [[anchor-60]]Hasta el momento hemos considerado la cola de
-preparados como una estructura donde los procesos que están preparados
-para ser ejecutados se ordenan y se escogen según el criterio del
-algoritmo de planificación. Aunque a lo largo de todo el tema
-link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo FIFO
-–lo que se conoce como algoritmo de planificación FCFS o __First Come,
-First Served__– ya al principio del apartado link:#anchor-8[3.4]
-indicamos que no tiene porqué ser así pues existen muchos otros
-algoritmos [[anchor-62]]Hasta el momento hemos considerado la cola de
-preparados como una estructura donde los procesos que están preparados
-para ser ejecutados se ordenan y se escogen según el criterio del
-algoritmo de planificación. Aunque a lo largo de todo el tema
-link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo FIFO
-[[anchor-60]]Hasta el momento hemos considerado la cola de preparados
-como una estructura donde los procesos que están preparados para ser
-ejecutados se ordenan y se escogen según el criterio del algoritmo de
-planificación. Aunque a lo largo de todo el tema link:#anchor-44[3] se
-puede haber intuido que dicha cola es de tipo FIFO –lo que se conoce
-como algoritmo de planificación FCFS o __First Come, First Served__– ya
-al principio del apartado link:#anchor-8[3.4] indicamos que no tiene
-porqué ser así pues existen muchos otros algoritmos [[anchor-61]]Hasta
-el momento hemos considerado la cola de preparados como una estructura
-donde los procesos que están preparados para ser ejecutados se ordenan y
-se escogen según el criterio del algoritmo de planificación. Aunque a lo
-largo de todo el tema link:#anchor-44[3] se puede haber intuido que
-dicha cola es de tipo FIFO [[anchor-60]]Hasta el momento hemos
-considerado la cola de preparados como una estructura donde los procesos
-que están preparados para ser ejecutados se ordenan y se escogen según
-el criterio del algoritmo de planificación. Aunque a lo largo de todo el
-tema link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo
-FIFO –lo que se conoce como algoritmo de planificación FCFS o __First
-Come, First Served__– ya al principio del apartado link:#anchor-8[3.4]
-indicamos que no tiene porqué ser así pues existen muchos otros
-algoritmos –[[anchor-63]]Hasta el momento hemos considerado la cola de
-preparados como una estructura donde los procesos que están preparados
-para ser ejecutados se ordenan y se escogen según el criterio del
-algoritmo de planificación. Aunque a lo largo de todo el tema
-link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo FIFO
-[[anchor-60]]Hasta el momento hemos considerado la cola de preparados
-como una estructura donde los procesos que están preparados para ser
-ejecutados se ordenan y se escogen según el criterio del algoritmo de
-planificación. Aunque a lo largo de todo el tema link:#anchor-44[3] se
-puede haber intuido que dicha cola es de tipo FIFO –lo que se conoce
-como algoritmo de planificación FCFS o __First Come, First Served__– ya
-al principio del apartado link:#anchor-8[3.4] indicamos que no tiene
-porqué ser así pues existen muchos otros algoritmos [[anchor-61]]Hasta
-el momento hemos considerado la cola de preparados como una estructura
-donde los procesos que están preparados para ser ejecutados se ordenan y
-se escogen según el criterio del algoritmo de planificación. Aunque a lo
-largo de todo el tema link:#anchor-44[3] se puede haber intuido que
-dicha cola es de tipo FIFO [[anchor-60]]Hasta el momento hemos
-considerado la cola de preparados como una estructura donde los procesos
-que están preparados para ser ejecutados se ordenan y se escogen según
-el criterio del algoritmo de planificación. Aunque a lo largo de todo el
-tema link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo
-FIFO –lo que se conoce como algoritmo de planificación FCFS o __First
-Come, First Served__– ya al principio del apartado link:#anchor-8[3.4]
-indicamos que no tiene porqué ser así pues existen muchos otros
-algoritmos [[anchor-62]]Hasta el momento hemos considerado la cola de
-preparados como una estructura donde los procesos que están preparados
-para ser ejecutados se ordenan y se escogen según el criterio del
-algoritmo de planificación. Aunque a lo largo de todo el tema
-link:#anchor-44[3] se puede haber intuido que dicha cola es de tipo FIFO
-[[anchor-60]]Hasta el momento hemos considerado la cola de preparados
-como una estructura donde los procesos que están preparados para ser
-ejecutados se ordenan y se escogen según el criterio del algoritmo de
-planificación. Aunque a lo largo de todo el tema link:#anchor-44[3] se
-puede haber intuido que dicha cola es de tipo FIFO –lo que se conoce
-como algoritmo de planificación FCFS o __First Come, First Served__– ya
-al principio del apartado link:#anchor-8[3.4] indicamos que no tiene
-porqué ser así pues existen muchos otros algoritmos [[anchor-61]]Hasta
-el momento hemos considerado la cola de preparados como una estructura
-donde los procesos que están preparados para ser ejecutados se ordenan y
-se escogen según el criterio del algoritmo de planificación. Aunque a lo
-largo de todo el tema link:#anchor-44[3] se puede haber intuido que
-dicha cola es de tipo FIFO [[anchor-60]]Hasta el momento hemos
+Hasta el momento hemos
 considerado la cola de preparados como una estructura donde los procesos
 que están preparados para ser ejecutados se ordenan y se escogen según
 el criterio del algoritmo de planificación. Aunque a lo largo de todo el
@@ -3547,10 +3422,7 @@ de tiempo real.
 
 Para tratar el problema de la planificación en los sistemas
 multiprocesador nos limitaremos al caso de los __sistemas
-homogéneosfootnote:[Un ejemplo de lo contrario [[anchor-70]]Un ejemplo
-de lo contrario [[anchor-71]]Un ejemplo de lo contrario [[anchor-70]]Un
-ejemplo de lo contrario –de sistema heterogéneo– se puede observar en
-los PC modernos donde muchos disponen tanto de una CPU como de una GPU
+homogéneosfootnote:[Un ejemplo de lo contrario –de sistema heterogéneo– se puede observar en los PC modernos donde muchos disponen tanto de una CPU como de una GPU
 especializada en el procesamiento de gráficos y en las operaciones de
 coma flotante.]__. En dichos sistemas los procesadores son idénticos,
 por lo que cualquiera de ellos puede ejecutar cualquier proceso. Esto es
@@ -4248,30 +4120,29 @@ Si un proceso accede a una página _residente en memoria_ –marcada como
 válida– no ocurre nada y la instrucción se ejecuta con normalidad. Pero
 si accede a una página marcada como inválida:
 
-1.  Al intentar acceder a la página la MMU comprueba el bit de válido y
+. Al intentar acceder a la página la MMU comprueba el bit de válido y
 __genera una excepción de fallo página al estar marcada como inválida__.
 Dicha excepción es capturada por el sistema operativo.
-2.  __El sistema operativo comprueba en una tabla interna si la página
+. __El sistema operativo comprueba en una tabla interna si la página
 es legal o no__. Es decir, si la página realmente no pertenece al
 espacio de direcciones virtual del proceso o si pertenece pero está
 almacenada en el disco. Esta tabla interna suele almacenarse en el PCB
 del proceso como parte de la información de gestión de la memoria.
-3.  __Si la página es ilegal, el proceso ha cometido un error y debe ser
+. __Si la página es ilegal, el proceso ha cometido un error y debe ser
 terminado__. En UNIX, por ejemplo, el sistema envía al proceso una señal
 de _violación de segmento_ que lo obliga a terminar.
-4.  __Si la página es legal debe ser cargada desde el disco__:
-
-1.  1.  _El núcleo debe buscar un marco de memoria libre_ que, por
+. __Si la página es legal debe ser cargada desde el disco__:
+.. _El núcleo debe buscar un marco de memoria libre_ que, por
 ejemplo, se puede escoger de la lista de marcos libres del sistema.
-2.  __Se solicita una operación de disco para leer la página deseada en
+.. __Se solicita una operación de disco para leer la página deseada en
 el marco asignado__. Puesto que no resulta eficiente mantener la CPU
 ocupada mientras la página es recuperada desde el disco, el sistema debe
 solicitar la lectura de la página y poner al proceso en estado de
 espera.
-3.  __Cuando la lectura del disco haya terminado se debe modificar la
+.. __Cuando la lectura del disco haya terminado se debe modificar la
 tabla interna, antes mencionada, y la tabla de páginas para indicar que
 la página está en la memoria__.
-4.  __Reiniciar la instrucción que fue interrumpida por la excepción__.
+.. __Reiniciar la instrucción que fue interrumpida por la excepción__.
 Generalmente esto se hace colocando el proceso nuevamente en la cola de
 preparados y dejando que el asignador lo reinicie cuando sea escogido
 por el planificador de la CPU.
@@ -4548,25 +4419,26 @@ con el disco y utilizar el marco de la misma para cargar la nueva
 página. Es decir, debemos modificar la función que ejecuta los pasos
 descritos en el apartado link:#anchor-41[4.5.2] de la siguiente manera:
 
-1.  __Si la página es legal, debe ser cargada desde el disco__.
-a.  __Buscar la localización de la página en disco__.
-b.  _El núcleo debe buscar un marco de memoria libre_ que, por ejemplo,
+["arabic", start=4]
+.  __Si la página es legal, debe ser cargada desde el disco__.
+..  __Buscar la localización de la página en disco__.
+..  _El núcleo debe buscar un marco de memoria libre_ que, por ejemplo,
 se puede escoger de la lista de marcos libres del sistema.
-a.  ___Si hay uno, usarlo___.
-b.  ___Si no hay, usar un algoritmo de reemplazo de página para
+...  ___Si hay uno, usarlo___.
+...  ___Si no hay, usar un algoritmo de reemplazo de página para
 seleccionar una víctima___.
-c.  __Escribir la víctima en el disco__ y cambiar las tablas de paginas
+...  __Escribir la víctima en el disco__ y cambiar las tablas de paginas
 y de marcos libres de acuerdo a la nueva situación. Para evitar mantener
 la CPU ocupada, el sistema debe solicitar la escritura de la página y
 poner al proceso en estado de espera.
-c.  ___Se solicita una operación de disco para leer la página deseada en
+..  ___Se solicita una operación de disco para leer la página deseada en
 el marco asignado___. Para evitar mantener la CPU ocupada, el sistema
 debe solicitar la escritura de la página y poner al proceso en estado de
 espera.
-d.  _Cuando la lectura del disco haya terminado se debe modificar la
+..  _Cuando la lectura del disco haya terminado se debe modificar la
 tabla interna de páginas válidas y la tabla de páginas para indicar que
 la página está en la memoria._
-e.  __Reiniciar el proceso interrumpido__.
+..  __Reiniciar el proceso interrumpido__.
 
 Es importante destacar que __en caso de reemplazo se necesita realizar
 dos accesos al disco. Esto se puede evitar utilizando un *bit de
@@ -6823,13 +6695,13 @@ implementación _real para cada uno de los sistemas de archivos___.
 La implementación de un sistema de archivos está compuesta de tres
 niveles fundamentales:
 
-1.  El primer nivel es la __interfaz del sistema de archivos__, a la que
+. El primer nivel es la __interfaz del sistema de archivos__, a la que
 acceden los desarrolladores a través de las llamadas al sistema. Estamos
 hablando de las llamadas __open()__, __read()__, _write()_ y
 __close()__, entre otras, y de los descriptores de archivos. Esta
 interfaz es la misma sea cual sea el sistema de archivos al que se esté
 intentando acceder.
-2.  El segundo nivel es __la interfaz del *sistema de archivos virtual*
+.  El segundo nivel es __la interfaz del *sistema de archivos virtual*
 o *VFS* (Virtual File System)__. Este nivel es utilizado por el anterior
 para atender las peticiones realizadas. Describe operaciones genéricas
 sobre cualquier sistema de archivos y estructuras genéricas como, por
@@ -6841,7 +6713,7 @@ forma unívoca dentro del mismo sistema de archivos____–____ y que da
 acceso a sus metadatos____. ___Este nivel ___cumple con dos importantes
 funciones:
 
-* ** __Separa las operaciones genéricas sobre el sistema de archivos con
+** __Separa las operaciones genéricas sobre el sistema de archivos con
 respecto a su implementación__. VFS define una interfaz muy clara común
 para todos los sistemas de archivos. Pero en el mismo sistema existirán
 diversas implementaciones de la interfaz VFS, una para cada sistema de
@@ -6853,7 +6725,7 @@ dispositivos conectados físicamente al sistema. Las operaciones de la
 interfaz VFS pueden resolverse utilizando un protocolo de acceso a algún
 servidor de archivos conectado a la red.
 
-1.  El tercer nivel es donde __se implementa cada tipo de sistema de
+. El tercer nivel es donde __se implementa cada tipo de sistema de
 archivos o los distintos protocolos de los s__ervidores de archivos en
 la red____. La interfaz VFS recurre a la implementación correspondiente
 para cada tipo de sistema de archivos para satisfacer las solicitudes de
