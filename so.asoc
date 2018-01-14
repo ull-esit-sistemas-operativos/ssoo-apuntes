@@ -11,10 +11,10 @@ Un *sistema informático* cualquiera puede ser dividido en cuatro
 componentes (véase la ): el hardware, el sistema operativo, los
 programas de aplicación y los usuarios.
 
-* El hardware –la CPU, la memoria, los dispositivos de entrada salida,
-etc.– proporcionan los recursos computaciones del sistema.
-* Los programas de aplicación –procesadores de textos, hojas de cálculo,
-compiladores, navegadores de Internet–. Definen las diferentes formas en
+* El hardware —la CPU, la memoria, los dispositivos de entrada salida,
+etc.— proporcionan los recursos computaciones del sistema.
+* Los programas de aplicación —procesadores de textos, hojas de cálculo,
+compiladores, navegadores de Internet—. Definen las diferentes formas en
 las que los recursos de sistema son utilizados para resolver los
 problemas informáticos de los usuarios.
 * El sistema operativo __controla y coordina el uso de hardware por
@@ -38,8 +38,8 @@ contexto, __el sistema operativo actúa como:__
 usuario y del acceso a los dispositivos de E/S.__
 
 Un sistema informático tiene múltiples recursos tanto hardware como
-software –tiempo de CPU, espacio de memoria, espacio de almacenamiento
-de archivos, dispositivos de E/S, servicios de red, etc.–. El sistema
+software —tiempo de CPU, espacio de memoria, espacio de almacenamiento
+de archivos, dispositivos de E/S, servicios de red, etc.—. El sistema
 operativo, como gestor de estos recursos, los asigna a los diferentes
 programas, resolviendo los conflictos en las peticiones y haciendo que
 el sistema opere eficientemente y resuelva los problemas de los
@@ -95,8 +95,8 @@ gigabytes de espacio y están completamente basados en sistemas gráficos
 de ventanas.
 
 Una definición mucho más común es que _el sistema operativo es aquel
-programa que se ejecuta continuamente en el ordenador_ –lo que
-denominamos comúnmente _*kernel*_ o **núcleo**– siendo todo lo demás
+programa que se ejecuta continuamente en el ordenador_ —lo que
+denominamos comúnmente _*kernel*_ o **núcleo**— siendo todo lo demás
 programas del sistema y aplicaciones. Sin embargo, es indudable que en
 algunos casos ésta definición no incluye como parte del sistema
 operativo algunas características que intuitivamente solemos considerar
@@ -113,7 +113,7 @@ inclusión de funcionalidades en sus sistemas operativosfootnote:[Más
 información sobre el caso en http://goo.gl/u1tf.].
 
 Parece evidente que un sistema operativo se define mejor por lo qué
-«hace» –es decir, sus funciones– que por lo qué «es». Sin embargo, ésta
+«hace» —es decir, sus funciones— que por lo qué «es». Sin embargo, ésta
 primera manera de definirlo también tiene sus dificultades. Por ejemplo,
 el principal objetivo de los sistemas operativos de escritorio es la
 facilidad de uso, mientras que en los _mainframe_ el objetivo
@@ -146,10 +146,10 @@ computadores utilizados en muchas aplicaciones comerciales y
 científicas. Se caracterizan no tanto por la potencia de su
 CPUfootnote:[Generalmente se considera que las mayor diferencia entre
 los superordenadores y los mainframes está en que los primeros se
-centran en resolver problemas limitados por la velocidad de cálculo –lo
-cual requiere miles de CPU de alto rendimiento– mientras que lo segundos
-se centran en problemas limitados por la E/S y la fiabilidad –sólo
-necesitan entre una y varias docenas de CPU–. Más información en
+centran en resolver problemas limitados por la velocidad de cálculo —lo
+cual requiere miles de CPU de alto rendimiento— mientras que lo segundos
+se centran en problemas limitados por la E/S y la fiabilidad —sólo
+necesitan entre una y varias docenas de CPU—. Más información en
 http://es.wikipedia.org/wiki/Ordenador_central.] como por: su gran
 capacidad de memoria, su gran capacidad de almacenamiento secundario, la
 gran cantidad de dispositivos de E/S y la rapidez de estos, así como por
@@ -179,7 +179,7 @@ automáticamente el control de un trabajo al siguiente__.
 permanecía mucho tiempo desocupada_ porque era y es varios ordenes de
 magnitud más rápida que la E/S. Los programas necesitan realizar
 operaciones de E/S para obtener los datos requeridos para sus cálculos
-–por ejemplo guardados en tarjetas perforadas– por lo que se pierde
+—por ejemplo guardados en tarjetas perforadas— por lo que se pierde
 mucho tiempo esperando a que estén disponibles dichos datos.
 
 ===== Sistemas multiprogramados
@@ -244,9 +244,9 @@ utilizar la máquina simultáneamentefootnote:[A los sistemas que tienen
 esta funcionalidad se los denomina sistemas multiusuario.]. Los usuarios
 comparten la CPU y los otros recursos del sistema, sin embargo, la
 sensación para cada uno es la de que el sistema completo está dedicado a
-él en exclusiva. Realmente el sistema conmuta de un usuario a otro –o
+él en exclusiva. Realmente el sistema conmuta de un usuario a otro —o
 para ser exactos de un programa a otro, pudiendo ser de usuarios
-distintos– pero debido a la lentitud de la E/S interactivafootnote:[La
+distintos— pero debido a la lentitud de la E/S interactivafootnote:[La
 E/S interactiva incluye la salida de datos por pantalla y la entrada de
 datos utilizando dispositivos como el teclado, el ratón, etc. La
 velocidad de este tipo de E/S viene limitada por las capacidades
@@ -277,9 +277,9 @@ apartado <<_sincronización>>) y *comunicación* (véase el apartado
 <<_gestión_del_almacgestión_del_almacenamiento>>), que a su vez debe residir en un conjunto de discos
  el sistema operativo requiere mecanismos de **gestión de discos**.
 
-Las primeras versiones de UNIX –liberado por primera vez en 1970– el
-sistema operativo VMS –desarrollado en 1978– para los VAX de Digital
-Equipment Corportation y el IBM OS/400 –introducido en 1988– utilizado
+Las primeras versiones de UNIX —liberado por primera vez en 1970— el
+sistema operativo VMS —desarrollado en 1978— para los VAX de Digital
+Equipment Corportation y el IBM OS/400 —introducido en 1988— utilizado
 en los minicomputadores AS/400, son algunos ejemplos de sistemas
 operativos de tiempo compartido (véase el apartado
 <<tercera_generación>>).
@@ -296,7 +296,7 @@ de tiempo compartido y los multiprogramados se persigue maximizar la
 utilización eficiente de los recursos, en __los sistemas de escritorio
 se debe maximizar la respuesta al usuariofootnote:[El tiempo de
 respuesta al usuario se puede considerar como el intervalo de tiempo
-entre un comando de un usuario –por ejemplo un click– y la respuesta del
+entre un comando de un usuario —por ejemplo un click— y la respuesta del
 sistema a dicho comando. En ocasiones este tiempo se minimiza a costa de
 un uso menos eficiente de los recursos del sistema por lo que no es un
 objetivo deseable para diseñar un mainframe. Mas información en el tema
@@ -312,15 +312,15 @@ carecían de esta característica, que ya existía en los _mainframe_ de la
 multiusuario e incluyen sistemas de archivos con permisos como medida de
 protección de los datos de los usuarios.
 
-Los ejemplos de este tipo de sistemas operativos van desde CP/M –lanzado
-en 1977– hasta los actuales GNU/Linux, Microsoft Windows 7 y Apple
+Los ejemplos de este tipo de sistemas operativos van desde CP/M —lanzado
+en 1977— hasta los actuales GNU/Linux, Microsoft Windows 7 y Apple
 macOS, pasando por MS-DOS, IBM OS/2 y las diversas versiones de
 Microsoft Windows (véase el apartado <<_cuarta_generación>>).
 
 ==== Sistemas distribuidos
 
-En la actualidad es común el uso de redes –por ejemplo Internet o la red
-de área local de una oficina– para interconectar ordenadores
+En la actualidad es común el uso de redes —por ejemplo Internet o la red
+de área local de una oficina— para interconectar ordenadores
 individuales; cada uno equipado con su procesador, su memoria, sus
 dispositivos de almacenamiento, su fuente de alimentación, etc. __En las
 redes de ordenadores los procesadores de dichos ordenadores se comunican
@@ -358,7 +358,7 @@ sistemas cliente-servidor el servidor es el cuello de
 botellafootnote:[Un servidor puede ser el cuello de botella no solo por
 su potencia sino también por el ancho de banda de su conexión a la red.
 La potencia del servidor es lo de menos cuando se intenta distribuir en
-Internet archivos de gran tamaño –por ejemplo imágenes de CD o DVD– pues
+Internet archivos de gran tamaño —por ejemplo imágenes de CD o DVD— pues
 el problema es que varias descarga simultaneas pueden consumir todo el
 ancho de banda del servidor durante largos periodos de tiempo. ], pero
 en los sistemas de redes entre iguales la carga se distribuye entre los
@@ -548,9 +548,9 @@ ARPANET en la abierta Internet.
 UNIX. Por un lado AT&T UNIX System V, del que derivan sistemas tales
 como SCO OpenServer, Oracle/Sun Microsystems Solaris Operating
 Environment y SCO UnixWare. Y por el otro, BSDfootnote:[La siglas BSD provienen de Berkeley Software Distribution.] del que derivan FreeBSD, NetBSD, OpenBSD, Darwin y DragonFly BSD, entre muchos otros.
-* **VMS**. Es un sistema operativo diseñado originalmente por –ahora propiedad de HP– en 1978 para operar en sistemas VAX. Posteriormente fue portado a sistemas DEC Alpha
+* **VMS**. Es un sistema operativo diseñado originalmente por —ahora propiedad de HP— en 1978 para operar en sistemas VAX. Posteriormente fue portado a sistemas DEC Alpha
 e Intel Itanium.
-* **IBM OS/400**. Es un sistema utilizado en la familia IBM AS/400 –ahora llamada iSeries–.
+* **IBM OS/400**. Es un sistema utilizado en la familia IBM AS/400 —ahora llamada iSeries—.
 ** OS/400 y AS/400 fueron introducidos en el mercado en 1988.
 ** La familia IBM AS/400 es una familia de minicomputadores. Este
 termino en desuso hace referencia a máquinas multiusuario de rango
@@ -586,7 +586,7 @@ programación fue el producto que ayudó a fundar Microsoft, el Altair
 BASIC.] fue el primer estándar industrial.
 * **MS-DOS**. Sistema operativo estándar para la segunda generación de
 microcomputadores.
-** Fue el primer sistema operativo del IBM PC –lanzado en 1981– y
+** Fue el primer sistema operativo del IBM PC —lanzado en 1981— y
 durante mucho tiempo fue ampliamente utilizado en la plataforma PC
 compatible. No era ni multitarea ni multiusuario.
 ** MS-DOS fue creado por Seattle Computer Products con el nombre de
@@ -605,7 +605,7 @@ personales de IBM, equipados con procesador Intel 80286.
 apartado <<_operación_en_modo_dual>>) de MS-DOS y Microsoft Windows 2.0.
 ** OS/2 1.0 fue anunciado en abril y liberado en diciembre de 1987 como
 un sistema operativo en modo texto. La interfaz gráfica de usuario
-prometida –denominada Presentation Manager– se introdujo en la versión
+prometida —denominada Presentation Manager— se introdujo en la versión
 1.1 en noviembre de 1988.
 ** La colaboración entre IBM y Microsoft terminó en 1990 entre la
 liberación de Windows 3.0 y la de OS/2 1.3. El aumento de popularidad de
@@ -661,36 +661,36 @@ decidió cambiar la APIfootnote:[Una interfaz de programación de
 aplicaciones o API (del inglés __application programming interface__) es
 el conjunto de funciones, procedimientos o métodos que ofrece el sistema
 operativo para ser utilizado por las aplicaciones.] del aún en
-desarrollo NT OS/2 –como era conocido en la época– pasando de ser una
+desarrollo NT OS/2 —como era conocido en la época— pasando de ser una
 versión extendida de la API de OS/2 a una versión extendida de la API de
 Windows. Esta decisión causó tensión entre Microsoft e IBM y provocó que
 finalmente la colaboración terminara.
 ** Microsoft contrató a un grupo de desarrolladores de Digital Equipment
 Corporation para crear Windows NT, por lo que muchos de sus elementos
 reflejan la experiencia anterior de DEC en VMS.
-** Las API soportadas por Windows NT –por ejemplo Win32, POSIX y OS/2
-2.1– son implementadas como subsistemas encima de un API nativo
+** Las API soportadas por Windows NT —por ejemplo Win32, POSIX y OS/2
+2.1— son implementadas como subsistemas encima de un API nativo
 públicamente no documentado. Esta estructura en subsistemas fue lo que
 permitió la adopción tardía de la API de Windows, tal y como hemos
 comentado anteriormente.
-** Windows NT 3.1 –la primera versión de Windows NT, liberada el 13 de
-julio de 1993– era un sistema operativo microkernel (véase el apartado
+** Windows NT 3.1 —la primera versión de Windows NT, liberada el 13 de
+julio de 1993— era un sistema operativo microkernel (véase el apartado
 <<_microkernel>>) multiplataforma que corría sobre procesadores
 Intel IA-32, DEC Alpha, MIPS R4000 y PowerPC.
 ** Windows NT 4.0 fue la última versión en soportar plataformas
 distintas a Intel IA-32. Aunque el desarrollo de Windows 2000 para Alpha
 continuó hasta 1999, cuando Compaq dejó de soportar Windows NT en esa
 arquitectura. Además Windows NT 4.0 integró en el núcleo más funciones
-–por ejemplo parte del subsistema gráfico– para obtener mayor
+—por ejemplo parte del subsistema gráfico— para obtener mayor
 rendimiento.
 * **Windows 2000, XP, Vista, 7**. Sistemas operativos sucesores de
 Windows NT.
-** Windows 2000 –o Windows NT 5.0, liberado el 17 de febrero de 2000–
+** Windows 2000 —o Windows NT 5.0, liberado el 17 de febrero de 2000—
 fue el primer sistema operativo de la familia NT al que se le eliminaron
 las siglas del nombre por motivos de marketing. El objetivo era
 favorecer la unificación de las dos familias de sistemas operativos
-Windows –Windows 9x y Windows NT– alrededor de la tecnología NT.
-** Windows XP –o Windows NT 5.1– completó el
+Windows —Windows 9x y Windows NT— alrededor de la tecnología NT.
+** Windows XP —o Windows NT 5.1— completó el
 proceso de unificación de las dos familias de sistemas operativos
 Windows, forzando la extinción de la familia Windows 9x al sustituirla
 con una versión de Windows XP, denominada Windows XP Home Edition,
@@ -764,7 +764,7 @@ de programas. Dicho entorno debe proporcionar ciertos servicios que
 pueden ser accedidos por los programas a través de una *interfaz de
 programación de aplicaciones* o *API* (__Application Programming
 Interface__). Algunas de las API disponibles para los desarrolladores de
-aplicaciones son la API Win32 –en sistemas Microsoft Windows– y la API
+aplicaciones son la API Win32 —en sistemas Microsoft Windows— y la API
 POSIX para sistemas compatibles POSIXfootnote:[POSIX (__Portable
 Operating System Interface for Unix__) es el nombre de una familia de
 estándares que definen una interfaz de programación de aplicaciones para
@@ -773,7 +773,7 @@ ejecutado en distintas plataformas, siempre que sean compatibles con
 POSIX. La práctica totalidad de los sistemas UNIX modernos son
 compatibles POSIX ya que la especificación deriva de la interfaces
 típicas en ese tipo de sistemas antes de la aparición del estándar
-POSIX.] –como es el caso de los diferentes UNIX, Linux y macOS–.
+POSIX.] —como es el caso de los diferentes UNIX, Linux y macOS—.
 
 Concretamente, __junto a cada int__é__rprete o compilador de un lenguaje
 de programación suele ir una *librería estándar* que ofrece clases y/o
@@ -790,8 +790,8 @@ programas que las usan. Es decir, cuando un programa invoca alguna
 función o método de la librería estándar que lo acompaña, es muy
 probable que ésta necesite invocar uno o más servicios del sistema
 operativo para atender la petición convenientemente. Para ello las
-librerías estándar utilizan la _librería del sistema_ –o librerías del
-sistema, en el caso de que hayan varias– que acompaña al sistema
+librerías estándar utilizan la _librería del sistema_ —o librerías del
+sistema, en el caso de que hayan varias— que acompaña al sistema
 operativo.
 
 [cols="",]
@@ -814,8 +814,8 @@ de la librería del sistema (véase la ).
 
 __La *librería del
 sistema* forma parte del sistema operativo y contiene un conjunto de
-clases y/o funciones –generalmente más primitivas que las de la librería
-estándar de los lenguajes de programación– que los programas deben
+clases y/o funciones —generalmente más primitivas que las de la librería
+estándar de los lenguajes de programación— que los programas deben
 utilizar para acceder a los servicios del sistema operativo__. Es decir,
 la librería del sistema constituye la _interfaz de programación de
 aplicaciones_ del sistema operativo. Es muy común que esta interfaz esté
@@ -864,7 +864,7 @@ __std::ofstream__ de la librería estándar utiliza a su vez la función
 __open()__ de la librería del sistema para abrir o crear un archivo
 (véase la ). La función __open()__ no es parte del C estándar pero si
 del estándar POSIX. Por lo tanto, para usar __open()__ y otras funciones
-POSIX directamente –desde lenguajes como C o C++– no es suficiente con
+POSIX directamente —desde lenguajes como C o C++— no es suficiente con
 tener un sistema con un compilador estándar de C, sino uno que siga el
 estándar POSIX, que es mucho más amplio.
 
@@ -921,10 +921,10 @@ Generalmente una
 llamada al sistema se invoca mediante una instrucción específica en
 lenguaje ensamblador que genera una **excepción**footnote:[Una
 _excepción_ es una interrupción generada por software, que puede ser
-debida a un error –por ejemplo una división por cero o un acceso no
-válido a memoria– o a una llamada al sistema de un proceso para que se
-ejecute un servicio del sistema operativo.] –por ejemplo la instrucción
-_syscall_ en la – que es capturada por el sistema operativo, deteniendo
+debida a un error —por ejemplo una división por cero o un acceso no
+válido a memoria— o a una llamada al sistema de un proceso para que se
+ejecute un servicio del sistema operativo.] —por ejemplo la instrucción
+_syscall_ en la — que es capturada por el sistema operativo, deteniendo
 la ejecución del proceso que la invocó. Cuando se realiza la llamada es
 necesario que el proceso identifique la operación que quiere que se
 realice. Esto se suele hacer poniendo un número identificativo de la
@@ -991,8 +991,8 @@ sistema operativo moderno:
 
 * __Un *proceso* puede ser considerado como un programa en ejecución__,
 es decir, cuando las instrucciones del programa son ejecutadas por una
-CPU. Un proceso es un entidad activa que necesita recursos –CPU,
-memoria, archivos, E/S– que se le asignan cuando es creado o cuando lo
+CPU. Un proceso es un entidad activa que necesita recursos —CPU,
+memoria, archivos, E/S— que se le asignan cuando es creado o cuando lo
 solicita durante la ejecución. Cuando el proceso termina el sistema
 operativo reclama de estos recursos aquellos que sean reutilizables.
 * Un __*programa* no es un proceso, es una entidad pasiva; como el
@@ -1057,17 +1057,17 @@ espacio en la misma.
 ===== Gestión del sistema de archivos
 
 Los ordenadores pueden almacenar información en diferentes tipos de
-medios físicos –por ejemplo en discos magnéticos, en CD/DVD-ROM, en
-memorias de estado sólido, etc.– cada uno de los cuales tiene
+medios físicos —por ejemplo en discos magnéticos, en CD/DVD-ROM, en
+memorias de estado sólido, etc.— cada uno de los cuales tiene
 características propias. El acceso a cada tipo medio es controlado por
-un dispositivo –por ejemplo el controlador de disco, la unidad de
-CD-ROM, etc.– que también tiene características propias. Para
+un dispositivo —por ejemplo el controlador de disco, la unidad de
+CD-ROM, etc.— que también tiene características propias. Para
 simplificar todo esto el sistema operativo proporciona una visión lógica
 uniforme de todos los sistemas de almacenamiento. Es decir, abstrae las
 propiedades físicas de los dispositivos de almacenamiento para definir
 una unidad de almacenamiento lógico, el __archivo__. _Un *archivo* o
 fichero es una colección de información relacionada definida por su
-creador_ –por ejemplo programas, imágenes, datos–. Los archivos
+creador_ —por ejemplo programas, imágenes, datos—. Los archivos
 normalmente se organizan en directorios para facilitar su uso.
 
 Responsabilidades de la gestión del sistema de archivos
@@ -1147,8 +1147,8 @@ relacionadas con la gestión del almacenamiento secundario:
 
 _El componente de red se responsabiliza de la comunicación entre los
 procesadores en sistemas interconectados mediante una red de
-ordenadores_ –por ejemplo en Internet o la red de área local de una
-oficina–.
+ordenadores_ —por ejemplo en Internet o la red de área local de una
+oficina—.
 
 ===== Protección y seguridad
 
@@ -1160,7 +1160,7 @@ pueden utilizar los recursos aquellos procesos que hayan obtenido la
 autorización del sistema operativo. Además ___la __**_*protección*_**_
 también permite mejorar la fiabilidad__ al permitir detectar los
 elementos del sistema que no operan correctamente. Un recurso
-desprotegido no puede defenderse contra el uso –o mal uso– de un usuario
+desprotegido no puede defenderse contra el uso —o mal uso— de un usuario
 no autorizado o incompetente.
 
 Ejemplos típicos de mecanismos de protección son el hardware de
@@ -1195,8 +1195,8 @@ Las interfaces de usuario pueden ser de diferentes tipos:
 * __Interfaz de línea de comandos o intérprete de comandos__, que
 permite que los usuarios introduzcan directamente los comandos que el
 sistema operativo debe ejecutar. En algunos sistemas este tipo de
-interfaz se incluye dentro del núcleo, pero en la mayor parte –como
-MSDOS y UNIX– se trata de un programa especial denominado _shell_ que se
+interfaz se incluye dentro del núcleo, pero en la mayor parte —como
+MSDOS y UNIX— se trata de un programa especial denominado _shell_ que se
 ejecuta cuando un usuario inicia una sesión.
 * __Interfaz de proceso por lotes__, en la que los comandos y directivas
 para controlar dichos comandos se listan en archivos que posteriormente
@@ -1219,11 +1219,11 @@ incluye una colección de programas del sistema. El papel de estos
 programas del sistema es proporcionar un entorno conveniente para la
 ejecución y desarrollo de programas. Entre los programas del sistema se
 suelen incluir aplicaciones para manipular archivos y directorios,
-programas para obtener información sobre el estado del sistema –como la
-fecha y hora o la memoria y el espacio en disco disponible–,
-herramientas de desarrollo –como intérpretes, compiladores, enlazadores
-y depuradores–, programas de comunicaciones –como clientes de correo
-electrónico y navegadores web–, etc.
+programas para obtener información sobre el estado del sistema —como la
+fecha y hora o la memoria y el espacio en disco disponible—,
+herramientas de desarrollo —como intérpretes, compiladores, enlazadores
+y depuradores—, programas de comunicaciones —como clientes de correo
+electrónico y navegadores web—, etc.
 
 Además, muchos sistemas operativos disponen de programas que son útiles
 para resolver los problemas más comunes de los usuarios. Entre estos
@@ -1242,22 +1242,22 @@ pide la atención del sistema, el sistema operativo debe permanecer
 inactivo esperado a que algo ocurra.
 * Los sucesos que requieren la activación del sistema casi siempre se
 indican mediante una interrupción:
-** Cuando un proceso comente un error –como una división por cero o un
-acceso a memoria no válido– o un programa solicita un servicio al
+** Cuando un proceso comente un error —como una división por cero o un
+acceso a memoria no válido— o un programa solicita un servicio al
 sistema operativo a través de una llamada al sistema lo que se genera es
-una *excepción* –que no es más que una interrupción generada por
-software– que despierta al sistema operativo para que haga lo que sea
+una *excepción* —que no es más que una interrupción generada por
+software— que despierta al sistema operativo para que haga lo que sea
 más conveniente.
 ** Cuando los dispositivos de E/S requieren la atención del sistema
-operativo –por ejemplo porque se ha completado una transferencia de
-datos– se genera una interrupción que despierta al sistema operativo.
+operativo —por ejemplo porque se ha completado una transferencia de
+datos— se genera una interrupción que despierta al sistema operativo.
 
 Dado que el sistema operativo y los procesos de usuarios comparten los
 recursos del sistema informático, __necesitamos estar seguros de que un
 error que se produzca en un programa sólo afecte al proceso que lo
-ejecuta__. Por ejemplo, en los sistemas de tiempo compartido –y en
+ejecuta__. Por ejemplo, en los sistemas de tiempo compartido —y en
 cualquier otro tipo de sistema operativo donde los programas tengan que
-compartir la memoria, como es el caso de los sistema microprogramados–
+compartir la memoria, como es el caso de los sistema microprogramados—
 un programa erróneo puede modificar el código de otro programa, los
 datos de otro programa o el propio sistema operativo. Por eso es
 necesario establecer mecanismos de protección frente a los errores en
@@ -1271,7 +1271,7 @@ programas de usuario. El método que utilizan la mayor parte de los
 sistemas operativos consiste en __utilizar algún tipo de soporte en el
 hardware que permita diferencia entre varios modos de ejecución y
 restringir la utilización de las instrucciones peligrosas
-–**instrucciones privilegiadas**– para que sólo puedan ser utilizadas en
+—**instrucciones privilegiadas**— para que sólo puedan ser utilizadas en
 el modo en el que se ejecuta el código del sistema operativo__.
 
 Como mínimo son necesarios dos modos de operación diferentes:
@@ -1281,8 +1281,8 @@ usuarios__. Si se hace un intento de ejecutar una instrucción
 privilegiada en este modo, el hardware la trata como ilegal y genera una
 excepción que es interceptada por el sistema operativo, en lugar de
 ejecutar la instrucción.
-* __En el *modo privilegiado* –__también denominado **modo supervisor**,
-*modo del sistema* o **modo **__*kernel*__– __se ejecuta el código de
+* __En el *modo privilegiado* —__también denominado **modo supervisor**,
+*modo del sistema* o **modo **__*kernel*__— __se ejecuta el código de
 las tareas del sistema operativo__. El hardware es el encargado de
 garantizar que las instrucciones privilegiadas sólo pueden ser
 ejecutadas en este modo.
@@ -1305,14 +1305,14 @@ A continuación podemos ver el ciclo de vida de la ejecución de
 instrucciones en un sistema con modo dual de operación:
 
 1.  _Inicialmente, al arrancar la computadora, el hardware se inicia en
-el modo privilegiado_ –es decir, con el bit de modo a 0–. En este modo
+el modo privilegiado_ —es decir, con el bit de modo a 0—. En este modo
 se carga el sistema operativo e inicia su ejecución.
-2.  __El sistema operativo debe cambiar al modo usuario –poniendo el bit
-de modo a 1– antes de ceder el control a un proceso de usuario__. Esto
+2.  __El sistema operativo debe cambiar al modo usuario —poniendo el bit
+de modo a 1— antes de ceder el control a un proceso de usuario__. Esto
 ocurre cuando es necesario que un proceso de usuario continúe o inicie
 su ejecución (véase el apartado <<_el_asignador>>).
 3.  _El hardware conmuta a modo privilegiado cuando ocurre una
-interrupción o una excepción_ –poniendo el bit de modo a 0– antes de
+interrupción o una excepción_ —poniendo el bit de modo a 0— antes de
 pasar el control al código del sistema operativo que se encargará de
 tratarlas.
 
@@ -1377,8 +1377,8 @@ punto de vista de la protección de la memoria son que:
 ilusión de que toda la memoria es para él y evitando que un proceso
 pueda acceder a la memoria de otros procesos.
 * _Permite marcar los modos de acceso autorizados en las diferentes
-regiones de la memoria_ –como por ejemplo lectura, escritura y
-ejecución– evitando que el código ejecutado en modo usuario tenga acceso
+regiones de la memoria_ —como por ejemplo lectura, escritura y
+ejecución— evitando que el código ejecutado en modo usuario tenga acceso
 a zonas a las que no debería tenerlo. El acceso a la memoria en un modo
 no autorizado se considera una instrucción privilegiada, por lo que ese
 tipo de acceso desde el modo usuario siempre genera una excepción.
@@ -1506,8 +1506,8 @@ sobrecarga que añade el mecanismo de comunicación__. Por ejemplo
 Microsoft Windows NT nació con una estructura de microkernel en capas
 donde una parte importante de los servicios eran proporcionados por unos
 procesos de usuario llamados subsistemas. Además el sistema operativo
-podía mostrar diferentes personalidades o _entornos operativos_ –OS/2,
-POSIX y DOS– a través del uso de subsistemas ambientales, que también se
+podía mostrar diferentes personalidades o _entornos operativos_ —OS/2,
+POSIX y DOS— a través del uso de subsistemas ambientales, que también se
 ejecutaban como procesos de usuario. Las aplicaciones de Microsoft
 Windows NT se comunicaban con estos subsistemas utilizando una forma de
 IPC (véase el apartado <<_microkernel>>) denominada LPC (__Local
@@ -1520,10 +1520,10 @@ ocultado los detalles de la comunicación que permiten que la llamada
 tenga lugar.]. Con esta estructura la pérdida de rendimiento respecto a
 Microsoft Windows 95 era tan importante que los diseñadores se vieron
 obligados a mover más servicios al espacio del núcleo. En la actualidad
-Microsoft Windows XP (véase la ) –que es un heredero directo de
-Microsoft Windows NT– tiene una arquitectura más monolítica que
+Microsoft Windows XP (véase la ) —que es un heredero directo de
+Microsoft Windows NT— tiene una arquitectura más monolítica que
 microkernelfootnote:[A las 280 llamadas al sistema de Microsoft Windows
-XP –algo menos de 200 en Microsoft Windows NT 3.51– se deben sumar las
+XP —algo menos de 200 en Microsoft Windows NT 3.51— se deben sumar las
 más de 650 del subsistema gráfico, alojado en el núcleo desde Microsoft
 Windows NT 4.0.] ya que aunque muchos servicios siguen siendo
 proporcionados por procesos de usuario, esto sólo ocurre con aquellos
@@ -1667,9 +1667,9 @@ punteros al PCB del proceso padre y de los procesos hijos, etc.
 * **Información de gestión de la memoria**. Incluye la información
 requerida para la gestión de la memoria. Por ejemplo los valores de los
 registros base y límite que definen el área de la memoria física que
-ocupa el proceso, la tabla de páginas –en el caso de que se use
-paginación (véase el apartado <<_paginación>>)– o la tabla de
-segmentos –en el caso de que se utilice segmentación– etc.
+ocupa el proceso, la tabla de páginas —en el caso de que se use
+paginación (véase el apartado <<_paginación>>)— o la tabla de
+segmentos —en el caso de que se utilice segmentación— etc.
 * **Información de registro**. Esta información incluye la cantidad de
 CPU usada, límites de tiempo en el uso de la CPU, estadísticas de la
 cuenta del usuario al que pertenece el proceso, estadísticas de la
@@ -1720,9 +1720,9 @@ es creado mientras el proceso padre abandona la CPU y es colocado en una
 _cola de espera_ hasta que el proceso hijo termine. La terminación del
 proceso hijo es el evento que espera el proceso padre para continuar su
 ejecución.
-** _El proceso puede ser sacado forzosamente de la CPU_ –como resultado
+** _El proceso puede ser sacado forzosamente de la CPU_ —como resultado
 de la interrupción del temporizador que indica que lleva demasiado
-tiempo ejecutándose– y colocado en la __cola de preparados__.
+tiempo ejecutándose— y colocado en la __cola de preparados__.
 
 . _Cuando la espera concluye_ los procesos pasan del _estado de espera
 al de preparado_ y son insertados en la __cola de preparados__.
@@ -1741,8 +1741,8 @@ planificación. Este proceso de selección debe ser realizado por el
 compartido como GNU/Linux, Microsoft Windows o cualquier sabor de UNIX
 carecen de planificador de trabajos. En estos sistemas simplemente se
 cargan los procesos en memoria para que sean ejecutados cuando el
-usuario lo solicita.] el *planificador de largo plazo* –o **planificador
-de trabajos**– selecciona los trabajos desde la cola de entrada en el
+usuario lo solicita.] el *planificador de largo plazo* —o **planificador
+de trabajos**— selecciona los trabajos desde la cola de entrada en el
 almacenamiento secundario, dónde están todos almacenados, y los carga en
 memoria__.
 * __El *_planificador de corto plazo_* o *planificador de CPU*
@@ -1751,8 +1751,8 @@ CPU__. Obviamente este planificador es invocado cuando un proceso en
 ejecución abandona la CPU por cualquiera de los motivos comentados.
 * __Algunos sistemas operativos utilizan el *planificador de medio
 plazo* para sacar procesos de la memoria y reintroducirlos
-posteriormente__. A este esquema se le denomina *intercambio* –o
-__swapping__– y puede ser necesario utilizarlo cuando escasea la
+posteriormente__. A este esquema se le denomina *intercambio* —o
+__swapping__— y puede ser necesario utilizarlo cuando escasea la
 memoria.
 
 ==== Cambio de contexto
@@ -1788,8 +1788,8 @@ creación y terminación de los mismos.
 
 ===== Creación de procesos
 
-__Un proceso –denominado **padre**– puede crear múltiples procesos –los
-**hijos**– utilizando una llamada al sistema específica para la creación
+__Un proceso —denominado **padre**— puede crear múltiples procesos —los
+**hijos**— utilizando una llamada al sistema específica para la creación
 de procesos__. En general cada proceso se identifica de manera unívoca
 mediante un *identificador de proceso* o *PID* (__Process Identifier__),
 que normalmente es un número entero. Puesto que cada nuevo proceso puede
@@ -1817,7 +1817,7 @@ subprocesos?*
 ** __El proceso puede estar obligado a repartir sus recursos entre sus
 hijos__.
 ** _O puede que esté en disposición de compartir algunos recursos_
-__–__como memoria y archivos– __con algunos de sus hijos__. Por ejemplo
+__—__como memoria y archivos— __con algunos de sus hijos__. Por ejemplo
 en POSIX todos los archivos abiertos por un proceso son _heredados_ en
 ese estado por sus hijos.
 * *¿Cómo un proceso puede pasar parámetros de inicialización a sus
@@ -1910,7 +1910,7 @@ de los recursos asignados al padre.
 que el hijo pueda seguir ejecutándose si no tiene un padre._ Esto
 provoca que el sistema operativo inicie lo que se denomina una
 **terminación en cascadafootnote:[En UNIX si un proceso muere a su hijo
-se le reasigna como padre el proceso _*init*_ –con PID 1–. Al menos en
+se le reasigna como padre el proceso _*init*_ —con PID 1—. Al menos en
 GNU/Linux, los intentos de matar a este último son ignorados por el
 sistema.]**, donde todos los procesos que cuelgan de uno dado terminan.
 
@@ -1921,7 +1921,7 @@ procesos en dos grupos:
 
 * _Los **procesos independientes**, que no afectan o pueden ser
 afectados por otros procesos del sistema._ Cualquier proceso que no
-comparte datos –temporales o persistentes___–___ con otros procesos es
+comparte datos —temporales o persistentes___—___ con otros procesos es
 independiente.
 * __Los **procesos cooperativos**, que pueden afectar o ser afectados
 por otros procesos ejecutados en el sistema__. Los procesos que
@@ -1933,14 +1933,14 @@ Hay diversos motivos para proporcionar un entorno que permita la
 cooperación de los procesos:
 
 * **Compartición de información**. Dado que varios usuarios pueden estar
-interesados en los mismos bloques de información –por ejemplo en un
-archivo compartido– el sistema operativo debe proporcionar un entorno
+interesados en los mismos bloques de información —por ejemplo en un
+archivo compartido— el sistema operativo debe proporcionar un entorno
 que permita el acceso concurrente a este tipo de recursos.
 * **Velocidad de cómputo**. Para que una tarea se ejecute más rápido se
 puede partir en subtareas que se ejecuten en paralelo. Es importante
 destacar que la mejora en la velocidad sólo es posible si el sistema
-tiene varios componentes de procesamiento –como procesadores o canales
-E/S–.
+tiene varios componentes de procesamiento —como procesadores o canales
+E/S—.
 * **Modularidad**. Podemos querer crear nuestro software de forma
 modular, dividiendo las funciones del programa en procesos separados.
 * **Conveniencia**. Incluso un usuario individual puede querer hacer
@@ -2000,7 +2000,7 @@ mensajes (véase la ).
 
 _La función de un *sistema de paso de mensajes* es permitir que los
 procesos se comuniquen sin necesidad de recurrir a la compartición de
-recursos_ –compartir memoria, archivos, etc.–.
+recursos_ —compartir memoria, archivos, etc.—.
 
 El componente de IPC de cualquier sistema operativo debe proporcionar al
 menos dos llamadas al sistema:
@@ -2020,8 +2020,8 @@ simple.
 
 Para que dos procesos se puedan comunicar es necesario que haya un
 __enlace de comunicaciones__. No trataremos aquí la implementación
-física del enlace –que por ejemplo puede ser mediante memoria
-compartida, un bus hardware, o una red de comunicaciones– sino de su
+física del enlace —que por ejemplo puede ser mediante memoria
+compartida, un bus hardware, o una red de comunicaciones— sino de su
 implementación lógica.
 
 En general existen varias opciones a la hora de implementar de manera
@@ -2125,8 +2125,8 @@ espere.
 
 La comunicación entre dos procesos tiene lugar por medio de las llamadas
 _send()_ y __receive()__; de tal forma que generalmente la primera se
-bloquea cuando la cola de transmisión se llena –en función del tipo de
-buffering– mientras que la segunda lo hace cuando la cola de recepción
+bloquea cuando la cola de transmisión se llena —en función del tipo de
+buffering— mientras que la segunda lo hace cuando la cola de recepción
 está vacía.
 
 Sin embargo existen diferentes opciones de diseño a la hora de
@@ -2174,7 +2174,7 @@ padre. Usando esa capacidad de herencia _se puede comunicar un proceso
 padre con sus hijos de manera privada_ (véase la ).
 * __Las *tuberías con nombre* son públicas al resto del sistema__, por
 lo que teóricamente son accesibles por cualquier proceso.
-** Se suelen utilizar en aplicaciones _cliente – servidor_ dónde un
+** Se suelen utilizar en aplicaciones _cliente — servidor_ dónde un
 proceso servidor ofrece algún servicio a otros procesos cliente a través
 de la tubería.
 ** En POSIX se denominan _FIFO_ y tienen presencia en el sistema de
@@ -2183,7 +2183,7 @@ archivos como archivos especiales.
 
 Por simplicidad las tuberías son tratadas de forma similar a los
 archivos por lo que en ambos casos se utilizar las mismas primitivas de
-E/S _–read()_ y __write()__–.
+E/S _—read()_ y __write()__—.
 
 ===== Señales en sistemas operativos POSIX
 
@@ -2194,7 +2194,7 @@ Los procesos pueden mandar señales utilizando la llamada al sistema
 __kill()__, que sólo requiere el identificador del proceso de destino y
 el número de la señal. Por tanto, __estamos hablando de un mecanismo de
 comunicación directa__. Cada señal tiene un efecto particular por
-defecto __–__que por lo general es matar al proceso__–__ en el proceso
+defecto __—__que por lo general es matar al proceso__—__ en el proceso
 que las recibe. Sin embargo cada proceso puede declarar un _manejador de
 señales_ que redefina la acción por defecto para una señal determinada.
 Un manejador de señales no es más que una función que es ejecutada
@@ -2210,11 +2210,11 @@ sucesos críticos__, no como un mecanismo de IPC. Por ejemplo:
 de terminal cuando dicha sesión termina.
 * La señal _SIGINT_ es enviada al proceso que está enganchado a la
 consola cuando el usuario pulsa el carácter de interrupción
-__–__frecuentemente la combinación de teclas __Control-C–__.
+__—__frecuentemente la combinación de teclas __Control-C—__.
 
 Sin embargo esto no evita que las señales puedan ser útiles como
 mecanismo de IPC. No en vano el estándar POSIX incluye dos señales
-___–__SIGUSR1_ y _SIGUSR2__–___ especialmente indicadas para este uso.
+___—__SIGUSR1_ y _SIGUSR2__—___ especialmente indicadas para este uso.
 Además las señales son utilizadas frecuentemente como medio de control
 de los ___demonios____footnote:[Un demonio es un proceso no interactivo
 que se ejecuta en segundo plano en vez de ser controlado directamente
@@ -2222,7 +2222,7 @@ por el usuario. Este tipo de programas se ejecutan de forma continua y
 proporcionan servicios específicos, como por ejemplo es el caso de los
 servidores de correo electrónico, servidores de páginas Web o de bases
 de datos.]___ del sistema___. ___Por ejemplo permiten que un
-administrador ___–___u otro proceso___–___ le indique a un demonio que
+administrador ___—___u otro proceso___—___ le indique a un demonio que
 debe reinicializarse, empezar a realizar el trabajo para el que fue
 diseñado o escribir su estado interno en un sitio conocido del
 almacenamiento.
@@ -2231,15 +2231,15 @@ almacenamiento.
 
 __Un *socket* es un punto final en una comunicación bidireccional entre
 procesos__. Para que una pareja de procesos se pueda comunicar son
-necesarios dos _sockets_ –uno para cada proceso– de manera que cada uno
+necesarios dos _sockets_ —uno para cada proceso— de manera que cada uno
 de ellos representa un extremo de la conexión.
 
 La API de _sockets_ fue creada por la Universidad de Berkeley para ser
 la que abstrajera el acceso a la familia de protocolos de Internet
 (TCP/IP) en el UNIX desarrollado por esa misma universidad. Sin embargo
 rápidamente se convirtió en el estándar de facto para la comunicación en
-red, por lo que todos los sistemas operativos modernos –incluidos los
-sistemas POSIX y Microsoft Windows– tienen una implementación de la
+red, por lo que todos los sistemas operativos modernos —incluidos los
+sistemas POSIX y Microsoft Windows— tienen una implementación de la
 misma.
 
 Pese a sus orígenes, __los sockets se diseñaron para ser independientes
@@ -2258,7 +2258,7 @@ para comunicar procesos dentro de un mismo sistema. Estos no son más que
 _sockets_ locales identificados mediante un nombre de archivo y que, por
 tanto, están representados en el sistema de archivos. Su principal
 utilidad están en las aplicaciones que siguen el modelo cliente-servidor
-pero donde no es interesante –o seguro– que el servicio esté disponible
+pero donde no es interesante —o seguro— que el servicio esté disponible
 a través de la red. Por ejemplo se suelen utilizar para conectar
 gestores de bases de datos con aplicaciones Web servidas desde el mismo
 equipo.
@@ -2358,7 +2358,7 @@ frecuentemente hacer una llamada al sistema.
 En la actualidad en los diferentes sistemas operativos se pueden
 encontrar librerías de ambos tipos. Por ejemplo, la librería de hilos
 del API Win32 es del segundo tipo mientras que la librería de hilos
-POSIX Threads –frecuentemente utilizada en los sistemas POSIX– puede ser
+POSIX Threads —frecuentemente utilizada en los sistemas POSIX— puede ser
 de ambos tipos, dependiendo solamente del sistema donde se
 implementefootnote:[POSIX Threads se implementa en el núcleo en los
 sistemas Linux y en la mayor parte de los UNIX actuales.].
@@ -2366,10 +2366,10 @@ sistemas Linux y en la mayor parte de los UNIX actuales.].
 ==== Modelos multihilo
 
 Las distintas formas de implementar los hilos comentadas anteriormente
-–en espacio de usuario o en el núcleo– no son excluyentes ya que en un
+—en espacio de usuario o en el núcleo— no son excluyentes ya que en un
 sistema operativo concreto se pueden implementar ambas, una de las dos o
-ninguna –esto último en el caso de los sistemas operativos que no
-soportan de ninguna forma múltiples hilos de ejecución–. Así que en
+ninguna —esto último en el caso de los sistemas operativos que no
+soportan de ninguna forma múltiples hilos de ejecución—. Así que en
 general debe existir una relación entre los hilos de usuario y los del
 núcleo. A continuación veremos tres formas de establecer dicha relación.
 
@@ -2430,8 +2430,8 @@ información de GNU Pthreads: http://www.gnu.org/software/pth/.]. Estas
 implementaciones son muy útiles en los sistemas monohilo, de cara a
 poder ofrecer cierto soporte de hilos a las aplicaciones, pero también
 en los sistemas multihilo, ya que debido a su bajo coste en recursos y a
-su alta eficiencia son ideales cuando la cantidad de hilos a crear –el
-nivel de concurrencia– va a ser previsiblemente muy alta .
+su alta eficiencia son ideales cuando la cantidad de hilos a crear —el
+nivel de concurrencia— va a ser previsiblemente muy alta .
 
 ===== Uno a uno
 
@@ -2503,7 +2503,7 @@ manera que el proceso nunca quede bloqueado.
 Debido a la complejidad del mecanismo descrito anteriormente y a la
 dificultad de coordinar el planificador de la libraría de hilos con el
 de la CPU para obtener un rendimiento óptimo, sistemas como Linux y
-Solaris –a partir de la versión 9– han optado por el modelo uno a uno.
+Solaris —a partir de la versión 9— han optado por el modelo uno a uno.
 Con el objetivo de evitar las penalizaciones de dicho modelo, los
 desarrolladores de Linux han preferido concentrar sus esfuerzos en
 conseguir un planificador de CPU más eficiente, así como en reducir los
@@ -2614,7 +2614,7 @@ críticas cuya ejecución deber ser __mutuamente exclusiva__. A
 continuación describimos el mecanismo de funcionamiento.
 
 1.  __Un semáforo es fundamentalmente un contador con el número máximo
-de hilos __–o procesos en sistemas operativos monohilo– __que pueden
+de hilos __—o procesos en sistemas operativos monohilo— __que pueden
 estar dentro de la sección crítica en un momento dado__. Este contador
 puede ser inicializado al definir el semáforo. Los semáforos con
 contadores inicializados a 1 se denominan *mutex* o **semáforos
@@ -2687,15 +2687,15 @@ descarga sean cancelados. Esto puede ocurrir de dos maneras:
 
 * __En la *cancelación asíncrona* un hilo puede terminar inmediatamente
 la ejecución de otro__. Esto puede causar problemas al no liberarse los
-recursos reservados al proceso por parte del hilo –no se cierran los
-archivos abiertos, no se libera la memoria, etc.–. Además si el hilo que
+recursos reservados al proceso por parte del hilo —no se cierran los
+archivos abiertos, no se libera la memoria, etc.—. Además si el hilo que
 termina estaba modificando estructuras de datos que compartía con otros
 hilos, estas podrían quedar inconsistentes.
 * __En la *cancelación en diferido* el hilo comprueba periódicamente
 cuando debe terminar__. Esto da al hilo una oportunidad de terminarse
 así mismo de forma ordenada y en un punto dónde es seguro hacerlo. En la
 terminología de Pthreads a estos puntos se los denomina *puntos de
-cancelación* –o __cancellation points__– y muchas llamadas al sistema lo
+cancelación* —o __cancellation points__— y muchas llamadas al sistema lo
 son por si mismas.
 
 ===== Funciones reentrantes y seguras en hilos
@@ -2718,7 +2718,7 @@ otro del mismo proceso que invoca la misma función. En general una
 función es reentrante si:
 ** No modifica variables estáticas o globales. Si lo hiciera sólo puede
 hacerlo mediante operaciones _leer-modificar-escribir_ que sean
-ininterrumpibles ____–es decir,____ ____atómicas__–__ .
+ininterrumpibles ____—es decir,____ ____atómicas__—__ .
 ** No modifica su propio código y no llama a otras funciones que no sean
 reentrantes.
 * __Una función es *segura en hilos* o *thread-safe* si al manipular
@@ -2778,7 +2778,7 @@ llegar las señales para ser manejadas? Obviamente las señales síncronas,
 por su propia naturaleza, deben ser enviadas al hilo que las genera.
 Pero con las señales asíncronas la cosa no está tan clara. Dependiendo
 del caso algunas deben ser capturadas por un sólo hilo, mientras que
-otras –como aquellas que ordenan terminar el proceso– deben ser enviadas
+otras —como aquellas que ordenan terminar el proceso— deben ser enviadas
 a todos.
 
 La mayor parte de los UNIX multihilo permiten especificar qué señales
@@ -2918,8 +2918,8 @@ desde que el proceso es cargado hasta que termina__.
 a la espera en la cola de preparados__. Evidentemente esta medida de
 tiempo no incluye el tiempo de espera debido a las operaciones de E/S.
 * **Tiempo de respuesta**: Es __el intervalo de tiempo que transcurre
-desde que se le lanza un evento –se pulsa una tecla, se hace clic con el
-ratón o llega un paquete por la interfaz de red__–__ hasta que se
+desde que se le lanza un evento —se pulsa una tecla, se hace clic con el
+ratón o llega un paquete por la interfaz de red__—__ hasta que se
 produce la primera respuesta del proceso__. Evidentemente esto mide el
 tiempo que se tarda en responder y no el tiempo de E/S, mientras que el
 tiempo de ejecución sí suele estar limitado por la velocidad de los
@@ -2936,8 +2936,8 @@ para nuestra clase de trabajos en particular.
 En general podemos encontrar dos clases de trabajos para los que puede
 ser necesario evaluar la eficiencia del sistema de manera diferente.:
 
-* En los sistemas interactivos –ya sean sistemas de escritorio o
-__mainframes__ de tiempo compartido– los procesos pasan la mayor parte
+* En los sistemas interactivos —ya sean sistemas de escritorio o
+__mainframes__ de tiempo compartido— los procesos pasan la mayor parte
 del tiempo esperando algún tipo de entrada por parte de los usuarios. En
 este tipo de sistemas el tiempo de ejecución no suele ser el mejor
 criterio para determinar la bondad de un algoritmo de planificación, ya
@@ -2947,8 +2947,8 @@ antes posible a las órdenes recibidas, lo que hace que ___el ____tiempo
 de respuesta se el criterio más adecuado___ para evaluar al planificador
 de la CPU. Además el tiempo de respuesta se reduce generalmente cuando
 el tiempo que pasan los procesos interactivos en la cola de preparados
-también lo hace –tras haber sido puestos ahí por la ocurrencia de algún
-evento– por lo que también ___puede ser una buena idea utilizar como
+también lo hace —tras haber sido puestos ahí por la ocurrencia de algún
+evento— por lo que también ___puede ser una buena idea utilizar como
 criterio el tiempo de espera___. Esta selección de criterios no sólo es
 adecuada para los sistemas interactivos, ya que existen muchos otros
 casos donde es interesante seleccionar un planificador de la CPU que
@@ -2981,7 +2981,7 @@ de un proceso consiste de ciclos de CPU y esperas de E/S, de forma que
 alternan entre estos dos estados. La ejecución empieza con una ráfaga de
 CPU, seguida por una ráfaga de E/S, que a su vez es seguida por otra de
 CPU y así sucesivamente. Finalmente la última ráfaga de CPU finaliza con
-una llamada al sistema –generalmente exit()– para terminar la ejecución
+una llamada al sistema —generalmente exit()— para terminar la ejecución
 del proceso__.
 
 La curva que relaciona la frecuencia de las ráfagas de CPU con la
@@ -3003,9 +3003,9 @@ Esta distinción entre tipos de procesos puede ser importante en la
 selección de un algoritmo de planificación de CPU adecuado. En general:
 
 * __El algoritmo escogido debe favorecer
-–planificándolos antes– a los procesos limitados por la E/S__, evitando
-así que los procesos limitados por la CPU –que son los que tienden a
-usarla más tiempo– la acaparen. Si eso ocurriera, los procesos limitados
+—planificándolos antes— a los procesos limitados por la E/S__, evitando
+así que los procesos limitados por la CPU —que son los que tienden a
+usarla más tiempo— la acaparen. Si eso ocurriera, los procesos limitados
 por la E/S se acumularían en la cola de preparados, dejando vacías las
 colas de dispositivos. A este __fenómeno tan negativo que provoca una
 infrautilización de los dispositivos de E/S se lo denomina *efecto
@@ -3031,11 +3031,11 @@ considerado la cola de preparados como una estructura donde los procesos
 que están preparados para ser ejecutados se ordenan y se escogen según
 el criterio del algoritmo de planificación. Aunque a lo largo de todo el
 tema <<_gestión_de_procesos>> se puede haber intuido que dicha cola es de tipo
-FIFO –lo que se conoce como algoritmo de planificación FCFS o __First
-Come, First Served__– ya al principio del apartado <<_planificación_de_la_cpu>>
+FIFO —lo que se conoce como algoritmo de planificación FCFS o __First
+Come, First Served__— ya al principio del apartado <<_planificación_de_la_cpu>>
 indicamos que no tiene porqué ser así pues existen muchos otros
-algoritmos –SJF o __Shortest-Job First__, SRTF o __Shortest-Remaing-Time
-First__, RR o R__ound-Robin__, por prioridades, etc.– que pueden ser
+algoritmos —SJF o __Shortest-Job First__, SRTF o __Shortest-Remaing-Time
+First__, RR o R__ound-Robin__, por prioridades, etc.— que pueden ser
 preferibles en función del criterio que utilicemos para evaluar la
 eficiencia de los mismos.
 
@@ -3110,8 +3110,8 @@ diseñadores del sistema opten por utilizar o bien el planificador FCFS o
 bien el RRfootnote:[Los algoritmos FCFS y RR se pueden combinar de
 múltiples maneras. En algunos sistemas todas las colas son o bien FCFS o
 bien RR, mientras que en otros unas colas pueden ser de un tipo y otras
-del otro. Por ejemplo, en el núcleo Linux las prioridades más altas –las
-etiquetadas como de tiempo real– tienen tanto una cola FCFS como una
+del otro. Por ejemplo, en el núcleo Linux las prioridades más altas —las
+etiquetadas como de tiempo real— tienen tanto una cola FCFS como una
 cola RR. En cada prioridad primero se planifican los procesos de la cola
 FCFS y después lo de la cola RR.].
 
@@ -3201,7 +3201,7 @@ los procesos se ajuste dinámicamente_ bajo su propio criterio:
 * Por ejemplo, _una solución al problema de la muerte por inanición es
 utilizar un mecanismo de *envejecimiento*_ que aumente gradualmente la
 prioridad de los procesos mientras están esperando en la cola de
-preparados –por ejemplo 1 unidad de prioridad cada 15 minutos–. De esta
+preparados —por ejemplo 1 unidad de prioridad cada 15 minutos—. De esta
 manera los procesos de baja prioridad tarde o temprano tendrán
 oportunidad de ejecutarse. Con este mecanismo una vez consiguen
 ejecutarse, se les restablece su prioridad original.
@@ -3266,8 +3266,8 @@ Los sistemas de *tiempo
 real estricto* son necesarios para realizar tareas críticas que deben
 ser completadas dentro de unos márgenes de tiempo preestablecidos.
 Generalmente las tareas son entregas al sistema operativo junto con una
-declaración de las restricciones de tiempo –periodicidad y límite de
-tiempo– y la cantidad de tiempo que necesitan para ejecutarse. El
+declaración de las restricciones de tiempo —periodicidad y límite de
+tiempo— y la cantidad de tiempo que necesitan para ejecutarse. El
 planificador sólo admitirá las tareas si puede garantizar el
 cumplimiento de las restricciones de tiempo, rechazándolas en caso
 contrario. El proporcionar estas garantías requiere que el planificador
@@ -3315,8 +3315,8 @@ Mientras que el primer
 requerimiento es bastante sencillo de conseguir, el segundo es mucho más
 complejo. Muchos sistemas operativos tienen un núcleo no expropiable.
 Estos núcleos no pueden realizar un cambio de contexto mientras se está
-ejecutando código del núcleo –por ejemplo debido a una llamada al
-sistema– por lo que se ven obligados a esperar hasta que la tarea que se
+ejecutando código del núcleo —por ejemplo debido a una llamada al
+sistema— por lo que se ven obligados a esperar hasta que la tarea que se
 esté realizando se termine antes de asignar la CPU a otro proceso. Esto
 aumenta la ___latencia de ____asignación___ dado que algunas llamadas al
 sistema pueden ser muy complejas y requerir mucho tiempo para ser
@@ -3344,7 +3344,7 @@ siendo muy alta para algunas tareas muy complejas del código del núcleo.
 Otra posibilidad es __diseñar un núcleo completamente expropiable__.
 Puesto que en este caso la ejecución de cualquier tarea en el núcleo
 puede ser interrumpida en cualquier momento por procesos de mayor
-prioridad –que el que actualmente tiene asignada la CPU– es necesario
+prioridad —que el que actualmente tiene asignada la CPU— es necesario
 proteger las estructuras de datos del núcleo con mecanismos de
 sincronización, lo que hace que el diseño de un núcleo de estas
 características sea mucho más complejo.
@@ -3389,7 +3389,7 @@ de tiempo real.
 
 Para tratar el problema de la planificación en los sistemas
 multiprocesador nos limitaremos al caso de los __sistemas
-homogéneosfootnote:[Un ejemplo de lo contrario –de sistema heterogéneo– se puede observar en los PC modernos donde muchos disponen tanto de una CPU como de una GPU
+homogéneosfootnote:[Un ejemplo de lo contrario —de sistema heterogéneo— se puede observar en los PC modernos donde muchos disponen tanto de una CPU como de una GPU
 especializada en el procesamiento de gráficos y en las operaciones de
 coma flotante.]__. En dichos sistemas los procesadores son idénticos,
 por lo que cualquiera de ellos puede ejecutar cualquier proceso. Esto es
@@ -3418,10 +3418,10 @@ multiprocesador:
 sistemas de _multiprocesamiento asimétrico_ hay una CPU maestra y varias
 esclavas a quienes la primera entrega el trabajo. En ocasiones las CPU
 esclavas se distinguen por haber sido diseñadas para realizar algún tipo
-de trabajo de forma eficiente –como es el caso las GPU, que no son sino
-CPU diseñadas para el procesamiento de gráficos– o por el hardware al
-que están conectadas –como por ejemplo las CPU unidas a discos para
-gestionarlos–.] todas las decisiones de planificación, procesamiento de
+de trabajo de forma eficiente —como es el caso las GPU, que no son sino
+CPU diseñadas para el procesamiento de gráficos— o por el hardware al
+que están conectadas —como por ejemplo las CPU unidas a discos para
+gestionarlos—.] todas las decisiones de planificación, procesamiento de
 E/S y otras actividades son gestionadas por un único procesador, el
 _servidor_ o __maestro__. El resto de procesadores se limitan a ejecutar
 el código de usuarios que les es asignado. Este esquema __es sencillo
@@ -3448,8 +3448,8 @@ a la vez.
 ** Por el contrario otros sistemas disponen de __una cola
 de preparados para cada procesador__. El mayor inconveniente de esta
 solución es que puede generar desequilibrios entre los procesadores, ya
-que un procesador puede acabar desocupado –con la cola de preparados
-vacía– mientras otro está muy ocupado.
+que un procesador puede acabar desocupado —con la cola de preparados
+vacía— mientras otro está muy ocupado.
 
 Muchos sistemas operativos modernos implementan el esquema SMP con una
 cola de preparados común. Esto incluye Microsoft Windows NT/2000/XP,
@@ -3457,7 +3457,7 @@ Solaris, macOS y versiones anteriores a Linux 2.6. Sin embargo, esta
 solución presenta algunos inconvenientes:
 
 * La posibilidad de que un proceso se pueda ejecutar en cualquier CPU
-–aunque parezca beneficiosa– es negativa desde el punto de vista de que
+—aunque parezca beneficiosa— es negativa desde el punto de vista de que
 dejan de ser útiles las cachés de los procesadores, penalizando
 notablemente el rendimiento del sistema. Por eso realmente la mayoría de
 los sistemas operativos de este tipo intenta evitar la migración de
@@ -3465,10 +3465,10 @@ procesos de un procesador a otro. A esto se lo conoce con el nombre de
 **afinidad al procesador**.
 * Los mecanismos de sincronización requeridos para controlar el acceso a
 la cola de preparados pueden mantener a los procesadores mucho tiempo
-desocupados –mientras esperan– en sistemas con un gran número de
+desocupados —mientras esperan— en sistemas con un gran número de
 procesadores y con muchos procesos a la espera de ser ejecutados.
 
-Cada vez más sistemas modernos –incluido Linux 2.6– están optando por
+Cada vez más sistemas modernos —incluido Linux 2.6— están optando por
 utilizar el esquema SMP con una cola de preparados por procesador. De
 esta manera, al no utilizar mecanismos de sincronización, se eliminan
 los tiempos de espera para acceder a la cola de preparados y escoger un
@@ -3477,8 +3477,8 @@ equilibrada entre todos los procesadores es necesario disponer de
 algunos mecanismos de **balanceo de carga**. Por ejemplo:
 
 * En la *migración comandada* o _push migration_ un tarea
-específica –que se ejecuta con menor frecuencia que el planificador de
-la CPU– estima la carga de trabajo de cada CPU y en caso de encontrar
+específica —que se ejecuta con menor frecuencia que el planificador de
+la CPU— estima la carga de trabajo de cada CPU y en caso de encontrar
 algún desequilibrio mueve algunos procesos de la cola de preparados de
 unos procesadores a la de los otros
 * En la *migración solicitada* o _pull migration_ un procesador inactivo
@@ -3501,16 +3501,16 @@ respecto.
 Las actuales versiones de sistemas operativos Windows se agrupan dentro
 de la familia Microsoft Windows NT; que nació con el sistema operativo
 Windows NT 3.1 en 1993 y que llega hasta hoy en día con Microsoft
-Windows 8.1 y Windows Server 2012 R2 –que se corresponden con la versión
-6.3 de dicha familia Windows NT–
+Windows 8.1 y Windows Server 2012 R2 —que se corresponden con la versión
+6.3 de dicha familia Windows NT—
 
 El núcleo de la familia __Windows NT__ es multihilo e internamente
 implementa un algoritmo de ____p____lanificación expropiativa con colas
 multinivel realimentadas ___basado en prioridades___:
 
 Como cualquier sistema operativo moderno, ____el núcleo ____de Windows
-____es expro____piable ____–lo que sabemos que ofrece latencias de
-asignación más bajas que si no lo fuera–____ y ____soporta tiemp____o
+____es expro____piable ____—lo que sabemos que ofrece latencias de
+asignación más bajas que si no lo fuera—____ y ____soporta tiemp____o
 real____ flexible____:
 
 Respecto a esto último, en Windows los programadores o administradores
@@ -3518,12 +3518,12 @@ del sistema pueden utilizar el API para establecer la prioridad de los
 hilos. Sin embargo sobre estas preferencias ____el núcleo aplica ciertas
 bonificaciones para obtener la prioridad real; ____combinando
 ____diferentes ____criterios para ___reducir la latencia, mejorar la
-respuesta –___obviamente a través de beneficiar a los hilos limitados
-por E/S–____ evitar la ____muerte por ____inanición ____y la inversión
+respuesta —___obviamente a través de beneficiar a los hilos limitados
+por E/S—____ evitar la ____muerte por ____inanición ____y la inversión
 de prioridad____. Estas bonificaciones pueden ocurrir en los siguientes
 casos:
 
-Respecto al tiempo de cuanto, desde Windows Vista –NT 6.0– no se usa el
+Respecto al tiempo de cuanto, desde Windows Vista —NT 6.0— no se usa el
 temporizador para controlarlo sino un contador de ciclos de reloj de la
 CPUfootnote:[Desde el Intel Pentium las CPU de la familia x86 incorporan
 un contador de marca de tiempo (Time Stamp Counter o TSC) de 64 bits que
@@ -3532,8 +3532,8 @@ procesador.]. Así el sistema puede determinar con precisión el tiempo
 que se hay estado ejecutando un hilo, sin incluir los tiempos dedicados
 a otras cuestiones, como por ejemplo a manejar interrupciones.
 
-En Windows ____los hilos se insertan en la cabeza de su cola ____–____no
-en el final____– ___y conservan lo que les queda de cuanto, cuando son
+En Windows ____los hilos se insertan en la cabeza de su cola ____—____no
+en el final____— ___y conservan lo que les queda de cuanto, cuando son
 expropiados___. Mientras que se insertan por el final con el valor de
 cuanto reiniciado, cuando abandonan la CPU por haber agotado el cuanto
 anterior.
@@ -3549,8 +3549,8 @@ ___El API organiza los procesos por clases de prioridad___: Tiempo real
 (15), Alta (10), Arriba de lo normal (9), Normal (8), Debajo de lo
 normal (7), Baja (6) y Reposo (1)___ ___. Al tiempo que c___ada hilo
 tiene una prioridad relativa___: De tiempo crítico (15), Más alta (2),
-Arriba de lo normal (1), Normal (0), Debajo de lo normal (–1), Más baja
-(–2) y Reposo (–15). Por lo que ____la prioridad ____interna de cada
+Arriba de lo normal (1), Normal (0), Debajo de lo normal (—1), Más baja
+(—2) y Reposo (—15). Por lo que ____la prioridad ____interna de cada
 hilo, desde el punto de vista del núcleo, es el resultado de sumar la
 prioridad base obtenida a partir de la clase de prioridad del proceso
 con la prioridad relativa del hilo en cuestión____.
@@ -3599,8 +3599,8 @@ La mayor parte de los sistemas permiten que un proceso de usuario resida
 en cualquier parte de la memoria física. Así, aunque el espacio de
 direcciones del sistema comience en 0x000000, la primera dirección del
 proceso de usuario no tiene porque ser esa. En la mayor parte de los
-casos, un programa de usuario debe pasar por diferentes etapas –algunas
-de las cuales son opcionales– antes de ser ejecutado (véase la ). En
+casos, un programa de usuario debe pasar por diferentes etapas —algunas
+de las cuales son opcionales— antes de ser ejecutado (véase la ). En
 cada una de ellas las direcciones pueden representarse de formas
 distintas, por lo que en cada paso es necesario reubicar las direcciones
 usadas en una etapa en direcciones de la siguiente. Por ejemplo, en el
@@ -3642,8 +3642,8 @@ modernos de propósito general utilizan este método.
 
 En el apartado <<_protección_de_la_memoria>> vimos en lo sistemas operativos
 modernos, como medida de protección, los procesos no tienen acceso libre
-a la memoria física. En lugar de eso el sistema operativo –asistido por
-la MMU (Memory-Management Unit)– proporciona a cada proceso un _espacio
+a la memoria física. En lugar de eso el sistema operativo —asistido por
+la MMU (Memory-Management Unit)— proporciona a cada proceso un _espacio
 de direcciones virtual_ que ofrece una «vista» privada de la memoria
 similar a la que tendrían si cada uno de los procesos estuviera siendo
 ejecutando en solitario (véase la ). Es durante los acceso a la memoria
@@ -3662,8 +3662,8 @@ memoria física e incluso movidos de una región a otra durante la
 ejecución de los procesos___, puesto que la transformación (reubicación)
 de las direcciones virtuales en direcciones físicas se realiza durante
 la ejecución de cada instrucción.
-* __La reubicación de las direcciones virtuales –es decir, la asignación
-de direcciones virtuales a las direcciones del programa– puede hacerse
+* __La reubicación de las direcciones virtuales —es decir, la asignación
+de direcciones virtuales a las direcciones del programa— puede hacerse
 en tiempo de compilación__ puesto que de antemano se sabe que todo el
 espacio de direcciones virtual va a estar disponible. Lo común es que
 los programas se ubiquen en la parte baja del espacio de direcciones
@@ -3780,7 +3780,7 @@ la memoria física.
 generar la dirección física que va a ser enviada por el bus de
 direcciones hacia la memoria.
 
-El tamaño de las páginas –y el de los marcos– viene definido por el
+El tamaño de las páginas —y el de los marcos— viene definido por el
 hardware y normalmente es un número entero potencia de 2 que puede
 variar entre 512 bytes y 16 MB, dependiendo de la arquitectura. Es
 decir, si el espacio de direcciones es de 2__^_m_^__ y el tamaño de
@@ -3858,11 +3858,11 @@ se necesitan. Además __la E/S es más eficiente cuanto más datos son
 transferidos en cada operación__.
 
 Los tamaños de páginas típicos son 4 y 8 KB. Por ejemplo, normalmente
-cada entrada en la tabla de paginas es de 4 bytes –aunque esto también
-puede variar–. Eso significa que cada entrada puede direccionar a uno de
+cada entrada en la tabla de paginas es de 4 bytes —aunque esto también
+puede variar—. Eso significa que cada entrada puede direccionar a uno de
 los 2^32^ marcos de la memoria física. Si suponemos que el tamaño de
 cada marco es de 4 KB, podemos determinar que el sistema es capaz de
-direccionar 2^44^ bytes –o 16 TB– de memoria física, para lo que es
+direccionar 2^44^ bytes —o 16 TB— de memoria física, para lo que es
 necesario disponer de una tabla de páginas de 4 MB.
 
 ==== Soporte hardware de la tabla de páginas
@@ -3880,21 +3880,21 @@ definido por la CPU.
 Debido a la velocidad de los registros de la CPU _la implementación como
 conjunto de registros es la más eficiente._ Sin embargo __sólo puede ser
 utilizado para tablas de páginas razonablemente pequeñas__. El DEC
-PDP-11 –para el que se diseño el primer UNIX– es un ejemplo de sistema
+PDP-11 —para el que se diseño el primer UNIX— es un ejemplo de sistema
 con esta implementación. En el mismo se utilizaba un espacio de
 direcciones de 16 bits y un tamaño de páginas de 8 KB, por lo que sólo
 necesitaba 8 registros dedicados para alojar toda tabla de páginas.
 
 En los sistemas modernos se utilizan tablas de páginas muchos más
-grandes –de un millón de entradas o más– que difícilmente pueden
+grandes —de un millón de entradas o más— que difícilmente pueden
 alojarse en registros dentro de la CPU, ya que alojar tablas de páginas
 de más de 256 entradas es muy costoso. Por eso los sistemas actuales
 almacenan la tabla de páginas del proceso en ejecución en la memoria.__
 Eso permite disponer tablas de páginas de gran tamaño__ aunque a costa
 de __necesitar dos acceso a la memoria física por cada acceso a una
 palabra de la memoria virtualfootnote:[La solución a este problema pasa
-porque la CPU disponga de una eficiente y pequeña –de entre 64 y 1024
-entradas– memoria caché en la que almacenar las entradas de la tabla de
+porque la CPU disponga de una eficiente y pequeña —de entre 64 y 1024
+entradas— memoria caché en la que almacenar las entradas de la tabla de
 página previamente utilizadas en la traducción de las direcciones. A
 dicha caché se la denomina TLB (Translation Look-aside Buffer).
 Obviamente es necesario que el asignador borre la TLB durante los
@@ -3902,11 +3902,11 @@ cambios de contexto.]__.
 
 Para que la MMU pueda conocer la ubicación de la tabla de páginas
 durante la traducción de las direcciones, __la CPU debe disponer de un
-registro –el *PTBR* (Page-Table Base Register)– donde se guarda la
+registro —el *PTBR* (Page-Table Base Register)— donde se guarda la
 dirección de la tabla de páginas actual__. Además esto permite que el
-cambio de contexto sea más rápido –respecto al uso de registros para
-almacenar la tabla de páginas– puesto que sólo es necesario carga un
-único registro más –el PTBR– durante el mismo.
+cambio de contexto sea más rápido —respecto al uso de registros para
+almacenar la tabla de páginas— puesto que sólo es necesario carga un
+único registro más —el PTBR— durante el mismo.
 
 ==== Protección
 
@@ -3915,14 +3915,14 @@ protección* asociados a cada entrada de la tabla de páginas_ y
 normalmente almacenados en la misma. Estos bits pueden ser:
 
 * **Solo lectura**.
-* **Lectura – Escritura**. En algunos sistemas hay un bit específico
+* **Lectura — Escritura**. En algunos sistemas hay un bit específico
 para este permiso, mientras que en otros se utilizan bit separados como:
 __lectura__, _escritura_ y __ejecución__.
 * **Sólo ejecución**. Que no existen en todas las plataformas. Por
 ejemplo, la familia Intel x86 careció de esta característica hasta que
 AMD la incluyó en su arquitectura AMD64, lo que obligó a Intel a
-incluirla en las versiones más modernas de su Pentium IV. El bit –que
-para ser exacto indica ___no ejecución___– fue introducido para evitar
+incluirla en las versiones más modernas de su Pentium IV. El bit —que
+para ser exacto indica ___no ejecución___— fue introducido para evitar
 cierto tipo de ataques de seguridad.
 
 Durante la traducción de las direcciones la MMU comprueba que el tipo de
@@ -3975,8 +3975,8 @@ __lo más común es que los procesos tengan un espacio de direcciones
 virtual disperso como el de la __. En la misma podemos observar como el
 sistema operativo ubica los diferentes componentes del proceso de una
 forma particular dentro del espacio de direcciones virtual. Este esquema
-permite que tanto el _montón_ –a través del mecanismo de asignación
-dinámica de memoria de __malloc()__– como la pila puedan extenderse, en
+permite que tanto el _montón_ —a través del mecanismo de asignación
+dinámica de memoria de __malloc()__— como la pila puedan extenderse, en
 base a las necesidades de memoria que tenga el proceso, sobre la región
 de memoria no ocupada. Esa región también puede ser parcialmente ocupada
 por librerías de enlace dinámico o por otros objetos compartidos que
@@ -4071,12 +4071,12 @@ virtual del proceso y tiene asignado un marco de memoria física.
 memoria.
 ** __La página no es legal__. Es decir, no existe en el espacio de
 direcciones virtual del proceso. Esto puede ser debido a que la página
-esté en un hueco del espacio de direcciones –en una región que no está
-siendo utilizada– por lo que el sistema operativo no le ha asignado
+esté en un hueco del espacio de direcciones —en una región que no está
+siendo utilizada— por lo que el sistema operativo no le ha asignado
 espacio de almacenamiento ni en disco ni en la memoria.
 
-Si un proceso accede a una página _residente en memoria_ –marcada como
-válida– no ocurre nada y la instrucción se ejecuta con normalidad. Pero
+Si un proceso accede a una página _residente en memoria_ —marcada como
+válida— no ocurre nada y la instrucción se ejecuta con normalidad. Pero
 si accede a una página marcada como inválida:
 
 . Al intentar acceder a la página la MMU comprueba el bit de válido y
@@ -4109,10 +4109,10 @@ por el planificador de la CPU.
 Un caso extremo de la paginación bajo demanda es la **paginación bajo
 demanda pura**. En ella __la ejecución de un proceso se inicia sin
 cargar ninguna página en la memoria__. Cuando el sistema operativo sitúa
-al contador de programas en la primera instrucción del proceso –que es
-una página no residente en memoria– se genera inmediatamente un fallo de
-página. La página es cargada en la memoria –tal y como hemos descrito
-anteriormente– y el proceso continua ejecutándose, fallando cuando sea
+al contador de programas en la primera instrucción del proceso —que es
+una página no residente en memoria— se genera inmediatamente un fallo de
+página. La página es cargada en la memoria —tal y como hemos descrito
+anteriormente— y el proceso continua ejecutándose, fallando cuando sea
 necesario con cada página que necesite y no esté cargada. Las
 principales ventajas de la _paginación bajo demanda pura_ son:
 
@@ -4161,8 +4161,8 @@ __Éste intenta estimar el tiempo que realmente se tarda en acceder a la
 memoria teniendo en cuenta mecanismos del sistema operativo como la
 paginación bajo demanda__.
 
-En muchos sistemas informáticos el *tiempo de acceso* –a la memoria
-física– _T~_m_~_ es de unos pocos nanosegundos. Por lo tanto, si no hay
+En muchos sistemas informáticos el *tiempo de acceso* —a la memoria
+física— _T~_m_~_ es de unos pocos nanosegundos. Por lo tanto, si no hay
 fallos de página, el _tiempo de acceso efectivo_ es igual al tiempo de
 acceso a la memoria. Pero si hay fallos de página, primero es necesario
 leer la página del disco, por lo que el _tiempo de acceso efectivo_ a la
@@ -4171,8 +4171,8 @@ memoria es mayor.
 Supongamos que conocemos la probabilidad _p_ de que ocurra un fallo de
 página. __El tiempo de acceso efectivo se podría calcular como una media
 ponderada por la probabilidad p del tiempo de acceso a la memoria T~_m_~
-mas el tiempo necesario para gestionar cada fallo de página –o **tiempo
-de fallo de página**– T~_fp_~__:
+mas el tiempo necesario para gestionar cada fallo de página —o **tiempo
+de fallo de página**— T~_fp_~__:
 
 [cols="",]
 |====
@@ -4200,8 +4200,8 @@ debido al tiempo requerido para acceder al dispositivo de intercambio__.
 
 Para ilustrar el cálculo del _tiempo de acceso efectivo_ a la memoria:
 sólo vamos a considerar el tiempo requerido para acceder al dispositivo
-de intercambio –ignorando las otras tareas a realizar durante el fallo
-de página– vamos suponer que el _tiempo de acceso_ a la memoria _T~_m
+de intercambio —ignorando las otras tareas a realizar durante el fallo
+de página— vamos suponer que el _tiempo de acceso_ a la memoria _T~_m
 _~_ es de 200 ns y que la probabilidad _p_ es muy pequeña (es decir, ):
 
 [cols="",]
@@ -4285,8 +4285,8 @@ páginas de ambos procesos y utilizar una tabla interna alojada en el PCB
 para indicar cuales son realmente de _sólo lectura_ y cuales están en
 __copy-on-write__. _Es importante destacar que realmente sólo las
 páginas que pueden ser modificadas se marcan como copy-on-write._ Las
-páginas que no puede ser modificadas –por ejemplo las que contienen el
-código ejecutable del programa– simplemente pueden ser compartidas como
+páginas que no puede ser modificadas —por ejemplo las que contienen el
+código ejecutable del programa— simplemente pueden ser compartidas como
 de sólo lectura por los procesos, como hemos comentado anteriormente.
 3.  __Si algún proceso intenta escribir en una página copy-on-write, la
 MMU genera una excepción para notificar el suceso al sistema
@@ -4354,14 +4354,14 @@ coordinación (véase el apartado <<_sincronización>>).
 
 Algunos sistemas operativos ofrecen el servicio de mapeo de archivos en
 la memoria sólo a través de una llamada al sistema concreta, permitiendo
-utilizar las llamadas estándar –__read()__, __write()__, etc.– para
+utilizar las llamadas estándar —__read()__, __write()__, etc.— para
 hacer uso de la E/S tradicional. Sin embargo __muchos sistemas modernos
 utilizan el mapeo en la memoria independientemente de que se pidan o
 no__. Por ejemplo, en Linux si un proceso utiliza llamada al sistema
 _mmap()_ es porque explícitamente pide que el archivo sea mapeado en
 memoria. Por tanto, el núcleo mapea el archivo en el espacio de
 direcciones del proceso. Sin embargo, si un archivo es abierto con
-llamadas al sistemas estándar –como __open()__– Linux mapea el archivo
+llamadas al sistemas estándar —como __open()__— Linux mapea el archivo
 en el espacio de direcciones del núcleo y traduce las llamadas _read()_
 y _write()_ en accesos a la memoria en dicha región. No importa como sea
 abierto el archivo, Linux trata toda la E/S a archivos como mapeada en
@@ -4424,7 +4424,7 @@ la tasa de fallos de página lo más baja posible.
 
 Existen diversos criterios para escoger la página que reemplazamos
 cuando no hay suficientes marcos disponibles. En cualquier caso __el
-algoritmo óptimo –el que garantiza la tasa de fallos de página más baja–
+algoritmo óptimo —el que garantiza la tasa de fallos de página más baja—
 consiste en seleccionar siempre la página que más se va a tardar en
 necesitar__. Desafortunadamente __este algoritmo es difícil de
 implementar puesto que necesita tener información acerca de cuáles van a
@@ -4438,8 +4438,8 @@ siguientes criterios:
 * __Reemplazar la página que hace más tiempo que fue cargada__. Este
 criterio da lugar al algoritmo FIFO de reemplazo que no siempre tiene un
 buen rendimiento puesto que la página más antigua no necesariamente es
-la que se va a tardar más tiempo en necesitar –que sería la elección
-óptima–.
+la que se va a tardar más tiempo en necesitar —que sería la elección
+óptima—.
 * __Reemplazar la página que hace más tiempo que fue
 utilizada__ bajo la hipótesis de que si una página no ha sido usada
 durante un gran periodo de tiempo, entonces es poco probable que vaya a
@@ -4464,18 +4464,18 @@ siguen esta aproximación se los denomina _*NRU*_ (Not Recently Used).
 ** __Dentro de los algoritmos NRU también están aquellos que son
 mejorados incluyendo el valor del bit de modificado en el criterio de
 elección de la página__. Estos algoritmos escogen las páginas no
-referencias antes que las referencias –para lo que utilizan el valor del
-bit de referencia– y dentro de cada clase las no modificadas antes que
-las modificadas –para lo que utilizan el valor del bit de modificado–
+referencias antes que las referencias —para lo que utilizan el valor del
+bit de referencia— y dentro de cada clase las no modificadas antes que
+las modificadas —para lo que utilizan el valor del bit de modificado—
 para evitar en lo posible reemplazar páginas cuyo contenido tiene que
 ser escrito en disco.
 * __Reemplazar la página que ha sido usada
 con mayor o menos frecuencia__ utilizando contadores de referencias para
-cada página –almacenados en la tabla de páginas– que sos actualizados
+cada página —almacenados en la tabla de páginas— que sos actualizados
 por el hardware en cada referencia. Este criterio da lugar a los
-algoritmos *LFU* (Least Frequently Used) –cuando se escogen las páginas
-utilizadas con menos frecuencia– y *MFU* (Most Frequently Used) –cuando
-se escogen las páginas utilizadas con más frecuencia–.
+algoritmos *LFU* (Least Frequently Used) —cuando se escogen las páginas
+utilizadas con menos frecuencia— y *MFU* (Most Frequently Used) —cuando
+se escogen las páginas utilizadas con más frecuencia—.
 
 ===== Algoritmos de buffering de páginas
 
@@ -4539,8 +4539,8 @@ hacerlo en proporción a la cantidad de memoria virtual que utilizan. Sin
 embargo parece que puede ser interesante determinar el mínimo número de
 marcos que realmente necesita cada proceso, pues así el sistema podría
 disponer de memoria libre para aumentar el número de procesos
-–aumentando el uso de la CPU– o para dedicarla a otras funciones –como
-es el caso de los _b__ú__fer__e__s_ y las cachés de E/S –.
+—aumentando el uso de la CPU— o para dedicarla a otras funciones —como
+es el caso de los _b__ú__fer__e__s_ y las cachés de E/S —.
 
 El mínimo número de marcos viene establecido por diversos factores:
 
@@ -4678,8 +4678,8 @@ El uso del conjunto de trabajo es bastante sencillo:
 2.  __El sistema operativo monitoriza el conjunto de trabajo de cada
 proceso y le asigna tantos marcos como páginas haya en el conjunto de
 trabajo__.
-3.  __Si sobran suficientes marcos otro proceso puede ser iniciado –en
-el caso de los sistemas multiprogramados– o se puede destinar la memoria
+3.  __Si sobran suficientes marcos otro proceso puede ser iniciado —en
+el caso de los sistemas multiprogramados— o se puede destinar la memoria
 libre a otros usos__.
 4.  __Si el tamaño del conjunto de trabajo D crece y excede el número de
 marcos disponibles, el sistema podría seleccionar un proceso para ser
@@ -4774,9 +4774,9 @@ cantidad de información transferida, lo que debería beneficiar a los
 sistemas con páginas de pequeño tamaño. Sin embargo la latencia y el
 tiempo requerido para posicionar la cabeza lectora de los discos es muy
 superior al tiempo de transferencias de datos, por lo que es más
-eficiente tener menos transferencias de mayor tamaño –como cuando se
-usan páginas de grandes– que más transferencias de menor tamaño –como
-cuando se usan páginas pequeñas–.
+eficiente tener menos transferencias de mayor tamaño —como cuando se
+usan páginas de grandes— que más transferencias de menor tamaño —como
+cuando se usan páginas pequeñas—.
 * **Con páginas pequeñas**:
 ** _Se consigue tener menos fragmentación interna_ y por tanto un mejor
 aprovechamiento de la memoria.
@@ -4791,9 +4791,9 @@ soportan el uso simultáneo de múltiples tamaños de página__. Esto
 permite que la mayor parte de las aplicaciones utilicen el tamaño
 estándar, mientras las que hacen un uso intensivo de la memoria puedan
 utilizar páginas de mayor tamaño. Por ejemplo, en la familia Intel x86
-el tamaño estándar es de 4 KB, pero muchas bases de datos –como por
-ejemplo Oracle– y núcleos de sistema operativo –como por ejemplo Linux o
-Solaris– utilizan páginas de 4 MBfootnote:[ Es común que los núcleos de
+el tamaño estándar es de 4 KB, pero muchas bases de datos —como por
+ejemplo Oracle— y núcleos de sistema operativo —como por ejemplo Linux o
+Solaris— utilizan páginas de 4 MBfootnote:[ Es común que los núcleos de
 los sistemas operativos utilicen páginas de gran tamaño para alojar su
 código y sus datos. De esta forma se minimiza el número de entradas de
 la TLB que utilizan, con el fin de disponer de más entradas libres para
@@ -4900,19 +4900,19 @@ páginas.
 
 === Interfaz de gestión de la memoria
 
-Gracias a la abstracción de las técnicas de memoria virtual –como la
-paginación bajo demanda– desde el punto de vista de los procesos en
+Gracias a la abstracción de las técnicas de memoria virtual —como la
+paginación bajo demanda— desde el punto de vista de los procesos en
 cualquier sistema moderno __prácticamente sólo hace falta una llamada al
 sistema para gestionar su espacio de direcciones virtual__. En los
-sistemas POSIX –como GNU/Linux– esta llamada es _mmap()_ –junto a su
-opuesta __munmap()__– y sirve para:
+sistemas POSIX —como GNU/Linux— esta llamada es _mmap()_ —junto a su
+opuesta __munmap()__— y sirve para:
 
 * __Reservar una porción de espacio de direcciones virtual del
 proceso__. Obviamente la llamada sólo hace la reserva para que dicha
 región pueda ser usada por el proceso, siendo el componente de
 paginación bajo demanda el responsable de asignar la memoria física que
 la respalda.
-* _Establecer permisos –lectura, escritura y ejecución–, opciones de
+* _Establecer permisos —lectura, escritura y ejecución—, opciones de
 compartición entre procesos, bloqueo de páginas en la memoria física,
 páginas de gran tamaño, etc._ en la región de memoria virtual a
 reservar.
@@ -4945,13 +4945,13 @@ Esta es la ubicación ideal puesto que al retornar de una función, la
 pila se restablece al estado previo al que tenía cuando se invocó dicha
 función, haciendo que las variables locales y argumentos desaparezcan
 automáticamente.
-* __Las variables asignadas dinámicamente –por ejemplo, usando
-malloc()/free() en C o new/delete en C++ o Java– se almacenan en el
+* __Las variables asignadas dinámicamente —por ejemplo, usando
+malloc()/free() en C o new/delete en C++ o Java— se almacenan en el
 montón__, que no es más una región continua de memoria ubicada
 inmediatamente después de la sección de datos del proceso.
 
-Cada lenguaje de programación debe proporcionar –por ejemplo a través de
-su __librería estándar__– un mecanismo en espacio de usuario adecuado
+Cada lenguaje de programación debe proporcionar —por ejemplo a través de
+su __librería estándar__— un mecanismo en espacio de usuario adecuado
 para la gestión en tiempo de ejecución de la memoria del _montón_ del
 proceso. Para eso cada lenguaje puede utilizar su propia implementación
 de dicho mecanismo o bien recurrir a la proporcionada por la __librería
@@ -4970,15 +4970,15 @@ _free()_ para la creación y destrucción de objetos de manera eficiente.
 
 Para ilustrar cómo se gestiona la memoria del _montón_ utilizaremos como
 ejemplo el mecanismo empleado por la _librería de__l__ sistema_ de los
-sistemas POSIX –accesible a través de las funciones _malloc()_ y
-__free()__– aunque es importante tener en cuenta que esta tarea se
+sistemas POSIX —accesible a través de las funciones _malloc()_ y
+__free()__— aunque es importante tener en cuenta que esta tarea se
 realiza de manera muy similar en las implementaciones de otros sistemas
 operativos y lenguajes de programación.
 
 El funcionamiento básico de _malloc()_ sigue las siguiente reglas:
 
-1.  __Cuando la memoria solicitada supera cierto umbral –128KB en
-sistemas GNU/Linux– es reservada directamente mediante la llamada al
+1.  __Cuando la memoria solicitada supera cierto umbral —128KB en
+sistemas GNU/Linux— es reservada directamente mediante la llamada al
 sistema mmap()__. Eso significa que las peticiones de gran tamaño
 realmente no consumen espacio del __montón__.
 2.  _En caso contrario la petición de memoria se atiende utilizando un
@@ -5000,7 +5000,7 @@ se denomina un esquema de ***particionado dinámico***:
 están libres y cuales no__. El montón se inicializa con un tamaño
 determinado completamente libre, por lo que es considerado como un gran
 hueco de memoria disponible.
-2.  __Cuando un proceso realiza una petición –a través de malloc()– se
+2.  __Cuando un proceso realiza una petición —a través de malloc()— se
 busca un hueco lo suficientemente grande para atenderla__. Si se
 encuentra, sólo se le asigna el espacio necesario, que es marcado como
 ocupado en la lista. El resto sigue siendo considerado como un hueco
@@ -5062,8 +5062,8 @@ en cada puntero o referencia a los bloques de memoria en el montón.
 === Dispositivos de almacenamiento
 
 Los ordenadores pueden almacenar información en diferentes soportes de
-almacenamiento –por ejemplo en discos magnéticos, en DVD, en memorias de
-estado sólido, etc.–. Cada uno tiene propiedades físicas diferentes que
+almacenamiento —por ejemplo en discos magnéticos, en DVD, en memorias de
+estado sólido, etc.—. Cada uno tiene propiedades físicas diferentes que
 pasamos a comentar brevemente a continuación.
 
 ==== Discos magnéticos
@@ -5089,7 +5089,7 @@ aleatorio al disco es mucho mayor que el de acceso secuencial.
 
 ==== Discos ópticos
 
-Los discos ópticos –CD, DVD, BluRay, etc.– consisten en un disco
+Los discos ópticos —CD, DVD, BluRay, etc.— consisten en un disco
 circular en el cual la información se almacena haciendo uso de surcos
 microscópicos que se leen haciendo incidir un láser sobre una de las
 caras planas que lo componen.
@@ -5102,7 +5102,7 @@ datos es más lento que con otras tecnologías de disco.
 
 ==== Memorias de estado sólido
 
-Una memoria de estado sólido –memoria USB, SSD, etc.– es un dispositivo
+Una memoria de estado sólido —memoria USB, SSD, etc.— es un dispositivo
 de almacenamiento que usa una memoria no volátil, como las __memorias
 flash__, para almacenar datos, en lugar de utilizar discos ópticos o
 magnéticos. En este tipo de memorias la información se almacena como en
@@ -5110,8 +5110,8 @@ un vector lineal de bytes, que se puede indexar aleatoriamente con la
 misma eficiencia con la que se accede secuencialmente, como ocurre con
 la memoria RAM, Aunque algunos dispositivos, de cara al resto del
 sistema informático, emulan una interfaz y un modo de direccionamiento
-similar al utilizado por los discos magnéticos –es decir, usando pistas,
-sectores y cilindros.– por temas de compatibilidad.
+similar al utilizado por los discos magnéticos —es decir, usando pistas,
+sectores y cilindros.— por temas de compatibilidad.
 
 === Archivos y sistemas de archivos
 
@@ -5141,8 +5141,8 @@ diferencia__da__s:_
 * __Una colección de archivos__, cada uno de los cuales almacena una
 serie de datos relacionados.
 * __Una colección de estructuras de metadatos__, que contienen
-información relativa a los archivos almacenados –nombre, ubicación en el
-disco, permisos, etc.– y que se encarga de organizarlos, generalmente
+información relativa a los archivos almacenados —nombre, ubicación en el
+disco, permisos, etc.— y que se encarga de organizarlos, generalmente
 haciendo uso de una estructura de directorios.
 
 === Volúmenes de datos
@@ -5154,8 +5154,8 @@ múltiples sistemas de archivos en el mismo dispositivo. Cada una de esas
 divisiones es un __volumen__.
 
 En otros casos interesa combinar divisiones o dispositivos de
-almacenamiento completos para crear espacios de mayor tamaño –también
-denominadas volúmenes– cada una de las cuales puede albergar un único
+almacenamiento completos para crear espacios de mayor tamaño —también
+denominadas volúmenes— cada una de las cuales puede albergar un único
 sistema de archivos. Así que en general __utilizaremos el término
 *volumen* para referirnos a un espacio de almacenamiento que alberga un
 sistema de archivos__, tanto si ese espacio es una pequeña parte del
@@ -5180,7 +5180,7 @@ escribir más datos en el mismo tiempo ya que se pueden enviar en
 paralelo peticiones a los distintos discos. Sin embargo la fiabilidad es
 inversamente proporcional al número de discos, ya que para que el
 conjunto falle basta con que lo haga cualquiera de ellos.
-* __En un *conjunto RAID 1* se crea una copia exacta –en espejo– de los
+* __En un *conjunto RAID 1* se crea una copia exacta —en espejo— de los
 datos en dos o más discos__. El resultado es que, incluso con dos
 discos, se incrementa exponencialmente la fiabilidad respecto a tener
 uno solo, ya que para que el conjunto falle es necesario que lo hagan
@@ -5211,8 +5211,8 @@ completa de los datos__. Esto significa que aunque se pueden añadir
 discos de manera ilimitada, eso no suele ocurrir puesto que __a más
 discos en el conjunto más probabilidad de que fallen dos de ellos__.
 * __En un *conjunto RAID 6* se utiliza la misma estrategia que en RAID 5
-pero __en cada división hay dos __bloques de paridad –__en lugar de
-uno–__ _en dos discos diferentes___. Esto permite que fallen hasta dos
+pero __en cada división hay dos __bloques de paridad —__en lugar de
+uno—__ _en dos discos diferentes___. Esto permite que fallen hasta dos
 discos sin perder los datos.
 * __En un conjunto con niveles anidados se combinan varios niveles RAID
 básicos como si fueran capas superpuestas__. Ejemplos típicos son:
@@ -5285,8 +5285,8 @@ gestión de volúmenes_ que hace uso de tecnología propia para superar
 estas limitaciones. Estas herramientas generalmente permiten agrupar
 dispositivos completos, conjuntos RAID, particiones, etc. y sobre ellos
 construir los volúmenes que sean necesarios. Estos volúmenes pueden ser
-redimensionados –en ocasiones sin tener que detener la ejecución del
-sistema operativo– y en caso de que haga falta se pueden incluir
+redimensionados —en ocasiones sin tener que detener la ejecución del
+sistema operativo— y en caso de que haga falta se pueden incluir
 dinámicamente nuevos dispositivos para incrementar el espacio
 disponible. Además, como ya hemos comentado, el software de gestión de
 volúmenes puede incluir alguna funcionalidad propia de conjuntos RAID
@@ -5314,7 +5314,7 @@ compuesto por los controladores de dispositivo encargados de transferir
 la información entre la memoria principal y el disco__. Estos
 controladores, que generalmente son compartidos entre los distintos
 sistemas de archivos, transfieren los datos en unidades de __bloques
-–__en lugar de transferir un byte cada vez– para mejorar la eficiencia .
+—__en lugar de transferir un byte cada vez— para mejorar la eficiencia .
 Cada _bloque_ está formado por uno o más sectoresfootnote:[Dependiendo
 de la unidad de disco, los sectores pueden tener tamaños de entre 32
 bytes y 4096 bytes. Lo más común es que su tamaño sea de 512 bytes.].
@@ -5325,9 +5325,9 @@ mediante su dirección de disco numérica (por ejemplo: unidad 1, cilindro
 73, cabeza 2, sector 10).
 3.  _El *módulo de organización de archivos* tiene conocimiento de los
 archivos y se encarga de traducir las direcciones lógicas de bloque
-–__posición __de__l__ bloque dentro del archivo– en las direcciones
-físicas de bloque __–____por ejemplo, cilindro, cabeza y sector ____de
-los bloques ____correspondientes en el dispositivo de almacenamiento–___
+—__posición __de__l__ bloque dentro del archivo— en las direcciones
+físicas de bloque __—____por ejemplo, cilindro, cabeza y sector ____de
+los bloques ____correspondientes en el dispositivo de almacenamiento—___
 que serán enviadas al _sistema básico de archivos_ para que realice las
 transferencias solicitadas. Los bloques lógicos de cada archivo son
 numerados de 0 a __N__, pero los bloques físicos asignados a estos
@@ -5355,7 +5355,7 @@ basado en el sistema FFS (__Fast File System__) de Berkeley. Microsoft
 Windows soporta los sistemas de archivo FAT, FAT32 y NTFS (__NT File
 System__). En Linux se soportan más de cuarenta sistemas de archivo,
 entre los que podríamos destacar: el _sistema de archivos extendido_
-–ext2, ext3 y ext4__–__ XFS y BTRFS. Además, la mayoría de los sistemas
+—ext2, ext3 y ext4__—__ XFS y BTRFS. Además, la mayoría de los sistemas
 operativos modernos soportan otros sistemas de archivo, como los
 utilizados en los soportes removibles. Por ejemplo el ISO-9660,
 utilizado por la mayor parte de los CD-ROM, o el UFS (__Universal File
@@ -5399,8 +5399,8 @@ estructura de directorios completa se almacena en la propia MFT.
 La información almacenada en memoria se utiliza tanto para la gestión
 del sistema de archivo como para mejorar el rendimiento del mismo
 mediante mecanismos de caché. Los datos se cargan en el momento de
-comenzar a utilizar el sistema de archivos –montaje– y se descartan
-cuando se va a dejar de hacer uso del mismo –desmontaje–. Las
+comenzar a utilizar el sistema de archivos —montaje— y se descartan
+cuando se va a dejar de hacer uso del mismo —desmontaje—. Las
 estructuras existentes en la memoria pueden incluir las que a
 continuación se describen:
 
@@ -5428,8 +5428,8 @@ siguientes pasos:
 
 1.  __Al sistema operativo se le debe proporcionar el nombre _o
 identificador_ del dispositivo y el punto de montaje. El *punto de
-montaje* es la ubicación dentro de la estructura de directorios –el
-directorio concreto– a la que queremos conectar el sistema de
+montaje* es la ubicación dentro de la estructura de directorios —el
+directorio concreto— a la que queremos conectar el sistema de
 archivos__. Después de que el proceso de montaje se haya completado, los
 archivos y directorios del sistema de archivos montado serán accesibles
 como descendientes del directorio del punto de montaje.
@@ -5448,8 +5448,8 @@ necesario.
 En muchos sistemas operativos modernos el montaje se ejecuta
 automáticamente cuando los dispositivos son detectados durante el
 arranque del sistema o cuando se conectan durante el funcionamiento del
-mismo –por ejemplo, cuando se inserta un medio en la unidad CD-ROM o se
-pincha una memoria flash en un puerto USB–. Además, en algunos se
+mismo —por ejemplo, cuando se inserta un medio en la unidad CD-ROM o se
+pincha una memoria flash en un puerto USB—. Además, en algunos se
 permite que el administrador del equipo ejecute operaciones de montaje
 manuales.
 
@@ -5474,8 +5474,8 @@ contenidos del volumen, donde se almacenan los FCB.
 diferentes tipos de archivos.
 * **Ubicación**. Es un puntero a un dispositivo y a la ubicación del
 archivo dentro del mismo.
-* **Tamaño**. Indica el tamaño actual de archivo –en bytes, palabras o
-bloques– y, posiblemente, el tamaño máximo permitido.
+* **Tamaño**. Indica el tamaño actual de archivo —en bytes, palabras o
+bloques— y, posiblemente, el tamaño máximo permitido.
 * **Protección**. Información de control de acceso que determina quién
 puede leerlo, escribirlo, ejecutarlo, etc.
 * **Fecha, hora e identificación del usuario**. Esta información puede
@@ -5505,8 +5505,8 @@ allí donde interese.], borrar y truncar archivos__. Además en muchos
 sistemas se suelen incluir llamadas para otras operaciones comunes, como
 añadir datos al final de un archivo o el renombrado de un archivo
 existente. Estas operaciones primitivas puede combinarse a su vez para
-realizar otras operaciones más complejas –por ejemplo, crear una copia
-de un archivo o moverlo a otro lugar de la estructura de directorios–.
+realizar otras operaciones más complejas —por ejemplo, crear una copia
+de un archivo o moverlo a otro lugar de la estructura de directorios—.
 Además, muchos sistemas también disponen de operaciones para consultar y
 modificar diversos atributos de un archivo, como la longitud o el
 propietario del mismo.
@@ -5528,14 +5528,14 @@ entrada asociada y recupera el identificador del mismo
 correspondiente.
 3.  Crea una entrada para el archivo en la tabla de archivos abiertos
 donde se almacena la información del FCB.
-4.  Retorna devolviendo un identificador –en forma de puntero o de
-índice– a la nueva entrada en la tabla de archivos abiertos.
+4.  Retorna devolviendo un identificador —en forma de puntero o de
+índice— a la nueva entrada en la tabla de archivos abiertos.
 
 El nombre con el que se designa a esas entradas en la tabla de archivos
 abiertos varía de unos sistemas a otros. En los sistemas UNIX se utiliza
-el término *descriptor de archivo* –o __file descriptor__– mientras que
+el término *descriptor de archivo* —o __file descriptor__— mientras que
 en los sistemas Microsoft Windows se prefiere el término *manejador de
-archivo* –o __file handler–__.
+archivo* —o __file handler—__.
 
 Después de utilizar la llamada al sistema __open()__, cuando se desee
 solicitar una operación sobre un archivo, sólo es necesario proporcionar
@@ -5547,7 +5547,7 @@ llamada al sistema __close()__.
 __En los sistemas operativos donde varios procesos pueden abrir un mismo
 archivo se suelen utilizar dos niveles de tablas de archivos abiertos__:
 
-1.  __Una tabla para cada proceso –almacenada en el PCB– donde se
+1.  __Una tabla para cada proceso —almacenada en el PCB— donde se
 indican todos los archivos que éste ha abierto__. En dicha tabla se
 almacena toda la información referente al uso de cada archivo por parte
 de un proceso. Por ejemplo, se puede almacenar la posición actual
@@ -5587,8 +5587,8 @@ partes: un nombre y una extensión; normalmente separadas por un carácter
 de punto. El sistema puede utilizar la extensión para conocer el tipo de
 archivo y el tipo de operaciones que se pueden realizar con el mismo.
 * _En macOS cada archivo tiene un atributo que almacena el tipo_
-___–___por ejemplo, _TEXT_ para los archivos de texto o _APPL_ para las
-aplicaciones___–_ _y___ otro que contiene el nombre del programa que lo
+___—___por ejemplo, _TEXT_ para los archivos de texto o _APPL_ para las
+aplicaciones___—_ _y___ otro que contiene el nombre del programa que lo
 creó. Cuando el usuario hace clic con el ratón sobre el icono de un
 archivo, el programa que lo creó se ejecuta automáticamente y el archivo
 se carga en la memoria.
@@ -5730,8 +5730,8 @@ Una estructura en grafo acíclico es más flexible que una estructura en
 árbol, pero no por eso está exenta de inconvenientes:
 
 * _Si estamos intentando recorrer el sistema de archivos completo_
-__–__por ejemplo, para buscar un archivo o para copiarlos en un
-dispositivo de copias de seguridad__–__ __debemos evitar acceder más de
+__—__por ejemplo, para buscar un archivo o para copiarlos en un
+dispositivo de copias de seguridad__—__ __debemos evitar acceder más de
 una vez a los archivos y subdirectorios compartidos__. No olvidemos que
 en los sistemas con estructura en grafo acíclico cada archivo puede
 tener múltiples nombres de ruta absoluta. Esto es más sencillo de
@@ -5797,10 +5797,10 @@ añadir un nuevo enlace, se pueden utilizar diversos algoritmos. Sin
 embargo, puesto que suelen ser muy costosos, lo más simple es ignorar
 todos los enlaces en los casos en los que se recorre el árbol de
 directorios para realizar una tarea en la que es importante no entrar en
-un bucle ___–por ejemplo, al hacer una búsqueda–___. En el caso de la
-duplicación de entradas de directorio __–__donde las entradas duplicadas
+un bucle ___—por ejemplo, al hacer una búsqueda—___. En el caso de la
+duplicación de entradas de directorio __—__donde las entradas duplicadas
 no se pueden distinguir de la original y, por tanto, no se pueden
-ignorar__–__ lo más sencillo es que el sistema operativo no permita
+ignorar__—__ lo más sencillo es que el sistema operativo no permita
 crear múltiples referencias a un mismo directorio.
 
 === Compartición de archivos
@@ -5929,17 +5929,17 @@ estén compartiendo el archivo.
 
 En la semántica de UNIX cada archivo está asociado con una única imagen
 física a la que se accede en forma de recurso de acceso exclusivo
-____–____por ejemplo, un proceso que haga un ____read()____ sobre un
+____—____por ejemplo, un proceso que haga un ____read()____ sobre un
 archivo podrá quedar en espera si al mismo tiempo otro proceso está
 ejecutando un ____write____()____, hasta que este último
-termine____–____. La contienda por acceder a esta imagen única provoca
+termine____—____. La contienda por acceder a esta imagen única provoca
 retardos en los procesos debido a estos bloqueos.
 
 Semántica de sesión
 
 Suponiendo que __una *sesión de archivo* es el conjunto de operaciones
-entre las llamadas open() y close()__, el sistema de archivos Andrew –o
-AFS– utiliza la siguiente semántica de coherencia:
+entre las llamadas open() y close()__, el sistema de archivos Andrew —o
+AFS— utiliza la siguiente semántica de coherencia:
 
 * __Las escrituras en un archivo abierto por parte de un proceso no son
 visibles inmediatamente para los otros usuarios que hayan abierto ese
@@ -5965,7 +5965,7 @@ semántica en un sistema distribuido es muy simple.
 ==== Bloqueos de archivo
 
 Algunos sistemas operativos proporcionan funciones para bloquear un
-archivo –o determinadas porciones de un archivo– abierto. Esto permite
+archivo —o determinadas porciones de un archivo— abierto. Esto permite
 que un proceso __impida que otros procesos puedan acceder al archivo
 bloqueado__. Los bloqueos de archivo resultan útiles para encadenar
 varias operaciones de E/S sobre un archivo teniendo la seguridad de que
@@ -5976,7 +5976,7 @@ Los sistemas operativos pueden proporcionar diferentes tipos de bloqueos
 de archivo:
 
 * _Un *bloqueo compartido* es un tipo de bloqueo que puede ser adquirido
-–bloquear el archivo– al mismo tiempo por varios procesos._
+—bloquear el archivo— al mismo tiempo por varios procesos._
 * __Un *bloqueo exclusivo* sólo puede ser adquirido por un proceso cada
 vez__. Si otro proceso intenta adquirir bloqueo exclusivo sobre un
 archivo ya bloqueado, se suspende a la espera.
@@ -6003,8 +6003,8 @@ cumplen, haciendo las comprobaciones pertinentes en las llamadas al
 sistema.
 * **Sugeridos**. Si un bloqueo es sugerido, _el sistema operativo sólo
 impedirá que accedan al archivo bloqueado aquellos procesos programados
-para adquirir el bloqueo explícitamente_ –usando la llamada al sistema
-correspondiente–. El sistema operativo no impedirá el acceso al archivo
+para adquirir el bloqueo explícitamente_ —usando la llamada al sistema
+correspondiente—. El sistema operativo no impedirá el acceso al archivo
 a un proceso que lo abre, lee o escribe sin más. Son los desarrolladores
 del software los encargados de intentar adquirir el bloqueo y de
 liberarlo cuando ya no es necesario.
@@ -6042,8 +6042,8 @@ desastrosa porque no hay forma de saber en todo el disco que datos le
 pertenecen. Por esta razón UNIX almacena en caché las entradas de
 directorio para acelerar las lecturas, pero todas las escrituras de
 datos que provoquen algún cambio en la asignación de espacio o en algún
-otro tipo de metadato se realizan síncronamente –antes de volver al
-proceso desde la llamada al sistema–.
+otro tipo de metadato se realizan síncronamente —antes de volver al
+proceso desde la llamada al sistema—.
 
 Por ejemplo, si se hace un escritura de datos que extiende el tamaño de
 un archivo; el cambio del FCB correspondiente, con el nuevo tamaño de
@@ -6067,7 +6067,7 @@ necesario, pero se impone cierto orden en el que dichas operaciones de
 escritura deben ser realizadas__. Por ejemplo, cuando se van a escribir
 en el disco las modificaciones debidas a la creación de un nuevo
 archivo, el sistema se asegura de que primero se escribe el nuevo FCB
-–un inodo, en los sistemas UNIX BSD– y posteriormente escribe el
+—un inodo, en los sistemas UNIX BSD— y posteriormente escribe el
 directorio con la nueva entrada de archivo con el identificador a dicho
 FCB. Es sencillo darse cuenta de que haciéndolo al revés, si el sistema
 fallase antes de crear el FCB, acabaríamos con una entrada de directorio
@@ -6081,8 +6081,8 @@ Otra solución al problema de la coherencia consiste en aplicar técnicas
 de recuperación basadas en registro durante las actualizaciones de los
 metadatos del sistema de archivos.
 
-Fundamentalmente __en los *sistemas de archivos basados en registro* –o
-con **journaling**– todos los cambios en los metadatos se escriben
+Fundamentalmente __en los *sistemas de archivos basados en registro* —o
+con **journaling**— todos los cambios en los metadatos se escriben
 secuencialmente en un registrofootnote:[El registro generalmente se
 almacena en el mismo sistema de archivos. Sin embargo también _suele
 ser_ posible almacenarlo en otro volumen o incluso en otro disco.]__:
@@ -6092,8 +6092,8 @@ específica __sobre el sistema de archivos __es una *transacción*__. Por
 ejemplo, es una transacción el conjunto de operaciones necesarias para
 crear un nuevo archivo.
 * __La __lista de __operaciones necesarias para completar una
-transacción se escribe secuencialmente y síncronamente –__antes de
-terminar la llamada al sistema– __en el registro__. Cuando la lista de
+transacción se escribe secuencialmente y síncronamente —__antes de
+terminar la llamada al sistema— __en el registro__. Cuando la lista de
 operaciones pendientes termina de ser escrita en el registro, se
 considera que las operaciones ha sido _confirmad__a__s_ y la llamada al
 sistema puede volver al proceso de usuario, permitiendo que continúe con
@@ -6126,10 +6126,10 @@ ext3, ext4, NTFS, XFS, JFS, ReiserFS, etc.
 
 __Un efecto colateral de la utilización de un registro es la mejora del
 rendimiento en el acceso al sistema de archivo__. La razón de esta
-mejora es que las costosas escrituras síncronas –es decir, antes de
-devolver el control al proceso– de los metadatos en lugares aleatorios
-del volumen se transforman en escrituras síncronas secuenciales –que son
-mucho más eficientes– en el registro. Mientras que todas las operaciones
+mejora es que las costosas escrituras síncronas —es decir, antes de
+devolver el control al proceso— de los metadatos en lugares aleatorios
+del volumen se transforman en escrituras síncronas secuenciales —que son
+mucho más eficientes— en el registro. Mientras que todas las operaciones
 indicadas en el registro se aplican asíncronamente mediante escrituras
 aleatorias en las estructuras apropiadas, por lo que pueden ser
 reordenadas a conveniencia para maximizar el rendimiento. Recordemos que
@@ -6140,9 +6140,9 @@ los metadatos, como por ejemplo la creación y borrado de archivos.
 
 El sistema de archivos XFS modifica ligeramente esta técnica,
 sustituyendo las escrituras síncronas necesarias para actualizar el
-registro por escrituras asíncronas –es decir, el control se devuelve al
+registro por escrituras asíncronas —es decir, el control se devuelve al
 proceso antes de terminar de escribir las operaciones en el registro y
-confirmar la transacción–. El resultado es:
+confirmar la transacción—. El resultado es:
 
 * Cierta mejora del rendimiento, porque el registro deja de ser el
 cuello de botella para las operaciones sobre los metadatos. El registro
@@ -6169,7 +6169,7 @@ estos cambios tienen lugar pero otros no, el disco puede quedar
 inconsistente.
 
 __Los **sistemas de archivos basados en c****_*opia durante la
-escritura*_** –__o ____copy-on-write____– __evitan cambiar los metadatos
+escritura*_** —__o ____copy-on-write____— __evitan cambiar los metadatos
 sobrescri__biendo__ en el sitio__. En su lugar buscan un hueco libre,
 hacen en él una copia del bloque completo con los cambios y después
 modifican los metadatos del sistema de archivos que sirven para
@@ -6221,9 +6221,9 @@ múltiples veces los cambios posteriores.
 Los sistemas de archivos ZFS y Btrfs son los principales ejemplos de
 sistemas de archivos basados en __copy-on-write__. Esta solución no sólo
 les permite tener las mismas propiedades que el uso de registro en
-cuanto a la preservación de la coherencia –con la ventaja de evitar dos
+cuanto a la preservación de la coherencia —con la ventaja de evitar dos
 escrituras en disco, una en el registro y otra para el cambio
-propiamente dicho– sino que además facilita que puedan ofrecer
+propiamente dicho— sino que además facilita que puedan ofrecer
 características adicionales, como la creación de copias instantáneas del
 volumen.
 
@@ -6268,8 +6268,8 @@ archivo especificado y una vez localizada se libera la entrada
 correspondiente. Para reutilizar la entrada del directorio tenemos
 diversas alternativas:
 ** __Se puede marcar la entrada como no utilizada__. Para eso se puede
-emplear un nombre especial o utilizar algún campo adicional –a parte de
-nombre de archivo e identificador del FSB– que se ha añadido a la
+emplear un nombre especial o utilizar algún campo adicional —a parte de
+nombre de archivo e identificador del FSB— que se ha añadido a la
 entrada con ese propósito.
 ** __Insertar un puntero a la entrada en una lista de entradas libres__,
 que se guarda dentro del mismo directorio.
@@ -6292,7 +6292,7 @@ utilizando una lista lineal, donde en cada entrada no sólo se almacena
 el nombre del archivo sino también el FCB del mismo. Los sistemas de
 archivos ext2 y UFS también utilizan una lista lineal no ordenada, donde
 sólo se almacena el nombre del archivo o subdirectorio y el
-identificador del _inodo_ –el FCB, esos sistemas de archivo–
+identificador del _inodo_ —el FCB, esos sistemas de archivo—
 correspondiente.
 
 ===== Tabla de dispersión
@@ -6309,9 +6309,9 @@ __El único inconveniente es que debemos tratar la posible aparición de
 colisiones__, que son aquellas situaciones en las que dos nombres de
 archivo proporcionan, al aplicar la función de dispersión, la misma
 ubicación en la tabla. Esto se puede resolver utilizando una lista
-enlazada en cada entrada de la lista –cada entrada en al lista señalaría
+enlazada en cada entrada de la lista —cada entrada en al lista señalaría
 la ubicación de la siguiente entrada de la lista que tiene el mismo
-valor para la función de dispersión– a cambio de que las búsquedas sean
+valor para la función de dispersión— a cambio de que las búsquedas sean
 un poco más lentas. En cualquier caso, éste método será normalmente más
 rápido que una búsqueda lineal por todo el directorio.
 
@@ -6491,7 +6491,7 @@ partir de la información en la FAT.
 __El mecanismo de *asignación indexada* agrupa todos los punteros de la
 asignación enlazada en una única ubicación__: el **bloque de índices**.
 Así se resuelve la falta de eficiencia de la asignación enlazada
-–convencional, en ausencia de FAT– cuando se realizan accesos
+—convencional, en ausencia de FAT— cuando se realizan accesos
 aleatorios:
 
 * __Cada archivo tiene su propio bloque de índices__, que es un vector
@@ -6573,8 +6573,8 @@ ejemplo, un disco de 40 GB con bloques de 1 KB necesitará un mapa de
 bits de más de 5 MB, lo que no es un gran requisito para un sistema
 moderno pero si lo era hace dos décadas.
 
-El sistema de archivo NTFS y la familia _extended filesystem_ ___–____es
-decir, ext, ext2, ext3, etc.____– ____utilizan mapas de bits tanto para
+El sistema de archivo NTFS y la familia _extended filesystem_ ___—____es
+decir, ext, ext2, ext3, etc.____— ____utilizan mapas de bits tanto para
 gestionar los bloques de datos libres como las entradas disponibles en
 la tabla de __inodos__.___
 
@@ -6601,7 +6601,7 @@ método adicional
 
 __Una modificación de la técnica basada en la lista enlazada consiste en
 almacenar las direcciones de n bloques libres en el primer bloque
-libre__. Los primeros _n_ – 1 de esos bloques estarían realmente libres,
+libre__. Los primeros _n_ — 1 de esos bloques estarían realmente libres,
 pero el último de esos bloques apuntaría a otro bloque con _n_ bloques
 libres. Así, podrían localizarse rápidamente las direcciones de un gran
 número de bloques libres, lo cual mejora la eficiencia respecto a la
@@ -6657,11 +6657,11 @@ intentando acceder.
 o *VFS* (Virtual File System)__. Este nivel es utilizado por el anterior
 para atender las peticiones realizadas. Describe operaciones genéricas
 sobre cualquier sistema de archivos y estructuras genéricas como, por
-ejemplo, un FCB virtual ____–____que en algunos sistemas operativos se
-denomina ____vnodo____– ____que identifica ____de forma unívoca ____a
-____cada archivo o directorio en uso ____en el sistema ____–____un inodo
+ejemplo, un FCB virtual ____—____que en algunos sistemas operativos se
+denomina ____vnodo____— ____que identifica ____de forma unívoca ____a
+____cada archivo o directorio en uso ____en el sistema ____—____un inodo
 en los sistemas de archivos de Linux solo identifica a un archivo de
-forma unívoca dentro del mismo sistema de archivos____–____ y que da
+forma unívoca dentro del mismo sistema de archivos____—____ y que da
 acceso a sus metadatos____. ___Este nivel ___cumple con dos importantes
 funciones:
 
@@ -6688,8 +6688,8 @@ sistema. Después se ___invoca____ría____ la operación ____VFS____
 __read()__, sobre el ____vnodo, ____en la implementación concreta ____de
 VFS____ según el ____tipo de____ sistema de archivos
 ____involucrado____. ____Será esa implementación quien extraiga del
-____vnodo____ la información necesaria ____–____por ejemplo, el
-____inodo____ real del archivo en el sistema de archivos____– ___para
+____vnodo____ la información necesaria ____—____por ejemplo, el
+____inodo____ real del archivo en el sistema de archivos____— ___para
 llevar acabo la operación indicada, según las especificidades del
 sistema de archivos.__
 
@@ -6752,8 +6752,8 @@ posible?
 En la planificación *FCFS* (__First
 Come, First Served__) o _primero que llega, primero servido_ la cola es
 FIFO. Es decir, ___se atienden las solicitudes en orden de llegada___.
-Es la planificación más simple y es equitativa ___–____pues se atiende a
-todos los procesos por igual____– ____pero no proporciona el servicio
+Es la planificación más simple y es equitativa ___—____pues se atiende a
+todos los procesos por igual____— ____pero no proporciona el servicio
 más rápido en disco duros magnéticos, donde interesa ___mover el brazo
 del disco lo menos posible.__
 
@@ -6831,7 +6831,7 @@ se copian todas las solicitudes pendientes, el algoritmo se denomina
 F-SCAN.
 
 Estos algoritmos previenen un problema denominado __rigidez del brazo__
-____–____arm stickiness____, en inglés___–___ a diferencia de los
+____—____arm stickiness____, en inglés___—___ a diferencia de los
 algoritmos SSTF, SCAN, C-SCAN, LOOK y C-LOOK. El termino __rigidez del
 brazo__ hace referencia a cuando hay un flujo continuo de solicitudes
 para el mismo cilindro, lo que hace que con los algoritmos anteriores el
@@ -6850,7 +6850,7 @@ manera:
 
 * CFQ mantiene una cola de solicitudes para cada proceso y en ella
 inserta las solicitudes síncronas de E/S. Cada cola tiene una ventana de
-tiempo ___–___o ___cuanto____–___ para acceder al disco. La longitud de
+tiempo ___—___o ___cuanto____—___ para acceder al disco. La longitud de
 la ventana de tiempo y el tamaño máximo de cada cola dependen de la
 prioridad de E/S que tenga el proceso.
 * CFQ mantiene una cola de solicitudes por cada prioridad de E/S, donde
@@ -6897,7 +6897,7 @@ ________________________________________________________________________________
 Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. “Soft
 Updates: A Solution to the Metadata Update Problem in File Systems”. En
 ACM Transactions on Computer Systems, Vol. 18, No. 2, May 2000, Pag.
-127–153.
+127—153.
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 _________________________________________________________________________________
