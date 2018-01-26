@@ -1,0 +1,26 @@
+= Sistemas Operativos
+Jesús Torres <jmtorres@ull.es>
+:doctype: book
+// Configuración del idioma.
+:lang: es
+include::locale/attributes.adoc[]
+// Fórmulas matemáticas.
+:stem:
+// Referencias de texto completo con: etiqueta, número y título.
+:sectnums:
+:xrefstyle: full
+// Usar Font Awesome para los iconos.
+:icons: font
+// Activar las macros de interfaz de usuario, como kbd o menu.
+:experimental:
+// Incluir la tabla de contenidos.
+:toc:
+
+// Capítulos
+
+// Bibliografía
+include::bibliografía.adoc[]
+
+// Índice
+[index]
+== Índice

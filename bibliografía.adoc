@@ -1,0 +1,45 @@
+[bibliography]
+== Bibliografía
+
+La mayor parte de los contenidos de este documento están basados en las siguientes referencias bibliográficas:
+
+* [[[Silberschatz2005,1]]]
+Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=345629.titn./["`Fundamentos de Sistemas Operativos`"]. 7ª ed. McGraw Hill, 2005.
+
+* [[[Silberschatz2004,2]]]
+Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=184173.titn./["`Operating System Concepts with Java`"]. 6º ed. John Wiley & Sons Inc., 2004.
+
+Otras referencias bibliográficas utilizadas fueron las siguientes:
+
+* [[[Bavier2000,3]]]
+Bavier, A. "`Creating New CPU Schedulers with Virtual Time`". En 21st IEEE Real-Time Systems Symposium (RTSS 2000) WIP Proceedings, 2000.
+
+* [[[Friedman1999,4]]]
+Friedman, M. B. "`Windows NT Page Replacement Policies`". En 25th International Computer Measurement Group Conference, December 5-10, 1999, Pag. 234-244.
+
+* [[[Ganger2000,5]]]
+Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. "`Soft Updates: A Solution to the Metadata Update Problem in File Systems`". En ACM Transactions on Computer Systems, Vol. 18, No. 2, May 2000, Pag. 127—153.
+
+* [[[Gorman2004,6]]]
+Gorman, M. "`Understanding the Linux Virtual Memory Manager`". Prentice Hall, 2004.
+
+* [[[Hailperin2006,7]]]
+Hailperin, M. "`Operating Systems and Middleware: Supporting Controlled Interaction`". Course Technology, 2006.
+
+* [[[Jacob1998,8]]]
+Jacob, B y Mudge, T. "Virtual Memory: Issues of Implementation". Computer, 31:33-43, 1998. ISSN 0018-9162. DOI: 10.1109/2.683005. URL http://dx.doi.org/10.1109/2.683005.
+
+* [[[Microsoft2005,9]]]
+"`Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn`" [en línea]. Microsoft Corporation, 2005. URL http://goo.gl/ml8C4.
+
+* [[[Microsoft2003,10]]]
+"`Kernel Enhancements for Windows XP`" [en línea]. Microsoft Corporation, 2003 [2006]. URL http://goo.gl/ugED.
+
+* [[[SGI2006,11]]]
+"`XFS Filesystem Structure`" [en línea]. Silicon Graphics Inc, 2006 [2007]. URL https://goo.gl/YF82JB
+
+* [[[Wikipedia-malloc,12]]]
+"`C dynamic memory allocation`" [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/OkFJ3
+
+* [[[Wikipedia-RAID,13]]]
+"`RAID`" [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/GTQU
