@@ -38,7 +38,7 @@ Jacob, B y Mudge, T. "Virtual Memory: Issues of Implementation". Computer, 31:33
 * [[[SGI2006,11]]]
 "`XFS Filesystem Structure`" [en línea]. Silicon Graphics Inc, 2006 [2007]. URL https://goo.gl/YF82JB
 
-* [[[Wikipedia-malloc,12]]]
+* [[[Wikipedia-cmalloc,12]]]
 "`C dynamic memory allocation`" [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/OkFJ3
 
 * [[[Wikipedia-RAID,13]]]

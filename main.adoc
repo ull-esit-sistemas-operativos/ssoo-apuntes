@@ -1,26 +1,16 @@
 = Sistemas Operativos
 Jesús Torres <jmtorres@ull.es>
-:doctype: book
-// Configuración del idioma.
-:lang: es
-include::locale/attributes.adoc[]
-// Fórmulas matemáticas.
-:stem:
-// Referencias de texto completo con: etiqueta, número y título.
-:sectnums:
-:xrefstyle: full
-// Usar Font Awesome para los iconos.
-:icons: font
-// Activar las macros de interfaz de usuario, como kbd o menu.
-:experimental:
-// Incluir la tabla de contenidos.
-:toc:
+include::attributes.adoc[]
 
 // Capítulos
+include::introducción.adoc[]
 
-// Bibliografía
 include::bibliografía.adoc[]
 
-// Índice
+// Índice de términos
+// NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.
+//       Ver: https://github.com/asciidoctor/asciidoctor/issues/450
+ifeval::["{backend}" == "html"]
 [index]
 == Índice
+endif::[]
