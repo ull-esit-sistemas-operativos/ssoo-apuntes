@@ -5,6 +5,14 @@ include::attributes.adoc[]
 // Capítulos
 include::introducción.adoc[]
 
+include::estructura.adoc[]
+
+include::procesos.adoc[]
+
+include::memoria.adoc[]
+
+include::almacenamiento.adoc[]
+
 include::bibliografía.adoc[]
 
 // Índice de términos
