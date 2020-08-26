@@ -7,7 +7,7 @@
 :example-caption: Ejemplo
 :figure-caption: Figura
 :important-caption: Importante
-:last-update-label: Ultima actualización
+:last-update-label: Última actualización
 ifdef::listing-caption[:listing-caption: Lista]
 //:manname-title: NOMBRE
 :note-caption: Nota

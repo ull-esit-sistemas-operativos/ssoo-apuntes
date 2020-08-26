@@ -1,0 +1,23 @@
+= Sistemas Operativos
+Jesús Torres <jmtorres@ull.es>
+Curso 2020-2021
+include::../config/attributes.adoc[]
+
+// Capítulos
+:leveloffset: +1
+:sectiondir: introducción
+include::{sectiondir}/introducción.adoc[]
+// include::estructura.adoc[]
+// include::procesos.adoc[]
+// include::memoria.adoc[]
+// include::almacenamiento.adoc[]
+// include::bibliografía.adoc[]
+:leveloffset: -1
+
+// Índice de términos
+// NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.
+//       Ver: https://github.com/asciidoctor/asciidoctor/issues/450
+ifeval::["{backend}" == "html"]
+[index]
+== Índice
+endif::[]

@@ -1,10 +1,11 @@
-== Introducción
-include::attributes.adoc[]
-:imagesdir: {imagesdir}/introducción
+= Introducción
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
 
-=== ¿Qué es un sistema operativo?
+== ¿Qué es un sistema operativo?
 
-En general no existe una definición universal de lo qué es un *((sistema operativo))*, aunque si muchas propuestas por parte diferentes autores:
+En general no existe una definición universal de lo qué es un *((sistema operativo))*, aunque si muchas propuestas de diferentes autores:
 
 * Hay quién considera que es "`lo que el fabricante nos vende cuando vamos a una tienda y decimos al encargado que queremos comprar un sistema operativo`".
 +
@@ -29,7 +30,7 @@ Sin embargo, en algunos casos ésta definición excluye como parte del sistema o
 Como veremos en el <<_microkernel>>, en los sistemas operativos _microkernel_ la funcionalidad implementada en el nucleo del sistema es la mínima necesaria. Por lo tanto, según la definición anterior, muchos de los componentes y servicios básicos que le damos por supuestos a un sistema operativo no formarían parte del mismo.
 ====
 
-=== Funciones del sistema operativo
+== Funciones del sistema operativo
 
 Por lo anterior, parece evidente que no es sencillo definir lo que "`es`" un sistema operativo.
 Sin embargo, es posible que tengamos más suerte definiéndolo a través de lo que "`hace`".
@@ -62,7 +63,7 @@ El *sistema operativo* es el encargado del control y de la asignación de los re
 
 Como veremos a continuación, en realidad las funciones de los sistemas operativos se pueden analizar desde dos perspectivas: la del sistema informático y la del usuario.
 
-==== Perspectiva del sistema informático
+=== Perspectiva del sistema informático
 
 Un sistema informático tiene múltiples recursos tanto hardware como software —tiempo de CPU, espacio de memoria, espacio de almacenamiento de archivos, dispositivos de E/S, servicios de red, etc.—.
 Dentro del sistema informático, el sistema operativo es el programa más íntimamente relacionado con el hardware y su función es gestionar los recursos disponibles, asignarlos a los diferentes programas, resolver los conflictos en las peticiones y hacer que el sistema opere eficientemente para resolver los problemas de los usuarios.
@@ -83,7 +84,7 @@ Un sistema operativo:
     ** Pero proporciona un entorno adecuado para que los programas de aplicación lo hagan.
 ====
 
-==== Perspectiva del usuario
+=== Perspectiva del usuario
 
 Sin embargo, definir las funciones del sistema operativo desde la perspectiva del usuario es mucho más difícil, porque varía de acuerdo con el tipo de sistema.
 
@@ -116,9 +117,9 @@ Como hemos comentado, el principal objetivo de los sistemas operativos de escrit
 Puesto que ambos objetivos pueden ser contradictorios en algunas ocasiones, resulta obvio que lo que tiene que "`hacer`" un sistema operativo para alcanzarlos puede ser diferente en cada uno, lo que dificulta obtener una definición única de sistema operativa desde la perspectiva del usuario.
 
 
-=== Tipos de sistemas operativos
+== Tipos de sistemas operativos
 
-==== Mainframe
+=== Mainframe
 
 Los *ordenadores centrales* o _**((mainframes))**_ fueron los primeros computadores utilizados en muchas aplicaciones comerciales y científicas.
 Se caracterizan no tanto por la potencia de su CPU como por: su gran capacidad de memoria, su gran capacidad de almacenamiento secundario, la gran cantidad de dispositivos de E/S y la rapidez de estos, así como por su alta fiabilidad.
@@ -132,7 +133,7 @@ La mayor diferencia entre los superordenadores y los mainframes está en que los
 Para más información sobre los _mainframes_, véase http://es.wikipedia.org/wiki/Ordenador_central["`Ordenador central — Wikipedia`"].
 ====
 
-===== Sistemas de procesamiento por lotes
+==== Sistemas de procesamiento por lotes
 
 Los *sistemas de procesamiento por lotes* (((sistema, procesamiento por lotes))) o *sistemas en __batch__* (((sistema, batch))) fueron los primeros ordenadores.
 Eran enormes máquinas operadas desde una consola y conectados a lectores de tarjetas perforadas, dispositivos de cinta e impresoras.
@@ -160,7 +161,7 @@ image::sistemas_procesamiento_lotes.svg[]
 
 Cualquier programa necesita realizar operaciones de E/S para obtener los datos requeridos para sus cálculos —guardados en tarjetas perforadas y unidades de cinta o, si hablamos de hoy en día, en discos duros y memorias USB— por lo que se pierde mucho tiempo de CPU si tiene que esperar a que estén disponibles para continuar con la ejecución del programa.
 
-===== Sistemas multiprogramados
+==== Sistemas multiprogramados
 
 Con la aparición de la tecnología de los discos magnéticos, en lugar de utilizar tarjetas perforadas que el operador debía ir colocando en el lector, los trabajos de los programadores comenzaron a ser almacenados en discos desde eran escogidos por el sistema operativo para su ejecución.
 
@@ -197,7 +198,7 @@ Para seguir un esquema como el anterior es necesario que el sistema operativo re
 
 Un ejemplo de este tipo de sistemas operativos es el IBM OS/360, que fue lanzado en 1966 para utilizarlo en los _mainframes_ IBM System/360 (véase el <<segunda_generación>>).
 
-===== Sistemas de tiempo compartido
+==== Sistemas de tiempo compartido
 
 Los sistemas multiprogramados ofrecían un uso eficiente de la CPU pero no eran capaces de proporcionar interacción con el usuario.
 El usuario se limitaba a entregar los trabajos al operador y a esperar a que éste le devolviera los resultados.
@@ -242,7 +243,7 @@ Las primeras versiones de UNIX —lanzado por primera vez en 1970— el sistema 
 
 Estrictamente, el término *sistemas de tiempo compartido* hace referencia al tipo de _mainframe_ que hemos descrito anteriormente. Sin embargo, la mayor parte de los sistemas operativos de propósito general actuales —que utilizamos en ordenadores de escritorio y portátiles, dispositivos de mano, etc.— tienen características muy similares a las descritas. Por eso, algunos autores dicen que la mayor parte de los sistemas de propósito general actuales son *sistemas de tiempo compartido*, aunque no se usen en _mainframes_.
 
-==== Sistemas de escritorio
+=== Sistemas de escritorio
 
 En la década de 1970 aparecieron los primeros microprocesadores y con estos llegaron las _microcomputadoras_, _microordenadores_ o ordenadores domésticos.
 Se trataba de ordenadores pequeños interactivos para uso personal —equipaban pantalla y teclado para la E/S del usuario— que trajeron los primeros *sistemas operativos de escritorio* (((sistema, escritorio)))).
@@ -273,13 +274,13 @@ Para más información, véase el <<_criterios_de_planificación>>.
 
 Son muchos los ejemplos de este tipo de sistemas operativos. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <<cuarta_generación>>).
 
-==== Sistemas distribuidos
+=== Sistemas distribuidos
 
 En la actualidad es común el uso de redes para interconectar ordenadores individuales —por ejemplo Internet o la red de área local de una oficina— cada uno equipado con su procesador, su memoria, sus dispositivos de almacenamiento, su fuente de alimentación, etc.
 En las redes de ordenadores los procesadores de dichos ordenadores se comunican con otros procesadores a través de líneas de comunicación, como redes Ethernet o líneas telefónicas.
 Estos sistemas son comúnmente denominados *sistemas distribuidos* (((sistema, distribuido))).
 
-===== Tipos de sistemas informáticos distribuidos
+==== Tipos de sistemas informáticos distribuidos
 
 Sin entrar en detalles, los sistemas distribuidos pueden ser clasificados en dos grandes tipos:
 
@@ -306,7 +307,7 @@ Un servidor puede ser el cuello de botella no solo por su potencia sino también
 La potencia del servidor es lo de menos cuando se intenta distribuir en Internet archivos de gran tamaño —por ejemplo imágenes de CD o DVD— pues el problema es que varias descargas simultaneas pueden consumir todo el ancho de banda del servidor durante largos periodos de tiempo.
 ====
 
-===== Sistemas operativos para sistemas distribuidos
+==== Sistemas operativos para sistemas distribuidos
 
 Desde el punto de vista de los sistemas operativos para sistemas distribuidos es posible hacer la siguiente distinción:
 
@@ -324,7 +325,7 @@ Con este tipo de sistemas operativos el usuario no sabe en qué ordenador se eje
 Un ejemplo de sistema operativo distribuido es Amoeba, un sistema operativo distribuido de investigación escrito por Andrew S. Tanenbaum en Vrije Universiteit. Para más información, véase el http://www.cs.vu.nl/pub/amoeba/[sitio web de Amoeba].
 ====
 
-==== Sistemas de tiempo real
+=== Sistemas de tiempo real
 
 Los **sistemas de ((tiempo real))** (((sistema, tiempo real))) se utilizan cuando existen requerimientos estrictos de tiempo en la ejecución de ciertas tareas o en el procesamiento de flujos de datos.
 
@@ -358,40 +359,42 @@ Sin embargo si es útil para tareas relacionadas con la multimedia, la realidad 
 Este tipo de tiempo real está disponible en la mayor parte de los sistemas operativos de propósito general, pues es compatible con la memoria virtual y con otras facilidades propias de los sistemas de tiempo compartido.
 ====
 
-==== Sistemas de mano
+=== Sistemas de mano
 
 Con el nombre genérico de **sistemas de mano** (((sistema, de mano))) hacemos referencia a los _tablets_, lectores de libros electrónicos y teléfonos móviles.
 Los desarrolladores de aplicaciones y sistemas de mano deben enfrentarse a diversos desafíos, originados por el tamaño limitado de los dispositivos y la alimentación mediante el uso de baterías.
 Debido a esas limitaciones muchos sistemas de mano tienen poca cantidad de memoria, procesadores lentos —en comparación con sus equivalentes de escritorio— y pantallas pequeñas.
 
-=== Historia de los sistemas operativos
+// TODO: Explicar con qué propósito se diseñan
+
+== Historia de los sistemas operativos
 
 La historia de los sistemas operativos se puede dividir en 5 grandes etapas o generaciones.
 
 [[primera_generación]]
-==== 1ª Generación (1945-55)
+=== 1ª Generación (1945-55)
 
-===== Características
+==== Características
 
 * Sin sistema operativo.
 
 * Sólo hardware, sin lenguajes de programación.
 
-===== Ejemplos
+==== Ejemplos
 
 _Mainframe_ IBM 701 y 704.
 
 [[segunda_generación]]
-==== 2ª Generación (1955-64)
+=== 2ª Generación (1955-64)
 
-===== Características
+==== Características
 
 * Sistemas operativos de procesamiento por lotes.
 
 * Sistema operativo básico.
 Se empiezan a utilizar lenguajes de programación.
 
-===== Ejemplos
+==== Ejemplos
 
 El primer sistema operativo fue desarrollado por General Motors Research Laboratory en 1956 para su _mainframe_ IBM 701 (véase la <<instalación_ibm_702>>) con el fin de automatizar la carga de los trabajos.
 
@@ -405,17 +408,17 @@ El IBM 7090 —versión transistorizada del 709, que utilizaba válvulas de vac�
 ====
 
 [[tercera_generación]]
-==== 3ª Generación (1965-1968)
+=== 3ª Generación (1965-1968)
 
-===== Características
+==== Características
 
 * Sistemas operativos multiprogramados.
 
 * Aparecen más lenguajes de programación.
 
-===== Ejemplos
+==== Ejemplos
 
-====== IBM OS/360
+===== IBM OS/360
 
 El IBM OS/260 fue desarrollado por IBM para su _mainframe_ System/360 (véase la <<instalación_ibm_system_360>>).
 Su versión DOS/360 (_Disk Operating System/360_) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.
@@ -429,11 +432,11 @@ Los motivos fundamentales fueron ciertos problemas de organización interna de l
 Las previsiones iniciales eran de 1 millón de líneas de código y miles de componentes de software. La experiencia negativa del desarrollo del IBM OS/360 condujo al nacimiento de la _ingeniería del software_.
 
 [[cuarta_generación]]
-==== 4ª Generación
+=== 4ª Generación
 
 Esta generación abarca desde mediados de los años 60 hasta finales de la década de los 70.
 
-===== Características
+==== Características
 
 * Sistemas operativos de tiempo compartido.
 
@@ -443,9 +446,9 @@ Esta generación abarca desde mediados de los años 60 hasta finales de la déca
 .Terminal IBM 3279, muy popular en los años 70 -- Fuente: https://www.flickr.com/photos/vax-o-matic/5625208727[flickr.com]
 image::terminal_ibm_3279.jpg[]
 
-===== Ejemplos
+==== Ejemplos
 
-====== MULTICS
+===== MULTICS
 
 MUTICS fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general (véase la <<multics_mainframe>>).
 
@@ -458,7 +461,7 @@ Fue el primer sistema operativo en proporcionar un sistema de archivos jerárqui
 Además eliminó la separación entre el espacio de direcciones de los procesos y los archivos.
 Es decir, como si todos los archivos estuvieran mapeados en memoria, pudiendo así acceder a su contenido directamente (véase el <<_archivos_mapeados_en_memoria>>).
 
-====== VM/CMS
+===== VM/CMS
 
 VM/CMS es un sistema de IBM utilizado en los _mainframe_ System/360, System/370, System/390 y zSeries.
 VM es un _hipervisor_ que se encarga de virtualizar el hardware para crear múltiples máquinas virtuales, dando la sensación de que cada una es un _mainframe_ independiente.
@@ -468,7 +471,7 @@ Gracias a VM/CMS, cada usuario tiene la sensación de trabajar en un sistema com
 
 El desarrollo de VM/CMS comenzó en 1965 y la primera versión estuvo disponible a primeros de 1966. Las versiones actuales se denominan IBM z/VM.
 
-====== UNIX
+===== UNIX
 
 El sistema UNIX fue desarrollado originalmente por Bell Labs en 1970 para los sistemas PDP-11/20.
 La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
@@ -496,7 +499,7 @@ En la actualidad se considera que hay dos grandes familias de UNIX y las distint
 
 * La familia derivada de *BSD*, en la que se incluyen sistemas libres como: FreeBSD, NetBSD, OpenBSD, Darwin y DragonFly BSD, entre muchos otros.
 
-====== VMS
+===== VMS
 
 VMS es un sistema operativo diseñado originalmente por Digital Equipment Corporation (DEC) —ahora propiedad de HP— en 1978 para operar en minicomputadoras VAX.
 Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.
@@ -505,17 +508,17 @@ Las sigas VMS vienen de _virtual memory system_, que era una de sus principales 
 
 VMS es en cierta medida un ancestro de Microsoft Windows NT. Para desarrollar Windows NT, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation y muchos aspectos del diseño reflejan la experiencia de DEC en VMS.
 
-===== IBM OS/400
+==== IBM OS/400
 
 El IBM OS/400 es un sistema utilizado en la familia de minicomputadoras IBM AS/400 —desde 2006 llamada iSeries—.
 Fueron introducidos en el mercado en 1988 pero aun es posible verlos en algunas organizaciones.
 En 2008 el sistema operativo IBM OS/400 pasó a llamarse IBM i y siguen publicándose nuevas versiones en la actualidad.
 
-==== 5º Generación (años 1980, 1990 y 2000):
+=== 5º Generación (años 1980, 1990 y 2000):
 
 Esta generación abarca desde la década de los 80 hasta la actualidad.
 
-===== Características
+==== Características
 
 * Sistemas operativos de escritorio y ordenadores personales (PC).
 
@@ -526,15 +529,15 @@ Esta generación abarca desde la década de los 80 hasta la actualidad.
 Se puede observar una muestra de la interfaz gráfica de usuario de algunos estos sistemas en el artículo https://www.webdesignerdepot.com/2009/03/operating-system-interface-design-between-1981-2009/["`Operating System Interface Design Between 1981-2009`"].
 ====
 
-===== Ejemplos
+==== Ejemplos
 
-====== CP/M
+===== CP/M
 
 CP/M fue el sistema operativo estándar en la primera generación de microcomputadoras. Fue creado por Digital Research, Inc. —fundada por Gary Kildall— para ser el sistema operativo de los microordenadores basados en Intel 8080/85 y Zilog Z80.
 
 Con la elección de MS-DOS por parte de IBM para su IBM PC, CP/M fue perdiendo mercado paulatinamente hasta desaparecer. Sin embargo, la influencia de CP/M en MS-DOS es indudable, en tanto en cuanto QDOS, el predecesor de MS-DOS, estaba basado en las ideas de CP/M.
 
-====== MS-DOS
+===== MS-DOS
 
 MS-DOS fue el sistema operativo estándar en la segunda generación de microcomputadoras. No era ni multitarea ni multiusuario. Fue el primer sistema operativo del IBM PC —lanzado en 1981— y durante mucho tiempo fue ampliamente utilizado en toda la plataforma «PC compatible».
 
@@ -545,7 +548,7 @@ Microsoft adquirió el sistema y lo vendió a IBM con el nombre de MS-DOS.
 Tanto IBM como Microsoft lanzaron versiones de DOS, aunque originalmente IBM solamente validaba y empaquetaba el software de Microsoft.
 Microsoft lanzaba sus versiones bajo el nombre de «MS-DOS», mientras IBM las lanzaba bajo el nombre de «PC-DOS».
 
-====== OS/2
+===== OS/2
 
 OS/2 fue un sistema operativo creado por Microsoft e IBM como el recomendado para la segunda generación de ordenadores personales de IBM, equipados con procesador Intel 80286. Pero al final terminó siendo desarrollado en exclusiva por IBM.
 
@@ -574,7 +577,7 @@ OS/2 Warp 3 fue un sistema completo de 32-bit lanzado en 1994.
 Le seguiría OS/2 Warp 4, en 1996.
 Poco después, IBM anunció que OS/2 desaparecería.
 
-====== Windows 3.x
+===== Windows 3.x
 
 La familia Windows 3.x de Microsoft Windows fue desarrollada desde 1990 hasta 1994.
 Windows 3.0 (véase la <<windows_30>>) fue la primera versión de éxito de Windows, permitiendo a Microsoft competir con el Macintosh de Apple Computer y el Commodore Amiga.
@@ -592,7 +595,7 @@ Además, debido a que MS-DOS no aislaba a las aplicaciones del hardware y no se 
 En realidad Windows no se ejecutaba sobre MS-DOS, sino que hacía uso de él.
 Por ello es considerado como un sistema operativo.
 
-====== Windows 95, 98, Me
+===== Windows 95, 98, Me
 
 La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráficos híbridos de 16-bit/32-bit.
 
@@ -606,7 +609,7 @@ Entre las características de Windows 95 destacan: mejoras significativas en la 
 Windows 98 fue lanzado el 25 de junio de 1998.
 Le siguió Windows Me, el 14 de septiembre de 2000. Windows Me fue la última versión de la familia de sistemas operativos híbridos de 16-bit/32-bit que sucedió a la familia Windows 3.x.
 
-====== Windows NT, 2000, XP, Vista, 7, 8 y 10
+===== Windows NT, 2000, XP, Vista, 7, 8 y 10
 
 Windows NT fue un sistema operativo de 32-bit. El primero de la familia de sistemas operativos Microsoft Windows actuales.
 
@@ -636,7 +639,7 @@ Para favorecer la unificación de las dos familias de sistemas operativos Micros
 
 Windows XP —o Windows NT 5.1— completó en 2001 el proceso de unificación de las dos familias de sistemas operativos Windows. Con su aparición forzó la extinción de la familia Windows 9x, al sustituirla con una versión de Windows XP denominada Windows XP Home Edition, específica para la informática doméstica.
 
-====== GNU/Linux
+===== GNU/Linux
 
 GNU/Linux es un sistema operativo libre y, tal vez, el más famoso proyecto de software libre.
 
@@ -653,7 +656,7 @@ El núcleo Linux fue licenciado bajo la GNU General Public License (GPL), como e
 Pero Linux no es parte de dicho proyecto.
 El proyecto GNU tiene su propio nucleo, denominado Hurd, que sigue en desarrollo.
 
-====== Mach
+===== Mach
 
 Es un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
 El proyecto en la CMU se desarrolló desde 1985 hasta 1994.
