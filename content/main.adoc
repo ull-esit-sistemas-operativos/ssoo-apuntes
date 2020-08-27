@@ -17,7 +17,7 @@ include::{sectiondir}/introducción.adoc[]
 // Índice de términos
 // NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.
 //       Ver: https://github.com/asciidoctor/asciidoctor/issues/450
-ifeval::["{backend}" == "html"]
+ifeval::["{backend}" != "html5"]
 [index]
 == Índice
 endif::[]
