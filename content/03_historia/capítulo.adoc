@@ -243,8 +243,8 @@ Microsoft lanzaba sus versiones bajo el nombre de MS-DOS, mientras IBM las lanza
 
 [NOTE]
 ====
-https://www.pcjs.org/[PCjs] se pueden probar de forma sencilla sistemas operativos y aplicaciones del IBM PC.
-Solo necesitamos el navegador.
+En https://www.pcjs.org/[PCjs] se pueden probar de forma sencilla sistemas operativos y aplicaciones antiguas del IBM PC.
+Solo hace falta acceder con el navegador y elegir la experiencia que más nos llame la atención.
 ====
 
 === OS/2
