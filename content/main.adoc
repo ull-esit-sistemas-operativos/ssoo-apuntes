@@ -3,16 +3,34 @@ Jesús Torres <jmtorres@ull.es>
 Curso 2020-2021
 include::../config/attributes.adoc[]
 
-// Capítulos
-:leveloffset: +1
-:sectiondir: introducción
-include::{sectiondir}/introducción.adoc[]
+// Contenidos
+= Introducción
+:sectiondir: 01_definición
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: 02_tipos_de_sistemas
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: 03_historia
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+= Estructura de los sistemas operativos
+
 // include::estructura.adoc[]
+
+= Gestión de procesos
+
 // include::procesos.adoc[]
+
+= Gestión de la memoria
+
 // include::memoria.adoc[]
+
+= Gestión del almacenamiento
+
 // include::almacenamiento.adoc[]
+
 // include::bibliografía.adoc[]
-:leveloffset: -1
 
 // Índice de términos
 // NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.
