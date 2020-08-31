@@ -12,4 +12,4 @@ include::locale/attributes.adoc[]
 // Activar las macros de interfaz de usuario, como kbd o menu.
 :experimental:
 // Incluir la tabla de contenidos.
-:toc:
+:toc: left
