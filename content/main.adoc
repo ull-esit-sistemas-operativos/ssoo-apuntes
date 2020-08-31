@@ -5,18 +5,29 @@ include::../config/attributes.adoc[]
 
 // Contenidos
 = Introducción
-:sectiondir: 01_definición
+:sectiondir: C01-definición
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-:sectiondir: 02_tipos_de_sistemas
+:sectiondir: C02-tipos_de_sistemas
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-:sectiondir: 03_historia
+:sectiondir: C03-historia
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-= Estructura de los sistemas operativos
+= Organización de los sistemas operativos
+include::P02-preámbulo.adoc[]
 
-// include::estructura.adoc[]
+:sectiondir: C04-api
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C05-componentes
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C06-modo_dual
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C07-estructura
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
 = Gestión de procesos
 

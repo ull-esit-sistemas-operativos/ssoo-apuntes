@@ -11,7 +11,7 @@ Aunque, cómo veremos, no son preguntas sencillas de responder.
 
 En general no existe una definición universal de lo qué es un *((sistema operativo))*, aunque si muchas propuestas de diferentes autores:
 
-* Hay quién considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un un sistema operativo».
+* Hay quién considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un sistema operativo».
 +
 En realidad esta definición no es muy precisa puesto que las características incluidas pueden variar enormemente de un sistema a otro.
 Por ejemplo, algunos sistemas operativos apenas alcanzan el megabyte de espacio, careciendo incluso de las aplicaciones más básicas, mientras que otros ocupan gigabytes de espacio, incluyen una interfaz gráfica basada en ventanas y las aplicaciones más comunes que cualquier usuario puede necesitar.

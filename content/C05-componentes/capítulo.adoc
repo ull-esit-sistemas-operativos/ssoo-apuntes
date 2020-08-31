@@ -1,0 +1,155 @@
+= Componentes del sistema
+
+Como ya hemos comentado en diversas ocasiones en este tema, el sistema operativo ofrece una serie de servicios a través del funcionamiento coordinado de los diferentes componentes que lo forman.
+A fin de cuentas, crear un software tan complejo como un sistema operativo no es sencillo, por ello resulta más práctico dividirlo en piezas más pequeñas especializadas en aspectos concretos de la gestión del sistema.
+
+== Gestión de procesos
+
+La gestión de los procesos es un elemento central de todo sistema operativo ya que el _proceso_ es la unidad de trabajo en cualquier sistema operativo moderno:
+
+* _Un *proceso* puede ser considerado como un programa en ejecución_, es decir, cuando las instrucciones del programa son ejecutadas por una CPU.
+Un proceso es un entidad activa que necesita recursos —CPU, memoria, archivos, E/S— que se le asignan cuando es creado o cuando lo solicita durante la ejecución.
+Cuando el proceso termina el sistema operativo reclama de estos recursos aquellos que sean reutilizables.
+
+* Un _**programa** no es un proceso, es una entidad pasiva; como el contenido de un archivo en disco con las instrucciones que algún día una CPU ejecutará_.
+Un programa no puede hacer ningún tipo de trabajo a menos que sus instrucciones sean ejecutadas por una CPU pero si eso ocurre, ya no sería un programa sino un proceso.
+
+* La CPU ejecuta las instrucciones de cada proceso una detrás de otra, de manera que para conocer la siguiente instrucción a ejecutar cada proceso tiene un contador de programa que se lo indica a la CPU.
+Por tanto, aunque dos procesos estén asociados al mismo programa no pueden ser considerados el mismo proceso, ya que la secuencia de ejecución de instrucciones puede ser distinta al tener cada uno un contador de programa independiente.
+
+Por el momento estamos considerando que _proceso_ y _trabajo_ (véase el <<_mainframe>>) hacen referencia al mismo concepto.
+Sin embargo más adelante veremos que el segundo es mucho más general que el primero puesto que un proceso puede colaborar con otros procesos para desarrollar un trabajo determinado (véase el <<_operaciones_sobre_los_procesos>>).
+
+=== Responsabilidades de la gestión de procesos
+
+El sistema operativo es responsable de la siguientes actividades relacionadas con la gestión de procesos:
+
+* Crear y terminar procesos.
+* Suspender y reanudar los procesos.
+* Proporcionar mecanismos para la sincronización de procesos.
+* Proporcionar mecanismos para la comunicación entre procesos.
+* Proporcionar mecanismos para el tratamiento de interbloqueos.
+
+== Gestión de la memoria principal
+
+La memoria principal es un recurso fundamental para las operaciones de cualquier sistema operativo moderno.
+Esto es así porque generalmente es el único almacenamiento al que la CPU tiene acceso directo, por lo que para que un programa pueda ser ejecutado debe ser copiado a la memoria principal.
+Además sirve de zona de intercambio de datos entre la CPU y los dispositivos de E/S.
+Por ejemplo, para que la CPU pueda procesar los datos de un archivo en disco, éstos primero deben ser transferidos a la memoria principal.
+
+Para mejorar el aprovechamiento de la CPU y la respuesta al usuario es necesario tener copiados varios programas en la memoria al mismo tiempo.
+Puesto que dichos programas deben compartir la memoria existe automáticamente la necesidad de que el sistema operativo disponga de un componente de gestión de la memoria principal.
+
+=== Responsabilidad de la gestión de la memoria
+
+El componente de gestión de la memoria debe asumir las siguientes responsabilidades:
+
+* Controlar qué partes de la memoria están actualmente en uso y cuáles no.
+
+* Decidir que procesos añadir o extraer de la memoria cuando hay o falta espacio en la misma.
+
+* Asignar y liberar espacio de la memoria principal según sea necesario.
+
+== Gestión del sistema de archivos
+
+Los ordenadores pueden almacenar información en diferentes tipos de medios físicos —por ejemplo en discos magnéticos, en CD/DVD-ROM, en memorias de estado sólido, etc.— cada uno de los cuales tiene características propias.
+El acceso a cada tipo medio es controlado por un dispositivo —por ejemplo el controlador de disco, la unidad de CD-ROM, etc.— que también tiene características propias.
+Para simplificar todo esto el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
+Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir una unidad de almacenamiento lógico, el _archivo_.
+_Un *archivo* o fichero es una colección de información relacionada definida por su creador_ —por ejemplo programas, imágenes, datos—.
+Los archivos normalmente se organizan en directorios para facilitar su uso.
+
+=== Responsabilidades de la gestión del sistema de archivos
+
+El sistema operativo es responsable de la siguientes actividades relacionadas con la gestión del sistema de archivos:
+
+* Crear y borrar archivos.
+
+* Crear y borrar directorios para organizar los archivos.
+
+* Soportar __primitivas__footnote:[El término primitivas hace referencia a funciones que realizan operaciones muy básicas.
+Estas operaciones básicas pueden ser combinadas para realizar operaciones más complejas.] para la manipulación de archivos y directorios.
+
+* Mapear en memoria archivos del almacenamiento secundario.
+
+* Copias de seguridad de los archivos en sistemas de almacenamiento estables y seguros.
+
+== Gestión del sistema de E/S
+
+_El *sistema de E/S* oculta las peculiaridades del hardware al resto del sistema_.
+El sistema de E/S consta de:
+
+* Un componente de gestión de memoria con soporte para servicios de __buffering__footnote:[El buffering o uso de memoria intermedia es una estrategia para leer datos desde un dispositivo de E/S.
+La CPU instruye al dispositivo para que escriba bloques de datos en la memoria de forma que la operación se realiza mientras la CPU está ocupada procesando los bloques leídos anteriormente desde el dispositivo.
+Al escribir en un dispositivo de E/S el proceso es análogo.], __caching__footnote:[En el caching el sistema mantiene en la memoria principal una copia de los datos almacenados en los dispositivos de E/S del sistema como, por ejemplo, en los discos.
+Esto mejora la eficiencia del sistema puesto que el acceso a la memoria principal es más rápido que el acceso a los dispositivos de E/S.
+La memoria principal es de tamaño limitado, por lo que sólo se mantiene copia de los datos utilizados con mayor frecuencia.] y __spooling__footnote:[El spooling se utiliza en dispositivos que no admiten el acceso simultaneo de varias aplicaciones a vez, como es el caso de impresoras y unidades de cinta.
+Cuando varias aplicaciones intentan enviar un trabajo a una impresora el sistema operativo lo intercepta para copiar los datos enviados a un archivo distinto para cada aplicación.
+Cuando una aplicación termina de enviar el trabajo el archivo correspondiente es encolado para su impresión.
+Así los archivos son impresos de uno en uno.].
+Estos servicios son habitualmente utilizados por el resto del sistema de E/S.
+
+* _Una interfaz genérica de acceso a los controladores de dispositivo_.
+Esta interfaz genérica hace que el acceso de los procesos a los dispositivos sea a través de una interfaz similar, sin importar las particularidades de cada dispositivo.
+Por ejemplo, una característica de los sistemas UNIX es que cada dispositivo de E/S se representa como un archivo en el sistema de archivos.
+Esto permite que los procesos utilicen para acceder a los dispositivos de E/S las mismas primitivas que emplean para manipular los archivos.
+
+* _Controladores de dispositivo_ que son quiénes conocen las peculiaridades específicas del dispositivo para el que ha sido creado.
+
+== Gestión del almacenamiento secundario
+
+Los programas que se desean ejecutar deben estar en la memoria principal, o _almacenamiento primario_, pero ésta es demasiado pequeña para alojar todos los datos y todos los programas del sistema.
+Además, incluso aunque pudiera ser así, los datos almacenados en la memoria principal se perderían en caso de que fallara la alimentación.
+Por eso los ordenadores deben disponer de un almacenamiento secundario para respaldar a la memoria principal.
+Hoy en día lo más común es utilizar discos duros para esa tarea.
+
+=== Responsabilidades de la gestión del almacenamiento secundario
+
+El sistema operativo es responsable de la siguientes actividades relacionadas con la gestión del almacenamiento secundario:
+
+* Gestión del espacio libre.
+* Asignación del espacio de almacenamiento.
+* Planificación del acceso al disco.
+
+== Gestión de red
+
+_El componente de red se responsabiliza de la comunicación entre los procesadores en sistemas interconectados mediante una red de ordenadores_ —por ejemplo en Internet o la red de área local de una oficina—.
+
+== Protección y seguridad
+
+_*Protección* es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema_.
+Estos son necesarios cuando un sistema informático tiene múltiples usuarios y permite la ejecución concurrente de varios procesos, pues así sólo pueden utilizar los recursos aquellos procesos que hayan obtenido la autorización del sistema operativo.
+Además _la *protección* también permite mejorar la fiabilidad_ al permitir detectar los elementos del sistema que no operan correctamente.
+Un recurso desprotegido no puede defenderse contra el uso —o mal uso— de un usuario no autorizado o incompetente.
+
+Ejemplos típicos de mecanismos de protección son el hardware de direccionamiento de memoria, que se utiliza para que los procesos se ejecuten en su propio espacio de direcciones, y el temporizador, que garantiza que ningún proceso toma el control de la CPU de manera indefinida.
+Además los registros de los dispositivos de E/S suelen estar protegidos del acceso directo de los usuarios, lo que protege la integridad de los dispositivos, mientras que en algunos sistemas se pueden establecer permisos sobre los archivos para garantizar que sólo los procesos con la debida autorización tienen acceso.
+
+En todo caso, un sistema puede tener la protección adecuada pero estar expuesto a fallos y permitir accesos inapropiados.
+Por eso es necesario disponer de _mecanismos de *seguridad* que se encarguen de defender el sistema frente a ataques internos y externos_.
+Eso incluye a virus y gusanos, ataques de denegación de serviciofootnote:[En los _ataques de denegación_ de servicio se intentan utilizar todos los recursos de sistema para evitar que éste pueda dar servició a los usuarios legítimos.], robo de identidad y uso no autorizado del sistema, entre muchos otros tipos de ataque.
+
+== Interfaz de usuario
+
+Aunque cada sistema operativo ofrece servicios diferentes, vamos a detenernos en uno común e importante para todos los sistemas que han sido diseñados para que los usuarios interactúen con ellos directamente, la interfaz de usuario.
+
+Las interfaces de usuario pueden ser de diferentes tipos:
+
+* _Interfaz de línea de comandos o intérprete de comandos_, que permite que los usuarios introduzcan directamente los comandos que el sistema operativo debe ejecutar.
+En algunos sistemas este tipo de interfaz se incluye dentro del núcleo, pero en la mayor parte —como MSDOS y UNIX— se trata de un programa especial denominado _shell_ que se ejecuta cuando un usuario inicia una sesión.
+
+* _Interfaz de proceso por lotes_, en la que los comandos y directivas para controlar dichos comandos se listan en archivos que posteriormente pueden ser ejecutados.
+Este tipo de interfaz es la utilizada en sistemas no interactivos, como los de procesamiento por lotes y los multiprogramados.
+También suele estar disponible en los sistemas de tiempo compartido, junto con algún otro tipo de interfaz de usuario, como es el caso de la _shell_ de los sistemas UNIX.
+
+* _Interfaz gráfica de usuario_ o _GUI_ (_Graphical User Interface_) que permite a los usuarios utilizar un sistema de ventanas y menús controlable mediante el ratón.
+
+Puesto que la interfaz de usuario puede variar de un sistema a otro, y de un usuario a otro dentro del mismo sistema, no se suele incluir como un componente básico del sistema operativo, pero si como un servicio útil para los usuarios.
+
+A parte de la interfaz de usuario, cualquier sistema operativo moderno incluye una colección de programas del sistema.
+El papel de estos programas del sistema es proporcionar un entorno conveniente para la ejecución y desarrollo de programas.
+Entre los programas del sistema se suelen incluir aplicaciones para manipular archivos y directorios, programas para obtener información sobre el estado del sistema —como la fecha y hora o la memoria y el espacio en disco disponible—, herramientas de desarrollo —como intérpretes, compiladores, enlazadores y depuradores—, programas de comunicaciones —como clientes de correo electrónico y navegadores web—, etc.
+
+Además, muchos sistemas operativos disponen de programas que son útiles para resolver los problemas más comunes de los usuarios.
+Entre estos programas se suelen incluir: editores de archivos de texto y procesadores de texto, hojas de cálculo, sistemas de base de datos, juegos, etc.
+Ha esta colección de aplicaciones se la suele conocer con el término de _utilidades del sistema_ o _programas de aplicación_.
