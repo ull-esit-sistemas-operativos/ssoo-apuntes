@@ -27,6 +27,9 @@ pdf: prepare-pdf $(PDFOUTPUTFILE)
 epub: prepare-epub $(EPUBOUTPUTFILE)
 	@echo 'Hecho'
 
+clean:
+	rm -rf $(OUTPUTDIR)
+
 $(HTMLOUTPUTFILE): $(INPUTFILE)
 	$(ASCIIDOCTOR_CMD) $(ASCIIDOCTOR_OPTS) --backend html5 $< -o $@
 
@@ -50,4 +53,4 @@ prepare-pdf:
 prepare-epub:
 	@mkdir --parents $(EPUBOUTPUTDIR)
 
-.PHONY: html pdf epub all prepare-html prepare-pdf prepare-epub
+.PHONY: html pdf epub clean all prepare-html prepare-pdf prepare-epub
