@@ -241,6 +241,12 @@ Posteriormente Microsoft adquirió el sistema y lo vendió a IBM en 1981 con el 
 Tanto IBM como Microsoft lanzaron versiones de DOS, aunque originalmente IBM solamente validaba y empaquetaba el software de Microsoft.
 Microsoft lanzaba sus versiones bajo el nombre de MS-DOS, mientras IBM las lanzaba bajo el nombre de https://es.wikipedia.org/wiki/IBM_PC_DOS[IBM PC-DOS].
 
+[NOTE]
+====
+https://www.pcjs.org/[PCjs] se pueden probar de forma sencilla sistemas operativos y aplicaciones del IBM PC.
+Solo necesitamos el navegador.
+====
+
 === OS/2
 
 https://es.wikipedia.org/wiki/OS/2[OS/2] fue un sistema operativo creado por Microsoft e IBM para aprovechar las nuevas características de la segunda generación de ordenadores personales de IBM, equipados con procesador https://es.wikipedia.org/wiki/Intel_80286[Intel 80286].
