@@ -225,7 +225,7 @@ Por eso, en la actualidad, el término *sistema operativo de propósito general*
 Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <<_historia_cuarta_generación>>).
 
 == Sistemas de mano
-(((sistema, mano)))
+(((sistema, de mano)))
 
 Con el nombre genérico de **sistemas de mano** hacemos referencia a los _tablets_, lectores de libros electrónicos y teléfonos móviles.
 Los desarrolladores de aplicaciones y sistemas de mano deben enfrentarse a diversos desafíos, originados por el tamaño limitado de los dispositivos y la alimentación mediante el uso de baterías.
@@ -265,7 +265,7 @@ mismos dispositivos (véase la <<smp>>) y cada uno ejecuta una copia del núcleo
 El sistema operativo debe saber haber sido diseñado para saber repartir el trabajo entre los procesadores y compartir adecuadamente entre tareas y procesadores el resto de recursos del sistema. 
 Casi todos los sistemas multiprocesador modernos son de este tipo.
 
-* En los *sistemas de multiprocesamiento asimétrico*(((sistema, multiprocesamiento asimétrico)))(((multiprocesamiento asimétrico))) o *AMP* (_Asymmetric Multiprocessing_) hay un procesador principal y varios secundarios a quienes la principal planifica y entrega las tareas que deben ejecutar.
+* En los *sistemas de multiprocesamiento asimétrico*(((sistema, multiprocesamiento asimétrico)))(((multiprocesamiento, asimétrico))) o *AMP* (_Asymmetric Multiprocessing_) hay un procesador principal y varios secundarios a quienes la principal planifica y entrega las tareas que deben ejecutar.
 En ocasiones los procesadores secundarios se distinguen del principal por haber sido diseñados para realizar algún tipo concreto de tareas de forma muy eficiente o por estar conectadas a hardware especial.
 Ejemplos de esto son las https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico[GPU], que no son sino procesadores diseñados específicamente para el procesamiento de gráficos, o las CPU de E/S conectadas 
 discos duros para gestionarlos de forma más eficiente.

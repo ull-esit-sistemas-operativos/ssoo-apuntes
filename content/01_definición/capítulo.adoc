@@ -50,7 +50,7 @@ Es decir, describiendo sus funciones dentro de un sistema informático cualquier
 .Vista abstracta de los componentes de un sistema informático.
 image::componentes_sistema_informático.svg[]
 
-Un *((sistema informático))* puede ser dividido, _grosso modo_, en cuatro componentes: el hardware, los usuarios, los programas de aplicación y el sistema operativo (véase la <<componentes_sistema_informático>>):
+Un *sistema informático*(((sistema, informático))) puede ser dividido, _grosso modo_, en cuatro componentes: el hardware, los usuarios, los programas de aplicación y el sistema operativo (véase la <<componentes_sistema_informático>>):
 
 * *Programas de aplicación*. El objetivo fundamental de cualquier sistema informático es ejecutar programas para resolver los problemas informáticos de los usuarios.
 Con ese objetivo se construye su hardware y se desarrollan los programas de aplicación —procesadores de textos, hojas de cálculo, compiladores, navegadores de Internet, etc.— que usan los usuarios para resolver sus problemas.
