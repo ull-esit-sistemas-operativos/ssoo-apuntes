@@ -1,0 +1,210 @@
+= Componentes del sistema
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
+
+Crear un software tan complejo como un sistema operativo no es sencillo, por ello resulta más práctico dividirlo en piezas más pequeñas especializadas en aspectos concretos de la gestión del sistema.
+
+Cada sistema operativo diferentes componentes con distinto nombre.
+Lo que veremos en este capítulo es un esquema de los más comunes a la mayoría de sistemas operativos actuales.
+
+== Gestión de procesos
+(((gestión, procesos)))
+
+La gestión de los procesos es un elemento central de todo sistema operativo:
+
+====
+* El *((proceso))* es la unidad de trabajo en cualquier sistema operativo moderno.
+Es quién realiza las tareas que interesan a los usuarios.
+Por eso es a cada proceso al que se le asigna el tiempo de CPU y el resto de recursos del sistema, como por ejemplo: memoria, archivos o dispositivos de E/S abiertos.
+
+* Un *proceso* es un programa en ejecución.
+Un programa se convierte en proceso cuando las instrucciones del programa son cargadas en la memoria desde el archivo del ejecutable y se le asignan recursos para su ejecución.
++
+Los procesos son entidades activas que necesita recursos —CPU, memoria, archivos, dispositivos E/S.
+Algunos de esos recursos se asignan durante su creación, mientras que otros son solicitados por el proceso durante su ejecución —por ejemplo la memoria, de la que todo proceso necesita cierta cantidad para comenzar pero que luego puede pedir más dinámicamente durante su ejecución—.
+Cuando el proceso termina el sistema operativo reclama de estos recursos aquellos que sean reutilizables para otros procesos.
+
+* Un *programa* no es un proceso, es una entidad pasiva.
+El contenido de un archivo en disco con las instrucciones que algún día una CPU ejecutará.
+Un programa no puede hacer ningún tipo de trabajo a menos que sus instrucciones sean ejecutadas por una CPU pero si eso ocurre, ya no sería un programa sino un proceso.
+
+* Aunque varios procesos estén asociados al mismo programa no pueden ser considerados el mismo proceso.
++
+La CPU ejecuta las instrucciones de cada proceso una detrás de otra, de manera que para conocer la siguiente instrucción a ejecutar cada proceso tiene un contador de programa que se lo indica a la CPU, así como valores en los registros de la CPU que dependen de la historia pasada del proceso.
+Aunque varios procesos ejecuten el mismo programa, la secuencia de instrucciones ejecutadas y el estado del proceso en cada momento seguramente sean diferentes.
+Por lo tanto, no son el mismo proceso.
+====
+
+Por el momento estamos considerando que *proceso* y *trabajo* hacen referencia al mismo concepto porque en los sistemas más antiguos (véase el <<_mainframe>>) la unidad de trabajo se llamaba *trabajo* mientras que en los sistemas modernos se llama *proceso*, de tal forma que podemos considera al segundo una evolución del primero.
+
+Sin embargo, mirándolo exclusivamente desde la perspectiva de los sistemas operativos modernos son dos conceptos diferentes, puesto que un trabajo puede ser realizado por un solo proceso o mediante la colaboración de varios procesos.
+
+=== Responsabilidades de la gestión de procesos
+
+El componente de gestión de procesos es el responsable de la siguientes actividades:
+
+* Crear y terminar procesos.
+* Suspender y reanudar los procesos.
+* Proporcionar mecanismos para la sincronización de procesos.
+* Proporcionar mecanismos para la comunicación entre procesos.
+* Proporcionar mecanismos para el tratamiento de interbloqueos.
+
+== Gestión de la memoria principal
+(((gestión, memoria)))
+
+La memoria principal es un recurso fundamental para las operaciones de cualquier sistema operativo moderno.
+Esto es así porque generalmente es el único almacenamiento al que la CPU tiene acceso directo.
+Para que un programa pueda ser ejecutado debe ser copiado a la memoria principal.
+Y para que un proceso tenga acceso a datos almacenados en cualquier otro dispositivo de almacenamiento, primero deben ser copiados a la memoria principal.
+
+Para mejorar el aprovechamiento de la CPU y la respuesta al usuario es necesario tener en la memoria varios programas al mismo tiempo.
+Puesto que dichos programas deben compartir la memoria durante su ejecución, automáticamente existe la necesidad de que el sistema operativo disponga de un componente de gestión de la memoria principal.
+
+=== Responsabilidad de la gestión de la memoria
+
+El componente de gestión de la memoria debe asumir las siguientes responsabilidades:
+
+* Controlar qué partes de la memoria están actualmente en uso y cuáles no.
+
+* Decidir que procesos —o partes de procesos— añadir o extraer de la memoria cuando hay o falta espacio en la misma.
+
+* Asignar y liberar espacio de la memoria principal según sea necesario.
+
+== Gestión del sistema de E/S
+(((gestión, sistema de E/S)))
+
+El *sistema de E/S*(((sistema, de E/S))) hace de interfaz con el hardware, oculta las peculiaridades del hardware al resto del sistema.
+
+====
+El sistema de E/S consta de:
+
+* *Un componente de gestión de memoria especializado en E/S*, con soporte para servicios de _buffering_, _caching_ y _spooling_.
+Estos servicios son utilizados por el resto del sistema de E/S.
+
+* *Una interfaz genérica de acceso a los controladores de dispositivo*.
+Cada dispositivo es diferente, pero los procesos y el resto de componentes del sistema no deben tener necesidad de conocer sus particularidades a la hora de acceder a ellos.
+Es decir, para acceder a cualquier disco duro el sistema ofrece una misma interfaz, impedientemente de su marca y modelo.
+Y lo mismo ocurre con las tarjetas de sonido o con los dispositivos de entrada, como teclados y ratones.
+Así los programadores pueden acceder a cualquier dispositivo abstrayendo de las particularidades concretas del hardware instalado en cada ordenador.
+
+* *Controladores de dispositivo*, que generalmente son desarrollados por los fabricantes de los dispositivos y son el componente que realmente conoce las peculiaridades específicas del dispositivo.
+Por tanto, las peticiones que hacen los procesos a la interfaz de E/S genérica la traslada el sistema a los controladores de dispositivo para que estos las conviertan en acciones concretas sobre el hardware del dispositivo.
+====
+
+// TODO: Ejemplo de código donde se usa esta interfaz.
+
+[NOTE]
+====
+Una característica de los sistemas UNIX es que todos los dispositivos de E/S se representa como un archivo en el sistema de archivos.
+Esto se puede comprobar rápidamente visitando el directorio path::/dev[] en cualquier sistema GNU/Linux o BSD, ya que es allí donde suelen estar.
+
+Así no hace falta diseñar y aprender una interfaz diferente para cada tipo de dispositivo.
+Los procesos que quiere utilizar cualquier dispositivos de E/S solo tienen que usar las mismas funciones y llamadas al sistema que emplean para manipular los archivos normales.
+Por ejemplo, {sys_open}, {sys_read}, {sys_write} o {sys_close}.
+====
+
+=== ((Buffering))
+
+El *buffering* o uso de memoria intermedia es una estrategia en la que se almacenan los datos de manera temporal en una zona de la memoria, llamada _buffer_.
+
+Consiste en que el controlador indica a un dispositivo que escriba los bloques de datos solicitados en un _buffer_.
+Cuando la escritura del _buffer_ se ha completado, se transfiere su contenido al proceso que hizo la solicitud para que procese los datos.
+Mientras lo hace, el controlador indica al dispositivo que copie nuevos datos en el _buffer_.
+
+Por ejemplo, al grabar sonido del dispositivo de sonido del sistema no se entregan las muestras una a una al proceso.
+En su lugar se graban varios miles de muestras que se escriben en un _buffer_.
+Cuando el _buffer_ está lleno, se transfieren todas las muestras al proceso de una sola vez y se siguen grabando muestras en el _buffer_.
+
+Lo mismo ocurre al reproducir sonido.
+El proceso no entrega las muestras de sonido de una en una al dispositivo, sino que empaqueta varias miles que se copian al _buffer_ de una sola vez.
+Entonces el controlador indica al dispositivo que lea las muestras desde ese _buffer_ según lo vaya necesitando.
+
+=== ((Caching))
+
+En el *caching* el sistema mantiene en la memoria principal una copia de datos  leídos o escritos recientemente en los dispositivos de E/S del sistema —por ejemplo, en los discos duros o en las memorias USB—.
+Esto mejora la eficiencia del sistema si accede con frecuencia a los mismos datos, puesto que el acceso a la memoria principal es más rápido que el acceso a los dispositivos de E/S.
+La memoria principal es de tamaño limitado, por lo que sólo se mantiene copia de los datos utilizados con mayor frecuencia.
+
+=== ((Spooling))
+
+El *spooling* se utiliza en dispositivos que no admiten el acceso simultaneo de varias aplicaciones a vez, como es el caso de impresoras y unidades de cinta.
+
+Cuando varias aplicaciones intentan enviar un trabajo a una impresora, el sistema operativo lo intercepta para copiar los datos enviados a un archivo independiente.
+Cuando una aplicación termina de enviar el trabajo, el archivo correspondiente se mete en una cola de donde son extraídos los trabajos para su impresión de uno en uno.
+Así no hay acceso simultáneo al dispositivo por parte de varios procesos, mientras que estos pueden entregar el trabajo y continuar con su trabajo sin esperar a que la impresora esté disponible.
+
+== Gestión del almacenamiento secundario
+(((gestión, almacenamiento secundario)))
+
+Dentro de los dispositivos de E/S, los dedicados al almacenamiento secundario —como discos duros, memorias USB o lectores de DVD-ROM— merecen un tratamiento especial.
+
+Los programas que se desean ejecutar deben estar en la memoria principal —o almacenamiento primario— pero ésta es demasiado pequeña para alojar todos los datos y todos los programas del sistema.
+Además, incluso aunque pudiera ser así, los datos almacenados en la memoria principal se perderían en caso de que ocurriera un fallo de alimentación.
+Por eso los ordenadores disponen de un almacenamiento secundario para guardar datos de forma masiva y permanente.
+
+El gestor del almacenamiento secundario utiliza el sistema de E/S para acceder a los dispositivos y ofrecer al sistema servicios más complejos.
+
+=== Responsabilidades de la gestión del almacenamiento secundario
+
+El gestor del almacenamiento secundario es el responsable de:
+
+* Gestionar el espacio libre en discos duros y resto de dispositivos de almacenamiento secundario.
+* Asignar el espacio de almacenamiento.
+* Planificar el acceso a los dispositivos, de tal forma que se orden las operaciones de forma eficiente.
+
+== Gestión del sistema de archivos
+(((gestión, sistema de archivos)))
+
+Los ordenadores pueden almacenar información en diferentes tipos de medios físicos —por ejemplo en discos duros magnéticos, CD/DVD-ROM, memorias USB o SSD— cada uno de los cuales tiene características propias.
+El acceso a cada tipo medio es controlado por un dispositivo —por ejemplo el controlador de disco o la unidad de DVD-ROM— que también tiene características propias.
+El sistema de E/S y la gestión del almacenamiento secundario simplifican el acceso a estos dispositivos, pero no lo suficiente como para que sea cómodo usarlos constantemente en cualquier programa. 
+
+Para simplificar aun más el acceso al almacenamiento, el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
+Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir el *archivo*, una unidad de almacenamiento lógico con la que trabajan los procesos para guarda y recuperar datos.
+
+====
+Un *((archivo))* o ((fichero)) es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario —por ejemplo un programa, una imagen o un documento—.
+====
+
+Los archivos normalmente se organizan en directorios para facilitar su uso y organización.
+
+=== Responsabilidades de la gestión del sistema de archivos
+
+El sistema de archivos utiliza al gesto del almacenamiento secundario y al sistema de E/S y es responsable de la siguientes actividades:
+
+* Crear y borrar archivos.
+
+* Crear y borrar directorios para organizar los archivos.
+
+* Soportar operaciones básicas para la manipulación de archivos y directorios: lectura y escritura de datos, cambio de nombre, cambio de permisos, etc.
+
+* Mapear en memoria archivos del almacenamiento secundario.
+
+* Hacer copias de seguridad de los archivos en sistemas de almacenamiento estables y seguros.
+
+== Gestión de red
+(((gestión, red)))
+
+El componente de red se responsabiliza de la comunicación con otros sistemas interconectados mediante una red de ordenadores —por ejemplo, en Internet o en la red de área local de una oficina—.
+
+== Protección y seguridad
+
+====
+*((Protección))* es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema.
+
+* Son mecanismos necesarios cuando un sistema informático tiene múltiples usuarios y permite la ejecución concurrente de varios procesos, pues así sólo pueden utilizar los recursos aquellos procesos que hayan obtenido la autorización del sistema operativo.
+* Permite mejorar la fiabilidad, al permitir detectar los elementos del sistema que no operan correctamente.
+Un recurso desprotegido no puede defenderse contra el uso —o mal uso— de un usuario no autorizado o incompetente.
+====
+
+Ejemplos típicos de mecanismos de protección son el hardware de direccionamiento de memoria, que se utiliza para que los procesos se ejecuten en su propio espacio de direcciones, y el temporizador, que garantiza que ningún proceso toma el control de la CPU por tiempo indefinido.
+Además, los registros de los dispositivos de E/S suelen estar protegidos del acceso directo de los usuarios, lo que protege la integridad de los dispositivos.
+Mientras que en algunos sistemas se pueden establecer permisos sobre los archivos para garantizar que sólo los procesos con la debida autorización tengan acceso.
+
+====
+En todo caso, un sistema puede tener la protección adecuada pero estar expuesto a fallos y permitir accesos inapropiados.
+Por eso es necesario disponer de mecanismos de *seguridad* que se encarguen de defender el sistema frente a ataques internos y externos.
+====
+
+Eso incluye a virus y gusanos, ataques de https://es.wikipedia.org/wiki/Ataque_de_denegaci%C3%B3n_de_servicio[denegación de servicio], robo de identidad y uso no autorizado del sistema, entre muchos otros tipos de ataque.

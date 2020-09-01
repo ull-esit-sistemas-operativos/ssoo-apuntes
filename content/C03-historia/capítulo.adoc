@@ -38,7 +38,7 @@ Utilizaba tubos de vacío y tarjetas perforadas.
 El IBM 7090 —versión transistorizada del 709, que utilizaba válvulas de vacío, como todos los de la serie 700— y el posterior 7094, fueron usados por la NASA para los cálculos de control de las misiones de los programas espaciales Mercury y Gemini y durante la primera etapa del programa Apolo.
 ====
 
-[[_historia_generación]]
+[[_historia_segunda_generación]]
 == 2ª Generación (1955-64)
 
 En la segunda generación de ordenadores los transistores reemplazan a las válvulas de vacío.

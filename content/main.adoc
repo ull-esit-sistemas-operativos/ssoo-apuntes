@@ -2,6 +2,7 @@
 Jesús Torres <jmtorres@ull.es>
 Curso 2020-2021
 include::../config/attributes.adoc[]
+include::syscalls.adoc[]
 
 // Contenidos
 = Introducción
@@ -17,16 +18,19 @@ include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 = Organización de los sistemas operativos
 include::P02-preámbulo.adoc[]
 
-:sectiondir: C04-api
+:sectiondir: C04-componentes
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-:sectiondir: C05-componentes
+:sectiondir: C05-servicios
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-:sectiondir: C06-modo_dual
+:sectiondir: C06-api
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-:sectiondir: C07-estructura
+:sectiondir: C07-modo_dual
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C08-estructura
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
 = Gestión de procesos

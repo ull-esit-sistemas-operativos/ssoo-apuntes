@@ -1,0 +1,82 @@
+= Servicios del sistema
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
+
+Un sistema operativo proporciona un entorno para la ejecución de programas.
+Ese entorno debe proporcionar ciertos servicios a los programas y a los usuarios de esos programas.
+Estos servicios son proporcionados gracias al funcionamiento coordinado de los diferentes componentes del sistema.
+
+// TODO: Repasar esta imagen para que coincida con los servicios indicados aquí.
+.Diagrama general de organización de los sistemas operativos.
+image::organización_sistema.svg[]
+
+Aunque cada sistema operativo proporciona servicios diferentes, es posible identificar unas pocas clases comunes.
+
+== Servicios que garantizan el funcionamiento eficiente del sistema
+
+* *Asignación de recursos*.
+Cuando hay múltiples usuarios o múltiples trabajos ejecutándose los recursos deben ser asignados a cada uno de ellos.
++
+Ejemplos de estos recursos son la CPU —asignada por el planificador de la CPU del gestor de procesos— la memoria principal —asignada por el gestor de memoria— y el almacenamiento de archivos —asignada por el sistema de archivos y el gestor del almacenamiento secundario—.
+Esta asignación debe hacerse con el fin de garantizar la máxima eficacia del sistema.
+
+* *Monitorización*.
+Es normal querer hacer seguimiento de los recursos que los usuarios usan y en qué cantidad.
+Esto puede ser útil para facturar a los usuarios por el uso de los recursos —por ejemplo, facturar por el tiempo de CPU— para configurar el sistema mejorando el rendimiento o para limitar cuánto de cada recurso puede usar cada usuario como máximo.
+
+* *Protección y seguridad*.
+Protección implica asegurar que el acceso a los recursos del sistema
+está controlado.
+Por ejemplo, que la información almacenada en un sistema multiusuario sólo puede ser accedida por su propietario o que un proceso no pueda interferir con otro o con el sistema operativo.
+La seguridad del sistema respecto a los agentes exteriores también es
+importante.
+Empieza obligando a los usuarios a autenticarse en él para obtener acceso a los recursos del mismo, pero incluye defender de intentos de acceso inválidos a través de la red.
+
+== Servicios útiles para el usuario
+
+* *Interfaz de usuario*. Los sistemas operativos diseñados para que los usuarios interactúen con ellos deben proporcionar una interfaz de usuario adecuada, que puede ser diferente formas según le propósito del sistema.
+
+* *Operaciones de E/S*. Un programa puede necesitar realizar operaciones de E/S que pueden
+involucrar a archivos o a dispositivos de E/S.
+Por eficiencia y protección un usuario, normalmente los procesos no puede tener acceso directo a los dispositivos; por lo que el sistema operativo debe proporcionar medios para solicitar estas operaciones a los componentes correspondientes del sistema operativo.
+
+* *Manipulación de sistemas de archivos*. Los programas necesitan leer y escribir archivos y
+directorios, crearlos y borrarlos por nombre, buscar un archivo dado y listar información
+acerca del mismo.
+
+* *Comunicaciones*. Los procesos necesitan poder intercambiar información entre ellos, tanto si
+se ejecutan en el mismo ordenador, como en diferentes equipos unidos por una red.
+
+* *Detección de errores*. El sistema operativo necesita tener conocimiento de los posibles errores y para cada tipo de error debe tomar la acción apropiada para asegurar una computación consiste y segura.
+Por ejemplo, pueden haber errores del hardware —como fallos de energía o errores en la
+memoria— en la E/S —como errores de paridad o falta de papel en la impresora— y en los
+programas de usuario —como desbordamientos aritméticos o accesos ilegales a la memoria—.
+
+=== Interfaz de usuario
+(((interfaz, de usuario)))
+
+La *interfaz de usuario* es un servicio fundamental para todos los sistemas diseñados para que los usuarios interactúen con ellos directamente, por lo que nos vamos a detener un poco más en él.
+
+Las interfaces de usuario pueden ser de diferentes tipos:
+
+* *Interfaz de línea de comandos*(((interfaz, línea de comandos))) o *((intérprete de comandos))*, que permite que los usuarios introduzcan directamente los comandos que el sistema operativo debe ejecutar.
+En algunos sistemas este tipo de interfaz se incluye dentro del núcleo, pero en la mayor parte —como MSDOS y UNIX— se trata de un programa especial denominado _shell_ que se ejecuta cuando un usuario inicia una sesión.
+
+* *Interfaz de proceso por lotes*(((interfaz, proceso por lotes))), en la que los comandos y directivas para controlar dichos comandos se listan en archivos que posteriormente pueden ser ejecutados.
+Este tipo de interfaz es la utilizada en sistemas no interactivos, como los antiguos sistemas de procesamiento por lotes y los sistemas multiprogramados.
++
+También suele estar disponible en los sistemas de tiempo compartido y en los sistemas de escritorio modernos, junto con algún otro tipo de interfaz de usuario.
+Por ejemplo, la _shell_ de los sistemas UNIX permite indicar comandos uno a uno —de forma interactiva— pero también permite usar _scripts_ —un archivo con una lista de órdenes para que se ejecuten automáticamente de principio a fin—.
+
+* *Interfaz gráfica de usuario*(((interfaz, gráfica de usuario))) o *(GUI)* (_Graphical User Interface_) que permite a los usuarios utilizar un sistema de ventanas y menús controlable mediante el ratón.
+
+Puesto que la interfaz de usuario puede variar de un sistema a otro, y de un usuario a otro dentro del mismo sistema, no se suele etiquetar como un componente básico del sistema operativo, sino como un servicio ofrecido por el sistema operativo.
+
+A parte de la interfaz de usuario, cualquier sistema operativo moderno incluye una colección de **programas del sistema**(((programa, del sistema))).
+El papel de estos programas del sistema es proporcionar un entorno conveniente para la ejecución y desarrollo de programas.
+Entre los programas del sistema se suelen incluir aplicaciones para manipular archivos y directorios, programas para obtener información sobre el estado del sistema —como la fecha y hora o la memoria y el espacio en disco disponible— herramientas de desarrollo —como intérpretes, compiladores, enlazadores y depuradores— programas de comunicaciones —como clientes de correo electrónico y navegadores web— etc.
+
+Además, muchos sistemas operativos disponen de programas que son útiles para resolver los problemas más comunes de los usuarios.
+Entre estos programas se suelen incluir: editores de archivos de texto y procesadores de texto, hojas de cálculo, sistemas de base de datos, juegos, etc.
+Ha esta colección de aplicaciones se la suele conocer con el término de *((utilidades del sistema))* o *programas de aplicación*(((programa, de aplicación))).

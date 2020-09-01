@@ -1,10 +1,9 @@
 El estudio de la organización interna de los sistemas operativos requiere del análisis de tres aspectos diferentes:
 
-. Los componentes del sistema operativo y sus interconexiones (véase el <<_componentes_del_sistema>>).
+* Los componentes del sistema operativo y sus interrelaciones.
 
-. Los servicios que el sistema operativo proporciona a través del funcionamiento coordinado de dichos componentes (véase la ).
+* Los servicios que el sistema operativo proporciona a través del funcionamiento coordinado de dichos componentes.
 
-. La interfaz de programación que el sistema operativo ofrece a usuarios y programadores como forma de acceso a dichos servicios.
+* La interfaz de programación que el sistema operativo ofrece a usuarios y programadores como forma de acceso a dichos servicios.
 
-El estudio de los componentes del sistema operativo lo dejaremos para más adelante, tras ver la forma usual en la que los programas acceden a los servicios del sistema operativo y, por tanto, en la que se comunican indirectamente con dichos componentes.
-Respecto a los servicios que el sistema operativo proporciona, no entraremos en ello puesto que cada uno ofrece servicios diferentes, aunque siempre es posible identificar unos pocos tipos comunes a todos.
+También veremos como como se categorizan los sistemas operativos según la forma en la que se interconectan sus componentes.
