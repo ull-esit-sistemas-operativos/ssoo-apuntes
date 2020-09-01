@@ -191,7 +191,7 @@ El componente de red se responsabiliza de la comunicación con otros sistemas in
 == Protección y seguridad
 
 ====
-*((Protección))* es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema.
+*Protección*((protección)) es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema.
 
 * Son mecanismos necesarios cuando un sistema informático tiene múltiples usuarios y permite la ejecución concurrente de varios procesos, pues así sólo pueden utilizar los recursos aquellos procesos que hayan obtenido la autorización del sistema operativo.
 * Permite mejorar la fiabilidad, al permitir detectar los elementos del sistema que no operan correctamente.
@@ -204,7 +204,7 @@ Mientras que en algunos sistemas se pueden establecer permisos sobre los archivo
 
 ====
 En todo caso, un sistema puede tener la protección adecuada pero estar expuesto a fallos y permitir accesos inapropiados.
-Por eso es necesario disponer de mecanismos de *seguridad* que se encarguen de defender el sistema frente a ataques internos y externos.
+Por eso es necesario disponer de mecanismos de *((seguridad))* que se encarguen de defender el sistema frente a ataques internos y externos.
 ====
 
 Eso incluye a virus y gusanos, ataques de https://es.wikipedia.org/wiki/Ataque_de_denegaci%C3%B3n_de_servicio[denegación de servicio], robo de identidad y uso no autorizado del sistema, entre muchos otros tipos de ataque.

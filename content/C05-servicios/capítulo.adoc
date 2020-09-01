@@ -69,7 +69,7 @@ Este tipo de interfaz es la utilizada en sistemas no interactivos, como los anti
 También suele estar disponible en los sistemas de tiempo compartido y en los sistemas de escritorio modernos, junto con algún otro tipo de interfaz de usuario.
 Por ejemplo, la _shell_ de los sistemas UNIX permite indicar comandos uno a uno —de forma interactiva— pero también permite usar _scripts_ —un archivo con una lista de órdenes para que se ejecuten automáticamente de principio a fin—.
 
-* *Interfaz gráfica de usuario*(((interfaz, gráfica de usuario))) o *(GUI)* (_Graphical User Interface_) que permite a los usuarios utilizar un sistema de ventanas y menús controlable mediante el ratón.
+* *Interfaz gráfica de usuario*(((interfaz, gráfica))) o *((GUI))* (_Graphical User Interface_) que permite a los usuarios utilizar un sistema de ventanas y menús controlable mediante el ratón.
 
 Puesto que la interfaz de usuario puede variar de un sistema a otro, y de un usuario a otro dentro del mismo sistema, no se suele etiquetar como un componente básico del sistema operativo, sino como un servicio ofrecido por el sistema operativo.
 

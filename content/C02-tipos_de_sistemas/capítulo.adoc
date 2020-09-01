@@ -259,13 +259,13 @@ En la actualidad existen dos tipos de sistemas multiprocesador:
 
 // TODO: Figura SMP
 
-* En los *sistemas de multiprocesamiento simétrico*(((sistema, multiprocesamiento simétrico)))(((multiprocesamiento, simétrico))) o *SMP* (_Symmetric Multiprocessing_) todos los procesadores son iguales.
+* En los *sistemas de multiprocesamiento simétrico*(((sistema, multiprocesamiento, simétrico)))(((multiprocesamiento, simétrico))) o *SMP* (_Symmetric Multiprocessing_) todos los procesadores son iguales.
 Todos comparte los mismos recursos, pueden acceder a los
 mismos dispositivos (véase la <<smp>>) y cada uno ejecuta una copia del núcleo del sistema operativo.
 El sistema operativo debe saber haber sido diseñado para saber repartir el trabajo entre los procesadores y compartir adecuadamente entre tareas y procesadores el resto de recursos del sistema. 
 Casi todos los sistemas multiprocesador modernos son de este tipo.
 
-* En los *sistemas de multiprocesamiento asimétrico*(((sistema, multiprocesamiento asimétrico)))(((multiprocesamiento, asimétrico))) o *AMP* (_Asymmetric Multiprocessing_) hay un procesador principal y varios secundarios a quienes la principal planifica y entrega las tareas que deben ejecutar.
+* En los *sistemas de multiprocesamiento asimétrico*(((sistema, multiprocesamiento, asimétrico)))(((multiprocesamiento, asimétrico))) o *AMP* (_Asymmetric Multiprocessing_) hay un procesador principal y varios secundarios a quienes la principal planifica y entrega las tareas que deben ejecutar.
 En ocasiones los procesadores secundarios se distinguen del principal por haber sido diseñados para realizar algún tipo concreto de tareas de forma muy eficiente o por estar conectadas a hardware especial.
 Ejemplos de esto son las https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico[GPU], que no son sino procesadores diseñados específicamente para el procesamiento de gráficos, o las CPU de E/S conectadas 
 discos duros para gestionarlos de forma más eficiente.
