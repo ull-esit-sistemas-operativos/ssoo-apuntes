@@ -340,13 +340,7 @@ Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VM
 Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de un API nativo no documentado públicamente.
 Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.
 
-La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo microkernel (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores https://es.wikipedia.org/wiki/IA-32[Intel IA-32], https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
-
-[NOTE]
-====
-https://es.wikipedia.org/wiki/IA-32[Intel IA-32] es la denominación oficial del juego de instrucciones Intel x86 de 32 bits.
-El primer procesador en implementarlo fue el https://es.wikipedia.org/wiki/Intel_80386[Intel 80386].
-====
+La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo microkernel (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores https://es.wikipedia.org/wiki/IA-32[x86], https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
 
 Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
 Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.
@@ -374,9 +368,8 @@ Torvalds y otros desarrolladores rápidamente adaptaron Linux para que funcionar
 
 El núcleo Linux fue licenciado bajo la GNU General Public License (GPL), como el resto del proyecto GNU.
 Pero Linux no es parte de dicho proyecto.
-El proyecto GNU tiene su propio núcleo, denominado https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd], que aun sigue en desarrollo.
+El proyecto GNU tiene su propio núcleo, denominado https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd], que lleva 30 años en desarrollo y parece que aun está muy lejos de estar listo.
 
-[[_mach]]
 === Mach
 
 https://es.wikipedia.org/wiki/Mach_(n%C3%BAcleo)[Mach] ss un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
@@ -387,8 +380,8 @@ En los sistemas operativos _*microkernel*_ solo se implementa en el núcleo del 
 El resto de los servicios proporcionados por el sistema operativo se implementan como procesos con menos privilegios.
 
 Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los _microkernel_ dominarían el universo de los sistema operativos.
-Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd], que lleva más de dos década de retraso.
-Por fortuna, otros sistemas operativos _microkernel_ han tenido algo más éxito, como es el caso de https://es.wikipedia.org/wiki/QNX[QNX].
+Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd], que lleva varias décadas de retraso.
+Por fortuna, otros sistemas operativos _microkernel_ han tenido algo más éxito, como es el caso de https://es.wikipedia.org/wiki/QNX[QNX] o https://en.wikipedia.org/wiki/MINIX_3[MINIX 3].
 Mientras que Google parece que lo va a intentar con https://es.wikipedia.org/wiki/Google_Fuchsiahttps://es.wikipedia.org/wiki/Google_Fuchsia[Google Fuchsia], el posible sustituto de Android.
 
 // TODO: Meter más de Apple en la historia de los sistemas operativos

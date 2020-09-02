@@ -20,25 +20,30 @@ Por eso es a cada proceso al que se le asigna el tiempo de CPU y el resto de rec
 
 * Un *proceso* es un programa en ejecución.
 Un programa se convierte en proceso cuando las instrucciones del programa son cargadas en la memoria desde el archivo del ejecutable y se le asignan recursos para su ejecución.
-+
+====
+
 Los procesos son entidades activas que necesita recursos —CPU, memoria, archivos, dispositivos E/S.
 Algunos de esos recursos se asignan durante su creación, mientras que otros son solicitados por el proceso durante su ejecución —por ejemplo la memoria, de la que todo proceso necesita cierta cantidad para comenzar pero que luego puede pedir más dinámicamente durante su ejecución—.
 Cuando el proceso termina el sistema operativo reclama de estos recursos aquellos que sean reutilizables para otros procesos.
 
-* Un *programa* no es un proceso, es una entidad pasiva.
+====
+Un *programa* no es un proceso, es una entidad pasiva.
 El contenido de un archivo en disco con las instrucciones que algún día una CPU ejecutará.
 Un programa no puede hacer ningún tipo de trabajo a menos que sus instrucciones sean ejecutadas por una CPU pero si eso ocurre, ya no sería un programa sino un proceso.
+====
 
-* Aunque varios procesos estén asociados al mismo programa no pueden ser considerados el mismo proceso.
-+
+Aunque varios procesos estén asociados al mismo programa no pueden ser considerados el mismo proceso.
 La CPU ejecuta las instrucciones de cada proceso una detrás de otra, de manera que para conocer la siguiente instrucción a ejecutar cada proceso tiene un contador de programa que se lo indica a la CPU, así como valores en los registros de la CPU que dependen de la historia pasada del proceso.
 Aunque varios procesos ejecuten el mismo programa, la secuencia de instrucciones ejecutadas y el estado del proceso en cada momento seguramente sean diferentes.
 Por lo tanto, no son el mismo proceso.
-====
 
+[NOTE]
+====
 Por el momento estamos considerando que *proceso* y *trabajo* hacen referencia al mismo concepto porque en los sistemas más antiguos (véase el <<_mainframe>>) la unidad de trabajo se llamaba *trabajo* mientras que en los sistemas modernos se llama *proceso*, de tal forma que podemos considera al segundo una evolución del primero.
 
-Sin embargo, mirándolo exclusivamente desde la perspectiva de los sistemas operativos modernos son dos conceptos diferentes, puesto que un trabajo puede ser realizado por un solo proceso o mediante la colaboración de varios procesos.
+Sin embargo, mirándolo exclusivamente desde la perspectiva de los sistemas operativos modernos, son dos conceptos diferentes aunque relacionados.
+En un sistema moderno un trabajo puede ser realizado por un solo proceso o mediante la colaboración de varios.
+====
 
 === Responsabilidades de la gestión de procesos
 
@@ -191,7 +196,7 @@ El componente de red se responsabiliza de la comunicación con otros sistemas in
 == Protección y seguridad
 
 ====
-*Protección*((protección)) es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema.
+*Protección*(((protección))) es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema.
 
 * Son mecanismos necesarios cuando un sistema informático tiene múltiples usuarios y permite la ejecución concurrente de varios procesos, pues así sólo pueden utilizar los recursos aquellos procesos que hayan obtenido la autorización del sistema operativo.
 * Permite mejorar la fiabilidad, al permitir detectar los elementos del sistema que no operan correctamente.
@@ -203,7 +208,7 @@ Además, los registros de los dispositivos de E/S suelen estar protegidos del ac
 Mientras que en algunos sistemas se pueden establecer permisos sobre los archivos para garantizar que sólo los procesos con la debida autorización tengan acceso.
 
 ====
-En todo caso, un sistema puede tener la protección adecuada pero estar expuesto a fallos y permitir accesos inapropiados.
+Un sistema puede tener la protección adecuada pero estar expuesto a fallos y permitir accesos inapropiados.
 Por eso es necesario disponer de mecanismos de *((seguridad))* que se encarguen de defender el sistema frente a ataques internos y externos.
 ====
 

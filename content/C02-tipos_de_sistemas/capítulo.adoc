@@ -205,8 +205,12 @@ Pese a estas diferencias, los *sistemas operativos de escritorio* se han benefic
 Los sistemas de escritorio actuales son *multiusuario* y *multitarea*; incluyen sistemas de archivos con permisos, autenticación y mecanismos de protección de la memoria —como medidas para proteger los datos de los usuarios— y han incorporado muchas otras características de los sistemas operativos para _mainframe_.
 
 ====
-Pese a que con el tiempo los sistemas de escritorio han ido adquiriendo características desarrolladas en los _mainframe_, no debemos olvidar que ambos tipos de sistemas se siguen diseñando con objetivos diferentes.
+Aunque con el tiempo los sistemas de escritorio han ido adquiriendo características desarrolladas en los _mainframe_, no debemos olvidar que ambos tipos de sistemas se siguen diseñando con objetivos diferentes.
 Mientras que en los _mainframe_ se persigue maximizar la fiabilidad y utilización eficiente de los recursos, en los sistemas de escritorio se maximiza la facilidad de uso y el tiempo de respuesta al usuario, poniendo algo de atención al rendimiento.
+
+Los *sistemas operativos de escritorio* modernos ya nos son «solo de escritorio» ni se ejecutan únicamente en ordenadores domésticos.
+Se utilizan en un altísimo porcentaje en servidores, superordenadores y hasta en dispositivos móviles.
+Por eso, en la actualidad, el término *sistema operativo de propósito general* (((sistema operativo, propósito general))) es mucho más adecuado.
 ====
 
 [NOTE]
@@ -214,12 +218,6 @@ Mientras que en los _mainframe_ se persigue maximizar la fiabilidad y utilizaci�
 El *tiempo de respuesta* al usuario se puede considerar como el intervalo de tiempo entre un comando de un usuario —por ejemplo un clic— y la respuesta del sistema a dicho comando.
 En ocasiones este tiempo se minimiza a costa de un uso menos eficiente de los recursos del sistema, por lo que no es un objetivo deseable para diseñar un _mainframe_.
 Para más información, véase el <<_criterios_de_planificación>>.
-====
-
-====
-Los *sistemas operativos de escritorio* modernos ya nos son «solo de escritorio» ni se ejecutan únicamente en ordenadores domésticos.
-Se utilizan en un altísimo porcentaje en servidores, superordenadores y hasta en dispositivos móviles.
-Por eso, en la actualidad, el término *sistema operativo de propósito general* (((sistema operativo, propósito general))) es mucho más adecuado.
 ====
 
 Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <<_historia_cuarta_generación>>).
@@ -324,13 +322,12 @@ Desde el punto de vista de los sistemas operativos para sistemas distribuidos es
 Por ejemplo, implementan algún mecanismo que permita a diferentes procesos en diferentes ordenadores enviar y recibir mensajes.
 Además suelen incorporar la opción de proporcionar algunos servicios de red, como la compartición de archivos y dispositivos con otros equipos de la misma red.
 +
-====
 Los ordenadores con sistemas operativos de red son autónomos.
 Simplemente es que gracias al sistema operativo de red conocen la existencia de la red y saben usarla para comunicarse con otros ordenadores de la misma.
-
++
 Este tipo de sistemas operativos son los más utilizados en los tipos de sistemas distribuidos comentados anteriormente.
 En la actualidad, la inmensa mayoría de sistemas de escritorio y dispositivos de mano utilizan sistemas operativos de red.
-====
+
 
 * Los *sistemas operativos distribuidos* (((sistema operativo, distribuido))) crean en el usuario la ilusión de que está en un único ordenador, aunque en realidad el sistema operativo controla todos los ordenadores de la red, dando al usuario acceso transparente a los recursos en todos los equipos de la misma.
 +
@@ -374,8 +371,8 @@ Los **sistemas de ((tiempo real))** se utilizan cuando existen requerimientos es
 En general se usan frecuentemente en dispositivos de control donde, dentro de unos márgenes estrictos de tiempo, se deben tomar datos de uno o varios sensores, para analizarlos posteriormente y realizar, en consecuencia, alguna acción con algún mecanismo de control.
 Por ejemplo, se suelen utilizar en sistemas de control industrial, domótica, armamento, automoción —en la inyección electrónica de combustible, sistemas de frenado y de control de tracción— o en dispositivos médicos.
 
-Los sistema de tiempo real están muy relacionados con los *sistemas empotrados*.
-Los *sistemas empotrados*(((sistema, empotrado))):
+Los *sistema de tiempo real* están muy relacionados con los *sistemas empotrados*(((sistema, empotrado))).
+Estos últimos:
 
 * Se diseñan para realizar tareas muy específicas. No son sistemas de propósito general sino de propósito específico.
 
@@ -383,9 +380,9 @@ Los *sistemas empotrados*(((sistema, empotrado))):
 
 * Estos sistemas están tanto en el motor de los automóviles y los robots que los fabrican, como en reproductores de DVD, microondas o dispositivos de red.
 
-====
 Los *sistemas de tiempo real* pueden ser clasificados en *sistemas de tiempo real estricto* y *sistemas de tiempo real flexible*:
 
+====
 * Los *sistemas de tiempo real estricto* (((sistema, tiempo real, estricto)))(((tiempo real, estricto))) o *((hard real-time))* garantizan que las tareas serán realizadas dentro de unos márgenes estrictos de tiempo.
 +
 Para ello, todas las situaciones imprevistas que puedan ocasionar retardos en el funcionamiento del sistema operativo deben estar perfectamente limitadas en tiempo.

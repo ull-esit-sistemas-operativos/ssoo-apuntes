@@ -3,97 +3,145 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
-_Los sistemas operativos modernos pertenecen a un tipo de software que se dice que está controlado mediante interrupciones_:
-
-* Si no hay ningún proceso que ejecutar ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo debe permanecer inactivo esperado a que algo ocurra.
-
-* Los sucesos que requieren la activación del sistema casi siempre se indican mediante una interrupción:
-
-    ** Cuando un proceso comente un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una *excepción* —que no es más que una interrupción generada por software— que despierta al sistema operativo para que haga lo que sea más conveniente.
-
-    ** Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo porque se ha completado una transferencia de datos— se genera una interrupción que despierta al sistema operativo.
-
-Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, _necesitamos estar seguros de que un error que se produzca en un programa sólo afecte al proceso que lo ejecuta_.
-Por ejemplo, en los sistemas de tiempo compartido —y en cualquier otro tipo de sistema operativo donde los programas tengan que compartir la memoria, como es el caso de los sistema microprogramados— un programa erróneo puede modificar el código de otro programa, los datos de otro programa o el propio sistema operativo.
+Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, necesitamos estar seguros de que un error en un programa sólo afecte al proceso que lo ejecuta —por ejemplo, que un proceso no puede modificar la memoria de otro proceso o la del núcleo del sistema—.
 Por eso es necesario establecer mecanismos de protección frente a los errores en los programas que se ejecutan en el sistema.
+
+== Software controlado mediante interrupciones
+
+Antes de entender como funcionan estos mecanismos de protección debemos entender que los sistemas operativos modernos pertenecen a un tipo de software que se dice que está controlado mediante interrupciones.
+
+Los sucesos que requieren la atención del sistema casi siempre se indican mediante una interrupción:
+
+* Cuando un proceso comente un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una *excepción* —que no es más que una interrupción lanzada por la propia CPU al detectar un error al ejecutar una instrucción—.
+Esta excepción despierta al sistema operativo para que haga lo que sea más conveniente.
+
+* Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción.
+Esta excepción despierta al sistema operativo para al sistema operativo para que atienda la petición.
+
+* Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción que despierta al sistema operativo.
+
+Esto funciona así porque el sistema operativo configura la CPU durante el arranque para que si ocurre cualquier interrupción o excepción la ejecución salte a rutinas en el código del núcleo, con el objeto de darles el tratamiento adecuado.
+
+Si ningún proceso realiza una acción ilegal o pide un servicio ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo permanece inactivo esperado a que algo ocurra.
+
+Teniendo todo esto en cuenta podremos entender mejor como funciona el modo dual.
 
 == Operación en modo dual
 
-Para evitar este tipo de problemas es necesario poder distinguir entre la ejecución de código del sistema operativo y del código de los programas de usuario.
-El método que utilizan la mayor parte de los sistemas operativos consiste en _utilizar algún tipo de soporte en el hardware que permita diferencia entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —*instrucciones privilegiadas*— para que sólo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo_.
+Para proteger el sistema de programas con errores es necesario poder distinguir entre la ejecución de código del sistema operativo y del código de los programas de usuario, de tal forma que el código de los programas de usuarios esté más limitado en lo que puede hacer que el del sistema operativo.
 
-Como mínimo son necesarios dos modos de operación diferentes:
+El método que utilizan la mayor parte de los sistemas operativos consiste en utilizar algún tipo de soporte en la CPU que permita diferencia entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —llamadas *((instrucciones privilegiadas))*— para que sólo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo.
 
-* _En el *modo usuario* se ejecuta el código de las tareas de los usuarios_.
+=== Modos de operación
+
+Así que como mínimo son necesarios dos modos de operación diferentes:
+
+====
+
+* En el *modo usuario*(((modo, usuario))), en el que se ejecuta el código de los procesos de los usuarios.
 Si se hace un intento de ejecutar una instrucción privilegiada en este modo, el hardware la trata como ilegal y genera una excepción que es interceptada por el sistema operativo, en lugar de ejecutar la instrucción.
 
-* _En el *modo privilegiado*_ —también denominado *modo supervisor*, *modo del sistema* o *modo kernel*— _se ejecuta el código de las tareas del sistema operativo_.
-El hardware es el encargado de garantizar que las instrucciones privilegiadas sólo pueden ser ejecutadas en este modo.
+* En el *modo privilegiado*(((modo, privilegiado))) —también denominado *modo supervisor*(((modo, supervisor))), *modo del sistema*(((modo, del sistema))) o *modo kernel*(((modo, kernel)))— se ejecuta el código de las tareas del sistema operativo.
+La CPU es la encargada de garantizar que las instrucciones privilegiadas sólo pueden ser ejecutadas en este modo.
+====
 
-El modo actual de operación _puede venir indicado por un *bit de modo* que se añade al hardware de la computadora_, de forma que si por ejemplo el bit está a 0, el código en ejecución opera en modo privilegiado mientras que si el bit está a 1, el código en ejecución opera en modo usuario.
+El modo actual de operación puede venir indicado por un *bit de modo*(((bit, de modo))) en alguno de los registros de configuración de la CPU, de tal forma que, si por ejemplo, el bit está a 0, la CPU considera que el código en ejecución opera en modo privilegiado, mientras que si el bit está a 1, el código en ejecución opera en modo usuario.
 
-Comúnmente en el grupo de las instrucciones privilegiadas se suelen incluir:
+Comúnmente en el grupo de las *instrucciones privilegiadas* se suelen incluir:
 
-* _Las instrucción para conmutar al modo usuario_.
-* _Las instrucciones de E/S_.
-* _Las instrucciones necesarias para la gestión de las interrupciones_.
+* Las instrucción para conmutar al modo usuario desde el modo privilegiado.
+* Las instrucciones para acceder a dispositivos de E/S.
+* Las instrucciones necesarias para la gestión de las interrupciones.
+Por ejemplo, para desactivas —evitando que se lancen— activarlas y configurarlas. 
+
+[NOTE]
+====
+Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de que cada uno sirva para ejecutar código con diferente nivel de privilegio.
+
+Por ejemplo, la arquitectura Intel x86 soporta 4 modos.
+Sin embargo, los sistemas operativos con mayor cuota de mercado —incluyendo Microsoft Windows, macOS, Linux y Android— solo utilizan dos de ellos.
+Los motivos son que los desarrolladores de sistemas no encuentran que tenga ninguna ventaja realmente significativa y que complica portar el sistema operativo a procesadores que solo soportan dos modos.
+
+Para más información, véase https://es.wikipedia.org/wiki/Anillo_(seguridad_inform%C3%A1tica)[«Anillo (seguridad informática) -- Wikipedia»].
+====
+
+=== Ejecución de instrucciones
 
 A continuación podemos ver el ciclo de vida de la ejecución de instrucciones en un sistema con modo dual de operación:
 
-1.
-_Inicialmente, al arrancar la computadora, el hardware se inicia en el modo privilegiado_ —es decir, con el bit de modo a 0—.
-En este modo se carga el sistema operativo e inicia su ejecución.
+====
+. Inicialmente, al arrancar el ordenador, la CPU se inicia en el modo privilegiado —es decir, en nuestro ejemplo, con el bit de modo a 0—.
+En este modo se carga el núcleo del sistema operativo e inicia su ejecución.
 
-2.
-_El sistema operativo debe cambiar al modo usuario —poniendo el bit de modo a 1— antes de ceder el control a un proceso de usuario_.
+. El núcleo del sistema operativo debe cambiar al modo usuario —poniendo el bit de modo a 1— antes de ceder la CPU a un proceso de usuario.
 Esto ocurre cuando es necesario que un proceso de usuario continúe o inicie su ejecución (véase el <<_el_asignador>>).
+Así se asegura que el código de los procesos de usuario siempre se ejecute en modo usuario, con menos privilegios.
 
-3.
-_El hardware conmuta a modo privilegiado cuando ocurre una interrupción o una excepción_ —poniendo el bit de modo a 0— antes de pasar el control al código del sistema operativo que se encargará de tratarlas.
+. La CPU conmuta a modo privilegiado cuando ocurre una interrupción o una excepción —poniendo el bit de modo a 0— antes de comenzar el código del sistema operativo que se encargará de tratarlas.
+====
 
-Esto último es importante pues, como ya hemos comentado, los sistemas operativos están controlados mediante interrupciones.
-Al activarse el modo privilegiado cada vez que ocurre una interrupción podemos estar seguros de que las tareas del sistema operativo se ejecutará en modo privilegiado.
+Esto último es muy importante.
+Como ya hemos comentado, los sistemas operativos están controlados mediante interrupciones.
+Al activarse el modo privilegiado cada vez que ocurre una interrupción, podemos estar seguros de que las tareas del sistema operativo se ejecutarán siempre en modo privilegiado.
 
-Cuando se dispone de la protección del modo dual el hardware se encarga de detectar los errores de ejecución y de notificarlo al sistema operativo mediante excepciones, siendo responsabilidad de este último realizar un tratamiento adecuado de los mismos.
-Por lo general, si un programa falla de alguna forma, como por ejemplo intentando utilizar una instrucciones ilegal o de acceder a una zona de memoria inválida, el sistema operativo lo hace terminar de manera anormal.
+Cuando se dispone de la protección del modo dual, el hardware se encarga de detectar los errores de ejecución y de notificarlo al sistema operativo mediante excepciones, siendo responsabilidad de este último realizar un tratamiento adecuado de los mismos.
+Por lo general, si un programa falla de alguna forma —como por ejemplo, intentando utilizar una instrucciones ilegal o de acceder a una zona de memoria inválida— el sistema operativo lo hace terminar.
 
 == Protección de la memoria
 
 La memoria principal debe acomodar tanto el sistema operativo como a los diferentes procesos de los usuarios.
 Por eso la memoria normalmente se divide en dos partes:
 
-1.
-__La primera parte sirve para albergar el sistema operativo residente__footnote:[El termino sistema operativo residente hace referencias a los componentes del sistema operativo que deben estar permanentemente en la memoria.
-Comúnmente dicho conjunto de elementos componen el núcleo del sistema.].
+1. La primera parte sirve para albergar el núcleo del sistema operativo.
++
 El sistema operativo puede estar localizado tanto en la parte baja como en la parte alta de la memoria.
-El factor determinante en la elección es la localización del vector de interrupciones.
+El factor determinante en la elección es la localización del vector de interrupciones, que es una tabla en la memoria que define las direcciones a las que saltará la CPU en caso de que ocurra una interrupción o una excepción.
++
 Puesto que en la mayor parte de las arquitecturas éste reside en la parte baja de la memoria, normalmente el sistema operativo también se aloja en la parte baja.
 
-2.
-_La segunda parte alberga los procesos de usuario_.
+2. La segunda parte alberga los procesos de usuario.
 
-Sin embargo en los sistemas operativos modernos los procesos no tienen acceso libre a toda memoria física con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:
+Sin embargo, en los sistemas operativos modernos los procesos no tienen acceso libre a toda memoria física, con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:
 
-* _El sistema operativo proporciona a cada proceso una «vista» privada de la memoria similar a la que tendrían si cada uno de ellos se estuviera ejecutando en solitario_ (véase la ).
+====
+* El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; similar a la que tendrían si cada uno de ellos se estuviera ejecutando en solitario (véase la <<protección_memoria>>).
 
-* A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina *espacio de direcciones virtual* del proceso y _está formado por el conjunto de direcciones que puede generar la CPU para un proceso dado_.
+* A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina *espacio de direcciones virtual*(((espacio de direcciones, virtual))) del proceso.
+Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
+Por ejemplo, en una CPU de 32 bits el espacio de direcciones virtual tiene 4GB, desde la dirección 0x00000000 a 0xFFFFFFFF.
 
-* Durante los accesos a la memoria principal en tiempo de ejecución estas *direcciones virtuales* son convertidas en direcciones físicas antes de ser enviadas a la memoria principal.
-Por tanto _las *direcciones físicas* son las direcciones reales que ve la memoria,_ mientras que _el *espacio de direcciones físico* es el conjunto de direcciones físicas que corresponden a un espacio de direcciones virtual dado_.
+* Durante los accesos a la memoria principal durante la ejecución del proceso, estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la CPU en direcciones físicas, antes de ser enviadas a la memoria principal.
+Por tanto las *direcciones físicas*(((dirección, física))) son las direcciones reales que ve la memoria.
+Mientras que el *espacio de direcciones físico*(((espacio de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un espacio de direcciones virtual dado.
+====
 
-_La conversión de una dirección virtual en una física la realiza en tiempo de ejecución un dispositivo hardware denominado MMU (Memory-Management Unit)_.
-Las ventajas de este dispositivo desde el punto de vista de la protección de la memoria son que:
+[[protección_memoria]]
+.Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
+image::protección_memoria.svg[]
 
-* _Permite el aislamiento de los procesos_, creando para cada uno la ilusión de que toda la memoria es para él y evitando que un proceso pueda acceder a la memoria de otros procesos.
+La conversión de una dirección virtual en una física la realiza en tiempo de ejecución un componente de la CPU denominado MMU (_Memory-Management Unit_).
 
-* _Permite marcar los modos de acceso autorizados en las diferentes regiones de la memoria_ —como por ejemplo lectura, escritura y ejecución— evitando que el código ejecutado en modo usuario tenga acceso a zonas a las que no debería tenerlo.
+Las ventajas de usar esta técnica, desde el punto de vista de la protección de la memoria son:
+
+* Permite el aislamiento de los procesos, creando para cada uno la ilusión de que toda la memoria es para él y evitando que un proceso pueda acceder a la memoria de otros procesos.
+
+* Permite marcar modos de acceso autorizados en las diferentes regiones de la memoria —como por ejemplo lectura, escritura y ejecución— evitando que el código ejecutado en modo usuario tenga acceso a zonas a las que no debería tenerlo.
 El acceso a la memoria en un modo no autorizado se considera una instrucción privilegiada, por lo que ese tipo de acceso desde el modo usuario siempre genera una excepción.
+Por ejemplo, si se intenta ejecutar instrucciones en una zona de memoria no marcada con el permiso de ejecución.
 
 == El temporizador
 
-_El *temporizador* se utiliza para poder estar seguros de que el sistema operativo es capaz de mantener el control de la CPU_, puesto que lo que no puede ocurrir es que un proceso entre en un bucle infinito de manera que nunca devuelva el control al sistema operativo.
+El *((temporizador))* se configura por el sistema operativo durante el arranque del sistema para interrumpir a la CPU a intervalos regulares.
+Así, cuando el temporizador interrumpe, el control se transfiere automáticamente al núcleo del sistema .
+Entonces este puede:
 
-El temporizador se configura durante el arranque del sistema para interrumpir a la CPU a intervalos regulares.
-Así, cuando el temporizador interrumpe, el control se transfiere automáticamente al sistema operativo.
-Entonces este puede: conceder más tiempo al proceso en ejecución, detenerlo y darle más tiempo de CPU en el futuro o tratar la interrupción como un error y terminar de manera anormal el programa.
-Indudablemente las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.
+* Conceder más tiempo al proceso en ejecución.
+* Detenerlo y darle más tiempo de CPU en el futuro 
+* Tratar la interrupción como un error y terminar el programa.
+
+====
+El temporizador se utiliza para asegurar que ningún proceso acapara la CPU indefinidamente.
+Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del que no sale jamás.
+====
+
+Obviamente, las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.

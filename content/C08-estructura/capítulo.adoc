@@ -4,86 +4,180 @@ ifndef::sectiondir[:sectiondir: .]
 include::../../config/attributes.adoc[]
 
 Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <<_componentes_del_sistema>>).
-En esta sección comentaremos su organización e interconexión dentro del núcleo.
+En esta sección comentaremos cómo se clasifican los distintos sistemas operativos según la organización e interconexión de sus componentes.
 
 == Estructura sencilla
+(((estructura, sencilla)))
 
-_Los sistemas con *estructura sencilla* no tienen una estructura bien definida_.
-Es decir, los interfaces y niveles de funcionalidad no están bien separados.
+====
+Los sistemas con *estructura sencilla* se caracterizan por: 
 
-Por ejemplo, en MSDOS los programas de aplicación podían acceder directamente a la BIOS o al hardware para hace acceder a cualquier dispositivo (véase la ).
+* No tener una estructura bien definida.
+Los componentes no están bien separados y las interfaces entre ellos no están bien definidas.
+
+* Son sistemas *(monolíticos)*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.
+====
+
+=== MS-DOS
+
+Por ejemplo, en el https://es.wikipedia.org/wiki/MS-DOS[MS-DOS] los programas de aplicación podían acceder directamente a toda la memoria y a cualquier dispositivo.
 Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el sistema completo.
-Como el Intel 8086 para el que fue escrito MSDOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.
 
-Otro ejemplo es el de UNIX original, donde se combinaba un montón de funcionalidad en un mismo nivel, el núcleo (véase la ).
-Es decir, todo lo que estaba por encima del hardware y por debajo de las llamadas al sistema era el núcleo.
-Este proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
-En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener en un mismo nivel.
-_Esa concentración de funcionalidad en el núcleo define a los sistemas de estructura sencilla como sistemas de núcleo *monolítico*_.
+// TODO: Programa residente como núcleo
+[[estructura_msdos]]
+.Esquema de la estructura de MS-DOS.
+image::estructura_msdos.svg[]
 
-Tanto MSDOS como UNIX eran originalmente sistemas pequeños y simples, limitados por la funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
-Lo cierto es que con mejor soporte del hardware se puede dividir el sistema operativo en piezas más pequeñas y apropiadas que las del MSDOS y UNIX original.
+Como el https://en.wikipedia.org/wiki/Intel_8086[Intel 8086] para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.
+
+=== UNIX
+
+Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde si había una separación clara entre procesos de usuario y código del sistema, pero juntaba un montón de funcionalidad en el núcleo del sistema.
+
+[[estructura_unix]]
+.Esquema de la estructura de UNIX.
+image::estructura_unix.svg[]
+
+El núcleo proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
+En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, sino se compartimenta adecuadamente.
+
+Tanto MS_DOS como UNIX eran originalmente sistemas pequeños y simples, limitados por la funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
+Lo cierto es que con mejor soporte del hardware se puede dividir el sistema operativo en piezas más pequeñas y apropiadas que las del MS-DOS y el UNIX original.
 
 == Estructura en capas
+(((estructura, en capas)))
 
-_Un método para dividir el sistema operativo en piezas más pequeñas, con el fin de hacerlo más modular, es partirlo en capas_.
-Las capas se seleccionan de manera que cada una use sólo funciones y servicios de las capas inferiores y de servicios sólo a las capas superiores.
-Cada capa no tiene que saber como se implementan las funciones que utiliza de las capas inferiores, sólo debe conocer qué es lo que hacen y como utilizar.
-Por lo tanto cada capa tiene la responsabilidad de ocultar la existencia de estructuras de datos, operaciones y hardware a las capas de nivel superior.
-Este tipo de sistemas son los que se denominan con *estructura en capas*.
+====
+Los sistemas con *estructura en capas* se caracterizan por: 
 
-Los sistemas con estructura en capas siguen concentrado la mayor parte de la funcionalidad en el núcleo, por lo que _también son sistemas **monolíticos**_ aunque el núcleo es más modular.
-Ejemplos de este tipo de sistemas operativos son el IBM OS/2 y Microsoft Windows (véase la ).
+* La funcionalidad se divide en capas, de tal forma que una capa solo utiliza funciones y servicios de la capa inmediatamente inferior y lo hace a través de una interfaz bien definida.
 
-Sin embargo esta forma de dividir los componentes del sistema operativo no está libre de inconvenientes:
+* Como en la programación orientada a objetos, cada capa oculta a la capa superior los detalles de su implementación.
+Por ejemplo, las estructuras de datos internas que usa y las operaciones o el hardware de la capa inferior que utiliza.
 
-* _La mayor dificultad con los sistemas con estructura en capas es definirlas_.
-Esto debe ser planificado cuidadosamente debido a la restricción, comentada anteriormente, de que un capa sólo puede utilizar los servicios de las capas inferiores.
-Por ejemplo, el planificador de CPU suele tener información de los procesos que están en la memoria y parte de esa información puede ser intercambiada con el disco para aumentar la memoria principal disponible.
-Este planteamiento nos lleva a pensar que la gestión del almacenamiento secundario debe ir en una capa inferior a la del planificador de la CPU.
-Sin embargo el planificador debe replanificar la CPU cuando el proceso que actualmente la ocupa solicita alguna operación de E/S, por lo que la gestión del almacenamiento secundario debe estar encima del planificador de la CPU para que le pueda decir que replanifique.
-_Al final la solución de compromiso es tender hacia sistemas con pocas capas donde cada una tiene mucha funcionalidad_.
+* Escalan mejor que los sistemas con *estructura sencilla* porque las capas hacen que el código esté mejor compartimentado.
+Por ejemplo, al corregir un _bug_ o añadir una nueva funcionalidad solo hay que preocuparse de su efecto en la capa afecta y no en todo el código del núcleo —siempre que no se altere la interfaz de la capa con el exterior—. 
 
-* _Esta estrategia es sin duda mucho menos eficiente que la de los sistemas de estructura sencilla_.
-En cada capa los parámetros son modificados y los datos necesarios deben de ser transferidos, por lo que cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.
+* Ser menos eficiente que la de los sistemas de *estructura sencilla*
+En cada capa los argumentos son transformados y los datos necesarios deben de ser transferidos al invocar operaciones en la capa inferior, por lo que cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.
+
+* También son sistemas *(monolíticos)*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.
+====
+
+// TODO: Revisar esto.
+Un ejemplo de este tipo de sistemas operativos es el https://es.wikipedia.org/wiki/OS/2[IBM OS/2].
+
+[[estructura_os2]]
+.Esquema de la estructura de IBM OS/2.
+image::estructura_os2.svg[]
+
+=== Dificultades con el diseño
+
+Es importante tener en cuenta que diseñar un sistema con *estructura en capas* no es tan sencillo como pudiera parecer.
+La definición de las capas y sus funcionalidades debe ser planificada cuidadosamente debido a la restricción, comentada anteriormente, de que un capa sólo puede utilizar los servicios de las capas inferiores.
+
+Por ejemplo, el planificador de la CPU suele tener información de los procesos que están en la memoria.
+Parte de esa información puede ser almacenada en el disco para aumentar la memoria principal disponible.
+Esto nos debería llevar a pensar que la gestión del almacenamiento secundario debe ir en una capa inferior a la del planificador de la CPU, para que así el segundo pueda pedir al primero que guarde los datos en disco.
+
+Sin embargo, el planificador de la CPU debe asignar la CPU a otro proceso cuando el proceso que actualmente la ocupa solicita alguna operación de E/S —lo típico en multiprogramación—.
+Como es la gestión del almacenamiento secundario el que debe pedir una operación al planificador de la CPU, ahora el primero debe estar sobre el segundo.
+
+La solución a esta dependencia circular es hacer que ambos componentes estén en la misma capa.
+Este tipo de dependencias no son raras, ocurre en muchos otros casos, ya que los componentes del sistema operativo suelen depender mucho unos de otros.
+
+====
+Al final, la solución de compromiso es tender hacia sistemas con muy pocas capas donde cada una tiene mucha funcionalidad.
+Esto limita mucho las ventajas de esta técnica porque no permite compartimentar el núcleo tanto como sería deseable.
+====
 
 == Microkernel
+(((estructura, microkernel)))
+(((microkernel)))
 
-_Los sistemas *microkernel* eliminan todos los componentes no esenciales del núcleo y los implementa como programas de nivel de usuario_.
-Aunque hay poco consenso, en general un núcleo microkernel proporciona funciones mínimas de gestión de procesos y memoria, junto a algún mecanismo de comunicación.
-En estos sistemas la función principal del núcleo es precisamente proporcionar dicho mecanismo de comunicación entre el programa cliente y los diversos servicios del sistema.
-Generalmente esta comunicación se implementa mediante paso de mensajes (véase el <<_procesos_cooperativos>>).
+====
+Los sistemas con *estructura microkernel* se caracterizan por: 
 
+* Eliminar todos los componentes no esenciales del núcleo e implementarlos como procesos a nivel de usuario.
+
+* Un núcleo *microkernel* proporciona funciones mínimas de gestión de procesos y de memoria y algún mecanismo de comunicación entre procesos.
+Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por lo que algunos *microkernel* reales incluyen en el núcleo algunas funcionales adicionales.
+
+* El mecanismo de comunicación permite a los procesos de los usuarios solicitar servicios a los componentes del sistema.
+También sirve para que los componentes del sistema se comuniquen entre si y se pidan servicio.
+====
+
+Dado que los componentes del sistema están aislados unos de otros —ya que se implementan como procesos de usuario— el mecanismo de comunicación entre procesos es la única forma que tienen los procesos de los usuarios y los componentes de solicitarles un servicio.
+
+[[estructura_minix3]]
+.Esquema de la estructura de MINIX 3.
+image::estructura_minix3.svg[]
+
+Generalmente esta comunicación se implementa mediante paso de mensajes (véase el <<_comunicación_entre_procesos>>).
+
+====
 Entre los beneficios de estos sistemas operativos se incluyen:
 
-* _Facilidad a la hora de añadir nuevas funcionalidades_.
+* *Facilidad a la hora de añadir nuevas funcionalidades*.
 Los nuevos servicios son añadidos como aplicaciones de nivel de usuario, por lo que no es necesario hacer modificaciones en el núcleo.
+Desarrollar en el modo privilegiado siempre es más peligrosos que en el modo usuario porque los errores pueden ser catastróficos: bloqueo o caída del sistema, corrupción de datos, etc.
 
-* _Facilidad a la hora de portar el sistema a otras plataformas_.
+* *Facilidad a la hora de portar el sistema a otras plataformas*.
+Puesto que el núcleo es muy pequeño, resulta muy sencillo de portar a otras plataforas.
 
-* _Más seguridad y fiabilidad_.
-Puesto que los servicios se ejecutan a nivel de usuario en procesos separados, un servicio que falla no puede afectar a otros ni puede ser utilizado para ganar acceso a otros servicios o al núcleo.
+* *Más seguridad y fiabilidad*.
+Puesto que la mayor parte de los servicios se ejecutan a nivel de usuario en procesos separados, un servicio que falla no puede afectar a otros ni puede ser utilizado para ganar acceso a otros servicios o al núcleo.
+Además se pueden implementar estrategias para mejorar la tolerancia a fallos, como reiniciar un servicio que ha fallado, como si fuera un programa cualquiera.
+====
 
-_El mayor inconveniente es su pobre rendimiento causado por la sobrecarga que añade el mecanismo de comunicación_.
-Por ejemplo Microsoft Windows NT nació con una estructura de microkernel en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.
-Además el sistema operativo podía mostrar diferentes personalidades o _entornos operativos_ —OS/2, POSIX y DOS— a través del uso de subsistemas ambientales, que también se ejecutaban como procesos de usuario.
-Las aplicaciones de Microsoft Windows NT se comunicaban con estos subsistemas utilizando una forma de IPC (véase el <<_microkernel>>) denominada LPC (_Local Procedure Call_), una forma local y optimizada de RPCfootnote:[La RPC (_Remote Procedure Call_) es una mecanismo de llamada a procedimiento diseñado para ser utilizado entre sistemas conectados por redes de ordenadores, permitiendo que un proceso cliente llame a un procedimiento en un proceso servidor, aunque ambos estén en equipos diferentes, y ocultado los detalles de la comunicación que permiten que la llamada tenga lugar.].
-Con esta estructura la pérdida de rendimiento respecto a Microsoft Windows 95 era tan importante que los diseñadores se vieron obligados a mover más servicios al espacio del núcleo.
-En la actualidad Microsoft Windows XP (véase la ) —que es un heredero directo de Microsoft Windows NT— tiene una arquitectura más monolítica que microkernelfootnote:[A las 280 llamadas al sistema de Microsoft Windows XP —algo menos de 200 en Microsoft Windows NT 3.51— se deben sumar las más de 650 del subsistema gráfico, alojado en el núcleo desde Microsoft Windows NT 4.0.] ya que aunque muchos servicios siguen siendo proporcionados por procesos de usuario, esto sólo ocurre con aquellos donde el rendimiento no es un factor crítico.
+=== Rendimiento
 
-Sin embargo varios sistemas operativos siguen utilizando núcleos microkernel, como Tru64 UNIX y GNU/Hurd (véase la ).
-Ambos proporcionan una interfaz UNIX implementada sobre un microkernel Mach.
-Otro ejemplo es QNX, un sistema operativo de tiempo real con una gran aceptación que basa en la estructura de microkernel su estabilidad como sistema para tareas críticas.
-Además siguen existiendo algunos proyectos de investigación dirigidos a resolver los problemas de rendimiento asociados a los núcleos microkernel.
+El mayor inconveniente es el pobre rendimiento que puede tener causado por la sobrecarga que añade el mecanismo de comunicación.
+
+Por ejemplo, https://es.wikipedia.org/wiki/Windows_NT[Microsoft Windows NT] nació con una estructura de *microkernel* en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.
+
+El sistema operativo podía mostrar diferentes personalidades o _entornos operativos_ —básicamente de OS/2, POSIX y MSDOS— a través del uso de subsistemas ambientales, que también se ejecutaban como procesos de usuario.
+Las aplicaciones de Microsoft Windows NT se comunicaban con estos subsistemas utilizando un mecanismo de comunicación denominado https://en.wikipedia.org/wiki/Local_Inter-Process_Communication[LPC] (_Local Inter-Process Communication_).
+
+Con esta estructura, la pérdida de rendimiento respecto a Microsoft Windows 95 era tan importante —especialmente en lo relativo a operaciones gráficas— que los diseñadores se vieron obligados a mover más servicios al espacio del núcleo en la versión 4.0.
+El resultado es que los Windows sucesores a Windows NT 4.0 tienen una arquitectura más monolítica que microkernel, ya que aunque muchos servicios siguen siendo proporcionados por procesos de usuario, esto sólo ocurre con aquellos donde el rendimiento no es un factor crítico.
+
+[NOTE]
+====
+Microsoft Windows XP tiene 280 llamadas al sistema a las que hay que sumar las más de 650 llamadas del subsistema gráfico, que también se aloja en el núcleo desde Microsoft Windows NT 4.0.
+Mientras que Microsoft Windows NT 3.51 tenía algo menos de 200 llamadas al sistema. 
+====
+
+Sin embargo varios sistemas operativos siguen utilizando núcleos microkernel, como https://es.wikipedia.org/wiki/QNX[QNX] o https://en.wikipedia.org/wiki/MINIX_3[MINIX 3] (véase la <<estructura_minix3>>).
+Ambos son sistemas operativos de tiempo real que basan en la estructura de microkernel su estabilidad como sistema para tareas críticas.
 
 == Estructura modular
 
-Los sistemas de *estructura modular* tienen divido el núcleo en módulos, cada uno de los cuales implementa funciones y servicios concretos, a imagen y semejanza de las técnicas de programación orientada a objetos.
-Quizás por eso sea la mejor metodología actual para diseñar sistemas operativos.
-Además _se parecen a los sistemas con estructura en capas en que cada módulo del núcleo tiene definidos interfaces protegidas, pero a diferencia de estos todos los módulos pueden llamar a cualquier otro módulo_.
+====
+Los sistemas con *estructura modular* se caracterizan por:
 
-Estos núcleos suelen disponer un pequeño conjunto de componentes fundamentales que se cargan durante el arranque, aunque también pueden enlazar dinámicamente servicios adicionales tanto durante la inicialización del sistema como o en tiempo de ejecución.
-En este aspecto se asemejan a los núcleos microkernel, ya que el módulo principal sólo tiene funciones básicas, aunque es mucho más eficiente al no necesitar un mecanismo de paso de mensajes, puesto que los componentes se cargan directamente en la memoria destinada al núcleo.
-Por lo tanto también _deben ser considerados como sistemas **monolíticos**_.
+* Dividir el núcleo en módulos, cada uno de los cuales implementa funciones y servicios concretos y se comunican entre sí a través de una interfaz bien definida.
 
-Este tipo de estructura es la utilizada en los UNIX modernos, como Oracle/Sun Microsystems Solaris, Linux (véase la ) y macOS.
+* Como en la programación orientada a objetos, cada modulo oculta al resto los detalles de su implementación.
+
+* Todos los módulos pueden llamar a funciones de la interfaz de cualquier otro módulo, a diferencia de los sistemas operativos con *estructura en capa*, donde una capa solo podía usar a la inmediatamente inferior.
+
+* También son sistemas *(monolíticos)*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.
+====
+
+Estos núcleos suelen disponer un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.
+Posteriormente pueden cargar módulos adicionales, tanto durante la inicialización del sistema como o en tiempo de ejecución.
+
+[[estructura_linux]]
+.Esquema de la estructura del núcleo Linux.
+image::estructura_linux.svg[]
+
+En este aspecto se asemejan a los núcleos *microkernel*, ya que el módulo principal sólo tiene funciones básicas.
+Sin embargo los núcleos modulares:
+
+* **Son más eficientes** al no necesitar un mecanismo de comunicación, puesto que los componentes se cargan en la memoria destinada al núcleo, por lo que pueden llamarse directamente.
+
+* **Son menos seguros y fiables**, puesto que gran parte de su funcionalidad se ofrece desde el modo privilegiado.
+Un error en cualquier componente puede comprometer o hacer caer el sistema.
+
+Este tipo de estructura es la utilizada en los UNIX modernos, como https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris], https://es.wikipedia.org/wiki/FreeBSD[FreeBSD], https://es.wikipedia.org/wiki/GNU/Linux[Linux] (véase la <<estructura_linux>>) y https://es.wikipedia.org/wiki/MacOS[macOS].
