@@ -8,6 +8,8 @@ include::locale/attributes.adoc[]
 :xrefstyle: short
 // Usar Font Awesome para los iconos.
 :icons: font
+// Activar el coloreado de sintaxis.
+:source-highlighter: rouge
 // Activar las fórmulas matemáticas.
 :stem:
 // Activar las macros de interfaz de usuario, como kbd o menu.
