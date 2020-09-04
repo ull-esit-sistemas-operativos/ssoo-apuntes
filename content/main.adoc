@@ -2,7 +2,7 @@
 Jesús Torres <jmtorres@ull.es>
 Curso 2020-2021
 include::../config/attributes.adoc[]
-include::syscalls.adoc[]
+include::enlaces.adoc[]
 
 // Contenidos
 = Introducción

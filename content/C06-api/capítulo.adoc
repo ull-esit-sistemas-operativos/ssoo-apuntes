@@ -4,144 +4,265 @@ ifndef::sectiondir[:sectiondir: .]
 include::../../config/attributes.adoc[]
 
 Un sistema operativo proporciona un entorno controlado para la ejecución de programas.
-Dicho entorno debe proporcionar ciertos servicios que pueden ser accedidos por los programas a través de una *interfaz de programación de aplicaciones* o *API* (_Application Programming Interface_).
-Algunas de las API disponibles para los desarrolladores de aplicaciones son la API Win32 —en sistemas Microsoft Windows— y la API POSIX para sistemas compatibles POSIXfootnote:[POSIX (_Portable Operating System Interface for Unix_) es el nombre de una familia de estándares que definen una interfaz de programación de aplicaciones para sistemas operativos.
-Esto permite que un mismo programa pueda ser ejecutado en distintas plataformas, siempre que sean compatibles con POSIX.
-La práctica totalidad de los sistemas UNIX modernos son compatibles POSIX ya que la especificación deriva de la interfaces típicas en ese tipo de sistemas antes de la aparición del estándar POSIX.] —como es el caso de los diferentes UNIX, Linux y macOS—.
+Dicho entorno debe proporcionar ciertos servicios que pueden ser accedidos por los programas a través de una *interfaz de programación de aplicaciones* o *((API))* (_Application Programming Interface_).
 
-Concretamente, _junto a cada intérprete o compilador de un lenguaje de programación suele ir una *librería estándar* que ofrece clases y/o funciones con las que los programas pueden acceder a los servicios del sistema operativo y realizar las tareas más comunes_.
-Estas librerías generalmente no forman parte del sistema operativo, sino de las herramientas de desarrollo de cada lenguaje de programación, y constituyen la _interfaz de programación de aplicaciones_ (API) del lenguaje al que acompañan.
+== Interfaces de programación de aplicaciones
+(((interfaz, programación de aplicaciones)))
 
-Las librerías estándar necesitan acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que las usan.
+Algunas de las API disponibles para los desarrolladores de aplicaciones son Windows API y POSIX.
+
+=== ((Windows API))
+
+{windows_api} es el nombre que recibe la *interfaz de programación de aplicaciones* de Microsoft Windows, con la que prácticamente tienen que interactuar todas las aplicaciones, de una forma u otra.
+
+Antiguamente sé denominada Win32 API, pero Microsoft ha querido aglutinar bajo una misma denominación las distintas versiones de la API de Windows que han existido, como Win16 —usada en las versiones de 16 bits de Windows— o Win64 —que es la variante de Win32 adaptada a arquitecturas de 64 bits—.
+
+Está compuesta por funciones en C almacenadas, principalmente, en las librerías de enlace dinámico ({dll}): `kernel32.dll`, `user32.dll` y `gdi32.dll`.
+Aunque según se ha ido ampliando la API, se han incorporado otras librerías adicionales.
+
+Provee un conjunto muy amplio de servicios: E/S a archivos y dispositivos, gestión de procesos, hilos y memoria, manejo de errores, registro de Windows, interfaz a dispositivos gráficos —pantallas e impresoras— gestión de ventanas, comunicaciones en red, etc.
+
+=== ((POSIX))
+
+{posix} (_Portable Operating System Interface for Unix_) es el nombre de una familia de estándares que definen una *interfaz de programación de aplicaciones* para sistemas operativos.
+Esto permite que un mismo programa pueda ser ejecutado en distintos sistemas operativos, siempre que sean compatibles con POSIX.
+
+El lenguaje C fue diseñado originalmente para implementar sistemas UNIX y por eso la librería estándar de C tenía mucho parecido con la librería del sistema de UNIX.
+Con el tiempo, al ir añadiendo más funcionalidades, la librería del sistema de los sistemas UNIX de los distintos fabricantes fue divergiendo, haciendo muy complicado desarrollar programas que usaran las características más avanzadas y que a la vez pudieran ejecutarse en varios de ellos.
+Por eso el {ieee} desarrollo el estándar POSIX, que define una API común para todos los UNIX y sistemas estilo UNIX modernos —como es el caso de GNU/Linux—.
+Así que la práctica totalidad de estos sistemas son compatible POSIX.
+
+Por su origen, la API POSIX es un superconjunto de la API de la librería estándar de C.
+Por eso en los sistemas POSIX, la librería estándar de C es parte de la librería del sistema, en lugar de dos librerías separadas.
+
+Las funciones POSIX están almacenadas, principalmente, en la librería `libc`.
+Aunque algunas características pueden estar en otras librerías, como `libm` —la librería matemática— o `libpthread` —la librería de hilos—. 
+
+Los desarrolladores del sistema a veces añaden funciones no incluidas en el estándar POSIX, con el objeto de soportar algún tipo de funcionalidad avanzada del sistema.
+Antes de usarlas debemos tener presente que:
+
+* Un programa que solo utilice la API POSIX podrá ejecutarse en cualquier sistema operativo compatible POSIX.
+
+* Mientras que uno que utilice, por ejemplo, alguna funcionalidad adicional no POSIX de Linux o macOS, solo podrá compilarse y ejecutarse en Linux o en macOS, según el caso.
+
+== Llamadas al sistema
+(((llamada al sistema)))
+
+Para un programa, acceder a los servicios del sistema operativo no es tan sencillo como invocar una función.
+Para invocar una función, un programa necesita conocer la dirección en la memoria del punto de entrada de dicha función —es decir, la ubicación de su primera instrucción—.
+Sin embargo, el código del núcleo del sistema puede estar en cualquier ubicación de la memoria principal.
+Así que las direcciones de los puntos de entrada a las funciones del núcleo son desconocidas.
+Además, generalmente, el código y los datos del núcleo están protegidos frente a accesos indebidos (véase el <<_protección_de_la_memoria>>).
+Eso significa que para que un proceso pueda invocar los servicios que necesita hace falta un procedimiento diferente, denominado *llamada al sistema*.
+
+=== Invocar llamadas al sistema
+
+Generalmente una llamada al sistema se invoca mediante una instrucción específica en lenguaje ensamblador que genera una *excepción* —que no es más que una interrupción lanzada por la propia CPU al detectar instrucciones especiales o un error al ejecutar una instrucción, como una división por 0 o un acceso indebido a ciertas zonas de la memoria—.
+Por ejemplo, en MIPS e Intel x86 se usa la instrucción `syscall`, que lanza un excepción, haciendo que la CPU salte a una rutina en el código del núcleo del sistema, deteniendo así la ejecución del proceso que la invocó.
+
+Al realizar una llamada, es necesario que el sistema sepa qué operación le está pidiendo el proceso.
+Esto se suele hacer poniendo un número identificativo de la llamada en un registro concreto de la CPU.
+Por ejemplo, en Linux para x86 la llamada al sistema {linux_open} —que se utiliza para abrir archivos— se identifica con el número 2 o con el 5, según si es en 64 o en 32 bits, respectivamente.
+Este número se debe guardar en el registro `v0` en MIPS o `eax` en x86, antes de la instrucción `syscall`.
+
+Los números utilizados para identificar cada llamada al sistema dependen del sistema operativo.
+Mientras que el registro donde se guarda, la instrucción utilizada y el resto de detalles sobre cómo realizar la llamada, dependen también de la arquitectura de la CPU.
+
+=== Paso de argumentos
+
+Obviamente una llamada al sistema suele requerir más información que la identidad de la llamada.
+Si, por ejemplo, se quiere abrir un archivo, al menos es necesario indicar su nombre, así como si se abre para leer o para escribir.
+
+En concreto hay tres métodos para pasar parámetros adicionales al identificador a una llamada al sistema:
+
+* *Mediante registros de la CPU*.
+Consiste en cargar los parámetros de la llamada al sistema en los registros de la CPU antes de realizar la llamada al sistema.
+Este método es el más eficiente, pero limita el número de parámetros al número de registros disponibles.
++
+Es utilizado, por ejemplo, en Linux para MIPS (véase el <<linux_mips_syscall>>) y en la mayoría de sistemas operativos para x86-64.
+
+* *Mediante tabla en memoria*
+Consiste en copiar los parámetros de la llamada al sistema en una tabla en la memoria principal y luego guardar la dirección de dicha tabla en un registro específico de la CPU, antes de la llamada al sistema.
+Así no se limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
++
+Era utilizado por Microsoft Windows 2000 y anteriores.
+También en Linux para x86 32 bits, cuando el número de parámetros es superior a 6.
+
+* *Mediante la pila del proceso* se insertan los parámetros de la llamada al sistema en la pila del proceso —que se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar funciones— y el sistema operativo los recuperá de allí durante la llamada al sistema.
+Al igual que en el caso anterior, tampoco limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
++
+Es utilizando, por ejemplo, en sistemas BSD y en Windows XP y posteriores para x86 de 32 bits.
+
+[[linux_mips_syscall]]
+.Llamada al sistema en Linux MIPS.
+====
+Vemos como invocar directamente la llamada al sistema {linux_write} en Linux para MIPS.
+
+Esta llamada sirve para escribir datos en un archivo.
+Así que necesita tres argumentos:
+
+ * *SIZE*: El número de bytes a escribir.
+ * *BUFFER*: La dirección de la memoria de la que coger los bytes.
+ * *FILEDES*: El descriptor que identifica a un archivo abierto donde se van a escribir los datos.
+
+Al terminar devuelve el número de bytes escritos en el archivo, que puede ser inferior a `SIZE`.
+
+El identificador de la llamada al sistema es 4004, según el https://git.linux-mips.org/cgit/ralf/linux.git/tree/arch/mips/include/uapi/asm/unistd.h[listado de llamadas al sistema] para Linux en MIPS.
+
+[source]
+----
+  lw      $a0, FILEDES   <1>
+  la      $a1, BUFFER    <1>
+  lw      $a2, SIZE      <1>
+  li      $v0, 40004     <2>
+  syscall               <3> <4>
+----
+<1> Cargar cada uno de los 3 argumentos de la llamada al sistema en los registros `a0`, `a1` y `a2`.
+<2> Cargar el identificador de la llamada `write()` en el registro `v0`.
+<3> Invocar la llamada al sistema.
+Aunque veamos que es una única instrucción, lo que realmente va a ocurrir es que el sistema operativo va a tomar el control de la CPU para realizar la tarea solicitada.
+La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operativo no lo decida, por lo que, desde el punto de vista del programa, va a ser como si `syscall` fuera una instrucción más lenta de lo normal.
+<4> Al ejecutar la siguiente instrucción del código del programa, el registro `v0` contendrá el número de bytes escritos.
+====
+
+En cualquier caso, sea cual sea el método utilizado, el sistema operativo es responsable de comprobar de manera estricta la validez de los parámetros enviados en la llamada al sistema antes de realizar cualquier operación, puesto que nunca debe confiar en que los procesos hagan su trabajo correctamente.
+A fin de cuentas, una de las funciones del sistema operativo es el control de dichos procesos.
+
+== Librería del sistema
+(((librería, del sistema)))
+
+Las *llamadas al sistema* proporcionan una interfaz con la que los procesos pueden invocar los servicios que el sistema operativo ofrece.
+El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <<linux_mips_syscall>>) no son demasiado cómodas utilizar.
+Así que generalmente los programas no las invocan directamente.
+En su lugar, lo que hacen es llamar a funciones de la *librería del sistema*, que a su vez son las encargadas de hacer las llamadas al sistema necesarias.
+
+Cuando hablamos anteriormente de Windows API y del estándar POSIX, hablábamos de la interfaz de la *librería del sistema* en esos sistemas operativos.
+
+====
+La *librería del sistema*:
+
+* Es parte del sistema operativo, por lo que se distribuyen con él.
+
+* Es una colección de clases o funciones que ofrecen los servicios del sistema operativo a los programas, apoyándose en las llamadas al sistema.
++
+Algunas funciones de la librería del sistema son traducciones literales de llamadas al sistema —por ejemplo, {linux_write} o {linux_close}— mientras que otras pueden ser más complejas, hacer más trabajo o mostrar conceptos más abstractos que los usados por el sistema operativo al nivel de llamadas al sistema.
+
+* Constituye la verdadera *interfaz de programación de aplicaciones* del sistema operativo.
+Es la forma recomendada de solicitar servicios al sistema operativo.
+Invocar directamente las llamadas al sistema debe ser el último recurso.
+
+* Sus funciones se llaman como cualquier otra.
+Al igual que el resto de librerías, se carga dentro de la región de memoria asignada al proceso.
+Por lo tanto, la invocación de las funciones de la librería del sistema se realiza como si fueran cualquier otra función del programa.
+
+* Es muy común que esté implementada en C, lo que permite que tanto los programas en C como en {cpp} la puedan utilizar directamente.
+====
+
+== Librería estándar
+(((librería, estándar)))
+
+Lenguajes distintos de C o {cpp} pueden tener difícil usar las funciones de la librería del sistema.
+Pero de alguna forma deben poder hacerlo, porque sus programadores necesitan acceso a los servicios que ofrece el sistema operativo.
+
+Incluso en C o {cpp} puede ser interesante tener acceso a funcionalidades adicionales a las ofrecidas por la API del sistema operativo: estructuras de datos, algoritmos de ordenamiento o búsqueda, funciones para manipular cadenas, funciones matemáticas, etc.
+También abstracciones de los servicios del sistema, que encajen mejor con las particularidades del lenguaje de programación en cuestión.
+Por ejemplo, utilizando clases y objetos en lenguajes que soportar programación orientada a objetos.
+
+====
+Por eso, junto a cada intérprete o compilador de un lenguaje de programación suele ir una *librería estándar* que ofrece clases o funciones con las que los programas pueden acceder a los servicios del sistema operativo y realizar las tareas más comunes de forma más sencilla.
+Estas librerías generalmente no forman parte del sistema operativo, sino de las herramientas de desarrollo de cada lenguaje de programación, y constituyen la *interfaz de programación de aplicaciones* del lenguaje al que acompañan.
+
+La *librería estándar* necesitan acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que la usan.
 Es decir, cuando un programa invoca alguna función o método de la librería estándar que lo acompaña, es muy probable que ésta necesite invocar uno o más servicios del sistema operativo para atender la petición convenientemente.
-Para ello las librerías estándar utilizan la _librería del sistema_ —o librerías del sistema, en el caso de que hayan varias— que acompaña al sistema operativo.
-
-[NOTE]
-====
-Por ejemplo, en el lenguaje de programación Python se debe utilizar la función `open()` de la librería estándar de Python para abrir o crear un archivo:
-
-[source, python]
-----
-f = file("example.txt", "rb")
-----
-
-Mientras que en el lenguaje de programación C la función equivalente de la librería estándar de dicho lenguaje es `fopen()`:
-
-[source, c]
-----
-FILE* fp = fopen("example.txt", "rb")
-----
-
-Ninguna de las dos funciones puede hacer su trabajo sin la ayuda del sistema operativo, porque sólo el sistema operativo tiene acceso a los discos duros y al resto de dispositivos del almacenamiento.
-Así que ambas funciones están obligadas a solicitar la operación al sistema operativo, a través de la librería del sistema.
-Por ejemplo, en Microsoft Windows, tanto `file()` en Python como `fopen()` en C tiene que llamar internamente la función `CreateFile()` de la librería del sistema (véase la ).
+Para ello la librería estándar utiliza la _librería del sistema_ que acompaña al sistema operativo.
 ====
 
-_La *librería del sistema* forma parte del sistema operativo y contiene un conjunto de clases o funciones —generalmente más primitivas que las de la librería estándar de los lenguajes de programación— que los programas deben utilizar para acceder a los servicios del sistema operativo_.
-Es decir, la librería del sistema constituye la _interfaz de programación de aplicaciones_ del sistema operativo.
-Es muy común que esta interfaz esté implementada para ser usada con programas en lenguaje C, lo que permite que tanto los programas en C como en {cpp} la puedan utilizar directamente.
-Sin embargo con otros lenguajes de programación esto no suele ser posible, por lo que no queda más remedio que acceder a los servicios del sistema operativo a través de la librería estándar del lenguaje en cuestión.
+.De archivos a flujos
+****
+Un ejemplo del papel de las *librerías estándar* lo podemos encontrar en el acceso a los archivos.
 
-[NOTE]
-====
-En Microsoft Windows, un programa en C puede usar tanto la función `fopen()` de su librería estándar como llamar directamente a la función `CreateFile()` de la librería del sistema.
-Con {cpp} ocurriría lo mismo que con C, pero otros lenguajes no tienen esa facilidad para llamar a la librería del sistema directamente.
-Por ejemplo, un programa en Python no puede llamar directamente a `CreateFile()` sino que debe usar la función `open()` de la librería estandar del lenguaje (véase la , destacado en rojo).
+Las llamadas al sistema y la librería del sistema de los sistemas operativos ofrecen funciones básicas para manipular archivos.
+Los archivos se abren indicando su ruta y, al hacerlo, el sistema operativo devuelve un identificador del archivo abierto (véase {linux_open}).
+Este identificador se puede usar para leer o escribir en bytes el contenido del archivo.
+
+Si embargo en C, {cpp} y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o _stream_ (véase {clang_stiod} e {cpp_iostream}).
+En él se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.
+
+Los flujos pueden ser de texto o binarios, lo que implica algunas transformaciones en los datos.
+Además van ligados al concepto del _buffering_, es decir, que los bytes o caracteres escritos en el flujo no se «envían» inmediatamente, sino que se acumulan en la memoria para ser enviados en bloque.
+
+Todas estas características adicionales las implementa la *librería estándar*.
+Pero por debajo, al final, los datos tiene que ser escritos en un archivo, una impresora o el monitor, recursos que gestiona el sistema operativo.
+Por lo tanto, las *librerías estándar* necesitan hacer uso de la *librería del sistema* para comunicarse con el sistema operativo.
+
+'''
+
+Algo que suele ocurrir al crear mayores abstracciones es que se suele perder control y características específicas.
+Por ejemplo, la llamada al sistema {linux_open} con la que se pueden crear archivos permite asignar permisos o crear archivos temporales.
+Sin embargo, con las interfaces de _streams_ de C y {cpp} no se puede hacer eso ya que los permisos y la temporalidad son propiedades de los archivos que no son comunes a todas fuentes de flujos de datos.
+
+Así que en ocasiones puede ser que nos resulte más útil llamar a las funciones de la *librería del sistema* que usar las facilidades de la *librería estándar*.
+Sin embargo, debemos valar que así perdemos portabilidad, ya que ahora nuestro programa ya no podrá usarse allí donde haya un compilador o intérprete de nuestro lenguajes, sino solo en sistemas operativos con una *librería del sistema* compatible.
+****
+
+== Con todas las piezas juntas
+
+En la <<api_win32>> se ilustra el papel de todos los elementos comentados, con el ejemplo de programas en C y Python, ejecutados en Microsoft Windows, que invocan los métodos {clang_fopen} y `file()` de la librería estándar de estos lenguajes, respectivamente.
+
+[[api_win32]]
+.Elementos de la interfaz de programación de aplicaciones en Microsoft Windows.
+image::interfaz_programación_aplicaciones_win32.svg[]
+
+En ambos casos, la librería estándar llama a la función {win32_createfile} de la librería del sistema de Windows, que finalmente realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
+Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<_componentes_del_sistema>>).
+
+El programa en C puede usar tanto la función {clang_fopen} de su librería estándar como llamar directamente a la función {win32_createfile} de la librería del sistema —marcado en rojo en la <<api_win32>>—.
+Sin embargo, en el programa en Python no tenemos esa facilidad —al menos directamente—.
 
 Usar directamente las funciones de la librería del sistema desde programas en C o {cpp} tiene la ventaja de que permite utilizar todas las características del sistema operativo.
-Por ejemplo, podríamos utilizar opciones adicionales de `CreateFile()`:
+Por ejemplo, utilizar las opciones adicionales de {win32_createfile}:
 
 [source, c]
 ----
 HANDLE WINAPI CreateFile(
-  LPCTSTR lpFileName,           // Nombre del archivo
-  DWORD dwDesiredAccess,        // Modo de acceso
-  DWORD dwShareMode,            // Modo de compartición
-  LPSECURITY_ATTRIBUTES lpSecurityAttributes,   // Permisos
-  DWORD dwCreationDisposition,  // Acción si no existe el archivo
-  DWORD dwFlagsAndAttributes,   // Atributos del archivo
-  HANDLE hTemplateFile          // Archivo plantilla
+  LPCTSTR lpFileName,                           <1>
+  DWORD dwDesiredAccess,                        <2>
+  DWORD dwShareMode,                            <3>
+  LPSECURITY_ATTRIBUTES lpSecurityAttributes,   <4>
+  DWORD dwCreationDisposition,                  <5>
+  DWORD dwFlagsAndAttributes,                   <6>
+  HANDLE hTemplateFile                          <7>
 );
 ----
+<1> Nombre del archivo.
+<2> Modo de acceso: lectura o escritura.
+<3> Modo en el que se compartirá el archivo con otros procesos que accedan al mismo tiempo.
+<4> Permisos del archivo, en caso de crearlo.
+<5> Acción en caso de que el archivo exista o no: siempre crear, solo abrir, truncar si existe, etc.
+<6> Atributos del archivo, en caso de crearlo.
+<7> Archivo abierto del que copiar los atributos para copiarlo en este,
+en caso de crearlo.
 
-que no `fopen()` no posee:
+que {clang_fopen()} no posee:
 
 [source, c]
 ----
 FILE* fopen(
-  const char *path,             // Nombre del archivo
-  const char *mode              // Modo de acceso
+  const char *path, <1>
+  const char *mode  <2>
 );
 ----
+<1> Nombre del archivo.
+<2> Modo de acceso: lectura o escritura.
 
-Sin embargo, debemos tener en cuenta que se pierde portabilidad pues `CreateFile()` solo está disponible en Microsoft Window, mientras que `fopen()` viene con la librería estándar de cualquier compilador de C.
-====
+Sin embargo, debemos tener en cuenta que se pierde portabilidad pues {win32_createfile} solo está disponible en Microsoft Window, mientras que {clang_fopen} viene con la librería estándar de cualquier compilador de C.
 
-Algunos de los servicios ofrecidos por la librería del sistema pueden ser implementados en la propia librería, pero en la mayor parte de los casos ésta debe solicitar dichos servicios al núcleo del sistema operativo que es quién supervisa y tiene acceso a los recursos de la máquina.
+En la <<api_posix>> se puede observar un ejemplo similar en GNU/Linux —un sistema compatible POSIX— pero en esta ocasión con programas en C y {cpp}.
+En este caso la llamada al sistema es {linux_open} y tanto {clang_fopen} en C como {cpp_ofstream_open} en {cpp} la utilizan.
+Además, ambos lenguajes pueden invocar directamente la librería del sistema —marcado en rojo en la <<api_posix>>— si necesitan alguna característica adicional de la función {linux_open}.
 
-[NOTE]
-====
-En los sistemas UNIX o «estilo UNIX» las cosas son un poco más complejas.
-El lenguaje C fue diseñado originalmente para implementar sistemas UNIX y por eso la librería estándar de C tiene mucho parecido con la librería del sistema de los sistemas UNIX.
-Con el tiempo, al ir añadiendo más funcionaliades, la librería del sistema de los sistemas UNIX de los distintos fabricantes fue divergiendo, haciendo muy complicado desarrollar programas que usaran sus características más avanzadas y que a la vez pudieran usarse en varios de ellos.
-Por eso el IEEE desarrollo el estándar POSIX, que define una interfaz de programación de aplicaciones (API) común para todos los UNIX y sistemas estilo UNIX modernos —como es el caso de Linux—.
+[[api_posix]]
+.Elementos de la interfaz de programación de aplicaciones en GNU/Linux.
+image::interfaz_programación_aplicaciones_posix.svg[]
 
-Por su origen, la API POSIX es un superconjunto de la API de la librería estándar de C y por eso en estos sistemas la librería estándar de C es parte de la librería del sistema, en lugar de ser dos librerías separadas.
-Como hemos comentado, otros lenguajes sí necesitan su propia librería estándar, que a su vez utiliza los servicios de la librería del sistema.
-
-Por ejemplo, en {cpp} en Linux el método `open()` de la clase `std::ofstream` de la librería estándar utiliza a su vez la función `open()` de la librería del sistema para abrir o crear un archivo (véase la ).
-La función `open()` no es parte del C estándar ni del {cpp} estándar, pero si del estándar POSIX.
-Por lo tanto:
-
-* Para crear programas para cualquier sistema operativo para el que tengamos un compilador de nuestro lenguaje, tenemos que limitarnos a usar funciones de la librería estándar de dicho lenguaje.
-Por ejemplo, `fopen()` en C o `std::ofstream` en {cpp}.
-
-* Para usar `open()` y otras funciones POSIX directamente —desde lenguajes como C o {cpp}— no es suficiente con tener un sistema con un compilador estándar de C, sino que necesitamos un sistema operativo que siga el estándar POSIX, que es mucho más amplio.
-
-En la librería del sistema de los sistemas POSIX los desarrolladores del sistema a veces añaden funciones no incluidas en el estándar, con el objeto de soportar algún tipo de funcionalidad avanzada del sistema:
-
-* Un programa que sólo utilice la API POSIX podrá ejecutarse en cualquier sistema operativo compatible POSIX.
-
-* Mientras que uno que utilice, por ejemplo, alguna funcionalidad adicional no POSIX de Linux, sólo podrá compilarse y ejecutarse en Linux.
-====
-
-La librería del sistema, al igual que la estándar y otras librerías utilizadas por el programa, se cargan dentro de la región de memoria asignada al proceso donde se ejecuta el programa que las utiliza.
-Por lo tanto, la invocación de sus métodos y funciones se realiza como si fueran cualquier otro método o función del programa.
-Sin embargo, el código del núcleo del sistema operativo suele estar en una ubicación diferente que, desde el punto de vista de los programas, no es conocida y generalmente está protegida frente a accesos indebidos (véase el <<_protección_de_la_memoria>>).
-Eso significa que para que la librería del sistema invoque los servicios que necesita hace falta un procedimiento diferente, denominado *llamada al sistema*.
-
-_Las *llamadas al sistema* proporcionan una interfaz con la que los procesos pueden invocar los servicios que el sistema operativo ofrece_.
-Estas llamadas habitualmente se hacen mediante instrucciones en lenguaje ensamblador (véase la ) pero generalmente los programas no las utilizan directamente.
-En su lugar invocan las funciones de la librería del sistema, que a su vez son las encargadas de hacer las llamadas al sistema necesarias.
-
-En las figuras y se ilustra el papel de todos los elementos comentados con el ejemplo de programas en C, {cpp} y Python que invocan los métodos `fopen()`, `std::ofstream::open()` y `file()` de la librería estándar de estos lenguajes, respectivamente.
-En todo los casos, al final se realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
-Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<_componentes_del_sistema>>).
-
-== Invocación de las llamadas al sistema
-
-Generalmente una llamada al sistema se invoca mediante una instrucción específica en lenguaje ensamblador que genera una **excepción**footnote:[Una _excepción_ es una interrupción generada por software, que puede ser debida a un error —por ejemplo una división por cero o un acceso no válido a memoria— o a una llamada al sistema de un proceso para que se ejecute un servicio del sistema operativo.] —por ejemplo la instrucción _syscall_ en la — que es capturada por el sistema operativo, deteniendo la ejecución del proceso que la invocó.
-Cuando se realiza la llamada es necesario que el proceso identifique la operación que quiere que se realice.
-Esto se suele hacer poniendo un número identificativo de la llamada en un registro concreto de la CPU.
-Por ejemplo, el número de la llamada al sistema `open` del ejemplo de la es 2footnote:[En GNU/Linux se puede conocer el número correspondiente a cada llamada al sistema soportada por el núcleo consultado el listado del archivo `/usr/include/asm/unistd.h`.].
-
-Sin embargo, una llamada al sistema suele requerir más información que simplemente la identidad de la llamada.
-Si por ejemplo se quisiera leer un bloque de datos desde un almacenamiento secundario, al menos se debería indicar el archivo o dispositivo desde el que se desea realizar la lectura, así como la dirección y tamaño de la región de la memoria donde se quiere que los datos sean copiados.
-En concreto hay tres métodos para pasar parámetros a una llamada al sistema:
-
-* _En el paso de parámetros *por registros* se cargan los parámetros de la llamada al sistema en los registros de la CPU antes de realizar la llamada_.
-Este método es el más eficiente, pero limita el número de parámetros al número de registros disponibles en la CPU.
-Es utilizado, por ejemplo, en Linux para IA-32footnote:[IA-32 (_Intel Architecture, 32-bit_), conocida en la actualidad de manera genérica como x86 o i386, es la arquitectura del conjunto de instrucciones de los procesadores Intel de 32 bits.
-Concretamente es una extensión de 32 bits, implementada por primera vez en el Intel 80386, para la arquitectura x86 original de 16 bits.] cuando la llamada al sistema tiene menos de seis parámetros (véase la ).
-
-* _En el paso de parámetros *por tabla en memoria* se copian los parámetros de la llamada al sistema en una tabla en memoria_, de manera que la dirección de dicha tabla debe ser cargada en un registro de la CPU antes de la llamada al sistema.
-Evidentemente no limita el número de parámetros que pueden ser pasados a una llamada al sistema.
-Por ejemplo, es utilizado en Linux IA-32, cuando la llamada al sistema tiene más de cinco parámetros, y en Microsoft Windows.
-
-* _En el paso de parámetros *por pila* se insertan los parámetros de la llamada al sistema en la pila del proceso_.
-En este caso el sistema operativo es el encargado de extraer los parámetros de la pila durante la llamada al sistema.
-Al igual que en el caso anterior tampoco se limita el número de parámetros que pueden ser pasados.
-Es utilizando, por ejemplo, en FreeBSD.
-
-En cualquier caso, sea cual sea el método utilizado, _el sistema operativo debe comprobar de manera estricta los parámetros pasados en la llamada al sistema antes de realizar cualquier operación_, puesto que nunca debe confiar en que los procesos hagan su trabajo correctamente.
-A fin de cuentas una de las funciones del sistema operativo es el control de dichos procesos.
+La única diferencia es que en <<api_posix>> las funciones {clang_fopen} y {linux_open} están realmente en la misma librería, porque en los sistemas POSIX la librería del sistema y la librería estándar de C pueden ser la misma, dado que el estándar POSIX se diseñó como un superconjunto de la librería estándar de C.
