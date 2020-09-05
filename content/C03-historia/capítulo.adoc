@@ -134,7 +134,7 @@ Las versiones actuales se denominan IBM z/VM.
 
 === UNIX
 
-El sistema https://es.wikipedia.org/wiki/Unix[UNIX] fue desarrollado originalmente por Bell Labs en 1970 para los sistemas https://es.wikipedia.org/wiki/PDP-11[PDP-11/20] (véase la <<dec_pdp11>>).
+{unix} fue desarrollado originalmente por Bell Labs en 1970 para los sistemas https://es.wikipedia.org/wiki/PDP-11[PDP-11/20] (véase la <<dec_pdp11>>).
 La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS pero a menor escala; después de que Bell Labs abandonara el proyecto MULTICS en 1969.
 Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.
 
@@ -149,7 +149,7 @@ Además, gracias al lenguaje C, el código era más conciso y compacto, lo que s
 
 AT&T, la compañía matriz de Bell Labs, no podía competir en la industria de los ordenadores, por lo que puso el código fuente de UNIX a disposición de universidades, compañías privadas y del gobierno de los Estados Unidos.
 Eso aumento su difusión y dio resultados inesperados.
-Por ejemplo, una de las variantes más importantes de UNIX fue https://es.wikipedia.org/wiki/Berkeley_Software_Distribution[BSD], desarrollada por la Universidad de California en Berkeley.
+Por ejemplo, una de las variantes más importantes de UNIX fue {bsd}, desarrollada por la Universidad de California en Berkeley.
 
 [NOTE]
 ====
@@ -164,12 +164,12 @@ En la actualidad se considera que hay dos grandes familias de UNIX y las distint
 
 * La familia derivada de *AT&T UNIX System V*, en la que se incluyen sistemas operativos no libres, tales como: https://es.wikipedia.org/wiki/SCO_OpenServer[SCO OpenServer], https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris Operating Environment] y https://es.wikipedia.org/wiki/UnixWare[SCO UnixWare].
 
-* La familia derivada de *BSD*, en la que se incluyen sistemas libres como: https://es.wikipedia.org/wiki/FreeBSD[FreeBSD], https://es.wikipedia.org/wiki/NetBSD[NetBSD], https://es.wikipedia.org/wiki/OpenBSD[OpenBSD], https://en.wikipedia.org/wiki/Darwin_(operating_system)[Darwin] y https://es.wikipedia.org/wiki/DragonFly_BSD[DragonFly BSD], entre muchos otros.
+* La familia derivada de *BSD*, en la que se incluyen sistemas libres como: {freebsd}, https://es.wikipedia.org/wiki/NetBSD[NetBSD], https://es.wikipedia.org/wiki/OpenBSD[OpenBSD], {darwin} y https://es.wikipedia.org/wiki/DragonFly_BSD[DragonFly BSD], entre muchos otros.
 
 [NOTE]
 ====
-https://es.wikipedia.org/wiki/FreeBSD[FreeBSD] es el sistema base de algunos sistemas no libres.
-Por ejemplo, https://en.wikipedia.org/wiki/Darwin_(operating_system)[Darwin] es el sistema operativo en el que se basan los sistemas operativos de Apple: macOS, IOS, watchOS, tvOS e iPadOS.
+{freebsd} es el sistema base de algunos sistemas no libres.
+Por ejemplo, {darwin} es el sistema operativo en el que se basan los sistemas operativos de Apple: macOS, IOS, watchOS, tvOS e iPadOS.
 A su vez Darwin utiliza múltiples elementos de FreeBSD (véase el <<_mach>>).
 
 Otro ejemplo destacable es https://en.wikipedia.org/wiki/PlayStation_4_system_software[Orbis OS] —el sistema operativo de PlayStation 4— que también está basado en FreeBSD.
@@ -224,17 +224,17 @@ Se puede observar una muestra de la interfaz gráfica de usuario de algunos esto
 
 https://en.wikipedia.org/wiki/CP/M[CP/M] (1974) fue el sistema operativo estándar en la primera generación de microcomputadoras. Fue creado por Digital Research, Inc. —fundada por Gary Kildall— para ser el sistema operativo de los microordenadores basados en https://es.wikipedia.org/wiki/Intel_8080[Intel 8080/85] y https://es.wikipedia.org/wiki/Zilog_Z80[Zilog Z80].
 
-Con la elección de MS-DOS por parte de IBM para su https://es.wikipedia.org/wiki/IBM_PC[IBM PC], CP/M fue perdiendo mercado paulatinamente hasta desaparecer.
+Con la elección de MS-DOS por parte de IBM para su {ibmpc}, CP/M fue perdiendo mercado paulatinamente hasta desaparecer.
 Sin embargo, la influencia de CP/M en MS-DOS es indudable, en tanto en cuanto 86-DOS, el predecesor de MS-DOS, estaba basado en las ideas de CP/M.
 
 === MS-DOS
 
-https://es.wikipedia.org/wiki/MS-DOS[MS-DOS] fue el sistema operativo estándar en la segunda generación de microcomputadoras.
+{msdos} fue el sistema operativo estándar en la segunda generación de microcomputadoras.
 No era ni multitarea ni multiusuario.
-Fue el primer sistema operativo del https://es.wikipedia.org/wiki/IBM_PC[IBM PC] —lanzado en 1981— y durante mucho tiempo fue ampliamente utilizado en toda la plataforma «PC compatible».
+Fue el primer sistema operativo del {ibmpc} —lanzado en 1981— y durante mucho tiempo fue ampliamente utilizado en toda la plataforma «PC compatible».
 
 MS-DOS fue creado por Seattle Computer Products (SCP) con el nombre de https://es.wikipedia.org/wiki/QDOS[86-DOS] en 1979.
-Se basaron en ideas de CP/M, pues pretendían ofrecer una versión de CP/M para procesadores https://es.wikipedia.org/wiki/Intel_8086_y_8088[Intel 8086].
+Se basaron en ideas de CP/M, pues pretendían ofrecer una versión de CP/M para procesadores {intel8086}.
 Inicialmente era conocido como QDOS (_Quick and Dirty Operating System_) pero SCP le cambió el nombre en 1980, cuando comenzaron al licenciarlo.
 Posteriormente Microsoft adquirió el sistema y lo vendió a IBM en 1981 con el nombre de MS-DOS.
 
@@ -249,7 +249,7 @@ Solo hace falta acceder con el navegador y elegir la experiencia que más nos ll
 
 === OS/2
 
-https://es.wikipedia.org/wiki/OS/2[OS/2] fue un sistema operativo creado por Microsoft e IBM para aprovechar las nuevas características de la segunda generación de ordenadores personales de IBM, equipados con procesador https://es.wikipedia.org/wiki/Intel_80286[Intel 80286].
+{os2} fue un sistema operativo creado por Microsoft e IBM para aprovechar las nuevas características de la segunda generación de ordenadores personales de IBM, equipados con procesador https://es.wikipedia.org/wiki/Intel_80286[Intel 80286].
 Pero al final terminó siendo desarrollado en exclusiva por IBM.
 
 OS/2 fue pensado como un sucesor con *operación en modo dual* de MS-DOS y de Microsoft Windows 2.0.
@@ -340,7 +340,7 @@ Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VM
 Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de un API nativo no documentado públicamente.
 Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.
 
-La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo microkernel (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores https://es.wikipedia.org/wiki/IA-32[x86], https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
+La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo microkernel (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores {x86}, https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
 
 Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
 Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.
@@ -354,25 +354,31 @@ Con su aparición forzó la extinción de la familia Windows 9x, al sustituirla 
 
 === GNU/Linux
 
-https://es.wikipedia.org/wiki/GNU/Linux[GNU/Linux] es un sistema operativo libre y, tal vez, el más famoso proyecto de https://es.wikipedia.org/wiki/Software_libre[software libre].
+{gnulinux} es un sistema operativo libre y, tal vez, el más famoso proyecto de https://es.wikipedia.org/wiki/Software_libre[software libre].
 
 El proyecto GNU se inició en 1983, con el fin de desarrollar un sistema operativo estilo UNIX enteramente libre.
 El proyecto incluía la creación de herramientas de desarrollo de software y aplicaciones de usuario.
 
 Mucho tiempo después, el estudiante universitario finés Linus Torvalds comenzó a desarrollar el núcleo Linux como hobby, mientras estudiaba en la Universidad de Helsinki.
-Torvalds originalmente usaba https://es.wikipedia.org/wiki/MINIX[Minix], un sistema operativo simplificado escrito por Andrew Tanenbaum para enseñar diseño de sistemas operativos.
-Sin embargo, el hecho de que Tanenbaum no diera soporte a las mejoras del sistema operativo que era propuestas por otros desarrolladores, llevó a Torvalds a escribir un sustituto de Minix.
+Torvalds originalmente usaba {minix}, un sistema operativo simplificado escrito por Andrew Tanenbaum para enseñar diseño de sistemas operativos.
+Sin embargo, el hecho de que Tanenbaum no diera soporte a las mejoras del sistema operativo que era propuestas por otros desarrolladores, llevó a Torvalds a escribir un sustituto de MINIX.
 
 En 1991, cuando se liberó la primera versión del núcleo Linux, el proyecto GNU había desarrollado todos los componentes necesarios del sistema operativo excepto el núcleo.
 Torvalds y otros desarrolladores rápidamente adaptaron Linux para que funcionara con los componentes de GNU, creando un sistema operativo completamente funcional que se denomina GNU/Linux.
 
 El núcleo Linux fue licenciado bajo la GNU General Public License (GPL), como el resto del proyecto GNU.
 Pero Linux no es parte de dicho proyecto.
-El proyecto GNU tiene su propio núcleo, denominado https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd], que lleva 30 años en desarrollo y parece que aun está muy lejos de estar listo.
+El proyecto GNU tiene su propio núcleo, denominado {gnuhurd}, que lleva 30 años en desarrollo y parece que aun está muy lejos de estar listo.
+
+[NOTE]
+====
+GNU no es el único sistema operativo que utiliza el núcleo Linux.
+{android}, por ejemplo, es un sistema operativo que usa el núcleo Linux pero no es GNU.
+====
 
 === Mach
 
-https://es.wikipedia.org/wiki/Mach_(n%C3%BAcleo)[Mach] ss un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
+{mach} es un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
 El proyecto en la CMU se desarrolló desde 1985 hasta 1994.
 
 Mach explora el concepto que denominamos _*microkernel*_.
@@ -380,15 +386,15 @@ En los sistemas operativos _*microkernel*_ solo se implementa en el núcleo del 
 El resto de los servicios proporcionados por el sistema operativo se implementan como procesos con menos privilegios.
 
 Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los _microkernel_ dominarían el universo de los sistema operativos.
-Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd], que lleva varias décadas de retraso.
-Por fortuna, otros sistemas operativos _microkernel_ han tenido algo más éxito, como es el caso de https://es.wikipedia.org/wiki/QNX[QNX] o https://en.wikipedia.org/wiki/MINIX_3[MINIX 3].
-Mientras que Google parece que lo va a intentar con https://es.wikipedia.org/wiki/Google_Fuchsiahttps://es.wikipedia.org/wiki/Google_Fuchsia[Google Fuchsia], el posible sustituto de Android.
+Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es {gnuhurd}, que lleva varias décadas de retraso.
+Por fortuna, otros sistemas operativos _microkernel_ han tenido algo más éxito, como es el caso de {qnx} o {minix3}.
+Mientras que Google parece que lo va a intentar con {google_fuchsia}, el posible sustituto de Android.
 
 // TODO: Meter más de Apple en la historia de los sistemas operativos
 
 A mediados de los 90, Apple Computers seleccionó https://es.wikipedia.org/wiki/NEXTSTEP[OpenStep] como base para el sucesor de su clásico https://es.wikipedia.org/wiki/Mac_OS_Classic[Mac OS].
 OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema BSD de la Universidad de Berkeley.
-Por tanto, la mezcla de Mach con BSD de OpenStep es la base del sistema operativo https://es.wikipedia.org/wiki/MacOS[macOS] actual de Apple.
+Por tanto, la mezcla de Mach con BSD de OpenStep es la base del sistema operativo {macos} actual de Apple.
 
 [[openstep_42]]
 .Entorno gráfico de OpenStep 4.2 -- Fuente: https://guidebookgallery.org/screenshots/openstep42[Guidebook]
@@ -396,9 +402,9 @@ image::openstep_42.png[]
 
 [NOTE]
 ====
-Para ser exactos, la base del sistema operativo macOS es un sistema operativo libre denominado https://es.wikipedia.org/wiki/Darwin_(sistema_operativo)[Darwin] y desarrollado por Apple .
-Se trata de un sistema https://es.wikipedia.org/wiki/FreeBSD[FreeBSD] adaptado para correr sobre el núcleo Mach.
+Para ser exactos, la base del sistema operativo macOS es un sistema operativo libre denominado {darwin} y desarrollado por Apple .
+Se trata de un sistema {freebsd} adaptado para correr sobre el núcleo Mach.
 ====
 
-.Linea de tiempo de la historia de los sistemas operativos.
+.Línea de tiempo de la historia de los sistemas operativos.
 image::historia_sistemas_operativos.svg[]

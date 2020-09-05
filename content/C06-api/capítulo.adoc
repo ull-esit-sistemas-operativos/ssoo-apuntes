@@ -45,6 +45,9 @@ Antes de usarlas debemos tener presente que:
 
 * Mientras que uno que utilice, por ejemplo, alguna funcionalidad adicional no POSIX de Linux o macOS, solo podrá compilarse y ejecutarse en Linux o en macOS, según el caso.
 
+// TODO: Hablar de extensiones BSD (C POSIX) y de los flags en linux
+// Quizas en una subseccion
+
 == Llamadas al sistema
 (((llamada al sistema)))
 
@@ -88,7 +91,7 @@ Así no se limita el número de parámetros que pueden ser pasados en cada llama
 Era utilizado por Microsoft Windows 2000 y anteriores.
 También en Linux para x86 32 bits, cuando el número de parámetros es superior a 6.
 
-* *Mediante la pila del proceso* se insertan los parámetros de la llamada al sistema en la pila del proceso —que se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar funciones— y el sistema operativo los recuperá de allí durante la llamada al sistema.
+* *Mediante la pila del proceso* se insertan los parámetros de la llamada al sistema en la pila del proceso —que también se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar a funciones— y el sistema operativo los recupera de allí durante la llamada al sistema.
 Al igual que en el caso anterior, tampoco limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
 +
 Es utilizando, por ejemplo, en sistemas BSD y en Windows XP y posteriores para x86 de 32 bits.
@@ -136,7 +139,7 @@ El problema es que como se hacen mediante instrucciones en lenguaje ensamblador 
 Así que generalmente los programas no las invocan directamente.
 En su lugar, lo que hacen es llamar a funciones de la *librería del sistema*, que a su vez son las encargadas de hacer las llamadas al sistema necesarias.
 
-Cuando hablamos anteriormente de Windows API y del estándar POSIX, hablábamos de la interfaz de la *librería del sistema* en esos sistemas operativos.
+Cuando hablamos anteriormente de {windows_api} y del estándar {posix}, hablábamos de la interfaz de la *librería del sistema* en esos sistemas operativos.
 
 ====
 La *librería del sistema*:
@@ -161,20 +164,21 @@ Por lo tanto, la invocación de las funciones de la librería del sistema se rea
 == Librería estándar
 (((librería, estándar)))
 
-Lenguajes distintos de C o {cpp} pueden tener difícil usar las funciones de la librería del sistema.
+Lenguajes distintos de C y {cpp} pueden tener difícil usar las funciones de la librería del sistema.
 Pero de alguna forma deben poder hacerlo, porque sus programadores necesitan acceso a los servicios que ofrece el sistema operativo.
 
-Incluso en C o {cpp} puede ser interesante tener acceso a funcionalidades adicionales a las ofrecidas por la API del sistema operativo: estructuras de datos, algoritmos de ordenamiento o búsqueda, funciones para manipular cadenas, funciones matemáticas, etc.
+Incluso en C y en {cpp} puede ser interesante tener acceso a funcionalidades adicionales a las ofrecidas por la API del sistema operativo: estructuras de datos, algoritmos de ordenamiento o búsqueda, funciones para manipular cadenas, funciones matemáticas, etc.
 También abstracciones de los servicios del sistema, que encajen mejor con las particularidades del lenguaje de programación en cuestión.
 Por ejemplo, utilizando clases y objetos en lenguajes que soportar programación orientada a objetos.
 
 ====
-Por eso, junto a cada intérprete o compilador de un lenguaje de programación suele ir una *librería estándar* que ofrece clases o funciones con las que los programas pueden acceder a los servicios del sistema operativo y realizar las tareas más comunes de forma más sencilla.
+Por eso, junto a cada intérprete o compilador de cada lenguaje de programación suele ir una *librería estándar* que ofrece clases o funciones con las que los programas pueden acceder a los servicios del sistema operativo y realizar las tareas más comunes de forma más sencilla.
+
 Estas librerías generalmente no forman parte del sistema operativo, sino de las herramientas de desarrollo de cada lenguaje de programación, y constituyen la *interfaz de programación de aplicaciones* del lenguaje al que acompañan.
 
 La *librería estándar* necesitan acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que la usan.
 Es decir, cuando un programa invoca alguna función o método de la librería estándar que lo acompaña, es muy probable que ésta necesite invocar uno o más servicios del sistema operativo para atender la petición convenientemente.
-Para ello la librería estándar utiliza la _librería del sistema_ que acompaña al sistema operativo.
+Para ello la *librería estándar* utiliza la *librería del sistema* que acompaña al sistema operativo, que a su vez realiza las *llamadas al sistema* necesarias.
 ====
 
 .De archivos a flujos
@@ -185,7 +189,7 @@ Las llamadas al sistema y la librería del sistema de los sistemas operativos of
 Los archivos se abren indicando su ruta y, al hacerlo, el sistema operativo devuelve un identificador del archivo abierto (véase {linux_open}).
 Este identificador se puede usar para leer o escribir en bytes el contenido del archivo.
 
-Si embargo en C, {cpp} y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o _stream_ (véase {clang_stiod} e {cpp_iostream}).
+Si embargo en C, {cpp} y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o _stream_ (véase {clang_stdio} e {cpp_iostream}).
 En él se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.
 
 Los flujos pueden ser de texto o binarios, lo que implica algunas transformaciones en los datos.
@@ -202,7 +206,7 @@ Por ejemplo, la llamada al sistema {linux_open} con la que se pueden crear archi
 Sin embargo, con las interfaces de _streams_ de C y {cpp} no se puede hacer eso ya que los permisos y la temporalidad son propiedades de los archivos que no son comunes a todas fuentes de flujos de datos.
 
 Así que en ocasiones puede ser que nos resulte más útil llamar a las funciones de la *librería del sistema* que usar las facilidades de la *librería estándar*.
-Sin embargo, debemos valar que así perdemos portabilidad, ya que ahora nuestro programa ya no podrá usarse allí donde haya un compilador o intérprete de nuestro lenguajes, sino solo en sistemas operativos con una *librería del sistema* compatible.
+Sin embargo, debemos valorar que así perdemos portabilidad, ya que ahora nuestro programa ya no podrá usarse allí donde haya un compilador o intérprete de nuestro lenguajes, sino solo en sistemas operativos con una *librería del sistema* compatible.
 ****
 
 == Con todas las piezas juntas
@@ -243,7 +247,7 @@ HANDLE WINAPI CreateFile(
 <7> Archivo abierto del que copiar los atributos para copiarlo en este,
 en caso de crearlo.
 
-que {clang_fopen()} no posee:
+que {clang_fopen} no posee:
 
 [source, c]
 ----
@@ -257,7 +261,7 @@ FILE* fopen(
 
 Sin embargo, debemos tener en cuenta que se pierde portabilidad pues {win32_createfile} solo está disponible en Microsoft Window, mientras que {clang_fopen} viene con la librería estándar de cualquier compilador de C.
 
-En la <<api_posix>> se puede observar un ejemplo similar en GNU/Linux —un sistema compatible POSIX— pero en esta ocasión con programas en C y {cpp}.
+En la <<api_posix>> se puede observar un ejemplo similar en {gnulinux} —un sistema compatible {posix}— pero en esta ocasión con programas en C y {cpp}.
 En este caso la llamada al sistema es {linux_open} y tanto {clang_fopen} en C como {cpp_ofstream_open} en {cpp} la utilizan.
 Además, ambos lenguajes pueden invocar directamente la librería del sistema —marcado en rojo en la <<api_posix>>— si necesitan alguna característica adicional de la función {linux_open}.
 

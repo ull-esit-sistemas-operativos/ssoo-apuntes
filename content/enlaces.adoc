@@ -1,23 +1,48 @@
-// C
+// C STD
 :clang_stdio: https://en.cppreference.com/w/c/io[stdio.h]
 :clang_fopen: https://en.cppreference.com/w/c/io/fopen[fopen()]
 
-// C++
+// C++ STD
 :cpp_iostream: https://en.cppreference.com/w/cpp/header/iostream[iostream]
 :cpp_ofstream_open: https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]1
 
-// POSIX & Linux
-:ieee: https://es.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers[IEEE]
-:posix: https://es.wikipedia.org/wiki/POSIX[POSIX]
-
+// llamadas al sistema POSIX & Linux
 :linux_open: https://man7.org/linux/man-pages/man2/open.2.html[open()]
 :linux_read: https://man7.org/linux/man-pages/man2/read.2.html[read()]
 :linux_write: https://man7.org/linux/man-pages/man2/write.2.html[write()]
 :linux_close: https://man7.org/linux/man-pages/man2/close.2.html[close()]
 :linux_syscall: https://man7.org/linux/man-pages/man2/syscall.2.html[syscall()]
 
-// Win32
+// Windows
+:windowsnt: https://es.wikipedia.org/wiki/Windows_NT[Microsoft Windows NT]
+:windows_api: https://es.wikipedia.org/wiki/Win32_API[Windows API]
+:dll: https://es.wikipedia.org/wiki/Biblioteca_de_enlace_din%C3%A1mico[DLL]
+
 :win32_createfile: https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea[CreateFile()]
 
-// Windows
-:dll: https://es.wikipedia.org/wiki/Biblioteca_de_enlace_din%C3%A1mico[DLL]
+// UNIX
+:unix: https://es.wikipedia.org/wiki/Unix[UNIX]
+:posix: https://es.wikipedia.org/wiki/POSIX[POSIX]
+:ieee: https://es.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers[IEEE]
+
+:bsd: https://es.wikipedia.org/wiki/Berkeley_Software_Distribution[BSD]
+:freebsd: https://es.wikipedia.org/wiki/FreeBSD[FreeBSD]
+:darwin: https://en.wikipedia.org/wiki/Darwin_(operating_system)[Darwin]
+:gnuhurd: https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd]
+:gnulinux: https://es.wikipedia.org/wiki/GNU/Linux[GNU/Linux]
+:minix: https://es.wikipedia.org/wiki/MINIX[Minix]
+:minix3: https://en.wikipedia.org/wiki/MINIX_3[MINIX 3]
+:macos: https://es.wikipedia.org/wiki/MacOS[macOS]
+
+// Otros sistemas operativos
+:android: https://es.wikipedia.org/wiki/Android[Android]
+:google_fuchsia: https://es.wikipedia.org/wiki/Google_Fuchsia[Google Fuchsia]
+:mach: https://es.wikipedia.org/wiki/Mach_(n%C3%BAcleo)[Mach]
+:msdos: https://es.wikipedia.org/wiki/MS-DOS[MS-DOS]
+:os2: https://es.wikipedia.org/wiki/OS/2[OS/2]
+:qnx: https://es.wikipedia.org/wiki/QNX[QNX]
+
+// Ordenadores y arquitecturas
+:ibmpc: https://es.wikipedia.org/wiki/IBM_PC[IBM PC]
+:intel8086: https://es.wikipedia.org/wiki/Intel_8086_y_8088[Intel 8086]
+:x86: https://es.wikipedia.org/wiki/IA-32[x86]

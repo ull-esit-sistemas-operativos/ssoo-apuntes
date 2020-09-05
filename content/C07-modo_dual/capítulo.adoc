@@ -12,7 +12,7 @@ Antes de entender como funcionan estos mecanismos de protección debemos entende
 
 Los sucesos que requieren la atención del sistema casi siempre se indican mediante una interrupción:
 
-* Cuando un proceso comente un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una *excepción* —que no es más que una interrupción lanzada por la propia CPU al detectar un error al ejecutar una instrucción—.
+* Cuando un proceso comente un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una excepción.
 Esta excepción despierta al sistema operativo para que haga lo que sea más conveniente.
 
 * Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción.
@@ -53,6 +53,8 @@ Comúnmente en el grupo de las *instrucciones privilegiadas* se suelen incluir:
 * Las instrucciones para acceder a dispositivos de E/S.
 * Las instrucciones necesarias para la gestión de las interrupciones.
 Por ejemplo, para desactivas —evitando que se lancen— activarlas y configurarlas. 
+
+// TODO: Esta nota puede ser un sidebar sobre  anillos en Intel, modo real y modo privilegiado.
 
 [NOTE]
 ====
@@ -145,3 +147,5 @@ Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del qu
 ====
 
 Obviamente, las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.
+
+// TODO: Relación con las máquinas virtuales

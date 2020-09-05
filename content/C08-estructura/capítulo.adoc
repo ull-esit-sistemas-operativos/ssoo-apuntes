@@ -20,7 +20,7 @@ Los componentes no están bien separados y las interfaces entre ellos no están 
 
 === MS-DOS
 
-Por ejemplo, en el https://es.wikipedia.org/wiki/MS-DOS[MS-DOS] los programas de aplicación podían acceder directamente a toda la memoria y a cualquier dispositivo.
+Por ejemplo, en el {msdos} los programas de aplicación podían acceder directamente a toda la memoria y a cualquier dispositivo.
 Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el sistema completo.
 
 // TODO: Programa residente como núcleo
@@ -28,7 +28,7 @@ Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el 
 .Esquema de la estructura de MS-DOS.
 image::estructura_msdos.svg[]
 
-Como el https://en.wikipedia.org/wiki/Intel_8086[Intel 8086] para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.
+Como el {intel8086} para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.
 
 === UNIX
 
@@ -65,7 +65,7 @@ En cada capa los argumentos son transformados y los datos necesarios deben de se
 ====
 
 // TODO: Revisar esto.
-Un ejemplo de este tipo de sistemas operativos es el https://es.wikipedia.org/wiki/OS/2[IBM OS/2].
+Un ejemplo de este tipo de sistemas operativos es el {os2}
 
 [[estructura_os2]]
 .Esquema de la estructura de IBM OS/2.
@@ -134,7 +134,7 @@ Además se pueden implementar estrategias para mejorar la tolerancia a fallos, c
 
 El mayor inconveniente es el pobre rendimiento que puede tener causado por la sobrecarga que añade el mecanismo de comunicación.
 
-Por ejemplo, https://es.wikipedia.org/wiki/Windows_NT[Microsoft Windows NT] nació con una estructura de *microkernel* en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.
+Por ejemplo, {windowsnt} nació con una estructura de *microkernel* en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.
 
 El sistema operativo podía mostrar diferentes personalidades o _entornos operativos_ —básicamente de OS/2, POSIX y MSDOS— a través del uso de subsistemas ambientales, que también se ejecutaban como procesos de usuario.
 Las aplicaciones de Microsoft Windows NT se comunicaban con estos subsistemas utilizando un mecanismo de comunicación denominado https://en.wikipedia.org/wiki/Local_Inter-Process_Communication[LPC] (_Local Inter-Process Communication_).
@@ -148,7 +148,7 @@ Microsoft Windows XP tiene 280 llamadas al sistema a las que hay que sumar las m
 Mientras que Microsoft Windows NT 3.51 tenía algo menos de 200 llamadas al sistema. 
 ====
 
-Sin embargo varios sistemas operativos siguen utilizando núcleos microkernel, como https://es.wikipedia.org/wiki/QNX[QNX] o https://en.wikipedia.org/wiki/MINIX_3[MINIX 3] (véase la <<estructura_minix3>>).
+Sin embargo varios sistemas operativos siguen utilizando núcleos microkernel, como {qnx} o {minix3} (véase la <<estructura_minix3>>).
 Ambos son sistemas operativos de tiempo real que basan en la estructura de microkernel su estabilidad como sistema para tareas críticas.
 
 == Estructura modular
