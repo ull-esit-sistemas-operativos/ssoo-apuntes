@@ -54,18 +54,38 @@ Comúnmente en el grupo de las *instrucciones privilegiadas* se suelen incluir:
 * Las instrucciones necesarias para la gestión de las interrupciones.
 Por ejemplo, para desactivas —evitando que se lancen— activarlas y configurarlas. 
 
-// TODO: Esta nota puede ser un sidebar sobre  anillos en Intel, modo real y modo privilegiado.
+.Niveles de privilegio en procesadores x86
+****
+Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de tener mayor control sobre el nivel de privilegio en el que se ejecuta cada componente de sistema.
+
+Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación.
+El modo 0 es para el software más confiable y el que necesitas más privilegios, que generalmente es el núcleo.
+Mientras que el modo 3 se utiliza para el software menos confiable y que necesitas más supervisión, que normalmente son los procesos de usuario.
+
+La idea detrás de tener los modos 1 y 2 es usarlos para controladores de dispositivo o procesos que dan servicio al resto del sistema.
+Así estos componentes pueden tener mayores privilegios que los procesos de usuario —por ejemplo, los controladores de dispositivo necesitan acceso directo al hardware— pero al mismo tiempo serían supervisados y no podrían afectar al núcleo, que se ejecuta en el modo 0.
+
+Sin embargo, los sistemas operativos con mayor cuota de mercado —incluyendo Microsoft Windows, macOS, Linux y Android— solo utilizan los modos 0 y 3.
+Los motivos son que los desarrolladores de sistemas no encuentran realmente ninguna ventaja en utilizar más modos y que complica portar el sistema operativo a procesadores donde solo se soporten dos.
 
 [NOTE]
-====
-Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de que cada uno sirva para ejecutar código con diferente nivel de privilegio.
-
-Por ejemplo, la arquitectura Intel x86 soporta 4 modos.
-Sin embargo, los sistemas operativos con mayor cuota de mercado —incluyendo Microsoft Windows, macOS, Linux y Android— solo utilizan dos de ellos.
-Los motivos son que los desarrolladores de sistemas no encuentran que tenga ninguna ventaja realmente significativa y que complica portar el sistema operativo a procesadores que solo soportan dos modos.
+En procesadores x86 recientes, que vienen con instrucciones específicas para facilitar la ejecución de máquinas virtuales, se ha incorporado un modo -1, para que el núcleo del sistema operativo virtualizado se ejecute en el modo 0 mientras es supervisado desde el modo -1 por el núcleo del sistema operativo anfitrión.
 
 Para más información, véase https://es.wikipedia.org/wiki/Anillo_(seguridad_inform%C3%A1tica)[«Anillo (seguridad informática) -- Wikipedia»].
-====
+
+'''
+
+En los procesadores x86 es importante no confundir los *modos real*(((modo, real))) y *protegido*(((modo, protegido))) con el modo dual y los niveles de privilegio de los que estamos hablando.
+
+Por compatibilidad hacia atrás, los procesadores x86 se inician en modo real, donde se comportan como una CPU {intel8086}.
+En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —ya que los procesadores {intel8086} solo tenían 20 bits para direcciones de memoria—.
+
+Cuando un sistema operativo moderno arranca, lo primero que hace es iniciar el modo protegido, en el que se activan todas las características de la CPU.
+Entra otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.
+
+Para más información, véase https://es.wikipedia.org/wiki/Modo_protegido[«Modo protegido -- Wikipedia»].
+
+****
 
 === Ejecución de instrucciones
 
