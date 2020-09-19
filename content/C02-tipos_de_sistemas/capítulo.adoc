@@ -47,7 +47,7 @@ Para ello se utilizaba un lector de tarjetas autónomo, independiente del _mainf
 
 // TODO: Cambiar el dibujo a "Monitor del sistema (sistema operativo)"
 [[sistemas_procesamiento_lotes]]
-.Organización de la memoria en los sistemas de procesamiento por lotes.
+.Organización de la memoria en sistemas de procesamiento por lotes.
 image::sistemas_procesamiento_lotes.svg[]
 
 ====
@@ -77,7 +77,7 @@ Además, con la aparición de la tecnología de los discos magnéticos en la dé
 A estos sistemas se los llamó *multiprogramados*.
 
 [[sistemas_multiprogramados]]
-.Organización de la memoria en los sistemas multiprogramados.
+.Organización de la memoria en sistemas multiprogramados.
 image::sistemas_multiprogramados.svg[]
 // TODO: Hacer un dibujo más elaborado con cola de entrada
 
@@ -270,7 +270,7 @@ discos duros para gestionarlos de forma más eficiente.
 
 [NOTE]
 ====
-Un ejemplo bastante ilustrativo es el de https://es.wikipedia.org/wiki/Cell_(microprocesador)[Cell] la CPU de PlayStation 3.
+Un ejemplo bastante ilustrativo es el de https://es.wikipedia.org/wiki/Cell_(microprocesador)[Cell], la CPU de PlayStation 3.
 Tenía un núcleo principal de propósito general y 8 núcleos optimizados para ejecutar de forma muy eficiente operaciones vectoriales.
 Con la ayuda del sistema operativo, los programas debían envían tareas matemáticamente intensivas a los procesadores secundarios, si querían extraer el máximo provecho de la arquitectura.
 

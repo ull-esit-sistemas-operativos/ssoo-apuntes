@@ -1,0 +1,19 @@
+= Memoria compartida
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
+
+_La *memoria compartida* es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro_ (véase la ).
+Puesto que normalmente el sistema operativo intenta evitar que un proceso pueda tener acceso a la memoria de otro proceso (véase el <<_protección_de_la_memoria>>), para que pueda haber memoria compartida es necesario que los dos procesos estén de acuerdo en eliminar dicha restricción.
+
+Dos procesos que comparten una región de la memoria pueden intercambiar información leyendo y escribiendo datos en la misma, pero:
+
+* _La estructura de los datos y su localización dentro de la región compartida la determinan los procesos en comunicación_ y no el sistema operativo.
+
+* _Los procesos son responsables de sincronizarse_ (véase el <<_sincronización>>) para no escribir en el mismo sitio al mismo tiempo, lo que que podría generar inconsistencias.
+
+Las principales ventajas de la memoria compartida frente a otros mecanismos de comunicación son:
+
+* _**Eficiencia**, puesto que la comunicación tiene lugar a la velocidad de la memoria principal._
+
+* _**Conveniencia**, puesto que el mecanismo de comunicación sólo requiere leer y escribir de la memoria_.

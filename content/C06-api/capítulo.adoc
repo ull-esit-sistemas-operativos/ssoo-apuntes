@@ -99,7 +99,7 @@ Es utilizando, por ejemplo, en sistemas BSD y en Windows XP y posteriores para x
 [[linux_mips_syscall]]
 .Llamada al sistema en Linux MIPS.
 ====
-Vemos como invocar directamente la llamada al sistema {linux_write} en Linux para MIPS.
+Veamos como invocar directamente la llamada al sistema {linux_write} en Linux para MIPS.
 
 Esta llamada sirve para escribir datos en un archivo.
 Así que necesita tres argumentos:
@@ -126,6 +126,8 @@ El identificador de la llamada al sistema es 4004, según el https://git.linux-m
 Aunque veamos que es una única instrucción, lo que realmente va a ocurrir es que el sistema operativo va a tomar el control de la CPU para realizar la tarea solicitada.
 La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operativo no lo decida, por lo que, desde el punto de vista del programa, va a ser como si `syscall` fuera una instrucción más lenta de lo normal.
 <4> Al ejecutar la siguiente instrucción del código del programa, el registro `v0` contendrá el número de bytes escritos.
+
+En {syscall_s} se puede ver un ejemplo completo similar, pero para Linux x86 de 64 bits.
 ====
 
 En cualquier caso, sea cual sea el método utilizado, el sistema operativo es responsable de comprobar de manera estricta la validez de los parámetros enviados en la llamada al sistema antes de realizar cualquier operación, puesto que nunca debe confiar en que los procesos hagan su trabajo correctamente.

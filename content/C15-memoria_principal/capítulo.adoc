@@ -1,0 +1,119 @@
+= Memoria principal
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
+
+La memoria es un recurso central para el funcionamiento de un sistema operativo moderno, puesto que es el único medio de almacenamiento al que la CPU puede acceder directamente.
+Por ello, para que un programa pueda ser ejecutado debe ser cargado en la memoria, desde el disco, y creadas o modificadas las estructuras internas del sistema operativo necesarias para convertirlo en un proceso.
+Además, dependiendo de la forma en la que se gestiona la memoria, los procesos o partes de los mismos pueden moverse de la memoria al disco y viceversa durante su ejecución, con el objetivo de ajustar las necesidades de memoria manteniendo la utilización de la CPU lo más alta posible.
+
+Como ya comentamos en el aparatado <<_mainframe>>, en los *sistemas multiprogramados* existe una *cola de entrada* que se define _como aquella formada por el conjunto de procesos en disco que esperan para ser cargados en la memoria para su ejecución_.
+
+Por tanto, el procedimiento normal de ejecución de un programa en dichos sistemas es:
+
+. _Seleccionar un proceso de la cola de entrada y cargarlo en la memoria_.
+
+. _Mientras el proceso se ejecuta, éste accede a instrucciones y datos de la memoria_.
+
+. _Finalmente el proceso termina y su espacio en memoria es marcado como disponible_.
+
+En los *sistemas de tiempo compartido* no existe *cola de entrada*, por lo que los programas se cargan inmediatamente en memoria cuando su ejecución es solicitada por los usuarios.
+Excepto por eso, el procedimiento normal de ejecución de un programa es el mismo que para los _sistemas multiprogramados_.
+
+== Reubicación de las direcciones
+
+La mayor parte de los sistemas permiten que un proceso de usuario resida en cualquier parte de la memoria física.
+Así, aunque el espacio de direcciones del sistema comience en `0x000000`, la primera dirección del proceso de usuario no tiene porque ser esa.
+En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la ).
+En cada una de ellas las direcciones pueden representarse de formas distintas, por lo que en cada paso es necesario reubicar las direcciones usadas en una etapa en direcciones de la siguiente.
+Por ejemplo, en el código fuente de un programa las direcciones son generalmente _simbólicas_, como los nombres de las variables y las funciones.
+A continuación, un compilador suele reasignar esas direcciones simbólicas en _direcciones reubicables_ del estilo de "120 bytes desde el comienzo del módulo".
+Finalmente, el enlazador o el cargador convierte esas direcciones reubicables en _direcciones absolutas_ como `0x210243`.
+
+Por tanto, en cada etapa se mapean las direcciones de un espacio de direcciones en el siguiente.
+Sin embargo, para que al final el programa pueda ser ejecutado es necesario que tanto a los datos como a las instrucciones se les reasignen direcciones absolutas de la memoria.
+Esto realmente puede ocurrir en cualquiera de las siguientes etapas:
+
+* En *tiempo de compilación*.
+Si durante la compilación o el enlazado se conoce el lugar de la memoria donde va a ser ejecutado el proceso, se puede generar directamente código con _direcciones absolutas_, o *código absoluto*.
+Si en algún momento la dirección de inicio donde es cargado el programa cambia, es necesario recompilar el código fuente del programa.
+Los programas con formato COM del MS-DOS son un ejemplo de este tipo de programas.
+
+// TODO: Poner lo de los como COM nota.
+
+* En *tiempo de carga*.
+Si no se conoce durante la compilación el lugar donde va a residir un programa cuando sea ejecutado, el compilador debe generar *código reubicable*.
+En este tipo de código se utilizan _direcciones reubicables_, de manera que se retrasa la reubicación a direcciones absolutas hasta el momento de la carga del programa.
+Esto permite a muchos sistemas operativos que un proceso pueda residir en cualquier parte de la memoria física, cargando los procesos donde más convenga para maximizar el aprovechamiento de la misma.
+
+* En *tiempo de ejecución*.
+Si un proceso puede ser movido durante su ejecución de un lugar de la memoria a otro, la reubicación de direcciones debe ser retrasada hasta el momento de la ejecución de cada instrucción del programa.
+Para que esto sea posible necesitamos disponer de hardware especial que suele estar presente en la mayor parte de las CPU modernas, por lo que la inmensa mayoría de los sistemas operativos modernos de propósito general utilizan este método.
+
+// TODO: 4.1.2. Espacio de direcciones virtual frente a físico
+
+En el <<_protección_de_la_memoria>> vimos en lo sistemas operativos modernos, como medida de protección, los procesos no tienen acceso libre a la memoria física.
+En lugar de eso el sistema operativo —asistido por la MMU (Memory-Management Unit)— proporciona a cada proceso un _espacio de direcciones virtual_ que ofrece una «vista» privada de la memoria similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la ).
+Es durante los acceso a la memoria principal en tiempo de ejecución cuando estas _direcciones virtuales_ son convertidas en las _direcciones física_ con las que realmente se accede a la memoria.
+
+El mecanismo de protección descrito _es una forma muy común de reubicación de las direcciones en tiempo de ejecución_ que está presente en la mayor parte de los sistemas operativos modernos de propósito general.
+A parte de la protección, algunas de las características de dicho mecanismo son:
+
+* _Los programas pueden ser cargados en cualquier zona libre de la memoria física e incluso movidos de una región a otra durante la ejecución de los procesos_, puesto que la transformación (reubicación) de las direcciones virtuales en direcciones físicas se realiza durante la ejecución de cada instrucción.
+
+* _La reubicación de las direcciones virtuales —es decir, la asignación de direcciones virtuales a las direcciones del programa— puede hacerse en tiempo de compilación_ puesto que de antemano se sabe que todo el espacio de direcciones virtual va a estar disponible.
+Lo común es que los programas se ubiquen en la parte baja del espacio de direcciones virtual, por ejemplo en empezando en la dirección `0x00000000`.
+
+* _Se puede reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código y los datos de sólo lectura de los procesos de un mismo programa_.
+El código de un programa suele contener direcciones tanto para los saltos como para el acceso a los datos.
+Al ubicar los programas siempre en las mismas regiones de los espacios de direcciones virtuales nos estamos asegurando de que el código en memoria de los procesos de un mismo programa siempre es el mismo, por lo que se puede compartir la memoria física que ocupan.
+
+== Enlazado dinámico y librerías compartidas
+
+Fundamentalmente existen dos tipos de enlazado:
+
+* _En el *enlazado estático*, las librerías del sistema y otros módulos son combinados por el enlazador para formar la imagen binaria del programa que es almacenada en disco_.
+Algunos sistemas operativos, como MS-DOS, sólo soportan este tipo de enlazado.
+
+* _En el *enlazado dinámico*, éste se pospone hasta la carga o la ejecución_ (véase la ).
+
+Generalmente el enlazado dinámico ocurre durante la carga del programa:
+
+. _Durante la carga del módulo ejecutable se comprueban las dependencias del mismo_.
+Estas se almacenan en el mismo archivo en disco que dicho módulo.
+
+. _Las librerías a enlazar se cargar y ubican en el espacio de direcciones virtual creado para el nuevo proceso_.
+
+. Finalmente, _las referencias del programa a las funciones de cada una de las librerías cargadas se actualizan con la dirección en memoria de las mismas_.
+Así la invocación de las funciones por parte del programa se puede realizar de forma transparente, como si siempre hubieran formado parte del mismo.
+
+Cuando el enlazado se va a realizar en tiempo de ejecución se habla de _enlazado dinámico con carga diferida_.
+En ese caso el procedimiento es el siguiente.
+
+. _Durante el enlazado estático del módulo ejecutable se pone un stub a cada referencia a alguna función de la librería que va a ser enlazada dinámicamente_.
+
+. _Si durante la ejecución alguna de dichas funciones es invocada, se ejecuta el stub_.
+El _stub_ es una pequeña pieza de código que sabe como carga la librería, si no ha sido cargada previamente, y como localizar la función adecuada en la misma.
+
+. Finalmente, _el stub se sustituye a si mismo con la dirección de la función y la invoca_.
+Esto permite que la siguiente ejecución de la función no incurra en ningún coste adicional.
+
+Sin esta habilidad cada programa en el sistema, por ejemplo, debe tener una copia de la librería del sistema incluida en la imagen binaria del mismo, lo que significa un desperdicio de espacio libre en disco y memoria principal.
+Además este esquema facilita la actualización de las librería, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.
+
+Puesto que durante la compilación de una librería no se conoce la región que va a ocupar dentro de los espacios de direcciones virtuales de los distintos procesos que la van a utilizar:
+
+* Para las librerías _el compilador debe generar código PIC (Position-Independent Code) o independiente de la posición_.
+Este tipo de código se puede ejecutar adecuadamente y sin modificaciones independientemente del lugar de la memoria donde esté ubicado.
+Esto permite reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código de una misma librería en los distintos procesos que la utilizan.
+
+* En los sistemas operativos donde no se usa código PIC el compilador debe generar código reubicable _para que la reubicación de las direcciones virtuales de las librerías dinámicas se haga en tiempo de carga_.
+Esto aumenta el tiempo de carga de las librerías y sólo permite que compartan memoria física el código de las instancias de una misma librería que ha sido cargado en la misma región del espacio de direcciones virtual en los distintos procesos que la utilizan.
+
+_Habitualmente las librerías incluyen información acerca de la versión que puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en memoria_.
+Así los viejos programas se pueden ejecutar con las viejas versiones de las mismas, o con versiones actualizadas pero compatibles, mientras los nuevos programas se ejecuten con las versiones más recientes e incompatibles con los viejos programas.
+A este sistema se lo conoce como *librerías compartidas*.
+
+//TODO: Asignación de memoria y asignación de memoria contigua
+
+//TODO: Ver si meter intercambio

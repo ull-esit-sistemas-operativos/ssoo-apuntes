@@ -1,0 +1,52 @@
+[bibliography]
+= Bibliografía
+
+Parte de los contenidos de este documento están basados en las siguientes fuentes:
+
+* [[[Bavier2000]]]
+Bavier, A. «Creating New CPU Schedulers with Virtual Time». En 21st IEEE Real-Time Systems Symposium (RTSS 2000) WIP Proceedings, 2000.
+
+* [[[Friedman1999]]]
+Friedman, M. B. «Windows NT Page Replacement Policies». En 25th International Computer Measurement Group Conference, December 5-10, 1999, Pag. 234-244.
+
+* [[[Ganger2000]]]
+Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. «Soft Updates: A Solution to the Metadata Update Problem in File Systems». En ACM Transactions on Computer Systems, Vol. 18, No. 2, May 2000, Pag. 127—153.
+
+* [[[Gorman2004]]]
+Gorman, M. «Understanding the Linux Virtual Memory Manager». Prentice Hall, 2004.
+
+// TODO: Revisar esta referencia. No se dónde se uso: ¿hilos? ¿sincronización?
+* [[[Hailperin2006]]]
+Hailperin, M. «Operating Systems and Middleware: Supporting Controlled Interaction». Course Technology, 2006.
+
+* [[[Jacob1998]]]
+Jacob, B y Mudge, T. «Virtual Memory: Issues of Implementation». Computer, 31:33-43, 1998. ISSN 0018-9162. DOI: 10.1109/2.683005. URL http://dx.doi.org/10.1109/2.683005.
+
+// TODO: Revisar esta fuente. Quizás planificación y / o remplazo de páginas.
+* [[[Microsoft2005]]]
+«Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn» [en línea]. Microsoft Corporation, 2005. URL http://goo.gl/ml8C4.
+
+// TODO: Revisar esta fuente.
+* [[[Microsoft2003]]]
+«Kernel Enhancements for Windows XP» [en línea]. Microsoft Corporation, 2003 [2006]. URL http://goo.gl/ugED.
+
+// TODO: ¿Siguen habiendo contenidos sobre XFS?
+* [[[SGI2006]]]
+«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007]. URL https://goo.gl/YF82JB
+
+* [[[Silberschatz2004]]]
+Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=184173.titn./[«Operating System Concepts with Java»]. 6º ed. John Wiley & Sons Inc., 2004.
+
+* [[[Silberschatz2005]]]
+Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=345629.titn./[«Fundamentos de Sistemas Operativos»]. 7ª ed. McGraw Hill, 2005.
+
+* [[[Wikipedia-cmalloc]]]
+«C dynamic memory allocation» [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/OkFJ3
+
+// TODO: Revisar si mantener esta o referenciarla directamente en el capítulo.
+* [[[Wikipedia-RAID]]]
+«RAID» [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/GTQU
+
+// TODO: Añadir sistemas de archivos CoW.ç
+
+// TODO: ¿Fuente del VRR y otros de planificación? Willian Stanling?

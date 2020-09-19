@@ -35,17 +35,47 @@ include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
 = Gestión de procesos
 
-// include::procesos.adoc[]
+:sectiondir: C09-procesos
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C10-ipc
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C11-memoria_compartida
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C12-hilos
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C13-sincronización
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C14-planificación_de_CPU
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
 = Gestión de la memoria
 
-// include::memoria.adoc[]
+:sectiondir: C15-memoria_principal
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C16-paginación
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C17-memoria_virtual
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
 = Gestión del almacenamiento
 
-// include::almacenamiento.adoc[]
+:sectiondir: C18-almacenamiento
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
 
-// include::bibliografía.adoc[]
+:sectiondir: C19-sistema_de_archivos
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+:sectiondir: C20-implementación_del_sistemas_de_archivos
+include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+
+include::bibliografía.adoc[leveloffset=+1]
 
 // Índice de términos
 // NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.

@@ -1,150 +1,12 @@
-== Gestión del almacenamiento
-include::attributes.adoc[]
-:imagesdir: {imagesdir}/almacenamiento
-
-=== Dispositivos de almacenamiento
-
-Los ordenadores pueden almacenar información en diferentes soportes de almacenamiento —por ejemplo en discos magnéticos, en DVD, en memorias de estado sólido, etc.—.
-Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente a continuación.
-
-==== Discos magnéticos
-
-Los discos magnéticos son el tipo principal de almacenamiento secundario, generalmente en la forma de lo que se denominan discos duros.
-Tal y como se puede apreciar en la cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
-La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.
-
-Desde el punto de vista lógico (véase la ) _la superficie de cada plato está dividida en *pistas* circulares, cada una de las cuales se subdivide en **sectores**_.
-_El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina **cilindro**_.
-
-En estos dispositivos consume mucho más tiempo mover la cabeza de lectura hasta el sector de interés que la lectura y transferencia de los datos almacenados a la memoria RAM.
-Por lo tanto el tiempo de acceso aleatorio al disco es mucho mayor que el de acceso secuencial.
-
-==== Discos ópticos
-
-Los discos ópticos —CD, DVD, BluRay, etc.— consisten en un disco circular en el cual la información se almacena haciendo uso de surcos microscópicos que se leen haciendo incidir un láser sobre una de las caras planas que lo componen.
-
-En este tipo de discos la información se almacena siguiendo un recorrido continuo en espiral que cubre la superficie entera del disco, extendiéndose desde el interior hacia el exterior.
-Dado que el láser siempre debe desplazarse sobre la espiral, el acceso aleatorio a los datos es más lento que con otras tecnologías de disco.
-
-==== Memorias de estado sólido
-
-Una memoria de estado sólido —memoria USB, SSD, etc.— es un dispositivo de almacenamiento que usa una memoria no volátil, como las _memorias flash_, para almacenar datos, en lugar de utilizar discos ópticos o magnéticos.
-En este tipo de memorias la información se almacena como en un vector lineal de bytes, que se puede indexar aleatoriamente con la misma eficiencia con la que se accede secuencialmente, como ocurre con la memoria RAM, Aunque algunos dispositivos, de cara al resto del sistema informático, emulan una interfaz y un modo de direccionamiento similar al utilizado por los discos magnéticos —es decir, usando pistas, sectores y cilindros.— por temas de compatibilidad.
-
-=== Archivos y sistemas de archivos
-
-Teniendo en cuenta la gran diversidad de dispositivos de almacenamiento que existen, para que el sistema informático sea cómodo de utilizar el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
-Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir una unidad de almacenamiento lógico que sea útil para los usuarios.
-Esta unidad es el _archivo_.
-
-_Un *archivo* es una colección de información relacionada cuya estructura y significado de sus datos los define su creador_.
-Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
-Es decir, no se pueden escribir datos en el almacenamiento secundario a menos que estos se encuentren dentro de un archivo.
-
-El sistema operativo puede ofrecer esta abstracción gracia al *sistema de archivos*.
-_Este proporciona los mecanismos para el almacenamiento de lo datos y programas en archivos_, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.
-
-_Los sistemas de archivos están compuestos de dos partes claramente diferenciadas:_
-
-* _Una colección de archivos_, cada uno de los cuales almacena una serie de datos relacionados.
-
-* _Una colección de estructuras de metadatos_, que contienen información relativa a los archivos almacenados —nombre, ubicación en el disco, permisos, etc.— y que se encarga de organizarlos, generalmente haciendo uso de una estructura de directorios.
-
-=== Volúmenes de datos
-
-Los dispositivos de almacenamiento comentados anteriormente pueden ser utilizados al 100% con un único sistema de archivos.
-Sin embargo, en ocasiones es interesante hacer divisiones con el objeto de disponer de múltiples sistemas de archivos en el mismo dispositivo.
-Cada una de esas divisiones es un _volumen_.
-
-En otros casos interesa combinar divisiones o dispositivos de almacenamiento completos para crear espacios de mayor tamaño —también denominadas volúmenes— cada una de las cuales puede albergar un único sistema de archivos.
-Así que en general _utilizaremos el término *volumen* para referirnos a un espacio de almacenamiento que alberga un sistema de archivos_, tanto si ese espacio es una pequeña parte del espacio completo del dispositivo como si se trata de una estructura de mayor tamaño compuesta a partir de varios dispositivos.
-
-A continuación comentaremos brevemente las tecnologías utilizadas con mayor frecuencia para construir estos volúmenes.
-
-==== RAID
-
-La tecnología *RAID* (_Redundant Array of Inexpensive Disks_) permite combinar varios discos duros para mejorar las prestaciones a través del paralelismo en el acceso o para mejorar la fiabilidad a través del almacenamiento de información redundante.
-En concreto se definen diversos _niveles RAID_, de entre los cuales los más comunes son:
-
-* _En un *conjunto RAID 0* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos_, sin incluir ningún tipo de información redundante.
-Esto permite leer y escribir más datos en el mismo tiempo ya que se pueden enviar en paralelo peticiones a los distintos discos.
-Sin embargo la fiabilidad es inversamente proporcional al número de discos, ya que para que el conjunto falle basta con que lo haga cualquiera de ellos.
-
-* _En un *conjunto RAID 1* se crea una copia exacta —en espejo— de los datos en dos o más discos_.
-El resultado es que, incluso con dos discos, se incrementa exponencialmente la fiabilidad respecto a tener uno solo, ya que para que el conjunto falle es necesario que lo hagan todos los discos.
-Adicionalmente el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear la operaciones de lectura entre todos ellos.
-
-* __En un *conjunto RAID 5* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma división__footnote:[En RAID se denomina división o stripe a la serie de bloques consecutivos escogido cada uno de uno de los discos del conjunto.].
-El disco utilizado para almacenar el bloque de paridad cambia de forma escalonada de una división a la siguiente, de ahí que se diga que _el bloque de paridad está distribuido_.
-Algunos aspectos adicionales a tener en cuenta son que:
-
-    ** _Cada vez que se escribe un bloque de datos se debe actualizar el bloque de paridad_.
-Por lo tanto las escrituras en un conjunto RAID 5 son costosas en términos de operaciones de disco y tráfico.
-
-    ** _Los bloques de paridad no se leen durante las lecturas de datos_, ya que eso reduciría el rendimiento.
-Sólo se hace en caso de que la lectura de un sector falle, puesto que _el sector en la misma posición relativa dentro de cada uno de los otros bloques de datos de la división y en el bloque de paridad se pueden utilizar para reconstruir el sector erróneo._
-
- ** _En un conjunto RAID 5 el fallo de 2 discos provoca la pérdida completa de los datos_.
-Esto significa que aunque se pueden añadir discos de manera ilimitada, eso no suele ocurrir puesto que _a más discos en el conjunto más probabilidad de que fallen dos de ellos_.
-
-* _En un *conjunto RAID 6* se utiliza la misma estrategia que en RAID 5 pero _en cada división hay dos _bloques de paridad —_en lugar de uno—_ _en dos discos diferentes_.
-Esto permite que fallen hasta dos discos sin perder los datos.
-
-* _En un conjunto con niveles anidados se combinan varios niveles RAID básicos como si fueran capas superpuestas_.
-Ejemplos típicos son:
-
-    ** RAID 0+1, donde se hace un espejo de un conjunto RAID 0.
-
-    ** RAID 1+0 o RAID 10, donde diversos conjuntos en espejo se combina en un RAID 0, aumentando la capacidad total.
-
-    ** RAID 50, donde diversos conjuntos RAID 5 se combinan en un RAID 0, aumentando también la capacidad total.
-
-La implementación de RAID es otra de las áreas donde existen diversas variantes:
-
-* _RAID puede implementarse en el hardware de la controladora de disco_, de tal forma que sólo los discos conectados a esta pueden formar parte de un conjunto RAID determinado.
-Esta solución es muy eficiente, especialmente cuando se utilizan niveles que requieren cálculo de la paridad, ya que se evita utilizar tiempo de CPU para ese trabajo.
-Sin embargo estas controladoras son notablemente más caras que las que carecen de soporte para RAID.
-
-* _RAID puede implementarse dentro del sistema operativo en lo que se denomina el software de **gestión de volúmenes**_.
-En este caso las soluciones RAID con paridad son bastante lentas por lo que normalmente sólo se soportan los niveles RAID 0, 1, 10 o 0+1.
-Algunas controladoras de disco modernas que dicen venir con soporte RAID realmente implementan esta tecnología en software, a nivel del controlador de dispositivo, mientras que en el hardware sólo se implementan unas características de apoyo mínimasfootnote:[En algunos entornos se denomina a este tipo de implementaciones _fakeRAID_ o _hostRAID_.].
-
-Cada conjunto RAID se comporta como una unidad de almacenamiento independiente desde el punto de vista del resto del sistema, por lo que se puede utilizar entero para albergar un único sistema de archivos.
-Sin embargo, lo más común es dividirlo en regiones con el objeto de utilizar múltiples sistemas de archivos o combinarlo en estructuras de mayor tamaño, para lo cuál se pueden utilizar alguna de las técnicas que veremos a continuación.
-
-==== Particiones
-
-_Un disco, un conjunto RAID o cualquier otro dispositivo de almacenamiento se puede dividir en regiones para utilizar en cada una de ellas un sistema de archivos diferente_.
-A esas regiones se las conoce comúnmente como *particiones*, *franjas* o *minidiscos*.
-
-Según la plataforma, existen diversas maneras de implementar el soporte de particiones.
-Entre los sistemas de escritorio las tecnologías más difundidas y utilizadas son la *MBR* (_Master Boot Record_) y la *GPT* (_GUID Partition Table_).
-En ambas _se almacena, en los primeros sectores del dispositivo de almacenamiento, una tabla con una entrada por partición donde se guardan las direcciones del primer y último sector de cada una de ellas en el dispositivo_, así como otra información.
-Eso es todo lo que necesita el sistema operativo para determinar los límites de la región ocupada por cada sistema de archivos.
-
-==== Volúmenes dinámicos
-
-Según la tecnología que se utilice para particionar es posible encontrarse con una serie de restricciones comunes:
-
-* El limitado número de particiones diferentes que puede contener un mismo dispositivo.
-
-* Limitaciones o imposibilidad de redimencionar las particiones.
-Especialmente si el sistema operativo está en ejecución.
-
-* La imposibilidad de crear particiones que hagan uso de regiones libres en diferentes dispositivos de almacenamiento.
-
-Para resolverlo algunos sistemas operativos incluyen un _software de gestión de volúmenes_ que hace uso de tecnología propia para superar estas limitaciones.
-Estas herramientas generalmente permiten agrupar dispositivos completos, conjuntos RAID, particiones, etc.
-y sobre ellos construir los volúmenes que sean necesarios.
-Estos volúmenes pueden ser redimensionados —en ocasiones sin tener que detener la ejecución del sistema operativo— y en caso de que haga falta se pueden incluir dinámicamente nuevos dispositivos para incrementar el espacio disponible.
-Además, como ya hemos comentado, el software de gestión de volúmenes puede incluir alguna funcionalidad propia de conjuntos RAID con el objeto de mejorar las prestaciones, a través del paralelismo en el acceso, o mejorar la fiabilidad a través del almacenamiento de información redundante.
-
-=== Sistemas de archivos
+= Sistemas de archivos
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
 
 Cada volumen puede albergar un sistema de archivos.
 A continuación estudiaremos los elementos más comunes a la mayor parte de los sistemas de archivos.
 
-==== Estructura de un sistema de archivos
+== Estructura de un sistema de archivos
 
 Un sistema de archivos suele estar compuesto de varios niveles diferentes.
 En la se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
@@ -177,7 +39,7 @@ En Linux se soportan más de cuarenta sistemas de archivo, entre los que podría
 Además, la mayoría de los sistemas operativos modernos soportan otros sistemas de archivo, como los utilizados en los soportes removibles.
 Por ejemplo el ISO-9660, utilizado por la mayor parte de los CD-ROM, o el UFS (_Universal File System_), utilizado por los DVD-ROM.
 
-==== Estructuras de metadatos
+== Estructuras de metadatos
 
 Para implementar un sistema de archivos se utilizan diversas estructuras de metadatos alojadas tanto en el disco como en la memoria.
 Estas estructuras varían dependiendo del sistema operativo y del sistema de archivos.
@@ -214,7 +76,7 @@ Los directorios que actúan como puntos de montaje puede contener un puntero a l
 El PCB de cada proceso contiene una tabla donde se listan los archivos abiertos por el proceso.
 La tabla contiene para cada archivo un puntero a la entrada correspondiente del mismo archivo en la tabla global de archivos abiertos, así como otras informaciones adicionales que son particulares de cada proceso.
 
-==== Montaje de sistemas de archivos
+== Montaje de sistemas de archivos
 
 Un sistema de archivos debe _montarse_ para que sus archivos sean accesibles a los procesos del sistema.
 El proceso de montaje incluye los siguientes pasos:
@@ -232,12 +94,12 @@ Esto permite que pueda ser recorrida la estructura de directorios de distintos s
 En muchos sistemas operativos modernos el montaje se ejecuta automáticamente cuando los dispositivos son detectados durante el arranque del sistema o cuando se conectan durante el funcionamiento del mismo —por ejemplo, cuando se inserta un medio en la unidad CD-ROM o se pincha una memoria flash en un puerto USB—.
 Además, en algunos se permite que el administrador del equipo ejecute operaciones de montaje manuales.
 
-==== Archivos
+== Archivos
 
 Cada sistema de archivos almacena en disco una tabla donde cada entrada guarda un bloque de control de archivo o FCB (File Control Block) por archivo.
 Concretamente, en cada FCB se almacena diversa información acerca del archivo al que representa.
 
-===== Atributos de archivos
+=== Atributos de archivos
 
 La colección de atributos asociada a un archivo varía de un sistema operativo a otro, pero típicamente son los siguientes:
 
@@ -268,7 +130,7 @@ Los atributos de los archivos se almacenan en las estructuras de metadatos.
 Normalmente el nombre se almacena en la estructura de directorios, de tal manera que una entrada de directorio está compuesta del nombre de un archivo y del identificador de su FCB.
 Dicho identificador permite localizar el FCB en la tabla de contenidos del volumen, que contiene el resto de los atributos del archivo.
 
-===== Operaciones con los archivos
+=== Operaciones con los archivos
 
 Un archivo es un tipo abstracto de datos sobre el que pueden realizarse diversas operaciones.
 Concretamente _el sistema operativo proporciona llamadas al sistema para: crear, escribir, leer, reposicionarfootnote:[Generalmente el sistema mantiene un puntero de lectura/escritura que hace referencia a la ubicación dentro del archivo en la que debe tener lugar la siguiente operación.
@@ -310,7 +172,7 @@ Si el archivo no existe en esta última, también hay que crear una entrada en l
 Es muy común que la tabla global almacene un _contador de aperturas_ para cada archivo con el objetivo de indicar cuantos procesos lo mantienen abierto.
 Dicho contador se decrementa con cada llamada al sistema `close()`, de forma que cuando alcance cero querrá decir que la entrada puede ser eliminada de la tabla global de archivos abiertos.
 
-===== Tipos de archivo
+=== Tipos de archivo
 
 Cuando se diseña un sistema operativo es necesario considerar si debe reconocer y soportar el concepto de tipo de archivo.
 Si el sistema operativo reconoce el tipo de un archivo puede operar con el mismo de formas razonables.
@@ -330,14 +192,14 @@ No todos los archivos tienen números mágicos, por lo que se permite hacer suge
 Sin embargo estas extensiones ni son obligatorias ni el sistema depende de ellas.
 Fundamentalmente su objetivo es ayudar a los usuarios a determinar el tipo de contenido de un archivo, por lo que pueden ser utilizadas o ignoradas por cada aplicación concreta, en función de las preferencias de sus desarrolladores.
 
-==== Estructura de directorios
+== Estructura de directorios
 
 Algunos sistemas de archivos pueden almacenar millones de archivos en terabytes de disco.
 Para gestionar todos esos datos necesitamos organizarlos de alguna manera, lo que generalmente implica el uso de directorios.
 _Un *directorio* puede considerarse una tabla de símbolos que traduce los nombre de los archivos en los identificadores que permiten recuperar sus correspondientes entradas en la tabla de contenidos del volumen_, donde se almacenan los FCB.
 A continuación vamos a estudiar los diversos esquemas para definir la estructura lógica del sistema de directorios.
 
-===== Directorios de un nivel
+=== Directorios de un nivel
 
 _En la estructura de directorios de un nivel todos los archivos están contenidos en un único directorio_.
 Esto presenta algunas limitaciones:
@@ -348,7 +210,7 @@ Esto presenta algunas limitaciones:
 
 Este esquema fue utilizado por la primera versión del sistema operativo MSDOS.
 
-===== Directorio de dos niveles
+=== Directorio de dos niveles
 
 _En la estructura de directorios de dos niveles cada usuario tiene su propio *directorio de archivos de usuario* o *UFD* (User File Directory) que cuelga del *directorio maestro de archivos* o *MFD* (Master File Directory)_.
 Cuando un usuario se conecta al sistema o inicia un trabajo se explora el MFD, que es una tabla indexada por el nombre de los usuarios o por los números de cuenta, donde cada una de sus entradas apunta al UFD de dicho usuario.
@@ -363,7 +225,7 @@ En general, cada sistema operativo utiliza su propia sintaxis par nombrar los ar
 
 * Incluso en este caso puede ser difícil para un usuario mantener organizados sus datos a media que se incrementa el número de archivos personales.
 
-===== Directorios con estructura de árbol
+=== Directorios con estructura de árbol
 
 _La estructura de directorio de dos niveles puede generalizarse en la estructura de directorios en árbol de altura arbitraria_.
 Esto permite que los usuarios puedan crear sus propios subdirectorios para organizar sus archivo de la forma más conveniente.
@@ -387,7 +249,7 @@ Para eso sólo es necesario que se utilicen nombres de ruta para designar los ar
 
 Este tipo de estructura de directorios es la utilizada por MSDOS y por las distintas versiones de Microsoft Windows.
 
-===== Directorios en grafo acíclico
+=== Directorios en grafo acíclico
 
 La estructura de directorio en grafo acíclico es una generalización natural del esquema con estructura en árbol.
 A diferencia de éste último, _la estructura en grafo acíclico permite que los mismo archivos y subdirectorios existan simultáneamente en distintos lugares de la estructura de directorios._ Esto, por ejemplo, hace que los usuarios puedan compartir archivos de forma que se puedan acceder a los mismo directamente desde el directorio propiedad de los distintos usuarios.
@@ -425,7 +287,7 @@ Por último _no debemos olvidar que la estructura de directorios en grafo se con
 Ese es el motivo por el que en los sistemas UNIX no se permite que los _enlaces duros_ hagan referencia a directorios.
 Sin embargo si se pueden utilizar _enlaces simbólicos_ para este fin, puesto que al ser distinguibles del directorio original podemos evitar los ciclos si mientras se explora se ignorar dichos enlaces.
 
-===== Directorios en forma de grafo general
+=== Directorios en forma de grafo general
 
 Uno de los principales problemas de la estructura de directorios en grafo acíclico es garantizar que no exista ningún ciclo.
 Esto es interesante puesto que mientras sea así los algoritmos diseñados para recorrer el grafo y para determinar cuando no existen más referencias a un archivo son relativamente simples.
@@ -442,12 +304,12 @@ Por tanto, es mucho más sencillo trabajar con estructuras de directorio en graf
 Para evitar que en un grafo aparezca un ciclo al añadir un nuevo enlace, se pueden utilizar diversos algoritmos.
 Sin embargo, puesto que suelen ser muy costosos, lo más simple es ignorar todos los enlaces en los casos en los que se recorre el árbol de directorios para realizar una tarea en la que es importante no entrar en un bucle —por ejemplo, al hacer una búsqueda— En el caso de la duplicación de entradas de directorio —donde las entradas duplicadas no se pueden distinguir de la original y, por tanto, no se pueden ignorar— lo más sencillo es que el sistema operativo no permita crear múltiples referencias a un mismo directorio.
 
-=== Compartición de archivos
+= Compartición de archivos
 
 Como ya hemos comentado, el que los usuarios puedan compartir archivos es algo muy deseable pues permite que éstos puedan colaborar en la realización de una tarea determinada.
 Sin embargo al añadir esta característica hay que tener en cuenta algunos aspectos que deben ser resueltos en el diseño del sistema operativo.
 
-==== Múltiples usuarios y protección
+== Múltiples usuarios y protección
 
 Cuando un sistema operativo admite múltiples usuarios y utiliza una estructura de directorio que permite que éstos compartan archivos, cobra gran importancia la protección de los datos.
 En este sentido el sistema operativo debe adoptar un papel de mediador en lo que respecta a la compartición de los archivos.
@@ -503,7 +365,7 @@ _Otra técnica para resolver el problema de la protección consiste en asociar u
 Sin embargo esto tiene el inconveniente de que el número de contraseñas que un usuario puede tener que recordar puede ser muy grande.
 No olvidemos que si se utiliza la misma contraseña para todos los archivo, desde el momento en que esa contraseña sea descubierta todos los archivos serán accesibles.
 
-==== Semántica de coherencia
+== Semántica de coherencia
 
 _La *semántica de coherencia* especifica cuando las modificaciones que un usuario realice en los archivos serán observables por los otros usuarios_.
 La semántica de coherencia está directamente relacionada con los algoritmos de sincronización de procesos (véase tema <<_sincronización>>).
@@ -511,7 +373,7 @@ Sin embargo es normal que esos complejos algoritmos no se implementen en el caso
 
 A continuación vamos comentar algunos ejemplos de semántica de coherencia:
 
-===== Semántica de UNIX
+=== Semántica de UNIX
 
 Los sistemas de archivos de los sistemas operativos UNIX utilizan la siguiente semántica de coherencia:
 
@@ -523,7 +385,7 @@ Así, el incremento de ese puntero por parte de un proceso afecta a todos los pr
 En la semántica de UNIX cada archivo está asociado con una única imagen física a la que se accede en forma de recurso de acceso exclusivo —por ejemplo, un proceso que haga un `read()` sobre un archivo podrá quedar en espera si al mismo tiempo otro proceso está ejecutando un `write()`, hasta que este último termine—.
 La contienda por acceder a esta imagen única provoca retardos en los procesos debido a estos bloqueos.
 
-===== Semántica de sesión
+=== Semántica de sesión
 
 Suponiendo que _una *sesión de archivo* es el conjunto de operaciones entre las llamadas `open()`y `close()`_, el sistema de archivos Andrew —o AFS— utiliza la siguiente semántica de coherencia:
 
@@ -535,14 +397,14 @@ Las sesiones ya abiertas sobre el archivo no reflejarán dichos cambios.
 Esto significa que un archivo puede permanecer temporalmente asociado a varias imágenes físicas al mismo tiempo.
 Así se permite que múltiples usuarios realicen accesos concurrentes, tanto de lectura como de escritura, en sus propias imágenes del archivo, evitando los retardos.
 
-===== Semántica de archivos compartidos inmutables
+=== Semántica de archivos compartidos inmutables
 
 En esta semántica, _cuando un archivo es declarado como compartido por su creador ya no puede ser ser modificado_.
 Estos archivos inmutables cumplen dos propiedades clave: su nombre no puede reutilizarse y su contenido no puede ser modificado.
 Así podemos estar seguros de que el contenido de un archivo inmutable es fijo.
 La implementación de esta semántica en un sistema distribuido es muy simple.
 
-==== Bloqueos de archivo
+== Bloqueos de archivo
 
 Algunos sistemas operativos proporcionan funciones para bloquear un archivo —o determinadas porciones de un archivo— abierto.
 Esto permite que un proceso _impida que otros procesos puedan acceder al archivo bloqueado_.
@@ -573,7 +435,7 @@ Son los desarrolladores del software los encargados de intentar adquirir el bloq
 
 Como regla general los sistemas operativos Microsoft Windows implementan un mecanismo de bloqueo obligatorio, mientras que los sistemas UNIX emplean bloqueos sugeridos.
 
-=== Coherencia
+= Coherencia
 
 Como hemos comentado anteriormente, parte de los metadatos se almacena en la memoria principal para acelerar el acceso.
 Dicha información generalmente está más actualizada que la correspondiente en el disco, puesto que la información almacenada en la memoria no tiene porque ser escrita inmediatamente después de una actualización.
@@ -581,7 +443,7 @@ Dicha información generalmente está más actualizada que la correspondiente en
 ¿Qué ocurriría entonces si fallase el sistema? Pues que el contenido de la caché y de los búferes se perdería y con ellos también los cambios realizados en los directorios y archivos abiertos.
 Esto puede dejar el sistema de archivos en un estado incoherente, pues el estado real de algunos archivos no sería el que se describe en la estructura de metadatos.
 
-==== Comprobación de coherencia
+== Comprobación de coherencia
 
 _El *comprobador de coherencia* comprueba la estructura de metadatos y tratar de corregir todas las incoherencias que detecte_.
 
@@ -593,7 +455,7 @@ Por ejemplo, si se hace un escritura de datos que extiende el tamaño de un arch
 Sin embargo, no ocurre lo mismo con los datos que el proceso quería escribir en el archivo.
 El sistema operativo puede copiarlos a búferes internos en la memoria para escribirlos en disco más adelante, evitando interrumpir el proceso durante más tiempo.
 
-==== Soft Updates
+== Soft Updates
 
 Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada _soft updates_.
 _Cuando se monta un sistema de archivos con la opción *soft updates* el sistema operativo desactiva la escritura síncrona de los metadatos, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas_.
@@ -601,7 +463,7 @@ Por ejemplo, cuando se van a escribir en el disco las modificaciones debidas a l
 Es sencillo darse cuenta de que haciéndolo al revés, si el sistema fallase antes de crear el FCB, acabaríamos con una entrada de directorio que apuntaría a un FCB inválido.
 Mientras que de esta manera el sistema de archivos permanecerá consistente aunque el sistema falle entre ambas operaciones.
 
-==== Sistemas de archivos basados en registro
+== Sistemas de archivos basados en registro
 
 Otra solución al problema de la coherencia consiste en aplicar técnicas de recuperación basadas en registro durante las actualizaciones de los metadatos del sistema de archivos.
 
@@ -649,7 +511,7 @@ Las operaciones de una transacción se deben escribir antes de devolver el contr
 * En el caso de que el sistema fallase, el uso de escrituras asíncronas podría provocar la corrupción del registro porque pueden ocurrir en cualquier orden.
 Para evitarlo, XFS impone cierto orden en las operaciones de escritura sobre el registro, de forma similar a como se hace con los _soft updates_, de tal forma que asegura la coherencia del registro.
 
-==== Sistemas de archivos basados en copia durante la escritura
+== Sistemas de archivos basados en copia durante la escritura
 
 _Las técnicas anteriores son necesarias para preservar la coherencia porque la modificación de los metadatos se hace sobrescribiendo los datos que ya existen_.
 Es decir, cuando se crea un nuevo archivo el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
@@ -682,412 +544,3 @@ Obviamente los sistemas que implementan este tipo de sistemas de archivo usan la
 Los sistemas de archivos ZFS y Btrfs son los principales ejemplos de sistemas de archivos basados en _copy-on-write_.
 Esta solución no sólo les permite tener las mismas propiedades que el uso de registro en cuanto a la preservación de la coherencia —con la ventaja de evitar dos escrituras en disco, una en el registro y otra para el cambio propiamente dicho— sino que además facilita que puedan ofrecer características adicionales, como la creación de copias instantáneas del volumen.
 
-=== Implementación de sistemas de archivos
-
-Como ya se ha comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
-En la se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
-Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
-Estos niveles han sido descritos en el apartado <<_estructura_de_un_sistema_de_archivos>>, mientras que las estructuras de metadatos utilizadas tanto en la memoria como en disco fueron tratadas brevemente en el <<_estructuras_de_metadatos>>.
-
-A continuación vamos a profundizar aun más en las estructuras y operaciones utilizadas para implementar los sistemas de archivos
-
-==== Implementación de directorios
-
-Cada directorio suele contener una estructura de datos que relaciona el nombre de cada archivo que contiene con el identificador de su FCB.
-Dicho identificador permite localizar el FCB en la tabla de contenidos del volumen, que contiene el resto de los atributos del archivo.
-
-En esta sección vamos a estudiar las formas más comunes de implementar la estructura de datos de un directorio.
-
-===== Lista lineal
-
-El método mas simple para implementar un directorio _consiste en utilizar una lista lineal o vector de nombres de archivos junto al identificador al FCB de cada uno_.
-
-Las acciones a realizar, para implementar cada una de las posibles operaciones sobre el directorio, serían:
-
-* *Crear un archivo*.
-Primero se explora el directorio para estar seguros de que no haya ningún archivo con el mismo nombre.
-Después se añade una nueva entrada al final del directorio.
-
-* *Borrar un archivo*.
-Primero se explora la lista en busca del archivo especificado y una vez localizada se libera la entrada correspondiente.
-Para reutilizar la entrada del directorio tenemos diversas alternativas:
-
-    ** _Se puede marcar la entrada como no utilizada_.
-Para eso se puede emplear un nombre especial o utilizar algún campo adicional —a parte de nombre de archivo e identificador del FSB— que se ha añadido a la entrada con ese propósito.
-
-    ** _Insertar un puntero a la entrada en una lista de entradas libres_, que se guarda dentro del mismo directorio.
-
-    ** _Copiar la última entrada del directorio en la ubicación que ha quedado libre_ y reducir la longitud del directorio.
-
-La principal desventaja de un directorio implementado como una lista lineal de entrada es que _para localizar un archivo es necesario realizar una búsqueda lineal_, lo cual puede resultar muy costoso en directorios con un número muy grande de archivos.
-Utilizando una lista ordenada se puede reducir el tiempo medio de búsqueda, pero eso complica los procesos de creación y borrado, pues puede que sea necesario mover cantidades importantes de información para mantener la lista ordenada.
-También se _puede utilizar una lista enlazada tanto para reducir el tiempo necesario para borrar un archivo como para facilitar la tarea de mantener ordenada la lista_.
-
-Los sistemas de archivos FAT y FAT32 implementan los directorios utilizando una lista lineal, donde en cada entrada no sólo se almacena el nombre del archivo sino también el FCB del mismo.
-Los sistemas de archivos ext2 y UFS también utilizan una lista lineal no ordenada, donde sólo se almacena el nombre del archivo o subdirectorio y el identificador del _inodo_ —el FCB, esos sistemas de archivo— correspondiente.
-
-===== Tabla de dispersión
-
-En los directorios implementados con una tabla de dispersión también _se almacenan las entradas de directorio en una lista lineal, pero al mismo tiempo se utiliza una tabla de dispersión para reducir enormemente el tiempo de búsqueda en el directorio_.
-La tabla de dispersión se indexa con un valor calculado por cierta función de dispersión a partir del nombre del archivo para obtener la ubicación de dicho archivo dentro de la lista lineal.
-
-_El único inconveniente es que debemos tratar la posible aparición de colisiones_, que son aquellas situaciones en las que dos nombres de archivo proporcionan, al aplicar la función de dispersión, la misma ubicación en la tabla.
-Esto se puede resolver utilizando una lista enlazada en cada entrada de la lista —cada entrada en al lista señalaría la ubicación de la siguiente entrada de la lista que tiene el mismo valor para la función de dispersión— a cambio de que las búsquedas sean un poco más lentas.
-En cualquier caso, éste método será normalmente más rápido que una búsqueda lineal por todo el directorio.
-
-===== Árbol B
-
-Para mantener el directorio ordenado, algunos sistemas de archivos modernos utilizan estructuras de datos en árbol más sofisticadas, como por ejemplo árboles B.
-
-Un caso concreto es el sistema de archivos NTFS, utilizado por Microsoft Windows.
-NTFS utiliza una estructura de datos denominada árbol B+ para almacenar el índice de los nombres de archivo contenidos en un directorio.
-En la entrada en la MFT de cada directorio se almacena un atributo, denominado _raíz del índice_ que, si el directorio es de pequeño tamaño, contiene todas las entradas de archivos del directorio.
-Pero para un directorio de gran tamaño, la _raíz del índice_ sólo puede almacenar unas pocas entradas de archivos del directorio.
-En ese caso la _raíz del índice_ contiene el nivel superior del árbol B+.
-Es decir, cada una de esas entradas de archivos en la _raíz del índice_ incluye también un puntero al bloque del disco que contiene un nodo del árbol con las entradas con nombres alfabéticamente anteriores a ese.
-Si en dicho nodo tampoco caben todas las entradas, sólo podrá contener algunas de ellas, por lo que cada una tendrá a su vez un puntero a un nuevo nodo del árbol; y así sucesivamente
-
-Las _ventajas_ de los árboles B+ son:
-
-* _Eliminan el coste de reordenar las entradas del directorio._
-
-* _La longitud desde la raíz del árbol hasta un nodo hoja es la misma para todas los caminos por el árbol_.
-
-[NOTE]
-====
-El sistema de archivos XFS también utiliza un árbol B+, pero en éste
-caso la implementación es un poco más compleja:
-
-. Un directorio de pequeño tamaño almacena sus entradas como una lista lineal no ordenada dentro de su mismo _inodo_ o FCB.
-
-. Cuando el directorio no cabe en el _inodo_ se le asigna un bloque propio, donde el directorio es implementado con una tabla de dispersión, tal y como hemos visto anteriormente.
-
-. Cuando el tamaño del directorio excede el tamaño del bloque, la tabla de dispersión se extrae y se almacena en un bloque diferente. La lista lineal también se extrae, pero no tiene que ser almacenada en un único bloque, sino que puede estar repartida por distintos bloques a lo largo del disco.
-
-. Finalmente, cuando la tabla de dispersión excede el tamaño de un bloque, dicha tabla se convierte en un árbol B+.
-====
-
-==== Métodos de asignación
-
-El siguiente problema es _cómo_ asignar el espacio disponible en el disco a los archivos almacenados, de forma que el espacio sea utilizado de la forma más eficiente y que se pueda acceder a los archivos de la forma más rápida posible.
-
-Como la unidad mínima de asignación de espacio a un archivo es el bloque, la fragmentación interna suele ser un problema común a todos los métodos que veremos a continuación.
-
-===== Asignación contigua
-
-_La *asignación contigua* requiere que cada archivo ocupe un conjunto contiguo de bloques en el disco_.
-Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requiere un movimiento mínimo del cabezal del disco.
-
-* _El problema de la asignación contigua puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento_ (véase el <<_hiperpaginación>>).
-Es decir, que en un momento dado tendremos una petición de tamaño _n_ que deberemos satisfacer con una lista de huecos libres de tamaño variable.
-Como ya estudiamos anteriormente, las estrategias más comunes son las de el _primer ajuste_ y el _mejor ajuste_.
-
-* _La asignación contigua sufre el problema de la **fragmentación externa**_.
-La solución sería utilizar alguna forma de *compactación*, pero esto puede llevar mucho tiempo en discos duros de gran tamaño y en algunos sistemas esta tarea tiene que realizarse con el dispositivo desmontado.
-Por eso es conveniente evitar utilizar técnicas de compactación en los sistemas en producción.
-Afortunadamente, la mayor parte de los sistemas operativos modernos que necesitan mecanismos de _desfragmentación_ pueden realizar esta tarea sin detener el sistema, aunque la perdida de rendimiento puede ser significativa.
-
-* _En la asignación contigua es necesario determinar cuanto espacio necesita un archivo antes de asignárselo, pero esto no siempre es posible_.
-Por ejemplo, si vamos a copiar un archivo, es indudable que conocemos de antemano cuanto espacio necesita la copia.
-¿Pero qué pasa cuando, por ejemplo, vamos a crear uno nuevo? Entonces cuando se cree el archivo es necesario que el usuario indique una estimación del espacio que va necesitar.
-¿Y si posteriormente que queremos añadir nuevos datos? Entonces, si hemos utilizado la estrategia del _mejor ajuste_, lo más probable es que el espacio situado a ambos lados del archivo ya esté ocupado.
-Para resolver esto existen dos posibilidades:
-
-    ** _La primera es terminar el programa de usuario_, emitiendo un error.
-Entonces, el usuario deberá volver a crear el archivo indicando más espacio y volver a ejecutar el programa.
-Puesto que las ejecuciones repetidas pueden ser muy costosas, lo más común es que el usuario acabe sobrestimando el espacio, lo que dará como resultado un desperdicio de espacio considerable.
-
-    ** _La segunda es buscar un hueco libre de mayor tamaño y copiar el contenido del archivo al nuevo espacio_.
-Esto puede hacerse siempre que exista suficiente espacio, aunque puede consumir bastante tiempo.
-
-Para minimizar estos problemas, se puede implementar un esquema de asignación contigua modificado, donde _se asigna inicialmente un bloque contiguo de espacio al archivo y, posteriormente, si dicho espacio resulta no ser lo suficientemente grande, se añade otra área de espacio contiguo, denominado *extensión*_.
-La ubicación de los bloques de un archivo se registra incluyendo en el FCB la dirección del primer bloque de cada extensión que compone el archivo, así como el número de bloques que ocupa cada una.
-
-Los sistemas de archivo XFS y ext4 utilizan extensiones para optimizar su funcionamiento, pues cuantos más bloques contiguos sean asignados a un archivo, menos reposicionamientos del cabezal del disco son necesarios para leerlos.
-Por ejemplo, en ext4 el espacio se asigna a los archivos en extensiones de hasta 128MB en bloques, generalmente, de 4KB.
-
-===== Asignación enlazada
-
-_En la *asignación enlazada* cada archivo es una lista enlazada de bloques de disco_, pudiendo estos bloques estar dispersos por todo el disco:
-
-* _Cada entrada de directorio contiene un puntero al primer_ bloque y, en ocasiones, al último para facilitar que se puedan añadir nuevos datos al final
-
-* _Cada bloque contiene un puntero al bloque siguiente_.
-Por ejemplo, si cada bloque tiene 512 bytes de tamaño y un puntero requiere 4 bytes, los bloques de disco tendrán un tamaño efectivo de 508 bytes.
-
-Este mecanismo resuelve todos los problemas de la asignación contigua.
-Además:
-
-* _No hay fragmentación externa_, puesto que pueden utilizarse cualquier bloque libre para satisfacer una solicitud de espacio.
-
-* _No es necesario declarar el espacio del archivo en el momento de crearlo_, pues siempre podrá seguir creciendo mientras hayan bloques libres.
-
-Sin embargo, la asignación enlazada también tiene sus desventajas:
-
-* _Sólo resulta eficaz para archivos de acceso secuencial_.
-Si queremos ir directamente al bloque i-esimo de un archivo, tendremos que comenzar desde el principio e ir leyendo cada bloque para obtener el puntero que nos indica el siguiente bloque.
-Es muy posible que en ocasiones esas lecturas deban ir precedidas de un reposicionamiento de los cabezales del disco.
-
-* _Se pierde cierta cantidad de espacio con los punteros_.
-Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0,758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.
-La solución para este problema consiste en asignar los bloques en grupos, denominados *clusters*.
-Así, el primer bloque de cada _cluster_ sólo tendría que almacenar un puntero al siguiente _clúster_, lo que reduciría la cantidad de espacio desperdiciada en los punteros y mejoraría la eficiencia al reducir el número de reposicionamiento del cabezal del disco.
-Sin embargo, también incrementaría el grado de fragmentación interna pues se pierde más espacio cuando un _cluster_ está parcialmente lleno.
-
-* _Otro problema es la fiabilidad_.
-Teniendo en cuenta que los archivos están enlazados mediante punteros, ¿qué sucedería si uno de esos punteros se pierde o resulta dañado?
-
-[NOTE]
-====
-El sistema de archivos FAT utiliza una variante del mecanismo de
-asignación enlazada en la que se utiliza una *tabla de asignación de
-archivo* o *FAT* (_File-Allocation Table_). Éste método consiste
-en lo siguiente:
-
-* La FAT es una tabla que contiene una entrada por cada bloque del disco y que se indexa según el número de bloque. Es decir, la entrada 10 de la FAT contiene información del bloque 10 del disco. La FAT se almacena en una sección al principio del volumen.
-
-* Cada entrada de directorio de un archivo contiene, a parte del nombre de dicho archivo y otras atributos, el número de bloque del primer bloque del disco con datos del archivo.
-
-* La entrada de la FAT indexada según ese número de bloque del primer bloque del archivo contiene el número de bloque del siguiente bloque del archivo. Iterando de esa manera se puede conocer los números de bloque de todos los bloques de un archivo.
-
-* El último bloque del archivo se indicar con un valor especial en su entrada en la FAT.
-
-* Los bloques no utilizados se indican con un valor igual a 0 en su entrada en la FAT.
-
-El uso de la FAT puede provocar un número importante de
-reposicionamientos del cabezal de disco debido a que siempre es
-necesario volver al principio del volumen para leer la FAT. Por eso, es
-muy habitual que el sistema operativo intente mantener una copia de la
-FAT en la memoria a modo de cache.
-
-Una de las ventajas de este esquema es que mejora el tiempo de acceso
-aleatorio, respecto a la asignación enlazada convencional, porque el
-cabezal del disco puede encontrar la ubicación de cualquier bloque a
-partir de la información en la FAT.
-====
-
-===== Asignación indexada
-
-_El mecanismo de *asignación indexada* agrupa todos los punteros de la asignación enlazada en una única ubicación_: el *bloque de índices*.
-Así se resuelve la falta de eficiencia de la asignación enlazada —convencional, en ausencia de FAT— cuando se realizan accesos aleatorios:
-
-* _Cada archivo tiene su propio bloque de índices_, que es un vector de direcciones de bloques de disco.
-
-* _La entrada i-ésima del bloque de índice contiene la dirección del bloque i-ésimo del archivo_.
-
-* _Cada entrada de directorio contiene la dirección del bloque de índices del archivo correspondiente_.
-
-Este mecanismo soporta el acceso aleatorio eficiente, además de no sufrir el problema de la fragmentación externa.
-Sin embargo, también tiene sus desventajas:
-
-* _Se pierde más espacio en los punteros que con el mecanismo de asignación enlazada_.
-No olvidemos que siempre hay que reservar un bloque de índices completo para cada archivo, mientras que con la asignación enlazada sólo se pierde el espacio de los punteros que realmente es necesario utilizar.
-
-* _Debemos determinar el tamaño del bloque de índices_.
-Por lo anterior y puesto que cada archivo debe tener un bloque de índices, ese bloque debe ser lo más pequeño posible para no perder espacio.
-Pero si es demasiado pequeño, no podrá almacenar suficientes punteros para un archivo de gran tamaño.
-Entre los mecanismos que pueden utilizarse para resolver este problema están los siguientes:
-
-    ** _En el *esquema enlazado* se enlazan los bloques de índices_.
-Por ejemplo, se puede utilizar el último puntero del bloque de índices para apuntar al siguiente bloque de índices.
-Si dicho puntero tiene el valor nulo, entonces estamos en el último bloque de índices.
-
-    ** _En el *índice multinivel* los punteros del bloque de índices no señalan a los bloques del archivo, sino a conjunto de bloques de índices de segundo nivel_.
-Estos a su vez señalan a los bloques del archivo.
-Esta técnica puede puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.
-
-    ** _En el *esquema combinado*_ las primeras entradas del bloque de índices apuntan directamente a los primeros bloques del archivo.
-Mientras que las siguientes entradas contiene punteros indirectos, que apunta a un conjunto de bloques de índices de segundo nivel, seguidos por entradas que contienen punteros doblemente indirectos, e incluso triplemente indirectos.
-
-Para mejorar el rendimiento de los mecanismos de asignación indexados, es muy común que el sistema operativo intente mantener los bloques de índices en la memoria caché.
-
-[NOTE]
-====
-Los sistemas de archivos ext2 y ext3 utilizan el mecanismo de
-asignación indexada con esquema combinado. Concretamente el mecanismo en
-ext2 se implementa de la siguiente manera:
-
-* El disco se divide en múltiples grupos de bloques.
-
-* En cada grupo, los primeros bloques se utilizan para almacenar una tabla de _inodos_ –los FCB de los archivos en el grupo–. El resto de los bloques se intentan utilizar para almacenar los datos de los archivos representados por los _inodos_ del grupo.
-
-* Entre otra información, dentro de cada _inodo_ se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices.
-
-* Los primeros 12 punteros en el _inodo_ son directos, seguidos de un puntero indirecto y un puntero doblemente indirecto. Esto permite que el puntero de archivo sea de 64 bits y, por tanto, que se puedan almacenar 264 bytes de información en cada archivo.
-====
-
-==== Gestión del espacio libre
-
-Puesto que el espacio en disco es limitado, necesitamos poder reutilizar el espacio de los archivos borrados.
-Para controlar el espacio libre en el disco, _el sistema mantiene una *lista de espacio libre* que contiene todos los bloques de disco libres_.
-Para crear un archivo, se explora la lista de espacio libre hasta obtener la cantidad de espacio requerida y asignamos ese espacio al nuevo archivo.
-A continuación estudiaremos como puede ser implementada esa lista.
-
-===== Vector de bits
-
-_La lista de espacio libre puede ser implementada como un *vector de bits* o *mapa de bits*, donde cada bloque es representado por un bit_.
-Si el bloque está libre, el bit está a 1; mientras que si el bloque está asignado, el bit está a 0.
-
-* _Este enfoque es relativamente sencillo y eficiente_, puesto que muchos procesadores disponen de instrucciones para manipulación de bits que pueden utilizarse para obtener el primer bloque libre.
-Por ejemplo, la familia de procesadores x86, a partir del 80386, tiene instrucciones que devuelven la posición del primer bit a 1 en el valor de un registro.
-
-* Sin embargo, _los vectores de bits son ineficientes a menos que se mantenga el vector completo en la memoria principal_, escribiéndose ocasionalmente en el disco.
-Esto puede ser imposible para los discos de gran tamaño, en función de la cantidad de memoria principal.
-Por ejemplo, un disco de 40 GB con bloques de 1 KB necesitará un mapa de bits de más de 5 MB, lo que no es un gran requisito para un sistema moderno pero si lo era hace dos décadas.
-
-El sistema de archivo NTFS y la familia _extended filesystem_ —es decir, ext, ext2, ext3, etc.— utilizan mapas de bits tanto para gestionar los bloques de datos libres como las entradas disponibles en la tabla de _inodos_.
-
-===== Lista enlazada
-
-Otra técnica _consiste en enlazar todos los bloques de disco libres_.
-Para eso se puede mantener un puntero al primer bloque libre en una ubicación especial del disco y que ese bloque contenga un puntero al siguiente bloque libre del disco.
-El segundo bloque contendría un puntero al tercer bloque libre y así sucesivamente.
-
-_El inconveniente es que recorrer la lista no resulta eficiente_, pues tenemos que leer cada bloque para conocer la dirección del siguiente bloque libre en disco.
-Sin embargo, debemos tener en cuenta que no es frecuente tener que recorrer la lista de espacio libre completa porque, por lo general, basta con encontrar el primer bloque libre para asignar el espacio.
-
-El método FAT incorpora el control de bloques libres dentro de la _tabla de asignación de archivos_, por lo que no se necesita ningún método adicional
-
-===== Agrupamiento
-
-_Una modificación de la técnica basada en la lista enlazada consiste en almacenar las direcciones de n bloques libres en el primer bloque libre_.
-Los primeros _n — 1_ de esos bloques estarían realmente libres, pero el último de esos bloques apuntaría a otro bloque con _n_ bloques libres.
-Así, podrían localizarse rápidamente las direcciones de un gran número de bloques libres, lo cual mejora la eficiencia respecto a la técnica de lista enlazada.
-
-===== Recuento
-
-Generalmente los bloques son asignados o liberados en bloques contiguos, especialmente si el espacio es asignado mediante asignación contigua o en _extensiones_ o _clusters_.
-Esto puede ser aprovechado para _mantener una lista donde cada entrada almacena la dirección del primer bloque de un conjunto de bloques libres contiguo, así como el número de bloques del conjunto_.
-
-Por ejemplo, el sistema de archivos XFS utiliza un árbol B+ para almacenar las direcciones de las extensiones de bloques libres y mantenerlas ordenadas por el tamaño de la extensión a la que apuntan.
-Así el sistema operativo puede localizar rápidamente el espacio libre necesario para satisfacer una necesidad de espacio concreta.
-
-==== Sistemas de archivos virtuales
-
-En el <<_montaje_de_sistemas_de_archivos>> vimos cómo el sistema operativo _monta_ sistemas de archivos de tal forma que aparenten estar integrados en una única estructura de directorios, permitiendo a los usuarios moverse de forma transparente entre distintos dispositivos y tipos de sistemas de archivos.
-Para hacerlo, un sistema operativo moderno debe ser capaz de soportar de manera eficiente distintos tipos de sistemas de archivos, ocultando sus diferencias de cara a los usuarios.
-
-Un método para implementar múltiples tipos de sistemas de archivos consiste en escribir diferentes rutinas de acceso, manipulación y gestión, a los directorios y a los archivos, para cada uno de los tipos de sistema de archivo existentes.
-Sin embargo, en lugar de esta solución, la mayoría de los sistemas operativos utilizan técnicas de orientación a objetos para implementar diferentes tipos de sistemas de archivos detrás de una misma interfaz de programación.
-Es decir, _se utilizan estructuras de datos y procedimientos comunes para separar las llamadas al sistema de los detalles de su implementación real para cada uno de los sistemas de archivos_.
-
-La implementación de un sistema de archivos está compuesta de tres niveles fundamentales:
-
-. El primer nivel es la _interfaz del sistema de archivos_, a la que acceden los desarrolladores a través de las llamadas al sistema.
-Estamos hablando de las llamadas `open()`, `read()`, `write()` y `close()`, entre otras, y de los descriptores de archivos.
-Esta interfaz es la misma sea cual sea el sistema de archivos al que se esté intentando acceder.
-
-. El segundo nivel es _la interfaz del *sistema de archivos virtual* o *VFS* (Virtual File System)_.
-Este nivel es utilizado por el anterior para atender las peticiones realizadas.
-Describe operaciones genéricas sobre cualquier sistema de archivos y estructuras genéricas como, por ejemplo, un FCB virtual —que en algunos sistemas operativos se denomina _vnodo_— _que identifica de forma unívoca a cada archivo o directorio en uso en el sistema_ —un _inodo_ en los sistemas de archivos de Linux solo identifica a un archivo de forma unívoca dentro del mismo sistema de archivos— y que da acceso a sus metadatos.
-Este nivel cumple con dos importantes funciones:
-
-    ** _Separa las operaciones genéricas sobre el sistema de archivos con respecto a su implementación_.
-VFS define una interfaz muy clara común para todos los sistemas de archivos.
-Pero en el mismo sistema existirán diversas implementaciones de la interfaz VFS, una para cada sistema de archivos diferente.
-
-    ** _Proporcionar un mecanismo para acceder de forma coherente a los archivos a través de la red_.
-Una implementación de VFS no tiene que estar limitada exclusivamente a ofrecer acceso a archivos en dispositivos conectados físicamente al sistema.
-Las operaciones de la interfaz VFS pueden resolverse utilizando un protocolo de acceso a algún servidor de archivos conectado a la red.
-
-. El tercer nivel es donde _se implementa cada tipo de sistema de archivos o los distintos protocolos de los servidores de archivos en la red_.
-La interfaz VFS recurre a la implementación correspondiente para cada tipo de sistema de archivos para satisfacer las solicitudes de los niveles superiores.
-Así, por ejemplo, un `read()` puede implicar que se tenga que recuperar el _vnodo_ del archivo involucrado desde la tabla del archivos abiertos, usando el descriptor indicado en la llamada al sistema.
-Después se _invocaría la operación _VFS_ `read()`, sobre el _vnodo_, en la implementación concreta de VFS según el tipo de sistema de archivos involucrado.
-Será esa implementación quien extraiga del _vnodo_ la información necesaria —por ejemplo, el _inodo_ real del archivo en el sistema de archivos— para llevar acabo la operación indicada, según las especificidades del sistema de archivos.
-
-=== Planificación de disco
-
-Como ya hemos comentado, es responsabilidad del sistema operativo usar los recursos del hardware de forma eficiente.
-Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo de espera que sea posible o aprovechar de la mejor forma la memoria principal disponible para atender la demanda de los distintos procesos al mismo tiempo; pero también, intentar obtener el menor tiempo de acceso y el mayor ancho de banda posible en el acceso a los discos.
-
-==== Rendimiento del acceso a disco
-
-En un disco duro magnético el *tiempo de acceso al disco* stem:[T^d] viene determinado por el *tiempo de búsqueda* stem:[T^b] y la *latencia rotacional* stem:[T^r]:
-
-[stem]
-++++
-T_d=T_b+T_r
-++++
-
-_El tiempo de búsqueda stem:[T^b] es el tiempo que se tarda en mover el brazo del disco hasta el cilindro deseado.
-Mientras que la latencia rotacional stem:[T^r] es el tiempo que hay que esperar para que el disco gire _asta que la cabeza llegue al sector deseado_ del cilindro.
-Por lo tanto, el _tiempo de acceso al disco_ es menor cuando se realizan accesos consecutivos a sectores físicamente próximos que cuando están dispersos por todo el disco.
-
-_El *ancho de banda* o *tasa de transferencia* del disco es el número total de bytes transferidos dividido por el tiempo total que transcurre desde la primera solicitud de servicio a la terminación de la última transferencia_ con la que se atiende la petición.
-Al considerar todo el tiempo necesario para atender la petición, a más _tiempo de acceso al disco_ menor es el _ancho de banda_.
-
-En los dispositivos de almacenamiento basados en memorias de estado sólido (véase el <<_memorias_de_estado_sólido>>) el tiempo de acceso viene determinado por las características de la memoria, entre otros factores, lo que hace que las diferencias entre accesos secuenciales y accesos aleatorios sean mucho menos significativas.
-
-==== Cola de E/S al disco
-
-Cuando se solicita una operación de E/S sobre el almacenamiento el sistema operativo puede atender la petición sobre la marcha si la controladora y la unidad de disco están disponibles.
-Pero si están ocupadas, la solicitud se almacena en una cola de peticiones pendientes.
-Cuando se resuelve una solicitud, el sistema operativo escoge otra de la cola y se comunica con el hardware para programar la siguiente petición.
-La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S de la cola si se quiere acceder al disco de la forma más eficaz posible?
-
-==== Planificación FCFS
-
-En la planificación *FCFS* (_First Come, First Served_) o _primero que llega, primero servido_ la cola es FIFO.
-Es decir, _se atienden las solicitudes en orden de llegada_.
-Es la planificación más simple y es equitativa —pues se atiende a todos los procesos por igual— pero no proporciona el servicio más rápido en disco duros magnéticos, donde interesa mover el brazo del disco lo menos posible.
-
-En los sistemas operativos Linux el FCFS es denominado NOOP y se suele utilizar en los discos basados en memorias de estado sólido, donde reordenar las solicitudes no proporciona una mejora significativa del rendimiento, o cuando se utilizan controladoras de disco inteligentes que pueden reordenar las solicitudes según su propio criterio.
-
-==== Planificación SSTF
-
-En la planificación *SSTF* (_Sortest_ _Seek Time First_) o algoritmo de _tiempo de búsqueda más corto_, de toda cola se selecciona la solicitud con el menor _tiempo de búsqueda_ desde la posición actual de la cabeza.
-Como el _tiempo de búsqueda_ se incrementa a medida que lo hace el número de cilindros que es necesario recorrer, este algoritmo de planificación primero da servicio a las solicitudes cercanas a la posición actual de la cabeza, antes de alejarse para dar servicio a otras solicitudes.
-Aun así, la solución no es óptima.
-
-El problema de SSTF es que _puede provocar inanición de algunas solicitudes_ si van llegando constantemente nuevas solicitudes sobre regiones cercanas a donde está actualmente la cabeza del disco.
-
-==== Planificación SCAN y C-SCAN
-
-En la planificación *SCAN* o algoritmo de _exploración_ o del _ascensor_ _el brazo del disco comienza en un extremo del disco y se mueve hacia el otro atendiendo solicitudes a medida que pasa por cada cilindro_, hasta llegar al otro extremo del disco.
-En el otro extremo la dirección de movimiento de la cabeza se invierte para recorrer el disco en sentido inverso, repitiendo el proceso.
-
-Suponiendo que las solicitudes se distribuyen de forma uniforme a lo largo del disco, es de suponer que cuando se llega a un extremo, antes de volver, la cantidad de solicitudes en dicho extremo será notablemente menor que en el otro extremo del disco.
-Entonces ¿por qué no empezar por el otro extremo?
-
-_A la variante del SCAN que cuando llega a un extremo vuelve al inicio, sin atender ninguna solicitud por el camino, para volver a empezar se la denomina **C-SCAN**_.
-El resultado es que el tiempo que tiene que esperar una solicitud para ser atendida es más uniforme que con el algoritmo SCAN.
-
-==== Planificación LOOK y C-LOOK
-
-En teoría los algoritmos SCAN y C-SCAN hacen que el brazo recorra los cilindros del primero al último.
-Sin embargo realmente no se suelen implementar así.
-Por lo general, _cuando en el recorrido del brazo, tras atender una solicitud, se descubre que ya no hay más solicitudes siguiendo la misma dirección, el brazo invierte la dirección sin llegar hasta el extremo del disco_.
-A estas variantes de SCAN y C-SCAN se las denomina *LOOK* y *C-LOOK*, respecitvamente.
-
-==== Planificación N-Step-SCAN, N-Step-LOOK y FSCAN
-
-Los algoritmos _**N-Step-SCAN** y **N-Step-LOOK**_ son variantes de los algoritmos SCAN y LOOK, respectivamente, donde _se limita a N el número de solicitudes que se atenderán en cada barrido del brazo del disco_.
-Estos algoritmos funcionan de la siguiente manera:
-
-. Se utiliza una cola con espacio para _N_ solicitudes pendientes que se van atendiendo mientras el brazo barre el disco.
-
-. Mientras tanto, todas las nuevas solicitudes se incorporan a una cola diferente.
-
-. Cuando el brazo termina el barrido y las _N_ primeras solicitudes han sido atendidas, el planificador toma otras _N_ solicitudes de la segunda cola y las introduce en la primera para repetir el proceso.
-
-Si en lugar de copiar _N_ peticiones de la segunda a la primera cola se copian todas las solicitudes pendientes, el algoritmo se denomina F-SCAN.
-
-Estos algoritmos previenen un problema denominado _rigidez del brazo_ —_arm stickiness_, en inglés— a diferencia de los algoritmos SSTF, SCAN, C-SCAN, LOOK y C-LOOK.
-El termino _rigidez del brazo_ hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, lo que hace que con los algoritmos anteriores el brazo no avance por los cilindros hasta llegar la otro extremo.
-Como FSCAN, N-Step-SCAN y N-Step-LOOK separan las solicitudes en dos colas, haciendo que las nuevas tengan que esperar, el brazo siempre continua su barrido hacia el extremo del disco.
-
-==== Planificación CFQ
-
-_El planificador *CFQ* (Completely Fair Queuing) se diseñó para compartir de forma equitativa el ancho de banda entre todos los procesos que solicitan acceso al disco_.
-Es utilizado actualmente por defecto en los sistemas Linux modernos y funciona de la siguiente manera:
-
-* CFQ mantiene una cola de solicitudes para cada proceso y en ella inserta las solicitudes síncronas de E/S.
-Cada cola tiene una ventana de tiempo —o _cuanto_— para acceder al disco.
-La longitud de la ventana de tiempo y el tamaño máximo de cada cola dependen de la prioridad de E/S que tenga el proceso.
-
-* CFQ mantiene una cola de solicitudes por cada prioridad de E/S, donde se insertan las solicitudes asíncronas de todos los procesos.
-Una solicitud asíncronas se inserta en una cola u otra según la prioridad del proceso que la generó.
-
-* Usando el algoritmo _round-robin_, el planificador CFQ recorre las colas y extrae de ellas las solicitudes durante el tiempo marcado por el cuanto de cada una.
-Las solicitudes extraídas se insertan en la cola de envío, donde se ordenar para minimizar el _tiempo de búsqueda_, antes de ser enviadas _al_ dispositivo.

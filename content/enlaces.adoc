@@ -1,17 +1,35 @@
 // C STD
 :clang_stdio: https://en.cppreference.com/w/c/io[stdio.h]
+:clang_exit: https://www.man7.org/linux/man-pages/man3/exit.3.html[exit()]
 :clang_fopen: https://en.cppreference.com/w/c/io/fopen[fopen()]
+:clang_main: https://en.cppreference.com/w/c/language/main_function[main()]
+:clang_setenv: https://man7.org/linux/man-pages/man3/setenv.3.html[setenv()]
+:clang_getenv: https://man7.org/linux/man-pages/man3/getenv.3.html[getenv()]
+:clang_environ: https://man7.org/linux/man-pages/man7/environ.7.html[environ]
+:clang_system: https://en.cppreference.com/w/c/program/system[system()]
 
 // C++ STD
 :cpp_iostream: https://en.cppreference.com/w/cpp/header/iostream[iostream]
 :cpp_ofstream_open: https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]1
 
 // llamadas al sistema POSIX & Linux
+:linux_close: https://man7.org/linux/man-pages/man2/close.2.html[close()]
+:linux_errno: https://man7.org/linux/man-pages/man3/errno.3.html[errno]
+:linux_exec: https://man7.org/linux/man-pages/man3/exec.3.html[exec()]
+:linux_fork: https://man7.org/linux/man-pages/man2/fork.2.html[fork()]
+:linux_getpid: https://man7.org/linux/man-pages/man2/getpid.2.html[getpid()]
+:linux_getppid: https://man7.org/linux/man-pages/man2/getppid.2.html[getppid()]
+:linux_kill: https://man7.org/linux/man-pages/man2/kill.2.html[kill()]
 :linux_open: https://man7.org/linux/man-pages/man2/open.2.html[open()]
 :linux_read: https://man7.org/linux/man-pages/man2/read.2.html[read()]
 :linux_write: https://man7.org/linux/man-pages/man2/write.2.html[write()]
-:linux_close: https://man7.org/linux/man-pages/man2/close.2.html[close()]
+:linux_wait: https://man7.org/linux/man-pages/man2/wait.2.html[wait()]
+:linux_waitpid: https://man7.org/linux/man-pages/man2/waitpid.2.html[waitpid()]
 :linux_syscall: https://man7.org/linux/man-pages/man2/syscall.2.html[syscall()]
+:linux_strerror: https://man7.org/linux/man-pages/man3/strerror.3.html[strerror()]
+
+// Comandos en sistemas POSIX
+:cmd_pstree: https://man7.org/linux/man-pages/man1/pstree.1.html[pstree]
 
 // Windows
 :windowsnt: https://es.wikipedia.org/wiki/Windows_NT[Microsoft Windows NT]
@@ -19,6 +37,17 @@
 :dll: https://es.wikipedia.org/wiki/Biblioteca_de_enlace_din%C3%A1mico[DLL]
 
 :win32_createfile: https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea[CreateFile()]
+:win32_createprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa[CreateProcess()]
+:win32_setenvironmentvariable: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setenvironmentvariable[SetEnvironmentVariable()]
+:win32_getenvironmentvariable: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getenvironmentvariable[GetEnvironmentVariable()]
+:win32_getenvironmentstrings: https://docs.microsoft.com/en-us/windows/win32/api/processenv/nf-processenv-getenvironmentstrings[GetEnvironmentStrings()]
+:win32_getlasterror: https://docs.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror[GetLastError()]
+:win32_exitprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess[ExitProcess()]
+:win32_waitforsingleobject: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject[WaitForSingleObject()]
+:win32_waitformultipleobjects: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitformultipleobjects[WaitForMultipleObject()]
+:win32_terminateprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess[TerminateProcess()]
+:win32_startupinfo: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa[STARTUPINFO]
+:win32_processinformation: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information[PROCESS_INFORMATION]
 
 // UNIX
 :unix: https://es.wikipedia.org/wiki/Unix[UNIX]
@@ -46,3 +75,12 @@
 :ibmpc: https://es.wikipedia.org/wiki/IBM_PC[IBM PC]
 :intel8086: https://es.wikipedia.org/wiki/Intel_8086_y_8088[Intel 8086]
 :x86: https://es.wikipedia.org/wiki/IA-32[x86]
+:ultrasparc: https://es.wikipedia.org/wiki/UltraSPARC[Sun UltraSPARC]
+:itanium: https://es.wikipedia.org/wiki/Intel_Itanium[Intel Itanium]
+
+// Ejemplos
+:ejemplos_branch: master
+:syscall_s: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap06/syscall.s[syscalls.s]ç
+:createprocess_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/createprocess.c[createprocess.c]
+:fork_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/fork.c[fork.c]
+:forkexec_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/fork-exec.c[fork-exec.c]

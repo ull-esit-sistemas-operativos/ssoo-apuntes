@@ -112,19 +112,19 @@ Por ejemplo, {linux_open}, {linux_read}, {linux_write} o {linux_close}.
 
 === ((Buffering))
 
-El *buffering* o uso de memoria intermedia es una estrategia en la que se almacenan los datos de manera temporal en una zona de la memoria, llamada _buffer_.
+El *buffering* o uso de memoria intermedia es una estrategia en la que se almacenan los datos de manera temporal en una zona de la memoria, llamada búfer.
 
-Consiste en que el controlador indica a un dispositivo que escriba los bloques de datos solicitados en un _buffer_.
-Cuando la escritura del _buffer_ se ha completado, se transfiere su contenido al proceso que hizo la solicitud para que procese los datos.
-Mientras lo hace, el controlador indica al dispositivo que copie nuevos datos en el _buffer_.
+Consiste en que el controlador indica a un dispositivo que escriba los bloques de datos solicitados en un búfer.
+Cuando la escritura del búfer se ha completado, se transfiere su contenido al proceso que hizo la solicitud para que procese los datos.
+Mientras lo hace, el controlador indica al dispositivo que copie nuevos datos en el búfer.
 
 Por ejemplo, al grabar sonido del dispositivo de sonido del sistema no se entregan las muestras una a una al proceso.
-En su lugar se graban varios miles de muestras que se escriben en un _buffer_.
-Cuando el _buffer_ está lleno, se transfieren todas las muestras al proceso de una sola vez y se siguen grabando muestras en el _buffer_.
+En su lugar se graban varios miles de muestras que se escriben en un búfer.
+Cuando el búfer está lleno, se transfieren todas las muestras al proceso de una sola vez y se siguen grabando muestras en el búfer.
 
 Lo mismo ocurre al reproducir sonido.
-El proceso no entrega las muestras de sonido de una en una al dispositivo, sino que empaqueta varias miles que se copian al _buffer_ de una sola vez.
-Entonces el controlador indica al dispositivo que lea las muestras desde ese _buffer_ según lo vaya necesitando.
+El proceso no entrega las muestras de sonido de una en una al dispositivo, sino que empaqueta varias miles que se copian al búfer de una sola vez.
+Entonces el controlador indica al dispositivo que lea las muestras desde ese búfer según lo vaya necesitando.
 
 === ((Caching))
 

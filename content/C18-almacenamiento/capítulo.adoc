@@ -1,0 +1,139 @@
+= Dispositivos de almacenamiento
+ifndef::sectiondir[:sectiondir: .]
+:imagesdir: {sectiondir}/images
+include::../../config/attributes.adoc[]
+
+Los ordenadores pueden almacenar información en diferentes soportes de almacenamiento —por ejemplo en discos magnéticos, en DVD, en memorias de estado sólido, etc.—.
+Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente a continuación.
+
+== Discos magnéticos
+
+Los discos magnéticos son el tipo principal de almacenamiento secundario, generalmente en la forma de lo que se denominan discos duros.
+Tal y como se puede apreciar en la cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
+La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.
+
+Desde el punto de vista lógico (véase la ) _la superficie de cada plato está dividida en *pistas* circulares, cada una de las cuales se subdivide en **sectores**_.
+_El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina **cilindro**_.
+
+En estos dispositivos consume mucho más tiempo mover la cabeza de lectura hasta el sector de interés que la lectura y transferencia de los datos almacenados a la memoria RAM.
+Por lo tanto el tiempo de acceso aleatorio al disco es mucho mayor que el de acceso secuencial.
+
+== Discos ópticos
+
+Los discos ópticos —CD, DVD, BluRay, etc.— consisten en un disco circular en el cual la información se almacena haciendo uso de surcos microscópicos que se leen haciendo incidir un láser sobre una de las caras planas que lo componen.
+
+En este tipo de discos la información se almacena siguiendo un recorrido continuo en espiral que cubre la superficie entera del disco, extendiéndose desde el interior hacia el exterior.
+Dado que el láser siempre debe desplazarse sobre la espiral, el acceso aleatorio a los datos es más lento que con otras tecnologías de disco.
+
+== Memorias de estado sólido
+
+Una memoria de estado sólido —memoria USB, SSD, etc.— es un dispositivo de almacenamiento que usa una memoria no volátil, como las _memorias flash_, para almacenar datos, en lugar de utilizar discos ópticos o magnéticos.
+En este tipo de memorias la información se almacena como en un vector lineal de bytes, que se puede indexar aleatoriamente con la misma eficiencia con la que se accede secuencialmente, como ocurre con la memoria RAM, Aunque algunos dispositivos, de cara al resto del sistema informático, emulan una interfaz y un modo de direccionamiento similar al utilizado por los discos magnéticos —es decir, usando pistas, sectores y cilindros.— por temas de compatibilidad.
+
+= Archivos y sistemas de archivos
+
+Teniendo en cuenta la gran diversidad de dispositivos de almacenamiento que existen, para que el sistema informático sea cómodo de utilizar el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
+Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir una unidad de almacenamiento lógico que sea útil para los usuarios.
+Esta unidad es el _archivo_.
+
+_Un *archivo* es una colección de información relacionada cuya estructura y significado de sus datos los define su creador_.
+Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
+Es decir, no se pueden escribir datos en el almacenamiento secundario a menos que estos se encuentren dentro de un archivo.
+
+El sistema operativo puede ofrecer esta abstracción gracia al *sistema de archivos*.
+_Este proporciona los mecanismos para el almacenamiento de lo datos y programas en archivos_, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.
+
+_Los sistemas de archivos están compuestos de dos partes claramente diferenciadas:_
+
+* _Una colección de archivos_, cada uno de los cuales almacena una serie de datos relacionados.
+
+* _Una colección de estructuras de metadatos_, que contienen información relativa a los archivos almacenados —nombre, ubicación en el disco, permisos, etc.— y que se encarga de organizarlos, generalmente haciendo uso de una estructura de directorios.
+
+= Volúmenes de datos
+
+Los dispositivos de almacenamiento comentados anteriormente pueden ser utilizados al 100% con un único sistema de archivos.
+Sin embargo, en ocasiones es interesante hacer divisiones con el objeto de disponer de múltiples sistemas de archivos en el mismo dispositivo.
+Cada una de esas divisiones es un _volumen_.
+
+En otros casos interesa combinar divisiones o dispositivos de almacenamiento completos para crear espacios de mayor tamaño —también denominadas volúmenes— cada una de las cuales puede albergar un único sistema de archivos.
+Así que en general _utilizaremos el término *volumen* para referirnos a un espacio de almacenamiento que alberga un sistema de archivos_, tanto si ese espacio es una pequeña parte del espacio completo del dispositivo como si se trata de una estructura de mayor tamaño compuesta a partir de varios dispositivos.
+
+A continuación comentaremos brevemente las tecnologías utilizadas con mayor frecuencia para construir estos volúmenes.
+
+== RAID
+
+La tecnología *RAID* (_Redundant Array of Inexpensive Disks_) permite combinar varios discos duros para mejorar las prestaciones a través del paralelismo en el acceso o para mejorar la fiabilidad a través del almacenamiento de información redundante.
+En concreto se definen diversos _niveles RAID_, de entre los cuales los más comunes son:
+
+* _En un *conjunto RAID 0* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos_, sin incluir ningún tipo de información redundante.
+Esto permite leer y escribir más datos en el mismo tiempo ya que se pueden enviar en paralelo peticiones a los distintos discos.
+Sin embargo la fiabilidad es inversamente proporcional al número de discos, ya que para que el conjunto falle basta con que lo haga cualquiera de ellos.
+
+* _En un *conjunto RAID 1* se crea una copia exacta —en espejo— de los datos en dos o más discos_.
+El resultado es que, incluso con dos discos, se incrementa exponencialmente la fiabilidad respecto a tener uno solo, ya que para que el conjunto falle es necesario que lo hagan todos los discos.
+Adicionalmente el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear la operaciones de lectura entre todos ellos.
+
+* __En un *conjunto RAID 5* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma división__footnote:[En RAID se denomina división o stripe a la serie de bloques consecutivos escogido cada uno de uno de los discos del conjunto.].
+El disco utilizado para almacenar el bloque de paridad cambia de forma escalonada de una división a la siguiente, de ahí que se diga que _el bloque de paridad está distribuido_.
+Algunos aspectos adicionales a tener en cuenta son que:
+
+    ** _Cada vez que se escribe un bloque de datos se debe actualizar el bloque de paridad_.
+Por lo tanto las escrituras en un conjunto RAID 5 son costosas en términos de operaciones de disco y tráfico.
+
+    ** _Los bloques de paridad no se leen durante las lecturas de datos_, ya que eso reduciría el rendimiento.
+Sólo se hace en caso de que la lectura de un sector falle, puesto que _el sector en la misma posición relativa dentro de cada uno de los otros bloques de datos de la división y en el bloque de paridad se pueden utilizar para reconstruir el sector erróneo._
+
+ ** _En un conjunto RAID 5 el fallo de 2 discos provoca la pérdida completa de los datos_.
+Esto significa que aunque se pueden añadir discos de manera ilimitada, eso no suele ocurrir puesto que _a más discos en el conjunto más probabilidad de que fallen dos de ellos_.
+
+* _En un *conjunto RAID 6* se utiliza la misma estrategia que en RAID 5 pero _en cada división hay dos _bloques de paridad —_en lugar de uno—_ _en dos discos diferentes_.
+Esto permite que fallen hasta dos discos sin perder los datos.
+
+* _En un conjunto con niveles anidados se combinan varios niveles RAID básicos como si fueran capas superpuestas_.
+Ejemplos típicos son:
+
+    ** RAID 0+1, donde se hace un espejo de un conjunto RAID 0.
+
+    ** RAID 1+0 o RAID 10, donde diversos conjuntos en espejo se combina en un RAID 0, aumentando la capacidad total.
+
+    ** RAID 50, donde diversos conjuntos RAID 5 se combinan en un RAID 0, aumentando también la capacidad total.
+
+La implementación de RAID es otra de las áreas donde existen diversas variantes:
+
+* _RAID puede implementarse en el hardware de la controladora de disco_, de tal forma que sólo los discos conectados a esta pueden formar parte de un conjunto RAID determinado.
+Esta solución es muy eficiente, especialmente cuando se utilizan niveles que requieren cálculo de la paridad, ya que se evita utilizar tiempo de CPU para ese trabajo.
+Sin embargo estas controladoras son notablemente más caras que las que carecen de soporte para RAID.
+
+* _RAID puede implementarse dentro del sistema operativo en lo que se denomina el software de **gestión de volúmenes**_.
+En este caso las soluciones RAID con paridad son bastante lentas por lo que normalmente sólo se soportan los niveles RAID 0, 1, 10 o 0+1.
+Algunas controladoras de disco modernas que dicen venir con soporte RAID realmente implementan esta tecnología en software, a nivel del controlador de dispositivo, mientras que en el hardware sólo se implementan unas características de apoyo mínimasfootnote:[En algunos entornos se denomina a este tipo de implementaciones _fakeRAID_ o _hostRAID_.].
+
+Cada conjunto RAID se comporta como una unidad de almacenamiento independiente desde el punto de vista del resto del sistema, por lo que se puede utilizar entero para albergar un único sistema de archivos.
+Sin embargo, lo más común es dividirlo en regiones con el objeto de utilizar múltiples sistemas de archivos o combinarlo en estructuras de mayor tamaño, para lo cuál se pueden utilizar alguna de las técnicas que veremos a continuación.
+
+== Particiones
+
+_Un disco, un conjunto RAID o cualquier otro dispositivo de almacenamiento se puede dividir en regiones para utilizar en cada una de ellas un sistema de archivos diferente_.
+A esas regiones se las conoce comúnmente como *particiones*, *franjas* o *minidiscos*.
+
+Según la plataforma, existen diversas maneras de implementar el soporte de particiones.
+Entre los sistemas de escritorio las tecnologías más difundidas y utilizadas son la *MBR* (_Master Boot Record_) y la *GPT* (_GUID Partition Table_).
+En ambas _se almacena, en los primeros sectores del dispositivo de almacenamiento, una tabla con una entrada por partición donde se guardan las direcciones del primer y último sector de cada una de ellas en el dispositivo_, así como otra información.
+Eso es todo lo que necesita el sistema operativo para determinar los límites de la región ocupada por cada sistema de archivos.
+
+== Volúmenes dinámicos
+
+Según la tecnología que se utilice para particionar es posible encontrarse con una serie de restricciones comunes:
+
+* El limitado número de particiones diferentes que puede contener un mismo dispositivo.
+
+* Limitaciones o imposibilidad de redimencionar las particiones.
+Especialmente si el sistema operativo está en ejecución.
+
+* La imposibilidad de crear particiones que hagan uso de regiones libres en diferentes dispositivos de almacenamiento.
+
+Para resolverlo algunos sistemas operativos incluyen un _software de gestión de volúmenes_ que hace uso de tecnología propia para superar estas limitaciones.
+Estas herramientas generalmente permiten agrupar dispositivos completos, conjuntos RAID, particiones, etc.
+y sobre ellos construir los volúmenes que sean necesarios.
+Estos volúmenes pueden ser redimensionados —en ocasiones sin tener que detener la ejecución del sistema operativo— y en caso de que haga falta se pueden incluir dinámicamente nuevos dispositivos para incrementar el espacio disponible.
+Además, como ya hemos comentado, el software de gestión de volúmenes puede incluir alguna funcionalidad propia de conjuntos RAID con el objeto de mejorar las prestaciones, a través del paralelismo en el acceso, o mejorar la fiabilidad a través del almacenamiento de información redundante.
