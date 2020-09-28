@@ -80,3 +80,99 @@ Entre los programas del sistema se suelen incluir aplicaciones para manipular ar
 Además, muchos sistemas operativos disponen de programas que son útiles para resolver los problemas más comunes de los usuarios.
 Entre estos programas se suelen incluir: editores de archivos de texto y procesadores de texto, hojas de cálculo, sistemas de base de datos, juegos, etc.
 Ha esta colección de aplicaciones se la suele conocer con el término de *((utilidades del sistema))* o *programas de aplicación*(((programa, de aplicación))).
+
+== Arranque del sistema
+
+// TODO: Esquema del arranque
+
+Desde el momento en que el ordenador se pone en marcha hasta que el sistema operativo inicia
+su ejecución se realizan una serie de operaciones.
+Estos son los pasos más comunes en el arranque de un sistema:
+
+. Llega a la CPU una señal de RESET motivada por el encendido del sistema o por un reinicio.
+
+. La CPU inicializa el contador de programa a una dirección predefinida de la memoria.
+En esa dirección está el _bootstrap_ inicial.
+
+El _((bootstrap))_ es el programa que se encarga en primera instancia del arranque.
+Debe estar almacenado en una memoria no volátil —ROM o Flash— por que la RAM está en un estado indeterminado en el momento del arranque.
+
+En los PC el _bootstrap_ forma parte del _((firmware))_ —sea BIOS o UEFI— de las placas madres.
+
+[NOTE]
+====
+El término _firmware_ viene de que por sus características se sitúa en algún lugar entre el hardware y el software.
+Concretamente es un componente de software instalado en un dispositivo hardware para encargase de su control a bajo nivel.
+====
+
+=== Tareas del bootstrap
+
+El _bootstrap_ debe realiza diversas tareas:
+
+. **Diagnostico de la máquina** —o _Power-on Self-Test_ (POST)—.
+El _bootstrap_ se detiene en este punto si el sistema no supera el diagnostico.
+
+. **Inicializar el sistema**.
+Por ejemplo, configurar los registros de la CPU, inicializar los dispositivos y contenido de la memoria, etc.
+
+. *Iniciar el sistema operativo*.
+
+Al iniciar el sistema operativo hay que considerar que puede estar en diferentes ubicaciones según el tipo de dispositivo:
+
+* En **consolas de videojuegos, móviles y otros dispositivos empotrados** se almacena el sistema operativo en alguna forma de memoria de sólo lectura —ROM o Flash—.
+Como la ejecución en esas memorias es más lenta que en la RAM, muchas veces el _bootstrap_ suele copiar el sistema a la RAM durante el arranque, antes de iniciar el sistema.
+
+* En *sistemas operativos de gran tamaño* —incluidos los de propósito general— el sistema se almacena en disco.
+
+En los sistemas mas antiguos, el _bootstrap_ lee de una posición fija del disco —generalmente el bloque 0— el gestor de arranque, lo copia en la memoria y lo ejecuta.
+Esto es lo que ocurre en los PC más antiguos que utilizan BIOS y particiones MBR —siglas de  _Master Boot Record_—.
+
+[NOTE]
+====
+También se llama ((MBR)) a ese bloque 0 del disco donde está el gestor de arranque.
+====
+
+Aunque en ocasiones el código de ese bloque inicial de arranque sabe cargar e iniciar el sistema operativo completo, es común que sólo sepa donde está el resto del gestor de arranque en el disco, para cargarlo y ejecutarlo.
+No debemos olvidar que el código cargado por el _bootstrap_ debe caber en un sólo bloque del disco, que generalmente tiene solo 512 bytes.
+
+En los PC más modernos que utilizan UEFI y particiones GPT, la UEFI tiene la capacidad de leer el sistema de archivo en las particiones para buscar directamente los archivos del gestor de arranque completo.
+Una vez el _bootstrap_ los encuentra, los carga y ejecuta.
+
+En ambos casos, el gestor de arranque completo es el programa que sabe como iniciar el sistema operativo así que: explora el sistema de ficheros en busca del núcleo del sistema, lo carga e inicia su ejecución.
+
+A partir de esto punto cada sistema operativo prosigue de forma diferente.
+A modo de ejemplo, veremos como prosigue el arranque en sistemas UNIX en modo texto.
+
+=== Arranque de sistemas UNIX
+
+Al iniciarse el núcleo del sistema, este realiza una serie de tareas:
+
+. Configura el sistema para crear un entorno adecuado para la ejecución de los procesos: configuración de interrupciones, modos de ejecución y gestión de memoria; inicialización de dispositivos y controladores; montaje del sistema de ficheros raíz; creación del proceso inactivo —que se ejecutará cuando no haya nada que hacer— etc.
+
+. Crea el proceso *((init))* —que por ser el primero tiene PID 1— a partir de la carga del programa `init` almacenado en el sistema de ficheros raíz.
+En los sistemas GNU/Linux actuales el proceso *init* más común es {cmd_systemd}.
+
+. El planificador de la CPU toma el control de la gestión de la CPU y el núcleo queda dormido.
+Puesto que la función del planificador es asignar procesos a la CPU y solo hay uno, el proceso *init*, éste es escogido y comienza su ejecución.
+
+. El proceso *init* lanza los _scripts_ encargados de configurar los servicios —también llamados demonios— del sistema.
+Por ejemplo, para el registro de eventos del sistema, gestión de dispositivos, particiones, impresoras, ente otros.
+
+El proceso *init* también configura el entorno de usuario.
+Configura las terminales del sistema, inicia un proceso *login* conectado a cada una y se duerme a la espera.
+Estos procesos *login* son monitorizados por *init* para reiniciarlos en caso de que mueran.
+
+[NOTA]
+====
+Aunque, por lo general, un sistema de escritorio tiene una única pareja de teclado y monitor y, por lo tanto, una única terminal real; el sistema suele esta configurado para crear varios terminales virtuales entre los que el usuario puede conmutar usando las combinaciones de teclas adecuadas.
+====
+
+Los procesos *login* se encargan de autenticar a los usuarios y de iniciar y configurar su sesión:
+
+. Muestran una pantalla de inicio de sesión donde se solicita el nombre del usuario y su contraseña.
+
+. Autentican al usuario comprobando las credenciales proporcionadas por el mismo.
+
+. Si la autenticación es positiva, el proceso *login* cambia su identidad actual —generalmente de _root_ o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <<procesos_posix_api>>).
+
+El interprete de comandos completa la configuración del entorno en base a sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.

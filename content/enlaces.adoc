@@ -30,6 +30,7 @@
 
 // Comandos en sistemas POSIX
 :cmd_pstree: https://man7.org/linux/man-pages/man1/pstree.1.html[pstree]
+:cmd_systemd: https://es.wikipedia.org/wiki/Systemd[systemd]
 
 // Windows
 :windowsnt: https://es.wikipedia.org/wiki/Windows_NT[Microsoft Windows NT]
