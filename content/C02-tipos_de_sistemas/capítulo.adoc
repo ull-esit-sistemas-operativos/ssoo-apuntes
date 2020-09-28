@@ -45,7 +45,6 @@ Estos sistemas se convirtieron en *sistemas de procesamiento por lotes* o *siste
 Para preparar los lotes, por lo general, el operador cargaba previamente en cinta magnética el conjunto de programas a partir de las tarjetas perforadas proporcionadas por los programadores.
 Para ello se utilizaba un lector de tarjetas autónomo, independiente del _mainframe_.
 
-// TODO: Cambiar el dibujo a "Monitor del sistema (sistema operativo)"
 [[sistemas_procesamiento_lotes]]
 .Organización de la memoria en sistemas de procesamiento por lotes.
 image::sistemas_procesamiento_lotes.svg[]
@@ -255,7 +254,9 @@ En caso de fallo el sistema no se detendría pero si trabajaría más despacio.
 
 En la actualidad existen dos tipos de sistemas multiprocesador:
 
-// TODO: Figura SMP
+[[smp]]
+.Arquitectura de un sistema de multiprocesamiento simétrico.
+image::multiprocesamiento_simétrico.svg[]
 
 * En los *sistemas de multiprocesamiento simétrico*(((sistema, multiprocesamiento, simétrico)))(((multiprocesamiento, simétrico))) o *SMP* (_Symmetric Multiprocessing_) todos los procesadores son iguales.
 Todos comparte los mismos recursos, pueden acceder a los
