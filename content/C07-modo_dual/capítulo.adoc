@@ -168,4 +168,21 @@ Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del qu
 
 Obviamente, las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.
 
-// TODO: Relación con las máquinas virtuales
+== Maquinas virtuales
+(((máquina virtual)))
+
+Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los comparten.
+Aun así, los procesos saben que hay un sistema operativo que los supervisa, porque le deben solicitar a él los distintos recursos a través de las llamadas al sistema.
+
+Una máquina virtual también es un proceso en un sistema operativo una máquina real —también llamado sistema operativo anfitrión—.
+Se utilizan la mismas técnicas para crear la ilusión de que se ejecuta en su propia máquina.
+Sin embargo, en lugar de llamadas al sistema, el software que gestiona la máquina virtual ofrece una interfaz de hardware virtual.
+Es decir:
+
+1. El sistema operativo de la máquina virtual intenta acceder al hardware, ya que presupone que se ejecuta en una máquina real.
+
+2. El sistema operativo anfitrión intercepta estos intentos —ya que son instrucciones privilegiadas, prohibidas para los procesos en el modo usuario— y, en lugar de detener el proceso, comunica el suceso al software de gestión de la máquina virtual.
+
+3. El software de gestión de la máquina virtual identifica a qué dispositivo y que intenta hacer el sistema operativo de la máquina virtual en él —para lo que generalmente se utilizan máquinas de estado que simular el comportamiento del hardware real— y lo transforma en peticiones al sistema operativo anfitrión.
+
+Por ejemplo, los intentos del sistema operativo virtual de acceder a los discos duros del hardware virtual, son convertidos en operaciones sobre un archivo en sistema de archivos real que contiene la imagen en disco de la máquina virtual.
