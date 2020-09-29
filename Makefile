@@ -5,18 +5,17 @@ INPUTFILE := $(INPUTDIR)/main.adoc
 MEDIAINPUTFILES := $(INPUTDIR)/*/images/*
 
 OUTPUTDIR := $(PWD)/output
-
 HTMLOUTPUTDIR := $(OUTPUTDIR)/html
 HTMLOUTPUTFILE := $(HTMLOUTPUTDIR)/index.html
-
 PDFOUTPUTDIR := $(OUTPUTDIR)/pdf
 PDFOUTPUTFILE := $(PDFOUTPUTDIR)/sistemas-operativos.pdf
-
 EPUBOUTPUTDIR := $(OUTPUTDIR)/epub
 EPUBOUTPUTFILE := $(EPUBOUTPUTDIR)/sistemas-operativos.epub
+DOCSTATSFILE := $(INPUTDIR)/docstats.adoc
 
 ASCIIDOCTOR_CMD := asciidoctor
 ASCIIDOCTOR_OPTS :=
+DOCSTATS_BIN := scripts/update-docstats
 
 html: prepare-html $(HTMLOUTPUTFILE)
 	@echo 'Hecho'
@@ -26,6 +25,9 @@ pdf: prepare-pdf $(PDFOUTPUTFILE)
 
 epub: prepare-epub $(EPUBOUTPUTFILE)
 	@echo 'Hecho'
+
+docstats:
+	$(DOCSTATS_BIN) $(INPUTDIR) $(DOCSTATSFILE)
 
 clean:
 	rm -rf $(OUTPUTDIR)
@@ -53,4 +55,4 @@ prepare-pdf:
 prepare-epub:
 	@mkdir --parents $(EPUBOUTPUTDIR)
 
-.PHONY: html pdf epub clean all prepare-html prepare-pdf prepare-epub
+.PHONY: html pdf epub clean all docstats prepare-html prepare-pdf prepare-epub

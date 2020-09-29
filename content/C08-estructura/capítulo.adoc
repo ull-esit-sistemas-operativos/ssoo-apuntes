@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C08_stats_reading_time}
+====
+
 Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <<_componentes_del_sistema>>).
 En esta sección comentaremos cómo se clasifican los distintos sistemas operativos según la organización e interconexión de sus componentes.
 

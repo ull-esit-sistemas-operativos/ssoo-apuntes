@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C01_stats_reading_time}
+====
+
 ¿Qué es un sistema operativo? ¿cuáles son sus responsabilidades en el contexto de un sistema informático? ¿cómo cumple con ellas?
 Estás son algunas de las cuestiones que responderemos en este capítulo.
 Aunque, cómo veremos, no son preguntas sencillas de responder.

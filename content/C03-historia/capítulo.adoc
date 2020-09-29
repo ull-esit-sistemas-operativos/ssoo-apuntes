@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C03_stats_reading_time}
+====
+
 La historia de los sistemas operativos se puede dividir en cinco grandes etapas o generaciones, obviamente conectadas con las generaciones de los ordenadores donde funcionaban.
 
 [[_historia_primera_generación]]

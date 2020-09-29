@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C06_stats_reading_time}
+====
+
 Un sistema operativo proporciona un entorno controlado para la ejecución de programas.
 Dicho entorno debe proporcionar ciertos servicios que pueden ser accedidos por los programas a través de una *interfaz de programación de aplicaciones* o *((API))* (_Application Programming Interface_).
 

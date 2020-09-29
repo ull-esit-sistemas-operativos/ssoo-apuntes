@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C05_stats_reading_time}
+====
+
 Un sistema operativo proporciona un entorno para la ejecución de programas.
 Ese entorno debe proporcionar ciertos servicios a los programas y a los usuarios de esos programas.
 Estos servicios son proporcionados gracias al funcionamiento coordinado de los diferentes componentes del sistema.

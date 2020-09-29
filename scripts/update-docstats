@@ -1,0 +1,48 @@
+#!/bin/bash
+
+ASCIIDOCTOR_CMD="asciidoctor --backend html5 -o -"
+W3M_CMD="w3m -dump -cols 2147483647 -T text/html"
+WORDS_PER_MINUTE=200
+
+test $# -ge 2 || echo "Error: Faltan argumentos en la línea de comandos." 
+type -P asciidoctor &> /dev/null || echo "Error: Asciidoctor no instalado."
+type -P w3m &> /dev/null || echo "Error: W3m no instalado."
+
+set -e
+
+function update-docstats()
+{
+    local inputdir="$1"
+    local outputfile="$2"
+    local chapter
+
+    cat /dev/null > "$outputfile"
+
+    for chapter in C{01..40}; do
+        local chapter_path=$(realpath "$inputdir"/$chapter-*/capítulo.adoc 2> /dev/null)
+        if [ -z "$chapter_path" ]; then
+            continue
+        fi
+
+        local wordcount=$($ASCIIDOCTOR_CMD "$chapter_path" | $W3M_CMD | wc -w)
+        local minutes=$(($wordcount / $WORDS_PER_MINUTE))
+        local reading_time
+
+        if [ "$minutes" -eq 1 ]; then
+            reading_time="1 minuto"
+        elif [ "$minutes" -lt 60 ]; then
+            reading_time="$minutes minutos"
+        elif [ "$minutes" -eq 60 ]; then
+            reading_time="1 hora"
+        else
+            reading_time="$(($minutes / 60)) hora y $(($minutes % 60)) min."
+        fi
+
+        echo ":${chapter}_stats_words: $wordcount" >> "$outputfile"
+        echo ":${chapter}_stats_reading_time: $reading_time" >> "$outputfile"
+
+        echo "$chapter: $wordcount palabras $reading_time"
+    done
+}
+
+update-docstats $@

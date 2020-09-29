@@ -1,0 +1,40 @@
+:C01_stats_words: 1405
+:C01_stats_reading_time: 7 minutos
+:C02_stats_words: 4568
+:C02_stats_reading_time: 22 minutos
+:C03_stats_words: 3813
+:C03_stats_reading_time: 19 minutos
+:C04_stats_words: 2312
+:C04_stats_reading_time: 11 minutos
+:C05_stats_words: 1020
+:C05_stats_reading_time: 5 minutos
+:C06_stats_words: 3049
+:C06_stats_reading_time: 15 minutos
+:C07_stats_words: 3345
+:C07_stats_reading_time: 16 minutos
+:C08_stats_words: 1748
+:C08_stats_reading_time: 8 minutos
+:C09_stats_words: 7913
+:C09_stats_reading_time: 39 minutos
+:C10_stats_words: 5991
+:C10_stats_reading_time: 29 minutos
+:C11_stats_words: 190
+:C11_stats_reading_time: 0 minutos
+:C12_stats_words: 3192
+:C12_stats_reading_time: 15 minutos
+:C13_stats_words: 1612
+:C13_stats_reading_time: 8 minutos
+:C14_stats_words: 6624
+:C14_stats_reading_time: 33 minutos
+:C15_stats_words: 1742
+:C15_stats_reading_time: 8 minutos
+:C16_stats_words: 2207
+:C16_stats_reading_time: 11 minutos
+:C17_stats_words: 9192
+:C17_stats_reading_time: 45 minutos
+:C18_stats_words: 2030
+:C18_stats_reading_time: 10 minutos
+:C19_stats_words: 8292
+:C19_stats_reading_time: 41 minutos
+:C20_stats_words: 5620
+:C20_stats_reading_time: 28 minutos
