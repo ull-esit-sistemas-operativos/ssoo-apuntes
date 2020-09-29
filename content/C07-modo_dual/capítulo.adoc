@@ -237,11 +237,12 @@ Como la ejecución en esas memorias es más lenta que en la RAM, muchas veces el
 * En *sistemas operativos de gran tamaño* —incluidos los de propósito general— el sistema se almacena en disco.
 
 En los sistemas mas antiguos, el _bootstrap_ lee de una posición fija del disco —generalmente el bloque 0— el gestor de arranque, lo copia en la memoria y lo ejecuta.
-Esto es lo que ocurre en los PC más antiguos que utilizan BIOS y particiones MBR —siglas de  _Master Boot Record_—.
+Esto es lo que ocurre en los PC más antiguos que utilizan BIOS y particiones MBR.
 
 [NOTE]
 ====
 También se llama ((MBR)) a ese bloque 0 del disco donde está el gestor de arranque.
+De hecho MBR son las siglas de _Master Boot Record_ o https://es.wikipedia.org/wiki/Registro_de_arranque_principal[registro de arranque principal].
 ====
 
 Aunque en ocasiones el código de ese bloque inicial de arranque sabe cargar e iniciar el sistema operativo completo, es común que sólo sepa donde está el resto del gestor de arranque en el disco, para cargarlo y ejecutarlo.
