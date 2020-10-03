@@ -171,7 +171,7 @@ Para usarlo, lo primero es abrir o crear —si aun no existe— la cola de mensa
 [source,c]
 ----
 mqd_t mqueue = mq_open(
-    "foo-mqueue",       <1>
+    "/foo-mqueue",      <1>
     O_CREAT | O_RDWR,   <2>
     0644,               <3>
     NULL
@@ -283,10 +283,10 @@ struct mq_attr attr = {  <1>
 };
 
 mqd_t mqueue = mq_open(
-    "foo-queue",
+    "/foo-queue",
     O_CREAT | O_RDWR,
     0644,
-    &attr                <1>
+    &attr <1>
 );
 ----
 <1> Estructura con propiedades para la cola cuando ésta se crea nueva.
@@ -300,7 +300,7 @@ Por ejemplo, en Linux los valores por defecto son 10 mensajes y 8 KiB por mensaj
 Estos valores máximos y por defecto se pueden cambiar de forma global para todo el sistema, por si tuviéramos interés en valores más altos.
 ****
 
-== Sincronización
+== Operaciones síncronas y asíncronas
 
 La comunicación entre dos procesos tiene lugar por medio de las llamadas `send()` y `receive()`; de tal forma que generalmente la primera se bloquea cuando la cola de transmisión se llena —en función del tipo de _buffering_— mientras que la segunda lo hace cuando la cola de recepción está vacía.
 
@@ -399,8 +399,8 @@ A continuación se puede ver un ejemplo específico con {linux_poll}, aunque las
 
 [source,c]
 ----
-mqd_t mqueue1 = mq_open( "foo-queue", /* ... */ ); <1>
-mqd_t mqueue2 = mq_open( "bar-queue", /* ... */ );   
+mqd_t mqueue1 = mq_open( "/foo-queue", /* ... */ ); <1>
+mqd_t mqueue2 = mq_open( "/bar-queue", /* ... */ );   
 
 struct pollfd fds[] =
 {
@@ -514,15 +514,15 @@ Para resolverlo, el estándar recomienda usar {linux_sigaction} en su lugar:
 ----
 struct sigaction act = {
     .sa_handler = &mi_manejador_de_sigterm, <4>
-    .sa_sigaction = NULL, <5>
-    .sa_mask = 0, <6>
+    .sa_sigaction = NULL,   <5>
+    .sa_mask = 0,           <6>
     .sa_flags = SA_RESTART, <7>
 }
 
 sigaction(
     SIGTERM, <1>
-    &act, <2>
-    NULL <3>
+    &act,    <2>
+    NULL     <3>
 );
 ----
 <1> Identificador de la señal a recibir.
@@ -581,9 +581,9 @@ Un extremo permite los procesos en ese extremo escribir en la tubería, mientras
 
 Existen dos tipos de tuberías:
 
-* Las *tuberías anónimas* sólo existen en el espacio de direcciones del proceso que las crea, de tal forma que debe heredarse de padres a hijos para que otros procesos puedan tener acceso.
+* Las *tuberías anónimas*(((tubería, anónima))) sólo existen en el espacio de direcciones del proceso que las crea, de tal forma que debe heredarse de padres a hijos para que otros procesos puedan tener acceso.
 
-* Las *tuberías con nombre* son públicas al resto del sistema, por lo que teóricamente cualquier proceso con permisos puede abrir una para comunicarse con otros procesos.
+* Las *tuberías con nombre*(((tubería, con nombre))) son públicas al resto del sistema, por lo que teóricamente cualquier proceso con permisos puede abrir una para comunicarse con otros procesos.
 Por eso se suele utilizar en aplicaciones cliente-servidor, dónde un proceso servidor ofrece algún servicio a otros procesos cliente a través de la tubería.
 
 [NOTE]
@@ -630,9 +630,9 @@ Para crear un _socket_ te utiliza la llamada al sistema {linux_socket}:
 
 [source,c]
 ----
-int sockfd = socket(    <1>
-    AF_UNIX,            <2>
-    SOCK_DGRAM,         <3>
+int sockfd = socket( <1>
+    AF_UNIX,         <2>
+    SOCK_DGRAM,      <3>
     0
 )
 ----
@@ -652,14 +652,14 @@ La dificultad es que cada familia de protocolos tiene un formato de direcciones 
 [source,c]
 ----
 struct sockaddr_un addr = {
-    .sun_family = AF_INET,          <5>
-    .sun_path = "/tmp/foo-socket"   <6>
+    .sun_family = AF_INET,        <5>
+    .sun_path = "/tmp/foo-socket" <6>
 };
 
 int result_code = bind( <1>
-    sockfd,                     <2>
-    (struct sockaddr*) &addr,   <3>
-    sizeof(addr)                <4>
+    sockfd, <2>
+    (struct sockaddr*) &addr, <3>
+    sizeof(addr) <4>
 )
 ----
 <1> Como en el esto de llamadas al sistema, en caso de error se devuelve un número negativo y {linux_errno} contendrá el código del error.
@@ -691,12 +691,12 @@ struct sockaddr_un addr;
 socklen_t addrlen;
 
 int result_code = recvfrom( <1>
-    sockfd,                     <2>
-    &message,                   <3>
-    sizeof(message),            <4>
-    0,                          <5>
-    (struct sockaddr*) &addr,   <6>
-    &addrlen                    <7>
+    sockfd,          <2>
+    &message,        <3>
+    sizeof(message), <4>
+    0,               <5>
+    (struct sockaddr*) &addr, <6>
+    &addrlen         <7>
 )
 ----
 <1> En caso de éxito devuelve número de bytes del mensaje recibido.
@@ -718,3 +718,5 @@ Ambos programas utilizan la cabecera {socket_hpp} que incluye un ejemplo de clas
 En los distintos métodos se puede ver como se utilizan las funciones de la librería del sistema para crear _sockets_, asignarles dirección y usarlos para enviar y recibir mensajes.
 
 En resumen, los *_sockets_* son un mecanismo de paso de mensajes de *comunicación indirecta*, que admite tanto comunicación *orientada a flujos* como *mensajes de tamaño variable*, _buffering_ de *capacidad limitada* y tanto *comunicación síncrona* como *asíncrona*, aunque el comportamiento real final de la interfaz depende de la tecnología de red utilizada.
+
+// TODO: Hacer versión windows de esto.

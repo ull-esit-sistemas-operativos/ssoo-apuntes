@@ -921,7 +921,7 @@ Método de comunicación en el que los procesos utilizan regiones compartidas de
 Paso de mensajes::
 Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.
 
-En la <<>> se puede un esquema comparativo entre ambos modelos de comunicación.
+En la <<modelos_de_comunicación>> se puede un esquema comparativo entre ambos modelos de comunicación.
 Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_paso_de_mensages>>, respectivamente.
 
 [[modelos_de_comunicación]]
