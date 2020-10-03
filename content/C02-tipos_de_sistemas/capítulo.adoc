@@ -14,7 +14,7 @@ Ahora que sabemos que todos los sistemas operativos hacen lo mismo pero que el �
 == Mainframe
 
 Los *ordenadores centrales* o _**((mainframes))**_ fueron los primeros computadores utilizados en muchas aplicaciones comerciales y científicas.
-Se caracterizan no tanto por la potencia de su CPU como por su: gran capacidad de memoria, gran capacidad de almacenamiento secundario, gran cantidad de dispositivos de E/S y rapidez de estos y alta fiabilidad.
+Se caracterizan no tanto por la potencia de su CPU como por su: gran capacidad de memoria, gran capacidad de almacenamiento secundario, gran cantidad de dispositivos de E/S y rapidez de éstos y alta fiabilidad.
 
 Los _mainframes_ pueden funcionar durante años sin problemas ni interrupciones y las reparaciones se realizan sin detener su funcionamiento.
 
@@ -38,7 +38,7 @@ Los primeros _mainframe_ eran enormes máquinas operadas desde una consola y con
 Para imágenes y más información sobre las tarjetas perforadas, véase https://en.wikipedia.org/wiki/Computer_programming_in_the_punched_card_era[«Computer programming in the punched card era -- Wikipedia»].
 ====
 
-El trabajo era preparado por cada programador —normalmente en tarjetas perforadas— y entregado al operador del sistema, que era quién tenían acceso al sistema y tenía la responsabilidad de ejecutar los programas y devolver los resultados al programador correspondiente.
+El trabajo era preparado por cada programador —normalmente en tarjetas perforadas— y entregado al operador del sistema, que era quién tenía acceso al sistema y la responsabilidad de ejecutar los programas y devolver los resultados al programador correspondiente.
 
 No había sistema operativo y el operador debía cargar y ejecutar cada programa de uno en uno.
 
@@ -62,7 +62,7 @@ El *((monitor)) del sistema* es un predecesor de los sistemas operativos y tení
 
 * Su única tarea era cargar y transferir automáticamente la ejecución de un programa al siguiente cuando el anterior terminaba.
 
-* El mayor inconveniente de éste tipo de sistemas era que la CPU permanecía mucho tiempo desocupada porque era —y sigue siendo— varios ordenes de magnitud más rápida que los dispositivos de E/S.
+* El mayor inconveniente de este tipo de sistemas era que la CPU permanecía mucho tiempo desocupada porque era —y sigue siendo— varios ordenes de magnitud más rápida que los dispositivos de E/S.
 ====
 
 Cualquier programa necesita realizar operaciones de E/S para obtener los datos requeridos para sus cálculos —guardados en tarjetas perforadas y unidades de cinta o, si hablamos de hoy en día, en discos duros y memorias USB—.
@@ -74,10 +74,10 @@ Este desaprovechamiento de la CPU es peor cuanto más rápida es la CPU respecto
 === Sistemas multiprogramados
 (((sistema, multiprogramado)))
 
-La solución al inconveniente de los sistemas de procesamiento por lotes con la E/S fue que los programas no accedieran directamente al dispositivo de E/S, sino que, en su lugar, solicitaran la operación al *monitor del sistema* para que este la solicitara al hardware.
+La solución al inconveniente de los sistemas de procesamiento por lotes con la E/S fue que los programas no accedieran directamente al dispositivo de E/S, sino que, en su lugar, solicitaran la operación al *monitor del sistema* para que éste la solicitara al hardware.
 Así el sistema operativo —como podemos comenzar a llamarlo— tiene la oportunidad de sustituir el programa en la CPU por otro, mientras la operación de E/S se completa.
 
-Además, con la aparición de la tecnología de los discos magnéticos en la década de los 60 del siglo pasado, los trabajos de los programadores comenzaron a ser almacenados en discos desde eran escogidos por el sistema operativo para su ejecución.
+Además, con la aparición de la tecnología de los discos magnéticos en la década de los 60 del siglo pasado, los trabajos de los programadores comenzaron a ser almacenados en discos, desde donde eran escogidos por el sistema operativo para su ejecución.
 
 A estos sistemas se los llamó *multiprogramados*.
 
@@ -123,7 +123,7 @@ Los sistemas multiprogramados ofrecían un uso más eficiente de la CPU pero no 
 Los programadores seguían teniendo que entregar los trabajos al operador y esperar a que éste les devolviera los resultados.
 
 Los *sistemas de tiempo compartido* se desarrollaron tras observar que al dar acceso a un grupo de usuarios se podía conseguir un uso más eficiente del sistema, en comparación a cuando solo podía ser utilizado por un usuario a la vez.
-Esto es debido a que, generalmente, un usuario introduce información de forma continua para luego detenerse durante largos periodos de tiempo, mientras que en un grupo de usuarios las pausas de uno de ellos se puede llenar con la actividad de los otros.
+Esto es debido a que, generalmente, un usuario introduce información de forma continua para luego detenerse durante largos periodos de tiempo, mientras que en un grupo de usuarios, las pausas de uno de ellos se pueden llenar con la actividad de los otros.
 
 ====
 Los *sistemas de tiempo compartido* se caracterizaban por:
@@ -132,7 +132,7 @@ Los *sistemas de tiempo compartido* se caracterizaban por:
 A través de estas terminales los usuarios podían dar órdenes al sistema e interactuar con sus trabajos.
 Podían haber múltiples usuarios al mismo tiempo pero cada uno solo podía tener un trabajo en ejecución a la vez.
 
-* Usar la *multiprogramación* para tener varios trabajos en la memoria principal al mismo tiempo e intercambiar el trabajo en la CPU cuando este solicitaba una operación de E/S, como ya se venía haciendo en los *sistemas multiprogramados* para hacer un uso más eficiente de la CPU.
+* Usar la *multiprogramación* para tener varios trabajos en la memoria principal al mismo tiempo e intercambiar el trabajo en la CPU cuando éste solicitaba una operación de E/S, como ya se venía haciendo en los *sistemas multiprogramados* para hacer un uso más eficiente de la CPU.
 
 * Repartir el tiempo de CPU entre usuarios.
 El sistema operativo asignaba un tiempo de CPU a cada usuario —denominado *ventana de tiempo* o *((cuanto))* de CPU—.
@@ -185,9 +185,9 @@ Al igual que lo son los _mainframe_ modernos y muchos sistemas operativos actual
 == Sistemas de escritorio
 (((sistema, escritorio)))
 
-En la década de los 70 del siglo pasado también aparecieron las primeras CPU en microprocesadores y con estas llegaron las *microcomputadoras* o *microordenadores*.
-Las primeras *((microcomputadora)s* no incluían teclado ni monitor y se programaban usando interruptores y ledes ubicados en el frontal de la unidad.
-Pero entorno a 1977 apareció la segunda generación de *microcomputadoras*, que si incluía estos periféricos de E/S, por lo que eran más fáciles de usar que sus predecesores.
+En la década de los 70 del siglo pasado también aparecieron las primeras CPU en microprocesadores y con éstas llegaron las *microcomputadoras* o *microordenadores*.
+Las primeras *((microcomputadora))s* no incluían teclado ni monitor y se programaban usando interruptores y ledes ubicados en el frontal de la unidad.
+Pero en torno a 1977 apareció la segunda generación de *microcomputadoras*, que si incluían estos periféricos de E/S, por lo que eran más fáciles de usar que sus predecesoras.
 Entonces comenzaron a recibir el nombre de _ordenadores domésticos_ y de su mano llegaron los primeros *sistemas operativos de escritorio*.
 
 [[ordenadores_domésticos_1977]]
@@ -198,12 +198,12 @@ Los _mainframes_ y las minicomputadoras de la época siguieron siendo los ordena
 
 [NOTE]
 ====
-El término en desuso *((minicomputadora))* o *((miniordenador)* hace referencia a máquinas multiusuario de rango medio, entre los _mainframes_ y los ordenadores domésticos.
+El término en desuso *((minicomputadora))* o *((miniordenador))* hace referencia a máquinas multiusuario de rango medio, entre los _mainframes_ y los ordenadores domésticos.
 ====
 
 Los primeros *sistemas operativos de escritorio* eran muy básicos.
 Por ejemplo, en un sistema diseñado para ser utilizado por un único usuario no tiene sentido implementar un sistema de archivos con permisos.
-Así que los primeros sistemas operativos de escritorio carecían de esta característica que, sin embargo, ya existía en los sistemas de tiempo compartido de la época.
+Así que, los primeros sistemas operativos de escritorio carecían de esta característica que, sin embargo, ya existía en los sistemas de tiempo compartido de la época.
 De la misma manera, carecían de otros mecanismos de protección y no eran ni multiusuario ni multitarea.
 
 Pese a estas diferencias, los *sistemas operativos de escritorio* se han beneficiado del desarrollo de los sistemas operativos para _mainframes_.
@@ -230,7 +230,7 @@ Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/
 == Sistemas de mano
 (((sistema, de mano)))
 
-Con el nombre genérico de **sistemas de mano** hacemos referencia a los _tablets_, lectores de libros electrónicos y teléfonos móviles.
+Con el nombre genérico de **sistemas de mano** hacemos referencia a las _tablets_, lectores de libros electrónicos y teléfonos móviles.
 Los desarrolladores de aplicaciones y sistemas de mano deben enfrentarse a diversos desafíos, originados por el tamaño limitado de los dispositivos y la alimentación mediante el uso de baterías.
 Debido a esas limitaciones muchos sistemas de mano tienen poca cantidad de memoria, procesadores lentos —en comparación con sus equivalentes de escritorio— y pantallas más pequeñas.
 
@@ -242,7 +242,7 @@ En el diseño del sistema operativo suele primar la facilidad de uso y buscar un
 Un *sistema multiprocesador* es aquel ordenador hay procesadores interconectados que comparten el bus del sistema, el reloj y, en ocasiones la memoria, y los periféricos.
 
 Hace años esto solo se daban en sistemas con varias CPU, lo que era relativamente común en servidores y sistemas de alto rendimiento para trabajos técnicos o científicos.
-Sin embargo, en la actualidad cualquier dispositivo digital u ordenador doméstico puede tener una CPU con múltiples núcleo, lo que los convierte en sistemas multiprocesador.
+Sin embargo, en la actualidad cualquier dispositivo digital u ordenador doméstico puede tener una CPU con múltiples núcleos, lo que los convierte en sistemas multiprocesador.
 
 Las principales de ventajas de estos sistemas son:
 
@@ -265,14 +265,14 @@ En la actualidad existen dos tipos de sistemas multiprocesador:
 image::multiprocesamiento_simétrico.svg[]
 
 * En los *sistemas de multiprocesamiento simétrico*(((sistema, multiprocesamiento, simétrico)))(((multiprocesamiento, simétrico))) o *SMP* (_Symmetric Multiprocessing_) todos los procesadores son iguales.
-Todos comparte los mismos recursos, pueden acceder a los
+Todos comparten los mismos recursos, pueden acceder a los
 mismos dispositivos (véase la <<smp>>) y cada uno ejecuta una copia del núcleo del sistema operativo.
-El sistema operativo debe saber haber sido diseñado para saber repartir el trabajo entre los procesadores y compartir adecuadamente entre tareas y procesadores el resto de recursos del sistema. 
+El sistema operativo debe haber sido diseñado para saber repartir el trabajo entre los procesadores y compartir adecuadamente entre tareas y procesadores el resto de recursos del sistema. 
 Casi todos los sistemas multiprocesador modernos son de este tipo.
 
-* En los *sistemas de multiprocesamiento asimétrico*(((sistema, multiprocesamiento, asimétrico)))(((multiprocesamiento, asimétrico))) o *AMP* (_Asymmetric Multiprocessing_) hay un procesador principal y varios secundarios a quienes la principal planifica y entrega las tareas que deben ejecutar.
+* En los *sistemas de multiprocesamiento asimétrico*(((sistema, multiprocesamiento, asimétrico)))(((multiprocesamiento, asimétrico))) o *AMP* (_Asymmetric Multiprocessing_) hay un procesador principal y varios secundarios a quienes el principal planifica y entrega las tareas que deben ejecutar.
 En ocasiones los procesadores secundarios se distinguen del principal por haber sido diseñados para realizar algún tipo concreto de tareas de forma muy eficiente o por estar conectadas a hardware especial.
-Ejemplos de esto son las https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico[GPU], que no son sino procesadores diseñados específicamente para el procesamiento de gráficos, o las CPU de E/S conectadas 
+Ejemplos de esto son las https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico[GPU], que no son sino procesadores diseñados específicamente para el procesamiento de gráficos, o las CPU de E/S conectadas a 
 discos duros para gestionarlos de forma más eficiente.
 
 [NOTE]
@@ -318,7 +318,7 @@ Ejemplos de este tipo de sistemas son las redes https://es.wikipedia.org/wiki/Bi
 [NOTE]
 ====
 Un servidor puede ser el cuello de botella no solo por su potencia sino también por el ancho de banda de su conexión a la red.
-La potencia del servidor es lo de menos cuando se intenta distribuir en Internet archivos de gran tamaño —por ejemplo imágenes de CD o DVD— pues el problema es que varias descargas simultaneas pueden consumir todo el ancho de banda del servidor durante largos periodos de tiempo.
+La potencia del servidor es lo de menos cuando se intenta distribuir en Internet archivos de gran tamaño —por ejemplo imágenes de CD o DVD— pues el problema es que varias descargas simultáneas pueden consumir todo el ancho de banda del servidor durante largos periodos de tiempo.
 ====
 
 === Sistemas operativos para sistemas distribuidos
@@ -330,7 +330,7 @@ Por ejemplo, implementan algún mecanismo que permita a diferentes procesos en d
 Además suelen incorporar la opción de proporcionar algunos servicios de red, como la compartición de archivos y dispositivos con otros equipos de la misma red.
 +
 Los ordenadores con sistemas operativos de red son autónomos.
-Simplemente es que gracias al sistema operativo de red conocen la existencia de la red y saben usarla para comunicarse con otros ordenadores de la misma.
+Simplemente es que gracias al sistema operativo de red, conocen la existencia de la red y saben usarla para comunicarse con otros ordenadores de la misma.
 +
 Este tipo de sistemas operativos son los más utilizados en los tipos de sistemas distribuidos comentados anteriormente.
 En la actualidad, la inmensa mayoría de sistemas de escritorio y dispositivos de mano utilizan sistemas operativos de red.

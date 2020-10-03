@@ -10,7 +10,7 @@ include::../../config/attributes.adoc[]
 ====
 
 ¿Qué es un sistema operativo? ¿cuáles son sus responsabilidades en el contexto de un sistema informático? ¿cómo cumple con ellas?
-Estás son algunas de las cuestiones que responderemos en este capítulo.
+Éstas son algunas de las cuestiones que responderemos en este capítulo.
 Aunque, cómo veremos, no son preguntas sencillas de responder.
 
 == Definición de sistema operativo
@@ -19,7 +19,7 @@ En general no existe una definición universal de lo qué es un *((sistema opera
 
 * Hay quién considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un sistema operativo».
 +
-En realidad esta definición no es muy precisa puesto que las características incluidas pueden variar enormemente de un sistema a otro.
+En realidad esta definición no es muy precisa, puesto que las características incluidas pueden variar enormemente de un sistema a otro.
 Por ejemplo, algunos sistemas operativos apenas alcanzan el megabyte de espacio, careciendo incluso de las aplicaciones más básicas, mientras que otros ocupan gigabytes de espacio, incluyen una interfaz gráfica basada en ventanas y las aplicaciones más comunes que cualquier usuario puede necesitar.
 +
 [NOTE]
@@ -27,9 +27,9 @@ Por ejemplo, algunos sistemas operativos apenas alcanzan el megabyte de espacio,
 Aunque pueda parecer lo contrario, la cuestión de qué componentes son parte o no de un sistema operativo no es trivial. Por ejemplo, Microsoft y el Departamento de Justicia de los Estados Unidos se enfrentaron en 1998 por la inclusión del navegador Internet Explorer como parte del sistema operativo Microsoft Windows.
 
 Microsoft afirmaba que ambos productos eran realmente uno solo y que su unión fue el resultado de un proceso de innovación.
-Mientras tanto la otra parte alegaba que el navegador era un producto distinto y separado, que no formaba parte del sistema operativo y que todo el asunto restringía la libre competencia en el mercado de los navegadores.
+Mientras tanto, la otra parte alegaba que el navegador era un producto distinto y separado, que no formaba parte del sistema operativo y que todo el asunto restringía la libre competencia en el mercado de los navegadores.
 
-Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados Unidos tenían mucho sentido ¿pero qué ocurriría si se planteara este mismo asunto en la actualidad?.
+Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados Unidos tenían mucho sentido, ¿pero qué ocurriría si se planteara este mismo asunto en la actualidad?.
 ¿Concibes que tu móvil o tu ordenador no trajeran de serie un navegador?
 
 Para más información, véase https://es.wikipedia.org/wiki/Caso_Estados_Unidos_contra_Microsoft[«Caso Estados Unidos contra Microsoft -- Wikipedia»].
@@ -61,15 +61,15 @@ Un *sistema informático*(((sistema, informático))) puede ser dividido, _grosso
 * *Programas de aplicación*. El objetivo fundamental de cualquier sistema informático es ejecutar programas para resolver los problemas informáticos de los usuarios.
 Con ese objetivo se construye su hardware y se desarrollan los programas de aplicación —procesadores de textos, hojas de cálculo, compiladores, navegadores de Internet, etc.— que usan los usuarios para resolver sus problemas.
 
-* **Hardware**. El hardware —la CPU, la memoria, los dispositivos de entrada salida, etc.— proporcionan los recursos computaciones del sistema informático.
-Los programas de aplicación necesitan usar estos recursos computaciones para resolver los problemas informáticos de los usuarios.
+* **Hardware**. El hardware —la CPU, la memoria, los dispositivos de entrada salida, etc.— proporcionan los recursos computacionales del sistema informático.
+Los programas de aplicación necesitan usar estos recursos computacionales para resolver los problemas informáticos de los usuarios.
 
 * *Sistema operativo*. En un sistema informático las aplicaciones necesitan realizar operaciones comunes, como acceder a los dispositivos de E/S o reservar porciones de la memoria.
 En lugar de que cada aplicación intente hacerlo por su cuenta, es mucho más sencillo que estas operaciones comunes estén centralizadas en el sistema operativo. 
 
-Por lo tanto, el sistema operativo controla, coordina el acceso y asigna los recursos computaciones del hardware a los distintos programas de aplicación.
+Por lo tanto, el sistema operativo controla, coordina el acceso y asigna los recursos computacionales del hardware a los distintos programas de aplicación.
 
-En realidad esta es solo una de las dos perspectivas desde las que se pueden analizar las funciones del sistema operativo.
+En realidad ésta es solo una de las dos perspectivas desde las que se pueden analizar las funciones del sistema operativo.
 Es la denominada como: *perspectiva del sistema informático*, mientras que la otra es la *perspectiva del usuario*.
 
 === Perspectiva del sistema informático
@@ -85,7 +85,7 @@ Además, el sistema operativo es el programa encargado del control de la ejecuci
 ====
 En resumen, desde la perspectiva del sistema informático, las funciones del *((sistema operativo))* son:
 
-* Gestionar los recursos computaciones del sistema informático.
+* Gestionar los recursos computacionales del sistema informático.
 
 * Controlar la ejecución de los programas de usuario y el acceso a los dispositivos de E/S.
 
