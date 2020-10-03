@@ -1,206 +1,720 @@
-===== Sistema de paso de mensajes
+= Comunicación mediante de paso de mensajes
 ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
-=== Comunicación entre procesos
+[.right]
+====
+.Tiempo estimado de lectura
+{C10_stats_reading_time}
+====
 
-_La *comunicación entre procesos* o *IPC* (Interprocess Communication) es un mecanismo para que los procesos puedan compartir información y sincronizar sus acciones sin necesidad de compartir el espacio de direcciones_.
-Este mecanismo debe ser proporcionado por el sistema operativo que, a diferencia de cuando se usa memoria compartida, se encarga de la sincronización y así como de establecer el formato que deben tener los datos.
-Es particularmente útil en entornos distribuidos dónde los procesos a comunicar residen en ordenadores diferentes conectados a una red.
-Por ejemplo se utiliza para comunicar un navegador y un servidor Web en Internet.
+El *((paso de mensajes))* es un mecanismo que permite a los procesos compartir información y sincronizar sus acciones sin necesidad de compartir recursos —compartir memoria, archivos, etc.—
 
-La mejor forma de proporcionar IPC es utilizando un sistema de paso de mensajes (véase la ).
+Esto lo hace especialmente útil en entornos distribuidos, dónde los procesos a comunicar residen en ordenadores diferentes conectados a una red, por lo que tiene muy difícil —o incluso imposible— compartir memoria u otros recursos para comunicarse.
+En este caso, el sistema operativo es el encargado de codificar los mensajes y enviarlos a través de la red para hacerlos llegar a su destinatario.
+La web —donde un navegador se conecta a un servidor web para obtener contenido— y el resto de servicios de Internet son ejemplos de sistemas de paso de mensajes.
 
-==== Sistema de paso de mensaes
+El sistema de paso de mensajes debe ser proporcionado por el sistema operativo que, a diferencia de cuando se usa memoria compartida, se encarga de la sincronización —ya que no existen riesgos en el envío y recepción de mensajes al mismo tiempo— y de establecer el formato que deben tener los datos del mensaje.
 
-_La función de un *sistema de paso de mensajes* es permitir que los procesos se comuniquen sin necesidad de recurrir a la compartición de recursos_ —compartir memoria, archivos, etc.—.
+[NOTE]
+====
+En alguna fuentes se sigue haciendo referencia al término *((IPC))* (_Interprocess Communication_) —o *comunicación entre procesos*— para identificarlo exclusivamente con *sistemas de paso de mensajes*.
+Sin embargo, la *memoria compartida* y otras técnicas también sirven para «comunicar procesos», por lo que es más adecuado usar el término *IPC* para englobar todas las técnicas conocidas de comunicación entre procesos.
+====
 
-El componente de IPC de cualquier sistema operativo debe proporcionar al menos dos llamadas al sistema similares a:
+Los sistemas de paso de mensaje de cualquier sistema operativo debe proporcionar al menos dos llamadas al sistema similares a:
 
-* _send (message)_ para mandar mensajes a otro proceso.
-* _receive (message)_ para recibir mensajes de otro proceso.
+* *send( message )* para mandar mensajes a otro proceso.
+* *receive( &message )* para recibir mensajes de otro proceso y copiarlo en _message_.
 
-Además los diseñadores del sistema operativo deben escoger entre implementar un componentes de IPC con _mensajes de tamaño fijo_ o _mensajes de tamaño variable_.
+[NOTE]
+====
+Vamos a hablar de funciones de un sistema de paso de mensajes hipotético.
+Meros ejemplos para ilustrar la diferentes alternativas.
+Esto no significa que en los sistemas operativos reales las funciones se llamen así y tengan esos mismos argumentos.
+====
+
+Para que estas llamadas puede enviar y recibir mensajes entre dos procesos es necesario que haya un *enlace de comunicaciones* entre ambos.
+No trataremos aquí la implementación física del enlace —que por ejemplo puede ser mediante memoria compartida, un bus hardware o una red de ordenadores— sino de su implementación lógica, es decir, las características de la interfaz que usan las aplicaciones para comunicarse con sus correspondientes operaciones de envío y recepción.
+
+== Tamaño del mensaje
+
+Los diseñadores del sistema operativo deben escoger entre implementar un sistema de paso de mensajes con mensajes de tamaño fijo o mensajes de tamaño variable:
 
 * *Mensajes de tamaño fijo*.
-La implementación del sistema operativo es sencilla pero la programación de aplicaciones es mucho más compleja.
+La implementación del sistema operativo es muy sencilla pero el uso de la interfaz por parte de las aplicaciones es mucho más compleja.
++
+Por ejemplo, para comunicar procesos en un mismo ordenador cada enlace puede tener un búfer de tamaño fijo donde se copia el mensaje enviado y de donde se extrae el mensaje al recibirlo.
+Esto es muy sencillo de implementar en el sistema operativo.
+Sin embargo, si el desarrollador de la aplicación quiere enviar algo de mayor tamaño que el tamaño del mensaje, debe trocearlo en varios mensajes para enviarlo y reconstruirlo al recibirlo.
 
 * *Mensajes de tamaño variable*.
-La implementación del sistema operativo es más compleja pero la programación de aplicaciones es más simple.
+La implementación del sistema operativo es más compleja, ya que ahora tiene que gestionar la memoria para almacenar mensajes de tamaño variable hasta que son recibidos.
+Sin embargo, la programación de aplicaciones es más simple puesto que el programador puede mandar mensajes de cualquier tamaño sin ninguna preocupación
 
-Para que dos procesos se puedan comunicar es necesario que haya un _enlace de comunicaciones_.
-No trataremos aquí la implementación física del enlace —que por ejemplo puede ser mediante memoria compartida, un bus hardware, o una red de comunicaciones— sino de su implementación lógica.
+=== Comunicación orientada a flujos
 
-En general existen varias opciones a la hora de implementar de manera lógica un enlace y las correspondientes operaciones de envío y recepción:
+En algunos sistemas con *mensajes de tamaño variable* no se preserva la separación entre mensajes al recibirlos.
+Es decir, que los procesos leen un número arbitrario de bytes, donde puede haber parte de un mensaje o varios mensajes al mismo tiempo.
+Por ejemplo, en esos sistemas el transmisor puede mandar tres mensajes de 16000, 3200 y 100 bytes, pero el receptor leer la secuencia de bytes en bloques de 512 bytes.
 
-* _Comunicación directa o indirecta_.
-* _Comunicación síncrona o asíncrona_.
-* _Buffering explícito o automático_.
+A esto se lo denomina *comunicación orientada a flujos* o *_(streams)_*
+Si usamos este tipo de sistema pero es importante conservar la separación entre los mensajes recibido, será nuestra responsabilidad escoger un formato de mensaje adecuado que permita al receptor recuperar dónde comienza y termina un mensaje dentro de la secuencia de bytes.
 
-===== Referenciación
+== Referenciación
 
-Los procesos que se quiera comunicar debe tener una forma de referenciarse el uno al otro.
-Para ello puede utilizar la comunicación directa o la indirecta.
+Los procesos que se quiera comunicar debe tener una forma de señalarse el uno al otro.
+Para ello el diseñador del sistema puede elegir que el sistema de paso de mensajes se con comunicación directa o la indirecta.
 
-====== Comunicación directa
+=== Comunicación directa
 
-En _la *comunicación directa* cada proceso debe nombrar explícitamente al proceso destinatario o receptor de la información_.
-Por ejemplo:
+En la *comunicación directa*(((comunicación, directa))) cada proceso debe nombrar explícitamente al proceso destinatario o receptor de la información.
+Por ejemplo, ahora las llamadas al sistema básicas podrían ser así:
 
-* _send (P, message)_ para mandar un mensaje al proceso _P_.
-* _receive (Q, message)_ para recibir un mensaje del proceso _Q_.
+* *send( A, message )* para mandar un mensaje al proceso identificado como «A».
+* *receive( A, &message )* para recibir un mensaje del proceso identificado como «A», copiándolo en «_message_».
 
-// TODO: Poner nota de que estas llamadas al sistema no existen.
+De hecho el ejemplo anterior corresponde a un caso de *comunicación directa* con *direccionamiento simétrico*(((direccionamiento, simétrico))) pero existe una variante de ese mismo esquema denominado *direccionamiento asimétrico*(((direccionamiento, asimétrico))) donde el receptor puede recibir mensajes de cualquier proceso, de forma que al volver de la llamada recibe el mensaje y la identidad del remitente.
 
-El esquema anterior se de nomina *direccionamiento simétrico* pero existe una variante de ese mismo esquema denominado *direccionamiento asimétrico*.
+* *send( A, message )* para mandar un mensaje al proceso identificado como «A»
+* *receive( &pid, &message )* para recibir un mensaje de cualquier proceso, recibiendo en «_message_» la una copia del _message_ y en «pid» la identidad del remitente.
 
-* _En el *direccionamiento simétrico* tanto el proceso transmisor como el receptor tienen que nombrar al otro para comunicarse_.
+====
+En resumen:
 
-* _En el *direccionamiento asimétrico* sólo el transmisor nombra al receptor, mientras que el receptor no tiene que nombrar al transmisor_.
+* En el *direccionamiento simétrico* tanto el proceso que envía como el que reciben tienen que identificar al otro para comunicarse.
 
-** _send (P, message)_ para mandar un mensaje al proceso _P_.
+* En el *direccionamiento asimétrico* sólo el proceso que envía identifica a que recibe, mientras que este último no tiene que nombrar al remitente.
+Es el sistema operativo el que informa de quién es el remitente del mensaje que se ha recibido.
+====
 
-** _receive (&id, message)_ para recibir un mensaje de cualquier proceso.
-En este caso el sistema operativo asigna a la variable _id_ el identificador del proceso transmisor del mensaje antes de volver de la llamada al sistema.
+Un *enlace de comunicaciones* según este esquema tiene las siguientes características:
 
-La principal desventaja de este tipo de comunicación es que _cambiar el identificador de un proceso requiere actualizar todas las referencias al anterior identificador en todos los procesos que se comunican con el_.
-En general cualquier técnica que requiera que los identificadores de los procesos sean establecidos explícitamente en el código de los programas no es deseable.
-Esto es así porque en muchos sistemas los identificadores de los procesos cambian de una ejecución a otra.
-Por lo tanto lo mejor sería disponer de una solución con un nivel adicional de indirección que evite que los identificadores tenga que ser usados explícitamente
+* Un enlace se establece automáticamente entre cada par de procesos que quieren comunicarse.
+Por tanto, los procesos sólo necesitan conocer a la identidad de los otros para comunicarse.
 
-====== Comunicación indirecta
+* Cada enlace se asocia exactamente a dos procesos.
 
-En _la *comunicación indirecta* los mensajes son enviados a *buzones*, *maillox* o *puertos* que son objetos dónde los procesos pueden dejar y recoger mensajes_.
+* Entre cada par de procesos sólo hay un enlace.
 
-* _send (A, message)_ para mandar un mensaje al puerto _A_.
-* _receive (A, message)_ para recibir un mensaje del puerto _A_.
+// TODO: Figura ilustrativa
 
-Este tipo de comunicación da lugar a algunas situaciones que deben ser resueltas.
-Por ejemplo, *¿qué pasa si los procesos P, Q y R comparten el puerto A, P manda un mensaje, y Q y R invocan la llamada receive() en A?*.
-La respuesta correcta dependerá de cuál de los siguientes métodos escogieron los diseñadores del sistema:
+La principal desventaja de este tipo de comunicación es que si cambia el identificador de un proceso hay que actualizar todas las referencias en todos los procesos que se comunican con el.
+En general cualquier técnica que requiera que los identificadores de los procesos sean establecidos explícitamente en el código de los programas no es deseable, puesto que en muchos sistemas los identificadores de los procesos cambian de una ejecución a otra.
+Por lo tanto, lo mejor sería disponer de una solución con un nivel adicional de indirección que evite que los procesos usen sus identificadores para comunicarse.
 
-* _No permitir que cada enlace esté asociado a más de dos procesos_.
+.Colas de mensajes en Windows API
+****
+En Windows API un hilo puede enviar mensajes a otro hilo usando {win32_postthreadmessage}.
+Como aun no hemos visto el concepto de hilo, podemos asumir que es equivalente al de proceso.
 
-* _No permitir que más de un proceso puedan ejecutar receive() al mismo tiempo_.
-Por ejemplo, haciendo que sólo el proceso que crea el puerto tenga permiso para recibir de él.
-Los sistemas que optan por esta solución suelen disponer de algún mecanismos para transferir el permiso de recibir a otros procesos.
+[source,c]
+----
+BOOL PostThreadMessage(
+    DWORD  idThread, <1>
+    UINT   Msg, <2>
+    WPARAM wParam, <3>
+    LPARAM lParam <3>
+);
+----
+<1> Identificador del hilo.
+<2> Un número entero que identifica el mensaje
+<3> Parámetros del mensaje de tipo entero.
 
-* _O permitir que el sistema operativo escoja arbitrariamente quién recibe el mensaje_ si dos o más procesos ejecutan `receive()` al mismo tiempo.
-La elección puede ser aleatoria o mediante algún algoritmo, por ejemplo por turnos.
+Como se puede observar, en las colas de mensajes de Windows API el *tamaño del mensaje es fijo* y con un estructura muy bien definida: un identificador del mensaje y dos enteros que sirven de parámetros opcionales del mensaje.
 
-===== Buffering
+Para recibir el mensaje el proceso llama a {win32_getmessage}:
 
-Los mensajes intercambiados durante el proceso de comunicación residen en una cola temporal.
+[source,c]
+----
+BOOL GetMessage(
+    LPMSG lpMsg, <1>
+    HWND  hWnd,
+    UINT  wMsgFilterMin,
+    UINT  wMsgFilterMax
+);
+----
+<1> Puntero a una estructura {win32_msg} que a la vuelta contendrá el identificador y los parámetros del mensaje recibido, entre otra información.
+
+Como se puede observar, no se indica de qué hilo o proceso se quiere recibir el mensaje, por lo que se trata de un caso de *comunicación directa asimétrica*.
+De hecho, si se quiere conocer la identidad del remitente, este tendría que poner su identificador en alguno de los parámetros del mensaje.
+
+El sistema de colas de mensajes de Windows API es una pieza fundamental del entorno gráfico de Microsoft Windows.
+Sin embargo, podemos definir nuestros propios mensaje privados para comunicar unos hilos o procesos con otros.
+****
+
+=== Comunicación indirecta
+
+En la *comunicación indirecta*(((comunicación, indirecta))) los mensajes son enviados a *buzones*(((buzón))), *_((maillox))_* o *puertos*(((puerto))) que son objetos dónde los procesos pueden dejar y recoger mensajes.
+
+* *send( P, message )* para mandar un mensaje al puerto «P»
+* *receive( P, &message )* para recibir un mensaje del puerto «P».
+
+Un *enlace de comunicaciones* según este esquema tiene las siguientes características:
+
+* Un enlace se establece entre un par de procesos solo si ambos comparten un mismo puerto, dado que cada enlace corresponde con un puerto.
+
+* Un enlace puede estar asociado a más de dos procesos, puesto que múltiples procesos pueden compartir el mismo puerto
+
+* Entre cada par de procesos en comunicación pueden haber varios enlaces, cada uno de los
+cuales corresponde a un puerto.
+
+// TODO: Figura ilustrativa
+
+.Colas de mensajes en sistemas POSIX
+****
+El estándar POSIX también define un https://www.man7.org/linux/man-pages/man7/mq_overview.7.html[sistema de colas de mensajes] pero es bastante diferente a la solución en Windows API.
+
+Para usarlo, lo primero es abrir o crear —si aun no existe— la cola de mensajes llamando a {linux_mq_open}:
+
+[source,c]
+----
+mqd_t mqueue = mq_open(
+    "foo-mqueue",       <1>
+    O_CREAT | O_RDWR,   <2>
+    0644,               <3>
+    NULL
+);
+----
+<1> Nombre que identifica la cola de mensajes.
+Como con los archivos, para que varios procesos puedan acceder a la misma cola, deben indicar el mismo nombre.
+<2> Valores que indican diferentes opciones a la hora de abrir la cola de mensajes.
+Por ejemplo, usando `O_RDWR` se indica abrir para enviar o recibir y con `O_CREAT` se indica que la cola debe crearse si no existe previamente.
+<3> Indica los permisos de la cola de mensajes al crearla nueva, de forma similar a los permisos que se aplican a los archivos.
+
+El valor devuelto por {linux_mq_open} es el descriptor de la cola de mensajes.
+Como otros descriptores, se hereda de padres a hijos al usar {linux_fork}.
+
+Este descriptor se utiliza como primer argumento en funciones posteriores para indicar sobre qué cola queremos realizar la correspondiente operación.
+Por ejemplo, para enviar un mensaje se utiliza {linux_mq_send} así:
+
+[source,c]
+----
+int mq_send(
+    mqueue,                 <1>
+    (const char *)&message, <2>
+    sizeof(message),        <3>
+    0                       <4>
+);
+----
+<1> Descriptor de la cola a la que enviar el mensaje.
+<2> Puntero a la dirección de memoria donde está el mensaje.
+<3> Tamaño del mensaje en bytes.
+<4> Prioridad del mensaje.
+Los mensaje con mayor prioridad se entregarán antes.
+
+Mientras que para recibir un mensaje se utiliza {linux_mq_receive}
+
+[source,c]
+----
+unsigned int msg_prio;
+
+int mq_receive(
+    mqueue,                 <1>
+    (const char *)&message, <2>
+    sizeof(message),        <3>
+    &msg_prio               <4>
+);
+----
+<1> Descriptor de la cola de la que recibir el mensaje.
+<2> Puntero a la dirección de memoria donde guardar el mensaje al recibirlo.
+<3> Tamaño máximo de espacio reservado en `message` para guardar el mensaje.
+<4> Puntero a variable entera dónde devolver la prioridad del mensaje recibido.
+
+Como los mensajes no se dirigen directamente a los procesos sino a estas entidades llamadas colas de mensajes, se trata de un caso de *comunicación indirecta*.
+Además, el *tamaño de los mensajes es variable*, aunque limitado por defecto a 8 KiB si no se configura de otra manera.
+
+Si varios procesos intentan recibir de una misma cola de mensajes al mismo tiempo, queda en manos del sistema operativo decidir cuál recibirá el siguiente mensaje que llegue.
+Por lo general es el primero en ser escogido por el planificador de la CPU para seguir ejecutándose.
+****
+
+==== Recepción concurrente
+
+// TODO: Esquema del problema.
+
+Este tipo de comunicación da lugar a algunas situaciones que deben ser resueltas durante el diseño.
+
+¿Qué ocurre, por ejemplo, si los procesos A, B y C comparten el puerto P; A manda un mensaje y B y C invocan `receive()` en el puerto P al mismo tiempo?.
+La respuesta correcta dependerá de la elección de los los diseñadores del sistema:
+
+* No permitir que cada enlace de comunicación —y por tanto cada puerto— esté asociado a más de dos procesos.
+
+* No permitir que más de un proceso puedan ejecutar `receive()` al mismo tiempo.
+Por ejemplo, en algunos sistemas solo el proceso que crea el puerto tiene permisos para recibir de él.
+Los sistemas que optan por esta solución suelen disponer de algún mecanismo para que un proceso pueda transferir el permiso de recibir a otros procesos.
+
+* Permitir que el sistema operativo escoja arbitrariamente quién recibe el mensaje si dos o más procesos ejecutan `receive()` al mismo tiempo.
+La elección puede ser aleatoria, mediante algún algoritmo, por ejemplo, por turnos o el siguiente proceso en obtener la CPU, a criterio del planificador de la CPU.
+
+== Buffering
+(((buffering)))
+
+Los mensajes intercambiados por enlace de comunicación se almacenan en una cola temporal, a la espera de ser enviados o, tras recibirlos, a la espera de que los reclame el proceso.
+
 Básicamente hay tres formas de implementar dicha cola:
 
-* _Con *capacidad cero* o *sin buffering* la cola tiene una capacidad máxima de 0 mensajes_, por lo tanto no puede haber ningún mensaje esperando en el enlace.
-En este caso el transmisor debe bloquearse hasta que el receptor recibe el mensaje.
+* Con *capacidad cero*(((capacidad, cero))) o *sin buffering* la cola tiene una capacidad máxima de 0 mensajes, por lo que no puede haber ningún mensaje esperando en el enlace.
+En este caso el proceso transmisor se bloquea en espera hasta que el receptor recibe el mensaje.
 
-* _Con **buffering automático**_:
+* Con **buffering automático**(((buffering, automático))), dónde existe dos opciones:
 
-** _Con *capacidad limitada* la cola tiene una capacidad limitada a N mensaje_, por que si la cola no se llena el transmisor no espera.
-Sin embargo si la cola se llena, el transmisor debe bloquearse a la espera de haya espacio en la cola.
+** Con *capacidad limitada*(((capacidad, limitada))) la cola tiene una capacidad máxima de stem:[N] mensaje, por lo que si la cola se llena el proceso transmisor se bloquea a la espera de que haya espacio en la cola.
+Obviamente, mientras la cola no se llene en transmisor puede seguir metiendo mensajes sin bloquearse.
 
-** _Con *capacidad ilimitada* la cola es de longitud potencialmentefootnote:[Las colas de longitud real infinita son imposibles puesto que los recursos son limitados.
-La longitud de estas colas viene determinada por la memoria principal disponible, que suele ser lo suficientemente grande para que podamos considerar que las colas son infinitas.] infinita_, lo que permite que el transmisor nunca espere.
+** Con *capacidad ilimitada*(((capacidad, ilimitada))) la cola es de longitud potencialmente infinita, lo que permite que el transmisor nunca espere.
 
-===== Sincronización
+[NOTE]
+====
+Las colas de longitud infinita son imposibles, puesto que los recursos son limitados.
+En realidad este término hace referencia a colas de longitud variable cuyo máximo viene determinado por la memoria principal disponible, que suele ser lo suficientemente grande como para que podamos considerar que las colas son infinitas.
+====
 
-La comunicación entre dos procesos tiene lugar por medio de las llamadas `send()` y `receive()`; de tal forma que generalmente la primera se bloquea cuando la cola de transmisión se llena —en función del tipo de buffering— mientras que la segunda lo hace cuando la cola de recepción está vacía.
+.Buffering en las colas de mensajes POSIX
+****
+Las colas de mensajes en sistemas POSIX tienen capacidad limitada.
+Los límites se configuran al crear la cola, a través del último argumento de {linux_mq_open}: 
 
-Sin embargo existen diferentes opciones de diseño a la hora de implementar cada una de estas primitivas en función de si se pueden bloquear o no.
-Por tanto, el paso de mensajes puede ser *con bloqueo* o *sin bloqueo*, o lo que es lo mismo *síncrono* u *asíncrono*.
+[source,c]
+----
+struct mq_attr attr = {  <1>
+    .mq_maxmsg = 5,      <2>
+    .mq_msgsize = 2049   <3>
+};
 
-* _Cuando el envío es sin bloqueo,_ el proceso transmisor nunca se bloquea.
-En caso de que la cola de mensaje esté llena, la solución más común es que la llamada `send()` vuelva con un código de retorno que indique que el proceso debe volver a intentar el envío más tarde.
+mqd_t mqueue = mq_open(
+    "foo-queue",
+    O_CREAT | O_RDWR,
+    0644,
+    &attr                <1>
+);
+----
+<1> Estructura con propiedades para la cola cuando ésta se crea nueva.
+<2> Una de las propiedades es el número máximo de mensajes en la cola al mismo tiempo.
+<3> Otra de las propiedades es el tamaño máximo de cada mensaje.
 
-* _Cuando el envío es con bloqueo_, el proceso transmisor se bloquea cuando no queda espacio en la cola de mensajes y hasta que pueda depositar el mensaje en la misma.
+Estos limites tienen unos valores por defecto por si en el lugar de `attr` en {linux_mq_open} se indica `NULL`.
+El estándar POSIX indica que esos valores por defecto dependen de cada sistema operativo, por lo que es necesario ir a la documentación para desarrolladores de cada sistema para conocer los detalles en cada caso concreto.
 
-* _Cuando la recepción es sin bloqueo_, el proceso receptor nunca se bloquea.
-En caso de que la cola de mensajes esté vacía, el sistema operativo puede indicar al proceso que lo intente más tarde a través de un código de retorno o devolviendo un mensaje nulo.
+Por ejemplo, en Linux los valores por defecto son 10 mensajes y 8 KiB por mensaje, siendo estos, además, los valores máximos que admiten esas propiedades.
+Estos valores máximos y por defecto se pueden cambiar de forma global para todo el sistema, por si tuviéramos interés en valores más altos.
+****
 
-* _Cuando la recepción es con bloqueo_, el receptor se bloquea cuando no hay mensajes en la cola.
+== Sincronización
 
-Diferentes combinaciones de `send()` y `receive()` son posibles.
-Es decir, transmisión y recepción pueden ser síncronas o asíncronas de manera independiente.
+La comunicación entre dos procesos tiene lugar por medio de las llamadas `send()` y `receive()`; de tal forma que generalmente la primera se bloquea cuando la cola de transmisión se llena —en función del tipo de _buffering_— mientras que la segunda lo hace cuando la cola de recepción está vacía.
 
-==== Ejemplos de mecanismos comunicación entre procesos
+Sin embargo, en lugar de bloquearse, puede que aun proceso le interese ejecutar otras tareas en la CPU.
+A fin de cuentas las comunicaciones son bastante lentas, por lo que en caso de bloquearse podría estar dejando de aprovechar bastante tiempo de CPU.
+Incluso puede darse el caso que tengan conexión con otros procesos y que quiera aprovecha para intentar comunicarse con alguno de ellos.
 
-===== Tuberías
+Por eso existen diferentes opciones de diseño a la hora de implementar las llamadas anteriores en función de si se pueden bloquear o no.
+Concretamente, el paso de mensajes puede ser *((síncrono))* —con bloqueo— o *((asíncrono))* —sin bloqueo—.
 
-Las *tuberías* son un mecanismo de IPC de _comunicación indirecta_ que está incluido en muchos sistemas operativos.
-La comunicación es de _capacidad cero_ y _síncrona,_ aunque en algunos sistema operativos también puede ser _asíncrona_.
+* *Cuando el envío es asíncrono*, el proceso transmisor nunca se bloquea.
+Si se llamada a `send()` cuando la cola de mensajes esté llena, lo más común es que retorne con un código de retorno que indique que el proceso debe volver a intentar el envío más tarde.
 
-Conceptualmente cada tubería tiene dos extremos.
-Un extremo permite al proceso en ese extremo escribir en la tubería, mientras el otro extremo permite a los procesos leer de la tubería.
+* *Cuando el envío es síncrono*, el proceso transmisor se bloquea cuando no queda espacio en la cola de mensajes y hasta que pueda depositar el mensaje en la misma.
 
-Existen dos tipos de tuberías:
+* *Cuando la recepción es asíncrona*, el proceso receptor nunca se bloquea.
+En caso de que la cola de mensajes esté vacía, el sistema operativo puede indicar al proceso que lo intente más tarde a través de un código de retorno o devolviendo un mensaje vacío.
 
-* _Las *tuberías anónimas* sólo existen en el espacio de direcciones del proceso que las crea_.
+* *Cuando la recepción es con bloqueo*, el receptor se bloquea cuando no hay mensajes en la cola y hasta que llegue alguno.
 
-** Los procesos hijo pueden heredar las tuberías abiertas por el proceso padre.
-Usando esa capacidad de herencia _se puede comunicar un proceso padre con sus hijos de manera privada_ (véase la ).
+Algunos sistemas de paso de mensajes son claramente síncronos o asíncronos.
+Mientras que otros permiten activar un modo u otro según las necesidades del aplicación.
+E incluso los hay que soportan que transmisión y recepción sean síncronas o asíncronas de manera totalmente independiente.
 
-* _Las *tuberías con nombre* son públicas al resto del sistema_, por lo que teóricamente son accesibles por cualquier proceso.
+.Comunicaciones asíncronas con colas de mensajes POSIX
+****
+Por defecto las colas de mensajes son síncronas, tanto en envío como en recepción.
+Es decir, si al enviar un mensaje la cola está llena, el proceso transmisor quedará bloqueado en estado *esperando* hasta que haya un hueco libre para depositar el nuevo mensaje.
+Si al recibir un mensaje la cola está vacía, el proceso receptor quedará bloqueado hasta que otro proceso deposite un mensaje.
 
-** Se suelen utilizar en aplicaciones _cliente — servidor_ dónde un proceso servidor ofrece algún servicio a otros procesos cliente a través de la tubería.
+Sin embargo, si en el argumento `oflag` de {linux_mq_open} un proceso indica la opción `O_NONBLOCK` estas operaciones para ese proceso en esa cola serán asíncronas:
 
-** En POSIX se denominan _FIFO_ y tienen presencia en el sistema de archivos como archivos especiales.
+[source,c]
+----
+mqd_t mqueue = mq_open(
+    "foo-mqueue",
+    O_RDONLY | O_NONBLOCK, <1>
+    0644,
+    &attr
+);
+----
+<1> Abrir la cola de mensajes para solo lectura —con `O_RDONLY`— y para comunicaciones asíncronas —con `O_NONBLOCK`—.
 
-** En Windows las tuberías con nombre son bidireccionales.
+Eso quiere decir que las funciones {linux_mq_send} y {linux_mq_receive}, en lugar de bloquear el proceso en estado de esperando, devolverán -1 y el valor de {linux_errno} será `EAGAIN`.
+Así el proceso puede aprovechar el tiempo de CPU del que dispone para realizar otras tareas mientras tanto y volver a intentarlo más tarde.
 
-Por simplicidad las tuberías son tratadas de forma similar a los archivos por lo que en ambos casos se utilizar las mismas primitivas POSIX de E/S —`read()` y `write()`—.
+[source,c]
+----
+int return_code = mq_receive(mqueue, &message, sizeof(message), &msg_prio);
+if ( return_code > 0 ) <1>
+{
+    // Aquí va código para usar el mensaje recibido... 
+}
+else if( return_code < 0 && errno != EAGAIN) <2>
+{
+    // Aquí va código para manejar el error de mq_receive()...
+}
+----
+<1> Si todo va bien, {linux_mq_receive} devuelve el tamaño en bytes del mensaje.
+<2> Si devuelve -1, es que ha ocurrido un error. Pero solo será un error eal si el código de error en {linux_errno} no es `EAGAIN`.
+Si es `EAGAIN`, se pueden ejecutar otras partes del programa y volver a intentar la recepción más adelante.
 
-// TODO: Nota sobre el caso de Windows y Linux.
+Si un proceso debe comunicarse mediante varias colas de mensajes, la comunicación asíncrona también sirve para intentar recibir y enviar de varias colas sin bloquearse en ninguna.
+Para este caso algunos sistemas ofrece una alternativa más sencilla y eficiente, que veremos en el <<_colas_de_mensajes_posix>>.
+****
 
-===== Señales en sistemas operativos POSIX
+== Ejemplos de sistemas de paso de mensajes
 
-En POSIX la forma más sencilla de comunicar dos procesos del mismo sistema es mediante el envío de una *señal* de uno al otro.
+=== Colas de mensajes POSIX
 
-Los procesos pueden mandar señales utilizando la llamada al sistema `kill()`, que sólo requiere el identificador del proceso de destino y el número de la señal.
-Por tanto, _estamos hablando de un mecanismo de comunicación directa_.
+Como hemos comentado a lo largo de capítulo, las colas de mensajes POSIX son un caso de *comunicación indirecta*, con *tamaño de mensaje variable*, _buffering_ con *capacidad limitad* y que soporta operaciones *asíncronas*.
+
+Las colas de mensajes son útiles para enviar mensajes de pequeño tamaño entre procesos que se ejecutan en el mismos sistema.
+Además tienen la posibilidad de asociar a cada mensaje una prioridad, de tal forma que se reciban primero los mensajes de prioridad más alta.
+Su uso es relativamente común en sistemas de tiempo real, aunque lo más frecuente en los sistemas de propósito general es usar _sockets_.
+
+En {message_queue_hpp} se puede ver un ejemplo de una clase desarrollada en C++ para utilizar colas de mensajes POSIX.
+En los distintos métodos se puede ver como se utilizan las funciones de la librería del sistema para crear la cola y enviar y recibir mensajes.
+
+En {mqueue_server_cpp} y {mqueue_client_cpp} se puede ver un ejemplo de cómo se utiliza la clase en {message_queue_hpp}.
+El primero es un programa que muestra la hora del sistema periódicamente.
+El segundo se puede comunicar con el primero a través de una cola de mensajes para controlarlo.
+En ejemplo es muy sencillo, así que, por el momento, lo único que puede hacer {mqueue_client_cpp} es pedirle a {mqueue_server_cpp} que termine.
+Aunque no costaría nada añadir otras órdenes, como pedir que cambie la hora del sistema o la periodicidad con la que la muestra.
+
+En Linux los descriptores de colas de mensajes son descriptores de archivo —como también lo son los descriptores de _sockets_, tuberías y los de archivos abiertos con {linux_open}, entre otros—. Esta particularidad implica que en Linux, mediante las funciones {linux_select}, {linux_poll} o {linux_epoll}, se pueden monitorizar al mismo tiempo varios descriptores de colas de mensajes, para así saber cuándo se puede enviar o recibir por ellas sin que el proceso se bloquee.
+
+[NOTE]
+====
+Este comportamiento es específico de Linux.
+No está contemplado en el estándar POSIX, por lo que otros sistemas POSIX no tienen por qué soportarlo.
+Así que no es portable.
+====
+
+A continuación se puede ver un ejemplo específico con {linux_poll}, aunque las tres funciones se utilizan empleando un patrón similar:
+
+[source,c]
+----
+mqd_t mqueue1 = mq_open( "foo-queue", /* ... */ ); <1>
+mqd_t mqueue2 = mq_open( "bar-queue", /* ... */ );   
+
+struct pollfd fds[] =
+{
+    {
+        .fd = mqueue1, <2>
+        .events = POLLIN, <3>
+        .revents = 0
+    }, {
+        .fd = mqueue2, <2>
+        .events = POLLIN | POLLOUT, <3>
+        .revents = 0
+    }
+};
+
+while ( !quit_app )
+{
+    int return_code = poll( fds, 2, -1 ); <4>
+    if (return_code > 0) <5>
+    {
+        if (fds[0].revents & POLLIN) <7>
+        {
+            mq_receive( fds[0].fd, /* ... */ );
+
+            // Aquí va código para usar el mensaje recibido...
+        }
+
+        if (fds[1].revents & POLLIN) <7>
+        {
+            mq_receive( fds[1].fd, /* ... */ );
+
+            // Aquí va código para usar el mensaje recibido...
+        }
+
+        if (fds[1].revents & POLLOUT) <7>
+        {
+            // Aquí va código para preparar el mensaje a enviar...
+
+            mq_send( fds[1].fd, /* ... */ );
+        }
+    }
+    else if (return_code < 0) <6>
+    {
+        // Error en poll().
+        // Aquí va código para leer errno y manejar el error... 
+        
+        quit_app = true;
+    }
+}
+----
+<1> Abrimos o creamos las colas que vamos a utilizar.
+<2> Creamos un _array_ de la estructura `pollfd` con un elemento por cola que vamos a monitorizar con {linux_poll}.
+En cada estructura, en el campo `fd`, se indica el descriptor de cada una de las cola de mensajes.
+<3> Para cada cola hay que utilizar el campo `events` para indicar qué queremos que monitorice {linux_poll}.
+`events` es una máscara de bit donde a cada evento monitorizable le corresponde un bit.
+Si queremos monitorizar un evento, debemos poner su bit a 1.
++
+Para eso nos podemos ayudar de macros como `POLLIN` y `POLLOUT`. 
+Por ejemplo, para `mqueue1` se quiere monitorizar cuándo hay mensajes para recibir, por lo que se activa `POLLIN`.
+Mientras que para `mqueue2` se quiere saber tanto cuándo hay mensajes para recibir como cuándo hay un hueco en la cola para enviar sin bloqueos, por lo que se activan `POLLIN` y `POLLOUT`.
+<4> Iterativamente se llama a {linux_poll} —mientras no queramos que termine la aplicación— que pondrá el proceso en estado *esperando* hasta que ocurra alguno de los eventos que nos interesan.
+{linux_poll} necesita `fds` —el _array_ de la estructura `pollfd` que hemos inicializado previamente— el número de elementos en el _array_ y el tiempo máximo que debe mantener bloqueado el proceso esperando a que ocurra alguno de los eventos.
+Con un número negativo en este último campo, se indica que queremos que espere indefinidamente.
+<5> Si {linux_poll} tiene éxito, devuelve un numero positivo que indica en cuántos descriptores se ha detectado un evento.
+<6> Si {linux_poll} devuelve un valor negativo, es que ha ocurrido algún error.
+El motivo del error se puede conocer comprobando el valor de la variable global {linux_errno}.
+<7> El campo `revents` es una máscara de bits similar a `events`, pero al retornar de {linux_poll} indica qué eventos se han detectado, para cada cola de mensajes en `fds`.
++
+Por ejemplo, en ambas colas se comprueba si `POLLIN` está activo.
+En caso afirmativo, sabemos que podemos leer un mensaje sin que {linux_mq_receive} se bloquee.
+Igualmente, sabemos si `mqueue2` tiene hueco para enviar un mensaje comprobando si `POLLOUT` está activo.
+En caso afirmativo, podemos enviar un mensaje con {linux_mq_send} sabiendo que no se bloqueará.
+
+=== Señales en sistemas operativos POSIX
+
+En los sistemas POSIX, una forma más sencilla de comunicar dos procesos del mismo sistema es mediante el envío de una *((señal))* de uno al otro.
+
+Los procesos pueden mandar señales utilizando la llamada al sistema {linux_kill}, que sólo requiere el identificador del proceso de destino y el número que identifica la señal.
+
+[source, c]
+----
+kill(pid, SIGTERM);
+----
+
+Como se usa el identificado del proceso, estamos hablando de un mecanismo de *comunicación directa*.
+
+El *tamaño y formato del mensaje es fijo*.
+Las señales solo pueden portar la información de que ha ocurrido un evento, indicado qué evento es a través del número que identifica la señal.
+
 Cada señal tiene un efecto particular por defecto —que por lo general es matar al proceso— en el proceso que las recibe.
-Sin embargo cada proceso puede declarar un _manejador de señales_ que redefina la acción por defecto para una señal determinada.
-Un manejador de señales no es más que una función que es ejecutada asíncronamente cuando la señal es recibida.
-En ese sentido _las *señales* en POSIX puede interpretarse como una forma de interrupción por software_.
+Sin embargo, cada proceso puede declarar un *((manejador de señal))*.
+Una función del programa que será invocada por el sistema operativo para tratar una señal determinada, interrumpiendo lo que esté haciendo el proceso en ese momento.
+En ese sentido las señales en POSIX puede interpretarse como una forma de interrupción por software.
 
-_Las señales fueron diseñadas originalmente como un mecanismo para que el sistema operativo notificara a los programas ciertos errores y sucesos críticos_, no como un mecanismo de IPC.
+El *manejador de señal* se puede configurar usando la llamada al sistema {linux_signal}:
+
+[source, c]
+----
+signal(
+    SIGTERM, <1>
+    &mi_manejador_de_sigterm <2>
+);
+----
+<1> Identificador de la señal a recibir.
+<2> Puntero al manejador de señal.
+Es decir, la del programa que será llamada por el sistema operativo cuando llegue la señal `SIGTERM`.
+
+El problema de {linux_signal} es que el estándar POSIX permite diferencias que hacen que se pueda comportar de forma distinta en diferentes sistemas operativos.
+Para resolverlo, el estándar recomienda usar {linux_sigaction} en su lugar:
+
+[source, c]
+----
+struct sigaction act = {
+    .sa_handler = &mi_manejador_de_sigterm, <4>
+    .sa_sigaction = NULL, <5>
+    .sa_mask = 0, <6>
+    .sa_flags = SA_RESTART, <7>
+}
+
+sigaction(
+    SIGTERM, <1>
+    &act, <2>
+    NULL <3>
+);
+----
+<1> Identificador de la señal a recibir.
+<2> Puntero a una estructura de tipo `sigaction` que describe los detalles de como tratar la señal cuando llega al proceso.
+<3> Puntero a una estructura de tipo `sigaction` donde {linux_sigaction} guarda la configuración anterior sobre como tratar la señal indicada.
+<4> Puntero al manejador de señal para la señal indicada.
+<5> Puntero a un manejador de señal alternativo al de `sa_handler`.
+Este manejador recibe más información sobre la señal cuando es llamado.
+Para activar es necesario indicar `SA_SIGINFO` en el campo `sa_flags`.
+<6> Máscara de bits de señales a bloquear durante el manejo de la señal.
+Cada bit de la máscara identifica a una señal.
+Deben ponerse a 1 aquellas señales que queremos que estén bloqueadas —es decir, que no se puedan recibir— mientras se ejecuta el manejador de señal porque ha llegado una.
+Es especialmente útil si se va a usar el mismo manejador para varias señales.
+<7> Opciones de configuración.
+Por ejemplo, `SA_RESTART` indica que si la señal llega durante una llamada al sistema, la llamada debe continuar una vez se haya salido del manejador de señal.
+El comportamiento por defecto, sin esta opción, es que la llamada al sistema interrumpida falle con el error `EINTR` en {linux_errno}.
+
+Las señales fueron diseñadas originalmente como un mecanismo para que el sistema operativo notificara a los programas ciertos errores y sucesos críticos.
 Por ejemplo:
 
-* La señal `HUP` o `SIGHUP` es enviada a cada proceso iniciado desde una sesión de terminal cuando dicha sesión termina.
+* La señal `HUP` o `SIGHUP` es enviada a cada proceso iniciado desde una sesión de terminal cuando dicha sesión termina —o cuando se usa la combinación de teclas kbd:[CTRL+D], que tiene el mismo efecto—.
++
+En el caso de los servicios del sistema —que, como no son interactivos, no están conectados a ninguna terminar— esta señal suele usarse para indicarles que deben reiniciarse, volviendo a leer sus archivos de configuración, o para que guarden su estado interno en algún sitio conocido del almacenamiento.
 
 * La señal `INT` o `SIGINT` es enviada al proceso que está enganchado a la consola cuando el usuario pulsa el carácter de interrupción —frecuentemente la combinación de teclas kbd:[CTRL+C]—.
 
-// TODO: Poner el ejemplo de SIGUP.
+* La señal `TERM` o `SIGTERM` es enviada al proceso cuando debe terminar.
+Por ejemplo, el sistema operativo envía esta señal a todos los procesos cuando se está apagando el sistema.
 
-Sin embargo esto no evita que las señales puedan ser útiles como mecanismo de IPC.
-No en vano el estándar POSIX incluye dos señales —`USR1` y `USR2`— especialmente indicadas para este uso.
-Además las señales son utilizadas frecuentemente como medio de control de los __demonios__footnote:[Un demonio es un proceso no interactivo que se ejecuta en segundo plano en vez de ser controlado directamente por el usuario.
-Este tipo de programas se ejecutan de forma continua y proporcionan servicios específicos, como por ejemplo es el caso de los servidores de correo electrónico, servidores de páginas Web o de bases de datos.] del sistema.
-Por ejemplo permiten que un administrador —u otro proceso— le indique a un demonio que debe reinicializarse, empezar a realizar el trabajo para el que fue diseñado o escribir su estado interno en un sitio conocido del almacenamiento.
+* La señal `SEGV` o `SIGSEGV` es enviada a un proceso cuando intenta acceder a una zona de memoria a la que no tiene permiso.
+Si no se maneja esta señal, el programa termina con el conocido mensaje de *violación de segmento*.
 
-===== Sockets
+Obviamente hay muchas más señales.
+Entre todas, el estándar POSIX incluye dos señales —`USR1` y `USR2`— especialmente indicadas para usarlas con el significado que nosotros queramos.
 
-_Un *socket* es un punto final en una comunicación bidireccional entre procesos_.
-Para que una pareja de procesos se pueda comunicar son necesarios dos _sockets_ —uno para cada proceso— de manera que cada uno de ellos representa un extremo de la conexión.
+[NOTE]
+====
+Se puede consultar una lista de las señales del estándar POSIX en https://es.wikipedia.org/wiki/Se%C3%B1al_(inform%C3%A1tica)[«Señales (informática) -- Wikipedia»].
+Mientras que la lista completa de señales soportadas en Linux se puede consultar en el https://man7.org/linux/man-pages/man7/signal.7.html[manual].
+====
 
-La API de _sockets_ fue creada por la Universidad de Berkeley para ser la que abstrajera el acceso a la familia de protocolos de Internet (TCP/IP) en el UNIX desarrollado por esa misma universidad.
-Sin embargo rápidamente se convirtió en el estándar de facto para la comunicación en red, por lo que todos los sistemas operativos modernos —incluidos los sistemas POSIX y Microsoft Windows— tienen una implementación de la misma.
+El ejemplo en {mqueue_server_cpp} y en otros ejemplos de este capítulo, utiliza señales para manejar `SIGINT`, `SIGTERM` y para mostrar la hora periódicamente.
+El código dedicado a eso está en {timeserver_c} y se comparte entre todos los ejemplos.
 
-Pese a sus orígenes, _los sockets se diseñaron para ser independientes de la tecnología de red subyacente_.
-Por ejemplo:
+En {signals_c} hay un programa de ejemplo que muestra cómo manejar las señales del sistema y que sirve para ver como funcionan.
+Solo hay que ejecutarlo y luego enviarle señales con el comando `kill` desde otra terminal.
 
-* En las redes TCP/IP para crear un _socket_ es necesario indicar la dirección IP y el número de puerto en el que debe de escuchar o desde el que se debe conectar a otro _socket_.
-Mientras que en el momento de establecer una conexión con ese otro _socket_, se debe indicar la dirección IP y el número de puerto donde el _socket_ debe estar escuchando.
-Esto es así porque la tecnología de red TCP/IP subyacente establece que cada máquina tiene una IP y que los procesos se comunican a través de los puertos en las mismas.
+=== Tuberías
 
-* En los sistemas POSIX es habitual el uso de _sockets de dominio UNIX_ para comunicar procesos dentro de un mismo sistema.
-Estos no son más que _sockets_ locales identificados mediante un nombre de archivo y que, por tanto, están representados en el sistema de archivos.
-Su principal utilidad están en las aplicaciones que siguen el modelo cliente-servidor pero donde no es interesante —o seguro— que el servicio esté disponible a través de la red.
-Por ejemplo se suelen utilizar para conectar gestores de bases de datos con aplicaciones Web servidas desde el mismo equipo.
+Las *tuberías*(((tubería))) son un mecanismo de paso de mensajes de *comunicación indirecta*, *orientada a flujos*, *capacidad limitada* y, generalmente, *comunicación síncrona* —aunque en algunos sistema operativos también puede soportar asíncrona—.
 
-Si comparamos los ejemplos anteriores, podemos observar que existen grandes diferencias en cuanto a la tecnología de comunicación empleada cuando se trata de comunicar procesos en redes TCP/IP o en un mismo equipo mediante _sockets_ de dominio UNIX.
-Sin embargo para ambos casos la API de _sockets_ siempre es la misma.
+Conceptualmente cada tubería tiene dos extremos en los que se puede leer y escribir mediante las operaciones básicas de lectura y escritura de archivos `read()` y `write()`.
+Un extremo permite los procesos en ese extremo escribir en la tubería, mientras el otro extremo permite a los procesos leer de la tubería los datos escritos desde el otro extremo.
 
-Los _sockets_ implementan _buffering automático_ y admiten tanto _comunicación síncrona_ como _asíncrona_, aunque el comportamiento final de la interfaz depende de la tecnología de red utilizada.
+// TODO: Esquema de una tubería.
+
+Existen dos tipos de tuberías:
+
+* Las *tuberías anónimas* sólo existen en el espacio de direcciones del proceso que las crea, de tal forma que debe heredarse de padres a hijos para que otros procesos puedan tener acceso.
+
+* Las *tuberías con nombre* son públicas al resto del sistema, por lo que teóricamente cualquier proceso con permisos puede abrir una para comunicarse con otros procesos.
+Por eso se suele utilizar en aplicaciones cliente-servidor, dónde un proceso servidor ofrece algún servicio a otros procesos cliente a través de la tubería.
+
+[NOTE]
+====
+En los sistemas POSIX las *tuberías con nombre* se denominan _FIFO_ y tienen presencia en el sistema de archivos como archivos especiales.
+====
+
+.Funciones de la API para manipular tuberías.
+[cols="h*"]
+|====
+|                               | POSIX API         | Windows API
+| Crear tubería anónima         | {linux_pipe}      | {win32_createpipe}
+| Crear tubería con nombre      | {linux_mkfifo}    | {win32_createnamedpipe}
+| Abrir tubería con nombre      | {linux_open}      | {win32_createfile}
+| Leer                          | {linux_read}      | {win32_readfile}
+| Escribir                      | {linux_write}     | {win32_writefile}
+| Cerrar                        | {linux_close}     | {win32_closehandle}
+|====
+
+Con {linux_fork} es muy sencillo lanzar otros procesos para que ejecuten tareas en paralelo.
+El proceso hijo tiene acceso a los datos del padre por la forma en la que funciona {linux_fork} y gracias a las tuberías anónimas puede comunicar los resultados al padre.
+En {forkpipe_c} se puede observar un ejemplo de esto.
+
+Además, el hecho de que cada extremo se comporte como un archivo —uno en modo solo lectura y el otro en modo solo escritura— hace posible redirigir la E/S estándar del proceso hijo.
+Es decir, conectar la entrada, la salida estándar o la salida de error a una tubería, desde la que leer lo que el proceso intenta imprimir por la pantalla de la terminal o proporcionarle lo que debe leer, como si fuera desde el teclado.
+En {forkredir_c} se puede ver un ejemplo de como ejecutar el comando `ls` y redirigir su salida al proceso padre para contar el número de líneas en lo que eñ comando quería mostrar por pantalla.
+
+Por otro lado, las tuberías con nombre permiten que un proceso se comunique con cualquier otro, solo con conocer la ruta de la tubería.
+En {fifo_server_c} tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
+Los programas en {fifo_client_c} y {fifo_client_cpp} pueden conectarse a esa tubería y mandar el comando que hace terminar {fifo_server_c}.
+
+=== Sockets
+
+Mientras que las tuberías son conceptualmente un enlace de comunicación unidireccional que tiene dos extremos, un *_((socket))_* representa un solo extremo en un enlace de comunicación bidireccional.
+Para que una pareja de procesos se pueda comunicar son necesarios dos _sockets_ —uno en cada proceso— de manera que cada uno de ellos es el medio por el que el proceso accede al enlace de comunicación.
+
+La API de _sockets_ fue creada por la Universidad de Berkeley para abstraer el acceso a la familia de protocolos de Internet en el UNIX desarrollado por esa misma universidad.
+Sin embargo, rápidamente se convirtió en el estándar de facto para la comunicación en red, por lo que todos los sistemas operativos modernos —incluidos los sistemas POSIX y Microsoft Windows— tienen una implementación de la misma.
+
+Pese a sus orígenes en Internet, los _sockets_ se diseñaron para ser independientes de la tecnología de red subyacente con la que se implementa el enlace de comunicación.
+En Linux, por ejemplo, se puede utilizar como interfaz de programación para utilizar dos decenas de familias de protocolos y tecnologías diferentes.
+
+Para crear un _socket_ te utiliza la llamada al sistema {linux_socket}:
+
+[source,c]
+----
+int sockfd = socket(    <1>
+    AF_UNIX,            <2>
+    SOCK_DGRAM,         <3>
+    0
+)
+----
+<1> En sistemas POSIX la función devuelve un `int`con el descriptor del socket mientras que en Microsoft Windows devuelve un `HANDLE`.
+<2> En el primer argumento se especifica la familia de protocolos.
+`AF_UNIX` son un tipo de _socket_ que solo sirve para comunicar procesos en el mismo sistema, denominado *socket de dominio UNIX*(((socket, dominio UNIX))).
+Otras familias muy comunes son `AF_INET`, que corresponde a la la familia de protocolos TCP/IP y `AF_INET6` para los protocolos IPv6.
+<3> En el segundo argumento se especifica el tipo del _socket_.
+Cada tipo suele corresponde con un protocolo concreto de la familia elegida.
+Por ejemplo, los _sockets_ `SOCK_DGRAM` son «no orientados a conexión», no fiables y de longitud máxima fija, así que en la familia `AF_INET` estos _sockets_ utiliza UDP.
+Mientras que los _sockets_ `SOCK_STREAM` son orientados a conexión, fiables, bidireccionales y orientados a flujo, por lo que en la familia `AF_INET` utilizan TCP. 
+
+Un _socket_ recién creado no tiene un nombre que otro proceso pueda usar para identificarlo y comunicarse con él.
+Para asignar ese nombre o dirección se utiliza {linux_bind}.
+La dificultad es que cada familia de protocolos tiene un formato de direcciones diferente, así que hay que tener cuidado de usar le adecuado:
+
+[source,c]
+----
+struct sockaddr_un addr = {
+    .sun_family = AF_INET,          <5>
+    .sun_path = "/tmp/foo-socket"   <6>
+};
+
+int result_code = bind( <1>
+    sockfd,                     <2>
+    (struct sockaddr*) &addr,   <3>
+    sizeof(addr)                <4>
+)
+----
+<1> Como en el esto de llamadas al sistema, en caso de error se devuelve un número negativo y {linux_errno} contendrá el código del error.
+<2> El descriptor del _socket_ al que se le quiere cambiar la dirección.
+<3> La nueva dirección del _socket_ especificada como una estructura adecuada para la familia del _socket_.
+En _socket_ de tipo `AF_UNIX` la estructura debe ser de tipo `sockaddr_un` mientras que en los de tipo `AF_INET` es del tipo `sockaddr_in`.
+<4> El tamaño en bytes de la estructura con la nueva dirección.
+<5> En la estructura con la dirección, el primero campo siempre es para indicar la familia.
+<6> En los _sockets_ de dominio UNIX la dirección es una ruta en el sistema de archivos.
+Para otras familias, la direcciones se indica de otra manera, por lo que es necesario consultar la documentación.
+
+La API de _sockets_ incluye muchas otras funciones:
+
+* {linux_listen}, para poner _sockets_ tipo `SOCK_STREAM` a la espera de conexiones.
+* {linux_connect}, para conectar un _socket_ tipo `SOCK_STREAM` con otro que esté a la espera de conexiones.
+* {linux_accept} para que un _socket_ tipo `SOCK_STEAM` a la espera de conexiones acepte una solicitud de conexión.
+* {linux_shutdown} para cerrar uno de los sentidos de una conexión.
+* {linux_close} para destruir un _socket_
+* {linux_send}, {linux_sendto} y {linux_sendmsg} para enviar mensajes.
+{linux_sendto} sólo se puede utilizar con _sockets_ conectados.
+Mientras que {linux_sendto} permiten indicar la dirección del _socket_ de destino, por lo que es útil en _sockets_ no orientados a conexión `SOCK_DGRAM`.
+* {linux_recv}, {linux_recvfrom} y {linux_recvmsg} para recibir mensajes.
+{linux_recvfrom} permite obtener la dirección del _socket_ del que llegó el mensaje.
+Por eso es útil en _sockets_ no orientados a conexión `SOCK_DGRAM`.
+
+[source,c]
+----
+struct sockaddr_un addr;
+socklen_t addrlen;
+
+int result_code = recvfrom( <1>
+    sockfd,                     <2>
+    &message,                   <3>
+    sizeof(message),            <4>
+    0,                          <5>
+    (struct sockaddr*) &addr,   <6>
+    &addrlen                    <7>
+)
+----
+<1> En caso de éxito devuelve número de bytes del mensaje recibido.
+En caso de error, un -1 y {linux_errno} contiene el código del error.
+<2> El descriptor del _socket_ al que se le quiere cambiar la dirección.
+<3> Puntero a la dirección de memoria donde está el mensaje.
+<4> Tamaño del mensaje en bytes.
+<5> Opciones adicionales de configuración.
+<6> Estructura de dirección vacía donde se copiará la dirección del _socket_ que remite el mensaje.
+<7> Puntero donde la llamada al sistema copiará el tamaño de la estructura copiada en `addr`.
+
+Las operaciones con _sockets_ son síncronas por defecto.
+Sin embargo, es posible configurarlos en modo asíncrono, para que así cualquiera de estas funciones falle, retornando -1 y código de error `EAGAIN` o `EWOULDBLOCK`, antes de poner el proceso en estado *esperando*.
+
+También se pueden utilizar las funciones {linux_select} y {linux_poll} para monitorizar varios _sockets_ al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <<_colas_de_mensages_posix>>).
+
+En {socket_server_cpp} y {socket_client_cpp} se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando _sockets_ de dominio UNIX.
+Ambos programas utilizan la cabecera {socket_hpp} que incluye un ejemplo de clase en C++ para comunicaciones mediante _sockets_.
+En los distintos métodos se puede ver como se utilizan las funciones de la librería del sistema para crear _sockets_, asignarles dirección y usarlos para enviar y recibir mensajes.
+
+En resumen, los *_sockets_* son un mecanismo de paso de mensajes de *comunicación indirecta*, que admite tanto comunicación *orientada a flujos* como *mensajes de tamaño variable*, _buffering_ de *capacidad limitada* y tanto *comunicación síncrona* como *asíncrona*, aunque el comportamiento real final de la interfaz depende de la tecnología de red utilizada.

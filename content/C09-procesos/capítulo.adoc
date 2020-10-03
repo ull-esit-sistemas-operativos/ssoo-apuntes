@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C09_stats_reading_time}
+====
+
 Los primeros sistemas informáticos solo permitían que un programa se ejecutara cada vez.
 Dicho programa tenía control completo sobre el sistema y acceso a todos los recursos del mismo.
 Por el contrario, los sistemas *multitarea* actuales permiten que múltiples programas sean cargados y ejecutados concurrentemente.
@@ -604,6 +610,7 @@ Así el sistema operativo sabe que las estructuras de datos relacionadas con el 
 
 {win32_createprocess} siempre necesita la ruta a un ejecutable —sea en el primer o en el segundo argumento de la función— porque se utiliza para crear un proceso completamente limpio y ejecutar en él un nuevo programa.
 
+[[procesos_posix_api]]
 ==== POSIX API
 
 Por el contrario, en los sistemas POSIX se utiliza una estrategia muy diferente.
@@ -632,7 +639,7 @@ if (child == 0) <2>
     puts( "[HIJO] Durmiendo 10 segundos..." );
     sleep(10);
 
-    int status = 56;
+    int status = 42;
     printf( "[HIJO] Salgo con %d ¡Adios!\n", status );
     return status; <9>
 }
@@ -699,8 +706,8 @@ $ ./fork
 [HIJO] El valor de mi variable 'pid' es: 2359 <7>
 [HIJO] El PID de mi padre es: 2359 <7>
 [HIJO] Durmiendo 10 segundos...
-[HIJO] Salgo con 56 ¡Adios! <9>
-[PADRE] El valor de salida de mi hijo fue: 56 <9>
+[HIJO] Salgo con 42 ¡Adios! <9>
+[PADRE] El valor de salida de mi hijo fue: 42 <9>
 [PADRE] ¡Adios!
 ----
 ====
@@ -914,4 +921,9 @@ Método de comunicación en el que los procesos utilizan regiones compartidas de
 Paso de mensajes::
 Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.
 
+En la <<>> se puede un esquema comparativo entre ambos modelos de comunicación.
 Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_paso_de_mensages>>, respectivamente.
+
+[[modelos_de_comunicación]]
+.Modelos de comunicación.
+image::modelos_comunicación.svg[]
