@@ -30,7 +30,7 @@ Se programaban directamente en lenguaje máquina.
 Algunos ejemplos de ordenadores destacables fueron:
 
 https://es.wikipedia.org/wiki/ENIAC[ENIAC] (1945):: Se le considera el primer ordenador electrónico digital de propósito general, aunque existe cierta polémica sobre este punto.
-Lo cierto es que se construyeron otros ordenadores antes que este pero o no eran de propósito general —como las famosas computadoras https://es.wikipedia.org/wiki/Colossus[Colossus] (1944), que fueron diseñadas para ayudar en https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis[criptoanálisis]— o no eran electrónicos sino electro-mecánicos —como la computadora https://es.wikipedia.org/wiki/Z3[Z3] (1941), que usaba https://es.wikipedia.org/wiki/Rel%C3%A9[relés]—.
+Lo cierto es que se construyeron otros ordenadores antes que éste pero o no eran de propósito general —como las famosas computadoras https://es.wikipedia.org/wiki/Colossus[Colossus] (1944), que fueron diseñadas para ayudar en https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis[criptoanálisis]— o no eran electrónicos sino electro-mecánicos —como la computadora https://es.wikipedia.org/wiki/Z3[Z3] (1941), que usaba https://es.wikipedia.org/wiki/Rel%C3%A9[relés]—.
 +
 No era un producto comercial sino un proyecto experimental de defensa que principalmente se diseño y utilizó para calcular tablas de tiro de artillería destinadas al Laboratorio de Investigación Balística del Ejército de los Estados Unidos.
 +
@@ -56,7 +56,7 @@ En lo que respecta a los sistemas operativos:
 
 * Sistema de procesamiento por lotes.
 
-* Se comienzan a utilizar lenguajes de programación, como: ensamblador FORTRAN y COBOL.
+* Se comienzan a utilizar lenguajes de programación, como: ensamblador, FORTRAN y COBOL.
 ====
 
 https://es.wikipedia.org/wiki/GM-NAA_I/O[GM-NAA I/O] (_General Motors and North American Aviation Input/Output system_) fue el primer sistema operativo.
@@ -116,7 +116,7 @@ A continuación veremos los ejemplos más representativos de esta época.
 
 === MULTICS
 
-https://es.wikipedia.org/wiki/Multics[MUTICS] fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general.
+https://es.wikipedia.org/wiki/Multics[MULTICS] fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general.
 
 [[multics_mainframe]]
 .Mainframe GE-6180 con sistema MULTICS, entorno a 1976 en el MIT -- Fuente: http://www.multicians.org/multics-stories.html[Multicians]
@@ -161,7 +161,7 @@ Por ejemplo, una de las variantes más importantes de UNIX fue {bsd}, desarrolla
 ====
 La versión 4.2BSD (_Berkeley Software Distribution_) de esta variante de UNIX fue la primera que incluyó la interfaz de _sockets_ para facilitar la comunicación entre procesos a través de Internet y otras redes.
 Esta interfaz se ha convertido en estándar en prácticamente cualquier sistemas operativo.
-+
+
 También implementó y ayudó a difundir el estándar de comunicaciones TCP/IP, base de la actual Internet.
 Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de BSD en su implementaciones de los protocolos TCP/IP y de diversas utilidades de red.
 ====
@@ -190,7 +190,7 @@ Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.
 .Instalación de VAX 11/780 en 1980 -- Fuente: http://www.chilton-computing.org.uk/[Science and Technology Facilities Council]
 image::dec_vax11.jpg[]
 
-Las sigas VMS vienen de _Virtual Memory System_, ya que una de sus principales características era explotar el concepto de *memoria virtual*.
+Las siglas VMS vienen de _Virtual Memory System_, ya que una de sus principales características era explotar el concepto de *memoria virtual*.
 Este concepto también es muy utilizando en los sistemas operativos modernos.
 Permite que los procesos se ejecuten aislados, unos de otros, en la memoria principal y sin tener que ser cargados completamente, lo que permite que cada uno consuma memos memoria.
 
@@ -206,7 +206,7 @@ Muchos aspectos del diseño de Windows NT reflejan la experiencia de DEC en VMS.
 === IBM OS/400
 
 El https://es.wikipedia.org/wiki/OS/400[IBM OS/400] es un sistema utilizado en la familia de minicomputadoras https://es.wikipedia.org/wiki/AS/400[IBM AS/400] —llamada iSeries desde 2006—.
-Fueron introducidos en el mercado en 1988, pero aun es posible verlos en algunas organizaciones.
+Fueron introducidos en el mercado en 1988, pero aún es posible verlos en algunas organizaciones.
 En 2008 el sistema operativo IBM OS/400 pasó a llamarse IBM i y siguen publicándose nuevas versiones en la actualidad.
 
 == 5º Generación (desde 1980):
@@ -260,7 +260,7 @@ Pero al final terminó siendo desarrollado en exclusiva por IBM.
 
 OS/2 fue pensado como un sucesor con *operación en modo dual* de MS-DOS y de Microsoft Windows 2.0.
 Fue anunciado en abril y lanzado en diciembre de 1987 como un sistema operativo en modo texto.
-En la versión 1.1, lanzaba en noviembre de 1988, se le añadió interfaz gráfica.
+En la versión 1.1, lanzada en noviembre de 1988, se le añadió interfaz gráfica.
 
 // Fuente: http://pages.prodigy.net/michaln/history/os211/index.html
 [[os_2_1]]
@@ -297,7 +297,7 @@ Windows requería una instalación previa de MS-DOS y era iniciado como un progr
 
 MS-DOS le proporcionaba a Windows controladores de dispositivo para ciertas tareas, como el acceso al CD-ROM o a la interfaz de red.
 Sin embargo Windows ejecutaba aplicaciones especificas de Windows, almacenadas en un formato ejecutable mucho más complejo que el de los programas de MS-DOS.
-Además, debido a que MS-DOS no aislaba a las aplicaciones del hardware y no se protegía así mismo de los errores en dichas aplicaciones, Windows disponía de controladores de dispositivo propios, así como sus propios sistemas de gestión de procesos y de la memoria.
+Además, debido a que MS-DOS no aislaba a las aplicaciones del hardware y no se protegía así mismo de los errores en dichas aplicaciones, Windows disponía de controladores de dispositivo propios, así como sus propios sistemas de gestión de procesos y de memoria.
 En realidad Windows no se ejecutaba sobre MS-DOS, sino que hacía uso de él.
 Por ello puede ser considerado como un sistema operativo.
 
@@ -311,7 +311,7 @@ image::windows_95.png[]
 
 Windows 95 fue lanzado en 1995.
 Fue el primer Windows unido a una versión de MS-DOS específica, aunque este hecho se intentaba mantener oculto.
-Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <<windows_95>>) nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.
+Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <<windows_95>>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.
 
 [NOTE]
 ====
@@ -346,7 +346,7 @@ Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VM
 Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de un API nativo no documentado públicamente.
 Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.
 
-La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo microkernel (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores {x86}, https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
+La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo _microkernel_ (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores {x86}, https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
 
 Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
 Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.
@@ -367,7 +367,7 @@ El proyecto incluía la creación de herramientas de desarrollo de software y ap
 
 Mucho tiempo después, el estudiante universitario finés Linus Torvalds comenzó a desarrollar el núcleo Linux como hobby, mientras estudiaba en la Universidad de Helsinki.
 Torvalds originalmente usaba {minix}, un sistema operativo simplificado escrito por Andrew Tanenbaum para enseñar diseño de sistemas operativos.
-Sin embargo, el hecho de que Tanenbaum no diera soporte a las mejoras del sistema operativo que era propuestas por otros desarrolladores, llevó a Torvalds a escribir un sustituto de MINIX.
+Sin embargo, el hecho de que Tanenbaum no diera soporte a las mejoras del sistema operativo que eran propuestas por otros desarrolladores, llevó a Torvalds a escribir un sustituto de MINIX.
 
 En 1991, cuando se liberó la primera versión del núcleo Linux, el proyecto GNU había desarrollado todos los componentes necesarios del sistema operativo excepto el núcleo.
 Torvalds y otros desarrolladores rápidamente adaptaron Linux para que funcionara con los componentes de GNU, creando un sistema operativo completamente funcional que se denomina GNU/Linux.
@@ -387,8 +387,8 @@ GNU no es el único sistema operativo que utiliza el núcleo Linux.
 {mach} es un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
 El proyecto en la CMU se desarrolló desde 1985 hasta 1994.
 
-Mach explora el concepto que denominamos _*microkernel*_.
-En los sistemas operativos _*microkernel*_ solo se implementa en el núcleo del sistema un conjunto mínimo de servicios básicos.
+Mach explora el concepto que denominamos *_microkernel_*. 
+En los sistemas operativos *_microkernel_* solo se implementa en el núcleo del sistema un conjunto mínimo de servicios básicos.
 El resto de los servicios proporcionados por el sistema operativo se implementan como procesos con menos privilegios.
 
 Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los _microkernel_ dominarían el universo de los sistema operativos.
@@ -399,7 +399,7 @@ Mientras que Google parece que lo va a intentar con {google_fuchsia}, el posible
 // TODO: Meter más de Apple en la historia de los sistemas operativos
 
 A mediados de los 90, Apple Computers seleccionó https://es.wikipedia.org/wiki/NEXTSTEP[OpenStep] como base para el sucesor de su clásico https://es.wikipedia.org/wiki/Mac_OS_Classic[Mac OS].
-OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema BSD de la Universidad de Berkeley.
+OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema BSD de la Universidad de Berkeley. 
 Por tanto, la mezcla de Mach con BSD de OpenStep es la base del sistema operativo {macos} actual de Apple.
 
 [[openstep_42]]

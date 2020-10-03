@@ -2,7 +2,7 @@
 :C01_stats_reading_time: 7 minutos
 :C02_stats_words: 4574
 :C02_stats_reading_time: 22 minutos
-:C03_stats_words: 3818
+:C03_stats_words: 3816
 :C03_stats_reading_time: 19 minutos
 :C04_stats_words: 2317
 :C04_stats_reading_time: 11 minutos
