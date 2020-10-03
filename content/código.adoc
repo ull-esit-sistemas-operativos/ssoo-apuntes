@@ -1,0 +1,21 @@
+[ejemplos]
+= Ejemplos de código
+
+En algunos capítulos se enlazan ejemplos de código para ilustrar en mayor detalle los conceptos tratados.
+Todos los ejemplos están disponibles en el repositorio icon:github[] {ejemplos_repo}, de donde se pueden descargar.
+
+Para compilar los ejemplos, es necesario disponer de herramientas de desarrollo para C y C++.
+Por ejemplo, en la distribución Debian de GNU/Linux y derivadas —como Ubuntu o Linux Mint— basta con tener instalados los paquetes *build-essential* y *cmake*.
+Mientras que en Microsoft Windows hacen falta las https://go.microsoft.com/fwlink/?linkid=840931[*Visual Studio Build Tools*].
+
+Para compilar es necesario hacer lo siguiente desde la línea de comandos:
+
+. Ir al directorio raíz del repositorio descargado y descomprimido.
+. Ejecutar `cmake -B build` para configurar el proyecto.
+. Ejecutar `cmake --build build` para compilar los ejemplos.
+
+En Microsoft Windows estos comandos deben ejecutarse desde la consola de *Developer Command Prompt*.
+
+En cada sistema solo se compilarán los ejemplos compatibles, que se guardarán en el directorio `build/bin/`, desde dónde se pueden ejecutar para probarlos.
+
+El código fuente de los ejemplos está en el directorio `src/`, dentro del subdirectorio numerado con el capítulo correspondiente.

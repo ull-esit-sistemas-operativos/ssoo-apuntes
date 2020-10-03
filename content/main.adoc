@@ -6,6 +6,8 @@ include::enlaces.adoc[]
 include::docstats.adoc[]
 
 // Contenidos
+include::código.adoc[leveloffset=+1]
+
 = Introducción
 :sectiondir: C01-definición
 include::{sectiondir}/capítulo.adoc[leveloffset=+1]

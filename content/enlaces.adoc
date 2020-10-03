@@ -111,6 +111,7 @@
 
 // Ejemplos
 :ejemplos_branch: master
+:ejemplos_repo: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/tree/{ejemplos_branch}[ull-esit-sistemas-operativos/ssoo-ejemplos]
 :syscall_s: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap06/syscall.s[syscalls.s]
 :createprocess_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/createprocess.c[createprocess.c]
 :fifo_client_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/fifo-client.c[fifo-client.c]
