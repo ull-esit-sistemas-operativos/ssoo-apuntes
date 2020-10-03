@@ -3,17 +3,150 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
-_La *memoria compartida* es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro_ (véase la ).
-Puesto que normalmente el sistema operativo intenta evitar que un proceso pueda tener acceso a la memoria de otro proceso (véase el <<_protección_de_la_memoria>>), para que pueda haber memoria compartida es necesario que los dos procesos estén de acuerdo en eliminar dicha restricción.
+La *((memoria compartida))* es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
+Por eso, para que pueda haber memoria compartida es necesario que los dos procesos estén de acuerdo en eliminar dicha restricción.
 
-Dos procesos que comparten una región de la memoria pueden intercambiar información leyendo y escribiendo datos en la misma, pero:
+Dos procesos que comparten una región de la memoria pueden intercambiar información simplemente leyendo y escribiendo datos en la misma.
+Sin embargo debemos tener en cuenta que:
 
-* _La estructura de los datos y su localización dentro de la región compartida la determinan los procesos en comunicación_ y no el sistema operativo.
+* La estructura de los datos y su localización dentro de la región compartida la determinan los procesos en comunicación y no el sistema operativo, a diferencia de lo que ocurre en los sistemas de paso de mensajes.
 
-* _Los procesos son responsables de sincronizarse_ (véase el <<_sincronización>>) para no escribir en el mismo sitio al mismo tiempo, lo que que podría generar inconsistencias.
+* Los procesos son responsables de sincronizarse para no escribir y leer en el mismo sitio de la memoria al mismo tiempo, pues esto puede generar inconsistencias (véase el <<_sincronización>>) .
 
 Las principales ventajas de la memoria compartida frente a otros mecanismos de comunicación son:
 
-* _**Eficiencia**, puesto que la comunicación tiene lugar a la velocidad de la memoria principal._
+* **Eficiencia**.
+Puesto que la comunicación tiene lugar a la velocidad de la memoria principal, se trata de un mecanismo tremendamente rápido.
 
-* _**Conveniencia**, puesto que el mecanismo de comunicación sólo requiere leer y escribir de la memoria_.
+* **Conveniencia**.
+Puesto que el mecanismo de comunicación sólo requiere leer y escribir de la memoria, se trata de un sistema muy sencillo y fácil de utilizar.
+
+Como ocurre con las tuberías (véase el <<_tuberías>>) la memoria compartida puede ser anónima o con nombre.
+
+== Memoria compartida anónima
+
+La *memoria compartida anónima*(((memoria compartida, anónima))) solo existe para el proceso que la crea y para sus procesos hijos, que heredan el acceso.
+Es por tanto, una forma eficiente de comunicar procesos padres e hijos.
+
+En lo sistemas POSIX, las funciones y operadores de reserva de memoria como {clang_malloc} y {cpp_new}, utilizan internamente la llamada al sistema {linux_mmap}.
+Esta función se puede llamar de la siguiente manera para reservar `length` bytes de memoria.
+
+[source,c]
+----
+void* p = mmap( <1>
+    NULL,
+    length,     <2>
+    PROT_READ | PROT_WRITE,      <3>
+    MAP_ANONYMOUS | MAP_PRIVATE, <4>
+    -1,
+    0
+);
+----
+<1> Si todo va bien, {linux_mmap} devuelve un puntero al primer byte de la memoria reservada.
+<2> Cantidad de memoria a reservar en bytes.
+<3> Permisos de acceso para la memoria reservada.
+En este caso, se solicita permitir la lectura y la escritura de la memoria.
+<4> `MAP_ANONYMOUS` indica que la memoria no está respaldada por ningún archivo, por lo que su contenido inicial será cero.
+Mientras que `MAP_PRIVATE` establece que la región de memoria es privada.
+
+Lo interesante es que si se cambia `MAP_PRIVATE` por `MAP_SHARED` la región de memoria reservada es memoria compartida:
+
+[source,c]
+----
+void* p = mmap(
+    NULL,
+    length,
+    PROT_READ | PROT_WRITE,
+    MAP_ANONYMOUS | MAP_SHARED, <1>
+    -1,
+    0
+);
+----
+<1> Memoria anónima y compartida.
+
+Es decir, que al crear un hijo con {linux_fork} este tendrá una copia de toda la memoria del proceso padre, excepto esta región en particular, que será la misma que la del padre.
+Por lo tanto, escribiendo y leyendo en esa región, ambos procesos pueden comunicarse.
+
+En {anom_shared_memory_cpp} se puede ver un ejemplo muy simple, similar a {forkpipe_c} pero utilizando memoria compartida para comunicar ambos procesos.
+Como se puede apreciar, la versión que usa memoria compartida es bastante más sencilla que la que utiliza tuberías. 
+
+En Microsoft Windows se puede hacer algo similar con {win32_createfilemapping}:
+
+[source,c]
+----
+HANDLE hMapFile = CreateFileMapping( <3>
+    INVALID_HANDLE_VALUE,
+    NULL,
+    PAGE_READWRITE, <1>
+    0,
+    length,         <2>
+    NULL
+);
+----
+<1> Permisos de acceso para la memoria reservada.
+<2> Cantidad de memoria a reservar en bytes.
+<3> A diferencia de {linux_mmap}, {win32_createfilemapping} crea un objeto de memoria compartida pero no hace visible esa memoria para nuestro proceso.
+Para eso hay que llamar a {win32_mapviewoffile} pasándole el manejador `hMapFile` devuelto por {win32_createfilemapping}.
+
+== Memoria compartida con nombre
+
+La *memoria compartida con nombre*(((memoria compartida, con nombre))) es pública para el resto del sistema, por lo que teóricamente cualquier proceso con permisos puede acceder a ella para comunicarse con otros procesos.
+
+Como ocurre en las tuberías con nombre, los *objetos de memoria compartida con nombre* hay que crearlos antes de comenzar a utilizarlos.
+Para eso los sistemas POSIX ofrecen la función {linux_shm_open}.
+
+[source,c]
+----
+int shmfd = shm_open(   <4>
+    "/foo-shm",         <1>
+    O_RDWR | O_CREAT,   <2>
+    666                 <3>
+);
+----
+<1> Nombre que identifica al objeto de memoria compartida.
+Como ocurre con los archivos, varios procesos pueden acceder al mismo objeto indicando el mismo nombre.
+<2> Valores que indican diferentes opciones a la hora de abrir el objeto.
+Por ejemplo, usando `O_RDWR` indicamos que se abra para lectura y escritura.
+Mientras que con `O_CREAT` se indica que el objeto debe crearse si no existía previamente.
+<3> Indica los permisos del objeto de memoria compartida al crearlo nuevo, de forma similar a los permisos que se aplican a los archivos en el sistema de archivos.
+
+El valor devuelto por {linux_shm_open} es el descriptor del objeto de memoria compartida, que utilizaremos posteriormente con {linux_mmap} al reservar una región de la memoria de nuestro proceso donde ese objeto de memoria compartida será visible:
+
+[source,c]
+----
+void* p = mmap(
+    NULL,
+    length,                 <2>
+    PROT_READ | PROT_WRITE,
+    MAP_SHARED,             <1>
+    shmfd,                  <1>
+    0                       <2>
+);
+----
+<1> Al pasar el descriptor del objeto de memoria compartida, ya no se puede indicar `MAP_ANONYMOUS`.
+<2> Se puede hacer visible para el proceso todo el objeto de memoria compartida o solo una parte.
+Para esto último se indica el tamaño de la región y el desplazamiento dentro del objeto, que es el último argumento de {linux_mmap}.
+
+Un objeto de memoria compartida recién creado tiene tamaño 0.
+Para redimensionarlo se utiliza {linux_ftruncate}, que lo que necesita es el descriptor del objeto y el nuevo tamaño.
+
+En {shared_memory_server_cpp} y {shared_memory_client_cpp} se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
+En este caso controlado por otro mediante memoria compartida.
+Ambos programas usan la clase definida en {shared_memory_hpp} para gestionar el objeto de memoria compartida.
+Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema comentadas.
+
+En Microsoft Windows también se utiliza {win32_createfilemapping} para crear el objeto de memoria compartida con nombre.
+Simplemente hay que indicar el nombre en el último argumento de la función.
+
+[source,c]
+----
+HANDLE hMapFile = CreateFileMapping(
+    INVALID_HANDLE_VALUE,
+    NULL,
+    PAGE_READWRITE,
+    0,
+    length,
+    "Global\\FooMemoriaCompartida" <1>
+);
+----
+<1> Nombre del nuevo objeto de memoria compartida.

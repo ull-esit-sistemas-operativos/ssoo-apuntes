@@ -3,6 +3,7 @@
 :clang_exit: https://www.man7.org/linux/man-pages/man3/exit.3.html[exit()]
 :clang_fopen: https://en.cppreference.com/w/c/io/fopen[fopen()]
 :clang_main: https://en.cppreference.com/w/c/language/main_function[main()]
+:clang_malloc: https://en.cppreference.com/w/c/memory/malloc[malloc()]
 :clang_setenv: https://man7.org/linux/man-pages/man3/setenv.3.html[setenv()]
 :clang_getenv: https://man7.org/linux/man-pages/man3/getenv.3.html[getenv()]
 :clang_environ: https://man7.org/linux/man-pages/man7/environ.7.html[environ]
@@ -10,6 +11,7 @@
 
 // C++ STD
 :cpp_iostream: https://en.cppreference.com/w/cpp/header/iostream[iostream]
+:cpp_new: https://en.cppreference.com/w/cpp/language/new[new]
 :cpp_ofstream_open: https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]1
 
 // llamadas al sistema POSIX & Linux
@@ -17,14 +19,16 @@
 :linux_bind: https://man7.org/linux/man-pages/man2/bind.2.html[bind()]
 :linux_close: https://man7.org/linux/man-pages/man2/close.2.html[close()]
 :linux_connect: https://man7.org/linux/man-pages/man2/connect.2.html[connect()]
-:linux_epoll: hhttps://man7.org/linux/man-pages/man7/epoll.7.html[epoll()]
+:linux_epoll: https://man7.org/linux/man-pages/man7/epoll.7.html[epoll()]
 :linux_errno: https://man7.org/linux/man-pages/man3/errno.3.html[errno]
 :linux_exec: https://man7.org/linux/man-pages/man3/exec.3.html[exec()]
 :linux_fork: https://man7.org/linux/man-pages/man2/fork.2.html[fork()]
+:linux_ftruncate: https://linux.die.net/man/2/ftruncate[ftruncate()]
 :linux_getpid: https://man7.org/linux/man-pages/man2/getpid.2.html[getpid()]
 :linux_getppid: https://man7.org/linux/man-pages/man2/getppid.2.html[getppid()]
 :linux_kill: https://man7.org/linux/man-pages/man2/kill.2.html[kill()]
 :linux_listen: https://man7.org/linux/man-pages/man2/listen.2.html[listen()]
+:linux_mmap: https://man7.org/linux/man-pages/man2/mmap.2.html[mmap()]
 :linux_poll: https://man7.org/linux/man-pages/man2/poll.2.html[poll()]
 :linux_mkfifo: https://man7.org/linux/man-pages/man3/mkfifo.3.html[mkfifo()]
 :linux_mq_open: https://man7.org/linux/man-pages/man3/mq_open.3.html[mq_open()]
@@ -43,6 +47,7 @@
 :linux_shutdown: https://man7.org/linux/man-pages/man2/shutdown.2.html[shutdown()]
 :linux_sigaction: https://man7.org/linux/man-pages/man2/sigaction.2.html[sigaction]
 :linux_signal: https://man7.org/linux/man-pages/man2/signal.2.html[signal()]
+:linux_shm_open: https://www.man7.org/linux/man-pages/man3/shm_open.3.html[shm_open()]
 :linux_socket: https://man7.org/linux/man-pages/man2/socket.2.html[socket()]
 :linux_strerror: https://man7.org/linux/man-pages/man3/strerror.3.html[strerror()]
 :linux_syscall: https://man7.org/linux/man-pages/man2/syscall.2.html[syscall()]
@@ -61,6 +66,7 @@
 
 :win32_closehandle: https://docs.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle[CloseHandle()]
 :win32_createfile: https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea[CreateFile()]
+:win32_createfilemapping: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga[CreateFileMapping()]
 :win32_createprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa[CreateProcess()]
 :win32_createpipe: https://docs.microsoft.com/en-us/windows/win32/api/namedpipeapi/nf-namedpipeapi-createpipe[CreatePipe()]
 :win32_createnamedpipe: https://docs.microsoft.com/en-us/windows/win32/api/namedpipeapi/nf-namedpipeapi-createnamedpipea[CreateNamedPipe()]
@@ -70,6 +76,7 @@
 :win32_getlasterror: https://docs.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror[GetLastError()]
 :win32_getmessage: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagea[GetMessage()]
 :win32_exitprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess[ExitProcess()]
+:win32_mapviewoffile: https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile[MapViewOfFile()]
 :win32_msg: https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg[MSG]
 :win32_readfile: https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile[ReadFile()]
 :win32_postthreadmessage: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-postthreadmessagea[PostThreadMessage()]
@@ -112,6 +119,7 @@
 // Ejemplos
 :ejemplos_branch: master
 :ejemplos_repo: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/tree/{ejemplos_branch}[ull-esit-sistemas-operativos/ssoo-ejemplos]
+:anom_shared_memory_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/anom-shared-memory.cpp[anom-shared-memory.cpp]
 :syscall_s: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap06/syscall.s[syscalls.s]
 :createprocess_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/createprocess.c[createprocess.c]
 :fifo_client_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/fifo-client.c[fifo-client.c]
@@ -121,6 +129,9 @@
 :forkexec_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/fork-exec.c[fork-exec.c]
 :forkpipe_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/fork-pipe.c[fork-pipe.c]
 :forkredir_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/fork-redir.c[fork-redir.c]
+:shared_memory_hpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/shared_memory.hpp[shared_memory.hpp]
+:shared_memory_client_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/shared-memory-client.cpp[shared-memory-client.cpp]
+:shared_memory_server_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/shared-memory-server.cpp[shared-memory-server.cpp]
 :message_queue_hpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/message_queue.hpp[message_queue.hpp]
 :mqueue_client_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/mqueue-client.cpp[mqueue-client.cpp]
 :mqueue_server_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/mqueue-client.cpp[mqueue-server.cpp]
@@ -128,5 +139,4 @@
 :socket_hpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/socket.hpp[socket.hpp]
 :socket_client_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/socket-client.cpp[socket-client.cpp]
 :socket_server_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/socket-client.cpp[socket-server.cpp]
-
 :timeserver_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/common/timeserver.c[timeserver.c]
