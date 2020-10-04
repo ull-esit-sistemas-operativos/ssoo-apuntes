@@ -21,7 +21,7 @@ Los sistemas con *estructura sencilla* se caracterizan por:
 * No tener una estructura bien definida.
 Los componentes no están bien separados y las interfaces entre ellos no están bien definidas.
 
-* Son sistemas *(monolíticos)*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.
+* Son sistemas *((monolíticos))*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.
 ====
 
 === MS-DOS
@@ -45,9 +45,9 @@ Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde s
 image::estructura_unix.svg[]
 
 El núcleo proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
-En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, sino se compartimenta adecuadamente.
+En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, si no se compartimenta adecuadamente.
 
-Tanto MS_DOS como UNIX eran originalmente sistemas pequeños y simples, limitados por la funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
+Tanto MS_DOS como UNIX eran originalmente sistemas pequeños y simples, limitados por las funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
 Lo cierto es que con mejor soporte del hardware se puede dividir el sistema operativo en piezas más pequeñas y apropiadas que las del MS-DOS y el UNIX original.
 
 == Estructura en capas
@@ -62,12 +62,12 @@ Los sistemas con *estructura en capas* se caracterizan por:
 Por ejemplo, las estructuras de datos internas que usa y las operaciones o el hardware de la capa inferior que utiliza.
 
 * Escalan mejor que los sistemas con *estructura sencilla* porque las capas hacen que el código esté mejor compartimentado.
-Por ejemplo, al corregir un _bug_ o añadir una nueva funcionalidad solo hay que preocuparse de su efecto en la capa afecta y no en todo el código del núcleo —siempre que no se altere la interfaz de la capa con el exterior—. 
+Por ejemplo, al corregir un _bug_ o añadir una nueva funcionalidad solo hay que preocuparse de su efecto en la capa a la que afecta y no en todo el código del núcleo —siempre que no se altere la interfaz de la capa con el exterior—. 
 
-* Ser menos eficiente que la de los sistemas de *estructura sencilla*
+* Ser menos eficiente que la de los sistemas de *estructura sencilla*.
 En cada capa los argumentos son transformados y los datos necesarios deben de ser transferidos al invocar operaciones en la capa inferior, por lo que cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.
 
-* También son sistemas *(monolíticos)*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.
+* También son sistemas *((monolíticos))*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.
 ====
 
 Un ejemplo de este tipo de sistemas operativos es el {os2}.
@@ -109,10 +109,10 @@ Los sistemas con *estructura microkernel* se caracterizan por:
 Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por lo que algunos *microkernel* reales incluyen en el núcleo algunas funcionales adicionales.
 
 * El mecanismo de comunicación permite a los procesos de los usuarios solicitar servicios a los componentes del sistema.
-También sirve para que los componentes del sistema se comuniquen entre si y se pidan servicio.
+También sirve para que los componentes del sistema se comuniquen entre sí y se pidan servicio.
 ====
 
-Dado que los componentes del sistema están aislados unos de otros —ya que se implementan como procesos de usuario— el mecanismo de comunicación entre procesos es la única forma que tienen los procesos de los usuarios y los componentes de solicitarles un servicio.
+Dado que los componentes del sistema están aislados unos de otros —ya que se implementan como procesos de usuario— el mecanismo de comunicación entre procesos es la única forma que tienen los procesos de los usuarios y los componentes, de solicitarles un servicio.
 
 [[estructura_minix3]]
 .Esquema de la estructura microkernel de MINIX 3.
@@ -137,7 +137,7 @@ Además se pueden implementar estrategias para mejorar la tolerancia a fallos, c
 
 === Rendimiento
 
-El mayor inconveniente es el pobre rendimiento que puede tener causado por la sobrecarga que añade el mecanismo de comunicación.
+El mayor inconveniente es el pobre rendimiento que puede tener, causado por la sobrecarga que añade el mecanismo de comunicación.
 
 Por ejemplo, {windowsnt} nació con una estructura de *microkernel* en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.
 
@@ -154,13 +154,13 @@ Mientras que Microsoft Windows NT 3.51 tenía algo menos de 200 llamadas al sist
 ====
 
 Sin embargo varios sistemas operativos siguen utilizando núcleos *microkernel*, como {qnx} o {minix3}.
-Ambos son sistemas operativos de tiempo real que basan en la estructura de *microkernel* su estabilidad como sistema para tareas críticas.
+Ambos son sistemas operativos de tiempo real, que basan en la estructura de *microkernel* su estabilidad como sistema para tareas críticas.
 
 En la <<estructura_minix3>>, por ejemplo, se puede observar un esquema de {minix3}.
 El núcleo es muy pequeño —apenas tiene 5000 líneas de código— por lo que la mayor parte de la funcionalidad reside en los procesos de servicios y de controladores de dispositivo.
 
 {minix3} es un sistema compatible POSIX.
-Así que soporta las llamadas al sistema definidas por este estándar, pero estas se convierten en mensajes enviados al servidor correspondiente con la petición, y no en llamadas directas al núcleo.
+Así que soporta las llamadas al sistema definidas por este estándar, pero éstas se convierten en mensajes enviados al servidor correspondiente con la petición, y no en llamadas directas al núcleo.
 Para que un servidor pueda atender una petición, quizás tenga que enviar peticiones a otros servidores o controladores de dispositivo.
 Incluso pueden tener que hacer llamadas al núcleo, para solicitar alguna operación privilegiada que no se puede implementar en el modo usuario.
 Por ejemplo, operaciones de E/S —fundamentales para los controladores de dispositivo— o el acceso a tablas del núcleo —como la tabla de procesos—.
@@ -176,15 +176,15 @@ Los sistemas con *estructura modular* se caracterizan por:
 
 * Dividir el núcleo en módulos, cada uno de los cuales implementa funciones y servicios concretos y se comunican entre sí a través de una interfaz bien definida.
 
-* Como en la programación orientada a objetos, cada modulo oculta al resto los detalles de su implementación.
+* Como en la programación orientada a objetos, cada módulo oculta al resto los detalles de su implementación.
 
-* Todos los módulos pueden llamar a funciones de la interfaz de cualquier otro módulo, a diferencia de los sistemas operativos con *estructura en capa*, donde una capa solo podía usar a la inmediatamente inferior.
+* Todos los módulos pueden llamar a funciones de la interfaz de cualquier otro módulo, a diferencia de los sistemas operativos con *estructura en capas*, donde una capa solo podía usar a la inmediatamente inferior.
 
-* También son sistemas *(monolíticos)*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.
+* También son sistemas *((monolíticos))*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.
 ====
 
-Estos núcleos suelen disponer un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.
-Posteriormente pueden cargar módulos adicionales, tanto durante la inicialización del sistema como o en tiempo de ejecución.
+Estos núcleos suelen disponer de un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.
+Posteriormente pueden cargar módulos adicionales, tanto durante la inicialización del sistema como en tiempo de ejecución.
 
 [[estructura_linux]]
 .Esquema de la estructura del núcleo Linux.

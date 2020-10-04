@@ -11,7 +11,7 @@ include::../../config/attributes.adoc[]
 
 Crear un software tan complejo como un sistema operativo no es sencillo, por ello resulta más práctico dividirlo en piezas más pequeñas especializadas en aspectos concretos de la gestión del sistema.
 
-Cada sistema operativo diferentes componentes con distinto nombre.
+Cada sistema operativo tiene diferentes componentes con distinto nombre.
 Lo que veremos en este capítulo es un esquema de los más comunes a la mayoría de sistemas operativos actuales.
 
 == Gestión de procesos
@@ -22,20 +22,20 @@ La gestión de los procesos es un elemento central de todo sistema operativo:
 ====
 * El *((proceso))* es la unidad de trabajo en cualquier sistema operativo moderno.
 Es quién realiza las tareas que interesan a los usuarios.
-Por eso es a cada proceso al que se le asigna el tiempo de CPU y el resto de recursos del sistema, como por ejemplo: memoria, archivos o dispositivos de E/S abiertos.
+Por eso, es a cada proceso al que se le asigna el tiempo de CPU y el resto de recursos del sistema, como por ejemplo: memoria, archivos o dispositivos de E/S abiertos.
 
 * Un *proceso* es un programa en ejecución.
 Un programa se convierte en proceso cuando las instrucciones del programa son cargadas en la memoria desde el archivo del ejecutable y se le asignan recursos para su ejecución.
 ====
 
-Los procesos son entidades activas que necesita recursos —CPU, memoria, archivos, dispositivos E/S.
+Los procesos son entidades activas que necesita recursos —CPU, memoria, archivos, dispositivos E/S—.
 Algunos de esos recursos se asignan durante su creación, mientras que otros son solicitados por el proceso durante su ejecución —por ejemplo la memoria, de la que todo proceso necesita cierta cantidad para comenzar pero que luego puede pedir más dinámicamente durante su ejecución—.
 Cuando el proceso termina el sistema operativo reclama de estos recursos aquellos que sean reutilizables para otros procesos.
 
 ====
 Un *programa* no es un proceso, es una entidad pasiva.
-El contenido de un archivo en disco con las instrucciones que algún día una CPU ejecutará.
-Un programa no puede hacer ningún tipo de trabajo a menos que sus instrucciones sean ejecutadas por una CPU pero si eso ocurre, ya no sería un programa sino un proceso.
+Es el contenido de un archivo en disco con las instrucciones que algún día una CPU ejecutará.
+Un programa no puede hacer ningún tipo de trabajo a menos que sus instrucciones sean ejecutadas por una CPU, pero si eso ocurre, ya no sería un programa sino un proceso.
 ====
 
 Aunque varios procesos estén asociados al mismo programa no pueden ser considerados el mismo proceso.
@@ -45,7 +45,7 @@ Por lo tanto, no son el mismo proceso.
 
 [NOTE]
 ====
-Por el momento estamos considerando que *proceso* y *trabajo* hacen referencia al mismo concepto porque en los sistemas más antiguos (véase el <<_mainframe>>) la unidad de trabajo se llamaba *trabajo* mientras que en los sistemas modernos se llama *proceso*, de tal forma que podemos considera al segundo una evolución del primero.
+Por el momento estamos considerando que *proceso* y *trabajo* hacen referencia al mismo concepto porque en los sistemas más antiguos (véase el <<_mainframe>>) la unidad de trabajo se llamaba *trabajo* mientras que en los sistemas modernos se llama *proceso*, de tal forma que podemos considerar al segundo una evolución del primero.
 
 Sin embargo, mirándolo exclusivamente desde la perspectiva de los sistemas operativos modernos, son dos conceptos diferentes aunque relacionados.
 En un sistema moderno un trabajo puede ser realizado por un solo proceso o mediante la colaboración de varios.
@@ -100,7 +100,7 @@ Y lo mismo ocurre con las tarjetas de sonido o con los dispositivos de entrada, 
 Así los programadores pueden acceder a cualquier dispositivo abstrayendo de las particularidades concretas del hardware instalado en cada ordenador.
 
 * *Controladores de dispositivo*, que generalmente son desarrollados por los fabricantes de los dispositivos y son el componente que realmente conoce las peculiaridades específicas del dispositivo.
-Por tanto, las peticiones que hacen los procesos a la interfaz de E/S genérica la traslada el sistema a los controladores de dispositivo para que estos las conviertan en acciones concretas sobre el hardware del dispositivo.
+Por tanto, las peticiones que hacen los procesos a la interfaz de E/S genérica la traslada el sistema a los controladores de dispositivo para que éstos las conviertan en acciones concretas sobre el hardware del dispositivo.
 ====
 
 // TODO: Ejemplo de código donde se usa esta interfaz.
@@ -112,7 +112,7 @@ Una característica de los sistemas UNIX es que todos los dispositivos de E/S se
 Esto se puede comprobar rápidamente visitando el directorio `/dev` en cualquier sistema GNU/Linux o BSD, ya que es allí donde suelen estar.
 
 Así no hace falta diseñar y aprender una interfaz diferente para cada tipo de dispositivo.
-Los procesos que quiere utilizar cualquier dispositivos de E/S solo tienen que usar las mismas funciones y llamadas al sistema que emplean para manipular los archivos normales.
+Los procesos que quiere utilizar cualquier dispositivo de E/S solo tienen que usar las mismas funciones y llamadas al sistema que emplean para manipular los archivos normales.
 Por ejemplo, {linux_open}, {linux_read}, {linux_write} o {linux_close}.
 ====
 
@@ -140,11 +140,11 @@ La memoria principal es de tamaño limitado, por lo que sólo se mantiene copia 
 
 === ((Spooling))
 
-El *spooling* se utiliza en dispositivos que no admiten el acceso simultaneo de varias aplicaciones a vez, como es el caso de impresoras y unidades de cinta.
+El *spooling* se utiliza en dispositivos que no admiten el acceso simultáneo de varias aplicaciones a vez, como es el caso de impresoras y unidades de cinta.
 
 Cuando varias aplicaciones intentan enviar un trabajo a una impresora, el sistema operativo lo intercepta para copiar los datos enviados a un archivo independiente.
 Cuando una aplicación termina de enviar el trabajo, el archivo correspondiente se mete en una cola de donde son extraídos los trabajos para su impresión de uno en uno.
-Así no hay acceso simultáneo al dispositivo por parte de varios procesos, mientras que estos pueden entregar el trabajo y continuar con su trabajo sin esperar a que la impresora esté disponible.
+Así no hay acceso simultáneo al dispositivo por parte de varios procesos, mientras que éstos pueden entregar el trabajo y continuar con su trabajo sin esperar a que la impresora esté disponible.
 
 == Gestión del almacenamiento secundario
 (((gestión, almacenamiento secundario)))
@@ -163,17 +163,17 @@ El gestor del almacenamiento secundario es el responsable de:
 
 * Gestionar el espacio libre en discos duros y resto de dispositivos de almacenamiento secundario.
 * Asignar el espacio de almacenamiento.
-* Planificar el acceso a los dispositivos, de tal forma que se orden las operaciones de forma eficiente.
+* Planificar el acceso a los dispositivos, de tal forma que se ordenen las operaciones de forma eficiente.
 
 == Gestión del sistema de archivos
 (((gestión, sistema de archivos)))
 
 Los ordenadores pueden almacenar información en diferentes tipos de medios físicos —por ejemplo en discos duros magnéticos, CD/DVD-ROM, memorias USB o SSD— cada uno de los cuales tiene características propias.
-El acceso a cada tipo medio es controlado por un dispositivo —por ejemplo el controlador de disco o la unidad de DVD-ROM— que también tiene características propias.
+El acceso a cada tipo de medio es controlado por un dispositivo —por ejemplo el controlador de disco o la unidad de DVD-ROM— que también tiene características propias.
 El sistema de E/S y la gestión del almacenamiento secundario simplifican el acceso a estos dispositivos, pero no lo suficiente como para que sea cómodo usarlos constantemente en cualquier programa. 
 
 Para simplificar aun más el acceso al almacenamiento, el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
-Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir el *archivo*, una unidad de almacenamiento lógico con la que trabajan los procesos para guarda y recuperar datos.
+Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir el *archivo*, una unidad de almacenamiento lógico con la que trabajan los procesos para guardar y recuperar datos.
 
 ====
 Un *((archivo))* o ((fichero)) es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario —por ejemplo un programa, una imagen o un documento—.
@@ -183,7 +183,7 @@ Los archivos normalmente se organizan en directorios para facilitar su uso y org
 
 === Responsabilidades de la gestión del sistema de archivos
 
-El sistema de archivos utiliza al gesto del almacenamiento secundario y al sistema de E/S y es responsable de la siguientes actividades:
+El sistema de archivos utiliza al gestor del almacenamiento secundario y al sistema de E/S y es responsable de las siguientes actividades:
 
 * Crear y borrar archivos.
 
