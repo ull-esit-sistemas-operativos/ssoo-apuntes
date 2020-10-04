@@ -38,6 +38,9 @@ epub:
 docstats:
 	$(DOCSTATS_BIN) $(INPUTDIR) $(DOCSTATSFILE)
 
+tests:
+	htmlproofer output/html/
+
 clean:
 	rm -r $(OUTPUTDIR)
 
