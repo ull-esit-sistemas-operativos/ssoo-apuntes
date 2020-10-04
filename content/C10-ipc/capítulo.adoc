@@ -605,7 +605,7 @@ En los sistemas POSIX las *tuberías con nombre* se denominan _FIFO_ y tienen pr
 
 Con {linux_fork} es muy sencillo lanzar otros procesos para que ejecuten tareas en paralelo.
 El proceso hijo tiene acceso a los datos del padre por la forma en la que funciona {linux_fork} y gracias a las tuberías anónimas puede comunicar los resultados al padre.
-En {forkpipe_c} se puede observar un ejemplo de esto.
+En {forkpipe_cpp} se puede observar un ejemplo de esto.
 
 Además, el hecho de que cada extremo se comporte como un archivo —uno en modo solo lectura y el otro en modo solo escritura— hace posible redirigir la E/S estándar del proceso hijo.
 Es decir, conectar la entrada, la salida estándar o la salida de error a una tubería, desde la que leer lo que el proceso intenta imprimir por la pantalla de la terminal o proporcionarle lo que debe leer, como si fuera desde el teclado.
@@ -711,7 +711,7 @@ En caso de error, un -1 y {linux_errno} contiene el código del error.
 Las operaciones con _sockets_ son síncronas por defecto.
 Sin embargo, es posible configurarlos en modo asíncrono, para que así cualquiera de estas funciones falle, retornando -1 y código de error `EAGAIN` o `EWOULDBLOCK`, antes de poner el proceso en estado *esperando*.
 
-También se pueden utilizar las funciones {linux_select} y {linux_poll} para monitorizar varios _sockets_ al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <<_colas_de_mensages_posix>>).
+También se pueden utilizar las funciones {linux_select} y {linux_poll} para monitorizar varios _sockets_ al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <<_colas_de_mensajes_posix>>).
 
 En {socket_server_cpp} y {socket_client_cpp} se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando _sockets_ de dominio UNIX.
 Ambos programas utilizan la cabecera {socket_hpp} que incluye un ejemplo de clase en C++ para comunicaciones mediante _sockets_.

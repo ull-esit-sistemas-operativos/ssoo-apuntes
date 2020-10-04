@@ -31,7 +31,7 @@ $ sudo gem install asciidoctor-pdf asciidoctor-epub3 --pre
 $ sudo gem install html-proofer
 ~~~ 
 
-Algunas gemas son extensiones nativas, así que es necesario instalar previamente los paquetes nativos de los que dependen:
+Algunas gemas son extensiones nativas, así que es necesario instalar previamente los siguientes paquetes nativos de los que dependen:
 
  * ruby-dev
  * libxml2-dev

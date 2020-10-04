@@ -59,7 +59,7 @@ Contiene el espacio de la memoria que se asigna dinámicamente durante la ejecuc
 También es conocido como *((heap))*.
 
 Información sobre el estado actual de ejecución::
-Como el *contador de programa*, los valores de los *registros de la CPU*, el *estado* del proceso y más (véase el <<_bloque de control de proceso>>).
+Como el *contador de programa*, los valores de los *registros de la CPU*, el *estado* del proceso y más (véase el <<_bloque_de_control_de_proceso>>).
 ====
 
 Los *segmentos de código*, *datos* y *BSS* por lo general son secciones dentro del archivo ejecutable que contiene el programa.
@@ -460,7 +460,7 @@ Es lo que hace {linux_fork} en los sistemas POSIX.
 Es lo que hace {win32_createprocess} en Windows.
 Por eso siempre hay que indicarle el nombre del programa que se quiere ejecutar en el nuevo proceso.
 
-Esto lo veremos con más detalle en el <<_ejemplos_de_operaciones_con procesos>>.
+Esto lo veremos con más detalle en el <<_ejemplos_de_operaciones_con_procesos>>.
 
 === Terminación de procesos
 
@@ -922,7 +922,7 @@ Paso de mensajes::
 Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.
 
 En la <<modelos_de_comunicación>> se puede un esquema comparativo entre ambos modelos de comunicación.
-Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_paso_de_mensages>>, respectivamente.
+Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_comunicación_mediante_de_paso_de_mensajes>>, respectivamente.
 
 [[modelos_de_comunicación]]
 .Modelos de comunicación.

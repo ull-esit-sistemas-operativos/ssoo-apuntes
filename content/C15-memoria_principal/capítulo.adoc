@@ -116,4 +116,6 @@ A este sistema se lo conoce como *librerías compartidas*.
 
 //TODO: Asignación de memoria y asignación de memoria contigua
 
+== Asignación de memoria contigua
+
 //TODO: Ver si meter intercambio

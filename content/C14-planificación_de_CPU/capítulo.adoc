@@ -246,7 +246,7 @@ Estos tiempos son mucho mayores que los tiempos de cambios de contexto, que gene
 
 El principal problema de este tipo de planificación es el _bloqueo indefinido_ o *muerte por inanición*, puesto que el algoritmo puede dejar a los procesos de baja prioridad esperando indefinidamente si hay un conjunto de procesos de mayor prioridad demandando CPU continuamente.
 
-Además, como vimos en el <<_ciclo_de_ráfagas_de_cpu_y_de_e_s>>, es conveniente favorecer a los procesos limitados por la E/S frente a los procesos limitados por la CPU para evitar el _efecto convoy_ y para mejorar los tiempos tanto de espera como de respuesta promedio.
+Además, como vimos en el <<_ciclo_de_ráfagas_de_cpu_y_de_es>>, es conveniente favorecer a los procesos limitados por la E/S frente a los procesos limitados por la CPU para evitar el _efecto convoy_ y para mejorar los tiempos tanto de espera como de respuesta promedio.
 Lamentablemente este tipo de planificación con _prioridad fija no es capaz de hacerlo ya que la prioridad de los procesos viene determinada exclusivamente por criterios externos al funcionamiento del sistema operativo_.
 
 === Prioridad dinámica
@@ -278,7 +278,7 @@ Si a continuación un usuario iniciase un nuevo proceso, el planificador tendrí
 El algoritmo de planificación equitativa es muy similar al algoritmo RR pero, a diferencia de este último en el que se utiliza un cuanto de tamaño fijo, _la ventana de tiempo se calcula de dinámicamente para garantizar el reparto equitativo de la CPU_.
 
 Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
-Por ejemplo se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_e_s>>.
+Por ejemplo se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_es>>.
 La _planificación equitativa_ resuelve este problema asignando proporcionalmente más tiempo de CPU a los procesos con mayor prioridad.
 __A esta generalización del planificador equitativo se la conoce como **planificador equitativo ponderado**__footnote:[Linux desde la versión 2.6.23 utiliza un tipo de *planificador equitativo ponderado* denominado *CFS* (_Completely Fair Scheduler_) o *planificador completamente justo.*].
 

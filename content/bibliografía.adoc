@@ -24,7 +24,7 @@ Jacob, B y Mudge, T. «Virtual Memory: Issues of Implementation». Computer, 31:
 
 // TODO: Revisar esta fuente. Quizás planificación y / o remplazo de páginas.
 * [[[Microsoft2005]]]
-«Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn» [en línea]. Microsoft Corporation, 2005. URL http://goo.gl/ml8C4.
+«Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn» [en línea]. Microsoft Corporation, 2005. URL https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn.
 
 // TODO: Revisar esta fuente.
 * [[[Microsoft2003]]]
@@ -47,6 +47,6 @@ Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/
 * [[[Wikipedia-RAID]]]
 «RAID» [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/GTQU
 
-// TODO: Añadir sistemas de archivos CoW.ç
+// TODO: Añadir sistemas de archivos CoW.
 
 // TODO: ¿Fuente del VRR y otros de planificación? Willian Stanling?

@@ -67,7 +67,7 @@ void* p = mmap(
 Es decir, que al crear un hijo con {linux_fork} este tendrá una copia de toda la memoria del proceso padre, excepto esta región en particular, que será la misma que la del padre.
 Por lo tanto, escribiendo y leyendo en esa región, ambos procesos pueden comunicarse.
 
-En {anom_shared_memory_cpp} se puede ver un ejemplo muy simple, similar a {forkpipe_c} pero utilizando memoria compartida para comunicar ambos procesos.
+En {anom_shared_memory_cpp} se puede ver un ejemplo muy simple, similar a {forkpipe_cpp} pero utilizando memoria compartida para comunicar ambos procesos.
 Como se puede apreciar, la versión que usa memoria compartida es bastante más sencilla que la que utiliza tuberías. 
 
 En Microsoft Windows se puede hacer algo similar con {win32_createfilemapping}:
@@ -130,7 +130,7 @@ Para esto último se indica el tamaño de la región y el desplazamiento dentro 
 Un objeto de memoria compartida recién creado tiene tamaño 0.
 Para redimensionarlo se utiliza {linux_ftruncate}, que lo que necesita es el descriptor del objeto y el nuevo tamaño.
 
-En {shared_memory_server_cpp} y {shared_memory_client_cpp} se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
+En {shared_memory_server_c} y {shared_memory_client_cpp} se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
 En este caso controlado por otro mediante memoria compartida.
 Ambos programas usan la clase definida en {shared_memory_hpp} para gestionar el objeto de memoria compartida.
 Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema comentadas.

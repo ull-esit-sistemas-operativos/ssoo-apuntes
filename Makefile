@@ -39,7 +39,7 @@ docstats:
 	$(DOCSTATS_BIN) $(INPUTDIR) $(DOCSTATSFILE)
 
 tests:
-	htmlproofer output/html/
+	htmlproofer --typhoeus_config '{"ssl_verifyhost": 0, "ssl_verifypeer": false}' output/html/
 
 clean:
 	rm -r $(OUTPUTDIR)
