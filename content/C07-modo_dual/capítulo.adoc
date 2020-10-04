@@ -18,25 +18,25 @@ Antes de entender como funcionan estos mecanismos de protección debemos entende
 
 Los sucesos que requieren la atención del sistema casi siempre se indican mediante una interrupción:
 
-* Cuando un proceso comente un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una excepción.
+* Cuando un proceso comete un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una excepción.
 Esta excepción despierta al sistema operativo para que haga lo que sea más conveniente.
 
 * Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción.
-Esta excepción despierta al sistema operativo para al sistema operativo para que atienda la petición.
+Esta excepción despierta al sistema operativo para que atienda la petición.
 
 * Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción que despierta al sistema operativo.
 
-Esto funciona así porque el sistema operativo configura la CPU durante el arranque para que si ocurre cualquier interrupción o excepción la ejecución salte a rutinas en el código del núcleo, con el objeto de darles el tratamiento adecuado.
+Esto funciona así porque el sistema operativo configura la CPU durante el arranque para que si ocurre cualquier interrupción o excepción la ejecución, salte a rutinas en el código del núcleo, con el objeto de darles el tratamiento adecuado.
 
-Si ningún proceso realiza una acción ilegal o pide un servicio ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo permanece inactivo esperado a que algo ocurra.
+Si ningún proceso realiza una acción ilegal o pide un servicio, ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo permanece inactivo esperado a que algo ocurra.
 
 Teniendo todo esto en cuenta podremos entender mejor como funciona el modo dual.
 
 == Operación en modo dual
 
-Para proteger el sistema de programas con errores es necesario poder distinguir entre la ejecución de código del sistema operativo y del código de los programas de usuario, de tal forma que el código de los programas de usuarios esté más limitado en lo que puede hacer que el del sistema operativo.
+Para proteger el sistema de programas con errores es necesario poder distinguir entre la ejecución de código del sistema operativo y del código de los programas de usuario, de tal forma que el código de los programas de usuario esté más limitado en lo que puede hacer que el del sistema operativo.
 
-El método que utilizan la mayor parte de los sistemas operativos consiste en utilizar algún tipo de soporte en la CPU que permita diferencia entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —llamadas *((instrucciones privilegiadas))*— para que sólo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo.
+El método que utilizan la mayor parte de los sistemas operativos consiste en utilizar algún tipo de soporte en la CPU que permita diferenciar entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —llamadas *((instrucciones privilegiadas))*— para que sólo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo.
 
 === Modos de operación
 
@@ -55,18 +55,18 @@ El modo actual de operación puede venir indicado por un *bit de modo*(((bit, de
 
 Comúnmente en el grupo de las *instrucciones privilegiadas* se suelen incluir:
 
-* Las instrucción para conmutar al modo usuario desde el modo privilegiado.
+* La instrucción para conmutar al modo usuario desde el modo privilegiado.
 * Las instrucciones para acceder a dispositivos de E/S.
 * Las instrucciones necesarias para la gestión de las interrupciones.
-Por ejemplo, para desactivas —evitando que se lancen— activarlas y configurarlas. 
+Por ejemplo, para desactivarlas —evitando que se lancen—, activarlas y configurarlas. 
 
 .Niveles de privilegio en procesadores x86
 ****
-Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de tener mayor control sobre el nivel de privilegio en el que se ejecuta cada componente de sistema.
+Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de tener mayor control sobre el nivel de privilegio en el que se ejecuta cada componente del sistema.
 
 Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación.
-El modo 0 es para el software más confiable y el que necesitas más privilegios, que generalmente es el núcleo.
-Mientras que el modo 3 se utiliza para el software menos confiable y que necesitas más supervisión, que normalmente son los procesos de usuario.
+El modo 0 es para el software más confiable y el que necesita más privilegios, que generalmente es el núcleo.
+Mientras que el modo 3 se utiliza para el software menos confiable y que necesita más supervisión, que normalmente son los procesos de usuario.
 
 La idea detrás de tener los modos 1 y 2 es usarlos para controladores de dispositivo o procesos que dan servicio al resto del sistema.
 Así estos componentes pueden tener mayores privilegios que los procesos de usuario —por ejemplo, los controladores de dispositivo necesitan acceso directo al hardware— pero al mismo tiempo serían supervisados y no podrían afectar al núcleo, que se ejecuta en el modo 0.
@@ -103,7 +103,7 @@ En este modo se carga el núcleo del sistema operativo e inicia su ejecución.
 
 . El núcleo del sistema operativo debe cambiar al modo usuario —poniendo el bit de modo a 1— antes de ceder la CPU a un proceso de usuario.
 Esto ocurre cuando es necesario que un proceso de usuario continúe o inicie su ejecución (véase el <<_el_asignador>>).
-Así se asegura que el código de los procesos de usuario siempre se ejecute en modo usuario, con menos privilegios.
+Así se asegura que el código de los procesos de usuario siempre se ejecuten en modo usuario, con menos privilegios.
 
 . La CPU conmuta a modo privilegiado cuando ocurre una interrupción o una excepción —poniendo el bit de modo a 0— antes de comenzar el código del sistema operativo que se encargará de tratarlas.
 ====
@@ -113,7 +113,7 @@ Como ya hemos comentado, los sistemas operativos están controlados mediante int
 Al activarse el modo privilegiado cada vez que ocurre una interrupción, podemos estar seguros de que las tareas del sistema operativo se ejecutarán siempre en modo privilegiado.
 
 Cuando se dispone de la protección del modo dual, el hardware se encarga de detectar los errores de ejecución y de notificarlo al sistema operativo mediante excepciones, siendo responsabilidad de este último realizar un tratamiento adecuado de los mismos.
-Por lo general, si un programa falla de alguna forma —como por ejemplo, intentando utilizar una instrucciones ilegal o de acceder a una zona de memoria inválida— el sistema operativo lo hace terminar.
+Por lo general, si un programa falla de alguna forma —como por ejemplo, intentando utilizar una instrucción ilegal o de acceder a una zona de memoria inválida— el sistema operativo lo hace terminar.
 
 == Protección de la memoria
 
@@ -129,7 +129,7 @@ Puesto que en la mayor parte de las arquitecturas éste reside en la parte baja 
 
 2. La segunda parte alberga los procesos de usuario.
 
-Sin embargo, en los sistemas operativos modernos los procesos no tienen acceso libre a toda memoria física, con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:
+Sin embargo, en los sistemas operativos modernos, los procesos no tienen acceso libre a toda memoria física, con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:
 
 ====
 * El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; similar a la que tendrían si cada uno de ellos se estuviera ejecutando en solitario (véase la <<protección_memoria>>).
@@ -138,7 +138,7 @@ Sin embargo, en los sistemas operativos modernos los procesos no tienen acceso l
 Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
 Por ejemplo, en una CPU de 32 bits el espacio de direcciones virtual tiene 4GB, desde la dirección 0x00000000 a 0xFFFFFFFF.
 
-* Durante los accesos a la memoria principal durante la ejecución del proceso, estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la CPU en direcciones físicas, antes de ser enviadas a la memoria principal.
+* En los accesos a la memoria principal durante la ejecución del proceso, estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la CPU en direcciones físicas, antes de ser enviadas a la memoria principal.
 Por tanto las *direcciones físicas*(((dirección, física))) son las direcciones reales que ve la memoria.
 Mientras que el *espacio de direcciones físico*(((espacio de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un espacio de direcciones virtual dado.
 ====
@@ -147,7 +147,7 @@ Mientras que el *espacio de direcciones físico*(((espacio de direcciones, físi
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::protección_memoria.svg[]
 
-La conversión de una dirección virtual en una física la realiza en tiempo de ejecución un componente de la CPU denominado MMU (_Memory-Management Unit_).
+La conversión de una dirección virtual en una física, la realiza en tiempo de ejecución un componente de la CPU denominado MMU (_Memory-Management Unit_).
 
 Las ventajas de usar esta técnica, desde el punto de vista de la protección de la memoria son:
 
@@ -160,8 +160,8 @@ Por ejemplo, si se intenta ejecutar instrucciones en una zona de memoria no marc
 == El temporizador
 
 El *((temporizador))* se configura por el sistema operativo durante el arranque del sistema para interrumpir a la CPU a intervalos regulares.
-Así, cuando el temporizador interrumpe, el control se transfiere automáticamente al núcleo del sistema .
-Entonces este puede:
+Así, cuando el temporizador interrumpe, el control se transfiere automáticamente al núcleo del sistema.
+Entonces éste puede:
 
 * Conceder más tiempo al proceso en ejecución.
 * Detenerlo y darle más tiempo de CPU en el futuro 
@@ -189,9 +189,9 @@ Es decir:
 
 2. El sistema operativo anfitrión intercepta estos intentos —ya que son instrucciones privilegiadas, prohibidas para los procesos en el modo usuario— y, en lugar de detener el proceso, comunica el suceso al software de gestión de la máquina virtual.
 
-3. El software de gestión de la máquina virtual identifica a qué dispositivo y que intenta hacer el sistema operativo de la máquina virtual en él —para lo que generalmente se utilizan máquinas de estado que simular el comportamiento del hardware real— y lo transforma en peticiones al sistema operativo anfitrión.
+3. El software de gestión de la máquina virtual identifica a qué dispositivo y que intenta hacer el sistema operativo de la máquina virtual en él —para lo que generalmente se utilizan máquinas de estado que simulan el comportamiento del hardware real— y lo transforma en peticiones al sistema operativo anfitrión.
 
-Por ejemplo, los intentos del sistema operativo virtual de acceder a los discos duros del hardware virtual, son convertidos en operaciones sobre un archivo en sistema de archivos real que contiene la imagen en disco de la máquina virtual.
+Por ejemplo, los intentos del sistema operativo virtual de acceder a los discos duros del hardware virtual, son convertidos en operaciones sobre un archivo, en un sistema de archivos real que contiene la imagen en disco de la máquina virtual.
 
 == Arranque del sistema
 
@@ -219,7 +219,7 @@ Concretamente es un componente de software instalado en un dispositivo hardware 
 
 === Tareas del bootstrap
 
-El _bootstrap_ debe realiza diversas tareas:
+El _bootstrap_ debe realizar diversas tareas:
 
 . **Diagnostico de la máquina** —o _Power-on Self-Test_ (POST)—.
 El _bootstrap_ se detiene en este punto si el sistema no supera el diagnostico.
@@ -232,7 +232,7 @@ Por ejemplo, configurar los registros de la CPU, inicializar los dispositivos y 
 Al iniciar el sistema operativo hay que considerar que puede estar en diferentes ubicaciones según el tipo de dispositivo:
 
 * En **consolas de videojuegos, móviles y otros dispositivos empotrados** se almacena el sistema operativo en alguna forma de memoria de sólo lectura —ROM o Flash—.
-Como la ejecución en esas memorias es más lenta que en la RAM, muchas veces el _bootstrap_ suele copiar el sistema a la RAM durante el arranque, antes de iniciar el sistema.
+Como la ejecución en esas memorias es más lenta que en la RAM, muchas veces el _bootstrap_ suele copiar el sistema a la RAM durante el arranque, antes de iniciarlo.
 
 * En *sistemas operativos de gran tamaño* —incluidos los de propósito general— el sistema se almacena en disco.
 
@@ -269,7 +269,7 @@ En los sistemas GNU/Linux actuales el proceso *init* más común es {cmd_systemd
 Puesto que la función del planificador es asignar procesos a la CPU y solo hay uno, el proceso *init*, éste es escogido y comienza su ejecución.
 
 . El proceso *init* lanza los _scripts_ encargados de configurar los servicios —también llamados demonios— del sistema.
-Por ejemplo, para el registro de eventos del sistema, gestión de dispositivos, particiones, impresoras, ente otros.
+Por ejemplo, para el registro de eventos del sistema, gestión de dispositivos, particiones, impresoras, entre otros.
 
 El proceso *init* también configura el entorno de usuario.
 Configura las terminales del sistema, inicia un proceso *login* conectado a cada una y se duerme a la espera.

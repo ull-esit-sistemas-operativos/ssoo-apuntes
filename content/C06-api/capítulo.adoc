@@ -21,7 +21,7 @@ Algunas de las API disponibles para los desarrolladores de aplicaciones son Wind
 
 {windows_api} es el nombre que recibe la *interfaz de programación de aplicaciones* de Microsoft Windows, con la que prácticamente tienen que interactuar todas las aplicaciones, de una forma u otra.
 
-Antiguamente sé denominada Win32 API, pero Microsoft ha querido aglutinar bajo una misma denominación las distintas versiones de la API de Windows que han existido, como Win16 —usada en las versiones de 16 bits de Windows— o Win64 —que es la variante de Win32 adaptada a arquitecturas de 64 bits—.
+Antiguamente se denominaba Win32 API, pero Microsoft ha querido aglutinar bajo una misma denominación las distintas versiones de la API de Windows que han existido, como Win16 —usada en las versiones de 16 bits de Windows— o Win64 —que es la variante de Win32 adaptada a arquitecturas de 64 bits—.
 
 Está compuesta por funciones en C almacenadas, principalmente, en las librerías de enlace dinámico ({dll}): `kernel32.dll`, `user32.dll` y `gdi32.dll`.
 Aunque según se ha ido ampliando la API, se han incorporado otras librerías adicionales.
@@ -100,7 +100,7 @@ También en Linux para x86 32 bits, cuando el número de parámetros es superior
 * *Mediante la pila del proceso* se insertan los parámetros de la llamada al sistema en la pila del proceso —que también se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar a funciones— y el sistema operativo los recupera de allí durante la llamada al sistema.
 Al igual que en el caso anterior, tampoco limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
 +
-Es utilizando, por ejemplo, en sistemas BSD y en Windows XP y posteriores para x86 de 32 bits.
+Es utilizado, por ejemplo, en sistemas BSD y en Windows XP y posteriores para x86 de 32 bits.
 
 [[linux_mips_syscall]]
 .Llamada al sistema en Linux MIPS.
@@ -129,7 +129,7 @@ El identificador de la llamada al sistema es 4004, según el https://git.linux-m
 <1> Cargar cada uno de los 3 argumentos de la llamada al sistema en los registros `a0`, `a1` y `a2`.
 <2> Cargar el identificador de la llamada `write()` en el registro `v0`.
 <3> Invocar la llamada al sistema.
-Aunque veamos que es una única instrucción, lo que realmente va a ocurrir es que el sistema operativo va a tomar el control de la CPU para realizar la tarea solicitada.
+Aunque vemos que es una única instrucción, lo que realmente va a ocurrir es que el sistema operativo va a tomar el control de la CPU para realizar la tarea solicitada.
 La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operativo no lo decida, por lo que, desde el punto de vista del programa, va a ser como si `syscall` fuera una instrucción más lenta de lo normal.
 <4> Al ejecutar la siguiente instrucción del código del programa, el registro `v0` contendrá el número de bytes escritos.
 
@@ -143,7 +143,7 @@ A fin de cuentas, una de las funciones del sistema operativo es el control de di
 (((librería, del sistema)))
 
 Las *llamadas al sistema* proporcionan una interfaz con la que los procesos pueden invocar los servicios que el sistema operativo ofrece.
-El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <<linux_mips_syscall>>) no son demasiado cómodas utilizar.
+El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <<linux_mips_syscall>>) no son demasiado cómodas de utilizar.
 Así que generalmente los programas no las invocan directamente.
 En su lugar, lo que hacen es llamar a funciones de la *librería del sistema*, que a su vez son las encargadas de hacer las llamadas al sistema necesarias.
 
@@ -152,7 +152,7 @@ Cuando hablamos anteriormente de {windows_api} y del estándar {posix}, hablába
 ====
 La *librería del sistema*:
 
-* Es parte del sistema operativo, por lo que se distribuyen con él.
+* Es parte del sistema operativo, por lo que se distribuye con él.
 
 * Es una colección de clases o funciones que ofrecen los servicios del sistema operativo a los programas, apoyándose en las llamadas al sistema.
 +
@@ -177,14 +177,14 @@ Pero de alguna forma deben poder hacerlo, porque sus programadores necesitan acc
 
 Incluso en C y en {cpp} puede ser interesante tener acceso a funcionalidades adicionales a las ofrecidas por la API del sistema operativo: estructuras de datos, algoritmos de ordenamiento o búsqueda, funciones para manipular cadenas, funciones matemáticas, etc.
 También abstracciones de los servicios del sistema, que encajen mejor con las particularidades del lenguaje de programación en cuestión.
-Por ejemplo, utilizando clases y objetos en lenguajes que soportar programación orientada a objetos.
+Por ejemplo, utilizando clases y objetos en lenguajes que soportan programación orientada a objetos.
 
 ====
 Por eso, junto a cada intérprete o compilador de cada lenguaje de programación suele ir una *librería estándar* que ofrece clases o funciones con las que los programas pueden acceder a los servicios del sistema operativo y realizar las tareas más comunes de forma más sencilla.
 
 Estas librerías generalmente no forman parte del sistema operativo, sino de las herramientas de desarrollo de cada lenguaje de programación, y constituyen la *interfaz de programación de aplicaciones* del lenguaje al que acompañan.
 
-La *librería estándar* necesitan acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que la usan.
+La *librería estándar* necesita acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que la usan.
 Es decir, cuando un programa invoca alguna función o método de la librería estándar que lo acompaña, es muy probable que ésta necesite invocar uno o más servicios del sistema operativo para atender la petición convenientemente.
 Para ello la *librería estándar* utiliza la *librería del sistema* que acompaña al sistema operativo, que a su vez realiza las *llamadas al sistema* necesarias.
 ====
@@ -198,7 +198,7 @@ Los archivos se abren indicando su ruta y, al hacerlo, el sistema operativo devu
 Este identificador se puede usar para leer o escribir en bytes el contenido del archivo.
 
 Si embargo en C, {cpp} y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o _stream_ (véase {clang_stdio} e {cpp_iostream}).
-En él se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.
+En él. se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.
 
 Los flujos pueden ser de texto o binarios, lo que implica algunas transformaciones en los datos.
 Además van ligados al concepto del _buffering_, es decir, que los bytes o caracteres escritos en el flujo no se «envían» inmediatamente, sino que se acumulan en la memoria para ser enviados en bloque.
@@ -211,10 +211,10 @@ Por lo tanto, las *librerías estándar* necesitan hacer uso de la *librería de
 
 Algo que suele ocurrir al crear mayores abstracciones es que se suele perder control y características específicas.
 Por ejemplo, la llamada al sistema {linux_open} con la que se pueden crear archivos permite asignar permisos o crear archivos temporales.
-Sin embargo, con las interfaces de _streams_ de C y {cpp} no se puede hacer eso ya que los permisos y la temporalidad son propiedades de los archivos que no son comunes a todas fuentes de flujos de datos.
+Sin embargo, con las interfaces de _streams_ de C y {cpp} no se puede hacer eso, ya que los permisos y la temporalidad son propiedades de los archivos que no son comunes a todas fuentes de flujos de datos.
 
-Así que en ocasiones puede ser que nos resulte más útil llamar a las funciones de la *librería del sistema* que usar las facilidades de la *librería estándar*.
-Sin embargo, debemos valorar que así perdemos portabilidad, ya que ahora nuestro programa ya no podrá usarse allí donde haya un compilador o intérprete de nuestro lenguajes, sino solo en sistemas operativos con una *librería del sistema* compatible.
+Así que en ocasiones puede ser que nos resulte más útil llamar a las funciones de la *librería del sistema*, que usar las facilidades de la *librería estándar*.
+Sin embargo, debemos valorar que así perdemos portabilidad, ya que ahora nuestro programa ya no podrá usarse allí donde haya un compilador o intérprete de nuestro lenguaje, sino solo en sistemas operativos con una *librería del sistema* compatible.
 ****
 
 == Con todas las piezas juntas
@@ -228,7 +228,7 @@ image::interfaz_programación_aplicaciones_win32.svg[]
 En ambos casos, la librería estándar llama a la función {win32_createfile} de la librería del sistema de Windows, que finalmente realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
 Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<_componentes_del_sistema>>).
 
-El programa en C puede usar tanto la función {clang_fopen} de su librería estándar como llamar directamente a la función {win32_createfile} de la librería del sistema —marcado en rojo en la <<api_win32>>—.
+El programa en C, puede usar tanto la función {clang_fopen} de su librería estándar como llamar directamente a la función {win32_createfile} de la librería del sistema —marcado en rojo en la <<api_win32>>—.
 Sin embargo, en el programa en Python no tenemos esa facilidad —al menos directamente—.
 
 Usar directamente las funciones de la librería del sistema desde programas en C o {cpp} tiene la ventaja de que permite utilizar todas las características del sistema operativo.
@@ -252,7 +252,7 @@ HANDLE WINAPI CreateFile(
 <4> Permisos del archivo, en caso de crearlo.
 <5> Acción en caso de que el archivo exista o no: siempre crear, solo abrir, truncar si existe, etc.
 <6> Atributos del archivo, en caso de crearlo.
-<7> Archivo abierto del que copiar los atributos para copiarlo en este,
+<7> Archivo abierto del que copiar los atributos para copiarlo en éste,
 en caso de crearlo.
 
 que {clang_fopen} no posee:
