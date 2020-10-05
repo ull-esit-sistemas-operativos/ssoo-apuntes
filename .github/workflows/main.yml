@@ -1,0 +1,37 @@
+name: Generar, testear y publicar
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-and-publish:
+    runs-on: ubuntu-20.04
+    steps:
+
+    - name: Obtener contenido
+      uses: actions/checkout@v2
+      with:
+          persist-credentials: false
+
+    - name: Configurar Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+
+    - name: Instalar dependencias
+      run: bundle install
+
+    - name: Generar y testear
+      run: bundle exec rake tests
+
+    - name: Publicar
+      if: github.event.pull_request.types == 'closed' && github.event.pull_request.merged_by != ''
+      uses: JamesIves/github-pages-deploy-action@3.6.2
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: output/html
+        TARGET_FOLDER: $${{ github.ref }}
+        CLEAN: true
