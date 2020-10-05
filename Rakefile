@@ -8,7 +8,9 @@ OUTPUT_DIR = File.join(PROJECT_DIR, "output")
 INPUT_FILES = FileList[File.join(CONTENT_DIR, "**/*.adoc")]
 CONFIG_FILES = FileList[File.join(CONFIG_DIR, "**/*.adoc"),
                         File.join(CONFIG_DIR, "**/*.yml")]
-MEDIA_DIRS = FileList[File.join(CONTENT_DIR, "**/images")]
+MEDIA_FILES = FileList[File.join(CONTENT_DIR, "**/images/**", "*.jpg"),
+                       File.join(CONTENT_DIR, "**/images/**", "*.png"),
+                       File.join(CONTENT_DIR, "**/images/**", "*.svg")]
 
 OUTPUT_HTML_FILE = File.join(OUTPUT_DIR, "html", "index.html")
 OUTPUT_HTML_DIR = File.dirname(OUTPUT_HTML_FILE)
@@ -33,14 +35,18 @@ file OUTPUT_HTML_FILE => [OUTPUT_HTML_DIR, *INPUT_FILES, *CONFIG_FILES] do |t|
 end
 
 file :html_media_files => OUTPUT_HTML_DIR do |t|
-    MEDIA_DIRS.each do |source|
-    source_relative_path = source.dup
-    source_relative_path.slice! CONTENT_DIR
+    MEDIA_FILES.each do |source|
+        relative_part = source.dup
+        relative_part.slice! CONTENT_DIR
+        destination = File.join(OUTPUT_HTML_DIR, relative_part)
+        destination_dir = File.dirname(destination)
 
-    destination_dir = File.dirname(File.join(OUTPUT_HTML_DIR, source_relative_path))
-    mkdir_p destination_dir
-    
-    cp_r source, destination_dir
+        if File.exist? destination
+            next if [File.ctime(source), File.mtime(source)].max <= \
+                [File.ctime(destination), File.mtime(destination)].max
+        end
+        mkdir_p destination_dir
+        cp_r source, destination
     end
 end
 
