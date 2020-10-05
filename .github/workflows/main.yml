@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
-    - name: Obtener contenido
+    - name: Obtener contenidos
       uses: actions/checkout@v2
       with:
           persist-credentials: false
@@ -26,12 +26,19 @@ jobs:
     - name: Generar y testear
       run: bundle exec rake tests
 
+    - name: Extract el nombre de la rama
+      uses: nelonoel/branch-name@v1
+
     - name: Publicar
-      if: github.event.pull_request.types == 'closed' && github.event.pull_request.merged_by != ''
+      if: |
+        github.event != 'pull_request' || (
+          github.event.pull_request.types == 'closed' &&
+          github.event.pull_request.merged_by != ''
+        )
       uses: JamesIves/github-pages-deploy-action@3.6.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: output/html
-        TARGET_FOLDER: $${{ github.ref }}
+        TARGET_FOLDER: ${{ env.BRANCH_NAME }}
         CLEAN: true
