@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C07_stats_reading_time}
+{C07_reading_time}
 ====
 
 Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, necesitamos estar seguros de que un error en un programa sólo afecte al proceso que lo ejecuta —por ejemplo, que un proceso no puede modificar la memoria de otro proceso o la del núcleo del sistema—.

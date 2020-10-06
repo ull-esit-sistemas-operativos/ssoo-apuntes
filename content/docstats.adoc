@@ -1,40 +1,50 @@
-:C01_stats_words: 1405
-:C01_stats_reading_time: 7 minutos
-:C02_stats_words: 4574
-:C02_stats_reading_time: 22 minutos
-:C03_stats_words: 3816
-:C03_stats_reading_time: 19 minutos
-:C04_stats_words: 2320
-:C04_stats_reading_time: 11 minutos
-:C05_stats_words: 1025
-:C05_stats_reading_time: 5 minutos
-:C06_stats_words: 3055
-:C06_stats_reading_time: 15 minutos
-:C07_stats_words: 3354
-:C07_stats_reading_time: 16 minutos
-:C08_stats_words: 1946
-:C08_stats_reading_time: 9 minutos
-:C09_stats_words: 7922
-:C09_stats_reading_time: 39 minutos
-:C10_stats_words: 6525
-:C10_stats_reading_time: 32 minutos
-:C11_stats_words: 1042
-:C11_stats_reading_time: 5 minutos
-:C12_stats_words: 3192
-:C12_stats_reading_time: 15 minutos
-:C13_stats_words: 1612
-:C13_stats_reading_time: 8 minutos
-:C14_stats_words: 6626
-:C14_stats_reading_time: 33 minutos
-:C15_stats_words: 1753
-:C15_stats_reading_time: 8 minutos
-:C16_stats_words: 2207
-:C16_stats_reading_time: 11 minutos
-:C17_stats_words: 9192
-:C17_stats_reading_time: 45 minutos
-:C18_stats_words: 2030
-:C18_stats_reading_time: 10 minutos
-:C19_stats_words: 8292
-:C19_stats_reading_time: 41 minutos
-:C20_stats_words: 5620
-:C20_stats_reading_time: 28 minutos
+:C01_words: 1371
+:C01_reading_time: 7 minutos
+:C02_words: 4501
+:C02_reading_time: 23 minutos
+:C03_words: 3833
+:C03_reading_time: 19 minutos
+:C04_words: 2242
+:C04_reading_time: 11 minutos
+:C05_words: 987
+:C05_reading_time: 5 minutos
+:C06_words: 3004
+:C06_reading_time: 15 minutos
+:C07_words: 3278
+:C07_reading_time: 16 minutos
+:C08_words: 1907
+:C08_reading_time: 10 minutos
+:C09_words: 7806
+:C09_reading_time: 39 minutos
+:C10_words: 6451
+:C10_reading_time: 32 minutos
+:C11_words: 1044
+:C11_reading_time: 5 minutos
+:C12_words: 4665
+:C12_reading_time: 23 minutos
+:C13_words: 5954
+:C13_reading_time: 30 minutos
+:C14_words: 1709
+:C14_reading_time: 9 minutos
+:C15_words: 2077
+:C15_reading_time: 10 minutos
+:C16_words: 7523
+:C16_reading_time: 38 minutos
+:C17_words: 1326
+:C17_reading_time: 7 minutos
+:C18_words: 423
+:C18_reading_time: 2 minutos
+:C19_words: 220
+:C19_reading_time: 1 minuto
+:C20_words: 1279
+:C20_reading_time: 6 minutos
+:C21_words: 4295
+:C21_reading_time: 21 minutos
+:C22_words: 1711
+:C22_reading_time: 9 minutos
+:C23_words: 1893
+:C23_reading_time: 9 minutos
+:C24_words: 4147
+:C24_reading_time: 21 minutos
+:C25_words: 1347
+:C25_reading_time: 7 minutos

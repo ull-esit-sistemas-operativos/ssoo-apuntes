@@ -1,0 +1,10 @@
+Revisar enlaces y referencias
+Revisar referencias
+Sobre por lo introducido en los últimos temas de apuntes.
+Por ejemplo sobre sistemas de archivos con Copy-on-write
+
+Ojo con el uso del término tiempo compartido (mejor propósito general o multitarea)
+
+Mira libro de system programming para los diagramas de secuencia de hilos para usar en SS.OO
+
+// TODO: Guía de estilo... en README.md

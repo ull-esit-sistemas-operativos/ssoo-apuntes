@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C11_stats_reading_time}
+{C11_reading_time}
 ====
 
 La *((memoria compartida))* es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.

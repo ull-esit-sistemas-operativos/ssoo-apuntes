@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C10_stats_reading_time}
+{C10_reading_time}
 ====
 
 El *((paso de mensajes))* es un mecanismo que permite a los procesos compartir información y sincronizar sus acciones sin necesidad de compartir recursos —compartir memoria, archivos, etc.—

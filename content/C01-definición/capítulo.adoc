@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C01_stats_reading_time}
+{C01_reading_time}
 ====
 
 ¿Qué es un sistema operativo? ¿cuáles son sus responsabilidades en el contexto de un sistema informático? ¿cómo cumple con ellas?

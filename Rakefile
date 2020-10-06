@@ -1,8 +1,9 @@
+require "nokogiri"
+
 PROJECT_DIR = Rake.application.original_dir
 
 CONTENT_DIR = File.join(PROJECT_DIR, "content")
 CONFIG_DIR = File.join(PROJECT_DIR, "config")
-SCRIPTS_DIR = File.join(PROJECT_DIR, "scripts")
 OUTPUT_DIR = File.join(PROJECT_DIR, "output")
 
 INPUT_FILES = FileList[File.join(CONTENT_DIR, "**/*.adoc")]
@@ -23,6 +24,7 @@ OUTPUT_EPUB_DIR = File.dirname(OUTPUT_EPUB_FILE)
 
 DOCUMENT_MAIN_FILE = File.join(CONTENT_DIR, "main.adoc")
 DOCSTATS_FILE = File.join(CONTENT_DIR, "docstats.adoc")
+READING_SPEED_IN_WORDS_PER_MINUTE = 200
 
 task :default => :html
 
@@ -72,8 +74,32 @@ directory OUTPUT_EPUB_DIR
 
 desc 'Generar el archivo de información estadística'
 task :docstats => :html_only do |t|
-    docstats_bin = File.join(SCRIPTS_DIR, "update-docstats")
-    sh docstats_bin, CONTENT_DIR, DOCSTATS_FILE
+    document = Nokogiri::HTML.parse(open(OUTPUT_HTML_FILE))
+    docstats = open(DOCSTATS_FILE, "w")
+    document.css(".sect1 > h2 + .sectionbody").each do |sectionbody|
+        if matches = /^(?<chapter_number>\d+)\. /.match(sectionbody.previous_element)
+            chapter_number = matches['chapter_number'] 
+            
+            wordcount = sectionbody.text().scan(/[\p{Alnum}\-']+/).length()
+            reading_time = (wordcount.to_f / READING_SPEED_IN_WORDS_PER_MINUTE).round
+
+            # Construir la cadena de texto con el tiempo de lectura
+            if reading_time == 1
+                reading_time_string = "1 minuto"
+            elsif reading_time < 60
+                reading_time_string = "#{reading_time} minutos"
+            elsif reading_time == 60
+                reading_time_string = "1 hora"
+            else
+                reading_time_string = "#{reading_time / 60} horas y #{reading_time % 60} minutos"
+            end
+
+            docstats.puts ":C%02i_words: %i" % [chapter_number, wordcount]
+            docstats.puts ":C%02i_reading_time: %s" % [chapter_number, reading_time_string]
+
+            puts "C%02i: %8i %8i (%s)" % [chapter_number, wordcount, reading_time, reading_time_string]
+        end
+    end
 end
 
 desc 'Ejecutar los tests'

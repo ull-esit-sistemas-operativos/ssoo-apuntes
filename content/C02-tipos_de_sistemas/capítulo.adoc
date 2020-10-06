@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C02_stats_reading_time}
+{C02_reading_time}
 ====
 
 Ahora que sabemos que todos los sistemas operativos hacen lo mismo pero que el «cómo» lo hacen difiere de un tipo de sistema informático a otro, vamos a ver los tipos de sistemas informáticos, las características de los sistemas operativos que los gestionan y cómo han evolucionado a lo largo de la historia.

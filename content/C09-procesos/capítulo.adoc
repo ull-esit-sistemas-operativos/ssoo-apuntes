@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C09_stats_reading_time}
+{C09_reading_time}
 ====
 
 Los primeros sistemas informáticos solo permitían que un programa se ejecutara cada vez.

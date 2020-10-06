@@ -6,7 +6,7 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C06_stats_reading_time}
+{C06_reading_time}
 ====
 
 Un sistema operativo proporciona un entorno controlado para la ejecución de programas.
