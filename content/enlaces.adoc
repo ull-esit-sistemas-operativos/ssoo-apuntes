@@ -127,7 +127,7 @@
 :fifo_server_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/fifo-client.c[fifo-server.c]
 :fork_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/fork.c[fork.c]
 :forkexec_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap09/fork-exec.c[fork-exec.c]
-:forkpipe_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp[fork-pipe.cpp]
+:forkpipe_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp[fork-pipe.cpp]
 :forkredir_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/fork-redir.c[fork-redir.c]
 :shared_memory_hpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/shared_memory.hpp[shared_memory.hpp]
 :shared_memory_client_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/shared-memory-client.cpp[shared-memory-client.cpp]
