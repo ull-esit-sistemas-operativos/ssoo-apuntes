@@ -6,14 +6,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-and-publish:
+  build-and-publish:
     runs-on: ubuntu-20.04
     steps:
 
-    - name: Obtener contenidos
+    - name: Obtener el proyecto
       uses: actions/checkout@v2
       with:
           persist-credentials: false
+
+    - name: Extract el nombre de la rama
+      uses: nelonoel/branch-name@v1
 
     - name: Configurar Ruby
       uses: ruby/setup-ruby@v1
@@ -23,11 +26,11 @@ jobs:
     - name: Instalar dependencias
       run: bundle install
 
-    - name: Generar y testear
+    - name: Generar la documentación
+      run: bundle exec rake build
+    
+    - name: Testear
       run: bundle exec rake tests
-
-    - name: Extract el nombre de la rama
-      uses: nelonoel/branch-name@v1
 
     - name: Publicar
       if: |
