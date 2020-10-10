@@ -43,3 +43,7 @@ Por ejemplo, en distribuciones derivadas de Debian:
 ~~~
 $ sudo apt install ruby-dev libxml2-dev libxslt-dev zlib1g-dev
 ~~~
+
+## Ejemplos
+
+El código de los ejemplos está disponible en [ull-esit-sistemas-operativos/ssoo-ejemplos](https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos).
