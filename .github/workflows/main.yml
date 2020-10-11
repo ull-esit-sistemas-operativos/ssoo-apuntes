@@ -2,8 +2,11 @@ name: Generar, testear y publicar
 
 on:
   push:
+    branches-ignore: [master]
   pull_request:
+    branches-ignore: [master]
   workflow_dispatch:
+      branches-ignore: [master]
 
 jobs:
   build-and-publish:
