@@ -72,7 +72,8 @@ Todos tendrán una copia del mismo segmento de código, pero diferente: contador
 ====
 
 // TODO: Subir código (no pegado abajo) y bajar la pila o crear otra imagen para el caso de Linux.
-En la <<proceso_en_memoria>> se puede observar la disposición de algunos de estos elementos de un proceso en la memoria.
+// TODO: Añadir lo que es espacio de usuario.
+En la <<proceso_en_memoria>> se puede observar la disposición de algunos de estos elementos de un proceso en el espacio de usuario en la memoria.
 
 [[proceso_en_memoria]]
 .Anatomía de un proceso en memoria.
@@ -116,8 +117,9 @@ Como en el caso del estado *nuevo*, este estado existe porque terminar un proces
 El diagrama de estados de los procesos, con las transiciones posibles entre ellos, se muestra en la <<diagrama_estado_proceso>>.
 
 == Bloque de control de proceso
+(((bloque de control, proceso)))
 
-El *((bloque de control de proceso))* o *((PCB))* (_Process Control Block_) es una estructura de datos que representa a cada proceso en el sistema operativo y que guarda información sobre su estado de actividad actual.
+El *bloque de control de proceso* o *((PCB))* (_Process Control Block_) es una estructura de datos que representa a cada proceso en el sistema operativo y que guarda información sobre su estado de actividad actual.
 
 En el sistema hay un PCB por proceso y sirve de almacén para cualquier información que puede variar de un proceso a otro:
 

@@ -118,21 +118,22 @@ Por lo general, si un programa falla de alguna forma —como por ejemplo, intent
 == Protección de la memoria
 
 La memoria principal debe acomodar tanto el sistema operativo como a los diferentes procesos de los usuarios.
-Por eso la memoria normalmente se divide en dos partes:
+Por eso la memoria normalmente se divide en dos partes o espacios:
 
-1. La primera parte sirve para albergar el núcleo del sistema operativo.
+1. La primera parte es el *espacio del núcleo*(((espacio, núcleo))).
+Sirve para albergar el núcleo del sistema operativo.
 +
 El sistema operativo puede estar localizado tanto en la parte baja como en la parte alta de la memoria.
 El factor determinante en la elección es la localización del vector de interrupciones, que es una tabla en la memoria que define las direcciones a las que saltará la CPU en caso de que ocurra una interrupción o una excepción.
 +
 Puesto que en la mayor parte de las arquitecturas éste reside en la parte baja de la memoria, normalmente el sistema operativo también se aloja en la parte baja.
 
-2. La segunda parte alberga los procesos de usuario.
+2. La segunda parte es el *espacio de usuario*(((espacio, usuario))) y alberga los procesos de usuario.
 
 Sin embargo, en los sistemas operativos modernos, los procesos no tienen acceso libre a toda memoria física, con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:
 
 ====
-* El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; similar a la que tendrían si cada uno de ellos se estuviera ejecutando en solitario (véase la <<protección_memoria>>).
+* El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; de tal forma que el *espacio de usuario* que ve cada proceso es similar al que vería cada uno de ellos si se estuviera ejecutando en solitario (véase la <<protección_memoria>>).
 
 * A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina *espacio de direcciones virtual*(((espacio de direcciones, virtual))) del proceso.
 Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
@@ -143,6 +144,7 @@ Por tanto las *direcciones físicas*(((dirección, física))) son las direccione
 Mientras que el *espacio de direcciones físico*(((espacio de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un espacio de direcciones virtual dado.
 ====
 
+// TODO: Señalar el espacio de usuario y de núcleo.
 [[protección_memoria]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::protección_memoria.svg[]

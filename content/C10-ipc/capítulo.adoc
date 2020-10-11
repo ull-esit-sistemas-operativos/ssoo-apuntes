@@ -490,7 +490,7 @@ El *tamaño y formato del mensaje es fijo*.
 Las señales solo pueden portar la información de que ha ocurrido un evento, indicado qué evento es a través del número que identifica la señal.
 
 Cada señal tiene un efecto particular por defecto —que por lo general es matar al proceso— en el proceso que las recibe.
-Sin embargo, cada proceso puede declarar un *((manejador de señal))*.
+Sin embargo, cada proceso puede declarar un *manejador de señal*(((manejador, señal))).
 Una función del programa que será invocada por el sistema operativo para tratar una señal determinada, interrumpiendo lo que esté haciendo el proceso en ese momento.
 En ese sentido las señales en POSIX puede interpretarse como una forma de interrupción por software.
 
