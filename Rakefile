@@ -76,9 +76,24 @@ end
 directory OUTPUT_EPUB_DIR
 
 desc 'Ejecutar los tests'
-task :tests => :html do |t|
+task :tests => [:test_htmlproofer, :test_missing_variables]
+
+desc 'Test de HTMLProofer'
+task :test_htmlproofer => :html do |t|
     typhoeus_config = '{"ssl_verifyhost": 0, "ssl_verifypeer": false}'
     sh "htmlproofer", "--typhoeus_config", typhoeus_config, OUTPUT_HTML_DIR
+end
+
+desc 'Test de variables no definidas'
+task :test_missing_variables => OUTPUT_HTML_FILE do |t|
+    document = Nokogiri::HTML.parse(open(OUTPUT_HTML_FILE))
+    variables = document.xpath('//text()').filter_map do |text|
+        match = /\{\w+\}/.match(text)
+        match.to_s if match
+    end.uniq.sort
+
+    fail "Se han encontrado #{variables.size} variables no definidas:\n#{variables.join("\n")}" unless variables.empty?
+    puts variables
 end
 
 desc 'Limpiar todos los archivos generados'
