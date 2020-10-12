@@ -592,15 +592,35 @@ En los sistemas POSIX las *tuberías con nombre* se denominan _FIFO_ y tienen pr
 ====
 
 .Funciones de la API para manipular tuberías.
-[cols="h*"]
+[cols="1h,2*" options=header]
 |====
-|                               | POSIX API         | Windows API
-| Crear tubería anónima         | {linux_pipe}      | {win32_createpipe}
-| Crear tubería con nombre      | {linux_mkfifo}    | {win32_createnamedpipe}
-| Abrir tubería con nombre      | {linux_open}      | {win32_createfile}
-| Leer                          | {linux_read}      | {win32_readfile}
-| Escribir                      | {linux_write}     | {win32_writefile}
-| Cerrar                        | {linux_close}     | {win32_closehandle}
+|
+|POSIX API         
+|Windows API
+
+|Crear tubería anónima         
+|{linux_pipe}      
+|{win32_createpipe}
+
+|Crear tubería con nombre      
+|{linux_mkfifo}    
+|{win32_createnamedpipe}
+
+|Abrir tubería con nombre      
+|{linux_open}      
+|{win32_createfile}
+
+|Leer                          
+|{linux_read}      
+|{win32_readfile}
+
+|Escribir                      
+|{linux_write}     
+|{win32_writefile}
+
+|Cerrar                        
+|{linux_close}     
+|{win32_closehandle}
 |====
 
 Con {linux_fork} es muy sencillo lanzar otros procesos para que ejecuten tareas en paralelo.

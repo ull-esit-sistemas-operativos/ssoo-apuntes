@@ -8,24 +8,24 @@
 :C04_reading_time: 11 minutos
 :C05_words: 987
 :C05_reading_time: 5 minutos
-:C06_words: 3004
+:C06_words: 3003
 :C06_reading_time: 15 minutos
-:C07_words: 3278
-:C07_reading_time: 16 minutos
+:C07_words: 3303
+:C07_reading_time: 17 minutos
 :C08_words: 1907
 :C08_reading_time: 10 minutos
-:C09_words: 7803
+:C09_words: 7808
 :C09_reading_time: 39 minutos
 :C10_words: 6451
 :C10_reading_time: 32 minutos
 :C11_words: 1041
 :C11_reading_time: 5 minutos
-:C12_words: 3126
-:C12_reading_time: 16 minutos
-:C13_words: 1542
-:C13_reading_time: 8 minutos
-:C14_words: 5951
-:C14_reading_time: 30 minutos
+:C12_words: 6896
+:C12_reading_time: 34 minutos
+:C13_words: 1858
+:C13_reading_time: 9 minutos
+:C14_words: 6880
+:C14_reading_time: 34 minutos
 :C15_words: 1709
 :C15_reading_time: 9 minutos
 :C16_words: 2077
@@ -44,7 +44,7 @@
 :C22_reading_time: 21 minutos
 :C23_words: 1708
 :C23_reading_time: 9 minutos
-:C24_words: 1893
+:C24_words: 1895
 :C24_reading_time: 9 minutos
 :C25_words: 4147
 :C25_reading_time: 21 minutos

@@ -1,253 +1,762 @@
-=== Hilos
+= Hilos
 ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
-Hasta el momento el modelo de proceso que hemos descrito asume que tenemos un sólo *hilo* de ejecución, es decir, que se ejecuta en la CPU una única secuencia de instrucciones.
-Un proceso con un hilo de ejecución sólo puede realizar una tarea a la vez.
-Por ejemplo, en un procesador de textos con un sólo hilo de ejecución el usuario nunca podría escribir al mismo tiempo que se comprueba la ortografía.
-Por eso muchos sistemas operativos modernos han extendido el concepto de proceso para permitir múltiples hilos de ejecución en cada uno.
+[.right]
+====
+.Tiempo estimado de lectura
+{C12_reading_time}
+====
+
+En el modelo de proceso que hemos descrito hasta el momento, cada proceso tiene una única secuencia de instrucciones que se ejecuta en la CPU.
+Si los procesos solo pueden tener una única secuencia de instrucciones, solo pueden realizar una tarea a la vez.
+Por ejemplo, en un procesador de textos en un sistema operativo con este modelo de procesos, el usuario nunca podría escribir al mismo tiempo que se comprueba la ortografía.
+Si queremos hacer varias tareas al mismo tiempo, estamos obligados a crear varios procesos y seleccionar un mecanismo de comunicación para estos colaboren.
+
+Por eso muchos sistemas operativos modernos han extendido el concepto de proceso para permitir que cada uno tenga múltiples secuencias de instrucciones para ejecutarse en la CPU.
+A cada una de estas secuencias de instrucciones se las conoce como *((hilo))* de ejecución.
 Los procesos con varios hilos pueden realizar varias tareas a la vez.
 
-==== Introducción
+== Introducción
 
-_El hilo es la unidad básica de uso de la CPU en los sistemas operativos multihilo_.
-De los recursos de un proceso es privado a cada hilo (véase la ):
+Desde que introducimos el concepto de *((proceso))* hemos considerado que es la unidad básica de uso de la CPU.
+Es decir, que la CPU se asignaba a los procesos, que la usaban para ejecutar sus instrucciones.
+Sin embargo, en los *sistemas operativos multihilo*(((sistema operativo, multihilo))) es el *hilo* la unidad básica de uso de la CPU.
 
-* *El identificador del hilo* lo identifica en el sistema de la misma manera que lo hace el identificador de proceso con el proceso.
+// TODO: Hacer un esquema más realista.
+// Más parecido al de la memoria del procesos en el capítulo 9.
 
-* *El contador de programa* indica la dirección de la próxima instrucción del proceso que debe ser ejecutada por la CPU.
+[[multihilo]]
+.Comparación entre procesos monohilo y proceso multihilo.
+image::procesos_multihilo.svg[]
 
-* *Los registros de la CPU*.
+====
+Cada hilo tiene una serie de recursos propios dentro del proceso (véase la <<multihilo>>):
 
-* *La pila* contiene datos temporales como parámetros y direcciones de retorno de las funciones y variables locales.
+* *El identificador del hilo*, que es único para cada hilo y sirve para identificarlos, de la misma manera que lo hace el identificador de proceso con cada proceso.
 
-Sin embargo todos los hilos de un mismo proceso comparten (véase la ):
+* *El contador de programa*, que es el registro de la CPU que indica la dirección de la próxima instrucción del hilo que debe ser ejecutada por la CPU.
+
+* *Los registros de la CPU*, cuyos valores son diferentes en cada hilo puesto que, aunque todos los hilos ejecutan el mismo programa, pueden ejecutar diferentes partes del mismo.
+
+* *La pila*, que contiene datos temporales como argumentos y direcciones de retorno de las funciones y variables locales.
+Al igual que ocurre con los registros de la CPU, cada hilo necesita su pila porque recorre el programa de manera diferente.
+
+Sin embargo hay otros recursos del procesos que se comparten entre todos los hilos del mismo (véase la <<multihilo>>):
 
 * *El código del programa*.
+El programa es el mismo para todos los hilos.
 
-* *Otras secciones de datos*, como el montón.
+* *Los segmentos BSS y de datos y el montón*.
+Las secciones de datos diferentes de la pila son accesibles a todos los hilos.
+Eso quiere decir, por ejemplo, que cualquier hilo puede accede y modificar una variable global o una asignada dinámicamente mediante {clang_malloc} o {cpp_new}.
 
-* Y *otros recursos del proceso* como archivos abiertos y señales.
+* *Otros recursos del proceso* como archivos, _sockets_, tuberías y dispositivos abiertos, regiones de memoria compartida, señales, directorio actual de trabajo, entre muchos otros recursos.
+====
 
-===== Beneficios
+== Beneficios
 
-Muchos son los beneficios que aporta la programación multihilo:
+Son muchos los beneficios que aporta la programación multihilo:
 
-* *Respuesta*.
-Una aplicación multihilo interactiva puede continuar ejecutándose aunque parte de la misma esté bloqueada o realizando una operación lenta, mejorando la _respuesta al usuario_ de la misma.
-Por ejemplo, un navegador Web multihilo puede gestionar la interacción del usuario a través de un hilo mientras el contenido solicitado se descarga en otro hilo.
+=== Tiempo de respuesta
 
-* *Compartición de recursos*.
-Por defecto los hilos comparten la memoria y los recursos del proceso al que pertenecen.
-El compartir el código es lo que permite a una aplicación tener varios hilos que realizan diferentes actividades dentro del mismo espacio de direcciones.
+Una aplicación multihilo interactiva puede continuar ejecutando tareas aunque uno o varios hilos de la misma estén bloqueados o realizando operaciones muy lenta, mejorando así el tiempo de respuesta al usuario.
 
-* *Economía*.
-Reservar memoria y otros recursos para la creación de un proceso es costoso.
-Puesto que los hilos comparten los recursos de los procesos a los que pertenecen es más económico crearlos.
-También es más económico el cambio de contexto entre ellos ya que hay que guardar y recuperar menos información.
-Por ejemplo en Oracle/Sun Microsystems Solaris crear un proceso es 30 veces más lento que crear un hilo; y el cambio de contexto es 5 veces más lento.
+Por ejemplo, un navegador web multihilo puede gestionar la interacción del usuario a través de un hilo mientras el contenido solicitado se descarga en otro.
+Mientras que para hacer lo mismo en un navegador monohilo habría que utilizar comunicaciones asíncronas.
+De lo contrario, mientras el proceso está en estado *esperando*, a la espera de que lleguen los datos a través de la red, no puede atender las acciones del usuario.
 
-// Estadísticas más modernas ¿Linux? ¿Windows?
+=== Compartición de recursos
 
-* *Aprovechamiento de las arquitecturas multiprocesador*.
-En esas arquitecturas diferentes hilos pueden ejecutarse en paralelo en distintos procesadores.
-Por el contrario un proceso monohilo sólo se puede ejecutar en una CPU a la vez, independientemente de cuantas estén disponibles para ejecutarlo.
+En sistemas operativos monohilo se pueden crear varios procesos y comunicarlos mediante memoria compartida para conseguir algo similar a lo que ofrecen los sistemas multihilo.
+Sin embargo, al utilizar hilos las tareas ejecutadas en ellos comparten los recursos automáticamente, sin que tengamos que hacer nada.
+Además, los hilos no solo comparten la memoria, sino también otros muchos recursos del proceso.
+Por lo que los hilos son una forma más conveniente de tener procesos que realizan diferentes actividades al mismo tiempo.
 
-===== Soporte multihilo
+=== Economía
 
-_Las *librerías de hilos* proporcionan al programador la API para crear y gestionar los hilos de su proceso_.
-Hay dos formas fundamentales de implementar una librería de hilos:
+Reservar memoria y otros recursos para la creación de un proceso es muy costoso.
+Por eso los sistemas operativos modernos ha desarrollado diversas técnicas para que sea lo más eficaz posible.
 
-* La primera forma es _implementar la librería enteramente en el espacio de usuario, sin requerir el soporte del núcleo_:
+Aun así, puesto que los hilos comparten los recursos de los procesos a los que pertenecen, son mucho más económicos de crear.
+También es más económico el cambio de contexto entre ellos ya que hay que guardar y recuperar menos información al cambiar entre dos hilos de un mismo proceso.
 
-** Los hilos así gestionados no existen para el núcleo.
-Sólo existen en el espacio de usuario dentro del proceso que los ha creado.
-Por ese motivo se los denomina *hilos de usuario*.
+Por ejemplo, en Microsoft Windows crear un procesos puede ser 300 veces más costoso que un hilo. Mientras que en sistemas Linux es 3 veces más lento, por la eficiencia de {linux_fork}.
 
-** El código y los datos de la librería residen en el espacio de usuario, por lo que invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.
+=== Aprovechamiento de las arquitecturas multiprocesador.
 
-* La segunda forma es _implementar la librería en el núcleo_.
+En los sistemas multiprocesador diferentes hilos pueden ejecutarse en paralelo en distintos procesadores.
+Por el contrario, un proceso monohilo sólo se puede ejecutar en una CPU a la vez, independientemente de cuantas CPU estén disponibles para ejecutarlo.
 
-** Los hilos así gestionados son soportados y gestionados por el núcleo, quien se encarga de planificarlos en la CPU.
-Por ese motivo se los denomina *hilos de núcleo*.
+== Soporte multihilo
 
-** El código y los datos de la librería residen en el espacio del núcleo, por lo que invocar una función de la misma requiere frecuentemente hacer una llamada al sistema.
+Las *librerías de hilos*(((librería, de hilos))) proporcionan al programador la interfaz de programación para crear y gestionar los hilos de su proceso.
+Hay dos formas de implementar una librería de hilos: en el espacio de usuario o en el núcleo.
 
-En la actualidad en los diferentes sistemas operativos se pueden encontrar librerías de ambos tipos.
-Por ejemplo, la librería de hilos del API Win32 es del segundo tipo mientras que la librería de hilos POSIX Threads —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implementefootnote:[POSIX Threads se implementa en el núcleo en los sistemas Linux y en la mayor parte de los UNIX actuales.].
+=== Librería de hilos en el espacio de usuario
 
-==== Modelos multihilo
+La librería de hilos se puede implementar en el espacio de usuario, junto al código y los datos del proceso, sin requerir ningún soporte especial por parte del núcleo.
 
-Las distintas formas de implementar los hilos comentadas anteriormente —en espacio de usuario o en el núcleo— no son excluyentes ya que en un sistema operativo concreto se pueden implementar ambas, una de las dos o ninguna —esto último en el caso de los sistemas operativos que no soportan de ninguna forma múltiples hilos de ejecución—.
-Así que en general debe existir una relación entre los hilos de usuario y los del núcleo.
-A continuación veremos tres formas de establecer dicha relación.
+Estos hilos no existen para el núcleo del sistema operativo, solo para el proceso que los ha creado.
+Por ese motivo se los denomina *hilos de usuario*(((hilos, usuario))).
 
-===== Muchos a uno
+Como el código y los datos de la librería residen en el espacio de usuario, por lo que invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.
 
-_En un sistema operativo cuyo núcleo no soporta múltiples hilos de ejecución la única posibilidad es utilizar una librería de hilos implementada en el espacio de usuario.
-El planificador de dicha librería se encarga de determinar que hilo de usuario se ejecuta en cada momento en el proceso, mientras este es planificado en la CPU por el núcleo, obviamente elegido cuando le corresponda de entre todos los procesos del sistema._
+=== Librería de hilos en el núcleo
 
-A efectos prácticos un proceso «sin hilos» se puede interpretar como un proceso con «un único hilo» de ejecución en el núcleo.
-Por eso se dice que _en el modelo *muchos a uno* se mapean los múltiples hilos de usuario de un proceso en el único hilo de núcleo del mismo_ (véase la ).
+Si la librería de hilos se implementa en el núcleo, es el núcleo del sistema el que se encarga de darles soporte.
+Por ese motivo se los denomina *hilos de núcleo*(((hilos, núcleo))).
 
+Aparte del *PCB* que vimos en el <<bloque_de_control_de_proceso>>, cada hilo tiene una estructura llamada *bloque de control del hilo*(((bloque de control, hilo))) o ((TCB)) (_Thread Control Block_) que representa a cada hilo en el sistema operativo y que guarda información sobre su estado de actividad actual.
+
+En estos sistemas es el hilo la unidad básica de uso de la CPU.
+Son los hilos los que se mueven por los estados del <<diagrama_estado_proceso>> y las colas de la <<colas_de_planificación_procesos>> y no los procesos.
+El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado *preparado* en el sistema y el *cambio de texto* asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.
+
+Por tanto, es en *TCB* —y no en el *PCB*— donde se guarda la información privada del hilo necesaria para la gestión de lo estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programas, el estado o la información de planificación de la CPU; además de un puntero al *PCB* al que pertenece el hilo con el resto de la información privada del proceso.
+
+Como el código y los datos de la librería residen en el espacio del núcleo, invocar una función de la misma requiere frecuentemente hacer una llamada al sistema.
+Obviamente, la librería del sistema ofrece funciones para no tener que hacer la llamada al sistema directamente.
+
+En la actualidad, en los diferentes sistemas operativos se pueden encontrar librerías de ambos tipos.
+Por ejemplo, la https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads[librería de hilos de Windows API] se implementa en el núcleo mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente. En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.
+
+== Modelos multihilo
+
+Las distintas formas de implementar los hilos comentadas anteriormente —en espacio de usuario o en el núcleo— no son excluyentes, ya que en un sistema operativo concreto se pueden implementar ambas, una de las dos o ninguna. 
+
+A continuación veremos los modelos a los que han dado lugar las distintas combinaciones.
+
+=== Muchos a uno
+(((muchos a uno)))
+(((modelo, muchos a uno)))
+
+En el modelo *muchos a uno* los hilos que ve el proceso se mapean en un única «entidad planificable en la CPU» del núcleo.
+
+Este, por lo general, es el modelo utilizado cuando el núcleo no soportan múltiples hilos de ejecución.
+En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son hilos de usuario (véase la <<modelo_muchos_a_uno>>).
+
+// TODO: Ajustar el dibujo a la explicación
+
+[[modelo_muchos_a_uno]]
+.Modelo muchos a uno.
+image::modelo_muchos_a_uno.svg[]
+
+====
 Las principales características de este modelo son:
 
-* _La gestión de hilos se hace con una librería en el espacio de usuario_, por lo que puede ser muy eficiente.
-Como hemos visto anteriormente la invocación de las funciones de la librería se hace por medio de simples llamadas a funciones.
+* La gestión de hilos se hace con una librería en el espacio de usuario, por lo que los hilos se pueden crear de forma rápida y con poco coste.
+Como hemos visto anteriormente, la invocación de las funciones de la librería se hace por medio de simples llamadas a funciones.
 
-* _El proceso entero se bloquea si un hilo hace una llamada al sistema que deba ser bloqueada_.
-Por ejemplo operaciones de E/S a archivos, esperar a que suceda un evento, etc.
+* Si uno de los hilos solicita al sistema operativo una operación que deba ser bloqueada a la espera —por ejemplo, operaciones de E/S sobre archivos, comunicaciones o esperar a que otro proceso termine— todo el proceso es bloqueado, no pudiendo ejecutarse otros hilos del mismo proceso mientras tanto.
+Eso significa que si nuestros hilos hacen ese tipo de operaciones, el resultado es como si no tuviéramos hilos.
 
-* Como sólo un hilo de usuario puede ser asignado al hilo de núcleo, _los hilos de un mismo proceso no se pueden ejecutar en paralelo en sistemas multiprocesador_.
-El planificador de la librería de hilos es el encargado de determinar que hilo de usuario es asignado al único hilo de núcleo del proceso y este sólo puede ejecutarse en una única CPU al mismo tiempo.
+* Como sólo un hilo puede ser asignado al proceso, los hilos de un mismo proceso no se pueden ejecutar en paralelo en sistemas multiprocesador.
+El planificador de la librería de hilos es el encargado de determinar qué hilo de usuario es asignado al proceso y este solo puede ejecutarse en una única CPU al mismo tiempo.
+====
 
-El problema del bloqueo de procesos puede ser evitado sustituyendo las funciones de la librería del sistema, de manera que las llamadas al sistema que se pueden bloquear sean sustituidas por versiones con llamadas equivalentes pero no bloqueantes.
-Por ejemplo, las llamadas al sistema de E/S se pueden reemplazar por llamadas de E/S asíncrona, que retornan inmediatamente aunque la operación no haya sido completada.
-Después de cada una de estas llamadas asíncronas al sistema, la librería del sistema invoca al planificador de la librería de hilos para que bloquee el hilo que ha realizado la llamada y asigne el hilo de núcleo a un nuevo hilo de usuario.
-Obviamente el planificador de la librería de hilos debe estar al tanto de cuando las operaciones asíncronas son completadas para poder volver a planificar los hilos de usuario bloqueados.
-Este procedimiento es a todas luces bastante complejo y requiere versiones no bloqueantes de todas las llamadas al sistema, así como modificar las funciones bloqueantes de la librería del sistema para implementar el comportamiento descrito.
+El problema del bloqueo de procesos puede ser evitado interceptando las llamadas a funciones de la librería del sistema, para evitar el uso de llamadas al sistema que se puedan bloquear y sustituirlas por versiones equivalentes pero asíncronas.
 
-// TODO: Destacar que esto hay que comprobarlo.
+// TODO: ¿Diagrama UML de hilos ilustrando el caso?
 
-Ejemplos de implementaciones este modelo de hilos son la Green Threads, una de las implementaciones de hilos para Solaris y Java, Stackless Pythonfootnote:[Más información de Stackless Python: http://www.stackless.com/] y GNU Portable Threadsfootnote:[Más información de GNU Pthreads: http://www.gnu.org/software/pth/.].
-Estas implementaciones son muy útiles en los sistemas monohilo, de cara a poder ofrecer cierto soporte de hilos a las aplicaciones, pero también en los sistemas multihilo, ya que debido a su bajo coste en recursos y a su alta eficiencia son ideales cuando la cantidad de hilos a crear —el nivel de concurrencia— va a ser previsiblemente muy alta .
+Por ejemplo, si un hilo llamase a las funciones {linux_recv} o {linux_send} de la librería del sistema, habría que hacer que realmente se invocase una versión diferente que utilizase estas funciones de forma asíncrona.
+Mientras la operación es ejecutada por el sistema operativo, en lugar de retornar de la función, se llama al planificador de la librería de hilos para que la ejecución continúe con otro hilo del proceso, dejando suspendido el que tiene pendiente la operación.
+Obviamente, el planificador de la librería de hilos debe estar al tanto de cuándo las operaciones asíncronas son completadas para poder volver a planificar los hilos de usuario suspendidos.
 
-===== Uno a uno
+Este procedimiento es a todas luces bastante complejo y requiere versiones no bloqueantes de todas las llamadas al sistema —que no siempre existen— así como modificar o interceptar de alguna forma las funciones bloqueantes de la librería del sistema para implementar el comportamiento descrito.
 
-_Si el núcleo del sistema operativo soporta hilos de ejecución, lo más común es que estos sean visibles directamente en el espacio de usuario.
-Por lo tanto se dice que _en el modelo *uno a uno* se mapea cada hilo de usuario en exactamente un hilo de núcleo_ (véase la ).
+==== Implementaciones
 
+A este modelo de hilos frecuentemente se lo llama https://en.wikipedia.org/wiki/Green_threads[Green Threads].
+En Java 1.1 era el único modelo soportado, pero debido a sus limitaciones se implementó el soporte del modelo *uno a uno* en versiones posteriores.
+
+Otras implementaciones de este modelo son las https://docs.microsoft.com/en-us/windows/win32/procthread/fibers[fibras] de Windows API, http://www.stackless.com/[Stackless Python] y http://www.gnu.org/software/pth/[GNU Portable Threads].
+Estas implementaciones son muy útiles en los sistemas monohilo, de cara a poder ofrecer cierto soporte de hilos a las aplicaciones.
+Pero también lo son en los sistemas multihilo, ya que debido a su bajo coste en recursos y a su alta eficiencia son ideales cuando la cantidad de hilos a crear —el nivel de concurrencia— va a ser previsiblemente muy alta.
+
+=== Uno a uno
+(((uno a uno)))
+(((modelo, uno a uno)))
+
+En el modelo *muchos a uno* cada hilo que ve el proceso se mapean en una «entidad planificable en la CPU» diferente del núcleo.
+
+Este, por lo general, es el modelo utilizado cuando el núcleo del sistema operativo soporta hilos de ejecución.
+En este caso, la librería de hilos se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los hilos de núcleo y los procesos pueden gestionar estos hilos mediante llamadas al sistema.
+
+// TODO: Ajustar el dibujo a la explicación
+
+[[modelo_uno_a_uno]]
+.Modelo uno a uno.
+image::modelo_uno_a_uno.svg[]
+
+====
 Las principales características de este modelo son:
 
-* _Permite a otro hilo del mismo proceso ejecutarse aun cuando un hilo hace una llamada al sistema que debe bloquearse_, ya que el núcleo se encarga de ponerlo en espera y planificar en la CPU a otro de los hilos preparados para ejecutarse de entre todos los existentes en el sistema.
+* Permite a otros hilos del mismo proceso ejecutarse aun cuando uno de ellos haga una llamada al sistema que debe bloquearse.
+El núcleo se encarga de ponerlo en espera y planificar en la CPU a otro de los hilos preparados para ejecutarse de entre todos los existentes en el sistema.
 
-* _Permite paralelismo en sistemas multiprocesador_, ya que diferentes hilos pueden ser planificados por el núcleo en distintos procesadores.
+* Permite paralelismo en sistemas multiprocesador, ya que diferentes hilos pueden ser planificados por el núcleo en distintos procesadores.
 
-* Crear un hilo de usuario requiere crear el correspondiente hilo de núcleo.
-Debido a que la cantidad de memoria disponible para el núcleo suele estar limitada, _muchos sistemas restringen la cantidad máxima de hilos soportados_.
+* Crear un hilo para un proceso implicar crear ciertas estructuras de datos en el núcleo.
+Debido a que la cantidad de memoria disponible para el núcleo suele estar limitada, muchos sistemas restringen la cantidad máxima de hilos de núcleo soportados.
 
-* _Las gestión de los hilos se hace con una librería en el espacio de núcleo_, lo que requiere utilizar llamadas al sistema.
+* Las gestión de los hilos se hace con una librería en el espacio de núcleo, lo que requiere que el proceso haga llamadas al sistema para gestionarlos.
+Esto siempre es más lento que invocar simplemente una función, como ocurre en el modelo *muchos a uno*.
+====
 
 Este modelo se utilizar en la mayor parte de los sistemas operativos multihilo modernos.
-Linux, Microsoft Windows 95/98/NT/2000/XP y superiores, y Solaris 9 y superiores, son ejemplos de sistemas operativos que los utilizan.
+Linux, Microsoft Windows —desde Windows 95— {solaris} 9 y superiores, macOS y la familia de UNIX BSD; son ejemplos de sistemas operativos que utiliza el modelo *uno a uno*.
 
-===== Muchos a muchos
+=== Muchos a muchos
+(((muchos a muchos)))
+(((modelo, muchos a muchos)))
 
-_En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores.
-Por eso _en el modelo *muchos a muchos* se mapean los hilos de usuario en un menor o igual número de hilos de núcleo del proceso_ (véase la ).
-Así los desarrolladores pueden utilizar la librería de hilos en el espacio de usuario para crear tantos hilos como quieran.
-El planificador de la librería de hilos se encarga de determinar que hilo de usuario es asignado a que hilo de núcleo.
+En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una librería de hilos en el núcleo, para crear hilos de núcleo, y otra en el espacio de usuario, para crear hilos de usuario.
+Así los desarrolladores pueden utilizar la librería de hilos en el espacio de usuario para crear tantos hilos como quieran y que se ejecuten sobre los hilos de núcleo.
+
+El planificador de la librería de hilos se encarga de determinar qué hilo de usuario es asignado a qué hilo de núcleo.
 Mientras que el planificador de la CPU asigna la CPU a alguno de los hilos de núcleo del sistema.
 
-* _Los hilos de núcleo pueden ser ejecutados en paralelo en sistemas multiprocesador_.
+// TODO: Ajustar el dibujo a la explicación
 
-* _Permite a otro hilo del mismo proceso ejecutarse cuando un hilo hace una llamada al sistema que debe ser bloqueada_, puesto que si un hilo de usuario realiza una llamada al sistema que debe ser bloqueada, el correspondiente hilo de núcleo quedará bloqueado.
-Sin embargo, el resto de los hilos de usuario pueden seguir ejecutándose en los otros hilos de núcleo.
+[[modelo_muchos_a_muchos]]
+.Modelo muchos a muchos.
+image::modelo_muchos_a_muchos.svg[]
 
-Existe una variación del modelo muchos a muchos donde, además de hacer lo comentado anteriormente, se permite que un hilo de usuario quede ligado a un único hilo de núcleo.
-Esta variación se denomina en ocasiones modelo de *dos niveles* (véase la ) y es soportada en sistemas operativos como Solaris 8 y anteriores, IRIX, HPUX y Tru64 UNIX.
+====
+En el modelo *muchos a muchos* se mapean los hilos de usuario en un menor o igual número de hilos de núcleo del proceso (véase la <<modelo_muchos_a_muchos>>).
 
-Tanto en el modelo _muchos a muchos_ como en el de _dos niveles_ es necesario cierto grado de coordinación entre el núcleo y la librería de hilos del espacio de usuario.
-Dicha comunicación tiene como objetivo ajustar dinámicamente el número de hilos del núcleo para garantizar la máxima eficiencia.
-Uno de los esquemas de comunicación se denomina *activación del planificador* y consiste en que el núcleo informa a la librería de hilos en espacio de usuario del bloqueo de un hilo de un proceso.
-Antes de dicha notificación el núcleo se encarga de crear un nuevo hilo de núcleo en el proceso, de manera que el planificador de la librería pueda encargarse de asignarle alguno de los otros hilos de usuario.
-Así es como se ajusta el número de hilos dinámicamente de manera que el proceso nunca quede bloqueado.
+* Permite paralelismo en sistemas multiprocesador, ya que diferentes hilos de núcleo pueden ser planificados en distintos procesadores y en cada uno puede ejecutarse cualquier hilo de usuario.
 
-Debido a la complejidad del mecanismo descrito anteriormente y a la dificultad de coordinar el planificador de la libraría de hilos con el de la CPU para obtener un rendimiento óptimo, sistemas como Linux y Solaris —a partir de la versión 9— han optado por el modelo uno a uno.
-Con el objetivo de evitar las penalizaciones de dicho modelo, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de hilos de núcleo.
+* Permite a otro hilo de usuario del mismo proceso ejecutarse cuando un hilo hace una llamada al sistema que debe bloquearse, puesto que si esto ocurre el correspondiente hilo de núcleo queda bloqueado.
+Sin embargo, el resto de los hilos de usuario pueden seguir ejecutándose en los otros hilos de núcleo del proceso.
+====
 
-==== Otras consideraciones sobre los hilos
+Este modelo se soportada en sistemas {freebsd} y versiones antiguas de {netbsd}, así como en UNIX comerciales, como: {solaris} 8 y anteriores, {irixnix, {hpux} y {tru64}.
+También Microsoft Windows —a partir de Windows 7— soporta este modelo gracias a incorporar un mecanismo denominado https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[planificacion en modo usuario].
 
-===== Datos específicos de hilo
+Algunos lenguajes de programación implementan el modelo *muchos a muchos* sobre el modelo *uno a uno* soportado por la mayoría de sistemas operativos modernos.
+Ese es el caso de https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)[Go], https://es.wikipedia.org/wiki/Erlang[Erlang] y https://es.wikipedia.org/wiki/Elixir_(lenguaje_de_programaci%C3%B3n)[Elixir].
 
-Los hilos de un mismo proceso comparten los datos del mismo, siendo este uno de los principales beneficios de la programación multihilo.
-Por ejemplo todas las variables globales del programa son compartidas por todos los hilos.
-Sin embargo en algunas ocasiones puede interesar definir ciertos datos como privados a cada hilo.
-A esos datos se los denomina *TSD* o _thread-specific data_ y son soportados por muchas librerías de hilos, incluyendo el API Win32 y Pthreads, aunque no es común que sean soportados directamente por los distintos lenguajes de programación.
+==== Activación del planificador
 
-// TODO: Un ejemplo.
+// TOOD: Diagrama UML sistema de activación.
 
-===== Cancelación de hilos
+Tanto en el modelo *muchos a muchos* como en el de *dos niveles* es necesario cierto grado de coordinación entre el núcleo y la librería de hilos del espacio de usuario.
+Dicha comunicación tiene como objeto ajustar dinámicamente el número de hilos del núcleo para garantizar la máxima eficiencia.
 
-_La *cancelación* es la operación de terminar un hilo antes de que termine su trabajo_.
+Uno de los esquemas de comunicación se denomina *((activación del planificador))* y consiste en que el núcleo informa a la librería de hilos en espacio de usuario que una llamada al sistema va a bloquear un hilo de un proceso.
+Antes de dicha notificación, el núcleo se encarga de crear un nuevo hilo de núcleo en el proceso y se lo pasa la librería de hilos en la notificación.
+Así el planificador de la librería puede asignarle alguno de los otros hilos de usuario, evitando el bloqueo completo del proceso y ajustando el número de hilos de núcleo dinámicamente.
+
+Debido a la complejidad del mecanismo descrito anteriormente y a la dificultad de coordinar el planificador de la libraría de hilos con el de la CPU para obtener un rendimiento óptimo, sistemas como Linux y {solaris} —a partir de la versión 9— han optado finalmente por el modelo *uno a uno*.
+
+Con el objetivo de evitar los problemas derivados del coste de dicho modelo, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de hilos de núcleo.
+
+=== Dos niveles
+
+Existe una variación del modelo *muchos a muchos* donde, además de funcionar de la forma comentada anteriormente, se permite que un hilo de usuario quede ligado indefinidamente a un único hilo de núcleo, como en el modelo *uno a uno*.
+
+Esta variación se denomina, en ocasiones, modelo de *dos niveles* (véase la <<modelo_de_dos_niveles>>).
+
+// TODO: Ajustar el dibujo a la explicación
+
+[[modelo_de_dos_niveles]]
+.Modelo muchos a uno.
+image::modelo_de_dos_niveles.svg[]
+
+== Operaciones sobre los hilos
+
+Como ocurre con los procesos, es necesario que los hilos pueden ser creados y eliminados dinámicamente, por lo que los sistemas operativos deben proporcionar servicios para la creación y cancelación de los mismos.
+
+=== Creación de hilos
+
+En un sistema operativo con librería de hilos implementada en el núcleo, todo proceso se crea con un hilo, denominado *hilo principal*(((hilo, principal))).
+Este es con el que comienza a ejecutarse el programa al entrar en {clang_main} y el que provoca la terminación de todo el proceso —incluida la terminación de los otros hilos que existan— al retornar de dicha función.
+
+El *hilo principal* puede crear otros hilos y estos, a su vez, crear los hilos que necesiten.
+Pero, a diferencia de lo que ocurre con los procesos, no existe una relación de padres a hijos ni se crea un árbol del hilos.
+Excepto por la características especial del *hilo principal* de que su finalización significa la terminación del proceso, todos los hilos son iguales entre sí.
+
+En el <<ejemplo_pthread>> se puede como se usa {pthread_create} en sistemas POSIX que implementan {pthreads} para crear varios hilos y esperar a que terminen con {pthread_join}.
+
+.Calcular el factorial de un número con {pthreads}.
+====
+Vamos a calcular el factorial de 122 repartiendo la tarea entre dos hilos con el objeto de paralelizar los cálculos en procesadores multinúcleo.
+
+El código fuente completo de este ejemplo está disponible en {pthread_cpp} y, además, permite indicar el número que queramos para calcularle el factorial.
+En {threads_cpp} se puede estudiar un ejemplo equivalente pero usando {cpp_thread} de la librería estándar de C++, por lo que también compila en sistemas no POSIX, como Microsoft Windows.
+
+[source,cpp]
+----
+struct factorial_thread_args <9>
+{
+    BigInt number;
+    BigInt lower_bound;
+    BigInt result;
+};
+
+void* factorial_thread (void* arg) <7> <8> <9>
+{
+    std::cout << fmt::format( "Hilo creado: 0x{:x}\n", pthread_self() );    <10>
+
+    factorial_thread_args* args = static_cast<factorial_thread_args*>(arg); <9>
+    args->result = calculate_factorial( args->number, args->lower_bound );
+
+    return &args->result; <12>
+}
+
+int main
+{
+    int return_code;
+    pthread_t thread1, thread2; <1> <2>
+
+    factorial_thread_args thread1_args {
+        122,    // El primer hilo calcula el factorial multiplicando
+        61,     // desde 122 a 61.
+        0
+    };
+
+    factorial_thread_args thread2_args {
+        60,     // El segundo hilo calcula el factorial multiplicando
+        2,      // desde 60 a 2
+        0
+    };
+
+    int return_code = pthread_create( <1>
+        &thread1,           <3>
+        nullptr,            <6>
+        factoria_thread,    <7>
+        &thread_args );     <8> <9>
+
+    if (return_code) <4>
+    {
+        std::cerr << fmt::format( "Error ({}) al crear el hilo: {}\n", 
+            return_code, strerror(return_code) ); <5>
+        return 1;
+    }
+
+    return_code = pthread_create( &thread2, /* ... */ );
+    if (return_code)
+    {
+        // ...
+    }
+
+    BigInt* thread1_result, *thread2_result;
+    pthread_join( <11>
+        thread1,
+        reinterpret_cast<void**>(&thread1_result) ); <13>
+    pthread_join( thread2, reinterpret_cast<void**>(&thread2_result) );
+
+    // Multiplicar ambos resultados para obtener el factorial
+    auto result = *thread1_result * *thread2_result;
+
+    std::cout << fmt::format( "El factorial de {} es {}\n",
+        number.to_string(), result.to_string() );
+
+    return 0;
+}
+----
+<1> En {pthreads} se usa {pthread_create} para crear hilos.
+Devuelve un manejador de tipo `pthread_t` que podemos usar con otras funciones de la API para indicar el hilo que queremos gestionar.
+<2> `pthread_t` no es el equivalente al PID de los hilos.
+Si el sistema implementa al librería de hilos en el núcleo, por lo general, cada hilo tiene un identificador único; pero {pthreads} no ofrece una forma de obtenerlo.
+<3> La variable `pthread_t` se pasa a {pthread_create} como puntero para que al retornar, si todo ha ido bien, contenga el manejador del hilo.
+<4> Si el hilo se puede crear, {pthread_create} devuelve 0.
+En caso contrario devuelve un código de error.
+<5> Los códigos de error son los mismos que hasta hora veíamos en {linux_errno}.
+Así que podemos llamar a {linux_strerror} pasando el valor retornado, para obtener un texto descriptivo del error.
+<6> Es opcional pasar a {pthread_create} una estructura con atributos tales como: tamaño y posición de la pila, política y parámetros de planificación, entre otros.
+<7> Todo hilo tiene una función principal que será dónde comience la ejecución del hilo.
+Cuando esa función termine, el hilo finalizará.
+<8> Los hilos pueden recibir un argumento en la forma de un puntero a `void*`.
+Si queremos pasar varios, lo más sencillo es crear una estructura.
+<9> En este ejemplo definimos `factorial_thread_args` para pasar losa argumentos a los hilos y lo pasamos como `void *` a la función principal.
+Allí hacemos un _typecast_ para recuperar el puntero a la estructura `factorial_thread_args` y poder acceder a sus campos.
+<10> En cualquier momento se puede llamar a {pthread_self} para obtener el manejador `pthread_t` del hilo actual.
+<11> El hilo que invoca {pthread_join} se queda dormido hasta que el hilo indicado en el primer argumento termine.
+Si el hilo principal sale de {clang_main} sin esperar a que todos los hilos del proceso terminen, estos mueren inmediatamente, junto con el proceso.
+<12> El hilo puede retornar un resultado mediante un puntero 'void*'.
+Este se indica en la sentencia `return` de la función principal del hilo o invocando {pthread_exit} para terminar.
+<13> La función {pthread_join} acepta un puntero a `void*` para devolver ese valor de retorno al hilo que la invoca.
+
+Como los hilos de {pthreads} devuelven punteros, es importante no intentar devolver variables locales, ya que se destruirán cuando el hilo termine y el punto devuelto no será válido.
+
+Una alternativa es devolver los resultados a través de la estructura pasada como argumento.
+Por ejemplo, el campo `result` de la estructura `factorial_thread_args` ofrece una manera más cómoda de obtener el resultado del cálculo de cada hilo.
+====
+
+=== Cancelación de hilos
+
+La *((cancelación))* es la operación de terminar un hilo antes de que termine su trabajo.
 Por ejemplo, en un navegador web un hilo se puede encargar de la interfaz de usuario mientras otros hilos se encargan de descargar las páginas y las imágenes de la misma.
-Si el usuario pulsa el botón _cancelar_ es necesario que todos los hilos que intervienen en la descarga sean cancelados.
+Si el usuario pulsa el botón *Cancelar* es necesario que todos los hilos que intervienen en la descarga sean cancelados.
+
 Esto puede ocurrir de dos maneras:
 
-* _En la *cancelación asíncrona* un hilo puede terminar inmediatamente la ejecución de otro_.
-Esto puede causar problemas al no liberarse los recursos reservados al proceso por parte del hilo —no se cierran los archivos abiertos, no se libera la memoria, etc.—.
-Además si el hilo que termina estaba modificando estructuras de datos que compartía con otros hilos, estas podrían quedar inconsistentes.
+* En la *cancelación asíncrona*(((cancelación, asíncrona))) el hilo termina inmediatamente.
+Esto puede causar problemas al no liberarse los recursos reservados en el proceso por parte del hilo
+Por ejemplo, antes de terminar no se cierran archivos abiertos ni se libera memoria de los que solo este hilo tiene los descriptores de archivo y los punteros, respectivamente.
++
+Además, si el hilo que termina estaba modificando datos que compartía con otros hilos, estos cambios podrían quedar a medias. 
+Esto puede dejar las estructuras de datos compartidas en un estado inconsistente, causando problemas en otros hilos.
 
-* _En la *cancelación en diferido* el hilo comprueba periódicamente cuando debe terminar_.
-Esto da al hilo una oportunidad de terminarse así mismo de forma ordenada y en un punto dónde es seguro hacerlo.
-En la terminología de Pthreads a estos puntos se los denomina *puntos de cancelación* —o _cancellation points_— y muchas llamadas al sistema lo son por si mismas.
+* En la *cancelación en diferido*(((cancelación, en diferido))) el hilo comprueba periódicamente cuando debe terminar.
+Si no se tiene cuidado, los problemas pueden ser similares a los de la *cancelación asíncrona*.
+La diferencia es que ahora el desarrollador conoce de antemano los puntos donde podría terminar el hilo, lo que da una oportunidad de introducirlos solo dónde sea seguro terminar.
 
-// TODO: C++ no incluye mecanismos de cancelación.
-// TODO: Ejemplo en Pthread y API Win 32.
+[NOTE]
+====
+Se denomina *((fuga de memoria))* al error que ocurre cuando un bloque de memoria reservada no se libera durante la ejecución del programa.
+También pueden ocurrir fugas con otros recursos del sistema operativo, como: archivos, _sockets_, colas de mensajes o regiones de memoria compartida.
 
-===== Funciones reentrantes y seguras en hilos
+Generalmente ocurre porque se pierden todas las referencias a un recurso, por lo que ya no hay oportunidad de liberarlo.
+Por ejemplo, cuando se cancela un hilo que es el único que tiene algunas referencias, sin liberar antes esos recursos.
+====
 
-A la hora de utilizar una librería en un programa multihilo es necesario que tengamos en cuenta los conceptos de reentrante y de seguridad de hilos:
+=== Cancelación en POSIX Threads
 
-* _Una funciónfootnote:[De ahora en adelante, cuando usemos el término función nos estaremos refiriendo a cualquier procedimiento, función, método, subprograma, subrutina o rutina del programa.] es *reentrante* si puede ser interrumpida en medio de su ejecución y mientras espera puede volver a ser llamada con total seguridad_.
-Obviamente las funciones recursivas deben ser reentrantes para poder llamarse a sí mismas una y otra vez con total seguridad.
-+ En el contexto de la programación multihilo ocurre una reentrada cuando, durante la ejecución de una función por parte de un hilo, este es interrumpido por el sistema operativo para planificar posteriormente a otro del mismo proceso que invoca la misma función.
-En general una función es reentrante si:
+En {pthreads} un hilo puede solicitar la cancelación de otro hilo usando {pthread_cancel}.
 
-** No modifica variables estáticas o globales.
-Si lo hiciera sólo puede hacerlo mediante operaciones _leer-modificar-escribir_ que sean ininterrumpibles —es decir, atómicas—.
+[source,c]
+----
+int return_code = pthread_cancel(thread);
+----
 
-** No modifica su propio código y no llama a otras funciones que no sean reentrantes.
+El hilo identificado por el manejador `thread` será cancelado si está configurado como cancelable.
+Por defecto todos los hilos son cancelables, pero eso lo puede cambiar el propio hilo llamando a {pthread_setcancelstate}:
 
-* _Una función es *segura en hilos* o *thread-safe* si al manipular estructuras compartidas de datos lo hace de tal manera que se garantiza la ejecución segura de la misma por múltiples hilos al mismo tiempo_.
-Obviamente estamos hablando de un problema de secciones críticas, por lo que se resuelven sincronizando el acceso a estos datos mediante el uso de semáforos, _mutex_ u otros recursos similares ofrecidos por el sistema operativo.
+[source,c]
+----
+int return_code = pthread_setcancelstate(
+    PTHREAD_CANCEL_DISABLE, <1>
+    &oldstate               <2>
+);
+----
+<1> Con `PTHREAD_CANCEL_DISABLE` se desactiva la cancelación en el hilo que llama la función.
+El otro valor posible es `PTHREAD_CANCEL_ENABLE`.
+<2> La función devuelve a través de un puntero a `int` el valor anterior del estado de cancelación.
 
-En ocasiones ambos conceptos se confunden porque es bastante común que el código reentrante también sea seguro en hilos.
-Sin embargo es posible crear código reentrante que no sea seguro en hilos y viceversa.
-Por ejemplo, una función que manipule _datos específicos de hilo_ seguramente no será reentrante aunque si segura en hilos.
-Mientras que una función que sólo utilice variables locales y que no invoque a otras funciones seguramente será reentrante y segura en hilos.
+El tipo de cancelación se puede configurar con {pthread_setcanceltype}:
 
-===== Las llamadas al sistema fork() y exec() en procesos multihilo
+[source,c]
+----
+int return_code = pthread_setcanceltypr(
+    PTHREAD_CANCEL_DEFERRED,    <1>
+    &oldtype                    <2>
+);
+----
+<1> Con `PTHREAD_CANCEL_DEFERRED` se activa la *cancelación en diferido*, que de todas formas es el tipo de cancelación por defecto. El otro valor posible es `PTHREAD_CANCEL_ASYNCHRONOUS`, que corresponde con la *cancelación asíncrona*.
+<2> La función devuelve a través de un puntero a `int` el valor anterior del tipo de cancelación.
 
-¿Qué debe ocurrir si un hilo de un proceso multihilo ejecuta la llamada `fork()`?:
+Se pueden cambiar entre estado y tipo de cancelación en cualquier momento, según lo que encaje mejor con las características de las distintas parte del código.
 
-* ¿El nuevo proceso debe duplicar todos los hilos?.
-* ¿O el nuevo proceso debe tener un único hilo copia del que invocó a `fork()`?.
+==== Cancelación asíncrona
+(((cancelación, asíncrona)))
 
-Como hemos comentado anteriormente la llamada al sistema `exec()` sustituye el programa en ejecución con el programa indicado y este inicia su ejecución en `main()`.
-Esto incluye liberar toda la memoria reservada y la destrucción de todos los hilos del programa original, por lo que duplicar los hilos en el proceso hijo creado por `fork()` parece algo innecesario.
+Por los motivos comentados anteriormente, no es recomendable la *cancelación asíncrona*, a menos que estemos muy seguros de que no puede causar problemas.
+Uno de los pocos casos con los que es compatible es en bucles 100% dedicados a ejecutar cálculos en al CPU, como el siguiente: 
 
-El estándar POSIX establece que si se utiliza `fork()` en un programa multihilo, el nuevo proceso debe ser creado con un sólo hilo, que será una réplica del que hizo la llamada, así como un duplicado completo del espacio de direcciones del proceso.
-Sin embargo algunos sistemas UNIX tienen una segunda llamada no estándar, denominada `forkall()`, capaz de duplicar todos los hilos del proceso padre.
-Obviamente sólo resulta conveniente emplearla si no se va a utilizar la llamada `exec()` a continuación.
+[source,c]
+----
+int factorial = 1;
+for ( int i = 2; i <= number; i++ )
+{
+    factorial = factorial * i;
+}
+----
 
-// TODO: Nota con tener cuidado si exec() falla.
+La *cancelación asíncrona* no se debe usar si el código reserva memoria dinámicamente o solicita otros recurso del sistema operativo, porque el hilo podría terminar en cualquier momento sin liberarlos.
+Tampoco si se modifican estructuras de datos, porque los cambios pueden quedar a medias.
 
-===== Manejo de señales en procesos multihilo
+Por ejemplo, si la cancelación ocurre en medio de una llamada a {clang_malloc} o {cpp_new} no hay forma de saber si ocurrió antes de que la memoria fuera reservada o después.
+Incluso puede haber ocurrido en medio de la operación, dejando en estado inconsistente las estructuras de datos que sirven para seguir la pista de las zonas de memoria reservadas y libres.
 
-Una señal se utiliza en UNIX para informar a un proceso cuando un evento a ocurrido.
+El estándar POSIX solo indica que las funciones {pthread_setcancelstate} y {pthread_setcanceltype} deben ser seguras frente a la *cancelación asíncrona* del hilo.
+En general, no se puede llamar a otras funciones de la librería del sistema de forma segura en un hilo cancelable asíncronamente.
+
+==== Cancelación en diferido
+(((cancelación, en diferido)))
+
+Por tanto, la *cancelación en diferido* es la mejor alternativa.
+Con este tipo de cancelación, la terminación del hilo ocurre en puntos concretos del código.
+
+En la terminología de {pthreads} a estos puntos se los denomina *puntos de cancelación*(((punto, cancelación))) y la inmensa mayoría de las llamadas al sistema que puede poner el hilo en estado *esperando* lo son por si mismas.
+Por ejemplo, {linux_open}, {linux_close}, {linux_read}, {linux_write}, {linux_recv}, {linux_send}, {linux_poll} y {linux_sleep}, entre muchas otrsa (véase la lista en la sección «_Cancellation points_» de la documentación de {pthreads}).
+Eso significa que seguramente también sean *puntos de cancelación*, las funciones de la librería del sistema y de la librería estándar del lenguaje que utilizan esas llamadas al sistema.
+
+Sabiendo esto, se puede estudiar cada caso.
+Si no es seguro permitir la cancelación de un hilo en la invocación de una de estas funciones en nuestro código, se puede usa {pthread_setcancelstate} para desactivar temporalmente el mecanismo de cancelación.
+Por ejemplo, una llamada a {clang_printf} como ayuda para depurar, en medio de los pasos para modificar una estructura de datos —como una lista enlazada o una cola— introduce un *punto de cancelación* en lugar poco seguro; porque 
+si el hilo se cancela en ese punto, la estructura de datos quedará en estado inconsistente.
+La solución es eliminar la llamada a {clang_printf} o desactivar temporalmente el mecanismo de cancelación.
+
+De forma inversa, se pueden introducir manualmente puntos de cancelación llamando a {pthread_testcancel}.
+Por ejemplo, el siguiente bucle no hace llamadas al sistema, por lo que no tiene puntos de cancelación:
+
+[source,c]
+----
+int factorial = 1;
+for ( int i = 2; i <= number; i++ )
+{
+    factorial = factorial * i;
+}
+----
+
+Eso significa que ese código para calcular el factorial de `number` podría ejecutarse durante bastante tiempo sin ofrecer una oportunidad para cancelar el hilo; incluso aunque es un código muy seguro desde el punto de vista de la cancelación.
+La solución es introducir manualmente un punto de cancelación:
+
+[source,c]
+----
+int factorial = 1;
+for ( int i = 2; i <= number; i++ )
+{
+    factorial = factorial * i;
+    pthread_testcancel();   <1>
+}
+----
+<1> Comprobar si se ha solicitado la cancelación del hilo y si es así, cancelar el hilo.
+
+La *cancelación en diferido* también presenta retos desde el punto de visto de evitar las fugas de memoria y de otros recursos cuando un hilo es cancelado.
+Por ejemplo, supongamos que tenemos una función que abre una tubería, crea un hilo para gestionar los mensajes que llegan y devuelve un puntero a una estructura de datos que se puede usar en otras funciones de la librería —de forma similar a {clang_fopen} y `FILE*`—: 
+
+[source,c]
+----
+CONN* conn_open( /* ... */ )
+{
+    CONN* handler = malloc( sizeof(CONN) );
+    if(handler == NULL)
+    {
+        return NULL;
+    }
+
+    handler->fifofd = open( /* ... */ );
+    if (fifofd < 0)
+    {
+        free( handler ); <1>
+        return NULL;
+    }
+
+    int return_code = pthread_create(&handler->thread, /* ... */, handler );
+    if (return_code)
+    {
+        close( handler->fifofd ); <2>
+        free( handler ); <1>
+        return NULL;
+    }
+
+    return handler;
+}
+----
+<1> Evitar la *fuga de memoria* si {linux_open} o {pthread_create} fallan.
+<2> Evitar la fuga del _socket_ si {pthread_create} falla.
+
+Este código y la forma en que maneja los errores funciones bien en programas monohilo, porque estamos seguro de que al salir de la función o se completaron todas las etapas o ninguna.
+Es decir, si alguna de las peticiones al sistema falla, las hechas anteriormente se «deshacen» para evitar la fuga de recursos.
+
+Pero no es correcto en programas multihilo porque {linux_open} y {linux_close} son *puntos de cancelación*.
+Si `conn_open()` es llamada desde un hilo y ese hilo es cancelado, el hilo podría terminar a mitad de la función, sin liberar `handler`, creando un *fuga de memoria* que no se liberará hasta que el proceso termine.
+Si `conn_open()` es llamada en multiples ocasiones, cada una es una oportunidad para perder memoria.
+
+La código anterior se puede mejorar usando *manejadores de limpieza*(((manejador, limpieza))).
+Eso manejadores se organizan en una pila de la que se pueden insertar o extraer llamando a {pthread_cleanup_push} y {pthread_cleanup_pop}, respectivamente.
+Cuando el hilo es cancelado, la librería extrae los manejadores de la pila y los va ejecutando en orden, antes de terminar.
+
+[source,c]
+----
+CONN* conn_open( /* ... */ )
+{
+    CONN* handler = malloc( sizeof(CONN) );
+    if(handler == NULL)
+    {
+        return NULL;
+    }
+
+    pthread_cleanup_push(&free, handler); <1>
+
+    handler->fifofd = open( /* ... */ );  <2>
+    if (fifofd < 0)
+    {
+        pthread_cleanup_pop(1);     // free(handler) <3>
+        return NULL;
+    }
+
+    pthread_cleanup_push(&cleanup_fd, &handler->fifofd);
+
+    int return_code = pthread_create(&handler->thread, /* ... */, handler );
+    if (return_code)
+    {
+        close( handler->fifofd ); <2>
+        pthread_cleanup_pop(1);     // free(handler) <3>
+        return NULL;
+    }
+
+    pthread_cleanup_pop(0); <4>
+
+    return handler;
+}
+----
+<1> Nada más reservar la memoria de `CONN` se añade un *manejador de limpieza* que llamará a `free(handler)` si el hilo va a ser cancelado.
+Así nos aseguramos que `handler` será liberado si el hilo es cancelado.
+<2> La cancelación solo puede ocurrir en los *puntos de cancelación* que son las llamadas a {linux_open} y {linux_close}.
+<3> En caso de error, el *manejador de limpieza* ya no hace falta, así que se extrae antes de salir de la función.
+Se llama a {pthread_cleanup_pop} con valor distinto de 0 porque así la función extrae el manejador y lo invoca.
+A fin de cuentas se sale a causa de un error, por lo que sigue siendo necesario ejecutar `free(handler)` para evitar una *fuga de memoria*.
+<4> Al termina la función se extraen todos los manejadores de señal, puesto que ya no hacen falta.
+El argumento 0 hace que {pthread_cleanup_pop} no ejecute el manejador de limpieza extraido.
+
+Ahora `conn_open() maneja correctamente la cancelación del hilo donde se ejecuta, por lo que puede usarse sin problemas en aplicaciones multihilo.
+
+=== Cancelación de hilos en lenguajes de alto nivel
+
+El mecanismo de cancelación de hilos descrito funciona razonablemente bien en C, pero no con lenguajes de más alto nivel, como C++, Java o C#.
+Las librerías de hilos suelen ser librerías en C, que no conocen nada de objetos ni de otras particularidades de esos lenguajes.
+
+Por ejemplo, en C++, antes de terminar un hilo, deberían ser llamados todos los destructores de los objetos locales, para evitar *fugas de memoria* y de otros recursos, datos sin escribir y otro problemas derivados de tener objetos que no se destruyen adecuadamente.
+Lamentablemente, el mecanismo de cancelación de {pthreads} —y el de otras librerías del hilos, como la de Windows API— no sabe hacer nada de eso.
+Cada lenguaje debe implementar su propia solución.
+
+En Java y C#, por ejemplo, cuando un punto de cancelación detecta una petición de cancelación emite la excepción `Thread.Interrupt`, que retrocede por la pila de llamadas, liberando las variables locales hasta salir por el método principal del hilo.
+A este mecanismo se lo denomina *cancelación coordinada*(((cancelación, coordinada))).
+
+En {cpp} no se ha incluido un mecanismo de cancelación en el estándar hasta {cpp}20.
+Antes de {cpp}20, la forma recomendada de implementar la cancelación es pasando a los hilos una variable de tipo `bool` con la que señalarles cuándo deben terminar.
+El código de los hilos debe comprobar frecuentemente el valor de dicha variable y, llegado el momento, terminar retornando ordenadamente por la función principal del hilo.
+
+En {cpp}20 esta estrategia de *cancelación cooperativa*(((cancelación, cooperativa))) se ha formalizado e incluido en el estándar al introducir la clase {cpp_jthread}.
+Esta nueva clase de hilo puede pasar a la función principal lo que se llama un *((_token_ de cancelación))*(((cancelación, token))) —en lugar de una variable tipo `bool`— que se debe comprobar regularmente para saber si hay que terminar el hilo prematuramente.
+
+Por ejemplo, la función del factorial podría hacer uso de esa funcionalidad para terminar cuando se lo indiquen:
+
+[source,cpp]
+----
+void compute_factorial(std::stop_token stoken, int& factorial, int number) <2>
+{
+    factorial = 1;
+    for ( int i = 2; i <= number; i++ )
+    {
+        if(stoken.stop_requested()) return; <4>
+        factorial = factorial * i;
+    }
+}
+
+int main()
+{
+    // ...
+
+    int factorial;
+    std::jthread thread(compute_factorial, std::ref(factorial), 122); <1> <2>
+
+    // ...
+
+    thread.request_stop(); <3>
+
+    // ...
+}
+----
+<1> Crear e iniciar el hilo con {cpp_jthread} para calcular el factorial de 122.
+<2> Al crear el hilo se pasa a la función el *_token_ de cancelación* `stoken`.
+<3> En algún momento de la ejecución del programa pedimos al hilo que se detenga antes de terminar los cálculos.
+<4> El código del hilo debe comprobar el *_token_ de cancelación* regularmente.
+Si se ha pedido la cancelación, se termina el hilo retornando desde la función principal.
+
+Java y C# ha terminado incluyendo también este tipo de *cancelación cooperativa* usando un *_token_ de cancelación*, debido a los problemas que tienen los desarrolladores para recordar usar correctamente la excepción de la *cancelación coordinada*. 
+
+== Otras consideraciones sobre los hilos
+
+=== Las llamadas al sistema fork() y exec() en procesos multihilo
+
+La llamada al sistema {linux_fork} de los sistemas POSIX es anterior a la existencia del concepto de *hilo*.
+Así que cuando estos aparecieron surgió el problema de si al llamar a {linux_fork} en un proceso multihilo:
+
+* El nuevo proceso debía tener un duplicado de todos los hilos.
+
+* O el nuevo proceso debía tener un único hilo copia del que invocó a {linux_fork}.
+
+Como hemos comentado anteriormente, la llamada al sistema {linux_fork} sustituye el programa en ejecución con un nuevo programa e inicia su ejecución en {clang_main}.
+Esto incluye liberar toda la memoria reservada y la destrucción de todos los hilos del programa original, por lo que duplicar los hilos en el proceso hijo creado por {linux_fork}, si luego se va a llamar a {linux_exec} parece algo innecesario.
+
+El estándar POSIX establece que si se utiliza {linux_fork} en un programa multihilo, el nuevo proceso debe ser creado con un sólo hilo, que será una réplica del que hizo la llamada, así como un duplicado completo del espacio de direcciones del proceso.
+
+Sin embargo, algunos sistemas UNIX tienen una segunda llamada no estándar denominada `forkall()`, capaz de duplicar todos los hilos del proceso padre.
+Obviamente solo resulta conveniente emplearla si no se va a utilizar la llamada {linux_exec} a continuación.
+La inclusión de `forkall()` en el estándar POSIX fue considerada y rechazada.
+
+=== Manejo de señales en procesos multihilo
+
+En el <<_señales_en_sistemas_operativos_posix>> hablamos del uso de las señales(((señal))) como mecanismo de comunicación, pero en general sirven para informar a un proceso de suceso de ciertos eventos.
+
 Existen dos tipos de señales:
 
-* Las _**señales síncronas** se deben a alguna acción del propio proceso_.
-Ejemplos de señales de este tipo son las originadas por accesos ilegales a memoria o divisiones por 0.
+* Las **señales síncronas**(((señal, síncrona))) se deben a alguna acción del propio proceso.
+Ejemplos de señales de este tipo son `SIGSEV` y `SIGFE`, originadas por accesos ilegales a memoria o divisiones por 0, respectivamente.
++
 Las señales síncronas son enviadas al mismo proceso que las origina.
 
-* Las _**señales asíncronas** son debidas a procesos externos_.
-Un ejemplo de este tipo de señales es la terminación de procesos con teclas especiales como kbd:[CTRL+C] o kbd:[CTRL-D]
+* Las **señales asíncronas**(((señal, asíncrona))) son debidas a acciones externas.
+Un ejemplo de este tipo de señales es la terminación de procesos con teclas especiales como kbd:[CTRL+C] o kbd:[CTRL-D], que envían al proceso las señales `SIGINT` y `SIGHUP` respectivamente.
+También lo son las señales enviadas desde otro proceso, como cuando el proceso *init* envía `SIGTERM` al resto de procesos para informales que deben terminar porque el sistema se va a apagar.
 
-Las señales que llegan a un proceso pueden ser interceptadas por una función definida por el programador —que se denominada _manejador de señal_-.
-En caso de que esta función no haya sido definido, se utiliza un manejador por defecto cuya acción depende del tipo de evento.
+Como hemos visto, las señales que llegan a un proceso pueden ser interceptadas por una función definida por el programador llamada *manejador de señal*(((manejador, limpieza))).
 
-La pregunta entonces es: ¿cuándo se tienen múltiples hilos cuál de ellos debe ser interrumpido para que ejecute el manejador de señales?
+Las señales también son anteriores a los hilos, por lo que cuando aparecieron los hilos se tuvieron que tomar decisiones sobre como iban a encajar ambos conceptos.
+Por ejemplo, decidir cuál de los hilos del procesos será interrumpido cuando llegue una señal, para ejecutar el manejador de señales.
 
-* Obviamente las señales síncronas, por su propia naturaleza, deben ser enviadas al hilo que las genera.
+==== Señales enviadas por otros hilos
 
-* Con las señales asíncronas —las que vienen de fuentes externas— la cosa no está tan clara.
-Dependiendo del caso algunas deben ser capturadas por un sólo hilo, mientras que otras —como aquellas que ordenan terminar el proceso— deberían ser enviadas a todos para que sepan lo que va a ocurrir.
+En los sistemas POSIX multihilo se pueden enviar señales a un proceso:
 
-// TODO: Y las asíncronas.
+[source, c]
+----
+kill(pid, SIGTERM);
+----
 
-La mayor parte de los UNIX multihilo permiten especificar qué señales acepta cada hilo y cuáles no.
-Por lo tanto una señal asíncrona sólo será entregada a aquellos hilos que no la bloquean.
-Puesto que generalmente las señales necesitan ser manejadas una sola vez, normalmente sólo llegan al primer hilo al que se le asigna la CPU y que no las esté bloqueando.
+En ese caso uno cualquiera de los hilos podrá ser interrumpido para ejecutar el manejador de señal.
+
+Cada hilo puede enmascarar las señales que considere llamando a {pthread_sigmask}
+Es decir, cada hilo puede elegir que señales quiere bloquear para no tener que atenderlas:
+
+[source, c]
+----
+sigset_t set;               <1>
+
+sigemptyset(&set);          <2>
+sigaddset(&set, SIGINT);    <3>
+sigaddset(&set, SIGUSR1);   <4>
+
+pthread_sigmask(SIG_BLOCK, &set, NULL); <5>
+----
+<1> Las máscaras de señales se definen mediante _sets_ de señales.
+El tipo de los _sets_ de señales es `sigset_t`, de cuyo tipo real no deberíamos preocuparnos, por portabilidad.
+<2> Para manipular los _sets_ se proporcionan una serie de funciones.
+{linux_sigemptyset} es para asegurar que el _set_ está vacío.
+<3> Añadimos al _set_ la señal `SIGINT`.
+<4> Añadimos al _set_ la señal `SIGINT`.
+<5> Bloqueamos en el hilo actual las señales en el _set_ `set`,es decir, `SIGINT` y `SIGUSR1`.
+
+Así una señal enviada a un proceso interrumpirá a uno de los hilos que no la haya bloqueado. 
+
+También se puede enviar una señal a un hilo en concreto usando {pthread_kill}.
+El hilo será interrumpido no la ha bloqueado.
+
+[source, c]
+----
+pthread_kill(thread, SIGTERM);
+----
+
+Sin embargo, hay que tener en cuenta que el manejo de señales es un recurso del proceso, compartido por todos sus hilos.
+Esto quiere decir que si señal está configurada para ser manejada usando la acción por defecto y dicha acción es terminar, terminará todo el proceso, aunque la señal haya sido dirigida a un hilo en concreto.
+
+==== Señales enviadas por el sistema
+
+Lo que queda por ver es a quién va dirigida una señal cuando es el sistema quién la envía para notificar un evento:
+
+* Las señales síncronas son causadas por un error en la ejecución, que en un proceso multihilo es debido a la fallida ejecución de un hilo en particular.
+Por eso estas señales se dirigen al hilo que las causa.
+
+* Las señales asíncronas llegan por causas externas, así que se dirigen al proceso, pudiendo ser entregada a uno de los hilos que no la tenga bloqueada.
+
+La recomendación es elegir un hilo para el manejo de señales asíncronas, de tal forma que sea el único que no las tenga bloqueadas.
+Eso facilita el diseño del programa para que maneje las señales adecuadamente.
+El resto de hilos deberían bloquear estas señales nada más iniciar su ejecución.

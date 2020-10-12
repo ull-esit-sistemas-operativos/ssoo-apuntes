@@ -515,7 +515,7 @@ Para evitarlo, XFS impone cierto orden en las operaciones de escritura sobre el 
 
 _Las técnicas anteriores son necesarias para preservar la coherencia porque la modificación de los metadatos se hace sobrescribiendo los datos que ya existen_.
 Es decir, cuando se crea un nuevo archivo el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
-Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar inconsistente.
+Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estado inconsistente.
 
 _Los **sistemas de archivos basados en copia durante la escritura**_ —o _copy-on-write_— _evitan cambiar los metadatos sobrescribiendo en el sitio_.
 En su lugar buscan un hueco libre, hacen en él una copia del bloque completo con los cambios y después modifican los metadatos del sistema de archivos que sirven para localizar el bloque modificado en su nueva ubicación.

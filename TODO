@@ -8,3 +8,157 @@ Ojo con el uso del término tiempo compartido (mejor propósito general o multit
 Mira libro de system programming para los diagramas de secuencia de hilos para usar en SS.OO
 
 // TODO: Guía de estilo... en README.md
+
+
+
+__footnote:[En la literatura sobre algoritmos de planificación de la CPU se indica que SJF (_Shortest-Job First_) y SRTF (_Shortest-Remaing-Time First_) son los óptimos respecto al tiempo de espera promedio precisamente porque siempre escogen al proceso con la ráfaga de CPU más corta de entre los que esperan en la cola de preparados.]
+
+Hasta el momento hemos considerado la cola de preparados como una estructura donde los procesos que están preparados para ser ejecutados se ordenan y se escogen según el criterio del algoritmo de planificación.
+Aunque a lo largo de todo el tema <<_gestión_de_procesos>> se puede haber intuido que dicha cola es de tipo FIFO —lo que se conoce como algoritmo de planificación FCFS o _First Come, First Served_— ya al principio del <<_planificación_de_la_cpu>> indicamos que no tiene porqué ser así pues existen muchos otros algoritmos —SJF o _Shortest-Job First_, SRTF o _Shortest-Remaing-Time First_, RR o _Round-Robin_, por prioridades, etc.— que pueden ser preferibles en función del criterio que utilicemos para evaluar la eficiencia de los mismos.
+
+Sin embargo en los sistemas operativos modernos realmente las cosas son un poco más complejas ya que generalmente se utiliza algún tipo de *planificación con colas multinivel*.
+_En este tipo de planificación _no existe una única cola de preparados sobre la que se utiliza un único algoritmo de planificación sino que_:
+
+* _La cola de preparados se divide en varias colas separadas_ y los procesos son asignados a alguna de dichas colas en base a características de los mismos.
+
+* _Cada cola puede tener un algoritmo de planificación de la CPU distinto_.
+Es decir, alguno de los que hemos mencionado anteriormente y que se estudiarán en las clases de problemas.
+
+* _Mediante un algoritmo determinado se debe seleccionar la cola que debe escoger al siguiente proceso a ejecutar._
+
+Precisamente una cuestión interesante es la indicada en éste último punto ¿cómo seleccionar la cola que debe escoger al siguiente proceso que debe ser ejecutado?.
+
+=== Prioridad fija
+
+Aunque existen muchas maneras de clasificar los procesos entre las diferentes colas, lo más común en los sistemas operativos modernos es hacerlo en base a la prioridad de los procesos (véase la ):
+
+* _A cada proceso se le asigna una prioridad_.
+
+* _En la cola de preparados hay una cola para cada nivel de prioridad_.
+
+* _Los procesos, al entrar en la cola de preparados, son insertados en aquella cola que coincide con su prioridad_.
+
+* _El planificador escoge primero siempre la cola de prioridad más alta que no esté vacía_.
+
+==== Definición de las prioridades
+
+Las prioridades se suelen indicar con números enteros en un rango fijo.
+Por ejemplo [0-7], [0-31], [0-139] o [0-4095].
+En algunos sistemas operativos los números más grandes representan mayor prioridad, mientras que en otros son los procesos con números más pequeños los que se planifican primero.
+_En éste curso utilizaremos la convención de que a menor valor mayor prioridad_.
+
+En los sistemas con prioridad fija:
+
+* Una vez se asigna una prioridad a un proceso ésta nunca cambia.
+
+* _Las prioridades normalmente vienen determinadas por criterios ajenos al sistema operativo_.
+Por ejemplo: la importancia del proceso, la cantidad de dinero pagada para el uso del sistema u otros factores políticos.
+_A este tipo de prioridades se las denomina definidas externamente_.
+
+==== Planificación expropiativa o cooperativa
+
+La planificación con prioridades puede ser expropiativa o cooperativa.
+_En el caso expropiativo cuando un proceso llega a la cola de preparados su prioridad es comparada con la del proceso en ejecución, de manera que el segundo es expulsado si la prioridad del primero es superior a la suya_.
+Obviamente en la planificación cooperativa los nuevos procesos simplemente son insertados en la cola que les corresponde en base a su prioridad, independientemente de si tienen o no mayor prioridad que el que se esté ejecutando.
+
+==== Planificación entre procesos con la misma prioridad
+
+Cada cola en cada nivel de prioridad puede tener cualquier algoritmo de planificación de CPU, lo que virtualmente significa que el abanico de posibilidad es muy amplio.
+Sin embargo lo más común es que los diseñadores del sistema opten por utilizar o bien el planificador FCFS o bien el RRfootnote:[Los algoritmos FCFS y RR se pueden combinar de múltiples maneras.
+En algunos sistemas todas las colas son o bien FCFS o bien RR, mientras que en otros unas colas pueden ser de un tipo y otras del otro.
+Por ejemplo, en el núcleo Linux las prioridades más altas —las etiquetadas como de tiempo real— tienen tanto una cola FCFS como una cola RR.
+En cada prioridad primero se planifican los procesos de la cola FCFS y después lo de la cola RR.].
+
+
+
+El algoritmo *RR* (_Round-Robin_) es similar al FCFS pero utilizando el temporizador para expropiar la CPU a los procesos a intervalos regulares, alternando así entre ellos de manera que se da a todos los procesos la oportunidad de ejecutarse.
+Como se puede intuir, fue diseñado para los sistemas de tiempo compartido, siendo ampliamente utilizado en cualquier sistema operativo de propósito general moderno.
+
+El algoritmo RR requiere los siguientes elementos:
+
+* _Se define una ventana de tiempo o *cuanto*_, generalmente entre 10 y 100 ms.
+
+* _La cola RR se define como una cola circular dónde el planificador asigna la CPU a cada proceso en intervalos de tiempo de hasta un cuanto_.
+
+Cuando se utilizar la planificación RR el tamaño del cuanto es un factor clave en la eficiencia del planificador:
+
+* _Cuando se reduce el tiempo del cuanto, el tiempo de respuesta y el tiempo de espera promedio tienden a mejorar_.
+Sin embargo el número de cambios de contexto será mayor, por lo que la ejecución de los procesos será mas lenta.
+Además es importante tener en cuenta que interesa que el tiempo del cuanto sea mucho mayor que el tiempo del cambio de contexto; pues si por ejemplo el tiempo del cambio de contexto es un 10% del tiempo del cuanto, entonces alrededor del 10% de CPU se perdería en cambios de contexto.
+
+* _Cuando se incrementa el tiempo del cuanto, el tiempo de espera promedio se incrementa_ dado que entonces el RR tiende a comportarse como un FCFS, que suele tener grandes tiempos de espera promedio.
+Además se puede observar experimentalmente que el tiempo de ejecución promedio generalmente mejora cuantos más procesos terminan su próxima ráfaga de CPU dentro del tiempo del cuantofootnote:[Por ejemplo, dados tres procesos con una duración cada uno de ellos de 10 unidades de tiempo y cuanto igual a 1, el tiempo de ejecución promedio será de 29 unidades.
+Sin embargo si el cuanto de tiempo fuera 10, el tiempo de ejecución promedio caería a 20 unidades de tiempo.].
+Por lo tanto nos interesan un cuanto grande para que más procesos terminen su siguiente ráfaga dentro del mismo.
+
+La _regla general que siguen los diseñadores es intentar que el 80% de las ráfagas de CPU sean menores que el tiempo de cuanto_.
+Se busca así equilibrar los criterios anteriores, evitando que el tiempo de cuanto sea demasiado grande o demasiado cortofootnote:[De manera práctica actualmente se utilizan tiempos de cuanto de entre 10 y 100 ms.
+Estos tiempos son mucho mayores que los tiempos de cambios de contexto, que generalmente son inferiores a 10µs.].
+
+// TODO: Ejemplo con Windows
+
+==== Muerte por inanición y otros inconvenientes
+
+El principal problema de este tipo de planificación es el _bloqueo indefinido_ o *muerte por inanición*, puesto que el algoritmo puede dejar a los procesos de baja prioridad esperando indefinidamente si hay un conjunto de procesos de mayor prioridad demandando CPU continuamente.
+
+Además, como vimos en el <<_ciclo_de_ráfagas_de_cpu_y_de_es>>, es conveniente favorecer a los procesos limitados por la E/S frente a los procesos limitados por la CPU para evitar el _efecto convoy_ y para mejorar los tiempos tanto de espera como de respuesta promedio.
+Lamentablemente este tipo de planificación con _prioridad fija no es capaz de hacerlo ya que la prioridad de los procesos viene determinada exclusivamente por criterios externos al funcionamiento del sistema operativo_.
+
+=== Prioridad dinámica
+
+La mayor parte de los sistemas operativos modernos de propósito generalfootnote:[Microsoft Windows, macOS, Oracle/Sun Microsystems Solaris, las versiones de Linux anteriores a la 2.6.23 y, en general, casi la totalidad de los sistemas operativos modernos de propósito general utilizan este tipo de planificación de prioridades dinámicas con RR como planificador en cada prioridad.] _solucionan los inconvenientes de la planificación con prioridad fija permitiendo que la prioridad de los procesos se ajuste dinámicamente_ bajo su propio criterio:
+
+* Por ejemplo, _una solución al problema de la muerte por inanición es utilizar un mecanismo de **envejecimiento**_ que aumente gradualmente la prioridad de los procesos mientras están esperando en la cola de preparados —por ejemplo 1 nivel de prioridad cada 15 minutos—.
+De esta manera los procesos de baja prioridad tarde o temprano tendrán oportunidad de ejecutarse.
+Con este mecanismo una vez consiguen ejecutarse, se les restablece su prioridad original.
+
+* _Para favorecer en la planificación a los procesos limitados por la E/S el sistema puede añadir o quitar prioridad a los procesos, respecto a su prioridad fija, en función de medidas internas del sistema operativo_.
+Por ejemplo se puede tomar en consideración: límites de tiempo, necesidades de memoria, número de archivos abiertos, la proporción entre el tiempo de ráfaga de E/S promedio y el de ráfaga de CPU promedio del proceso, etc.
+Obviamente el objetivo suele ser mejorar el rendimiento del sistema priorizando unos procesos respecto a otros.
+
+El resultado de estas políticas es que la prioridad que finalmente utiliza el sistema operativo para planificar los procesos en un valor calculado dinámicamente a partir de intereses externos y medidas internas.
+Por lo tanto los procesos pueden cambiar múltiples veces de cola durante su tiempo de vida.
+_A la planificación de múltiples niveles donde los procesos pueden cambiar de una cola a otra se la denomina **planificación con colas multinivel realimentadas**_.
+
+// TODO: Más del ejemplo de Windows.
+
+
+
+
+
+Tiempo real
+
+__footnote:[Linux, Microsoft Windows y la mayor parte de los sistemas operativos modernos de propósito general dividen el rango de prioridades en dos partes.
+El conjunto de prioridades más altas son prioridades de tiempo real y por tanto son fijas.
+Mientras que el grupo de prioridades más bajas son de tiempo no real y dinámicas.
+Además el planificador se implementa de tal manera que un proceso con prioridad dinámica nunca puede alcanzar el rango de prioridades de tiempo real.]
+
+
+
+// TODO: Para integrar con lo anterior.
+
+Para ilustrar los visto hasta el momento sobre la planificación de la CPU en sistemas operativos modernos, vamos a estudiar las principales características de las últimas versiones de Microsoft Windows a este respecto.
+
+Las actuales versiones de sistemas operativos Windows se agrupan dentro de la familia Microsoft Windows NT; que nació con el sistema operativo Windows NT 3.1 en 1993 y que llega hasta hoy en día con Microsoft Windows 8.1 y Windows Server 2012 R2 —que se corresponden con la versión 6.3 de dicha familia Windows NT—
+
+El núcleo de la familia _Windows NT_ es multihilo e internamente implementa un algoritmo de planificación expropiativa con colas multinivel realimentadas basado en prioridades:
+
+Como cualquier sistema operativo moderno, el núcleo de Windows es expropiable —lo que sabemos que ofrece latencias de asignación más bajas que si no lo fuera— y soporta tiempo real flexible:
+
+Respecto a esto último, en Windows los programadores o administradores del sistema pueden utilizar el API para establecer la prioridad de los hilos.
+Sin embargo sobre estas preferencias el núcleo aplica ciertas bonificaciones para obtener la prioridad real; combinando diferentes criterios para reducir la latencia, mejorar la respuesta —obviamente a través de beneficiar a los hilos limitados por E/S— evitar la muerte por inanición y la inversión de prioridad.
+Estas bonificaciones pueden ocurrir en los siguientes casos:
+
+Respecto al tiempo de cuanto, desde Windows Vista —NT 6.0— no se usa el temporizador para controlarlo sino un contador de ciclos de reloj de la CPUfootnote:[Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (Time Stamp Counter o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último _reset_ del procesador.].
+Así el sistema puede determinar con precisión el tiempo que se hay estado ejecutando un hilo, sin incluir los tiempos dedicados a otras cuestiones, como por ejemplo a manejar interrupciones.
+
+En Windows los hilos se insertan en la cabeza de su cola —no en el final— y conservan lo que les queda de cuanto, cuando son expropiados.
+Mientras que se insertan por el final con el valor de cuanto reiniciado, cuando abandonan la CPU por haber agotado el cuanto anterior.
+
+En Windows las prioridades de los procesos se pueden ver desde dos perspectivas: la del API de Windows y la del núcleo.
+Esta última es la que hemos estudiado en el apartado anterior.
+Mientras que el API tiene una organización muy diferente que en última instancia debe ser mapeada a las prioridades numéricas del núcleo de Windows.
+
+El API organiza los procesos por clases de prioridad: Tiempo real (15), Alta (10), Arriba de lo normal (9), Normal (8), Debajo de lo normal (7), Baja (6) y Reposo (1) .
+Al tiempo que cada hilo tiene una prioridad relativa: De tiempo crítico (15), Más alta (2), Arriba de lo normal (1), Normal (0), Debajo de lo normal (—1), Más baja (—2) y Reposo (—15).
+Por lo que la prioridad interna de cada hilo, desde el punto de vista del núcleo, es el resultado de sumar la prioridad base obtenida a partir de la clase de prioridad del proceso con la prioridad relativa del hilo en cuestión.

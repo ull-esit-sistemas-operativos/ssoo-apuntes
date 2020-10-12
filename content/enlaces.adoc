@@ -7,12 +7,14 @@
 :clang_setenv: https://man7.org/linux/man-pages/man3/setenv.3.html[setenv()]
 :clang_getenv: https://man7.org/linux/man-pages/man3/getenv.3.html[getenv()]
 :clang_environ: https://man7.org/linux/man-pages/man7/environ.7.html[environ]
+:clang_printf: https://en.cppreference.com/w/c/io/fprintf[printf()]
 :clang_system: https://en.cppreference.com/w/c/program/system[system()]
 
 // C++ STD
 :cpp_iostream: https://en.cppreference.com/w/cpp/header/iostream[iostream]
 :cpp_new: https://en.cppreference.com/w/cpp/language/new[new]
-:cpp_ofstream_open: https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]1
+:cpp_ofstream_open: https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]
+:cpp_jthread: https://en.cppreference.com/w/cpp/thread/jthread[jthread]
 
 // llamadas al sistema POSIX & Linux
 :linux_accept: https://man7.org/linux/man-pages/man2/accept.2.html[accept()]
@@ -54,6 +56,8 @@
 :linux_write: https://man7.org/linux/man-pages/man2/write.2.html[write()]
 :linux_wait: https://man7.org/linux/man-pages/man2/wait.2.html[wait()]
 :linux_waitpid: https://man7.org/linux/man-pages/man2/waitpid.2.html[waitpid()]
+
+:pthreads: https://man7.org/linux/man-pages/man7/pthreads.7.html[POSIX Threads]
 
 // Comandos en sistemas POSIX
 :cmd_pstree: https://man7.org/linux/man-pages/man1/pstree.1.html[pstree]
@@ -97,9 +101,13 @@
 :darwin: https://en.wikipedia.org/wiki/Darwin_(operating_system)[Darwin]
 :gnuhurd: https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd]
 :gnulinux: https://es.wikipedia.org/wiki/GNU/Linux[GNU/Linux]
+:hpux: https://es.wikipedia.org/wiki/HP-UX[HP-UX]
+:irix: https://es.wikipedia.org/wiki/IRIX[IRIX]
 :minix: https://es.wikipedia.org/wiki/MINIX[Minix]
 :minix3: https://en.wikipedia.org/wiki/MINIX_3[MINIX 3]
 :macos: https://es.wikipedia.org/wiki/MacOS[macOS]
+:solaris: https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Solaris]
+:tru64: https://es.wikipedia.org/wiki/Tru64[Tru64 UNIX]
 
 // Otros sistemas operativos
 :android: https://es.wikipedia.org/wiki/Android[Android]

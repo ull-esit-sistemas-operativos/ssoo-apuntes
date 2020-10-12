@@ -376,12 +376,23 @@ Otra forma de pasar parámetros a un proceso hijo es usando las *variables de en
 Las *variables de entorno* se gestionan con funciones específicas ofrecidas por la API del sistema operativo:
 
 .Funciones de la API para gestionar variables de entorno.
-[cols="h*"]
+[cols="1h,2*" options=header]
 |====
-|                   | POSIX API         | Windows API
-| Leer              | {clang_getenv}    | {win32_getenvironmentvariable}
-| Leer todos        | {clang_environ}   | {win32_getenvironmentstrings}
-| Crear / modificar | {clang_setenv}    | {win32_setenvironmentvariable}
+|
+|POSIX API         
+|Windows API
+
+|Leer              
+|{clang_getenv}    
+|{win32_getenvironmentvariable}
+
+|Leer todos        
+|{clang_environ}   
+|{win32_getenvironmentstrings}
+
+|Crear / modificar 
+|{clang_setenv}    
+|{win32_setenvironmentvariable}
 |====
 
 por ejemplo, en sistemas POSIX un programa leer la variable de entorno `PATH` así:
@@ -479,13 +490,27 @@ El proceso padre puede esperar a que el hijo termine y recuperar ese valor a tra
 Cuando un proceso termina, todos los recursos son liberados, incluyendo: la memoria física y virtual, archivos y dispositivos abiertos, búferes de E/S, etc.
 
 .Funciones de la API para salir, esperar y terminar procesos.
-[cols="h*"]
+[cols="1h,2*" options=header]
 |====
-|                               | POSIX API         | Windows API
-| Salir                         | {clang_exit}      | {win32_exitprocess}
-| Esperar (un hijo concreto)    | {linux_waitpid}   | {win32_waitforsingleobject}
-| Esperar (múltiples hijos)     | {linux_wait}      | {win32_waitformultipleobjects}
-| Terminar otro proceso         | {linux_kill}      | {win32_terminateprocess}
+|
+|POSIX API         
+|Windows API
+
+|Salir                         
+|{clang_exit}      
+|{win32_exitprocess}
+
+|Esperar (un hijo concreto)    
+|{linux_waitpid}   
+|{win32_waitforsingleobject}
+
+|Esperar (múltiples hijos)     
+|{linux_wait}      
+|{win32_waitformultipleobjects}
+
+|Terminar otro proceso         
+|{linux_kill}      
+|{win32_terminateprocess}
 |====
 
 En todo caso un proceso puede provocar la terminación de otro proceso a través de una llamada al sistema.

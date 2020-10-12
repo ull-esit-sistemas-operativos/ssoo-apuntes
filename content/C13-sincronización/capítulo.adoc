@@ -1,7 +1,13 @@
-==== Sincronización
+= Sincronización
 ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
+
+[.right]
+====
+.Tiempo estimado de lectura
+{C13_reading_time}
+====
 
 Hemos comentado anteriormente que los hilos comparten el espacio de direcciones del proceso al que pertenecen.
 Al mismo tiempo distintos procesos pueden compartir regiones de la memoria con el objeto de cooperar en las tareas que deben desempeñar.
@@ -10,7 +16,7 @@ En este apartado vamos a discutir _cómo se puede asegurar la ejecución ordenad
 
 // TODO: Usar una nota para decir que cuando hablemos de hilos nos referimos tambien a procesos en sistemas monohilo.
 
-===== El problema de las secciones críticas
+== El problema de las secciones críticas
 
 _Llamamos *condición de carrera* a la situación donde varios procesos o hilos pueden acceder y manipular los mismos datos concurrentemente, y donde el resultado de la ejecución depende del orden particular en el que tienen lugar dichos accesos_.
 Estas situaciones ocurren frecuentemente en los sistemas operativos puesto que diferentes componentes del mismo manipulan los mismos recursos interfiriendo unos con otros.
@@ -107,7 +113,7 @@ Una *sección crítica* es una porción del código dónde se accede a variables
 El acceso a las secciones críticas es controlado de manera que _cuando un hilo se esté ejecutando en una sección de este tipo ningún otro pueda hacerlo en la suya correspondiente para manipular los mismos recursos_.
 En estos casos se dice que la ejecución es _mutuamente exclusiva_ en el tiempo.
 
-===== Semáforos, _mutex_ y _spinlocks_
+== Semáforos, _mutex_ y _spinlocks_
 
 La exclusión mutua en las secciones críticas se asegura utilizando adecuadamente una serie de recursos que para ese fin proporciona el sistema operativo.
 Estos recursos utilizan internamente instrucciones y otras características de la CPU incluidas por los diseñadores para resolver este tipo de problemas.
@@ -162,3 +168,27 @@ Por eso, para evitar que las esperas ocupadas sean demasiado largas, los sistema
 
 A estos semáforos con *espera ocupada* también se los denomina *spinlocks*.
 Los *spinlocks* son utilizados frecuentemente para proteger las estructuras del núcleo en los sistemas multiprocesador, cuando la tarea a realizar dentro de la sección crítica en el núcleo requiere poco tiempo y es mayor el tiempo de CPU que se pierde si se saca al hilo en espera para ejecutar otro en su lugar.
+
+
+=== Funciones reentrantes y seguras en hilos
+
+A la hora de utilizar una librería en un programa multihilo es necesario que tengamos en cuenta los conceptos de reentrante y de seguridad de hilos:
+
+Una función es *((reentrante))* si puede ser interrumpida en medio de su ejecución y mientras espera puede volver a ser llamada con total seguridad.
+Obviamente las funciones recursivas deben ser reentrantes para poder llamarse a sí mismas una y otra vez con total seguridad.
++
+En el contexto de la programación multihilo ocurre una reentrada cuando, durante la ejecución de una función por parte de un hilo, este es interrumpido por el sistema operativo para planificar posteriormente a otro del mismo proceso que invoca la misma función.
+En general una función es reentrante si:
+
+** No modifica variables estáticas o globales.
+Si lo hiciera sólo puede hacerlo mediante operaciones _leer-modificar-escribir_ que sean ininterrumpibles —es decir, atómicas—.
+
+** No modifica su propio código y no llama a otras funciones que no sean reentrantes.
+
+* _Una función es *segura en hilos* o *thread-safe* si al manipular estructuras compartidas de datos lo hace de tal manera que se garantiza la ejecución segura de la misma por múltiples hilos al mismo tiempo_.
+Obviamente estamos hablando de un problema de secciones críticas, por lo que se resuelven sincronizando el acceso a estos datos mediante el uso de semáforos, _mutex_ u otros recursos similares ofrecidos por el sistema operativo.
+
+En ocasiones ambos conceptos se confunden porque es bastante común que el código reentrante también sea seguro en hilos.
+Sin embargo es posible crear código reentrante que no sea seguro en hilos y viceversa.
+Por ejemplo, una función que manipule _datos específicos de hilo_ seguramente no será reentrante aunque si segura en hilos.
+Mientras que una función que sólo utilice variables locales y que no invoque a otras funciones seguramente será reentrante y segura en hilos.
