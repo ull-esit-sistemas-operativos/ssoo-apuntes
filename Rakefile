@@ -76,7 +76,7 @@ end
 directory OUTPUT_EPUB_DIR
 
 desc 'Ejecutar los tests'
-task :tests => [:test_htmlproofer, :test_missing_variables]
+task :tests => [:test_missing_variables, :test_htmlproofer]
 
 desc 'Test de HTMLProofer'
 task :test_htmlproofer => :html do |t|
