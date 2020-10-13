@@ -304,12 +304,12 @@ Por tanto, es mucho más sencillo trabajar con estructuras de directorio en graf
 Para evitar que en un grafo aparezca un ciclo al añadir un nuevo enlace, se pueden utilizar diversos algoritmos.
 Sin embargo, puesto que suelen ser muy costosos, lo más simple es ignorar todos los enlaces en los casos en los que se recorre el árbol de directorios para realizar una tarea en la que es importante no entrar en un bucle —por ejemplo, al hacer una búsqueda— En el caso de la duplicación de entradas de directorio —donde las entradas duplicadas no se pueden distinguir de la original y, por tanto, no se pueden ignorar— lo más sencillo es que el sistema operativo no permita crear múltiples referencias a un mismo directorio.
 
-= Compartición de archivos
+== Compartición de archivos
 
 Como ya hemos comentado, el que los usuarios puedan compartir archivos es algo muy deseable pues permite que éstos puedan colaborar en la realización de una tarea determinada.
 Sin embargo al añadir esta característica hay que tener en cuenta algunos aspectos que deben ser resueltos en el diseño del sistema operativo.
 
-== Múltiples usuarios y protección
+=== Múltiples usuarios y protección
 
 Cuando un sistema operativo admite múltiples usuarios y utiliza una estructura de directorio que permite que éstos compartan archivos, cobra gran importancia la protección de los datos.
 En este sentido el sistema operativo debe adoptar un papel de mediador en lo que respecta a la compartición de los archivos.
@@ -365,7 +365,7 @@ _Otra técnica para resolver el problema de la protección consiste en asociar u
 Sin embargo esto tiene el inconveniente de que el número de contraseñas que un usuario puede tener que recordar puede ser muy grande.
 No olvidemos que si se utiliza la misma contraseña para todos los archivo, desde el momento en que esa contraseña sea descubierta todos los archivos serán accesibles.
 
-== Semántica de coherencia
+=== Semántica de coherencia
 
 _La *semántica de coherencia* especifica cuando las modificaciones que un usuario realice en los archivos serán observables por los otros usuarios_.
 La semántica de coherencia está directamente relacionada con los algoritmos de sincronización de procesos (véase tema <<_sincronización>>).
@@ -373,7 +373,7 @@ Sin embargo es normal que esos complejos algoritmos no se implementen en el caso
 
 A continuación vamos comentar algunos ejemplos de semántica de coherencia:
 
-=== Semántica de UNIX
+==== Semántica de UNIX
 
 Los sistemas de archivos de los sistemas operativos UNIX utilizan la siguiente semántica de coherencia:
 
@@ -385,7 +385,7 @@ Así, el incremento de ese puntero por parte de un proceso afecta a todos los pr
 En la semántica de UNIX cada archivo está asociado con una única imagen física a la que se accede en forma de recurso de acceso exclusivo —por ejemplo, un proceso que haga un `read()` sobre un archivo podrá quedar en espera si al mismo tiempo otro proceso está ejecutando un `write()`, hasta que este último termine—.
 La contienda por acceder a esta imagen única provoca retardos en los procesos debido a estos bloqueos.
 
-=== Semántica de sesión
+==== Semántica de sesión
 
 Suponiendo que _una *sesión de archivo* es el conjunto de operaciones entre las llamadas `open()`y `close()`_, el sistema de archivos Andrew —o AFS— utiliza la siguiente semántica de coherencia:
 
@@ -397,14 +397,14 @@ Las sesiones ya abiertas sobre el archivo no reflejarán dichos cambios.
 Esto significa que un archivo puede permanecer temporalmente asociado a varias imágenes físicas al mismo tiempo.
 Así se permite que múltiples usuarios realicen accesos concurrentes, tanto de lectura como de escritura, en sus propias imágenes del archivo, evitando los retardos.
 
-=== Semántica de archivos compartidos inmutables
+==== Semántica de archivos compartidos inmutables
 
 En esta semántica, _cuando un archivo es declarado como compartido por su creador ya no puede ser ser modificado_.
 Estos archivos inmutables cumplen dos propiedades clave: su nombre no puede reutilizarse y su contenido no puede ser modificado.
 Así podemos estar seguros de que el contenido de un archivo inmutable es fijo.
 La implementación de esta semántica en un sistema distribuido es muy simple.
 
-== Bloqueos de archivo
+=== Bloqueos de archivo
 
 Algunos sistemas operativos proporcionan funciones para bloquear un archivo —o determinadas porciones de un archivo— abierto.
 Esto permite que un proceso _impida que otros procesos puedan acceder al archivo bloqueado_.
@@ -435,7 +435,7 @@ Son los desarrolladores del software los encargados de intentar adquirir el bloq
 
 Como regla general los sistemas operativos Microsoft Windows implementan un mecanismo de bloqueo obligatorio, mientras que los sistemas UNIX emplean bloqueos sugeridos.
 
-= Coherencia
+== Coherencia
 
 Como hemos comentado anteriormente, parte de los metadatos se almacena en la memoria principal para acelerar el acceso.
 Dicha información generalmente está más actualizada que la correspondiente en el disco, puesto que la información almacenada en la memoria no tiene porque ser escrita inmediatamente después de una actualización.
@@ -443,7 +443,7 @@ Dicha información generalmente está más actualizada que la correspondiente en
 ¿Qué ocurriría entonces si fallase el sistema? Pues que el contenido de la caché y de los búferes se perdería y con ellos también los cambios realizados en los directorios y archivos abiertos.
 Esto puede dejar el sistema de archivos en un estado incoherente, pues el estado real de algunos archivos no sería el que se describe en la estructura de metadatos.
 
-== Comprobación de coherencia
+=== Comprobación de coherencia
 
 _El *comprobador de coherencia* comprueba la estructura de metadatos y tratar de corregir todas las incoherencias que detecte_.
 
@@ -455,7 +455,7 @@ Por ejemplo, si se hace un escritura de datos que extiende el tamaño de un arch
 Sin embargo, no ocurre lo mismo con los datos que el proceso quería escribir en el archivo.
 El sistema operativo puede copiarlos a búferes internos en la memoria para escribirlos en disco más adelante, evitando interrumpir el proceso durante más tiempo.
 
-== Soft Updates
+=== Soft Updates
 
 Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada _soft updates_.
 _Cuando se monta un sistema de archivos con la opción *soft updates* el sistema operativo desactiva la escritura síncrona de los metadatos, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas_.
@@ -463,7 +463,7 @@ Por ejemplo, cuando se van a escribir en el disco las modificaciones debidas a l
 Es sencillo darse cuenta de que haciéndolo al revés, si el sistema fallase antes de crear el FCB, acabaríamos con una entrada de directorio que apuntaría a un FCB inválido.
 Mientras que de esta manera el sistema de archivos permanecerá consistente aunque el sistema falle entre ambas operaciones.
 
-== Sistemas de archivos basados en registro
+=== Sistemas de archivos basados en registro
 
 Otra solución al problema de la coherencia consiste en aplicar técnicas de recuperación basadas en registro durante las actualizaciones de los metadatos del sistema de archivos.
 
@@ -511,11 +511,11 @@ Las operaciones de una transacción se deben escribir antes de devolver el contr
 * En el caso de que el sistema fallase, el uso de escrituras asíncronas podría provocar la corrupción del registro porque pueden ocurrir en cualquier orden.
 Para evitarlo, XFS impone cierto orden en las operaciones de escritura sobre el registro, de forma similar a como se hace con los _soft updates_, de tal forma que asegura la coherencia del registro.
 
-== Sistemas de archivos basados en copia durante la escritura
+=== Sistemas de archivos basados en copia durante la escritura
 
 _Las técnicas anteriores son necesarias para preservar la coherencia porque la modificación de los metadatos se hace sobrescribiendo los datos que ya existen_.
 Es decir, cuando se crea un nuevo archivo el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
-Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estado inconsistente.
+Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estadoinconsistente.
 
 _Los **sistemas de archivos basados en copia durante la escritura**_ —o _copy-on-write_— _evitan cambiar los metadatos sobrescribiendo en el sitio_.
 En su lugar buscan un hueco libre, hacen en él una copia del bloque completo con los cambios y después modifican los metadatos del sistema de archivos que sirven para localizar el bloque modificado en su nueva ubicación.

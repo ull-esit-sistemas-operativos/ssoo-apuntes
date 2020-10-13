@@ -599,7 +599,7 @@ Para implementarlo se puede poner el bit de bloqueo a 1 cuando la página se car
 * _En los sistemas con tiempo real flexible se suele permitir que las tareas de tiempo real informen de cuales son las páginas más importantes con el fin de que sean bloqueadas para evitar que puedan ser reemplazadas_.
 Para evitar riesgos, el sistema suele considerar estás solicitudes como _consejos de bloqueo_, de manera que es libre de descartar dichos consejos si el conjunto de marcos libres llega a ser demasiado pequeño o si un proceso concreto pide bloquear demasiadas páginas.
 
-= Interfaz de gestión de la memoria
+== Interfaz de gestión de la memoria
 
 Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda— desde el punto de vista de los procesos en cualquier sistema moderno _prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual_.
 En los sistemas POSIX —como GNU/Linux— esta llamada es `mmap()` —junto a su opuesta `munmap()`— y sirve para:
@@ -616,7 +616,7 @@ Es decir, las regiones reservadas del espacio de direcciones virtual siempre com
 La cuestión es como compatibilizar eso con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos como: _arrays_, cadenas de texto, estructuras, objetos, etc.
 Para esos casos _utilizar directamente `mmap()` no es una solución puesto que la fragmentación interna con llevaría un importante derroche de recursos_.
 
-== Uso del espacio de direcciones virtual del proceso
+=== Uso del espacio de direcciones virtual del proceso
 
 Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la ):
 
@@ -634,7 +634,7 @@ Otros lenguajes de programación tienen otras interfaces para gestionar la memor
 Pero este no es el caso ni de {cpp} ni de Java ni de otros muchos lenguajes; donde los operadores `new` y `delete` utilizan sus propios algoritmos de gestión de la memoria del montón más optimizados que `malloc()` y `free()` para la creación y destrucción de objetos de manera eficiente.
 
 // TODO: Si se mete la memoria contigua, reescribir.
-== Gestión de la memoria del montón
+=== Gestión de la memoria del montón
 
 Para ilustrar cómo se gestiona la memoria del _montón_ utilizaremos como ejemplo el mecanismo empleado por la _librería del sistema_ de los sistemas POSIX —accesible a través de las funciones `malloc()` y `free()`— aunque es importante tener en cuenta que esta tarea se realiza de manera muy similar en las implementaciones de otros sistemas operativos y lenguajes de programación.
 
@@ -673,7 +673,7 @@ Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por t
 
 En la actualidad _la estrategia más común es utilizar el mejor ajuste junto con algún tipo de estructura de datos que mantenga los huecos libres ordenados por tamaño_, de manera que puedan ser encontrados eficientemente.
 
-== Fragmentación
+=== Fragmentación
 
 Las estrategia comentada no sufre de _fragmentación interna_ porque se asigna exactamente la cantidad de memoria solicitada.
 Sin embargo si sufre de otro tipo de fragmentación denominada fragmentación externa.

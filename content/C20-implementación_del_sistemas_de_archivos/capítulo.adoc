@@ -315,12 +315,12 @@ Así, por ejemplo, un `read()` puede implicar que se tenga que recuperar el _vno
 Después se _invocaría la operación _VFS_ `read()`, sobre el _vnodo_, en la implementación concreta de VFS según el tipo de sistema de archivos involucrado.
 Será esa implementación quien extraiga del _vnodo_ la información necesaria —por ejemplo, el _inodo_ real del archivo en el sistema de archivos— para llevar acabo la operación indicada, según las especificidades del sistema de archivos.
 
-= Planificación de disco
+== Planificación de disco
 
 Como ya hemos comentado, es responsabilidad del sistema operativo usar los recursos del hardware de forma eficiente.
 Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo de espera que sea posible o aprovechar de la mejor forma la memoria principal disponible para atender la demanda de los distintos procesos al mismo tiempo; pero también, intentar obtener el menor tiempo de acceso y el mayor ancho de banda posible en el acceso a los discos.
 
-== Rendimiento del acceso a disco
+=== Rendimiento del acceso a disco
 
 En un disco duro magnético el *tiempo de acceso al disco* stem:[T^d] viene determinado por el *tiempo de búsqueda* stem:[T^b] y la *latencia rotacional* stem:[T^r]:
 
@@ -338,14 +338,14 @@ Al considerar todo el tiempo necesario para atender la petición, a más _tiempo
 
 En los dispositivos de almacenamiento basados en memorias de estado sólido (véase el <<_memorias_de_estado_sólido>>) el tiempo de acceso viene determinado por las características de la memoria, entre otros factores, lo que hace que las diferencias entre accesos secuenciales y accesos aleatorios sean mucho menos significativas.
 
-== Cola de E/S al disco
+=== Cola de E/S al disco
 
 Cuando se solicita una operación de E/S sobre el almacenamiento el sistema operativo puede atender la petición sobre la marcha si la controladora y la unidad de disco están disponibles.
 Pero si están ocupadas, la solicitud se almacena en una cola de peticiones pendientes.
 Cuando se resuelve una solicitud, el sistema operativo escoge otra de la cola y se comunica con el hardware para programar la siguiente petición.
 La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S de la cola si se quiere acceder al disco de la forma más eficaz posible?
 
-== Planificación FCFS
+=== Planificación FCFS
 
 En la planificación *FCFS* (_First Come, First Served_) o _primero que llega, primero servido_ la cola es FIFO.
 Es decir, _se atienden las solicitudes en orden de llegada_.
@@ -353,7 +353,7 @@ Es la planificación más simple y es equitativa —pues se atiende a todos los 
 
 En los sistemas operativos Linux el FCFS es denominado NOOP y se suele utilizar en los discos basados en memorias de estado sólido, donde reordenar las solicitudes no proporciona una mejora significativa del rendimiento, o cuando se utilizan controladoras de disco inteligentes que pueden reordenar las solicitudes según su propio criterio.
 
-== Planificación SSTF
+=== Planificación SSTF
 
 En la planificación *SSTF* (_Sortest_ _Seek Time First_) o algoritmo de _tiempo de búsqueda más corto_, de toda cola se selecciona la solicitud con el menor _tiempo de búsqueda_ desde la posición actual de la cabeza.
 Como el _tiempo de búsqueda_ se incrementa a medida que lo hace el número de cilindros que es necesario recorrer, este algoritmo de planificación primero da servicio a las solicitudes cercanas a la posición actual de la cabeza, antes de alejarse para dar servicio a otras solicitudes.
@@ -361,7 +361,7 @@ Aun así, la solución no es óptima.
 
 El problema de SSTF es que _puede provocar inanición de algunas solicitudes_ si van llegando constantemente nuevas solicitudes sobre regiones cercanas a donde está actualmente la cabeza del disco.
 
-== Planificación SCAN y C-SCAN
+=== Planificación SCAN y C-SCAN
 
 En la planificación *SCAN* o algoritmo de _exploración_ o del _ascensor_ _el brazo del disco comienza en un extremo del disco y se mueve hacia el otro atendiendo solicitudes a medida que pasa por cada cilindro_, hasta llegar al otro extremo del disco.
 En el otro extremo la dirección de movimiento de la cabeza se invierte para recorrer el disco en sentido inverso, repitiendo el proceso.
@@ -372,14 +372,14 @@ Entonces ¿por qué no empezar por el otro extremo?
 _A la variante del SCAN que cuando llega a un extremo vuelve al inicio, sin atender ninguna solicitud por el camino, para volver a empezar se la denomina **C-SCAN**_.
 El resultado es que el tiempo que tiene que esperar una solicitud para ser atendida es más uniforme que con el algoritmo SCAN.
 
-== Planificación LOOK y C-LOOK
+=== Planificación LOOK y C-LOOK
 
 En teoría los algoritmos SCAN y C-SCAN hacen que el brazo recorra los cilindros del primero al último.
 Sin embargo realmente no se suelen implementar así.
 Por lo general, _cuando en el recorrido del brazo, tras atender una solicitud, se descubre que ya no hay más solicitudes siguiendo la misma dirección, el brazo invierte la dirección sin llegar hasta el extremo del disco_.
 A estas variantes de SCAN y C-SCAN se las denomina *LOOK* y *C-LOOK*, respecitvamente.
 
-== Planificación N-Step-SCAN, N-Step-LOOK y FSCAN
+=== Planificación N-Step-SCAN, N-Step-LOOK y FSCAN
 
 Los algoritmos _**N-Step-SCAN** y **N-Step-LOOK**_ son variantes de los algoritmos SCAN y LOOK, respectivamente, donde _se limita a N el número de solicitudes que se atenderán en cada barrido del brazo del disco_.
 Estos algoritmos funcionan de la siguiente manera:
@@ -396,7 +396,7 @@ Estos algoritmos previenen un problema denominado _rigidez del brazo_ —_arm st
 El termino _rigidez del brazo_ hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, lo que hace que con los algoritmos anteriores el brazo no avance por los cilindros hasta llegar la otro extremo.
 Como FSCAN, N-Step-SCAN y N-Step-LOOK separan las solicitudes en dos colas, haciendo que las nuevas tengan que esperar, el brazo siempre continua su barrido hacia el extremo del disco.
 
-== Planificación CFQ
+=== Planificación CFQ
 
 _El planificador *CFQ* (Completely Fair Queuing) se diseñó para compartir de forma equitativa el ancho de banda entre todos los procesos que solicitan acceso al disco_.
 Es utilizado actualmente por defecto en los sistemas Linux modernos y funciona de la siguiente manera:
