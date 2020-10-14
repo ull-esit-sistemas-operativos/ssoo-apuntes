@@ -176,7 +176,7 @@ Para simplificar aun más el acceso al almacenamiento, el sistema operativo prop
 Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir el *archivo*, una unidad de almacenamiento lógico con la que trabajan los procesos para guardar y recuperar datos.
 
 ====
-Un *((archivo))* o ((fichero)) es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario —por ejemplo un programa, una imagen o un documento—.
+Un *((archivo))* o *((fichero))* es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario —por ejemplo un programa, una imagen o un documento—.
 ====
 
 Los archivos normalmente se organizan en directorios para facilitar su uso y organización.
