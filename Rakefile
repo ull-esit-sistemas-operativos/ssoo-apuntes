@@ -87,9 +87,8 @@ end
 desc 'Test de variables no definidas'
 task :test_missing_variables => OUTPUT_HTML_FILE do |t|
     document = Nokogiri::HTML.parse(open(OUTPUT_HTML_FILE))
-    variables = document.xpath('//text()').filter_map do |text|
-        match = /\{\w+\}/.match(text)
-        match.to_s if match
+    variables = document.xpath('//body//text()').flat_map do |text|
+        matches = text.content.gsub(/\\\$.*?\\\$/, "").scan(/\{\w+\}/)
     end.uniq.sort
 
     fail "Se han encontrado #{variables.size} variables no definidas:\n#{variables.join("\n")}" unless variables.empty?
