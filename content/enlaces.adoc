@@ -15,6 +15,7 @@
 :cpp_new: https://en.cppreference.com/w/cpp/language/new[new]
 :cpp_ofstream_open: https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]
 :cpp_jthread: https://en.cppreference.com/w/cpp/thread/jthread[jthread]
+:cpp_thread: https://en.cppreference.com/w/cpp/thread/thread[thread]
 
 // llamadas al sistema POSIX & Linux
 :linux_accept: https://man7.org/linux/man-pages/man2/accept.2.html[accept()]
@@ -48,8 +49,10 @@
 :linux_sendmsg: https://man7.org/linux/man-pages/man2/send.2.html[sendmsg()]
 :linux_shutdown: https://man7.org/linux/man-pages/man2/shutdown.2.html[shutdown()]
 :linux_sigaction: https://man7.org/linux/man-pages/man2/sigaction.2.html[sigaction]
+:linux_sigemptyset: https://man7.org/linux/man-pages/man3/sigemptyset.3.html[sigemptyset()]
 :linux_signal: https://man7.org/linux/man-pages/man2/signal.2.html[signal()]
 :linux_shm_open: https://www.man7.org/linux/man-pages/man3/shm_open.3.html[shm_open()]
+:linux_sleep: https://man7.org/linux/man-pages/man3/sleep.3.html[sleep()]
 :linux_socket: https://man7.org/linux/man-pages/man2/socket.2.html[socket()]
 :linux_strerror: https://man7.org/linux/man-pages/man3/strerror.3.html[strerror()]
 :linux_syscall: https://man7.org/linux/man-pages/man2/syscall.2.html[syscall()]
@@ -58,6 +61,18 @@
 :linux_waitpid: https://man7.org/linux/man-pages/man2/waitpid.2.html[waitpid()]
 
 :pthreads: https://man7.org/linux/man-pages/man7/pthreads.7.html[POSIX Threads]
+:pthread_cancel: [pthread_cancel()]
+:pthread_cleanup_pop: https://man7.org/linux/man-pages/man3/pthread_cleanup_pop.3.html[pthread_cleanup_pop()]
+:pthread_cleanup_push: https://man7.org/linux/man-pages/man3/pthread_cleanup_push.3.html[pthread_cleanup_push()]
+:pthread_create: https://man7.org/linux/man-pages/man3/pthread_create.3.html[pthread_create()]
+:pthread_exit: https://www.man7.org/linux/man-pages/man3/pthread_exit.3.html[pthread_exit()]
+:pthread_join: https://man7.org/linux/man-pages/man3/pthread_join.3.html[pthread_join()]
+:pthread_kill: https://man7.org/linux/man-pages/man3/pthread_kill.3.html[pthread_kill()]
+:pthread_self: https://man7.org/linux/man-pages/man3/pthread_self.3.html[pthread_self()]
+:pthread_setcancelstate: https://man7.org/linux/man-pages/man3/pthread_setcancelstate.3.html[pthread_setcancelstate()]
+:pthread_setcanceltype: https://www.man7.org/linux/man-pages/man3/pthread_setcanceltype.3.html[pthread_setcanceltype()]
+:pthread_sigmask: https://man7.org/linux/man-pages/man3/pthread_sigmask.3.html[pthread_sigmask()]
+:pthread_testcancel: https://man7.org/linux/man-pages/man3/pthread_testcancel.3.html[pthread_testcancel()]
 
 // Comandos en sistemas POSIX
 :cmd_pstree: https://man7.org/linux/man-pages/man1/pstree.1.html[pstree]
@@ -79,6 +94,7 @@
 :win32_getenvironmentstrings: https://docs.microsoft.com/en-us/windows/win32/api/processenv/nf-processenv-getenvironmentstrings[GetEnvironmentStrings()]
 :win32_getlasterror: https://docs.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror[GetLastError()]
 :win32_getmessage: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagea[GetMessage()]
+:win32_getpriorityclass: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getpriorityclass[GetPriorityClass()]
 :win32_exitprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess[ExitProcess()]
 :win32_mapviewoffile: https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile[MapViewOfFile()]
 :win32_msg: https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg[MSG]
@@ -88,6 +104,8 @@
 :win32_waitformultipleobjects: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitformultipleobjects[WaitForMultipleObject()]
 :win32_writefile: https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-writefile[WriteFile()]
 :win32_terminateprocess: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess[TerminateProcess()]
+:win32_setpriorityclass: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass[SetPriorityClass()]
+:win32_setthreadpriority: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setthreadpriority[SetThreadPriority()]
 :win32_startupinfo: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa[STARTUPINFO]
 :win32_processinformation: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information[PROCESS_INFORMATION]
 
@@ -106,6 +124,7 @@
 :minix: https://es.wikipedia.org/wiki/MINIX[Minix]
 :minix3: https://en.wikipedia.org/wiki/MINIX_3[MINIX 3]
 :macos: https://es.wikipedia.org/wiki/MacOS[macOS]
+:netbsd: https://es.wikipedia.org/wiki/NetBSD[NetBSD]
 :solaris: https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Solaris]
 :tru64: https://es.wikipedia.org/wiki/Tru64[Tru64 UNIX]
 
@@ -143,8 +162,10 @@
 :message_queue_hpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/message_queue.hpp[message_queue.hpp]
 :mqueue_client_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/mqueue-client.cpp[mqueue-client.cpp]
 :mqueue_server_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/mqueue-client.cpp[mqueue-server.cpp]
+:pthread_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap12/pthread.cpp[pthread.cpp] 
 :signals_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/signals.c[signals.c]
 :socket_hpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/socket.hpp[socket.hpp]
 :socket_client_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/socket-client.cpp[socket-client.cpp]
 :socket_server_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap10/socket-client.cpp[socket-server.cpp]
+:threads_cpp: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap12/threads.cpp[threads.cpp]
 :timeserver_c: https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/common/timeserver.c[timeserver.c]
