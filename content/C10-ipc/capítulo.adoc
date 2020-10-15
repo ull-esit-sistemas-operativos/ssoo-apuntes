@@ -633,6 +633,11 @@ En los sistemas POSIX las *tuberías con nombre* se denominan _FIFO_ y tienen pr
 |Cerrar                        
 |{linux_close}     
 |{win32_closehandle}
+
+|Destruir tubería con nombre
+|{linux_unlink}
+|[.lightcell]##[Automáticamente]##
+
 |====
 
 Con {linux_fork} es muy sencillo lanzar otros procesos para que ejecuten tareas en paralelo.
