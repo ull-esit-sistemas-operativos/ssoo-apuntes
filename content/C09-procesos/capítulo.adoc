@@ -611,26 +611,37 @@ CloseHandle( pi.hThread );
 ----
 <1> {win32_startupinfo} sirve para pasar a {win32_createprocess} parámetros adicionales sobre el inicio de la aplicación, como configurar la redirección de la E/S estándar o características de la primera ventana creada por la aplicación —en aplicaciones con interfaz gráfica—.
 Si no se va a usar, debe inicializarse a 0, excepto el primer campo que debe contener el tamaño de la estructura.
+
 <2> {win32_processinformation} sirve para devolver el manejador y el *identificador de proceso* del nuevo proceso.
 Es común inicializar la estructura a 0.
+
 <3> {win32_createprocess} devuelve `TRUE` o `FALSE`, en función de si ha tenido éxito o no, respectivamente.
+
 <4> El primer argumento —`lpApplicationName`— se usa para pasar la ruta del ejecutable, mientras que los argumentos de línea de comando generalmente se pasan por el segundo —`lpCommandLine`—.
 Si en `lpApplicationName` se indica NULL, se puede pasar todo junto por `lpCommandLine`.
+
 <5> En `lpCommandLine` indicamos la ruta al ejecutable y los argumentos de la línea de comandos, si hicieran falta.
+
 <6> Con `bInheritHandles` a `FALSE` señalamos que no queremos que el proceso hijo herede ningún manejador abierto del proceso padre.
 Estos manejadores son recursos a los que el padre tiene acceso y, si fuera necesario, el hijo también podría tenerlo.
 Los manejadores pueden representar, por ejemplo, archivos abiertos, tuberías, _sockets_ u otros mecanismos de comunicación, procesos o archivos mapeados en memoria, entre muchos otros tipos de recursos.
+
 <7> Con `NULL` en `lpEnvironment` indicamos que el hijo herede el conjunto de variables de entorno directamente del padre.
 La otra opción es indicar un nuevo conjunto de variables de entorno.
+
 <8> `lpCurrentDirectory` sirve para indicar el directorio del trabajo del proceso hijo.
 Es decir, el directorio respecto al que se resolverán las rutas de archivo relativas.
 Con `NULL` indicamos que utilice la misma ruta que el proceso padre.
+
 <9> Si {win32_createprocess} falla, devuelve `FALSE`.
 Llamando a {win32_getlasterror} obtiene el código que identifica el motivo del error de la última función utilizada de Windows API.
+
 <10> Usando {win32_waitforsingleobject} hacemos que el proceso padre se quede en estado *esperando* —sin que pueda seguir ejecutándose— hasta que el proceso hijo termine.
+
 <11> Cuando el proceso ha terminado, el padre puede conocer su valor de salida.
 Es decir, el valor usado para terminar en la sentencia `return` de {clang_main} o al llamar a  {win32_exitprocess} en el programa del proceso hijo.
 Como convención, el hijo indica con un 0 que terminó con éxito, mientras que con un valor distinto indica que tuvo algún tipo de problema.
+
 <12> Cuando ya no hace falta obtener información del proceso hijo o manipularlo, es necesario cerrar los manejadores devueltos por {win32_createprocess}.
 Así el sistema operativo sabe que las estructuras de datos relacionadas con el proceso hijo ya no son necesarias, por lo que pueden liberarse.
 ====
@@ -697,21 +708,29 @@ else { <5>
 <1> El proceso llama a {linux_fork} pero al retornar de la llamada vuelven dos procesos: el proceso padre, que es el que llamó originalmente a {linux_fork}, y el proceso hijo.
 Como el proceso hijo es una copia del padre, tiene el mismo código, las mismas variables y los mismos recursos que tenía el padre en el momento de llamar a {linux_fork}.
 La única diferencia es el valor devuelto por {linux_fork}, que guardamos en `child`.
+
 <2> Los dos procesos ejecutan el mismo programa, así que ambos llegan a la línea detrás del {linux_fork}.
 Como queremos que cada proceso haga cosas diferentes, necesitamos que cada uno vaya a ramas distintas del código.
 Eso se hace comprobando el valor de `child`, porque si vale 0 es que el proceso que actualmente ejecuta el programa es el hijo.
+
 <3> Si, por el contrario, el valor de `child` es mayor de 0, el proceso que ejecuta el programa es el padre y el valor de `child` es el PID del proceso hijo creado.
+
 <4> Así que el valor de `child` en el padre coincide con el devuelto por {linux_getpid} en el hijo.
+
 <5> Finalmente, si el valor devuelto por {linux_fork} es negativo, es que ocurrió un error y el proceso hijo no llegó a crearse.
+
 <6> En los sistemas POSIX es común que las llamadas al sistema devuelvan un valor negativo para indicar un error.
 El motivo del error se puede conocer a través de la variable global {linux_errno}, que siempre guarda el código de identificación del error en la última función invocada de la API POSIX.
 La función {linux_strerror} permite obtener un texto descriptivo de cualquier valor de {linux_errno}, lo que siempre resulta útil para crear mensajes de error que ayuden a determinar dónde estuvo el problema.
+
 <7> A modo de ejemplo hemos guardado el PID del proceso en la variable `pid`, antes de la llamada a {linux_fork}.
 Como el proceso hijo es una copia del proceso padre, la variable existe en ambos pero en el proceso hijo su valor coincide con lo devuelto por {linux_getppid} mientras que en el proceso padre con lo devuelto por {linux_getpid}.
+
 <8> {linux_wait} hace que el proceso padre interrumpa su ejecución hasta que algún hijo termine y devuelve el estado de salida en `status`.
 +
 Debemos asegurarnos de llamar a {linux_wait} o {linux_waitpid} una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, dónde se guarda el estado de salida.
 No hacerlo genera *procesos zombi*(((proceso, zombi)) o _defunct_.
+
 <9> El valor de salida del proceso hijo lo obtiene el proceso a través del estado de salida devuelto por {linux_wait}.
 Pero ese estado contiene más información sobre la causa por la que el proceso terminó.
 Para recuperar el valor de salida se usa la macro `WEXITSTATUS` sobre el estado de salida.
@@ -793,19 +812,26 @@ else {
 ----
 <1> Primero creamos un proceso hijo, donde ejecutaremos el nuevo programa.
 Si nos diera por llamar directamente a una función de la familia {linux_exec}, nuestro programa sería sustituido y no tendríamos ningún control sobre lo que pase después.
+
 <2> En la rama de código que se va a ejecutar en el hijo —gracias a la comprobación del valor devuelto por {linux_fork}— ejecutamos la función de la familia {linux_exec} que más nos interese.
 Esta función no crea otro proceso, sino que carga el programa indicado en el proceso hijo, sustituyendo así a nuestro programa.
+
 <3> Todas las funciones de la familia {linux_exec} reciben como primer argumento la ruta al ejecutable, pero en `execlp()` en particular, a continuación se indican los argumentos de línea de comandos, tal y como queremos que los reciba el programa en el argumento `argv` de su {clang_main}.
 Es decir, que el programa del comando `/bin/ls` recibirá `ls` y `-l` en `argv[0]` y `argv[1]`, respectivamente.
 El `NULL` del final indica cuando no hay más argumentos de línea de comandos para pasar.
+
 <4> Antes de ejecutar la función {linux_exec} se pueden hacer cosas para configurar adecuadamente el proceso donde se ejecutará el nuevo programa.
 Por ejemplo, cambiar las variables de entorno, redirigir la E/S estándar, cambiar el usuario al que pertenece el proceso —si originalmente se ejecuta con un usuario con ese privilegio— o cerrar archivos abiertos del procesos padre que ha heredado el proceso hijo y que, obviamente, no queremos que se queden abiertos para programas diferentes al nuestro.
+
 <5> Las funciones {linux_exec} no retornan si tienen éxito, porque el programa actual es sustituido por el indicado, que comenzará a ejecutarse de su {clang_main}.
+
 <6> Si la función {linux_exec} retorna es porque falló y, como es común, el motivo del error está disponible en {linux_errno}.
 Un motivo de fallo muy típico es que el ejecutable indicado no exista.
+
 <7> Si la función {linux_exec} retorna, la ejecución del programa en el proceso hijo continua hasta salir de {clang_main}.
 Generalmente, el proceso hijo no es útil si no puede ejecutar el programa que le hemos indicado.
 Por eso es importante asegurarnos de que el proceso hijo termina, si {linux_exec} falla.
+
 <8> Mientras todo lo anterior ocurre en el proceso hijo, el proceso padre espera.
 Cuando el proceso hijo termine, el padre podrá obtener su estado de salir para saber si tuvo éxito o no.
 

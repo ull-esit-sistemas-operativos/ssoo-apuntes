@@ -127,10 +127,13 @@ El identificador de la llamada al sistema es 4004, según el https://git.linux-m
   syscall               <3> <4>
 ----
 <1> Cargar cada uno de los 3 argumentos de la llamada al sistema en los registros `a0`, `a1` y `a2`.
+
 <2> Cargar el identificador de la llamada `write()` en el registro `v0`.
+
 <3> Invocar la llamada al sistema.
 Aunque vemos que es una única instrucción, lo que realmente va a ocurrir es que el sistema operativo va a tomar el control de la CPU para realizar la tarea solicitada.
 La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operativo no lo decida, por lo que, desde el punto de vista del programa, va a ser como si `syscall` fuera una instrucción más lenta de lo normal.
+
 <4> Al ejecutar la siguiente instrucción del código del programa, el registro `v0` contendrá el número de bytes escritos.
 
 En {syscall_s} se puede ver un ejemplo completo similar, pero para Linux x86 de 64 bits.

@@ -360,25 +360,37 @@ int main
 ----
 <1> En {pthreads} se usa {pthread_create} para crear hilos.
 Devuelve un manejador de tipo `pthread_t` que podemos usar con otras funciones de la API para indicar el hilo que queremos gestionar.
+
 <2> `pthread_t` no es el equivalente al PID de los hilos.
 Si el sistema implementa al librería de hilos en el núcleo, por lo general, cada hilo tiene un identificador único; pero {pthreads} no ofrece una forma de obtenerlo.
+
 <3> La variable `pthread_t` se pasa a {pthread_create} como puntero para que al retornar, si todo ha ido bien, contenga el manejador del hilo.
+
 <4> Si el hilo se puede crear, {pthread_create} devuelve 0.
 En caso contrario devuelve un código de error.
+
 <5> Los códigos de error son los mismos que hasta hora veíamos en {linux_errno}.
 Así que podemos llamar a {linux_strerror} pasando el valor retornado, para obtener un texto descriptivo del error.
+
 <6> Es opcional pasar a {pthread_create} una estructura con atributos tales como: tamaño y posición de la pila, política y parámetros de planificación, entre otros.
+
 <7> Todo hilo tiene una función principal que será dónde comience la ejecución del hilo.
 Cuando esa función termine, el hilo finalizará.
+
 <8> Los hilos pueden recibir un argumento en la forma de un puntero a `void*`.
 Si queremos pasar varios, lo más sencillo es crear una estructura.
+
 <9> En este ejemplo definimos `factorial_thread_args` para pasar losa argumentos a los hilos y lo pasamos como `void *` a la función principal.
 Allí hacemos un _typecast_ para recuperar el puntero a la estructura `factorial_thread_args` y poder acceder a sus campos.
+
 <10> En cualquier momento se puede llamar a {pthread_self} para obtener el manejador `pthread_t` del hilo actual.
+
 <11> El hilo que invoca {pthread_join} se queda dormido hasta que el hilo indicado en el primer argumento termine.
 Si el hilo principal sale de {clang_main} sin esperar a que todos los hilos del proceso terminen, estos mueren inmediatamente, junto con el proceso.
+
 <12> El hilo puede retornar un resultado mediante un puntero 'void*'.
 Este se indica en la sentencia `return` de la función principal del hilo o invocando {pthread_exit} para terminar.
+
 <13> La función {pthread_join} acepta un puntero a `void*` para devolver ese valor de retorno al hilo que la invoca.
 
 Como los hilos de {pthreads} devuelven punteros, es importante no intentar devolver variables locales, ya que se destruirán cuando el hilo termine y el punto devuelto no será válido.
@@ -599,10 +611,13 @@ CONN* conn_open( /* ... */ )
 ----
 <1> Nada más reservar la memoria de `CONN` se añade un *manejador de limpieza* que llamará a `free(handler)` si el hilo va a ser cancelado.
 Así nos aseguramos que `handler` será liberado si el hilo es cancelado.
+
 <2> La cancelación solo puede ocurrir en los *puntos de cancelación* que son las llamadas a {linux_open} y {linux_close}.
+
 <3> En caso de error, el *manejador de limpieza* ya no hace falta, así que se extrae antes de salir de la función.
 Se llama a {pthread_cleanup_pop} con valor distinto de 0 porque así la función extrae el manejador y lo invoca.
 A fin de cuentas se sale a causa de un error, por lo que sigue siendo necesario ejecutar `free(handler)` para evitar una *fuga de memoria*.
+
 <4> Al termina la función se extraen todos los manejadores de señal, puesto que ya no hacen falta.
 El argumento 0 hace que {pthread_cleanup_pop} no ejecute el manejador de limpieza extraido.
 

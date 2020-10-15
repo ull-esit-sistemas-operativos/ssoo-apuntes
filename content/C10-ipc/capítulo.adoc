@@ -451,8 +451,10 @@ while ( !quit_app )
 }
 ----
 <1> Abrimos o creamos las colas que vamos a utilizar.
+
 <2> Creamos un _array_ de la estructura `pollfd` con un elemento por cola que vamos a monitorizar con {linux_poll}.
 En cada estructura, en el campo `fd`, se indica el descriptor de cada una de las cola de mensajes.
+
 <3> Para cada cola hay que utilizar el campo `events` para indicar qué queremos que monitorice {linux_poll}.
 `events` es una máscara de bit donde a cada evento monitorizable le corresponde un bit.
 Si queremos monitorizar un evento, debemos poner su bit a 1.
@@ -460,12 +462,16 @@ Si queremos monitorizar un evento, debemos poner su bit a 1.
 Para eso nos podemos ayudar de macros como `POLLIN` y `POLLOUT`. 
 Por ejemplo, para `mqueue1` se quiere monitorizar cuándo hay mensajes para recibir, por lo que se activa `POLLIN`.
 Mientras que para `mqueue2` se quiere saber tanto cuándo hay mensajes para recibir como cuándo hay un hueco en la cola para enviar sin bloqueos, por lo que se activan `POLLIN` y `POLLOUT`.
+
 <4> Iterativamente se llama a {linux_poll} —mientras no queramos que termine la aplicación— que pondrá el proceso en estado *esperando* hasta que ocurra alguno de los eventos que nos interesan.
 {linux_poll} necesita `fds` —el _array_ de la estructura `pollfd` que hemos inicializado previamente— el número de elementos en el _array_ y el tiempo máximo que debe mantener bloqueado el proceso esperando a que ocurra alguno de los eventos.
 Con un número negativo en este último campo, se indica que queremos que espere indefinidamente.
+
 <5> Si {linux_poll} tiene éxito, devuelve un numero positivo que indica en cuántos descriptores se ha detectado un evento.
+
 <6> Si {linux_poll} devuelve un valor negativo, es que ha ocurrido algún error.
 El motivo del error se puede conocer comprobando el valor de la variable global {linux_errno}.
+
 <7> El campo `revents` es una máscara de bits similar a `events`, pero al retornar de {linux_poll} indica qué eventos se han detectado, para cada cola de mensajes en `fds`.
 +
 Por ejemplo, en ambas colas se comprueba si `POLLIN` está activo.
@@ -526,16 +532,22 @@ sigaction(
 );
 ----
 <1> Identificador de la señal a recibir.
+
 <2> Puntero a una estructura de tipo `sigaction` que describe los detalles de como tratar la señal cuando llega al proceso.
+
 <3> Puntero a una estructura de tipo `sigaction` donde {linux_sigaction} guarda la configuración anterior sobre como tratar la señal indicada.
+
 <4> Puntero al manejador de señal para la señal indicada.
+
 <5> Puntero a un manejador de señal alternativo al de `sa_handler`.
 Este manejador recibe más información sobre la señal cuando es llamado.
 Para activar es necesario indicar `SA_SIGINFO` en el campo `sa_flags`.
+
 <6> Máscara de bits de señales a bloquear durante el manejo de la señal.
 Cada bit de la máscara identifica a una señal.
 Deben ponerse a 1 aquellas señales que queremos que estén bloqueadas —es decir, que no se puedan recibir— mientras se ejecuta el manejador de señal porque ha llegado una.
 Es especialmente útil si se va a usar el mismo manejador para varias señales.
+
 <7> Opciones de configuración.
 Por ejemplo, `SA_RESTART` indica que si la señal llega durante una llamada al sistema, la llamada debe continuar una vez se haya salido del manejador de señal.
 El comportamiento por defecto, sin esta opción, es que la llamada al sistema interrumpida falle con el error `EINTR` en {linux_errno}.
@@ -657,9 +669,11 @@ int sockfd = socket( <1>
 )
 ----
 <1> En sistemas POSIX la función devuelve un `int` con el descriptor del socket mientras que en Microsoft Windows devuelve un `HANDLE`.
+
 <2> En el primer argumento se especifica la familia de protocolos.
 `AF_UNIX` son un tipo de _socket_ que solo sirve para comunicar procesos en el mismo sistema, denominado *socket de dominio UNIX*(((socket, dominio UNIX))).
 Otras familias muy comunes son `AF_INET`, que corresponde a la la familia de protocolos TCP/IP y `AF_INET6` para los protocolos IPv6.
+
 <3> En el segundo argumento se especifica el tipo del _socket_.
 Cada tipo suele corresponde con un protocolo concreto de la familia elegida.
 Por ejemplo, los _sockets_ `SOCK_DGRAM` son «no orientados a conexión», no fiables y de longitud máxima fija, así que en la familia `AF_INET` estos _sockets_ utiliza UDP.
@@ -683,11 +697,17 @@ int result_code = bind( <1>
 )
 ----
 <1> Como en el resto de llamadas al sistema, en caso de error se devuelve un número negativo y {linux_errno} contendrá el código del error.
+
 <2> El descriptor del _socket_ al que se le quiere cambiar la dirección.
+
 <3> La nueva dirección del _socket_ especificada como una estructura adecuada para la familia del _socket_.
 En _socket_ de tipo `AF_UNIX` la estructura debe ser de tipo `sockaddr_un` mientras que en los de tipo `AF_INET` es del tipo `sockaddr_in`.
+
 <4> El tamaño en bytes de la estructura con la nueva dirección.
-<5> En la estructura con la dirección, el primero campo siempre es para indicar la familia.
+
+<5> En la estructura con la dirección, el primero campo siempre es para 
+indicar la familia.
+
 <6> En los _sockets_ de dominio UNIX la dirección es una ruta en el sistema de archivos.
 Para otras familias, la direcciones se indica de otra manera, por lo que es necesario consultar la documentación.
 

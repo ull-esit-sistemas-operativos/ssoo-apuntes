@@ -111,9 +111,11 @@ int shmfd = shm_open(   <4>
 ----
 <1> Nombre que identifica al objeto de memoria compartida.
 Como ocurre con los archivos, varios procesos pueden acceder al mismo objeto indicando el mismo nombre.
+
 <2> Valores que indican diferentes opciones a la hora de abrir el objeto.
 Por ejemplo, usando `O_RDWR` indicamos que se abra para lectura y escritura.
 Mientras que con `O_CREAT` se indica que el objeto debe crearse si no existía previamente.
+
 <3> Indica los permisos del objeto de memoria compartida al crearlo nuevo, de forma similar a los permisos que se aplican a los archivos en el sistema de archivos.
 
 El valor devuelto por {linux_shm_open} es el descriptor del objeto de memoria compartida, que utilizaremos posteriormente con {linux_mmap} al reservar una región de la memoria de nuestro proceso donde ese objeto de memoria compartida será visible:
