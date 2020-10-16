@@ -286,7 +286,7 @@ En el <<ejemplo_pthread>> se puede como se usa {pthread_create} en sistemas POSI
 Vamos a calcular el factorial de 122 repartiendo la tarea entre dos hilos con el objeto de paralelizar los cálculos en procesadores multinúcleo.
 
 El código fuente completo de este ejemplo está disponible en {pthread_cpp} y, además, permite indicar el número que queramos para calcularle el factorial.
-En {threads_cpp} se puede estudiar un ejemplo equivalente pero usando {cpp_thread} de la librería estándar de C++, por lo que también compila en sistemas no POSIX, como Microsoft Windows.
+En {threads_cpp} se puede estudiar un ejemplo equivalente pero usando {cpp_thread} de la librería estándar de {cpp}, por lo que también compila en sistemas no POSIX, como Microsoft Windows.
 
 [source,cpp]
 ----
@@ -625,10 +625,10 @@ Ahora `conn_open() maneja correctamente la cancelación del hilo donde se ejecut
 
 === Cancelación de hilos en lenguajes de alto nivel
 
-El mecanismo de cancelación de hilos descrito funciona razonablemente bien en C, pero no con lenguajes de más alto nivel, como C++, Java o C#.
+El mecanismo de cancelación de hilos descrito funciona razonablemente bien en C, pero no con lenguajes de más alto nivel, como {cpp}, Java o C#.
 Las librerías de hilos suelen ser librerías en C, que no conocen nada de objetos ni de otras particularidades de esos lenguajes.
 
-Por ejemplo, en C++, antes de terminar un hilo, deberían ser llamados todos los destructores de los objetos locales, para evitar *fugas de memoria* y de otros recursos, datos sin escribir y otro problemas derivados de tener objetos que no se destruyen adecuadamente.
+Por ejemplo, en {cpp}, antes de terminar un hilo, deberían ser llamados todos los destructores de los objetos locales, para evitar *fugas de memoria* y de otros recursos, datos sin escribir y otro problemas derivados de tener objetos que no se destruyen adecuadamente.
 Lamentablemente, el mecanismo de cancelación de {pthreads} —y el de otras librerías del hilos, como la de Windows API— no sabe hacer nada de eso.
 Cada lenguaje debe implementar su propia solución.
 

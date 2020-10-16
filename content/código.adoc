@@ -4,7 +4,7 @@
 En algunos capítulos se enlazan ejemplos de código para ilustrar en mayor detalle los conceptos tratados.
 Todos los ejemplos están disponibles en el repositorio icon:github[] {ejemplos_repo}, de donde se pueden descargar.
 
-Para compilar los ejemplos, es necesario disponer de herramientas de desarrollo para C y C++.
+Para compilar los ejemplos, es necesario disponer de herramientas de desarrollo para C y {cpp}.
 Por ejemplo, en la distribución Debian de GNU/Linux y derivadas —como Ubuntu o Linux Mint— basta con tener instalados los paquetes *build-essential* y *cmake*.
 Mientras que en Microsoft Windows hacen falta las https://go.microsoft.com/fwlink/?linkid=840931[*Visual Studio Build Tools*].
 

@@ -377,7 +377,7 @@ Las colas de mensajes son útiles para enviar mensajes de pequeño tamaño entre
 Además tienen la posibilidad de asociar a cada mensaje una prioridad, de tal forma que se reciban primero los mensajes de prioridad más alta.
 Su uso es relativamente común en sistemas de tiempo real, aunque lo más frecuente en los sistemas de propósito general es usar _sockets_.
 
-En {message_queue_hpp} se puede ver un ejemplo de una clase desarrollada en C++ para utilizar colas de mensajes POSIX.
+En {message_queue_hpp} se puede ver un ejemplo de una clase desarrollada en {cpp} para utilizar colas de mensajes POSIX.
 En los distintos métodos se puede ver como se utilizan las funciones de la librería del sistema para crear la cola y enviar y recibir mensajes.
 
 En {mqueue_server_cpp} y {mqueue_client_cpp} se puede ver un ejemplo de cómo se utiliza la clase en {message_queue_hpp}.
@@ -759,7 +759,7 @@ Sin embargo, es posible configurarlos en modo asíncrono, para que así cualquie
 También se pueden utilizar las funciones {linux_select} y {linux_poll} para monitorizar varios _sockets_ al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <<_colas_de_mensajes_posix>>).
 
 En {socket_server_cpp} y {socket_client_cpp} se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando _sockets_ de dominio UNIX.
-Ambos programas utilizan la cabecera {socket_hpp} que incluye un ejemplo de clase en C++ para comunicaciones mediante _sockets_.
+Ambos programas utilizan la cabecera {socket_hpp} que incluye un ejemplo de clase en {cpp} para comunicaciones mediante _sockets_.
 En los distintos métodos se puede ver como se utilizan las funciones de la librería del sistema para crear _sockets_, asignarles dirección y usarlos para enviar y recibir mensajes.
 
 En resumen, los *_sockets_* son un mecanismo de paso de mensajes de *comunicación indirecta*, que admite tanto comunicación *orientada a flujos* como *mensajes de tamaño variable*, _buffering_ de *capacidad limitada* y tanto *comunicación síncrona* como *asíncrona*, aunque el comportamiento real final de la interfaz depende de la tecnología de red utilizada.
