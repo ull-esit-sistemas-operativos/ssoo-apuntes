@@ -530,9 +530,9 @@ Mientras que los *_mutex_* de Windows API son objetos más costosos, pero se pue
 
 === Ejemplos del uso de mutex
 
-{threads_mutex_cpp}
+//{threads_sync_cpp}
 
-{pthread_mutex_cpp}
+//{pthreads_sync_cpp}
 
 == Variables de condición
 ((variable de condición))
@@ -631,11 +631,12 @@ Además son más pesados que las *variables de condición* de Windows API, no ex
 
 |====
 
+[[cpp_semáforo]]
 === Ejemplos del uso de variables de condición
 
-{threads_mutex_cpp}
+//{threads_sync_cpp}
 
-{pthread_mutex_cpp}
+//{pthreads_sync_cpp}
 
 == Esperas
 
