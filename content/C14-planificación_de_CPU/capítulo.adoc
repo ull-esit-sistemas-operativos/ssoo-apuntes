@@ -909,7 +909,7 @@ A esta generalización del planificador equitativo se la conoce como *planificad
 Desde la versión 2.6.23 de Linux se utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo))).
 Otro ejemplo es Zircon, el _microkernel_ de {google_fuchsia}, que está inmerso en migrar a una implementación de  *planificador equitativo ponderado*.
 
-Para más información véase https://developer.ibm.com/technologies/linux/tutorials/l-completely-fair-scheduler/[«Inside the Linux 2.6 Completely Fair Schedule -- IBM Developer»] y https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler[Zircon Fair Scheduler -- Fuchsia Project].
+Para más información véase https://developer.ibm.com/technologies/linux/tutorials/l-completely-fair-scheduler/[«Inside the Linux 2.6 Completely Fair Schedule -- IBM Developer»] y https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler[«Zircon Fair Scheduler -- Fuchsia Project»].
 ====
 
 Si durante un periodo de tiempo stem:[T], un proceso stem:[P_i] tiene peso stem:[w_i], a ese proceso le corresponde un tiempo de CPU stem:[t_i]:

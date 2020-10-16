@@ -164,7 +164,7 @@ cuales corresponde a un puerto.
 
 .Colas de mensajes en sistemas POSIX
 ****
-El estándar POSIX también define un https://www.man7.org/linux/man-pages/man7/mq_overview.7.html[sistema de colas de mensajes] pero es bastante diferente a la solución en Windows API.
+El estándar POSIX también define un sistema de colas de mensajes pero es bastante diferente a la solución en Windows API (véase https://www.man7.org/linux/man-pages/man7/mq_overview.7.html[«mq_overview(7) -- Linux Manual»]).
 
 Para usarlo, lo primero es abrir o crear —si aun no existe— la cola de mensajes llamando a {linux_mq_open}:
 
@@ -573,7 +573,7 @@ Entre todas, el estándar POSIX incluye dos señales —`USR1` y `USR2`— espec
 [NOTE]
 ====
 Se puede consultar una lista de las señales del estándar POSIX en https://es.wikipedia.org/wiki/Se%C3%B1al_(inform%C3%A1tica)[«Señales (informática) -- Wikipedia»].
-Mientras que la lista completa de señales soportadas en Linux se puede consultar en el https://man7.org/linux/man-pages/man7/signal.7.html[manual].
+Mientras que la lista completa de señales soportadas en Linux se puede consultar en https://man7.org/linux/man-pages/man7/signal.7.html#:~:text=Standard%20signals[«signal(7) -- Linux Manual»].
 ====
 
 El ejemplo en {mqueue_server_cpp} y en otros ejemplos de este capítulo, utiliza señales para manejar `SIGINT`, `SIGTERM` y para mostrar la hora periódicamente.

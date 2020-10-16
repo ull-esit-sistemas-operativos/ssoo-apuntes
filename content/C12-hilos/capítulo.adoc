@@ -120,7 +120,7 @@ Como el código y los datos de la librería residen en el espacio del núcleo, i
 Obviamente, la librería del sistema ofrece funciones para no tener que hacer la llamada al sistema directamente.
 
 En la actualidad, en los diferentes sistemas operativos se pueden encontrar librerías de ambos tipos.
-Por ejemplo, la https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads[librería de hilos de Windows API] se implementa en el núcleo mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente. En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.
+Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (véase https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads[«Using Processes and Threads -- Microsoft Docs»]) mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente. En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.
 
 == Modelos multihilo
 
@@ -234,7 +234,7 @@ Sin embargo, el resto de los hilos de usuario pueden seguir ejecutándose en los
 ====
 
 Este modelo se soportada en sistemas {freebsd} y versiones antiguas de {netbsd}, así como en UNIX comerciales, como: {solaris} 8 y anteriores, {irixnix, {hpux} y {tru64}.
-También Microsoft Windows —a partir de Windows 7— soporta este modelo gracias a incorporar un mecanismo denominado https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[planificacion en modo usuario].
+También Microsoft Windows —a partir de Windows 7— soporta este modelo gracias a incorporar un mecanismo denominado planificación en modo usuario (véase https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[«User-Mode Scheduling -- Microsoft Docs»]).
 
 Algunos lenguajes de programación implementan el modelo *muchos a muchos* sobre el modelo *uno a uno* soportado por la mayoría de sistemas operativos modernos.
 Ese es el caso de https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)[Go], https://es.wikipedia.org/wiki/Erlang[Erlang] y https://es.wikipedia.org/wiki/Elixir_(lenguaje_de_programaci%C3%B3n)[Elixir].
