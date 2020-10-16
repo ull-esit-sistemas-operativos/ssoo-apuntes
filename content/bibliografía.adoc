@@ -50,3 +50,9 @@ Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/
 // TODO: Añadir sistemas de archivos CoW.
 
 // TODO: ¿Fuente del VRR y otros de planificación? Willian Stanling?
+
+// https://flylib.com/books/en/4.491.1.55/1/
+// Referencia sobre el planificador de windows ( mejor la rusinovic original)
+// https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
+// https://slideplayer.com/slide/6972581/ <<-- el bueno
+//https://www.itprotoday.com/compute-engines/inside-windows-nt-scheduler-part-1
