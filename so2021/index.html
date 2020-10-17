@@ -6537,7 +6537,7 @@ Por eso se suele utilizar en aplicaciones cliente-servidor, dónde un proceso se
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Destruir tubería con nombre</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/unlink.2.html">unlink()</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automáticamente]</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automático]</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -7413,7 +7413,7 @@ Excepto por la características especial del <strong>hilo principal</strong> de 
 <p>Vamos a calcular el factorial de 122 repartiendo la tarea entre dos hilos con el objeto de paralelizar los cálculos en procesadores multinúcleo.</p>
 </div>
 <div class="paragraph">
-<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap12/pthread.cpp">pthread.cpp</a> y, además, permite indicar el número que queramos para calcularle el factorial.
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap12/pthreads.cpp">pthreads.cpp</a> y, además, permite indicar el número que queramos para calcularle el factorial.
 En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap12/threads.cpp">threads.cpp</a> se puede estudiar un ejemplo equivalente pero usando <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> de la librería estándar de C&#43;&#43;, por lo que también compila en sistemas no POSIX, como Microsoft Windows.</p>
 </div>
 <div class="listingblock">
@@ -8127,7 +8127,7 @@ El resto de hilos deberían bloquear estas señales nada más iniciar su ejecuci
 <div class="content">
 <div class="paragraph">
 <div class="title">Tiempo estimado de lectura</div>
-<p>26 minutos</p>
+<p>30 minutos</p>
 </div>
 </div>
 </div>
@@ -8638,12 +8638,12 @@ Mientras que en sistemas POSIX es necesario crear el <strong>semáforo</strong> 
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Destruir semáforo anónimo</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man3/sem_destroy.3.html">sem_destroy()</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automáticamente]</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automático]</span></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Destruir semáforo con nombre</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man3/sem_unlink.3.html">sem_unlink()</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automáticamente]</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automático]</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -8711,7 +8711,7 @@ El cliente lo hace después de escribir un nuevo comando en <code>command_buffer
 <p>El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap11/shared-memory-server.c">shared-memory-server.c</a>, respectivamente.</p>
 </div>
 <div class="paragraph">
-<p>Finalmente, pare resolver el <strong>problema del productor-consumidor</strong> tenemos que considerar que:</p>
+<p>Finalmente, para resolver el <strong>problema del productor-consumidor</strong> tenemos que considerar que:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -8828,13 +8828,10 @@ Cuando el que haya pasado termine, debe usar <a href="https://man7.org/linux/man
 <div class="sect2">
 <h3 id="_mutex">13.4. Mutex</h3>
 <div class="paragraph">
-<p>Los semáforos inicializados a 1 se denominan <strong><em>mutex</em></strong> o <strong>semáforos binarios</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Por tanto, aunque un sistema o lenguaje solo soporte <strong>semáforos</strong>, es directo implementar <strong><em>mutex</em></strong>.
-Lo interesante es que a la inversa ocurre igual.
-Si un sistema o lenguaje soporta <strong><em>mutex</em></strong>, es muy sencillo hacer una implementación <strong>semáforos</strong>.
-Esto, por ejemplo, es lo que ocurre en C&#43;&#43;, donde el estándar no soporta <strong>semáforos</strong> pero su implementación usando <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a> es muy simple, como se puede ver en el <a href="#cpp_semáforo">Apartado 13.5.1</a>.</p>
+<p>Los semáforos inicializados a 1 se denominan <strong><em>mutex</em></strong> o <strong>semáforos binarios</strong>.
+Por tanto, aunque un sistema o lenguaje solo soporte <strong>semáforos</strong>, es directo implementar <strong><em>mutex</em></strong>.
+A la inversa ocurre igual.
+Si un sistema o lenguaje soporta <strong><em>mutex</em></strong>, es muy sencillo hacer una implementación <strong>semáforos</strong>, si nos hiciera falta.</p>
 </div>
 <div class="paragraph">
 <p>El estándar POSIX soporta <strong><em>mutex</em></strong> a través de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
@@ -8916,7 +8913,47 @@ Mientras que los <strong><em>mutex</em></strong> de Windows API son objetos más
 </div>
 <div class="sect3">
 <h4 id="_ejemplos_del_uso_de_mutex">13.4.1. Ejemplos del uso de mutex</h4>
-
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap13/pthreads-sync.cpp">pthreads-sync.cpp</a> se puede estudiar el código completo de un ejemplo similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap12/pthreads.cpp">pthreads.cpp</a>, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando el API de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
+La diferencia es que ahora los hilos no retornan el resultado, sino que cada uno lo mete en un vector compartido.
+Al terminar, el hilo principal recorre el vector multiplicando los resultados parciales.</p>
+</div>
+<div class="paragraph">
+<p>Como ahora ambos hilos acceden a una estructura de datos compartida, esta debe ir protegida por un <strong><em>mutex</em></strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">pthread_mutex_t</span> <span class="n">mutex</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BigInt</span><span class="o">&gt;</span> <span class="n">partials</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Antes de meter un nuevo valor, cada hilo debe adquirir el <code>mutex</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="c1">// Bloquear el mutex y guardar el resultado</span>
+<span class="n">pthread_mutex_lock</span><span class="p">(</span> <span class="n">mutex</span> <span class="p">);</span>   <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">partials</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span> <span class="n">result</span> <span class="p">);</span>
+<span class="n">pthread_mutex_unlock</span><span class="p">(</span> <span class="n">mutex</span> <span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Adquirir <code>mutex</code> antes de entrar en la <strong>sección crítica</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Liberar <code>mutex</code> para salir de la <strong>sección crítica</strong>.
+Es importante no olvidarnos de liberar el <strong><em>mutex</em></strong> al terminar o de los contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la <strong>sección crítica</strong>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap13/threads-sync.cpp">threads-sync.cpp</a> se puede ver un ejemplo equivalente pero usando <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> y <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a>, de la librería estándar de C&#43;&#43;.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -9058,8 +9095,137 @@ Además son más pesados que las <strong>variables de condición</strong> de Win
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="cpp_semáforo">13.5.1. Ejemplos del uso de variables de condición</h4>
+<h4 id="_ejemplos_del_uso_de_variables_de_condición">13.5.1. Ejemplos del uso de variables de condición</h4>
+<div class="paragraph">
+<p>Vamos a intentar resolver el <strong>problema del productor-consumidor</strong> sin usar <strong>semáforos</strong>.
+Para lo que, nuevamente, tenemos que considerar que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Necesitamos <strong>exclusión mutua</strong> entre ambos hilos al insertar y extraer elementos del vector para evitar <strong>condiciones de carrera</strong>, por tanto usamos un <strong><em>mutex</em></strong> para proteger la <strong>sección crítica</strong>.</p>
+</li>
+<li>
+<p>Necesitamos una forma de que el productor espere cuando el vector está lleno y que el consumidor haga lo mismo cuando el vector está vacío.
+Para señalar estos eventos necesitamos dos <strong>variables de condición</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">mutext</span> <span class="n">mutex</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span> <span class="n">no_full</span><span class="p">;</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span> <span class="n">no_empty</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">item_t</span><span class="o">&gt;</span> <span class="n">buffer</span><span class="p">(</span> <span class="n">VECTOR_SIZE</span> <span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">productor</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">item_t</span> <span class="n">item</span> <span class="o">=</span> <span class="n">produce_item</span><span class="p">();</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span> <span class="n">lock</span><span class="p">{</span> <span class="n">mutex</span> <span class="p">};</span>  <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b>
+
+        <span class="k">while</span><span class="p">(</span> <span class="n">buffer</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">VECTOR_SIZE</span> <span class="p">)</span>  <i class="conum" data-value="6"></i><b>(6)</b> <i class="conum" data-value="10"></i><b>(10)</b>
+        <span class="p">{</span>
+            <span class="n">no_full</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span> <span class="n">mutex</span> <span class="p">);</span> <i class="conum" data-value="11"></i><b>(11)</b>
+        <span class="p">}</span>
+
+        <span class="n">vector</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span> <span class="n">item</span> <span class="p">);</span>  <i class="conum" data-value="11"></i><b>(11)</b>
+
+        <span class="n">no_empty</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span> <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="p">}</span> <i class="conum" data-value="6"></i><b>(6)</b>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">consumer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span> <span class="n">lock</span><span class="p">{</span> <span class="n">mutex</span> <span class="p">};</span>  <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b>
+
+        <span class="k">while</span><span class="p">(</span> <span class="n">buffer</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span>  <i class="conum" data-value="8"></i><b>(8)</b> <i class="conum" data-value="10"></i><b>(10)</b>
+        <span class="p">{</span>
+            <span class="n">no_empty</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span> <span class="n">mutex</span> <span class="p">);</span>  <i class="conum" data-value="11"></i><b>(11)</b>
+        <span class="p">}</span>
+
+        <span class="n">item_t</span> <span class="n">item</span> <span class="o">=</span> <span class="n">vector</span><span class="p">.</span><span class="n">back</span><span class="p">();</span> <i class="conum" data-value="11"></i><b>(11)</b>
+        <span class="n">vector</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+
+        <span class="n">no_full</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span> <i class="conum" data-value="9"></i><b>(9)</b>
+
+        <span class="n">consume_item</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+    <span class="p">}</span> <i class="conum" data-value="6"></i><b>(6)</b>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong><em>Mutex</em></strong> que se encarga de la exclusión mutua.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>Variable de condición</strong> que se encarga de indicar cuando el vector no está lleno.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>Variable de condición</strong> que se encarga de indicar cuando el vector no está vacío.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Antes de acceder al vector es necesario bloquear <code>mutex</code>.
+Ni si quiera es seguro preguntar por el número de elementos guardados en <code>vector`sin antes adquirir el <strong><em>mutex</em></strong>, puesto que el otro hilo puede estar modificando `vector</code> al mismo tiempo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Los <strong><em>mutex</em></strong> se pueden adquirir y liberar con <a href="https://en.cppreference.com/w/cpp/thread/mutex/lock">std::mutex:::lock()</a> y  cpp_mutex_unlock} pero esa no es la forma recomendada.
+Lo recomendando es crear alguno de los objetos <em>lock</em> incluidos en la librería estándar.
+Estos objetos bloquean el <strong><em>mutex</em></strong> al crearse y lo desbloquean automáticamente al destruirse.
+Así es complicado que nos olvidemos de desbloquearlo al salir de la función.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Antes de insertar un elemento se comprueba si hay algún hueco disponible.
+Si no lo hay, se pone el hilo a la espera en la <strong>variable de condición</strong> <code>no_full</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>El consumidor despierta al productor de esa espera tras extraer un elemento, porque es seguro que al hacerlo habrá dejado un hueco.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Antes de extraer un elemento se comprueba si hay alguno en el vector.
+Si no lo hay, se pone el hilo a la espera en la <strong>variable de condición</strong> <code>no_empty</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>El productor despierta al consumidor de esta espera tras insertar un nuevo elemento.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>El estándar de C&#43;&#43; indica que las esperas en las <strong>variables de condición</strong> son susceptibles de despertar de forma espuria.
+Es decir, que el hilo puede salir de <a href="https://en.cppreference.com/w/cpp/thread/condition_variable/wait">std::condition_variable::wait()</a> sin que haya habido notificación.
+Por eso hay que volver a comprobar la condición antes de continuar ejecutando sentencias en la <strong>sección crítica</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Cuando los hilos se bloquean en <a href="https://en.cppreference.com/w/cpp/thread/condition_variable/wait">std::condition_variable::wait()</a>, <code>mutex</code> es liberado para que el otro hilo pueda entrar y extraer o insertar un elemento.
+De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en un situación que se denomina <strong>interbloqueo</strong> o <strong><em>deadlock</em></strong>—.
+Pero antes de salir de <a href="https://en.cppreference.com/w/cpp/thread/condition_variable/wait">std::condition_variable::wait()</a>, el hilo adquiere de nuevo el <code>mutex</code>.
+Así que el código que inserta y extrae elementos se ejecuta en <strong>exclusión mutua</strong>, tal y como nos interesa.</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -9216,7 +9382,7 @@ Por ejemplo, <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">str
 <div class="content">
 <div class="paragraph">
 <div class="title">Tiempo estimado de lectura</div>
-<p>26 minutos</p>
+<p>30 minutos</p>
 </div>
 </div>
 </div>
@@ -14707,7 +14873,7 @@ Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-10-16 20:24:22 UTC
+Última actualización 2020-10-17 12:21:48 UTC
 </div>
 </div>
 <style>
