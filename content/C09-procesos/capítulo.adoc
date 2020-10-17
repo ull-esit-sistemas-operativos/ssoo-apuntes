@@ -35,7 +35,7 @@ En lo que respecta a la gestión de estos procesos en el sistema, no hay ninguna
 
 == El ((proceso))
 
-Como ya hemos comentado con anterioridad, un *proceso* es un programa en ejecución (véase el <<_gestión_de_procesos>> para una definición más completa).
+Como ya hemos comentado con anterioridad, un *proceso* es un programa en ejecución (véase el <<componente_gestión_de_procesos>> para una definición más completa).
 Sin embargo, los procesos no solo están compuestos por el código del programa, sino que también son importantes otros elementos:
 
 ====
@@ -67,7 +67,7 @@ El resto de elementos los crea el sistema operativo al cargar el programa y crea
 
 [NOTE]
 ====
-Como vimos en el <<_gestión_de_procesos>> varios procesos pueden estar asociados al mismo programa pero no por eso dejan de ser distintos procesos.
+Como vimos en el <<componente_gestión_de_procesos>> varios procesos pueden estar asociados al mismo programa pero no por eso dejan de ser distintos procesos.
 Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demás propiedades.
 ====
 
