@@ -502,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_componentes_del_sistema">4. Componentes del sistema</a>
 <ul class="sectlevel2">
-<li><a href="#_gestión_de_procesos">4.1. Gestión de procesos</a></li>
+<li><a href="#componente_gestión_de_procesos">4.1. Gestión de procesos</a></li>
 <li><a href="#_gestión_de_la_memoria_principal">4.2. Gestión de la memoria principal</a></li>
 <li><a href="#_gestión_del_sistema_de_es">4.3. Gestión del sistema de E/S</a></li>
 <li><a href="#_gestión_del_almacenamiento_secundario">4.4. Gestión del almacenamiento secundario</a></li>
@@ -547,7 +547,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="#_gestión_de_procesos_2">Parte III: Gestión de procesos</a>
+<li><a href="#_gestión_de_procesos">Parte III: Gestión de procesos</a>
 <ul class="sectlevel1">
 <li><a href="#_procesos">9. Procesos</a>
 <ul class="sectlevel2">
@@ -2329,7 +2329,7 @@ Se trata de un sistema <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</
 Lo que veremos en este capítulo es un esquema de los más comunes a la mayoría de sistemas operativos actuales.</p>
 </div>
 <div class="sect2">
-<h3 id="_gestión_de_procesos">4.1. Gestión de procesos</h3>
+<h3 id="componente_gestión_de_procesos">4.1. Gestión de procesos</h3>
 <div class="paragraph">
 <p></p>
 </div>
@@ -4063,7 +4063,7 @@ Un error en cualquier componente puede comprometer o hacer caer el sistema.</p>
 </div>
 </div>
 </div>
-<h1 id="_gestión_de_procesos_2" class="sect0">Parte III: Gestión de procesos</h1>
+<h1 id="_gestión_de_procesos" class="sect0">Parte III: Gestión de procesos</h1>
 <div class="sect1">
 <h2 id="_procesos">9. Procesos</h2>
 <div class="sectionbody">
@@ -4121,7 +4121,7 @@ En lo que respecta a la gestión de estos procesos en el sistema, no hay ninguna
 <div class="sect2">
 <h3 id="_el_proceso">9.1. El proceso</h3>
 <div class="paragraph">
-<p>Como ya hemos comentado con anterioridad, un <strong>proceso</strong> es un programa en ejecución (véase el <a href="#_gestión_de_procesos">Apartado 4.1</a> para una definición más completa).
+<p>Como ya hemos comentado con anterioridad, un <strong>proceso</strong> es un programa en ejecución (véase el <a href="#componente_gestión_de_procesos">Apartado 4.1</a> para una definición más completa).
 Sin embargo, los procesos no solo están compuestos por el código del programa, sino que también son importantes otros elementos:</p>
 </div>
 <div class="exampleblock">
@@ -4172,7 +4172,7 @@ El resto de elementos los crea el sistema operativo al cargar el programa y crea
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Como vimos en el <a href="#_gestión_de_procesos">Apartado 4.1</a> varios procesos pueden estar asociados al mismo programa pero no por eso dejan de ser distintos procesos.
+<p>Como vimos en el <a href="#componente_gestión_de_procesos">Apartado 4.1</a> varios procesos pueden estar asociados al mismo programa pero no por eso dejan de ser distintos procesos.
 Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demás propiedades.</p>
 </div>
 </td>
@@ -7025,7 +7025,7 @@ Simplemente hay que indicar el nombre en el último argumento de la función.</p
 <p>En el modelo de proceso que hemos descrito hasta el momento, cada proceso tiene una única secuencia de instrucciones que se ejecuta en la CPU.
 Si los procesos solo pueden tener una única secuencia de instrucciones, solo pueden realizar una tarea a la vez.
 Por ejemplo, en un procesador de textos en un sistema operativo con este modelo de procesos, el usuario nunca podría escribir al mismo tiempo que se comprueba la ortografía.
-Si queremos hacer varias tareas al mismo tiempo, estamos obligados a crear varios procesos y seleccionar un mecanismo de comunicación para estos colaboren.</p>
+Si queremos hacer varias tareas al mismo tiempo, estamos obligados a crear varios procesos y seleccionar un mecanismo de comunicación para que éstos colaboren.</p>
 </div>
 <div class="paragraph">
 <p>Por eso muchos sistemas operativos modernos han extendido el concepto de proceso para permitir que cada uno tenga múltiples secuencias de instrucciones para ejecutarse en la CPU.
@@ -7068,7 +7068,7 @@ Al igual que ocurre con los registros de la CPU, cada hilo necesita su pila porq
 </ul>
 </div>
 <div class="paragraph">
-<p>Sin embargo hay otros recursos del procesos que se comparten entre todos los hilos del mismo (véase la <a href="#multihilo">Figura 30</a>):</p>
+<p>Sin embargo hay otros recursos del proceso que se comparten entre todos los hilos del mismo (véase la <a href="#multihilo">Figura 30</a>):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7079,7 +7079,7 @@ El programa es el mismo para todos los hilos.</p>
 <li>
 <p><strong>Los segmentos BSS y de datos y el montón</strong>.
 Las secciones de datos diferentes de la pila son accesibles a todos los hilos.
-Eso quiere decir, por ejemplo, que cualquier hilo puede accede y modificar una variable global o una asignada dinámicamente mediante <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> o <a href="https://en.cppreference.com/w/cpp/language/new">new</a>.</p>
+Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una variable global o una asignada dinámicamente mediante <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> o <a href="https://en.cppreference.com/w/cpp/language/new">new</a>.</p>
 </li>
 <li>
 <p><strong>Otros recursos del proceso</strong> como archivos, <em>sockets</em>, tuberías y dispositivos abiertos, regiones de memoria compartida, señales, directorio actual de trabajo, entre muchos otros recursos.</p>
@@ -7097,19 +7097,18 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede accede y modificar una v
 <div class="sect3">
 <h4 id="_tiempo_de_respuesta">12.2.1. Tiempo de respuesta</h4>
 <div class="paragraph">
-<p>Una aplicación multihilo interactiva puede continuar ejecutando tareas aunque uno o varios hilos de la misma estén bloqueados o realizando operaciones muy lenta, mejorando así el tiempo de respuesta al usuario.</p>
+<p>Una aplicación multihilo interactiva puede continuar ejecutando tareas aunque uno o varios hilos de la misma estén bloqueados o realizando operaciones muy lentamente, mejorando así el tiempo de respuesta al usuario.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, un navegador web multihilo puede gestionar la interacción del usuario a través de un hilo mientras el contenido solicitado se descarga en otro.
-Mientras que para hacer lo mismo en un navegador monohilo habría que utilizar comunicaciones asíncronas.
-De lo contrario, mientras el proceso está en estado <strong>esperando</strong>, a la espera de que lleguen los datos a través de la red, no puede atender las acciones del usuario.</p>
+<p>Por ejemplo, un navegador web multihilo puede gestionar la interacción del usuario a través de un hilo, mientras el contenido solicitado se descarga en otro.
+Para hacer lo mismo en un navegador monohilo habría que utilizar comunicaciones asíncronas, de lo contrario, mientras el proceso está en estado <strong>esperando</strong>, a la espera de que lleguen los datos a través de la red, no puede atender las acciones del usuario.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_compartición_de_recursos">12.2.2. Compartición de recursos</h4>
 <div class="paragraph">
 <p>En sistemas operativos monohilo se pueden crear varios procesos y comunicarlos mediante memoria compartida para conseguir algo similar a lo que ofrecen los sistemas multihilo.
-Sin embargo, al utilizar hilos las tareas ejecutadas en ellos comparten los recursos automáticamente, sin que tengamos que hacer nada.
+Sin embargo, al utilizar hilos, las tareas ejecutadas en ellos comparten los recursos automáticamente, sin que tengamos que hacer nada.
 Además, los hilos no solo comparten la memoria, sino también otros muchos recursos del proceso.
 Por lo que los hilos son una forma más conveniente de tener procesos que realizan diferentes actividades al mismo tiempo.</p>
 </div>
@@ -7118,7 +7117,7 @@ Por lo que los hilos son una forma más conveniente de tener procesos que realiz
 <h4 id="_economía">12.2.3. Economía</h4>
 <div class="paragraph">
 <p>Reservar memoria y otros recursos para la creación de un proceso es muy costoso.
-Por eso los sistemas operativos modernos ha desarrollado diversas técnicas para que sea lo más eficaz posible.</p>
+Por eso los sistemas operativos modernos han desarrollado diversas técnicas para que sea lo más eficaz posible.</p>
 </div>
 <div class="paragraph">
 <p>Aun así, puesto que los hilos comparten los recursos de los procesos a los que pertenecen, son mucho más económicos de crear.
@@ -7152,7 +7151,7 @@ Hay dos formas de implementar una librería de hilos: en el espacio de usuario o
 Por ese motivo se los denomina <strong>hilos de usuario</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Como el código y los datos de la librería residen en el espacio de usuario, por lo que invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.</p>
+<p>Como el código y los datos de la librería residen en el espacio de usuario, invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.</p>
 </div>
 </div>
 <div class="sect3">
@@ -7165,12 +7164,12 @@ Por ese motivo se los denomina <strong>hilos de núcleo</strong>.</p>
 <p>Aparte del <strong>PCB</strong> que vimos en el <a href="#_bloque_de_control_de_proceso">Apartado 9.3</a>, cada hilo tiene una estructura llamada <strong>bloque de control del hilo</strong> o TCB (<em>Thread Control Block</em>) que representa a cada hilo en el sistema operativo y que guarda información sobre su estado de actividad actual.</p>
 </div>
 <div class="paragraph">
-<p>En estos sistemas es el hilo la unidad básica de uso de la CPU.
+<p>En estos sistemas, es el hilo la unidad básica de uso de la CPU.
 Son los hilos los que se mueven por los estados del <a href="#diagrama_estado_proceso">Figura 27</a> y las colas de la <a href="#colas_de_planificación_procesos">Figura 28</a> y no los procesos.
-El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado <strong>preparado</strong> en el sistema y el <strong>cambio de texto</strong> asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.</p>
+El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado <strong>preparado</strong> en el sistema y el <strong>cambio de contexto</strong> asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.</p>
 </div>
 <div class="paragraph">
-<p>Por tanto, es en <strong>TCB</strong> —y no en el <strong>PCB</strong>— donde se guarda la información privada del hilo necesaria para la gestión de lo estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programas, el estado o la información de planificación de la CPU; además de un puntero al <strong>PCB</strong> al que pertenece el hilo con el resto de la información privada del proceso.</p>
+<p>Por tanto, es en <strong>TCB</strong> —y no en el <strong>PCB</strong>— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programas, el estado o la información de planificación de la CPU; además de un puntero al <strong>PCB</strong> al que pertenece el hilo con el resto de la información privada del proceso.</p>
 </div>
 <div class="paragraph">
 <p>Como el código y los datos de la librería residen en el espacio del núcleo, invocar una función de la misma requiere frecuentemente hacer una llamada al sistema.
@@ -7200,8 +7199,8 @@ Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (v
 <p>En el modelo <strong>muchos a uno</strong> los hilos que ve el proceso se mapean en un única «entidad planificable en la CPU» del núcleo.</p>
 </div>
 <div class="paragraph">
-<p>Este, por lo general, es el modelo utilizado cuando el núcleo no soportan múltiples hilos de ejecución.
-En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son hilos de usuario (véase la <a href="#modelo_muchos_a_uno">Figura 31</a>).</p>
+<p>Éste, por lo general, es el modelo utilizado cuando el núcleo no soporta múltiples hilos de ejecución.
+En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son <strong>hilos de usuario</strong> (véase la <a href="#modelo_muchos_a_uno">Figura 31</a>).</p>
 </div>
 <div id="modelo_muchos_a_uno" class="imageblock">
 <div class="content">
@@ -7226,7 +7225,7 @@ Eso significa que si nuestros hilos hacen ese tipo de operaciones, el resultado 
 </li>
 <li>
 <p>Como sólo un hilo puede ser asignado al proceso, los hilos de un mismo proceso no se pueden ejecutar en paralelo en sistemas multiprocesador.
-El planificador de la librería de hilos es el encargado de determinar qué hilo de usuario es asignado al proceso y este solo puede ejecutarse en una única CPU al mismo tiempo.</p>
+El planificador de la librería de hilos es el encargado de determinar qué hilo de usuario es asignado al proceso y éste solo puede ejecutarse en una única CPU al mismo tiempo.</p>
 </li>
 </ul>
 </div>
@@ -7238,7 +7237,7 @@ El planificador de la librería de hilos es el encargado de determinar qué hilo
 <div class="paragraph">
 <p>Por ejemplo, si un hilo llamase a las funciones <a href="https://man7.org/linux/man-pages/man2/recv.2.html">recv()</a> o <a href="https://man7.org/linux/man-pages/man2/send.2.html">send()</a> de la librería del sistema, habría que hacer que realmente se invocase una versión diferente que utilizase estas funciones de forma asíncrona.
 Mientras la operación es ejecutada por el sistema operativo, en lugar de retornar de la función, se llama al planificador de la librería de hilos para que la ejecución continúe con otro hilo del proceso, dejando suspendido el que tiene pendiente la operación.
-Obviamente, el planificador de la librería de hilos debe estar al tanto de cuándo las operaciones asíncronas son completadas para poder volver a planificar los hilos de usuario suspendidos.</p>
+Obviamente, el planificador de la librería de hilos debe estar al tanto de cuándo las operaciones asíncronas son completadas para poder volver a planificar los <strong>hilos de usuario</strong> suspendidos.</p>
 </div>
 <div class="paragraph">
 <p>Este procedimiento es a todas luces bastante complejo y requiere versiones no bloqueantes de todas las llamadas al sistema —que no siempre existen— así como modificar o interceptar de alguna forma las funciones bloqueantes de la librería del sistema para implementar el comportamiento descrito.</p>
@@ -7263,11 +7262,11 @@ Pero también lo son en los sistemas multihilo, ya que debido a su bajo coste en
 </p>
 </div>
 <div class="paragraph">
-<p>En el modelo <strong>muchos a uno</strong> cada hilo que ve el proceso se mapean en una «entidad planificable en la CPU» diferente del núcleo.</p>
+<p>En el modelo <strong>uno a uno</strong> cada hilo que ve el proceso se mapea en una «entidad planificable en la CPU» diferente del núcleo.</p>
 </div>
 <div class="paragraph">
-<p>Este, por lo general, es el modelo utilizado cuando el núcleo del sistema operativo soporta hilos de ejecución.
-En este caso, la librería de hilos se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los hilos de núcleo y los procesos pueden gestionar estos hilos mediante llamadas al sistema.</p>
+<p>Éste, por lo general, es el modelo utilizado cuando el núcleo del sistema operativo soporta hilos de ejecución.
+En este caso, la librería de hilos se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los <strong>hilos de núcleo</strong> y los procesos pueden gestionar estos hilos mediante llamadas al sistema.</p>
 </div>
 <div id="modelo_uno_a_uno" class="imageblock">
 <div class="content">
@@ -7290,11 +7289,11 @@ El núcleo se encarga de ponerlo en espera y planificar en la CPU a otro de los 
 <p>Permite paralelismo en sistemas multiprocesador, ya que diferentes hilos pueden ser planificados por el núcleo en distintos procesadores.</p>
 </li>
 <li>
-<p>Crear un hilo para un proceso implicar crear ciertas estructuras de datos en el núcleo.
-Debido a que la cantidad de memoria disponible para el núcleo suele estar limitada, muchos sistemas restringen la cantidad máxima de hilos de núcleo soportados.</p>
+<p>Crear un hilo para un proceso implica crear ciertas estructuras de datos en el núcleo.
+Debido a que la cantidad de memoria disponible para el núcleo suele estar limitada, muchos sistemas restringen la cantidad máxima de <strong>hilos de núcleo</strong> soportados.</p>
 </li>
 <li>
-<p>Las gestión de los hilos se hace con una librería en el espacio de núcleo, lo que requiere que el proceso haga llamadas al sistema para gestionarlos.
+<p>La gestión de los hilos se hace con una librería en el espacio de núcleo, lo que requiere que el proceso haga llamadas al sistema para gestionarlos.
 Esto siempre es más lento que invocar simplemente una función, como ocurre en el modelo <strong>muchos a uno</strong>.</p>
 </li>
 </ul>
@@ -7313,12 +7312,12 @@ Linux, Microsoft Windows —desde Windows 95— <a href="https://es.wikipedia.or
 </p>
 </div>
 <div class="paragraph">
-<p>En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una librería de hilos en el núcleo, para crear hilos de núcleo, y otra en el espacio de usuario, para crear hilos de usuario.
-Así los desarrolladores pueden utilizar la librería de hilos en el espacio de usuario para crear tantos hilos como quieran y que se ejecuten sobre los hilos de núcleo.</p>
+<p>En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una librería de hilos en el núcleo, para crear <strong>hilos de núcleo</strong>, y otra en el espacio de usuario, para crear <strong>hilos de usuario</strong>.
+Así los desarrolladores pueden utilizar la librería de hilos en el espacio de usuario para crear tantos hilos como quieran y que se ejecuten sobre los <strong>hilos de núcleo</strong>.</p>
 </div>
 <div class="paragraph">
 <p>El planificador de la librería de hilos se encarga de determinar qué hilo de usuario es asignado a qué hilo de núcleo.
-Mientras que el planificador de la CPU asigna la CPU a alguno de los hilos de núcleo del sistema.</p>
+Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hilos de núcleo</strong> del sistema.</p>
 </div>
 <div id="modelo_muchos_a_muchos" class="imageblock">
 <div class="content">
@@ -7329,16 +7328,16 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los hilos de n�
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>En el modelo <strong>muchos a muchos</strong> se mapean los hilos de usuario en un menor o igual número de hilos de núcleo del proceso (véase la <a href="#modelo_muchos_a_muchos">Figura 33</a>).</p>
+<p>En el modelo <strong>muchos a muchos</strong> se mapean los <strong>hilos de usuario</strong> en un menor o igual número de <strong>hilos de núcleo</strong> del proceso (véase la <a href="#modelo_muchos_a_muchos">Figura 33</a>).</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Permite paralelismo en sistemas multiprocesador, ya que diferentes hilos de núcleo pueden ser planificados en distintos procesadores y en cada uno puede ejecutarse cualquier hilo de usuario.</p>
+<p>Permite paralelismo en sistemas multiprocesador, ya que diferentes <strong>hilos de núcleo</strong> pueden ser planificados en distintos procesadores y en cada uno puede ejecutarse cualquier hilo de usuario.</p>
 </li>
 <li>
 <p>Permite a otro hilo de usuario del mismo proceso ejecutarse cuando un hilo hace una llamada al sistema que debe bloquearse, puesto que si esto ocurre el correspondiente hilo de núcleo queda bloqueado.
-Sin embargo, el resto de los hilos de usuario pueden seguir ejecutándose en los otros hilos de núcleo del proceso.</p>
+Sin embargo, el resto de los <strong>hilos de usuario</strong> pueden seguir ejecutándose en los otros <strong>hilos de núcleo</strong> del proceso.</p>
 </li>
 </ul>
 </div>
@@ -7356,18 +7355,18 @@ Ese es el caso de <a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_program
 <h5 id="_activación_del_planificador">Activación del planificador</h5>
 <div class="paragraph">
 <p>Tanto en el modelo <strong>muchos a muchos</strong> como en el de <strong>dos niveles</strong> es necesario cierto grado de coordinación entre el núcleo y la librería de hilos del espacio de usuario.
-Dicha comunicación tiene como objeto ajustar dinámicamente el número de hilos del núcleo para garantizar la máxima eficiencia.</p>
+Dicha comunicación tiene como objeto ajustar dinámicamente el número de <strong>hilos de núcleo</strong> para garantizar la máxima eficiencia.</p>
 </div>
 <div class="paragraph">
 <p>Uno de los esquemas de comunicación se denomina <strong>activación del planificador</strong> y consiste en que el núcleo informa a la librería de hilos en espacio de usuario que una llamada al sistema va a bloquear un hilo de un proceso.
 Antes de dicha notificación, el núcleo se encarga de crear un nuevo hilo de núcleo en el proceso y se lo pasa la librería de hilos en la notificación.
-Así el planificador de la librería puede asignarle alguno de los otros hilos de usuario, evitando el bloqueo completo del proceso y ajustando el número de hilos de núcleo dinámicamente.</p>
+Así, el planificador de la librería puede asignarle alguno de los otros <strong>hilos de usuario</strong>, evitando el bloqueo completo del proceso y ajustando el número de <strong>hilos de núcleo</strong> dinámicamente.</p>
 </div>
 <div class="paragraph">
 <p>Debido a la complejidad del mecanismo descrito anteriormente y a la dificultad de coordinar el planificador de la libraría de hilos con el de la CPU para obtener un rendimiento óptimo, sistemas como Linux y <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> —a partir de la versión 9— han optado finalmente por el modelo <strong>uno a uno</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Con el objetivo de evitar los problemas derivados del coste de dicho modelo, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de hilos de núcleo.</p>
+<p>Con el objetivo de evitar los problemas derivados del coste de dicho modelo, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de <strong>hilos de núcleo</strong>.</p>
 </div>
 </div>
 </div>
@@ -7396,7 +7395,7 @@ Así el planificador de la librería puede asignarle alguno de los otros hilos d
 <h4 id="_creación_de_hilos">12.5.1. Creación de hilos</h4>
 <div class="paragraph">
 <p>En un sistema operativo con librería de hilos implementada en el núcleo, todo proceso se crea con un hilo, denominado <strong>hilo principal</strong>.
-Este es con el que comienza a ejecutarse el programa al entrar en <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> y el que provoca la terminación de todo el proceso —incluida la terminación de los otros hilos que existan— al retornar de dicha función.</p>
+Éste es con el que comienza a ejecutarse el programa al entrar en <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> y el que provoca la terminación de todo el proceso —incluida la terminación de los otros hilos que existan— al retornar de dicha función.</p>
 </div>
 <div class="paragraph">
 <p>El <strong>hilo principal</strong> puede crear otros hilos y estos, a su vez, crear los hilos que necesiten.
@@ -7404,7 +7403,7 @@ Pero, a diferencia de lo que ocurre con los procesos, no existe una relación de
 Excepto por la características especial del <strong>hilo principal</strong> de que su finalización significa la terminación del proceso, todos los hilos son iguales entre sí.</p>
 </div>
 <div class="paragraph">
-<p>En el <a href="#ejemplo_pthread">Ejemplo 5</a> se puede como se usa <a href="https://man7.org/linux/man-pages/man3/pthread_create.3.html">pthread_create()</a> en sistemas POSIX que implementan <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> para crear varios hilos y esperar a que terminen con <a href="https://man7.org/linux/man-pages/man3/pthread_join.3.html">pthread_join()</a>.</p>
+<p>En el <a href="#ejemplo_pthread">Ejemplo 5</a> se puede ver como se usa <a href="https://man7.org/linux/man-pages/man3/pthread_create.3.html">pthread_create()</a> en sistemas POSIX que implementan <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> para crear varios hilos y esperar a que terminen con <a href="https://man7.org/linux/man-pages/man3/pthread_join.3.html">pthread_join()</a>.</p>
 </div>
 <div id="ejemplo_pthread" class="exampleblock">
 <div class="title">Ejemplo 5. Calcular el factorial de un número con <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.</div>
@@ -7497,7 +7496,7 @@ Devuelve un manejador de tipo <code>pthread_t</code> que podemos usar con otras 
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td><code>pthread_t</code> no es el equivalente al PID de los hilos.
-Si el sistema implementa al librería de hilos en el núcleo, por lo general, cada hilo tiene un identificador único; pero <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> no ofrece una forma de obtenerlo.</td>
+Si el sistema implementa la librería de hilos en el núcleo, por lo general, cada hilo tiene un identificador único; pero <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> no ofrece una forma de obtenerlo.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -7510,7 +7509,7 @@ En caso contrario devuelve un código de error.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Los códigos de error son los mismos que hasta hora veíamos en <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>.
+<td>Los códigos de error son los mismos que hasta ahora veíamos en <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>.
 Así que podemos llamar a <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">strerror()</a> pasando el valor retornado, para obtener un texto descriptivo del error.</td>
 </tr>
 <tr>
@@ -7529,7 +7528,7 @@ Si queremos pasar varios, lo más sencillo es crear una estructura.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>En este ejemplo definimos <code>factorial_thread_args</code> para pasar losa argumentos a los hilos y lo pasamos como <code>void *</code> a la función principal.
+<td>En este ejemplo definimos <code>factorial_thread_args</code> para pasar los argumentos a los hilos y lo pasamos como <code>void *</code> a la función principal.
 Allí hacemos un <em>typecast</em> para recuperar el puntero a la estructura <code>factorial_thread_args</code> y poder acceder a sus campos.</td>
 </tr>
 <tr>
@@ -7539,12 +7538,12 @@ Allí hacemos un <em>typecast</em> para recuperar el puntero a la estructura <co
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>El hilo que invoca <a href="https://man7.org/linux/man-pages/man3/pthread_join.3.html">pthread_join()</a> se queda dormido hasta que el hilo indicado en el primer argumento termine.
-Si el hilo principal sale de <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> sin esperar a que todos los hilos del proceso terminen, estos mueren inmediatamente, junto con el proceso.</td>
+Si el hilo principal sale de <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> sin esperar a que todos los hilos del proceso terminen, éstos mueren inmediatamente, junto con el proceso.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="12"></i><b>12</b></td>
 <td>El hilo puede retornar un resultado mediante un puntero 'void*'.
-Este se indica en la sentencia <code>return</code> de la función principal del hilo o invocando <a href="https://man7.org/linux/man-pages/man3/pthread_exit.3.html">pthread_exit()</a> para terminar.</td>
+Éste se indica en la sentencia <code>return</code> de la función principal del hilo o invocando <a href="https://man7.org/linux/man-pages/man3/pthread_exit.3.html">pthread_exit()</a> para terminar.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="13"></i><b>13</b></td>
@@ -7678,7 +7677,7 @@ El otro valor posible es <code>PTHREAD_CANCEL_ENABLE</code>.</td>
 </div>
 <div class="paragraph">
 <p>Por los motivos comentados anteriormente, no es recomendable la <strong>cancelación asíncrona</strong>, a menos que estemos muy seguros de que no puede causar problemas.
-Uno de los pocos casos con los que es compatible es en bucles 100% dedicados a ejecutar cálculos en al CPU, como el siguiente:</p>
+Uno de los pocos casos con los que es compatible es en bucles 100% dedicados a ejecutar cálculos en la CPU, como el siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7713,7 +7712,7 @@ Con este tipo de cancelación, la terminación del hilo ocurre en puntos concret
 </div>
 <div class="paragraph">
 <p>En la terminología de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> a estos puntos se los denomina <strong>puntos de cancelación</strong> y la inmensa mayoría de las llamadas al sistema que puede poner el hilo en estado <strong>esperando</strong> lo son por si mismas.
-Por ejemplo, <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>, <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a>, <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>, <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, <a href="https://man7.org/linux/man-pages/man2/recv.2.html">recv()</a>, <a href="https://man7.org/linux/man-pages/man2/send.2.html">send()</a>, <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> y <a href="https://man7.org/linux/man-pages/man3/sleep.3.html">sleep()</a>, entre muchas otrsa (véase la lista en la sección «<em>Cancellation points</em>» de la documentación de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>).
+Por ejemplo, <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>, <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a>, <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>, <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, <a href="https://man7.org/linux/man-pages/man2/recv.2.html">recv()</a>, <a href="https://man7.org/linux/man-pages/man2/send.2.html">send()</a>, <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> y <a href="https://man7.org/linux/man-pages/man3/sleep.3.html">sleep()</a>, entre muchas otras (véase la lista en la sección «<em>Cancellation points</em>» de la documentación de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>).
 Eso significa que seguramente también sean <strong>puntos de cancelación</strong>, las funciones de la librería del sistema y de la librería estándar del lenguaje que utilizan esas llamadas al sistema.</p>
 </div>
 <div class="paragraph">
@@ -7810,11 +7809,11 @@ Es decir, si alguna de las peticiones al sistema falla, las hechas anteriormente
 <div class="paragraph">
 <p>Pero no es correcto en programas multihilo porque <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> y <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a> son <strong>puntos de cancelación</strong>.
 Si <code>conn_open()</code> es llamada desde un hilo y ese hilo es cancelado, el hilo podría terminar a mitad de la función, sin liberar <code>handler</code>, creando un <strong>fuga de memoria</strong> que no se liberará hasta que el proceso termine.
-Si <code>conn_open()</code> es llamada en multiples ocasiones, cada una es una oportunidad para perder memoria.</p>
+Si <code>conn_open()</code> es llamada en múltiples ocasiones, cada una es una oportunidad para perder memoria.</p>
 </div>
 <div class="paragraph">
-<p>La código anterior se puede mejorar usando <strong>manejadores de limpieza</strong>.
-Eso manejadores se organizan en una pila de la que se pueden insertar o extraer llamando a <a href="https://man7.org/linux/man-pages/man3/pthread_cleanup_push.3.html">pthread_cleanup_push()</a> y <a href="https://man7.org/linux/man-pages/man3/pthread_cleanup_pop.3.html">pthread_cleanup_pop()</a>, respectivamente.
+<p>El código anterior se puede mejorar usando <strong>manejadores de limpieza</strong>.
+Esos manejadores se organizan en una pila de la que se pueden insertar o extraer llamando a <a href="https://man7.org/linux/man-pages/man3/pthread_cleanup_push.3.html">pthread_cleanup_push()</a> y <a href="https://man7.org/linux/man-pages/man3/pthread_cleanup_pop.3.html">pthread_cleanup_pop()</a>, respectivamente.
 Cuando el hilo es cancelado, la librería extrae los manejadores de la pila y los va ejecutando en orden, antes de terminar.</p>
 </div>
 <div class="listingblock">
@@ -7877,7 +7876,7 @@ El argumento 0 hace que <a href="https://man7.org/linux/man-pages/man3/pthread_c
 </table>
 </div>
 <div class="paragraph">
-<p>Ahora `conn_open() maneja correctamente la cancelación del hilo donde se ejecuta, por lo que puede usarse sin problemas en aplicaciones multihilo.</p>
+<p>Ahora <code>conn_open()</code> maneja correctamente la cancelación del hilo donde se ejecuta, por lo que puede usarse sin problemas en aplicaciones multihilo.</p>
 </div>
 </div>
 </div>
@@ -7889,7 +7888,7 @@ Las librerías de hilos suelen ser librerías en C, que no conocen nada de objet
 </div>
 <div class="paragraph">
 <p>Por ejemplo, en C&#43;&#43;, antes de terminar un hilo, deberían ser llamados todos los destructores de los objetos locales, para evitar <strong>fugas de memoria</strong> y de otros recursos, datos sin escribir y otro problemas derivados de tener objetos que no se destruyen adecuadamente.
-Lamentablemente, el mecanismo de cancelación de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> —y el de otras librerías del hilos, como la de Windows API— no sabe hacer nada de eso.
+Lamentablemente, el mecanismo de cancelación de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> —y el de otras librerías de hilos, como la de Windows API— no sabe hacer nada de eso.
 Cada lenguaje debe implementar su propia solución.</p>
 </div>
 <div class="paragraph">
@@ -7957,7 +7956,7 @@ Si se ha pedido la cancelación, se termina el hilo retornando desde la función
 </table>
 </div>
 <div class="paragraph">
-<p>Java y C# ha terminado incluyendo también este tipo de <strong>cancelación cooperativa</strong> usando un <strong><em>token</em> de cancelación</strong>, debido a los problemas que tienen los desarrolladores para recordar usar correctamente la excepción de la <strong>cancelación coordinada</strong>.</p>
+<p>Java y C# han terminado incluyendo también este tipo de <strong>cancelación cooperativa</strong> usando un <strong><em>token</em> de cancelación</strong>, debido a los problemas que tienen los desarrolladores para recordar usar correctamente la excepción de la <strong>cancelación coordinada</strong>.</p>
 </div>
 </div>
 </div>
@@ -7995,7 +7994,7 @@ La inclusión de <code>forkall()</code> en el estándar POSIX fue considerada y 
 <div class="sect3">
 <h4 id="_manejo_de_señales_en_procesos_multihilo">12.6.2. Manejo de señales en procesos multihilo</h4>
 <div class="paragraph">
-<p>En el <a href="#_señales_en_sistemas_operativos_posix">Apartado 10.5.2</a> hablamos del uso de las señales como mecanismo de comunicación, pero en general sirven para informar a un proceso de suceso de ciertos eventos.</p>
+<p>En el <a href="#_señales_en_sistemas_operativos_posix">Apartado 10.5.2</a> hablamos del uso de las señales como mecanismo de comunicación, pero en general sirven para informar a un proceso del suceso de ciertos eventos.</p>
 </div>
 <div class="paragraph">
 <p>Existen dos tipos de señales:</p>
@@ -8021,7 +8020,7 @@ También lo son las señales enviadas desde otro proceso, como cuando el proceso
 </div>
 <div class="paragraph">
 <p>Las señales también son anteriores a los hilos, por lo que cuando aparecieron los hilos se tuvieron que tomar decisiones sobre como iban a encajar ambos conceptos.
-Por ejemplo, decidir cuál de los hilos del procesos será interrumpido cuando llegue una señal, para ejecutar el manejador de señales.</p>
+Por ejemplo, decidir cuál de los hilos del proceso, será interrumpido cuando llegue una señal, para ejecutar el manejador de señales.</p>
 </div>
 <div class="sect4">
 <h5 id="_señales_enviadas_por_otros_hilos">Señales enviadas por otros hilos</h5>
@@ -8082,7 +8081,7 @@ El tipo de los <em>sets</em> de señales es <code>sigset_t</code>, de cuyo tipo 
 </div>
 <div class="paragraph">
 <p>También se puede enviar una señal a un hilo en concreto usando <a href="https://man7.org/linux/man-pages/man3/pthread_kill.3.html">pthread_kill()</a>.
-El hilo será interrumpido no la ha bloqueado.</p>
+El hilo será interrumpido si no la ha bloqueado.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8097,7 +8096,7 @@ Esto quiere decir que si señal está configurada para ser manejada usando la ac
 <div class="sect4">
 <h5 id="_señales_enviadas_por_el_sistema">Señales enviadas por el sistema</h5>
 <div class="paragraph">
-<p>Lo que queda por ver es a quién va dirigida una señal cuando es el sistema quién la envía para notificar un evento:</p>
+<p>Lo que queda por ver es a quién va dirigida una señal, cuando es el sistema quién la envía para notificar un evento:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -14873,7 +14872,7 @@ Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-10-17 12:25:02 UTC
+Última actualización 2020-10-17 19:48:06 UTC
 </div>
 </div>
 <style>
