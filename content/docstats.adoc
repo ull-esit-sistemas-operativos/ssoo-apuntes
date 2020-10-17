@@ -16,14 +16,14 @@
 :C08_reading_time: 10 minutos
 :C09_words: 7808
 :C09_reading_time: 39 minutos
-:C10_words: 6466
+:C10_words: 6465
 :C10_reading_time: 32 minutos
 :C11_words: 1041
 :C11_reading_time: 5 minutos
 :C12_words: 6906
 :C12_reading_time: 35 minutos
-:C13_words: 5289
-:C13_reading_time: 26 minutos
+:C13_words: 5963
+:C13_reading_time: 30 minutos
 :C14_words: 10169
 :C14_reading_time: 51 minutos
 :C15_words: 1709

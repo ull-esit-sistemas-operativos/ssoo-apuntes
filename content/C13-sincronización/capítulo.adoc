@@ -335,11 +335,11 @@ Mientras que en sistemas POSIX es necesario crear el *semáforo* en una región 
 
 |Destruir semáforo anónimo                       
 |{linux_sem_destroy}     
-|[.lightcell]##[Automáticamente]##
+|[.lightcell]##[Automático]##
 
 |Destruir semáforo con nombre                       
 |{linux_sem_unlink}     
-|[.lightcell]##[Automáticamente]##
+|[.lightcell]##[Automático]##
 
 |====
 
@@ -380,7 +380,7 @@ El cliente lo hace después de escribir un nuevo comando en `command_buffer`.
 
 El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de {shared_memory_client_cpp} y {shared_memory_server_c}, respectivamente.
 
-Finalmente, pare resolver el *problema del productor-consumidor* tenemos que considerar que:
+Finalmente, para resolver el *problema del productor-consumidor* tenemos que considerar que:
 
 * Necesitamos un semáforo para haya *exclusión mutua* entre ambos al insertar y extraer elementos del vector.
 
@@ -470,11 +470,9 @@ Cuando el que haya pasado termine, debe usar {linux_sem_post} sobre `mutex` para
 == Mutex
 
 Los semáforos inicializados a 1 se denominan *_((mutex))_* o *semáforos binarios*(((semáforo, binario))).
-
 Por tanto, aunque un sistema o lenguaje solo soporte *semáforos*, es directo implementar *_mutex_*.
-Lo interesante es que a la inversa ocurre igual.
-Si un sistema o lenguaje soporta *_mutex_*, es muy sencillo hacer una implementación *semáforos*.
-Esto, por ejemplo, es lo que ocurre en {cpp}, donde el estándar no soporta *semáforos* pero su implementación usando {cpp_mutex} es muy simple, como se puede ver en el <<cpp_semáforo>>.
+A la inversa ocurre igual.
+Si un sistema o lenguaje soporta *_mutex_*, es muy sencillo hacer una implementación *semáforos*, si nos hiciera falta.
 
 El estándar POSIX soporta *_mutex_* a través de {pthreads}.
 Por defecto solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronizar entre procesos diferentes, aunque para eso deben ser creados en una región de memoria compartida por dichos procesos.
@@ -530,9 +528,32 @@ Mientras que los *_mutex_* de Windows API son objetos más costosos, pero se pue
 
 === Ejemplos del uso de mutex
 
-//{threads_sync_cpp}
+En {pthreads_sync_cpp} se puede estudiar el código completo de un ejemplo similar a {pthreads_cpp}, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando el API de {pthreads}.
+La diferencia es que ahora los hilos no retornan el resultado, sino que cada uno lo mete en un vector compartido.
+Al terminar, el hilo principal recorre el vector multiplicando los resultados parciales.
 
-//{pthreads_sync_cpp}
+Como ahora ambos hilos acceden a una estructura de datos compartida, esta debe ir protegida por un *_mutex_*:
+
+[source,cpp]
+----
+pthread_mutex_t mutex;
+std::vector<BigInt> partials;
+----
+
+Antes de meter un nuevo valor, cada hilo debe adquirir el `mutex`:
+
+[source,cpp]
+----
+// Bloquear el mutex y guardar el resultado
+pthread_mutex_lock( mutex );   <1>
+partials.push_back( result );
+pthread_mutex_unlock( mutex ); <2>
+----
+<1> Adquirir `mutex` antes de entrar en la *sección crítica*.
+<2> Liberar `mutex` para salir de la *sección crítica*.
+Es importante no olvidarnos de liberar el *_mutex_* al terminar o de los contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la *sección crítica*.
+
+En {threads_sync_cpp} se puede ver un ejemplo equivalente pero usando {cpp_thread} y {cpp_mutex}, de la librería estándar de {cpp}.
 
 == Variables de condición
 ((variable de condición))
@@ -631,12 +652,103 @@ Además son más pesados que las *variables de condición* de Windows API, no ex
 
 |====
 
-[[cpp_semáforo]]
 === Ejemplos del uso de variables de condición
 
-//{threads_sync_cpp}
+Vamos a intentar resolver el *problema del productor-consumidor* sin usar *semáforos*.
+Para lo que, nuevamente, tenemos que considerar que:
 
-//{pthreads_sync_cpp}
+* Necesitamos *exclusión mutua* entre ambos hilos al insertar y extraer elementos del vector para evitar *condiciones de carrera*, por tanto usamos un *_mutex_* para proteger la *sección crítica*.
+
+* Necesitamos una forma de que el productor espere cuando el vector está lleno y que el consumidor haga lo mismo cuando el vector está vacío.
+Para señalar estos eventos necesitamos dos *variables de condición*:
+
+[source, cpp]
+----
+std::mutext mutex; <1>
+std::condition_variable no_full;  <2>
+std::condition_variable no_empty; <3> 
+
+std::vector<item_t> buffer( VECTOR_SIZE );
+
+void productor()
+{
+    // ...
+
+    while(/* ... */)
+    {
+        item_t item = produce_item();
+
+        std::unique_lock lock{ mutex }; <4> <5>
+
+        while( buffer.size() == VECTOR_SIZE ) <6> <10>
+        {
+            no_full.wait( mutex ); <11>
+        }
+
+        vector.push_back( item );  <11>
+
+        no_empty.notify_one(); <7>
+    } <6>
+
+    // ...
+}
+
+void consumer()
+{
+    // ...
+
+    while(/* ... */)
+    {
+        std::unique_lock lock{ mutex }; <4> <5>
+
+        while( buffer.size() == 0 ) <8> <10>
+        {
+            no_empty.wait( mutex );  <11>
+        }
+
+        item_t item = vector.back(); <11>
+        vector.pop_back();
+
+        no_full.notify_one(); <9>
+
+        consume_item(item);
+    } <6>
+
+    // ...
+}
+----
+<1> *_Mutex_* que se encarga de la exclusión mutua.
+
+<2> *Variable de condición* que se encarga de indicar cuando el vector no está lleno.
+
+<3> *Variable de condición* que se encarga de indicar cuando el vector no está vacío.
+
+<4> Antes de acceder al vector es necesario bloquear `mutex`.
+Ni si quiera es seguro preguntar por el número de elementos guardados en `vector`sin antes adquirir el *_mutex_*, puesto que el otro hilo puede estar modificando `vector` al mismo tiempo.
+
+<5> Los *_mutex_* se pueden adquirir y liberar con {cpp_mutex_lock} y  cpp_mutex_unlock} pero esa no es la forma recomendada.
+Lo recomendando es crear alguno de los objetos _lock_ incluidos en la librería estándar.
+Estos objetos bloquean el *_mutex_* al crearse y lo desbloquean automáticamente al destruirse.
+Así es complicado que nos olvidemos de desbloquearlo al salir de la función.
+
+<6> Antes de insertar un elemento se comprueba si hay algún hueco disponible.
+Si no lo hay, se pone el hilo a la espera en la *variable de condición* `no_full`.
+
+<7> El consumidor despierta al productor de esa espera tras extraer un elemento, porque es seguro que al hacerlo habrá dejado un hueco.
+
+<8> Antes de extraer un elemento se comprueba si hay alguno en el vector.
+Si no lo hay, se pone el hilo a la espera en la *variable de condición* `no_empty`.
+
+<9> El productor despierta al consumidor de esta espera tras insertar un nuevo elemento. 
+
+<10> El estándar de {cpp} indica que las esperas en las *variables de condición* son susceptibles de despertar de forma espuria.
+Es decir, que el hilo puede salir de {cpp_condition_variable_wait} sin que haya habido notificación.
+Por eso hay que volver a comprobar la condición antes de continuar ejecutando sentencias en la *sección crítica*.
+
+<11> Cuando los hilos se bloquean en {cpp_condition_variable_wait}, `mutex` es liberado para que el otro hilo pueda entrar y extraer o insertar un elemento.
+De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en un situación que se denomina *((interbloqueo))* o *_deadlock_*—.
+Pero antes de salir de {cpp_condition_variable_wait}, el hilo adquiere de nuevo el `mutex`.
+Así que el código que inserta y extrae elementos se ejecuta en *exclusión mutua*, tal y como nos interesa.
 
 == Esperas
 

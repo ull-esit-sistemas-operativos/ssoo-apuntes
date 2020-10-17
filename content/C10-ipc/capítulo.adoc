@@ -636,7 +636,7 @@ En los sistemas POSIX las *tuberías con nombre* se denominan _FIFO_ y tienen pr
 
 |Destruir tubería con nombre
 |{linux_unlink}
-|[.lightcell]##[Automáticamente]##
+|[.lightcell]##[Automático]##
 
 |====
 
