@@ -7148,7 +7148,7 @@ Hay dos formas de implementar una librería de hilos: en el espacio de usuario o
 </div>
 <div class="paragraph">
 <p>Estos hilos no existen para el núcleo del sistema operativo, solo para el proceso que los ha creado.
-Por ese motivo se los denomina <strong>hilos de usuario</strong>.</p>
+Por ese motivo se los denomina <strong>hilos de usuario</strong> o <strong>hilos del nivel de usuario</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Como el código y los datos de la librería residen en el espacio de usuario, invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.</p>
@@ -7158,7 +7158,7 @@ Por ese motivo se los denomina <strong>hilos de usuario</strong>.</p>
 <h4 id="_librería_de_hilos_en_el_núcleo">12.3.2. Librería de hilos en el núcleo</h4>
 <div class="paragraph">
 <p>Si la librería de hilos se implementa en el núcleo, es el núcleo del sistema el que se encarga de darles soporte.
-Por ese motivo se los denomina <strong>hilos de núcleo</strong>.</p>
+Por ese motivo se los denomina <strong>hilos de núcleo</strong> o <strong>hilos del nivel de núcleo</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Aparte del <strong>PCB</strong> que vimos en el <a href="#_bloque_de_control_de_proceso">Apartado 9.3</a>, cada hilo tiene una estructura llamada <strong>bloque de control del hilo</strong> o TCB (<em>Thread Control Block</em>) que representa a cada hilo en el sistema operativo y que guarda información sobre su estado de actividad actual.</p>
@@ -8132,7 +8132,7 @@ El resto de hilos deberían bloquear estas señales nada más iniciar su ejecuci
 </div>
 <div class="paragraph">
 <p>En el <a href="#_memoria_compartida">Capítulo 11</a> vimos que varios procesos pueden compartir regiones de la memoria con el objeto de cooperar en las tareas que deben desempeñar.
-Además, en el <a href="#_hilos">Capítulo 12</a> vimos que en los procesos multihilo todos los hilos comparten el espacio de direcciones del proceso al que pertenecen, lo que significa que puedan acceder al mismo tiempo a variables globales y a la memoria reservada dinámicamente.</p>
+Además, en el <a href="#_hilos">Capítulo 12</a> vimos que en los procesos multihilo todos los hilos comparten el espacio de direcciones del proceso al que pertenecen, lo que significa que pueden acceder al mismo tiempo a las variables globales y a la memoria reservada dinámicamente.</p>
 </div>
 <div class="paragraph">
 <p>Ambas posibilidades introducen algunos riesgos, puesto que el acceso simultáneo a los datos compartidos puede ocasionar inconsistencias.
@@ -8162,7 +8162,7 @@ Estas situaciones ocurren frecuentemente en los sistemas operativos, puesto que 
 <div class="sect3">
 <h4 id="_problema_del_productor_consumidor">13.1.1. Problema del productor-consumidor</h4>
 <div class="paragraph">
-<p>Para ilustrarlo, veamos un problema clásico de concurrencia: el <strong>problema del productor-consumidor</strong></p>
+<p>Para ilustrarlo, veamos un problema clásico de concurrencia: el <strong>problema del productor-consumidor</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Supongamos que dos hilos o procesos comparten una región de la memoria que contiene un vector de elementos y un contador con el número de elementos del vector.</p>
@@ -8228,7 +8228,7 @@ Es decir, el segundo hilo actúa como un <strong>consumidor</strong> de elemento
 Mientras tanto, otro hilo puede dedicarse a tomar las muestras y realizar diversas transformaciones, como: reducir el ruido, mezclar con otras fuentes de sonido o aplicar algún tipo de efecto digital.
 Este segundo hilo es el <strong>consumidor</strong>.
 La manera de conectar ambos es tener un vector compartido, donde se depositan los bloques de muestras cuando llegan y de dónde se extraen para su tratamiento.
-Así ambos hilos pueden trabajar a su propio ritmo, de forma casi independiente.</p>
+Así, ambos hilos pueden trabajar a su propio ritmo, de forma casi independiente.</p>
 </div>
 </td>
 </tr>
@@ -8266,7 +8266,7 @@ count = registro2;</pre>
 Realmente, aunque <code>registro1</code> y <code>registro2</code> pueden ser el mismo registro físico, el contenido de los registros se guarda y se recupera durante los cambios de contexto de un hilo al otro, por lo que cada uno ve sus propios valores y no los del otro.</p>
 </div>
 <div class="paragraph">
-<p>El que las sentencias <code>++count</code> y <code>--count</code> se ejecute de forma concurrente,es similar a que las instrucciones de lenguaje máquina de ambas sentencias en ambos hilos o procesos se entrelacen en algún orden aleatorio.</p>
+<p>El que las sentencias <code>++count</code> y <code>--count</code> se ejecute de forma concurrente, es similar a que las instrucciones de lenguaje máquina de ambas sentencias en ambos hilos o procesos se entrelacen en algún orden aleatorio.</p>
 </div>
 <div class="paragraph">
 <p>Un posible entrelazado de las instrucciones en lenguaje máquina entre hilos, suponiendo que inicialmente <code>count = 5</code>, podría ser el siguiente:</p>
@@ -8310,7 +8310,7 @@ Pero el único resultado correcto es 5, que es el que obtendríamos si ejecutamo
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Ambos hilos se ejecutan de forma concurrente porque o bien, tenemos un sistema multiprocesador o multinúcleo, donde ambos hilos se ejecutan a la vez en procesadores diferentes, o bien porque tenemos un sistema operativo donde uno de los hilos puede ver interrumpida su ejecución en cualquier momento para asignar la CPU a otro (véase el <a href="#_planificación_expropiativa">Apartado 14.1</a>.</p>
+<p>Ambos hilos se ejecutan de forma concurrente porque o bien, tenemos un sistema multiprocesador o multinúcleo, donde ambos hilos se ejecutan a la vez en procesadores diferentes, o bien, porque tenemos un sistema operativo donde uno de los hilos puede ver interrumpida su ejecución en cualquier momento para asignar la CPU a otro (véase el <a href="#_planificación_expropiativa">Apartado 14.1</a>.</p>
 </div>
 </td>
 </tr>
@@ -8347,23 +8347,23 @@ Pero el único resultado correcto es 5, que es el que obtendríamos si ejecutamo
 En este momento el nodo a extraer ya no pertenece a la lista enlazada.</p>
 </li>
 <li>
-<p>Extrae el <code>item</code> del campo que lo contienen en el nodo.</p>
+<p>Extrae el <code>item</code> del campo que lo contiene en el nodo.</p>
 </li>
 <li>
 <p>Destruir el nodo.</p>
 </li>
 <li>
-<p>Salir del método retornado el elemento.</p>
+<p>Salir del método retornando el elemento.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Esto genera varios momentos cruciales entorno al paso 3 que puedan dar lugar a <strong>condiciones de carrera</strong>.
+<p>Esto genera varios momentos cruciales entorno al paso 3, que puedan dar lugar a <strong>condiciones de carrera</strong>.
 Por ejemplo, si el hilo es interrumpido tras guardar el puntero al nodo en una variable local y llega otro hilo que extrae —y destruye— antes ese mismo nodo, el puntero ya no es válido —es un <em>dangling pointer</em> o referencia colgante— al continuar la ejecución del primer hilo.
 Y lo mismo ocurre con el puntero al nodo previo o al siguiente, si el hilo es interrumpido y otro hilo destruye antes alguno de ellos.</p>
 </div>
 <div class="paragraph">
-<p>Los problemas que esto puede causar son diversos, según el momento exacto en el que ocurra.
+<p>Los problemas que ésto puede causar son diversos, según el momento exacto en el que ocurra.
 Puede haberlos al intentar leer el elemento guardado en el nodo en el paso 4, porque este último ya no exista.
 También, al intentar actualizar, en el paso 3, el puntero al siguiente nodo en el nodo previo, porque el nodo previo no exista.
 Incluso puede que la función termine con aparente normalidad pero dejando que el nodo previo apunte a un nodo siguiente que no existe.
@@ -8378,7 +8378,7 @@ Por tanto, necesitamos algún tipo de mecanismo de sincronización para que mien
 O para que mientras un hilo haga un <code>insert()</code> o un <code>extract()</code> en una lista, otro no pueda utilizar ni estas ni otras funciones de las misma clase.</p>
 </div>
 <div class="paragraph">
-<p>Para resolver esto debemos empezar buscando las <strong>secciones críticas</strong> de nuestro código.
+<p>Para resolver ésto, debemos empezar buscando las <strong>secciones críticas</strong> de nuestro código.
 Una <strong>sección crítica</strong> es una porción del código dónde se accede a variables, tablas, listas, archivos y otros recursos compartidos.</p>
 </div>
 <div class="paragraph">
@@ -8394,7 +8394,7 @@ En ambos ejemplos se usan bucles para que el hilo espere si el vector está llen
 A esta técnica se la denomina <strong>espera ocupada</strong> o <strong>espera activa</strong> y está completamente desaconsejada usarla en código del espacio de usuario, porque contribuye a gastar tiempo de CPU inútilmente.</p>
 </div>
 <div class="paragraph">
-<p>En su lugar, se recomienda usar mecanismos de sincronización ofrecidos por el sistema operativo; diseñados para que un hilo o proceso notifique eventos a otro, de tal forma que hasta que eso ocurre el que espera permanezca en estado <strong>esperando</strong>, dejando la CPU para los hilos que la necesitan.</p>
+<p>En su lugar, se recomienda usar mecanismos de sincronización ofrecidos por el sistema operativo; diseñados para que un hilo o proceso notifique eventos a otro, de tal forma que hasta que eso ocurre, el que espera permanezca en estado <strong>esperando</strong>, dejando la CPU para los hilos que la necesitan.</p>
 </div>
 </div>
 </div>
@@ -8411,7 +8411,7 @@ A continuación veremos algunas de esas características, antes de profundizar e
 </div>
 <div class="paragraph">
 <p>Como el núcleo del sistema operativo es un software controlado mediante interrupciones, basta con que los hilos bloqueen las interrupciones mientras se está dentro de la sección crítica.
-Así el sistema operativo no puede tomar el control y asignar otro hilo a la CPU, lo que impide que se ejecute otra secuencia de instrucciones que podría modificar los datos compartidos.</p>
+Así, el sistema operativo no puede tomar el control y asignar otro hilo a la CPU, lo que impide que se ejecute otra secuencia de instrucciones que podría modificar los datos compartidos.</p>
 </div>
 <div class="paragraph">
 <p>Indudablemente esta solución no es práctica en sistema multiprocesador, donde hay varios procesadores ejecutándose a la vez.</p>
@@ -8487,7 +8487,7 @@ Por ejemplo, <strong>semáforos</strong> o <strong><em>mutex</em></strong>.</p>
 <div class="sect2">
 <h3 id="_semáforos">13.3. Semáforos</h3>
 <div class="paragraph">
-<p>semáforo</p>
+<p></p>
 </div>
 <div class="paragraph">
 <p>La exclusión mutua en las secciones críticas se asegura utilizando adecuadamente una serie de recursos que para ese fin proporciona el sistema operativo.
@@ -8495,7 +8495,7 @@ Estos recursos utilizan internamente instrucciones y otras características de l
 Ese es el caso de los <strong>semáforos</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Los <strong>semáforos</strong> son un tipo de objetos del sistema operativo que nos permite controlar el acceso a una sección crítica, por medio de dos primitivas: <strong>acquire</strong> y <strong>release</strong> —o <strong>wait</strong> y <strong>signal</strong>, según el libro de texto que consultemos—.
+<p>Los <strong>semáforos</strong> son un tipo de objetos del sistema operativo que nos permiten controlar el acceso a una sección crítica, por medio de dos primitivas: <strong>acquire</strong> y <strong>release</strong> —o <strong>wait</strong> y <strong>signal</strong>, según el libro de texto que consultemos—.
 A continuación describimos el mecanismo de funcionamiento:</p>
 </div>
 <div class="listingblock">
@@ -8545,9 +8545,9 @@ Es decir, el código de la sección crítica en sí.</td>
 <p>Si el contador interno del <strong>semáforo</strong> es mayor que 0, <code>release()</code> lo incrementa y retorna para que la ejecución continúe.</p>
 </li>
 <li>
-<p>Si el contador interno del <strong>semáforo</strong> es igual a 0, <code>release()</code> lo incrementa y saca a uno de los hilos en la cola de espera —donde los puso su <code>acquire()</code>— para meterlo en la cola de preparados, dejándolo listo para entrar en la CPU
+<p>Si el contador interno del <strong>semáforo</strong> es igual a 0, <code>release()</code> lo incrementa y saca a uno de los hilos en la cola de espera —donde los puso su <code>acquire()</code>— para meterlo en la cola de preparados, dejándolo listo para entrar en la CPU.
 Cuando eso ocurra, ese hilo decrementará el contador interno del <strong>semáforo</strong> y saldrá de su <code>acquire()</code>, donde hasta a hora estaba atrapado.
-Mientras tanto <code>release()</code> retorna y la ejecución del hilo que sale del sección crítica continua.</p>
+Mientras tanto <code>release()</code> retorna y la ejecución del hilo que sale del sección crítica continúa.</p>
 </li>
 </ul>
 </div></td>
@@ -8577,7 +8577,7 @@ Es decir, el <strong>semáforo</strong> <code>S</code> debe estar compartido ent
 <div class="ulist">
 <ul>
 <li>
-<p>Los <strong>semáforos anónimos</strong>semáforo, anónimo) que sólo existen en el espacio de direcciones del proceso que las crea, de tal forma que están disponibles para sincronizar hilos del mismo procesos.</p>
+<p>Los <strong>semáforos anónimos</strong> que sólo existen en el espacio de direcciones del proceso que los crea, de tal forma que están disponibles para sincronizar hilos del mismo proceso.</p>
 <div class="paragraph">
 <p>La forma de usarlos para sincronizar procesos diferentes o hilos en procesos diferentes depende del sistema operativo.
 Con Windows API se pueden heredar de padres a hijos.
@@ -8650,7 +8650,7 @@ Mientras que en sistemas POSIX es necesario crear el <strong>semáforo</strong> 
 <div class="sect3">
 <h4 id="_ejemplos_del_uso_de_semáforos">13.3.2. Ejemplos del uso de semáforos</h4>
 <div class="paragraph">
-<p>En el ejemplo <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> de comunicación mediante memoria compartida, se usa un <strong>semáforo</strong> para que el proceso hijo indique al procesos padre que ha terminado del calcular el factorial y el resultado ya está en la memoria.</p>
+<p>En el ejemplo <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> de comunicación mediante memoria compartida, se usa un <strong>semáforo</strong> para que el proceso hijo indique al proceso padre que ha terminado de calcular el factorial y el resultado ya está en la memoria.</p>
 </div>
 <div class="paragraph">
 <p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap11/shared-memory-server.c">shared-memory-server.c</a> está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a>.</p>
@@ -8672,8 +8672,8 @@ Mientras que en sistemas POSIX es necesario crear el <strong>semáforo</strong> 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Indica cuándo <code>command_buffer</code> está vacío, así que se inicializado a 1.
-El cliente usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">sem_wait()</a> en este <strong>semaforo</strong> antes de escribir un nuevo comando en <code>command_buffer</code>:
+<td>Indica cuándo <code>command_buffer</code> está vacío, así que se inicializa a 1.
+El cliente usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">sem_wait()</a> en este <strong>semáforo</strong> antes de escribir un nuevo comando en <code>command_buffer</code>:
 <div class="ulist">
 <ul>
 <li>
@@ -8698,7 +8698,7 @@ El servidor usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">
 Después llama a <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> en <code>empty</code>.</p>
 </li>
 <li>
-<p>Si el <strong>semáforo</strong> está a 1, el servidor queda bloqueado y tiene que espera a que el cliente use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
+<p>Si el <strong>semáforo</strong> está a 1, el servidor queda bloqueado y tiene que esperar a que el cliente use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
 El cliente lo hace después de escribir un nuevo comando en <code>command_buffer</code>.</p>
 </li>
 </ul>
@@ -8804,7 +8804,7 @@ Se pone a 0 para indicar que este <strong>semaforo</strong> no se va a compartir
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Antes de inserta un elemento se decrementa <code>empty_count</code>.
+<td>Antes de insertar un elemento se decrementa <code>empty_count</code>.
 Así, si vale 0, es que el vector está lleno y el productor se bloquea.
 El consumidor incrementa <code>empty_count</code> tras extraer un elemento y dejar hueco, despertando al productor.</td>
 </tr>
@@ -8834,7 +8834,7 @@ Si un sistema o lenguaje soporta <strong><em>mutex</em></strong>, es muy sencill
 </div>
 <div class="paragraph">
 <p>El estándar POSIX soporta <strong><em>mutex</em></strong> a través de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
-Por defecto solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronizar entre procesos diferentes, aunque para eso deben ser creados en una región de memoria compartida por dichos procesos.</p>
+Por defecto solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronización entre procesos diferentes, aunque para eso deben ser creados en una región de memoria compartida por dichos procesos.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -8946,7 +8946,7 @@ Al terminar, el hilo principal recorre el vector multiplicando los resultados pa
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Liberar <code>mutex</code> para salir de la <strong>sección crítica</strong>.
-Es importante no olvidarnos de liberar el <strong><em>mutex</em></strong> al terminar o de los contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la <strong>sección crítica</strong>.</td>
+Es importante no olvidarnos de liberar el <strong><em>mutex</em></strong> al terminar o de lo contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la <strong>sección crítica</strong>.</td>
 </tr>
 </table>
 </div>
@@ -8958,10 +8958,10 @@ Es importante no olvidarnos de liberar el <strong><em>mutex</em></strong> al ter
 <div class="sect2">
 <h3 id="_variables_de_condición">13.5. Variables de condición</h3>
 <div class="paragraph">
-<p>variable de condición</p>
+<p></p>
 </div>
 <div class="paragraph">
-<p>En la solución que dimos al <strong>problema del productor-consumidor</strong> usando <strong>semáforos</strong> (véase el <a href="#_ejemplos_del_uso_de_semáforos">Apartado 13.3.2</a>) empleamos <strong>semáforos</strong> para implementar las esperas del productor y el consumidor cuando el vector está lleno o vacío, respecitvamente.
+<p>En la solución que dimos al <strong>problema del productor-consumidor</strong> usando <strong>semáforos</strong> (véase el <a href="#_ejemplos_del_uso_de_semáforos">Apartado 13.3.2</a>) empleamos <strong>semáforos</strong> para implementar las esperas del productor y el consumidor cuando el vector está lleno o vacío, respectivamente.
 Lamentablemente, los <em>mutex</em> no se pueden usar de la misma manera para señalar eventos.
 En su lugar necesitamos otro tipo de objeto llamado <strong>variable de condición</strong>.</p>
 </div>
@@ -8973,7 +8973,7 @@ En su lugar necesitamos otro tipo de objeto llamado <strong>variable de condici�
 <dt class="hdlist1">wait( mutex )</dt>
 <dd>
 <p>Es llamada por un hilo que desea esperar a que ocurra el evento que representa la variable de condición.
-El hilo debe haber adquirido antes <strong><em>mutex</em></strong>, es liberado en el momento de poner al hilo en estado <strong>esperando</strong>.
+El hilo debe haber adquirido antes el <strong><em>mutex</em></strong>, es liberado en el momento de poner al hilo en estado <strong>esperando</strong>.
 Varios hilos pueden llamar a <strong>wait</strong> sobre la misma variable de condición, a la espera de que alguno use <strong>notify</strong>.</p>
 </dd>
 <dt class="hdlist1">notify</dt>
@@ -9043,7 +9043,7 @@ Obviamente, si todos hicieron <strong>wait</strong> sobre el mismo <strong><em>m
 </tbody>
 </table>
 <div class="paragraph">
-<p>Por defecto, las <strong>variables de condición</strong> de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronizar entre procesos diferentes.
+<p>Por defecto, las <strong>variables de condición</strong> de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronización entre procesos diferentes.
 Obviamente, para eso deben ser creadas en una región de memoria compartida por dichos procesos.</p>
 </div>
 <div class="paragraph">
@@ -9052,7 +9052,7 @@ Como alternativa, Windows API soporta <strong>eventos</strong>, que son un tipo 
 </div>
 <div class="paragraph">
 <p>A los <strong>eventos</strong> se les puede asignar un nombre, para que sean accesibles por otros procesos, o heredarse de padres a hijos.
-Además son más pesados que las <strong>variables de condición</strong> de Windows API, no exigen un <strong><em>mutex</em></strong> para liberar al invocar su operación <strong>wait</strong> ni admiten la operación <strong>notifyAll</strong>.</p>
+Además son más pesados que las <strong>variables de condición</strong> de Windows API, no exigen un <strong><em>mutex</em></strong> para liberar al invocar su operación <strong>wait</strong>, ni admiten la operación <strong>notifyAll</strong>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Tabla 7. Funciones de la API para manipular eventos de Windows API.</caption>
@@ -9183,7 +9183,7 @@ Para señalar estos eventos necesitamos dos <strong>variables de condición</str
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>Antes de acceder al vector es necesario bloquear <code>mutex</code>.
-Ni si quiera es seguro preguntar por el número de elementos guardados en <code>vector`sin antes adquirir el <strong><em>mutex</em></strong>, puesto que el otro hilo puede estar modificando `vector</code> al mismo tiempo.</td>
+Ni si quiera es seguro preguntar por el número de elementos guardados en <code>vector</code> sin antes adquirir el <strong><em>mutex</em></strong>, puesto que el otro hilo puede estar modificando <code>vector</code> al mismo tiempo.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -9219,7 +9219,7 @@ Por eso hay que volver a comprobar la condición antes de continuar ejecutando s
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>Cuando los hilos se bloquean en <a href="https://en.cppreference.com/w/cpp/thread/condition_variable/wait">std::condition_variable::wait()</a>, <code>mutex</code> es liberado para que el otro hilo pueda entrar y extraer o insertar un elemento.
-De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en un situación que se denomina <strong>interbloqueo</strong> o <strong><em>deadlock</em></strong>—.
+De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en una situación que se denomina <strong>interbloqueo</strong> o <strong><em>deadlock</em></strong>—.
 Pero antes de salir de <a href="https://en.cppreference.com/w/cpp/thread/condition_variable/wait">std::condition_variable::wait()</a>, el hilo adquiere de nuevo el <code>mutex</code>.
 Así que el código que inserta y extrae elementos se ejecuta en <strong>exclusión mutua</strong>, tal y como nos interesa.</td>
 </tr>
@@ -9240,14 +9240,14 @@ Existen dos alternativas desde el punto de vista de como implementar esta espera
 Entonces el planificador de la CPU escogerá a otro proceso para ser ejecutado.</p>
 </li>
 <li>
-<p>El hilo puede iterar comprobado constantemente la condición hasta que se cumple.
+<p>El hilo puede iterar comprobando constantemente la condición hasta que se cumple.
 A esa técnica se la denomina <strong>espera ocupada</strong>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Este tipo de <strong>espera ocupada</strong> desperdicia tiempo de CPU que otro hilo podría utilizar de forma más productiva, por lo que sólo se utiliza en el caso de esperas previsiblemente cortas.
-Para evitar que las esperas ocupadas sean demasiado largas, los sistema operativos nunca expulsan de la CPU a hilos que se estén ejecutando dentro de secciones críticas controladas por objetos de sincronización con este tipo de espera, con la idea de que salgan den la sección crítica los antes posible.</p>
+Para evitar que las esperas ocupadas sean demasiado largas, los sistema operativos nunca expulsan de la CPU a hilos que se estén ejecutando dentro de secciones críticas controladas por objetos de sincronización con este tipo de espera, con la idea de que salgan de la sección crítica los antes posible.</p>
 </div>
 <div class="paragraph">
 <p>En Windows API, por ejemplo, se puede utilizar <a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-initializecriticalsectionandspincount">InitializeCriticalSectionAndSpinCount()</a> para inicializar un objeto de <strong>sección crítica</strong> donde el hilo que la intenta adquirir itera el número especificado de veces en una <strong>espera ocupada</strong>, comprobando si la sección es liberada, antes de bloquearse en el estado <strong>esperando</strong> si eso no ocurre.</p>
@@ -9381,12 +9381,12 @@ Por ejemplo, <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">str
 <div class="content">
 <div class="paragraph">
 <div class="title">Tiempo estimado de lectura</div>
-<p>30 minutos</p>
+<p>51 minutos</p>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>El <strong>planificador de la CPU</strong> o <strong>planificador de corto plazo</strong> tiene la misión de seleccionar de la <strong>cola de preparados</strong> el siguiente proceso o hilo del núcleo a ejecutar.
+<p>El <strong>planificador de la CPU</strong> o <strong>planificador de corto plazo</strong> tiene la misión de seleccionar de la <strong>cola de preparados</strong> el siguiente proceso o hilo de núcleo a ejecutar.
 En dicha cola suelen estar los PCB —o TCB— de todos los procesos —o hilos de núcleo— que esperan una oportunidad para usar la CPU.
 Aunque se suele pensar en la <strong>cola de preparados</strong> como una cola FIFO, no tiene por qué ser así, como veremos más adelante, ya que existen mejores estrategias para seleccionar la próxima tarea a ejecutar.</p>
 </div>
@@ -14872,7 +14872,7 @@ Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-10-17 19:48:06 UTC
+Última actualización 2020-10-18 19:09:51 UTC
 </div>
 </div>
 <style>
