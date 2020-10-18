@@ -10,7 +10,7 @@ include::../../config/attributes.adoc[]
 ====
 
 En el <<_memoria_compartida>> vimos que varios procesos pueden compartir regiones de la memoria con el objeto de cooperar en las tareas que deben desempeñar.
-Además, en el <<_hilos>> vimos que en los procesos multihilo todos los hilos comparten el espacio de direcciones del proceso al que pertenecen, lo que significa que puedan acceder al mismo tiempo a variables globales y a la memoria reservada dinámicamente.
+Además, en el <<_hilos>> vimos que en los procesos multihilo todos los hilos comparten el espacio de direcciones del proceso al que pertenecen, lo que significa que pueden acceder al mismo tiempo a las variables globales y a la memoria reservada dinámicamente.
 
 Ambas posibilidades introducen algunos riesgos, puesto que el acceso simultáneo a los datos compartidos puede ocasionar inconsistencias.
 Así que ha llegado el momento de discutir cómo se puede asegurar la ejecución ordenada de hilos o procesos cooperativos que comparten regiones de la memoria, con el fin de mantener la consistencia de los datos.
@@ -28,7 +28,7 @@ Estas situaciones ocurren frecuentemente en los sistemas operativos, puesto que 
 
 === Problema del productor-consumidor
 
-Para ilustrarlo, veamos un problema clásico de concurrencia: el *problema del ((productor-consumidor))* 
+Para ilustrarlo, veamos un problema clásico de concurrencia: el *problema del ((productor-consumidor))*. 
 
 Supongamos que dos hilos o procesos comparten una región de la memoria que contiene un vector de elementos y un contador con el número de elementos del vector.
 
@@ -82,7 +82,7 @@ Por ejemplo, en una herramienta de grabación de audio, el *productor* es un hil
 Mientras tanto, otro hilo puede dedicarse a tomar las muestras y realizar diversas transformaciones, como: reducir el ruido, mezclar con otras fuentes de sonido o aplicar algún tipo de efecto digital.
 Este segundo hilo es el *consumidor*.
 La manera de conectar ambos es tener un vector compartido, donde se depositan los bloques de muestras cuando llegan y de dónde se extraen para su tratamiento.
-Así ambos hilos pueden trabajar a su propio ritmo, de forma casi independiente.
+Así, ambos hilos pueden trabajar a su propio ritmo, de forma casi independiente.
 ====
 
 Aunque el código anterior del productor y del consumidor es correcto cuando no coinciden en el tiempo al ejecutarse, no funciona adecuadamente cuando sí lo hacen.
@@ -110,7 +110,7 @@ count = registro2;
 Donde nuevamente `registro2` representa un registro de la CPU.
 Realmente, aunque `registro1` y `registro2` pueden ser el mismo registro físico, el contenido de los registros se guarda y se recupera durante los cambios de contexto de un hilo al otro, por lo que cada uno ve sus propios valores y no los del otro.
 
-El que las sentencias `++count` y `--count` se ejecute de forma concurrente,es similar a que las instrucciones de lenguaje máquina de ambas sentencias en ambos hilos o procesos se entrelacen en algún orden aleatorio.
+El que las sentencias `++count` y `--count` se ejecute de forma concurrente, es similar a que las instrucciones de lenguaje máquina de ambas sentencias en ambos hilos o procesos se entrelacen en algún orden aleatorio.
 
 Un posible entrelazado de las instrucciones en lenguaje máquina entre hilos, suponiendo que inicialmente `count = 5`, podría ser el siguiente:
 
@@ -136,7 +136,7 @@ Pero el único resultado correcto es 5, que es el que obtendríamos si ejecutamo
 
 [NOTE]
 ====
-Ambos hilos se ejecutan de forma concurrente porque o bien, tenemos un sistema multiprocesador o multinúcleo, donde ambos hilos se ejecutan a la vez en procesadores diferentes, o bien porque tenemos un sistema operativo donde uno de los hilos puede ver interrumpida su ejecución en cualquier momento para asignar la CPU a otro (véase el <<_planificación_expropiativa>>.
+Ambos hilos se ejecutan de forma concurrente porque o bien, tenemos un sistema multiprocesador o multinúcleo, donde ambos hilos se ejecutan a la vez en procesadores diferentes, o bien, porque tenemos un sistema operativo donde uno de los hilos puede ver interrumpida su ejecución en cualquier momento para asignar la CPU a otro (véase el <<_planificación_expropiativa>>.
 ====
 
 === Manipular estructuras de datos
@@ -159,15 +159,15 @@ y el método `extract()` tendría que dar los siguientes pasos:
 . Cambiar en el nodo previo el puntero al siguiente nodo, para que apunte al nodo tras el que queremos extraer.
 En este momento el nodo a extraer ya no pertenece a la lista enlazada.
 
-. Extrae el `item` del campo que lo contienen en el nodo.
+. Extrae el `item` del campo que lo contiene en el nodo.
 . Destruir el nodo.
-. Salir del método retornado el elemento.
+. Salir del método retornando el elemento.
 
-Esto genera varios momentos cruciales entorno al paso 3 que puedan dar lugar a *condiciones de carrera*.
+Esto genera varios momentos cruciales entorno al paso 3, que puedan dar lugar a *condiciones de carrera*.
 Por ejemplo, si el hilo es interrumpido tras guardar el puntero al nodo en una variable local y llega otro hilo que extrae —y destruye— antes ese mismo nodo, el puntero ya no es válido —es un _dangling pointer_ o referencia colgante— al continuar la ejecución del primer hilo.
 Y lo mismo ocurre con el puntero al nodo previo o al siguiente, si el hilo es interrumpido y otro hilo destruye antes alguno de ellos.
 
-Los problemas que esto puede causar son diversos, según el momento exacto en el que ocurra.
+Los problemas que ésto puede causar son diversos, según el momento exacto en el que ocurra.
 Puede haberlos al intentar leer el elemento guardado en el nodo en el paso 4, porque este último ya no exista.
 También, al intentar actualizar, en el paso 3, el puntero al siguiente nodo en el nodo previo, porque el nodo previo no exista.
 Incluso puede que la función termine con aparente normalidad pero dejando que el nodo previo apunte a un nodo siguiente que no existe.
@@ -179,7 +179,7 @@ Para evitar que estas situaciones lleven a la corrupción de datos y a caídas d
 Por tanto, necesitamos algún tipo de mecanismo de sincronización para que mientras se ejecuta `++count` no se pueda ejecutar `--count` en otro hilo, ni viceversa.
 O para que mientras un hilo haga un `insert()` o un `extract()` en una lista, otro no pueda utilizar ni estas ni otras funciones de las misma clase.
 
-Para resolver esto debemos empezar buscando las *secciones críticas* de nuestro código.
+Para resolver ésto, debemos empezar buscando las *secciones críticas* de nuestro código.
 Una *sección crítica* es una porción del código dónde se accede a variables, tablas, listas, archivos y otros recursos compartidos.
 
 Para evitar *condiciones de carrera*, el acceso a las *secciones críticas* debe ser controlado, de manera que cuando un hilo se esté ejecutando en una sección de este tipo ningún otro pueda hacerlo en la suya correspondiente para manipular los mismos recursos.
@@ -191,7 +191,7 @@ Las *condiciones de carrera* son el principal problema del código anterior del 
 En ambos ejemplos se usan bucles para que el hilo espere si el vector está lleno o vacío, antes de continuar.
 A esta técnica se la denomina *espera ocupada*(((espera, activa))) o *espera activa*(((espera, ocupada))) y está completamente desaconsejada usarla en código del espacio de usuario, porque contribuye a gastar tiempo de CPU inútilmente.
 
-En su lugar, se recomienda usar mecanismos de sincronización ofrecidos por el sistema operativo; diseñados para que un hilo o proceso notifique eventos a otro, de tal forma que hasta que eso ocurre el que espera permanezca en estado *esperando*, dejando la CPU para los hilos que la necesitan.
+En su lugar, se recomienda usar mecanismos de sincronización ofrecidos por el sistema operativo; diseñados para que un hilo o proceso notifique eventos a otro, de tal forma que hasta que eso ocurre, el que espera permanezca en estado *esperando*, dejando la CPU para los hilos que la necesitan.
 
 == Sincronización por hardware
 
@@ -203,7 +203,7 @@ A continuación veremos algunas de esas características, antes de profundizar e
 El problema de la sección crítica puede ser resuelto de forma sencilla en un sistema monoprocesador.
 
 Como el núcleo del sistema operativo es un software controlado mediante interrupciones, basta con que los hilos bloqueen las interrupciones mientras se está dentro de la sección crítica.
-Así el sistema operativo no puede tomar el control y asignar otro hilo a la CPU, lo que impide que se ejecute otra secuencia de instrucciones que podría modificar los datos compartidos. 
+Así, el sistema operativo no puede tomar el control y asignar otro hilo a la CPU, lo que impide que se ejecute otra secuencia de instrucciones que podría modificar los datos compartidos. 
 
 Indudablemente esta solución no es práctica en sistema multiprocesador, donde hay varios procesadores ejecutándose a la vez.
 
@@ -244,13 +244,13 @@ La importancia de estas instrucciones está en que pueden ser utilizadas por el 
 Por ejemplo, *semáforos* o *_mutex_*.
 
 == Semáforos
-((semáforo))
+(((semáforo)))
 
 La exclusión mutua en las secciones críticas se asegura utilizando adecuadamente una serie de recursos que para ese fin proporciona el sistema operativo.
 Estos recursos utilizan internamente instrucciones y otras características de la CPU, incluidas por los diseñadores para resolver este tipo de problemas, que hemos comentado anteriormente.
 Ese es el caso de los *semáforos*.
 
-Los *semáforos* son un tipo de objetos del sistema operativo que nos permite controlar el acceso a una sección crítica, por medio de dos primitivas: *acquire* y *release* —o *wait* y *signal*, según el libro de texto que consultemos—.
+Los *semáforos* son un tipo de objetos del sistema operativo que nos permiten controlar el acceso a una sección crítica, por medio de dos primitivas: *acquire* y *release* —o *wait* y *signal*, según el libro de texto que consultemos—.
 A continuación describimos el mecanismo de funcionamiento:
 
 [source, cpp]
@@ -280,9 +280,9 @@ Es decir, el código de la sección crítica en sí.
 
 * Si el contador interno del *semáforo* es mayor que 0, `release()` lo incrementa y retorna para que la ejecución continúe.
 
-* Si el contador interno del *semáforo* es igual a 0, `release()` lo incrementa y saca a uno de los hilos en la cola de espera —donde los puso su `acquire()`— para meterlo en la cola de preparados, dejándolo listo para entrar en la CPU
+* Si el contador interno del *semáforo* es igual a 0, `release()` lo incrementa y saca a uno de los hilos en la cola de espera —donde los puso su `acquire()`— para meterlo en la cola de preparados, dejándolo listo para entrar en la CPU. 
 Cuando eso ocurra, ese hilo decrementará el contador interno del *semáforo* y saldrá de su `acquire()`, donde hasta a hora estaba atrapado.
-Mientras tanto `release()` retorna y la ejecución del hilo que sale del sección crítica continua.
+Mientras tanto `release()` retorna y la ejecución del hilo que sale del sección crítica continúa.
 
 [NOTE]
 ====
@@ -294,7 +294,7 @@ Es decir, el *semáforo* `S` debe estar compartido entre los hilos de la misma m
 
 Tanto el estándar POSIX como Windows API soportan semáforos y ambos admiten dos tipos de semáforos:
 
-* Los *semáforos anónimos*((semáforo, anónimo))) que sólo existen en el espacio de direcciones del proceso que las crea, de tal forma que están disponibles para sincronizar hilos del mismo procesos.
+* Los *semáforos anónimos*(((semáforo, anónimo))) que sólo existen en el espacio de direcciones del proceso que los crea, de tal forma que están disponibles para sincronizar hilos del mismo proceso.
 +
 La forma de usarlos para sincronizar procesos diferentes o hilos en procesos diferentes depende del sistema operativo.
 Con Windows API se pueden heredar de padres a hijos.
@@ -345,7 +345,7 @@ Mientras que en sistemas POSIX es necesario crear el *semáforo* en una región 
 
 === Ejemplos del uso de semáforos
 
-En el ejemplo {anom_shared_memory_cpp} de comunicación mediante memoria compartida, se usa un *semáforo* para que el proceso hijo indique al procesos padre que ha terminado del calcular el factorial y el resultado ya está en la memoria.
+En el ejemplo {anom_shared_memory_cpp} de comunicación mediante memoria compartida, se usa un *semáforo* para que el proceso hijo indique al proceso padre que ha terminado de calcular el factorial y el resultado ya está en la memoria.
 
 En {shared_memory_server_c} está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de {shared_memory_client_cpp}.
 
@@ -360,8 +360,8 @@ struct memory_content
     char command_buffer[MAX_COMMAND_SIZE];
 };
 ----
-<1> Indica cuándo `command_buffer` está vacío, así que se inicializado a 1.
-El cliente usa {linux_sem_wait} en este *semaforo* antes de escribir un nuevo comando en `command_buffer`:
+<1> Indica cuándo `command_buffer` está vacío, así que se inicializa a 1.
+El cliente usa {linux_sem_wait} en este *semáforo* antes de escribir un nuevo comando en `command_buffer`:
 
 * Si el *semáforo* está a 0, el cliente pasa y escribe el comando.
 Después llama a {linux_sem_post} en `ready`.
@@ -375,7 +375,7 @@ El servidor usa {linux_sem_wait} en este *semaforo* antes de leer el comando en 
 * Si el *semáforo* está a 0, el cliente pasa y lee el comando.
 Después llama a {linux_sem_post} en `empty`.
 
-* Si el *semáforo* está a 1, el servidor queda bloqueado y tiene que espera a que el cliente use {linux_sem_post} sobre el mismo *semáforo*.
+* Si el *semáforo* está a 1, el servidor queda bloqueado y tiene que esperar a que el cliente use {linux_sem_post} sobre el mismo *semáforo*.
 El cliente lo hace después de escribir un nuevo comando en `command_buffer`.
 
 El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de {shared_memory_client_cpp} y {shared_memory_server_c}, respectivamente.
@@ -455,7 +455,7 @@ Se inicializa a VECTOR_SIZE, porque están todos vacíos.
 <4> El segundo argumento de {linux_sem_init} es `pshared`.
 Se pone a 0 para indicar que este *semaforo* no se va a compartir entre procesos diferentes.
 
-<5> Antes de inserta un elemento se decrementa `empty_count`.
+<5> Antes de insertar un elemento se decrementa `empty_count`.
 Así, si vale 0, es que el vector está lleno y el productor se bloquea.
 El consumidor incrementa `empty_count` tras extraer un elemento y dejar hueco, despertando al productor.
 
@@ -475,7 +475,7 @@ A la inversa ocurre igual.
 Si un sistema o lenguaje soporta *_mutex_*, es muy sencillo hacer una implementación *semáforos*, si nos hiciera falta.
 
 El estándar POSIX soporta *_mutex_* a través de {pthreads}.
-Por defecto solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronizar entre procesos diferentes, aunque para eso deben ser creados en una región de memoria compartida por dichos procesos.
+Por defecto solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronización entre procesos diferentes, aunque para eso deben ser creados en una región de memoria compartida por dichos procesos.
 
 [NOTE]
 ====
@@ -551,14 +551,14 @@ pthread_mutex_unlock( mutex ); <2>
 ----
 <1> Adquirir `mutex` antes de entrar en la *sección crítica*.
 <2> Liberar `mutex` para salir de la *sección crítica*.
-Es importante no olvidarnos de liberar el *_mutex_* al terminar o de los contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la *sección crítica*.
+Es importante no olvidarnos de liberar el *_mutex_* al terminar o de lo contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la *sección crítica*.
 
 En {threads_sync_cpp} se puede ver un ejemplo equivalente pero usando {cpp_thread} y {cpp_mutex}, de la librería estándar de {cpp}.
 
 == Variables de condición
-((variable de condición))
+(((variable de condición)))
 
-En la solución que dimos al *problema del productor-consumidor* usando *semáforos* (véase el <<_ejemplos_del_uso_de_semáforos>>) empleamos *semáforos* para implementar las esperas del productor y el consumidor cuando el vector está lleno o vacío, respecitvamente.
+En la solución que dimos al *problema del productor-consumidor* usando *semáforos* (véase el <<_ejemplos_del_uso_de_semáforos>>) empleamos *semáforos* para implementar las esperas del productor y el consumidor cuando el vector está lleno o vacío, respectivamente.
 Lamentablemente, los _mutex_ no se pueden usar de la misma manera para señalar eventos.
 En su lugar necesitamos otro tipo de objeto llamado *variable de condición*.
 
@@ -566,7 +566,7 @@ Las *variables de condición* soportan tres primitivas principales:
 
 wait( mutex )::
 Es llamada por un hilo que desea esperar a que ocurra el evento que representa la variable de condición.
-El hilo debe haber adquirido antes *_mutex_*, es liberado en el momento de poner al hilo en estado *esperando*.
+El hilo debe haber adquirido antes el *_mutex_*, es liberado en el momento de poner al hilo en estado *esperando*.
 Varios hilos pueden llamar a *wait* sobre la misma variable de condición, a la espera de que alguno use *notify*.
 
 notify::
@@ -616,14 +616,14 @@ Tanto Windows API como el estándar POSIX, a través de {pthreads}, soportan *va
 
 |====
 
-Por defecto, las *variables de condición* de {pthreads} solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronizar entre procesos diferentes.
+Por defecto, las *variables de condición* de {pthreads} solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronización entre procesos diferentes.
 Obviamente, para eso deben ser creadas en una región de memoria compartida por dichos procesos.
 
 Las *variables de condición* de Windows API solo se pueden utilizar en hilos del mismo procesos.
 Como alternativa, Windows API soporta *eventos*, que son un tipo de objeto similar a las *variables de condición* pero que sí se puede utilizar entre hilos de procesos diferentes (véase https://docs.microsoft.com/en-us/windows/win32/sync/using-event-objects[«Using Event Objects -- Microsoft Docs»]).
 
 A los *eventos* se les puede asignar un nombre, para que sean accesibles por otros procesos, o heredarse de padres a hijos.
-Además son más pesados que las *variables de condición* de Windows API, no exigen un *_mutex_* para liberar al invocar su operación *wait* ni admiten la operación *notifyAll*.
+Además son más pesados que las *variables de condición* de Windows API, no exigen un *_mutex_* para liberar al invocar su operación *wait*, ni admiten la operación *notifyAll*.
 
 .Funciones de la API para manipular eventos de Windows API.
 [cols="1h,1" options=header]
@@ -724,7 +724,7 @@ void consumer()
 <3> *Variable de condición* que se encarga de indicar cuando el vector no está vacío.
 
 <4> Antes de acceder al vector es necesario bloquear `mutex`.
-Ni si quiera es seguro preguntar por el número de elementos guardados en `vector`sin antes adquirir el *_mutex_*, puesto que el otro hilo puede estar modificando `vector` al mismo tiempo.
+Ni si quiera es seguro preguntar por el número de elementos guardados en `vector` sin antes adquirir el *_mutex_*, puesto que el otro hilo puede estar modificando `vector` al mismo tiempo.
 
 <5> Los *_mutex_* se pueden adquirir y liberar con {cpp_mutex_lock} y  cpp_mutex_unlock} pero esa no es la forma recomendada.
 Lo recomendando es crear alguno de los objetos _lock_ incluidos en la librería estándar.
@@ -746,7 +746,7 @@ Es decir, que el hilo puede salir de {cpp_condition_variable_wait} sin que haya 
 Por eso hay que volver a comprobar la condición antes de continuar ejecutando sentencias en la *sección crítica*.
 
 <11> Cuando los hilos se bloquean en {cpp_condition_variable_wait}, `mutex` es liberado para que el otro hilo pueda entrar y extraer o insertar un elemento.
-De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en un situación que se denomina *((interbloqueo))* o *_deadlock_*—.
+De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en una situación que se denomina *((interbloqueo))* o *_deadlock_*—.
 Pero antes de salir de {cpp_condition_variable_wait}, el hilo adquiere de nuevo el `mutex`.
 Así que el código que inserta y extrae elementos se ejecuta en *exclusión mutua*, tal y como nos interesa.
 
@@ -758,11 +758,11 @@ Existen dos alternativas desde el punto de vista de como implementar esta espera
 * El sistema operativo puede cambiar el estado del hilo o proceso a *esperado* y moverlo a una cola de espera asociada al objeto de sincronización, tal y como hemos comentado en varias ocasiones.
 Entonces el planificador de la CPU escogerá a otro proceso para ser ejecutado.
 
-* El hilo puede iterar comprobado constantemente la condición hasta que se cumple.
+* El hilo puede iterar comprobando constantemente la condición hasta que se cumple.
 A esa técnica se la denomina *((espera ocupada))*.
 
 Este tipo de *espera ocupada* desperdicia tiempo de CPU que otro hilo podría utilizar de forma más productiva, por lo que sólo se utiliza en el caso de esperas previsiblemente cortas.
-Para evitar que las esperas ocupadas sean demasiado largas, los sistema operativos nunca expulsan de la CPU a hilos que se estén ejecutando dentro de secciones críticas controladas por objetos de sincronización con este tipo de espera, con la idea de que salgan den la sección crítica los antes posible.
+Para evitar que las esperas ocupadas sean demasiado largas, los sistema operativos nunca expulsan de la CPU a hilos que se estén ejecutando dentro de secciones críticas controladas por objetos de sincronización con este tipo de espera, con la idea de que salgan de la sección crítica los antes posible.
 
 En Windows API, por ejemplo, se puede utilizar {win32_initializecriticalsectionandspincount} para inicializar un objeto de *sección crítica* donde el hilo que la intenta adquirir itera el número especificado de veces en una *espera ocupada*, comprobando si la sección es liberada, antes de bloquearse en el estado *esperando* si eso no ocurre.
 

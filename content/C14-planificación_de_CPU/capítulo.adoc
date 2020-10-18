@@ -6,10 +6,10 @@ include::../../config/attributes.adoc[]
 [.right]
 ====
 .Tiempo estimado de lectura
-{C13_reading_time}
+{C14_reading_time}
 ====
 
-El *planificador de la CPU*(((planificador, CPU))) o *planificador de corto plazo*(((planificador, corto plazo))) tiene la misión de seleccionar de la *cola de preparados* el siguiente proceso o hilo del núcleo a ejecutar.
+El *planificador de la CPU*(((planificador, CPU))) o *planificador de corto plazo*(((planificador, corto plazo))) tiene la misión de seleccionar de la *cola de preparados* el siguiente proceso o hilo de núcleo a ejecutar.
 En dicha cola suelen estar los PCB —o TCB— de todos los procesos —o hilos de núcleo— que esperan una oportunidad para usar la CPU.
 Aunque se suele pensar en la *cola de preparados* como una cola FIFO, no tiene por qué ser así, como veremos más adelante, ya que existen mejores estrategias para seleccionar la próxima tarea a ejecutar.
 

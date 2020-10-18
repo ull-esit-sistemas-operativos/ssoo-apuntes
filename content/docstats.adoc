@@ -20,9 +20,9 @@
 :C10_reading_time: 32 minutos
 :C11_words: 1041
 :C11_reading_time: 5 minutos
-:C12_words: 6904
+:C12_words: 6916
 :C12_reading_time: 35 minutos
-:C13_words: 5989
+:C13_words: 5986
 :C13_reading_time: 30 minutos
 :C14_words: 10169
 :C14_reading_time: 51 minutos
