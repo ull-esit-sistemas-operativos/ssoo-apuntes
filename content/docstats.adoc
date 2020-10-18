@@ -24,7 +24,7 @@
 :C12_reading_time: 35 minutos
 :C13_words: 5986
 :C13_reading_time: 30 minutos
-:C14_words: 10169
+:C14_words: 10174
 :C14_reading_time: 51 minutos
 :C15_words: 1709
 :C15_reading_time: 9 minutos
@@ -36,5 +36,5 @@
 :C18_reading_time: 10 minutos
 :C19_words: 7903
 :C19_reading_time: 40 minutos
-:C20_words: 5592
+:C20_words: 5659
 :C20_reading_time: 28 minutos
