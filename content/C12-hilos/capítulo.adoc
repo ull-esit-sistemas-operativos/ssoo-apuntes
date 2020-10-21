@@ -772,5 +772,9 @@ Por eso estas señales se dirigen al hilo que las causa.
 * Las señales asíncronas llegan por causas externas, así que se dirigen al proceso, pudiendo ser entregada a uno de los hilos que no la tenga bloqueada.
 
 La recomendación es elegir un hilo para el manejo de señales asíncronas, de tal forma que sea el único que no las tenga bloqueadas.
-Eso facilita el diseño del programa para que maneje las señales adecuadamente.
 El resto de hilos deberían bloquear estas señales nada más iniciar su ejecución.
+
+Si el hilo que debe manejar las señales no tiene otras responsabilidades, puede utilizar {linux_sigwait} para bloquearse hasta que llegue una señal.
+Cuando eso ocurra, la función {linux_sigwait} retornará, indicando el número de señal recibida —sin necesitar *manejadores de señal*—.
+Así, por ejemplo, el hilo puede solicitar la cancelación de los otros hilos.
+Esta estrategia facilita el diseño del programa para que manejen las señales adecuadamente.
