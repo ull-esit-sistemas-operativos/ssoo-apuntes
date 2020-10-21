@@ -3,6 +3,12 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/images
 include::../../config/attributes.adoc[]
 
+[.right]
+====
+.Tiempo estimado de lectura
+{C18_reading_time}
+====
+
 == Dispositivos de almacenamiento
 
 Los ordenadores pueden almacenar información en diferentes soportes de almacenamiento —por ejemplo, en discos magnéticos, DVD o memorias de estado sólido—.
