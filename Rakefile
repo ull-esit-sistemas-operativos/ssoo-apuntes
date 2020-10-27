@@ -131,4 +131,6 @@ task :docstats do |t|
             puts "C%02i: %8i %8i (%s)" % [chapter_number, wordcount, reading_time, reading_time_string]
         end
     end
+ensure
+    docstats.close
 end
