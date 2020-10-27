@@ -332,7 +332,7 @@ Uno de ellos es cómo obtienen los procesos hilos los recursos que necesitan par
 Fundamentalmente existen dos alternativas: 
 
 . Que cada proceso hijo pueda solicitar y obtener los recursos directamente del sistema operativo, compitiendo por los recursos del sistema en las mismas condiciones que el resto de procesos en ejecución.
-Esta es la opción más común en los sistemas de propósito general actuales, como Microsoft Windows, Android, Linux, macOS, BSD y muchos otros.
+Esta es la opción más común en los sistemas de propósito general actuales, como Microsoft Windows, Android, Linux, macOS, UNIX BSD y muchos otros.
 
 . Que los procesos hijo solo puedan aspirar a obtener un subconjunto de los recursos de su padre.
 Esto es interesante en sistemas diseñados para ser muy robustos, ya que evita que un proceso pueda sobrecargar el sistema creando múltiples procesos que consuman demasiada memoria o tiempo de CPU.

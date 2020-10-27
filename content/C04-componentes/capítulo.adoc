@@ -110,7 +110,7 @@ Por tanto, las peticiones que hacen los procesos a la interfaz de E/S genérica 
 [NOTE]
 ====
 Una característica de los sistemas UNIX es que todos los dispositivos de E/S se representa como un archivo en el sistema de archivos.
-Esto se puede comprobar rápidamente visitando el directorio `/dev` en cualquier sistema GNU/Linux o BSD, ya que es allí donde suelen estar.
+Esto se puede comprobar rápidamente visitando el directorio `/dev` en cualquier sistema GNU/Linux o UNIX BSD, ya que es allí donde suelen estar.
 
 Así no hace falta diseñar y aprender una interfaz diferente para cada tipo de dispositivo.
 Los procesos que quiere utilizar cualquier dispositivo de E/S solo tienen que usar las mismas funciones y llamadas al sistema que emplean para manipular los archivos normales.

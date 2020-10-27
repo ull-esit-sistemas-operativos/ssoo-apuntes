@@ -163,14 +163,14 @@ La versión 4.2BSD (_Berkeley Software Distribution_) de esta variante de UNIX f
 Esta interfaz se ha convertido en estándar en prácticamente cualquier sistemas operativo.
 
 También implementó y ayudó a difundir el estándar de comunicaciones TCP/IP, base de la actual Internet.
-Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de BSD en su implementaciones de los protocolos TCP/IP y de diversas utilidades de red.
+Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de UNIX BSD en su implementaciones de los protocolos TCP/IP y de diversas utilidades de red.
 ====
 
 En la actualidad se considera que hay dos grandes familias de UNIX y las distintas variantes pertenecen a una u otra en función del UNIX del que derivaron originalmente:
 
 * La familia derivada de *AT&T UNIX System V*, en la que se incluyen sistemas operativos no libres, tales como: https://es.wikipedia.org/wiki/SCO_OpenServer[SCO OpenServer], https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris Operating Environment] y https://es.wikipedia.org/wiki/UnixWare[SCO UnixWare].
 
-* La familia derivada de *BSD*, en la que se incluyen sistemas libres como: {freebsd}, https://es.wikipedia.org/wiki/NetBSD[NetBSD], https://es.wikipedia.org/wiki/OpenBSD[OpenBSD], {darwin} y https://es.wikipedia.org/wiki/DragonFly_BSD[DragonFly BSD], entre muchos otros.
+* La familia derivada de *UNIX BSD*, en la que se incluyen sistemas libres como: {freebsd}, https://es.wikipedia.org/wiki/NetBSD[NetBSD], https://es.wikipedia.org/wiki/OpenBSD[OpenBSD], {darwin} y https://es.wikipedia.org/wiki/DragonFly_BSD[DragonFly BSD], entre muchos otros.
 
 [NOTE]
 ====
@@ -399,8 +399,8 @@ Mientras que Google parece que lo va a intentar con {google_fuchsia}, el posible
 // TODO: Meter más de Apple en la historia de los sistemas operativos
 
 A mediados de los 90, Apple Computers seleccionó https://es.wikipedia.org/wiki/NEXTSTEP[OpenStep] como base para el sucesor de su clásico https://es.wikipedia.org/wiki/Mac_OS_Classic[Mac OS].
-OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema BSD de la Universidad de Berkeley. 
-Por tanto, la mezcla de Mach con BSD de OpenStep es la base del sistema operativo {macos} actual de Apple.
+OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema UNIX BSD de la Universidad de Berkeley. 
+Por tanto, la mezcla de Mach con UNIX BSD de OpenStep es la base del sistema operativo {macos} actual de Apple.
 
 [[openstep_42]]
 .Entorno gráfico de OpenStep 4.2 -- Fuente: https://guidebookgallery.org/screenshots/openstep42[Guidebook]

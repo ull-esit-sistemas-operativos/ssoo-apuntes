@@ -2,19 +2,19 @@
 :C01_reading_time: 7 minutos
 :C02_words: 4501
 :C02_reading_time: 23 minutos
-:C03_words: 3833
+:C03_words: 3837
 :C03_reading_time: 19 minutos
-:C04_words: 2242
+:C04_words: 2243
 :C04_reading_time: 11 minutos
 :C05_words: 987
 :C05_reading_time: 5 minutos
-:C06_words: 3004
+:C06_words: 3005
 :C06_reading_time: 15 minutos
 :C07_words: 3303
 :C07_reading_time: 17 minutos
 :C08_words: 1907
 :C08_reading_time: 10 minutos
-:C09_words: 7808
+:C09_words: 7809
 :C09_reading_time: 39 minutos
 :C10_words: 6465
 :C10_reading_time: 32 minutos
@@ -34,7 +34,7 @@
 :C17_reading_time: 44 minutos
 :C18_words: 2017
 :C18_reading_time: 10 minutos
-:C19_words: 7903
-:C19_reading_time: 40 minutos
+:C19_words: 10625
+:C19_reading_time: 53 minutos
 :C20_words: 6194
 :C20_reading_time: 31 minutos

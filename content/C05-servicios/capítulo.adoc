@@ -67,7 +67,7 @@ La *interfaz de usuario* es un servicio fundamental para todos los sistemas dise
 Las interfaces de usuario pueden ser de diferentes tipos:
 
 * *Interfaz de línea de comandos*(((interfaz, línea de comandos))) o *((intérprete de comandos))*, que permite que los usuarios introduzcan directamente los comandos que el sistema operativo debe ejecutar.
-En algunos sistemas este tipo de interfaz se incluye dentro del núcleo, pero en la mayor parte —como MSDOS y UNIX— se trata de un programa especial denominado _shell_ que se ejecuta cuando un usuario inicia una sesión.
+En algunos sistemas este tipo de interfaz se incluye dentro del núcleo, pero en la mayor parte —como MS-DOS y UNIX— se trata de un programa especial denominado _shell_ que se ejecuta cuando un usuario inicia una sesión.
 
 * *Interfaz de proceso por lotes*(((interfaz, proceso por lotes))), en la que los comandos y directivas para controlar dichos comandos se listan en archivos que posteriormente pueden ser ejecutados.
 Este tipo de interfaz es la utilizada en sistemas no interactivos, como los antiguos sistemas de procesamiento por lotes y los sistemas multiprogramados.

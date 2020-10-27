@@ -349,7 +349,7 @@ En el ejemplo {anom_shared_memory_cpp} de comunicación mediante memoria compart
 
 En {shared_memory_server_c} está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de {shared_memory_client_cpp}.
 
-Para enviar los mensajes entre el cliente y el servidor, en la memoria compartida se reserva hueco para un _buffer_ en el que el cliente copia el comando que quiere enviar y para dos *semáforos*:
+Para enviar los mensajes entre el cliente y el servidor, en la memoria compartida se reserva hueco para un búfer en el que el cliente copia el comando que quiere enviar y para dos *semáforos*:
 
 [source,c]
 ----

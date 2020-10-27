@@ -290,4 +290,4 @@ Los procesos *login* se encargan de autenticar a los usuarios y de iniciar y con
 
 . Si la autenticación es positiva, el proceso *login* cambia su identidad actual —generalmente de _root_ o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <<procesos_posix_api>>).
 
-El interprete de comandos completa la configuración del entorno en base a sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.
+El intérprete de comandos completa la configuración del entorno en base a sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.

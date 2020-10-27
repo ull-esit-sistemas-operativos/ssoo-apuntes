@@ -141,7 +141,7 @@ El mayor inconveniente es el pobre rendimiento que puede tener, causado por la s
 
 Por ejemplo, {windowsnt} nació con una estructura de *microkernel* en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.
 
-El sistema operativo podía mostrar diferentes personalidades o _entornos operativos_ —básicamente de OS/2, POSIX y MSDOS— a través del uso de subsistemas ambientales, que también se ejecutaban como procesos de usuario.
+El sistema operativo podía mostrar diferentes personalidades o _entornos operativos_ —básicamente de OS/2, POSIX y MS-DOS— a través del uso de subsistemas ambientales, que también se ejecutaban como procesos de usuario.
 Las aplicaciones de Microsoft Windows NT se comunicaban con estos subsistemas utilizando un mecanismo de comunicación denominado https://en.wikipedia.org/wiki/Local_Inter-Process_Communication[LPC] (_Local Inter-Process Communication_).
 
 Con esta estructura, la pérdida de rendimiento respecto a Microsoft Windows 95 era tan importante —especialmente en lo relativo a operaciones gráficas— que los diseñadores se vieron obligados a mover más servicios al espacio del núcleo en la versión 4.0.

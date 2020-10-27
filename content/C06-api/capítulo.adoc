@@ -100,7 +100,7 @@ También en Linux para x86 32 bits, cuando el número de parámetros es superior
 * *Mediante la pila del proceso* se insertan los parámetros de la llamada al sistema en la pila del proceso —que también se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar a funciones— y el sistema operativo los recupera de allí durante la llamada al sistema.
 Al igual que en el caso anterior, tampoco limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
 +
-Es utilizado, por ejemplo, en sistemas BSD y en Windows XP y posteriores para x86 de 32 bits.
+Es utilizado, por ejemplo, en sistemas UNIX BSD y en Windows XP y posteriores para x86 de 32 bits.
 
 [[linux_mips_syscall]]
 .Llamada al sistema en Linux MIPS.
