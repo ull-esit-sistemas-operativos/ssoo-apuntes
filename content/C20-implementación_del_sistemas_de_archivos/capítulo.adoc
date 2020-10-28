@@ -13,7 +13,7 @@ Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios 
 En la <<>> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 El papel de cada uno de estos niveles fue descrito en el <<_estructura_de_un_sistema_de_archivos>>.
-Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <<_estructuras_de_metadatos>>.
+Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <<_estructuras_de_metadatos_en_disco>> y en el <<_estructuras_de_metadatos_en_memoria>>.
 
 A continuación, vamos a profundizar aun más en las estructuras y operaciones utilizadas para implementar los sistemas de archivos
 
@@ -74,7 +74,7 @@ Para mantener el directorio ordenado, algunos sistemas de archivos modernos util
 Un caso concreto es el sistema de archivos {ntfs}, utilizado por Microsoft Windows.
 {ntfs} utiliza una estructura de datos denominada https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+] para almacenar el índice de los nombres de archivo contenidos en un directorio.
 
-En la entrada en la {mft} (_Master File Table_) de cada directorio se almacena un atributo denominado *raíz del índice*.
+En la entrada en la *((MFT))* (_Master File Table_) de cada directorio se almacena un atributo denominado *raíz del índice*.
 Si el directorio es de pequeño tamaño, la *raíz del índice* contiene todas las entradas de archivos del directorio, pero Para un directorio de gran tamaño, la *raíz del índice* sólo puede almacenar unas pocas entradas de archivos del directorio.
 En ese caso la *raíz del índice* contiene el nivel superior del árbol B+.
 Es decir, cada una de esas entradas de archivos en la *raíz del índice* incluye también un puntero al bloque del disco que contiene un nodo del árbol con las entradas con nombres alfabéticamente anteriores a ese.
@@ -207,7 +207,9 @@ La FAT se almacena en una sección al principio del volumen.
 Contiene una entrada por cada *clúster* del disco y en cada una guarda el número del siguiente *clúster* del archivo.
 Es decir, lo que hace FAT agrupa en un solo lugar los punteros de la *asignación enlazada*.
 
-// TODO: Diagrama de la FAT.
+[[estructura_fat]]
+.Asignación enlazada en el sistema de archivos FAT.
+image::estructura_fat.svg[]
 
 Eso significa que la FAT es una estructura crítica.
 Si se corrompe, puede provocar la pérdida de todo el sistema de archivos.
@@ -224,7 +226,7 @@ Por eso —entre otras coas— Microsoft introdujo {fat32}, que utiliza 32 bits 
 Eso implicar poder gestionar más cantidad clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
 Por ejemplo, {fat32} podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.
 
-En los sistemas de archivos {fat} cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+Como se puede ver en la <<estructura_fat>>, en los sistemas de archivos {fat} cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
 La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
 Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.
 
@@ -283,6 +285,10 @@ Después podrían haber entradas que contienen punteros doblemente indirectos y 
 
 Para mejorar el rendimiento de los mecanismos de asignación indexados, es muy común que el sistema operativo intente mantener los bloques de índices en la memoria.
 
+[[asignación_ext2]]
+.Asignación indexada combinada en el sistema de archivos ext2.
+image::asignación_ext2.svg[]
+
 [NOTE]
 ====
 Los sistemas de archivos {ext2} y {ext3} utilizan el mecanismo de *asignación indexada* con *esquema combinado*.
@@ -297,7 +303,7 @@ El resto de los bloques se utilizan para almacenar los datos de los archivos rep
 
 * Dentro de cada *inodo* —entre otra información típica en un *FCB*— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.
 
-* Los primeros 12 punteros en el *inodo* son directos, seguidos de un puntero indirecto y un puntero doblemente indirecto.
+* Como se puede ver en la <<asignación_ext2>>, los primeros 12 punteros en el *inodo* son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
 Esto permite almacenar hasta stem:[2^64] bytes de información en cada archivo.
 ====
 

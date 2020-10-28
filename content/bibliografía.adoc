@@ -57,3 +57,5 @@ Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/
 //https://www.itprotoday.com/compute-engines/inside-windows-nt-scheduler-part-1
 
 // AÑadir doc, Linux CFQ
+
+// Locks: https://gavv.github.io/articles/file-locks/#file-descriptors-and-i-nodes

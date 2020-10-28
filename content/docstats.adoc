@@ -20,7 +20,7 @@
 :C10_reading_time: 32 minutos
 :C11_words: 1041
 :C11_reading_time: 5 minutos
-:C12_words: 6972
+:C12_words: 6970
 :C12_reading_time: 35 minutos
 :C13_words: 5986
 :C13_reading_time: 30 minutos
@@ -34,7 +34,7 @@
 :C17_reading_time: 44 minutos
 :C18_words: 2017
 :C18_reading_time: 10 minutos
-:C19_words: 10625
+:C19_words: 10577
 :C19_reading_time: 53 minutos
-:C20_words: 6194
+:C20_words: 6241
 :C20_reading_time: 31 minutos
