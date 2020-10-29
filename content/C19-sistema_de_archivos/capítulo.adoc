@@ -624,8 +624,9 @@ Por ejemplo, si el argumento `mode` es 0666 y *_((umask))_* es 0022, los permiso
 
 Un proceso puede cambiar su *_((umask))_* mediante la función {linux_umask} y los usuarios de *Bash* las de su _shell_ usando el comando del mismo nombre.
 
-Los procesos pueden consultar los permisos usando {linux_stat} o {linux_fstat} —junto al resto de información sobre el archivo— y pueden cambiarlos mediante la llamada {linux_chmod}.
-Tambien pueden cambiar el propietario y el grupo usando {linux_chown}, respectivamente.
+Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando {linux_access}.
+Y pueden cambiar su propietario y el grupo llamando a la función {linux_chown}.
+Si necesitan leer los permisos, el propietario y el resto de *metadatos* del archivo, pueden usar {linux_stat} o {linux_fstat}.
 ****
 
 ==== Combinar ambos tipos de listas de control de acceso
@@ -786,7 +787,23 @@ Aparte de estos mecanismos, cada sistema operativo puede implementar algunas fun
 Por ejemplo, la llamada {linux_fcntl} de Linux permite un tipo de bloqueo con las ventajas de los bloqueos originales de {linux_fcntl} pero asociados a descriptores de archivo.
 Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como curre con los bloqueos BSD de {linux_flock}.
 
-// TODO: Ejemplo
+En {filelock_server_c} y {filelock_client_cpp} se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
+El servidor {filelock_server_c} es un programa que muestra periódicamente la hora del sistema.
+Mientras que el cliente {filelock_client_cpp}, simplemente envía una señal `SIGTERM` al servidor cuando queremos que termine.
+Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en un ubicación conocida por ambos.
+
+Como el cliente lee el archivo con una única operación {linux_read} y el servidor lo escribe con una única operación {linux_write}, no hacen falta el uso de bloqueo de archivos para sincronizarlos.
+Gracias a la semántica de coherencia POSIX, el cliente no puede leer el archivo en medio de la escritura.
+Es decir, o ve el PID completo escrito por el servidor o no ve ninguno.
+
+Pero si puede darse el caso de que se ejecuten varios servidores al mismo tiempo.
+Cada uno debe comprobar si archivo existe y, si es así, leer el PID que contiene y comprobar si hay un proceso con ese mismo PID.
+Si el archivo no existe o no encuentra un proceso con ese PID, debe entender que es el nuevo servidor y escribir su PID en el archivo, para que lo encuentre el cliente.
+En caso contrario, debe terminar.
+
+Para evitar que varios servidores den todos esos pasos al mismo tiempo, acaben creyendo que son los únicos y sobrescriban el archivo varias veces, el acceso al archivo debe hacerse en *exclusión mutua*.
+Así lo van bloqueando de uno en uno y mientras no hace sus comprobaciones los demás esperan.
+Por eso {filelock_server_c} utiliza {linux_lockf} para bloquear el archivo, sincronizando el acceso de los servidores.
 ****
 
 == Coherencia

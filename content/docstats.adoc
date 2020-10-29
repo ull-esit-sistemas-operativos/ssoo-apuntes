@@ -34,7 +34,7 @@
 :C17_reading_time: 44 minutos
 :C18_words: 2017
 :C18_reading_time: 10 minutos
-:C19_words: 10577
-:C19_reading_time: 53 minutos
+:C19_words: 10886
+:C19_reading_time: 54 minutos
 :C20_words: 6241
 :C20_reading_time: 31 minutos
