@@ -31,7 +31,8 @@ Jacob, B y Mudge, T. «Virtual Memory: Issues of Implementation». Computer, 31:
 «Kernel Enhancements for Windows XP» [en línea]. Microsoft Corporation, 2003 [2006]. URL http://goo.gl/ugED.
 
 * [[[SGI2006]]]
-«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007]. URL https://goo.gl/YF82JB
+«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007]. 
+// URL https://goo.gl/YF82JB
 
 * [[[Silberschatz2004]]]
 Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=184173.titn./[«Operating System Concepts with Java»]. 6º ed. John Wiley & Sons Inc., 2004.
