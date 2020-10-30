@@ -151,7 +151,7 @@ La ubicación de las *extensiones* de un archivo se registran en el FCB, guardan
 
 Los sistemas de archivo {xfs} y {ext4} utilizan *extensiones* para optimizar su funcionamiento.
 El motivo es que cuantos más bloques contiguos sean asignados a un archivo, menos reposicionamientos del cabezal del disco son necesarios para leerlos.
-En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128MB, compuestas por bloques, generalmente, de 4KB.
+En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128 MiB, compuestas por bloques, generalmente, de 4KiB.
 
 === Asignación enlazada
 (((asignación, enlazada)))
@@ -327,7 +327,7 @@ Sin embargo, leer el vector de bits, modificarlo y actualizarlo en disco en cada
 Por tanto, usar vectores de bits es ineficiente, a menos que se mantenga el vector completo en la memoria principal, escribiéndose ocasionalmente en el disco.
 
 Esto último puede ser imposible para los discos de gran tamaño, en función de la cantidad de memoria principal.
-Por ejemplo, un disco de 40 GB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MB, lo que no es un gran requisito para un sistema moderno pero si lo era hace dos décadas.
+Por ejemplo, un disco de 40 GiB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MiB, lo que no es un gran requisito para un sistema moderno pero si lo era hace dos décadas.
 
 [NOTE]
 ====

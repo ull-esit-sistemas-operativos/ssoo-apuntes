@@ -14,8 +14,12 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 
 == Estructura de un sistema de archivos
 
+[[estructura_sistema_de_archivos]]
+.Estructura de un sistema de archivos.
+image::estructura_sistema_de_archivos.svg[]
+
 Los sistema de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
-En la <<>> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
+En la <<estructura_sistema_de_archivos>> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 
 === Control de E/S
@@ -271,7 +275,7 @@ Además, se suelen incluir llamadas para otras operaciones comunes, como añadir
 |{win32_movefile}
 
 |Mover archivos
-|{linux_rename} [.lightcell]##solo si es en el mismo sistema de archivos##
+|{linux_rename} [.lightcell]##solo en el mismo sistema de archivos##
 |{win32_copyfile}
 |====
 
