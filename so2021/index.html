@@ -3473,7 +3473,7 @@ El factor determinante en la elección es la localización del vector de interru
 <li>
 <p>A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina <strong>espacio de direcciones virtual</strong> del proceso.
 Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
-Por ejemplo, en una CPU de 32 bits el espacio de direcciones virtual tiene 4GB, desde la dirección 0x00000000 a 0xFFFFFFFF.</p>
+Por ejemplo, en una CPU de 32 bits el espacio de direcciones virtual tiene 4 GiB, desde la dirección 0x00000000 a 0xFFFFFFFF.</p>
 </li>
 <li>
 <p>En los accesos a la memoria principal durante la ejecución del proceso, estas <strong>direcciones virtuales</strong> son convertidas por la CPU en direcciones físicas, antes de ser enviadas a la memoria principal.
@@ -9919,7 +9919,7 @@ Por ejemplo, P1 podría llegar el último:</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
@@ -9927,7 +9927,7 @@ Por ejemplo, P1 podría llegar el último:</p>
 <td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(3-1)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
@@ -9935,7 +9935,7 @@ Por ejemplo, P1 podría llegar el último:</p>
 <td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-2)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
@@ -9943,7 +9943,7 @@ Por ejemplo, P1 podría llegar el último:</p>
 <td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">32</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(8-3)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
@@ -10093,14 +10093,14 @@ procesos mas cortos se ejecutasen primero.</p>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-0)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(16-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(24-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-1)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(9-1)=</span></p></td>
@@ -10116,11 +10116,11 @@ procesos mas cortos se ejecutasen primero.</p>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(16-3)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(24-3)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
 </tr>
 </tbody>
 <tfoot>
@@ -13325,9 +13325,15 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 </div>
 <div class="sect2">
 <h3 id="_estructura_de_un_sistema_de_archivos">19.1. Estructura de un sistema de archivos</h3>
+<div id="estructura_sistema_de_archivos" class="imageblock">
+<div class="content">
+<img src="C19-sistema_de_archivos/images/estructura_sistema_de_archivos.svg" alt="estructura sistema de archivos">
+</div>
+<div class="title">Figura 42. Estructura de un sistema de archivos.</div>
+</div>
 <div class="paragraph">
 <p>Los sistema de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
-En la &lt;&lt;&gt;&gt; se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
+En la <a href="#estructura_sistema_de_archivos">Figura 42</a> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.</p>
 </div>
 <div class="sect3">
@@ -13715,7 +13721,7 @@ Además, se suelen incluir llamadas para otras operaciones comunes, como añadir
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Mover archivos</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename()</a> <span class="lightcell">solo si es en el mismo sistema de archivos</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename()</a> <span class="lightcell">solo en el mismo sistema de archivos</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfile">CopyFile()</a></p></td>
 </tr>
 </tbody>
@@ -15024,7 +15030,7 @@ Esto puede hacerse siempre que exista suficiente espacio, aunque puede consumir 
 <div class="paragraph">
 <p>Los sistemas de archivo <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> y <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> utilizan <strong>extensiones</strong> para optimizar su funcionamiento.
 El motivo es que cuantos más bloques contiguos sean asignados a un archivo, menos reposicionamientos del cabezal del disco son necesarios para leerlos.
-En <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> el espacio se asigna a los archivos en <strong>extensiones</strong> de hasta 128MB, compuestas por bloques, generalmente, de 4KB.</p>
+En <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> el espacio se asigna a los archivos en <strong>extensiones</strong> de hasta 128 MiB, compuestas por bloques, generalmente, de 4KiB.</p>
 </div>
 </div>
 </div>
@@ -15115,7 +15121,7 @@ Es decir, lo que hace FAT agrupa en un solo lugar los punteros de la <strong>asi
 <div class="content">
 <img src="C20-implementación_del_sistemas_de_archivos/images/estructura_fat.svg" alt="estructura fat">
 </div>
-<div class="title">Figura 42. Asignación enlazada en el sistema de archivos FAT.</div>
+<div class="title">Figura 43. Asignación enlazada en el sistema de archivos FAT.</div>
 </div>
 <div class="paragraph">
 <p>Eso significa que la FAT es una estructura crítica.
@@ -15137,7 +15143,7 @@ Eso implicar poder gestionar más cantidad clústeres, lo que permite gestionar 
 Por ejemplo, <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.</p>
 </div>
 <div class="paragraph">
-<p>Como se puede ver en la <a href="#estructura_fat">Figura 42</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+<p>Como se puede ver en la <a href="#estructura_fat">Figura 43</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
 La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
 Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.</p>
 </div>
@@ -15245,7 +15251,7 @@ Después podrían haber entradas que contienen punteros doblemente indirectos y 
 <div class="content">
 <img src="C20-implementación_del_sistemas_de_archivos/images/asignación_ext2.svg" alt="asignación ext2">
 </div>
-<div class="title">Figura 43. Asignación indexada combinada en el sistema de archivos ext2.</div>
+<div class="title">Figura 44. Asignación indexada combinada en el sistema de archivos ext2.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -15274,7 +15280,7 @@ Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almac
 <p>Dentro de cada <strong>inodo</strong> —entre otra información típica en un <strong>FCB</strong>— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.</p>
 </li>
 <li>
-<p>Como se puede ver en la <a href="#asignación_ext2">Figura 43</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
+<p>Como se puede ver en la <a href="#asignación_ext2">Figura 44</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
 Esto permite almacenar hasta \$2^64\$ bytes de información en cada archivo.</p>
 </li>
 </ul>
@@ -15311,7 +15317,7 @@ Por tanto, usar vectores de bits es ineficiente, a menos que se mantenga el vect
 </div>
 <div class="paragraph">
 <p>Esto último puede ser imposible para los discos de gran tamaño, en función de la cantidad de memoria principal.
-Por ejemplo, un disco de 40 GB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MB, lo que no es un gran requisito para un sistema moderno pero si lo era hace dos décadas.</p>
+Por ejemplo, un disco de 40 GiB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MiB, lo que no es un gran requisito para un sistema moderno pero si lo era hace dos décadas.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -15755,7 +15761,7 @@ Jacob, B y Mudge, T. «Virtual Memory: Issues of Implementation». Computer, 31:
 </li>
 <li>
 <p><a id="SGI2006"></a>[SGI2006]
-«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007]. URL <a href="https://goo.gl/YF82JB" class="bare">https://goo.gl/YF82JB</a></p>
+«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007].</p>
 </li>
 <li>
 <p><a id="Silberschatz2004"></a>[Silberschatz2004]
@@ -15796,7 +15802,7 @@ Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-10-29 00:28:13 UTC
+Última actualización 2020-10-30 19:57:29 UTC
 </div>
 </div>
 <style>
