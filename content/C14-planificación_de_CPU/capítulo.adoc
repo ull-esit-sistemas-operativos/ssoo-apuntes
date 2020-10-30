@@ -329,22 +329,22 @@ Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 2+|Tiempo de espera (ms.)
 2+|Tiempo de ejecución (ms.)
 
-|P1
+|P2
 |3
 >|[.lightcell]#(0-0)=#|0
 >|[.lightcell]#(3-0)=#|3
 
-|P2
+|P3
 |6
 >|[.lightcell]#(3-1)=#|2
 >|[.lightcell]#(6-1)=#|5
 
-|P3
+|P4
 |8
 >|[.lightcell]#(6-2)=#|4
 >|[.lightcell]#(8-2)=#|6
 
-|P4
+|P1
 |32
 >|[.lightcell]#(8-3)=#|5
 >|[.lightcell]#(32-3)=#|29
@@ -434,11 +434,11 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 
 |P1
 |6
->|[.lightcell]#(0-0)=#|0
->|[.lightcell]#(6-0)=#|6
+>|[.lightcell]#(16-3)=#|13
+>|[.lightcell]#(24-3)=#|21
 
 |P2
-|9
+|24
 >|[.lightcell]#(6-1)=#|5
 >|[.lightcell]#(9-1)=#|8
 
@@ -448,9 +448,9 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 >|[.lightcell]#(16-2)=#|14
 
 |P4
-|24
->|[.lightcell]#(16-3)=#|13
->|[.lightcell]#(24-3)=#|21
+|9
+>|[.lightcell]#(0-0)=#|0
+>|[.lightcell]#(6-0)=#|6
 
 |Tiempos promedio (ms.)
 |
