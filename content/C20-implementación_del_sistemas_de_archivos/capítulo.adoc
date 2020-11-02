@@ -114,7 +114,7 @@ Como la unidad mínima de asignación de espacio a un archivo es el bloque, la f
 La *asignación contigua* requiere que cada archivo ocupe un conjunto contiguo de bloques en el disco.
 Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requiere un movimiento mínimo del cabezal del disco.
 
-El problema de la *asignación contigua* puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento (véase el <<_asignación_de_memoria_contigua>>).
+El problema de la *asignación contigua* puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento (véase el <<_asignación_contigua_de_memoria>>).
 Es decir, que en un momento dado tendremos una petición de tamaño _N_ que deberemos satisfacer con una lista de huecos libres de tamaño variable.
 Como estudiamos anteriormente, las estrategias más comunes son las de el *primer ajuste* y el *mejor ajuste*.
 
