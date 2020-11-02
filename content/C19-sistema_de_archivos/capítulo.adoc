@@ -23,7 +23,7 @@ En la <<estructura_sistema_de_archivos>> se muestra un ejemplo típico de la est
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 
 === Control de E/S
-((control de E/S))
+(((control de E/S)))
 
 En el nivel más bajo, accediendo directamente a los dispositivos de almacenamiento, se encuentra el *control de E/S*.
 
@@ -50,7 +50,7 @@ Mientras que en dispositivos que admiten direccionamiento LBA (_Logical Block Ad
 ====
 El *((LBA))* es un método común para especificar la localización de los sectores de un disco.
 Usa un esquema de direccionamiento lineal, donde cada sector es identificado con un número entero único.
-Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía la desventaja de hacer públicos los detalles físicos del dispositivos de almacenamiento.
+Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía la desventaja de hacer públicos los detalles físicos del dispositivo de almacenamiento.
 ====
 
 === Módulo de organización de archivos
@@ -59,9 +59,9 @@ Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía 
 El *módulo de organización de archivos* tiene conocimiento de los archivos y se encarga de traducir las direcciones lógicas de los bloques en los archivos —es decir, posición del bloque dentro del archivo, siendo 0 la dirección del primer bloque— en las direcciones físicas de bloque —por ejemplo, cilindro, cabeza y sector del bloque correspondiente en el dispositivo de almacenamiento— que serán enviadas al *sistema básico de archivos* para que realice las transferencias solicitadas.
 
 Los bloques lógicos de cada archivo son numerados de 0 a _N_, pero los bloques físicos asignados a estos bloques lógicos no tienen porqué coincidir en los números de bloque.
-Por eso el *módulo de organización de archivos* debe utilizar la ubicación del contenido del archivo en el disco y la información sobre los bloques físicos asignados, para traducir las direcciones lógicas en direcciones físicas.
+Por eso, el *módulo de organización de archivos* debe utilizar la ubicación del contenido del archivo en el disco y la información sobre los bloques físicos asignados, para traducir las direcciones lógicas en direcciones físicas.
 
-Además, el módulo de organización incluye el gestor de espacio libre, que controla los bloques no asignados y proporciona dichos bloques cuando el *módulo de organización de archivos* lo necesita, ya sea para crear un archivo nuevo o para extender uno existente.
+Además, el módulo de organización, incluye el gestor de espacio libre, que controla los bloques no asignados y proporciona dichos bloques cuando el *módulo de organización de archivos* lo necesita, ya sea para crear un archivo nuevo o para extender uno existente.
 
 === Sistema lógico de archivos
 
@@ -121,14 +121,14 @@ En {ntfs} esta información se almacena en la *MFT*, ya que cada entrada de dich
 
 === Estructura de directorios
 
-Finalmente, por lo general los sistemas de archivos tienen una estructura de directorios, para organizar los archivos.ç
+Finalmente, por lo general los sistemas de archivos tienen una estructura de directorios, para organizar los archivos.
 
 En los sistemas de archivos de sistemas UNIX y Linux, cada directorio es como un archivo especial que almacena los nombres de los archivos que contiene y los índices de los *inodos* de cada uno de ellos.
 En {ntfs} es similar, aunque la estructura de directorios completa se almacena en la propia *MFT*.
 
 == Estructuras de metadatos en memoria
 
-La información almacenada en memoria se utiliza tanto para la gestión del sistema de archivo como para mejorar el rendimiento del mismo mediante mecanismos de caché.
+La información almacenada en memoria se utiliza tanto para la gestión del sistema de archivos como para mejorar el rendimiento del mismo mediante mecanismos de caché.
 
 Los datos se cargan en el momento de comenzar a utilizar el sistema de archivos —proceso denominado montaje— y se descartan cuando se va a dejar de hacer uso del mismo —es decir, en el desmontaje—.
 
@@ -136,12 +136,12 @@ Las estructuras existentes en la memoria pueden incluir las que a continuación 
 
 * Una *tabla de montaje*(((tabla, montaje))) en memoria que contiene información acerca de cada volumen montado en el sistema.
 
-* Una caché en memoria de la *estructura de directorios* que almacena la información relativa a los directorios a los que se ha accedió recientemente.
+* Una caché en memoria de la *estructura de directorios* que almacena la información relativa a los directorios a los que se ha accedido recientemente.
 Los directorios que actúan como puntos de montaje pueden contener un puntero a la entrada, en la tabla de montaje, del volumen montado en el directorio.
 
 * La *tabla global de archivos abiertos*(((tabla, archivos abiertos, global))) que contiene una copia del *FCB* de cada archivo abierto en el sistema, además de otras informaciones.
 
-* La *tabla de archivos abiertos*(((tabla, archivos abiertos)) de cada proceso.
+* La *tabla de archivos abiertos*(((tabla, archivos abiertos))) de cada proceso.
 El *PCB* de cada proceso contiene una tabla donde se listan los archivos abiertos por el proceso.
 
 La *tabla de archivos abiertos* contiene, para cada archivo, un puntero a la entrada correspondiente del mismo archivo en la tabla global de archivos abiertos, pero también guarda otras informaciones adicionales que son particulares de cada proceso.
@@ -156,13 +156,13 @@ Un sistema de archivos debe *montarse* para que sus archivos sean accesibles a l
 El proceso de montaje incluye los siguientes pasos:
 
 . Al sistema operativo se le debe proporcionar el nombre o identificador del dispositivo y el punto de montaje.
-El *((punto de montaje))* es la ubicación dentro de la estructura de directorios —la ruta a directorio concreto— a la que queremos conectar el sistema de archivos.
+El *((punto de montaje))* es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
 Después de que el proceso de montaje se haya completado, los archivos y directorios del sistema de archivos montado serán accesibles como descendientes del directorio del *punto de montaje*.
 
 . A continuación el sistema operativo verifica que el dispositivo contiene un sistema de archivos válido.
 Para ello lee el *bloque de control de volumen* y comprueba que tiene un formato válido.
 
-. Finalmente el sistema operativo registra en la *tabla de montaje* el tipo de sistema de archivos y el identificador del del dispositivo montado.
+. Finalmente el sistema operativo registra en la *tabla de montaje* el tipo de sistema de archivos y el identificador del dispositivo montado.
 Después, almacena el índice de la entrada correspondiente en la *tabla de montaje* en la copia en memoria del *FCB* del directorio que hace de *punto de montaje*.
 +
 Esto permite que pueda ser recorrida la estructura de directorios de distintos sistemas de archivos, pasando de uno a otro de forma transparente, según sea necesario.
@@ -307,7 +307,7 @@ En los sistemas POSIX se utiliza el término *descriptor de archivo*(((descripto
 
 Después de utilizar la llamada al sistema *open*, cuando se desea solicitar una operación sobre un archivo, sólo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.
 
-En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos_:
+En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:
 
 . Una *tabla para cada proceso* —almacenada en el *PCB*— donde se indican todos los archivos que el proceso tiene abiertos.
 +
@@ -316,13 +316,13 @@ Por ejemplo, se puede almacenar la posición actual utilizada por las operacione
 
 . Una *tabla global para todo el sistema* donde se almacena toda la información independiente de los procesos, como la ubicación del archivo en el disco, las fechas de acceso y el tamaño del archivo.
 
-Cuando un proceso invoca la llamada *open* se añade una entrada en la *tabla de archivos abiertos del proceso*, que a su vez apunta a la entrada correspondiente dentro de la *tabla global del sistema*.
+Cuando un proceso invoca la llamada *open*, se añade una entrada en la *tabla de archivos abiertos del proceso*, que a su vez apunta a la entrada correspondiente dentro de la *tabla global del sistema*.
 Si el archivo no existe en esta última, también hay que crear una entrada en la tabla global del sistema haciendo uso de la información contenida en disco en el *FCB* correspondiente.
 
-Es muy común que la *tabla global* almacene un *contador de aperturas* para cada archivo, con el objetivo de indicar cuantos procesos lo mantienen abierto.
+Es muy común, que la *tabla global* almacene un *contador de aperturas* para cada archivo, con el objetivo de indicar cuantos procesos lo mantienen abierto.
 
 Cuando el archivo deja de ser utilizado activamente por el proceso, puede ser cerrado utilizado la llamada al sistema *close*.
-Entonces el *contador se aperturas* se decrementa, de forma que cuando alcance cero querrá decir que la entrada puede ser eliminada de la *tabla global de archivos abiertos*.
+Entonces el *contador de aperturas* se decrementa, de forma que cuando alcance cero querrá decir que la entrada puede ser eliminada de la *tabla global de archivos abiertos*.
 
 === Tipos de archivo
 
@@ -333,12 +333,12 @@ Por ejemplo, el sistema puede impedir que un usuario intente imprimir los archiv
 En los sistemas operativos más comunes las técnicas utilizadas para implementar los tipos de archivo son las siguientes:
 
 * En MS-DOS y Microsoft Windows el tipo de archivo se incluye como parte del nombre del archivo.
-Es decir, el nombre se divide en dos partes: un nombre y una extensión,separadas por un punto.
+Es decir, el nombre se divide en dos partes: un nombre y una extensión, separadas por un punto.
 +
 El sistema puede utilizar la extensión para conocer el tipo de archivo y el tipo de operaciones que se pueden realizar con el mismo.
 
 * En macOS cada archivo tiene un atributo que almacena el tipo —por ejemplo, TEXT para los archivos de texto o APPL para las aplicaciones— y otro que contiene el nombre del programa que lo creó.
-Cuando el usuario hace clic con el ratón sobre el icono de un archivo, el programa que lo creó se ejecuta automáticamente y este abre el archivo.
+Cuando el usuario hace clic con el ratón sobre el icono de un archivo, el programa que lo creó se ejecuta automáticamente y éste abre el archivo.
 
 * En los sistemas estilo UNIX se utiliza un *número mágico*, almacenado al principio de algunos archivos, para indicar el tipo del mismo.
 No todos los archivos tienen números mágicos, por lo que se permite hacer sugerencias en forma de extensiones del nombre del archivo.
@@ -364,7 +364,7 @@ Esto presenta algunas limitaciones:
 * Cuando el número de usuarios del sistema aumenta se hace más difícil que cada uno escoja nombres diferentes para sus archivos.
 Esto es necesario, puesto que todos los archivos se encuentran en el mismo directorio.
 
-* Incluso en los sistemas operativos monousuario, puede ser difícil para un usuario mantener organizados sus datos a media que se incrementa el número de archivos.
+* Incluso en los sistemas operativos monousuario, puede ser difícil para un usuario mantener organizados sus datos a medida que se incrementa el número de archivos.
 
 Este esquema fue utilizado por la primera versión del sistema operativo MS-DOS.
 
@@ -373,25 +373,25 @@ Este esquema fue utilizado por la primera versión del sistema operativo MS-DOS.
 En la estructura de directorios de dos niveles cada usuario tiene su propio *directorio de archivos de usuario*(((directorio, archivos de usuario))) o *((UFD))* (_User File Directory_) que cuelga del *directorio maestro de archivos*(((directorio, maestro de archivos))) o *((MFD))* (_Master File Directory_).
 
 Cuando un usuario se conecta al sistema o inicia un trabajo, se explora el *MFD*.
-Esta es una tabla indexada por el nombre de los usuarios o por los números de cuenta, donde cada una de sus entradas apunta al *UFD* de dicho usuario.
-Puesto que cada *UFD* incluye sólo los archivos del usuario al que pertenece, el sistema operativo puede confinar todas las operaciones que puede realizar un usuarios sobre los archivos a su *UFD*.
+Ésta es una tabla indexada por el nombre de los usuarios o por los números de cuenta, donde cada una de sus entradas apunta al *UFD* de dicho usuario.
+Puesto que cada *UFD* incluye sólo los archivos del usuario al que pertenece, el sistema operativo puede confinar todas las operaciones que puede realizar un usuario sobre los archivos a su *UFD*.
 
 Aunque esto resuelve el problema de la colisión de nombres entre diferentes usuarios, también presenta algunas desventajas:
 
 * La estructura descrita aísla a los usuarios, lo cual puede ser un problema cuando éstos quieren compartir datos para cooperar en alguna tarea.
 +
 La solución pasa por utilizar *((nombres de ruta))* para designar a un archivo de forma unívoca.
-Por ejemplo, si el usuario `usera` quiere acceder a su archivo `test`, simplemente debe referirse a el como `test`.
+Por ejemplo, si el usuario `usera` quiere acceder a su archivo `test`, simplemente debe referirse a él como `test`.
 Mientras que si quiere acceder al archivo `test` del usuario `userb`, debe utilizar un *((nombre de ruta))* como `/userb/test`, donde se indica el nombre del usuario y el nombre del archivo.
 +
 En general, cada sistema operativo utiliza su propia sintaxis par nombrar los archivos contenidos en los directorios de otros usuarios.
 
-* Puede ser difícil para un usuario mantener organizados sus datos a media que se incrementa el número de archivos personales, incluso aunque tenga un directorio para él solo.
+* Puede ser difícil para un usuario mantener organizados sus datos a medida que se incrementa el número de archivos personales, incluso aunque tenga un directorio para él solo.
 
 === Directorios con estructura de árbol
 
 La estructura de directorio de dos niveles puede generalizarse en la *estructura de directorios en árbol* de altura arbitraria.
-Esto permite que los usuarios puedan crear sus propios subdirectorios para organizar sus archivo de la forma más conveniente.
+Esto permite que los usuarios puedan crear sus propios subdirectorios para organizar sus archivos de la forma más conveniente.
 
 Cada sistema de archivos tiene un *directorio raíz*(((directorio, raíz))) que puede contener tanto archivos como otros directorios.
 A su vez, cada directorio puede contener un conjunto de archivos y subdirectorios.
@@ -420,7 +420,7 @@ Gracias a la herencia del *directorio de trabajo* es como los *interpretes de co
 
 Por ejemplo, en los sistemas POSIX el intérprete de comandos *Bash* se inicia usando el directorio personal del usuario como *directorio de trabajo*.
 El usuario puede cambiar el *directorio de trabajo* del proceso de la *Bash* usando el comando interno `cd`.
-Cuando se pide a la *Bash* que ejecute cualquier otro comando, esta crear un nuevo proceso hijo donde ejecutar el programa de dicho comando.
+Cuando se pide a la *Bash* que ejecute cualquier otro comando, ésta crea un nuevo proceso hijo donde ejecutar el programa de dicho comando.
 Ese proceso hereda el *directorio de trabajo* actual de *Bash*. 
 ====
 
@@ -439,8 +439,8 @@ Por ejemplo, `/usr/share/doc`, `C:\Programa Files\WindowsApps` o `\Windows\Syste
 +
 Por ejemplo, `Imágenes/Enero/000001.jpg`, `Downloads\horario.zip` o `C:Desktop\Proyectos`.
 
-Con una *estructura de directorios en árbol* unos usuarios pueden acceder a los archivos de otros.
-Para eso, solo es necesario que se utilicen *nombres de ruta* para designar los archivos del otro usuario o que se cambie el *directorio de trabajo actual*.
+Con una *estructura de directorios en árbol*, unos usuarios pueden acceder a los archivos de otros.
+Para eso, solo es necesario que se utilicen *nombres de ruta* para designar los archivos del otro usuario, o que se cambie el *directorio de trabajo actual*.
 
 Este tipo de estructura de directorios es la utilizada por MS-DOS y por las distintas versiones de Microsoft Windows.
 
@@ -448,7 +448,7 @@ Este tipo de estructura de directorios es la utilizada por MS-DOS y por las dist
 
 La *estructura de directorio en grafo acíclico* es una generalización natural del esquema con *estructura en árbol*.
 
-A diferencia de éste último, la *estructura en grafo acíclico* permite que los mismos archivos y subdirectorios existan simultáneamente en distintos lugares de la estructura de directorios.
+A diferencia de este último, la *estructura en grafo acíclico* permite que los mismos archivos y subdirectorios existan simultáneamente en distintos lugares de la estructura de directorios.
 Eso significa que para acceder a un archivo o directorio pueden existir diversos *nombres de ruta*.
 
 Esto, por ejemplo, permite que los usuarios puedan compartir archivos de tal forma que los mismos archivos y directorios estén disponibles directamente desde el directorio personal de los diferentes usuarios.
@@ -459,21 +459,21 @@ Los archivos y subdirectorios compartidos pueden implementarse de diversas forma
 
 * Se pueden crear una entrada de directorio especial denominada *((enlace))*.
 Un *enlace* es, generalmente, un archivo que contiene la ruta relativa o absoluta de otro archivo o subdirectorio.
-En los sistemas POSIX a estos se los conoce como *enlaces simbólicos*(((enlace, simbólico))).
+En los sistemas POSIX a éstos se los conoce como *enlaces simbólicos*(((enlace, simbólico))).
 
-* También se pueden duplicar toda la información de la entrada de directorio del archivo compartido en todos los directorios que también contienen dicho archivo.
+* También se puede duplicar toda la información de la entrada de directorio del archivo compartido en todos los directorios que también contienen dicho archivo.
 +
 Así, mientras que los *enlaces simbólicos* son claramente diferentes de la entrada original de directorio, las entradas de directorio duplicadas hacen que la entrada original y la copia sean indistinguibles.
 En los sistemas POSIX, a este tipo de entradas duplicadas se las conoce como *enlaces duros*(((enlace, duro))).
 
 Como *enlaces simbólicos* almacenan una ruta, pueden apuntar a archivos o directorios en otros sistemas de archivos.
-Mientras que los *enlaces duros* solo puedan apuntar a archivos en el mismo sistema de archivos.
+Mientras que los *enlaces duros* solo pueden apuntar a archivos en el mismo sistema de archivos.
 
 En en los sistemas POSIX los *enlaces duros* se crean llamando a {linux_link} y los *enlaces simbólicos* con {linux_symlink}.
 
 En Microsoft Windows se soportan ambos tipos de enlaces desde la primera versión —Microsoft Windows NT 3.1— pero únicamente en el sistema de archivos {ntfs} y solo por compatibilidad con las aplicaciones POSIX.
 Windows API no tuvo funciones para crear *enlaces* hasta mucho después.
-Por eso su uso en Microsoft Windows no están común.
+Por eso su uso en Microsoft Windows no es tan común.
 
 En Windows API los *enlaces duros* se crean con {win32_createhardlink} desde Windows 2000.
 Mientras que los *enlaces simbólicos* se crean con {win32_createsymboliclink} desde Windows Vista.
@@ -487,7 +487,7 @@ No olvidemos que en los sistemas con estructura en grafo acíclico, cada archivo
 +
 Esto es más sencillo de resolver en el caso de los *enlaces simbólicos*, puesto que podemos evitar recorrerlos al ser claramente distinguibles de los archivos normales.
 
-* Los diseñadores deben enfrentarse a la cuestión de cuándo liberar el espacio asignado a un archivo enlazados.
+* Los diseñadores deben enfrentarse a la cuestión de cuándo liberar el espacio asignado a un archivo enlazado.
 Si lo hacemos cuando un usuario lo borra podríamos dejar *enlaces* que referencian a archivos que no existen.
 
 Sobre esta última cuestión:
@@ -504,13 +504,13 @@ Ciertamente, podríamos plantearnos la posibilidad de buscar todos los *enlaces*
 
 * Otra opción es almacenar en la entrada del archivo original un contador con el número de referencias al archivo.
 Cada vez que se elimina una referencia se decrementa el contador. 
-Cuando el contador sea 0, sabremos que a llegado el momento de liberar el espacio asignado.
+Cuando el contador sea 0, sabremos que ha llegado el momento de liberar el espacio asignado.
 +
 En los sistemas UNIX se utiliza esta técnica para saber cuándo liberar el contenido de archivos con *enlaces duros*.
 
 Por último, no debemos olvidar que la estructura de directorios en grafo se conserva acíclica si se prohíbe que hayan múltiples referencias a un mismo directorio.
 Ese es el motivo por el que en muchos sistemas POSIX no se permite, por defecto, que los *enlaces duros* hagan referencia a directorios.
-Sin embargo si se pueden utilizar *enlaces simbólicos* para este fin, puesto que al ser distinguibles del directorio original podemos evitar los ciclos, si mientras se explora se ignorar dichos enlaces.
+Sin embargo si se pueden utilizar *enlaces simbólicos* para este fin, puesto que al ser distinguibles del directorio original podemos evitar los ciclos, si mientras se explora se ignoran dichos enlaces.
 
 === Directorios en forma de grafo general
 
@@ -555,12 +555,12 @@ El propietario del archivo es quien define que operaciones pueden ser ejecutadas
 
 Los identificadores del propietario y el grupo de un archivo se almacenan junto con los otros atributos en el FCB.
 
-Cuando un usuarios solicita realiza una operación sobre un archivo, se compara el identificador del usuario con el atributo del propietario para determinar si el solicitante es el propietario.
+Cuando un usuario solicita realiza una operación sobre un archivo, se compara el identificador del usuario con el atributo del propietario para determinar si el solicitante es el propietario.
 Exactamente de la misma manera se puede proceder con los identificadores de grupo.
 El resultado de la comparación indica que permisos son aplicables.
 A continuación, el sistema aplica dichos permisos a la operación solicitada y la autoriza o deniega según sea el caso.
 
-Existen diversas implementaciones del esquema utilizado para determinar los permisos aplicables aun usuario que pretende operar sobre un archivo concreto.
+Existen diversas implementaciones del esquema utilizado para determinar los permisos aplicables a un usuario que pretende operar sobre un archivo concreto.
 
 ==== Lista de control de acceso
 
@@ -583,7 +583,7 @@ Al crear un archivo nuevo, se puede indicar la *ACL* deseada a través del argum
 
 [NOTE]
 ====
-También se puede consultar la *ACL* de cualquier objeto con permisos —incluidos los archi8ivos— usando {win32_getsecurityinfo} o {win32_getnamedsecurityinfo} y modificarla usando {win32_setsecurityinfo} o {win32_setnamedsecurityinfo}.
+También se puede consultar la *ACL* de cualquier objeto con permisos —incluidos los archivos— usando {win32_getsecurityinfo} o {win32_getnamedsecurityinfo} y modificarla usando {win32_setsecurityinfo} o {win32_setnamedsecurityinfo}.
 
 Las *ACL* y los *descriptores de seguridad* de Windows API son un tema complejo.
 Antes de manipularlos, es conveniente consultar https://docs.microsoft.com/en-us/windows/win32/secauthz/security-descriptors[«Security Descriptors»] en Microsoft Docs.
@@ -618,15 +618,15 @@ int fd = open(
 <1> Indica los permisos del archivo en caso de crearlo.
 Se ignora si el archivo ya existe.
 <2> Los bits a 1 del número especificado indican los permisos autorizados.
-Es muy común hacer en base octal, como en el ejemplo.
+Es muy común hacerlo en base octal, como en el ejemplo.
 
-Otra llamada al sistema que permite indicar permisos es {linux_mkdir}, que se utilizar para crear directorios
+Otra llamada al sistema que permite indicar permisos es {linux_mkdir}, que se utiliza para crear directorios
 
 En ambos casos, los permisos finalmente usados vienen determinados por la *_((umask))_* del proceso.
 Esta es una propiedad numérica de los procesos —heredada de padres a hijos— que indica qué permisos del argumento `mode` de {linux_open} y {linux_mkdir} se desactivan al crear un archivo o directorio.
 Por ejemplo, si el argumento `mode` es 0666 y *_((umask))_* es 0022, los permisos efectivos al crear el archivo serán 0644.
 
-Un proceso puede cambiar su *_((umask))_* mediante la función {linux_umask} y los usuarios de *Bash* las de su _shell_ usando el comando del mismo nombre.
+Un proceso puede cambiar su *_((umask))_* mediante la función {linux_umask} y los usuarios de *Bash*, las de su _shell_ usando el comando del mismo nombre.
 
 Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando {linux_access}.
 Y pueden cambiar su propietario y el grupo llamando a la función {linux_chown}.
@@ -635,7 +635,7 @@ Si necesitan leer los permisos, el propietario y el resto de *metadatos* del arc
 
 ==== Combinar ambos tipos de listas de control de acceso
 
-Muchos sistemas POSXI también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las *ACL* más genéricas.
+Muchos sistemas POSIX también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las *ACL* más genéricas.
 Sistemas operativos como Linux, macOS o FreeBSD implementan ambos tipos de ACL.
 
 [NOTE]
@@ -685,7 +685,7 @@ Para conseguirlo, cada equipo mantiene una copia local de los archivos abiertos.
 Las operaciones de lectura y escritura se realizan en esa copia.
 Cuando se cierra el archivo modificado, los cambios son enviados al servidor de archivos, para actualizar el archivo original.
 
-Aunque es posible implementar la *semántica POSIX* —como hacen otros sistemas de archivos en red— esta no escala adecuadamente porque implica mantener sincronizadas las copias locales de cada archivo.
+Aunque es posible implementar la *semántica POSIX* —como hacen otros sistemas de archivos en red— ésta no escala adecuadamente, porque implica mantener sincronizadas las copias locales de cada archivo.
 Es decir, asegurar que los nodos no pueden modificar sus copias locales simultáneamente y que los cambios se propaguen adecuadamente entre las 
 copias, antes de responder a cualquier operación de lectura solicitada por un proceso.
 Por eso el sistema de archivo AFS usa una semántica de coherencia diferente, denominada *semántica de sesión*.
@@ -715,7 +715,7 @@ Para escribir algo en uno de estos archivos, es necesario crear una copia con un
 
 Para optimizar la implementación de esta semántica se suele usar una técnica similar al *copy-on-write*.
 Con esta técnica, cuando se va a modificar un archivo inmutable, se genera una copia que tiene la misma asignación de bloques que el archivo original.
-Cada vez que se va modificar la información de un bloque, se crear una copia de ese bloque, se aplican los cambios y se sustituye el identificador del bloque anterior por el del nuevo bloque en la asignación de bloques del archivo en el *FCB*
+Cada vez que se va modificar la información de un bloque, se crear una copia de ese bloque, se aplican los cambios y se sustituye el identificador del bloque anterior por el del nuevo bloque en la asignación de bloques del archivo en el *FCB*.
 Así, las copias de archivos inmutables se hacen más rápido y se ahorra espacio, dado que de cada archivo solo se guardan los bloques modificados.
 
 Además, cuando los sistemas operativos usan esta semántica, suelen tener una forma de crear automáticamente los nombres de las nuevas versiones de un archivo —por ejemplo, añadiendo un entero al nombre e incrementándolo en cada versión—.
@@ -743,7 +743,7 @@ Así, varios procesos puedan leer el archivo al mismo tiempo, pero si un proceso
 
 ==== Bloqueo obligatorio o sugerido
 
-Además. los sistemas operativos pueden proporcionar dos tipos de mecanismos de bloqueo de archivos:
+Además, los sistemas operativos pueden proporcionar dos tipos de mecanismos de bloqueo de archivos:
 
 * Si el *bloqueo es obligatorio*(((bloqueo, obligatorio))), después de que un proceso adquiera un bloqueo exclusivo, el sistema operativo impedirá a todos los demás procesos que hagan cualquier operación sobre el archivo bloqueado.
 +
@@ -758,7 +758,7 @@ Pero el sistema operativo no impedirá el acceso al archivo a un proceso que lo 
 Los sistemas operativos Microsoft Windows implementan un mecanismo de *bloqueo obligatorio*.
 En Windows API se puede indicar el modo de bloqueo al abrir el archivo con {win32_createfile} o se puede usar {win32_lockfile} para adquirir un bloqueo sobre una parte del contenido
 
-En los los sistemas UNIX y estilo UNIX, como regla general, no se bloquea un archivo al abrirlo.
+En los sistemas UNIX y estilo UNIX, como regla general, no se bloquea un archivo al abrirlo.
 Existen diferentes mecanismos de bloqueo, algunos de los cuales pueden ser *bloqueos obligatorio*, pero por defecto son *bloqueos sugeridos*.
 
 .Bloqueo de archivos en sistemas POSIX
@@ -769,7 +769,7 @@ El bloqueo se asocia al *inodo* y al *PID* del proceso, por lo que:
 * Si el archivo tiene varios nombres —por el uso de *enlaces duros*— el bloqueo sobre el archivo tiene efecto sin importar el nombre usado para abrirlo.
 
 * Diferentes descriptores sobre el mismo archivo obtenidos llamando a {linux_open} varias veces en el mismo proceso, comparten los bloqueos adquiridos.
-Así que usando este tipo de bloqueos es posible sincronizar distintos procesos pero no distintos hilos, ya que todos los hilos de un mismo proceso comparten la adquisición del bloqueo.
+Así que, usando este tipo de bloqueos es posible sincronizar distintos procesos pero no distintos hilos, ya que todos los hilos de un mismo proceso comparten la adquisición del bloqueo.
 
 El estándar POSIX también soporta {linux_lockf}, que es como una versión simplificada de {linux_fcntl}.
 Aunque el estándar deja sin especificar como deben interactuar ambas llamadas, lo cierto es que es común que {linux_lockf} se implemente usando {linux_fcntl}.
@@ -789,14 +789,14 @@ Por lo que no pueden usarse para sincronizar hilos de un mismo proceso, pero per
 
 Aparte de estos mecanismos, cada sistema operativo puede implementar algunas funcionalidades adicionales, no incluidas en el estándar POSIX.
 Por ejemplo, la llamada {linux_fcntl} de Linux permite un tipo de bloqueo con las ventajas de los bloqueos originales de {linux_fcntl} pero asociados a descriptores de archivo.
-Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como curre con los bloqueos BSD de {linux_flock}.
+Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como ocurre con los bloqueos BSD de {linux_flock}.
 
 En {filelock_server_c} y {filelock_client_cpp} se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
 El servidor {filelock_server_c} es un programa que muestra periódicamente la hora del sistema.
 Mientras que el cliente {filelock_client_cpp}, simplemente envía una señal `SIGTERM` al servidor cuando queremos que termine.
 Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en un ubicación conocida por ambos.
 
-Como el cliente lee el archivo con una única operación {linux_read} y el servidor lo escribe con una única operación {linux_write}, no hacen falta el uso de bloqueo de archivos para sincronizarlos.
+Como el cliente lee el archivo con una única operación {linux_read} y el servidor lo escribe con una única operación {linux_write}, no hace falta el uso de bloqueo de archivos para sincronizarlos.
 Gracias a la semántica de coherencia POSIX, el cliente no puede leer el archivo en medio de la escritura.
 Es decir, o ve el PID completo escrito por el servidor o no ve ninguno.
 
@@ -824,7 +824,7 @@ El *comprobador de coherencia*(((comprobador de coherencia))) comprueba la estru
 
 Los algoritmos de asignación y de gestión del espacio de almacenamiento dictan los tipos de problemas que el comprobador puede tratar de detectar y también el grado de éxito que puede tener en esa tarea.
 
-Por ejemplo, la pérdida de un *FCB*, cuando es este el que almacena la lista de bloques que contienen los datos del archivo, es desastrosa porque no hay forma de saber qué datos le pertenecen de entre todos los que hay en el disco.
+Por ejemplo, la pérdida de un *FCB*, cuando es éste el que almacena la lista de bloques que contienen los datos del archivo, es desastrosa porque no hay forma de saber qué datos le pertenecen de entre todos los que hay en el disco.
 Por esta razón, UNIX almacena en caché las entradas de directorio para acelerar las lecturas, pero todas las escrituras de datos que provoquen algún cambio en la asignación de espacio o en algún otro tipo de metadato, se realizan síncronamente —antes de continuar ejecutando el proceso desde la llamada al sistema—.
 
 Es decir, si se hace una escritura de datos que extiende el tamaño de un archivo; el cambio del *FCB* correspondiente, con el nuevo tamaño de archivo y la lista actualizada de las direcciones de los bloques que contienen —o van a contener— los datos del archivo, se escribe en disco antes de terminar la llamada al sistema y devolver el control al proceso que la invocó.
@@ -843,7 +843,7 @@ Mientras que en sistemas POSIX se llama {cmd_fsck}.
 
 Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada *((soft updates))* en su implementación del sistema de archivos {ufs}.
 
-Cuando se monta un sistema de archivos con la opción *soft updates*, el sistema operativo desactiva la escritura síncrona de los *metadatos*, que comentamos anteriormente, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.
+Cuando se monta un sistema de archivos con la opción *soft updates*, el sistema operativo desactiva la escritura síncrona de los *metadatos*, que comentamos anteriormente, permitiendo que éstos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.
 
 Por ejemplo, cuando se van a escribir en el disco las modificaciones debidas a la creación de un nuevo archivo, el sistema se asegura de que primero se escribe el nuevo *FCB* —un _inodo_, en los sistemas UNIX BSD— y posteriormente se escribe el directorio con la nueva entrada de archivo con el identificador a dicho *FCB*.
 
@@ -882,8 +882,8 @@ Por ejemplo, es utilizada en sistemas de archivos tales como: {ext3}, {ext4}, {n
 
 ==== Operaciones sobre datos
 
-Es importante recordar que lo se guardan en el *registro* son las operaciones sobre los *metadatos*, porque se trata de preserva la coherencia del sistema de archivos en caso de fallo del sistema.
-Sin embargo, esto quiere decir que se pueden perder lo que no son operaciones sobre los *metadatos*, como por ejemplo, las operaciones que modifican los datos de los archivos, con lo que lo estos pueden acabar almacenando datos corruptos o antiguos.
+Es importante recordar que lo se guarda en el *registro* son las operaciones sobre los *metadatos*, porque se trata de preservar la coherencia del sistema de archivos en caso de fallo del sistema.
+Sin embargo, ésto quiere decir que se pueden perder lo que no son operaciones sobre los *metadatos*, como por ejemplo, las operaciones que modifican los datos de los archivos, con lo que lo éstos pueden acabar almacenando datos corruptos o antiguos.
 
 Para evitar en parte este problema, algunos sistemas de archivos fuerzan la escritura de los datos en el disco antes de *confirmar* la transacción en el *registro*.
 
@@ -900,7 +900,7 @@ De esta forma, las incluye en la lista de operaciones guardadas en el *registro*
 
 Un efecto colateral de la utilización de un *registro* es la mejora del rendimiento en el acceso al sistema de archivo.
 
-La razón de esta mejora es que las costosas escrituras síncronas —es decir, antes de devolver el control al proceso— de los *metadatos* en lugares aleatorios del volumen se transforman en escrituras síncronas secuenciales —que son mucho más eficientes— en el *registro*.
+La razón de esta mejora, es que las costosas escrituras síncronas —es decir, antes de devolver el control al proceso— de los *metadatos* en lugares aleatorios del volumen se transforman en escrituras síncronas secuenciales —que son mucho más eficientes— en el *registro*.
 Mientras que todas las operaciones indicadas en el *registro* se aplican asíncronamente mediante escrituras aleatorias en las estructuras apropiadas, por lo que pueden ser reordenadas a conveniencia para maximizar el rendimiento.
 
 Recordemos que en el registro pueden haber operaciones de distintos procesos que afecten a regiones próximas del disco.
@@ -913,14 +913,14 @@ Es decir, el control se devuelve al proceso antes de terminar de escribir las op
 
 El uso de escrituras asíncronas en el *registro* es peligroso.
 Cualquier caída del sistema podría provocar la corrupción del *registro*, porque las escrituras asíncronas pueden ocurrir en cualquier orden.
-Esto, aparentemente, eliminar cualquier ventaja de utilizar un *registro* de operaciones.
+Esto, aparentemente, elimina cualquier ventaja de utilizar un *registro* de operaciones.
 Sin embargo, XFS impone cierto orden en las operaciones de escritura sobre el registro —de forma similar a como se hace con los *soft updates*— de tal manera que la coherencia del registro está asegurada.
 
 El utilizar escrituras asíncronas en el *registro* —aunque sea preservando cierto orden— ofrece alguna mejora en el rendimiento, porque el *registro* deja de ser un cuello de botella para las operaciones que modifica los *metadatos* del sistema de archivos.
 
 Como hemos comentado, en otros *sistemas de archivos basados en registro*, el registro es un recurso al que se accede en *exclusión mutua*.
 Es decir, las operaciones de una *transacción* se deben escribir antes de devolver el control al proceso y de permitir que otro proceso a la espera escriba las operaciones de su *transacción*.
-Estas esperas en el acceso al *registro* son las que {xfs} evita permitiendo su modificación de manera asíncrona.
+Estas esperas en el acceso al *registro* son las que {xfs} evita, permitiendo su modificación de manera asíncrona.
 ****
 
 === Sistemas de archivos basados en copia durante la escritura
@@ -928,8 +928,8 @@ Estas esperas en el acceso al *registro* son las que {xfs} evita permitiendo su 
 // TODO: Dibujo
 
 _Las técnicas anteriores son necesarias para preservar la coherencia porque la modificación de los metadatos se hace sobrescribiendo los datos que ya existen_.
-Es decir, cuando se crea un nuevo archivo el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
-Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estadoinconsistente.
+Es decir, cuando se crea un nuevo archivo, el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
+Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estado inconsistente.
 
 _Los **sistemas de archivos basados en copia durante la escritura**_ —o _copy-on-write_— _evitan cambiar los metadatos sobrescribiendo en el sitio_.
 En su lugar buscan un hueco libre, hacen en él una copia del bloque completo con los cambios y después modifican los metadatos del sistema de archivos que sirven para localizar el bloque modificado en su nueva ubicación.
@@ -941,9 +941,9 @@ Por ejemplo, al crear un archivo:
 
 . _Se busca un FCB libre, se lee el bloque que lo contiene en la memoria principal, se modifica y se escribe en un bloque libre_.
 El sistema de archivos debe tener alguna estructura de datos que permita encontrar el bloque que contiene un FCB a partir de su identificador.
-Por lo general esta estructura es algún tipo de árbol.
+Por lo general, esta estructura es algún tipo de árbol.
 Así que se modifica el nodo del árbol que señala al bloque con el nuevo FCB para que conozca la nueva ubicación.
-Este cambio implica crear un copia del bloque de dicho nodo con el cambio, lo que a su vez significa modificar el nodo que señala a este.
+Este cambio, implica crear un copia del bloque de dicho nodo con el cambio, lo que a su vez significa modificar el nodo que señala a este.
 Y así sucesivamente hasta llegar a la raíz del árbol de FCB.
 
 . _Se busca una entrada libre en el directorio que va a contener al archivo y se modifica para añadir el nombre del archivo, el identificador de su FCB y otras propiedades_.
