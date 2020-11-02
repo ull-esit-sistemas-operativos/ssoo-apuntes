@@ -614,9 +614,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_memoria_principal">15. Memoria principal</a>
 <ul class="sectlevel2">
-<li><a href="#_reubicación_de_las_direcciones">15.1. Reubicación de las direcciones</a></li>
-<li><a href="#_enlazado_dinámico_y_librerías_compartidas">15.2. Enlazado dinámico y librerías compartidas</a></li>
-<li><a href="#_asignación_de_memoria_contigua">15.3. Asignación de memoria contigua</a></li>
+<li><a href="#_etapas_de_un_programa_de_usuario">15.1. Etapas de un programa de usuario</a></li>
+<li><a href="#_reubicación_de_las_direcciones">15.2. Reubicación de las direcciones</a></li>
+<li><a href="#_espacio_de_direcciones_virtual_frente_a_físico">15.3. Espacio de direcciones virtual frente a físico</a></li>
+<li><a href="#_enlazado_dinámico_y_librerías_compartidas">15.4. Enlazado dinámico y librerías compartidas</a></li>
+<li><a href="#_asignación_contigua_de_memoria">15.5. Asignación contigua de memoria</a></li>
+<li><a href="#_fragmentación">15.6. Fragmentación</a></li>
+<li><a href="#_intercambio">15.7. Intercambio</a></li>
 </ul>
 </li>
 <li><a href="#_paginación">16. Paginación</a>
@@ -1744,7 +1748,7 @@ Para su desarrollo se basaron en un monitor del sistema creado en 1955 por progr
 </div>
 </div>
 <div class="paragraph">
-<p>El ejemplo más destacado de esta época es el <a href="https://en.wikipedia.org/wiki/OS/360_and_successors">IBM OS/260</a>
+<p>El ejemplo más destacado de esta época es el <a href="https://en.wikipedia.org/wiki/OS/360_and_successors">IBM OS/360</a>
 Fue un sistema operativo desarrollado por IBM para su <em>mainframe</em> <a href="https://en.wikipedia.org/wiki/IBM_System/360">IBM System/360</a> (S/360) (véase la <a href="#instalación_ibm_system_360">Figura 8</a>).
 Su versión DOS/360 (<em>Disk Operating System/360</em>) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.</p>
 </div>
@@ -4276,7 +4280,7 @@ Por ejemplo la prioridad del proceso, punteros a las colas de planificación don
 <li>
 <p><strong>Información de gestión de la memoria</strong>.
 Incluye la información requerida para la gestión de la memoria.
-Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación de memoria contigua (véase el <a href="#_asignación_de_memoria_contigua">Apartado 15.3</a> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <a href="#_paginación">Capítulo 16</a>)—.</p>
+Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación contigua de memoria (véase el <a href="#_asignación_contigua_de_memoria">Apartado 15.5</a> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <a href="#_paginación">Capítulo 16</a>)—.</p>
 </li>
 <li>
 <p><strong>Información de registro</strong>.
@@ -7170,7 +7174,7 @@ Son los hilos los que se mueven por los estados del <a href="#diagrama_estado_pr
 El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado <strong>preparado</strong> en el sistema y el <strong>cambio de contexto</strong> asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.</p>
 </div>
 <div class="paragraph">
-<p>Por tanto, es en <strong>TCB</strong> —y no en el <strong>PCB</strong>— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programas, el estado o la información de planificación de la CPU; además de un puntero al <strong>PCB</strong> al que pertenece el hilo con el resto de la información privada del proceso.</p>
+<p>Por tanto, es en <strong>TCB</strong> —y no en el <strong>PCB</strong>— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programa, el estado o la información de planificación de la CPU; además de un puntero al <strong>PCB</strong> al que pertenece el hilo con el resto de la información privada del proceso.</p>
 </div>
 <div class="paragraph">
 <p>Como el código y los datos de la librería residen en el espacio del núcleo, invocar una función de la misma requiere frecuentemente hacer una llamada al sistema.
@@ -11549,13 +11553,21 @@ Mientras que en Microsoft Windows, a partir de Windows Vista también se utiliza
 <div class="sect1">
 <h2 id="_memoria_principal">15. Memoria principal</h2>
 <div class="sectionbody">
+<div class="exampleblock right">
+<div class="content">
 <div class="paragraph">
-<p>La memoria es un recurso central para el funcionamiento de un sistema operativo moderno, puesto que es el único medio de almacenamiento al que la CPU puede acceder directamente.
-Por ello, para que un programa pueda ser ejecutado debe ser cargado en la memoria, desde el disco, y creadas o modificadas las estructuras internas del sistema operativo necesarias para convertirlo en un proceso.
-Además, dependiendo de la forma en la que se gestiona la memoria, los procesos o partes de los mismos pueden moverse de la memoria al disco y viceversa durante su ejecución, con el objetivo de ajustar las necesidades de memoria manteniendo la utilización de la CPU lo más alta posible.</p>
+<div class="title">Tiempo estimado de lectura</div>
+<p>22 minutos</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>Como ya comentamos en el aparatado <a href="#_mainframe">Apartado 2.1</a>, en los <strong>sistemas multiprogramados</strong> existe una <strong>cola de entrada</strong> que se define <em>como aquella formada por el conjunto de procesos en disco que esperan para ser cargados en la memoria para su ejecución</em>.</p>
+<p>La memoria es un recurso central para el funcionamiento de un sistema operativo moderno, puesto que es el único medio de almacenamiento al que la CPU puede acceder directamente.
+Por ello, para que un programa pueda ser ejecutado, debe ser cargado en la memoria desde el disco y creadas o modificadas las estructuras internas del sistema operativo necesarias para convertirlo en un proceso.
+Además, dependiendo de la forma en la que se gestiona la memoria, los procesos —o partes de los mismos— pueden moverse de la memoria al disco —y viceversa— durante su ejecución, con el objetivo de ajustar las necesidades de memoria para mantener el la <strong>uso de la CPU</strong> lo más alto posible.</p>
+</div>
+<div class="paragraph">
+<p>Como comentamos en el <a href="#_sistemas_multiprogramados">Apartado 2.1.2</a>, en los <strong>sistemas multiprogramados</strong> existe una <strong>cola de entrada</strong>, que se define como aquella formada por el conjunto de procesos en disco que esperan para ser cargados en la memoria para su ejecución.</p>
 </div>
 <div class="paragraph">
 <p>Por tanto, el procedimiento normal de ejecución de un programa en dichos sistemas es:</p>
@@ -11563,100 +11575,289 @@ Además, dependiendo de la forma en la que se gestiona la memoria, los procesos 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>Seleccionar un proceso de la cola de entrada y cargarlo en la memoria</em>.</p>
+<p>Seleccionar un proceso de la cola de entrada y cargarlo en la memoria.</p>
 </li>
 <li>
-<p><em>Mientras el proceso se ejecuta, éste accede a instrucciones y datos de la memoria</em>.</p>
+<p>Mientras el proceso se ejecuta, éste accede a instrucciones y datos de la memoria.</p>
 </li>
 <li>
-<p><em>Finalmente el proceso termina y su espacio en memoria es marcado como disponible</em>.</p>
+<p>Finalmente, el proceso termina y su espacio en memoria es marcado como disponible.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>En los <strong>sistemas de tiempo compartido</strong> no existe <strong>cola de entrada</strong>, por lo que los programas se cargan inmediatamente en memoria cuando su ejecución es solicitada por los usuarios.
-Excepto por eso, el procedimiento normal de ejecución de un programa es el mismo que para los <em>sistemas multiprogramados</em>.</p>
+<p>En los sistemas de propósito general modernos —desde los <strong>sistemas de tiempo compartido</strong> y los primeros <strong>sistemas de escritorio</strong>— no existe <strong>cola de entrada</strong>, por lo que los programas se cargan inmediatamente en memoria cuando los usuarios solicitan su ejecución.
+Excepto por eso, el procedimiento normal de ejecución de un programa es similar al de los <strong>sistemas multiprogramados</strong>.</p>
 </div>
 <div class="sect2">
-<h3 id="_reubicación_de_las_direcciones">15.1. Reubicación de las direcciones</h3>
+<h3 id="_etapas_de_un_programa_de_usuario">15.1. Etapas de un programa de usuario</h3>
+<div class="paragraph">
+<p>En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la <a href="#etapas_programas_de_usuario">Figura 40</a>).</p>
+</div>
+<div id="etapas_programas_de_usuario" class="imageblock">
+<div class="content">
+<img src="C15-memoria_principal/images/etapas_de_un_programa_de_usuario.svg" alt="etapas de un programa de usuario">
+</div>
+<div class="title">Figura 40. Etapas de procesamiento de un programa de usuario.</div>
+</div>
+<div class="paragraph">
+<p>Los archivos de <strong>código fuente</strong> del programa son compilados por el compilador, generando un archivo de <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_objeto"><strong>código objeto</strong></a> —con extensiones <code>.o</code> u <code>.obj</code>— para cada uno.</p>
+</div>
+<div class="paragraph">
+<p>Todos los archivos de <strong>código objeto</strong> son unidos por el enlazador para crear el archivo <strong>ejecutable</strong>, en una fase que se denomina <strong>enlazado estático</strong>.
+En esta fase también se pueden incorporar al ejecutable <strong>librerías de enlace estático</strong> —con extensiones <code>.a</code> o <code>.lib</code>— con <strong>código objeto</strong> que ha sido empaquetado para ser reutilizado en múltiples ejecutables.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El compilador y el enlazador suelen ser dos programas independientes, aunque en ocasiones el compilador se haga cargo de ambas fases por comodidad.
+Por ejemplo, en los sistemas GNU el compilador <a href="https://es.wikipedia.org/wiki/GNU_Compiler_Collection">gcc</a> por defecto genera el <strong>código objeto</strong> en archivos temporales, luego invoca al enlazador <a href="https://en.wikipedia.org/wiki/Linker_(computing)">ld</a> para crear el <strong>ejecutable</strong> y finalmente elimina los archivos temporales.</p>
+</div>
+<div class="paragraph">
+<p>En proyectos grandes suele ser más interesante usar ambas herramientas por separado para reducir el tiempo de compilación.
+El compilador genera los archivos de <strong>código objeto</strong>, que se conservan entre compilaciones.
+Así, cada vez que se quiere generar una nueva versión del ejecutable, solo es necesario compilar los archivos de <strong>código fuente</strong> que hayan cambiado y luego enlazar juntos todos los archivos de <strong>código objeto</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al crear el <strong>ejecutable</strong> se puede guardar en él dependencias respecto a librerías que se enlazarán posteriormente, durante la carga o ejecución del programa, en una fase denominada <strong>enlazado dinámico</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En el momento en el que se va a ejecutar el programa, cuando está construyendo la imagen binaria del proceso en la memoria; el sistema operativo examina estas dependencias, carga las <strong>librerías de enlace dinámico</strong> indicadas —con extensiones <code>.so</code>, <code>dylib</code> o <code>.dll</code>— y resuelve las referencias del programa sus variables y funciones.
+Las <strong>librerías de enlace dinámico</strong> contienen <strong>código objeto</strong>, enlazado en un formato especial de <strong>ejecutable</strong> diseñado para contener partes compartidas entre archivos ejecutables.</p>
+</div>
+<div class="paragraph">
+<p>Este proceso puede ocurrir mientras se carga el <strong>ejecutable</strong> —como se ha descrito— o cuando el programa usa por primera vez un elemento de la <strong>librerías de enlace dinámico</strong>.
+También es común que el sistema ofrezca funciones para que los programas puedan cargar manualmente e invocar funciones de <strong>librerías de enlace dinámico</strong>.
+Esto es muy útil para crear programas que se pueda mejorar por medio de extensiones o <em>plugins</em>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 13. Extensiones de archivos de programas.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">UNIX, Linux y otros sistemas estilo UNIX</th>
+<th class="tableblock halign-left valign-top">macOS</th>
+<th class="tableblock halign-left valign-top">Microsoft Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Código objeto</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.o</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.o</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.obj</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Librería de enlace estático</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.lib</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Ejecutable</p></th>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.exe</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Librería de enlace dinámico</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.so</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.so</code>, <code>.dylib</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.dll</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Formato de ejecutables y librerías de enlace dinámico</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://es.wikipedia.org/wiki/Executable_and_Linkable_Format">Executable and Linkable Format</a> (ELF)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/Mach-O">Mach-O</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://es.wikipedia.org/wiki/Portable_Executable">Portable Executable</a> (PE)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_reubicación_de_las_direcciones">15.2. Reubicación de las direcciones</h3>
 <div class="paragraph">
 <p>La mayor parte de los sistemas permiten que un proceso de usuario resida en cualquier parte de la memoria física.
-Así, aunque el espacio de direcciones del sistema comience en <code>0x000000</code>, la primera dirección del proceso de usuario no tiene porque ser esa.
-En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la ).
-En cada una de ellas las direcciones pueden representarse de formas distintas, por lo que en cada paso es necesario reubicar las direcciones usadas en una etapa en direcciones de la siguiente.
-Por ejemplo, en el código fuente de un programa las direcciones son generalmente <em>simbólicas</em>, como los nombres de las variables y las funciones.
-A continuación, un compilador suele reasignar esas direcciones simbólicas en <em>direcciones reubicables</em> del estilo de "120 bytes desde el comienzo del módulo".
-Finalmente, el enlazador o el cargador convierte esas direcciones reubicables en <em>direcciones absolutas</em> como <code>0x210243</code>.</p>
+Así, aunque el espacio de direcciones del sistema comience en <code>0x00000000</code>, la primera dirección del proceso de usuario no tiene porque ser esa.</p>
+</div>
+<div class="paragraph">
+<p>En cada una de las etapas vistas en el <a href="#_etapas_de_un_programa_de_usuario">Apartado 15.1</a> las direcciones pueden representarse de formas distintas, por lo que en cada paso es necesario reasignar las direcciones usadas en una etapa en direcciones de la siguiente.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en el código fuente de un programa las direcciones son generalmente simbólicas, como los nombres de las variables y las funciones.
+A continuación, un compilador suele reasignar esas direcciones simbólicas en <strong>direcciones reubicables</strong> del estilo de «120 bytes desde el comienzo del módulo».
+Finalmente —el enlazador— que genera el ejecutable— o el cargador —que carga el programa en la memoria— convierte esas <strong>direcciones reubicables</strong> en <strong>direcciones absolutas</strong>, como <code>0x00210243</code>.</p>
 </div>
 <div class="paragraph">
 <p>Por tanto, en cada etapa se mapean las direcciones de un espacio de direcciones en el siguiente.
-Sin embargo, para que al final el programa pueda ser ejecutado es necesario que tanto a los datos como a las instrucciones se les reasignen direcciones absolutas de la memoria.
-Esto realmente puede ocurrir en cualquiera de las siguientes etapas:</p>
+Sin embargo, para que al final el programa pueda ser ejecutado, es necesario que tanto a los datos como a las instrucciones se les reasignen en algún momento a <strong>direcciones absolutas</strong> de la memoria.
+Esto puede ocurrir en <strong>tiempo de compilación</strong>, <strong>tiempo de carga</strong> o <strong>tiempo de ejecución</strong></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>En <strong>tiempo de compilación</strong>.
-Si durante la compilación o el enlazado se conoce el lugar de la memoria donde va a ser ejecutado el proceso, se puede generar directamente código con <em>direcciones absolutas</em>, o <strong>código absoluto</strong>.
-Si en algún momento la dirección de inicio donde es cargado el programa cambia, es necesario recompilar el código fuente del programa.
-Los programas con formato COM del MS-DOS son un ejemplo de este tipo de programas.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>En <strong>tiempo de carga</strong>.
-Si no se conoce durante la compilación el lugar donde va a residir un programa cuando sea ejecutado, el compilador debe generar <strong>código reubicable</strong>.
-En este tipo de código se utilizan <em>direcciones reubicables</em>, de manera que se retrasa la reubicación a direcciones absolutas hasta el momento de la carga del programa.
-Esto permite a muchos sistemas operativos que un proceso pueda residir en cualquier parte de la memoria física, cargando los procesos donde más convenga para maximizar el aprovechamiento de la misma.</p>
-</li>
-<li>
-<p>En <strong>tiempo de ejecución</strong>.
-Si un proceso puede ser movido durante su ejecución de un lugar de la memoria a otro, la reubicación de direcciones debe ser retrasada hasta el momento de la ejecución de cada instrucción del programa.
-Para que esto sea posible necesitamos disponer de hardware especial que suele estar presente en la mayor parte de las CPU modernas, por lo que la inmensa mayoría de los sistemas operativos modernos de propósito general utilizan este método.</p>
-</li>
-</ul>
+<div class="sect3">
+<h4 id="_reubicación_en_tiempo_de_compilación">15.2.1. Reubicación en tiempo de compilación</h4>
+<div class="paragraph">
+<p>Si durante la compilación o el enlazado se conoce el lugar de la memoria donde va a ser ejecutado el proceso, se puede generar directamente código con <strong>direcciones absolutas</strong> o <strong>código absoluto</strong>.</p>
 </div>
 <div class="paragraph">
-<p>En el <a href="#_protección_de_la_memoria">Apartado 7.3</a> vimos en lo sistemas operativos modernos, como medida de protección, los procesos no tienen acceso libre a la memoria física.
-En lugar de eso el sistema operativo —asistido por la MMU (Memory-Management Unit)— proporciona a cada proceso un <em>espacio de direcciones virtual</em> que ofrece una «vista» privada de la memoria similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la ).
-Es durante los acceso a la memoria principal en tiempo de ejecución cuando estas <em>direcciones virtuales</em> son convertidas en las <em>direcciones física</em> con las que realmente se accede a la memoria.</p>
+<p>Eso significa que si en algún momento la dirección de inicio donde es cargado el programa cambia, es necesario recompilar el código fuente del programa para poder ejecutarlo en la nueva ubicación.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Un ejemplo son los ejecutables con formato <a href="https://es.wikipedia.org/wiki/Archivo_COM">COM</a> del sistema operativo MS-DOS.
+Estos ejecutables no eran reubicables, aunque podían ponerse en distintas ubicaciones de la memoria gracias a la <a href="https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria_del_x86">segmentación de memoria de la familia Intel x86</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_en_tiempo_de_carga">15.2.2. Reubicación en tiempo de carga</h4>
+<div class="paragraph">
+<p>Si no se conoce durante la compilación el lugar donde va a residir un programa cuando sea ejecutado, el compilador y el enlazador deben generar ejecutables con <strong>código reubicable</strong>.</p>
 </div>
 <div class="paragraph">
-<p>El mecanismo de protección descrito <em>es una forma muy común de reubicación de las direcciones en tiempo de ejecución</em> que está presente en la mayor parte de los sistemas operativos modernos de propósito general.
-A parte de la protección, algunas de las características de dicho mecanismo son:</p>
+<p>En este tipo de código se utilizan <strong>direcciones reubicables</strong>, de manera que se retrasa su asignación a <strong>direcciones absolutas</strong> hasta el momento de la carga del programa.
+Esto permite que un programa pueda residir en cualquier parte de la memoria física, cargando los procesos donde más convenga para maximizar el aprovechamiento de la misma.</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="paragraph">
+<p>Para generar <strong>código reubicable</strong>, por lo general, el compilador genera
+<strong>código independiente de la posición</strong> o <strong>PIC</strong> (<em>Position-Independent Code</em>).
+Este tipo de código se puede ejecutar adecuadamente y sin modificaciones independientemente del lugar de la memoria donde esté ubicado, porque utiliza direcciones relativas.</p>
+</div>
+<div class="paragraph">
+<p>Lamentablemente, esto puede limitar las características de la CPU que puede utilizar el compilador o, a veces, las instrucciones que usan direcciones absolutas son más rápidas que las que usan direcciones relativas, aunque en los procesadores modernos la diferencia apenas es perceptible.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, las CPU x86-64 soportan un modo de direccionamiento en el que la direcciones son relativas a la dirección en el contador de programa.
+Esto simplifica generar código reubicable eficiente.
+Sin embargo, en las CPU x86 anteriores, las instrucciones de salto podían ser relativas al contador de programa, pero no ocurría así con aquellas destinadas a acceder a los datos del programa.</p>
+</div>
+<div class="paragraph">
+<p>Cuando no se puede o no es eficiente generar <strong>código independiente de la posición</strong> se puede recurrir al uso de <strong>tablas de reubicación</strong> en tiempo de carga.
+En este caso el compilador y el enlazador generan:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><em>Los programas pueden ser cargados en cualquier zona libre de la memoria física e incluso movidos de una región a otra durante la ejecución de los procesos</em>, puesto que la transformación (reubicación) de las direcciones virtuales en direcciones físicas se realiza durante la ejecución de cada instrucción.</p>
+<p>Código con direcciones relativas a cierta dirección fija del ejecutable —como el comienzo de la sección de código— o direcciones absolutas calculadas bajo la suposición de que el ejecutable se va a poder cargar en cierta dirección concreta de la memoria, que suele guardarse en la cabecera del ejecutable.</p>
 </li>
 <li>
-<p><em>La reubicación de las direcciones virtuales —es decir, la asignación de direcciones virtuales a las direcciones del programa— puede hacerse en tiempo de compilación</em> puesto que de antemano se sabe que todo el espacio de direcciones virtual va a estar disponible.
-Lo común es que los programas se ubiquen en la parte baja del espacio de direcciones virtual, por ejemplo en empezando en la dirección <code>0x00000000</code>.</p>
+<p>Una <strong>tabla de reubicaciones</strong> que se almacena en el mismo ejecutable.
+Esta tabla contiene punteros a las ubicaciones en el código del ejecutable de las direcciones que deben reubicarse al cargarlo.</p>
 </li>
-<li>
-<p><em>Se puede reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código y los datos de sólo lectura de los procesos de un mismo programa</em>.
-El código de un programa suele contener direcciones tanto para los saltos como para el acceso a los datos.
-Al ubicar los programas siempre en las mismas regiones de los espacios de direcciones virtuales nos estamos asegurando de que el código en memoria de los procesos de un mismo programa siempre es el mismo, por lo que se puede compartir la memoria física que ocupan.</p>
-</li>
-</ul>
+</ol>
+</div>
+<div class="paragraph">
+<p>Durante la carga, el cargador del sistema operativo, una vez ha copiado a la memoria el contenido del ejecutable y conoce la ubicación definitiva del programa, recorre la <strong>tabla de reubicaciones</strong> para buscar las <strong>direcciones reubicables</strong> y actualizarlas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_en_tiempo_de_ejecución">15.2.3. Reubicación en tiempo de ejecución</h4>
+<div class="paragraph">
+<p>Si un proceso puede ser movido durante su ejecución de un lugar de la memoria a otro, la reubicación de direcciones debe ser retrasada hasta el momento de la ejecución de cada instrucción del programa.</p>
+</div>
+<div class="paragraph">
+<p>Para que esto sea posible, necesitamos disponer de hardware especial que suele estar presente en la mayor parte de las CPU modernas, por lo que la inmensa mayoría de los sistemas operativos de propósito general modernos utilizan este método.
+De él hablaremos en el <a href="#_espacio_de_direcciones_virtual_frente_a_físico">Apartado 15.3</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enlazado_dinámico_y_librerías_compartidas">15.2. Enlazado dinámico y librerías compartidas</h3>
+<h3 id="_espacio_de_direcciones_virtual_frente_a_físico">15.3. Espacio de direcciones virtual frente a físico</h3>
 <div class="paragraph">
-<p>Fundamentalmente existen dos tipos de enlazado:</p>
+<p>En el <a href="#_protección_de_la_memoria">Apartado 7.3</a> vimos en los sistemas operativos modernos, como medida de protección, los procesos no tienen acceso libre a la memoria física.</p>
+</div>
+<div id="espacio_direcciones_virtual_frente_físico" class="imageblock">
+<div class="content">
+<img src="C15-memoria_principal/images/protección_memoria.svg" alt="protección memoria">
+</div>
+<div class="title">Figura 41. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
+</div>
+<div class="paragraph">
+<p>En lugar de eso el sistema operativo —asistido por la <strong>MMU</strong> (<em>Memory-Management Unit</em>)— proporciona a cada proceso un <strong>espacio de direcciones virtual</strong> que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <a href="#espacio_direcciones_virtual_frente_físico">Figura 41</a>).
+Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas <strong>direcciones virtuales</strong> son convertidas por la <strong>MMU</strong> en las <strong>direcciones física</strong>, con las que realmente se accede a la memoria.
+El <strong>espacio de direcciones físico</strong> es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un <strong>espacio de direcciones virtual</strong> dado.</p>
+</div>
+<div class="paragraph">
+<p>El mecanismo de protección descrito es una forma muy común de <strong>reubicación de las direcciones en tiempo de ejecución</strong>, que está presente en la mayor parte de los sistemas operativos de propósito general modernos.
+Pero, a parte de la protección de la memoria, algunas otras características de dicho mecanismo son:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>En el <strong>enlazado estático</strong>, las librerías del sistema y otros módulos son combinados por el enlazador para formar la imagen binaria del programa que es almacenada en disco</em>.
-Algunos sistemas operativos, como MS-DOS, sólo soportan este tipo de enlazado.</p>
+<p>Los procesos pueden ser cargados en cualquier zona libre de la memoria física e incluso movidos de una región a otra durante la ejecución de los procesos, puesto que la transformación de las <strong>direcciones virtuales</strong> en <strong>direcciones físicas</strong> se realiza durante la ejecución de cada instrucción.</p>
 </li>
 <li>
-<p><em>En el <strong>enlazado dinámico</strong>, éste se pospone hasta la carga o la ejecución</em> (véase la ).</p>
+<p>El código generado por el compilador puede ser <strong>código absoluto</strong>, puesto que de antemano se sabe que todas las ubicaciones del espacio de direcciones virtual van a estar disponible.</p>
+<div class="paragraph">
+<p>Lo común es que los programas se ubiquen en una dirección fija en la parte baja del espacio de direcciones virtual.
+Por ejemplo, empezando en la dirección <code>0x00400000</code>, dejando libres los primeros 4 MiB del <strong>espacio de direcciones virtual</strong>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los programas pueden ubicarse en cualquier lugar del <strong>especio de direcciones virtual</strong> pero no ocurre lo mismo con las <strong>librerías de enlace dinámico</strong>, cuya posible ubicación va a depender del espacio ocupado por el programa y por otras <strong>librerías de enlace dinámico</strong>.
+Por tanto, como veremos en detalle más adelante, estas librerías deben ser reubicables en tiempo de carga.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se puede reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código y los datos de sólo lectura de los procesos de un mismo programa.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El código de un programa suele contener direcciones tanto para los saltos como para el acceso a los datos.
+Al ubicar los programas en las mismas regiones de los espacios de direcciones virtuales de sus procesos, nos estamos asegurando de que el código en memoria de los procesos de un mismo programa es el mismo —pues todos usan las mismas direcciones virtuales absolutas— por lo que se puede compartir la memoria física que ocupan.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enlazado_dinámico_y_librerías_compartidas">15.4. Enlazado dinámico y librerías compartidas</h3>
+<div class="paragraph">
+<p>Como hemos comentado anteriormente, fundamentalmente existen dos tipos de enlazado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>enlazado estático</strong>, las librerías del sistema y otros módulos son combinados por el enlazador para formar la imagen binaria del programa que es almacenada en disco.
+Algunos sistemas operativos —como MS-DOS— sólo soportan este tipo de enlazado.</p>
+</li>
+<li>
+<p>En el <strong>enlazado dinámico</strong>, éste se pospone hasta la carga o la ejecución_ (véase la <a href="#etapas_programas_de_usuario">Figura 40</a>).</p>
 </li>
 </ul>
 </div>
@@ -11666,66 +11867,336 @@ Algunos sistemas operativos, como MS-DOS, sólo soportan este tipo de enlazado.<
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>Durante la carga del módulo ejecutable se comprueban las dependencias del mismo</em>.
-Estas se almacenan en el mismo archivo en disco que dicho módulo.</p>
+<p>Durante la carga del ejecutable se comprueban las dependencias del mismo.
+Estas se almacenan en el mismo archivo en disco que dicho ejecutable.</p>
 </li>
 <li>
-<p><em>Las librerías a enlazar se cargar y ubican en el espacio de direcciones virtual creado para el nuevo proceso</em>.</p>
+<p>Las librerías a enlazar se cargar y ubican en el espacio de direcciones virtual creado para el nuevo proceso.</p>
 </li>
 <li>
-<p>Finalmente, <em>las referencias del programa a las funciones de cada una de las librerías cargadas se actualizan con la dirección en memoria de las mismas</em>.
+<p>Finalmente, las referencias del programa a las funciones de cada una de las librerías cargadas se actualizan con la dirección en memoria de las mismas.
 Así la invocación de las funciones por parte del programa se puede realizar de forma transparente, como si siempre hubieran formado parte del mismo.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Cuando el enlazado se va a realizar en tiempo de ejecución se habla de <em>enlazado dinámico con carga diferida</em>.
+<p>Cuando el enlazado se va a realizar en tiempo de ejecución se habla de <strong>enlazado dinámico con carga diferida</strong>.
 En ese caso el procedimiento es el siguiente.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>Durante el enlazado estático del módulo ejecutable se pone un stub a cada referencia a alguna función de la librería que va a ser enlazada dinámicamente</em>.</p>
+<p>Durante el enlazado estático del ejecutable se pone un <em>stub</em> a cada referencia a alguna función de la librería que va a ser enlazada dinámicamente.</p>
 </li>
 <li>
-<p><em>Si durante la ejecución alguna de dichas funciones es invocada, se ejecuta el stub</em>.
-El <em>stub</em> es una pequeña pieza de código que sabe como carga la librería, si no ha sido cargada previamente, y como localizar la función adecuada en la misma.</p>
+<p>Si durante la ejecución del programa alguna de dichas funciones es invocada, se ejecuta el <em>stub</em>.
+El <em>stub</em> es una pequeña pieza de código que sabe como cargar la librería, si no ha sido cargada previamente, y como localizar la función adecuada en la misma.</p>
 </li>
 <li>
-<p>Finalmente, <em>el stub se sustituye a si mismo con la dirección de la función y la invoca</em>.
+<p>Finalmente, el <em>stub</em> se sustituye a sí mismo con la dirección de la función y la invoca.
 Esto permite que la siguiente ejecución de la función no incurra en ningún coste adicional.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Sin esta habilidad cada programa en el sistema, por ejemplo, debe tener una copia de la librería del sistema incluida en la imagen binaria del mismo, lo que significa un desperdicio de espacio libre en disco y memoria principal.
-Además este esquema facilita la actualización de las librería, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.</p>
+<p>Sin esta habilidad, cada programa en el sistema debería tener, por ejemplo, una copia de la librería del sistema incluida en su ejecutable.
+Esto significaría un desperdicio de espacio libre en disco y de memoria principal.
+Además, este esquema facilita la actualización de las librería, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.</p>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_de_las_direcciones_2">15.4.1. Reubicación de las direcciones</h4>
+<div class="paragraph">
+<p>Durante la compilación de una <strong>librería dinámica</strong> no se conoce la región que va a ocupar, dentro de los espacios de direcciones virtuales de los distintos procesos que la van a utilizar, por lo que es necesario generar <strong>código reubicable</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Puesto que durante la compilación de una librería no se conoce la región que va a ocupar dentro de los espacios de direcciones virtuales de los distintos procesos que la van a utilizar:</p>
+<p>Atendiendo a lo visto en <a href="#_reubicación_en_tiempo_de_carga">Apartado 15.2.2</a> existe fundamentalmente dos estrategias:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Para las librerías <em>el compilador debe generar código PIC (Position-Independent Code) o independiente de la posición</em>.
-Este tipo de código se puede ejecutar adecuadamente y sin modificaciones independientemente del lugar de la memoria donde esté ubicado.
-Esto permite reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código de una misma librería en los distintos procesos que la utilizan.</p>
+<p>El compilador puede generar <strong>código independiente de la posición</strong> (PIC).
+Esto permite reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código de una misma librería en los distintos procesos que la utilizan, pues en todas el código será exactamente el mismo.</p>
 </li>
 <li>
-<p>En los sistemas operativos donde no se usa código PIC el compilador debe generar código reubicable <em>para que la reubicación de las direcciones virtuales de las librerías dinámicas se haga en tiempo de carga</em>.
-Esto aumenta el tiempo de carga de las librerías y sólo permite que compartan memoria física el código de las instancias de una misma librería que ha sido cargado en la misma región del espacio de direcciones virtual en los distintos procesos que la utilizan.</p>
+<p>En los sistemas operativos donde no se usa código PIC, el compilador debe generar código reubicable con <strong>tablas de reubicación</strong>, para que la reubicación de las direcciones virtuales se haga en tiempo de carga.
+Esto aumenta el tiempo de carga de las librerías y sólo permite que compartan memoria física partes de la librería que sigan siendo iguales tras la reubicación de las direcciones.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_librerías_compartidas">15.4.2. Librerías compartidas</h4>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>Habitualmente las librerías incluyen información acerca de su versión.
+Esta información puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en el sistema.
+Así los viejos programas se pueden ejecutar con las viejas versiones de las las librerías —o con versiones actualizadas pero compatibles— mientras los nuevos programas se ejecuten con las versiones más recientes e incompatibles con los viejos programas.</p>
+</div>
+<div class="paragraph">
+<p>A este sistema se lo conoce como <strong>librerías compartidas</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_asignación_contigua_de_memoria">15.5. Asignación contigua de memoria</h3>
+<div class="paragraph">
+<p>Como vimos en el <a href="#_protección_de_la_memoria">Apartado 7.3</a>, la memoria principal debe acomodar tanto el sistema operativo como a los diferentes procesos de los usuarios.</p>
+</div>
+<div class="paragraph">
+<p>Normalmente queremos tener varios procesos en la memoria al mismo tiempo.
+Por tanto, necesitamos considerar de que formas debemos asignar la memoria disponible a los procesos para que puedan ser cargados en ella.
+En este apartado estudiaremos la técnica más simple, denominada <strong>asignación contigua de memoria</strong>.
+Mientras que en capítulos posteriores vemos técnicas más avanzadas de hacer esta asignación.</p>
+</div>
+<div class="paragraph">
+<p>En la <strong>asignación contigua de memoria</strong> a cada proceso se le asigna una única sección de memoria contigua.
+Esto se puede hacer mediante <strong>particionado fijo</strong> o <strong>particionado dinámico</strong></p>
+</div>
+<div class="sect3">
+<h4 id="_particionado_fijo">15.5.1. Particionado fijo</h4>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>El <strong>particionado fijo</strong> la memoria se divide en varias secciones de tamaño fijo, cada una de las cuales contiene un proceso.
+Cuando un proceso termina, se carga uno nuevo de la cola de entrada en la partición libre.</p>
+</div>
+<div class="paragraph">
+<p>Este método fue utilizado originalmente por el <a href="https://en.wikipedia.org/wiki/OS/360_and_successors">IBM OS/360</a>, pero ya no se utiliza</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_particionado_dinámico">15.5.2. Particionado dinámico</h4>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>El <strong>particionado dinámico</strong> es una generalización del anterior:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El sistema operativo mantiene una tabla indicando que partes de la memoria están libres y cuales ocupadas.
+Inicialmente toda la memoria está libre por lo que es considerada como un gran hueco de memoria disponible.</p>
+</li>
+<li>
+<p>Cuando un proceso llega y necesita memoria, se le busca un hueco lo suficientemente grande para alojarlo.
+Si se encuentra, sólo se le asigna el espacio necesario, que es
+marcado como ocupado.
+El resto sigue siendo un hueco libre, aunque de menor tamaño.</p>
+</li>
+<li>
+<p>Si un proceso termina y se crean dos huecos adyacentes, se funden en uno solo.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El <strong>particionado dinámico</strong> se utilizaba fundamentalmente en <strong>sistema de procesamiento por lotes</strong> y <strong>multiprogramados</strong>.
+En este último caso, el sistema operativo tenía una <strong>cola de entrada</strong> ordenada por el <strong>planificador de largo plazo</strong> y la recorría asignado memoria a los procesos, hasta que no quedara
+ningún hueco libre con tamaño suficiente para alojar al siguiente en la cola.
+Entonces el sistema operativo podía esperaba hasta que algunos procesos terminarán y hubiera un hueco lo suficientemente grande en la memoria, para el siguiente proceso, o podía seguir buscando en la cola de entrada procesos de menores requerimientos, aunque para ello tuviera que saltarse algunos procesos.</p>
+</div>
+<div class="paragraph">
+<p>En general, en un momento dado el sistema operativo una petición de tamaño <em>N</em> debe satisfacer con una lista de huecos libres de tamaño variable.
+Esto no es más que un caso particular del problema clásico de la
+asignación dinámica de almacenamiento, para el cual hay diversas soluciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>primer ajuste</strong> se escoge el primer hueco lo suficientemente grande como para satisfacer la petición.
+La búsqueda puede ser desde el principio de la lista o desde donde ha terminado la búsqueda anterior.</p>
+</li>
+<li>
+<p>En el <strong>mejor ajuste</strong> se escoge el hueco más pequeño que sea lo suficientemente grande para satisfacer la petición.
+Indudablemente esto obliga a recorrer la lista de huecos completa o a tenerla ordenada por tamaño.</p>
+</li>
+<li>
+<p>En el <strong>peor ajuste</strong> se escoge el hueco más grande.
+Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por tamaño.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><em>Habitualmente las librerías incluyen información acerca de la versión que puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en memoria</em>.
-Así los viejos programas se pueden ejecutar con las viejas versiones de las mismas, o con versiones actualizadas pero compatibles, mientras los nuevos programas se ejecuten con las versiones más recientes e incompatibles con los viejos programas.
-A este sistema se lo conoce como <strong>librerías compartidas</strong>.</p>
+<p>Para evaluar que estrategia es la mejor se han realizado algunas simulaciones con los siguientes resultados:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El <strong>primer y el mejor ajuste</strong> son mejores que el peor ajuste en términos de menor tiempo y mayor aprovechamiento del espacio de almacenamiento.</p>
+</li>
+<li>
+<p>Si comparamos el <strong>primer y el mejor ajuste</strong> ninguno de ellos destaca sobre el otro en lo que a mejor aprovechamiento del espacio se refiere.</p>
+</li>
+<li>
+<p>El <strong>primer ajuste</strong> es normalmente más rápido que el <strong>mejor ajuste</strong>.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_asignación_de_memoria_contigua">15.3. Asignación de memoria contigua</h3>
-
+<h3 id="_fragmentación">15.6. Fragmentación</h3>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>Las estrategias de asignación de espacio de almacenamiento generalmente sufren de problemas de <strong>fragmentación</strong>.
+Vamos a comentar brevemente como afecta la <strong>fragmentación</strong> a la <strong>asignación contigua de memoria</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_fragmentación_externa">15.6.1. Fragmentación externa</h4>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>La <strong>fragmentación externa</strong> ocurre cuando hay suficiente espacio libre para satisfacer una petición, pero el espacio no es contiguo.
+Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeños tamaños:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Afecta tanto a la estrategia del <strong>primer</strong> como del <strong>mejor ajuste</strong>. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.</p>
+</li>
+<li>
+<p>Algunos análisis estadísticos realizados con el <strong>primer ajuste</strong> revelan que incluso con algunas optimizaciones, con <em>N</em> bloques asignados se pierden \$0,5_N\$ por <strong>fragmentación externa</strong> —es decir, un tercio de toda la memoria no es utilizable—.
+A esto se lo conoce como la regla del 50%.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Existen diversas soluciones a este problema:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizar técnicas de <strong>compactación</strong>, lo que consiste en mover los procesos para que toda la memoria libre quede en un único hueco de gran tamaño.
+Sin embargo, esto puede ser muy caro en términos de tiempo y sólo puede ser realizado cuando la <strong>asignación de direcciones absolutas se realiza en tiempo de ejecución</strong>.</p>
+</li>
+<li>
+<p>La otra solución es permitir que el <strong>espacio de direcciones físico</strong> de un proceso no sea contiguo.
+Es decir, que la memoria puede ser asignada a un proceso independientemente de
+donde esté disponible.
+Existen dos técnicas complementarias que utilizan ésta solución: la paginación
+(véase el <a href="#_paginación">Capítulo 16</a>) y la <a href="https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria">segmentación</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fragmentación_interna">15.6.2. Fragmentación interna</h4>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>La <strong>fragmentación interna</strong> se origina por la diferencia entre el espacio solicitado y el espacio finalmente asignado.</p>
+</div>
+<div class="paragraph">
+<p>Supongamos un hueco de espacio libre de 12987 bytes que se va a usar para satisfacer una petición de 12985 bytes.
+Esto genera un hueco de 2 bytes, pero la cantidad de información que debemos
+guardar en la lista de huecos para saber que dicho hueco está ahí, es mucho mayor que el tamaño del hueco en sí mismo.
+Por lo tanto, no nos interesa tener huecos de tamaño arbitrario.</p>
+</div>
+<div class="paragraph">
+<p>La solución más común es dividir la memoria física en unidades de tamaño fijo y asignarla en múltiplos del tamaño de dichos bloques.
+Esto hace que, en general, se asigne más memoria de la que realmente se ha solicitado y, por tanto, de la que realmente los procesos van a utilizar.
+A esto se lo denomina <strong>fragmentación interna</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_intercambio">15.7. Intercambio</h3>
+<div class="paragraph">
+<p>
+</p>
+</div>
+<div class="paragraph">
+<p>Un proceso debe estar en la memoria para ser ejecutado, pero en algunos sistemas operativos un proceso puede ser sacado de la memoria y copiado a un almacenamiento de respaldo de forma temporal —generalmente un dispositivo de almacenamiento secundario, como un disco— y en algún momento volver a ser traído a la memoria para continuar su ejecución.
+Al procedimiento descrito se lo denomina <strong>intercambio</strong> o <strong><em>swapping</em></strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_implementación">15.7.1. Implementación</h4>
+<div class="paragraph">
+<p>El <strong>intercambio</strong> se puede implementar de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La <strong>cola de preparados</strong> contiene todos los procesos que esperan para ser ejecutados en la CPU.</p>
+</li>
+<li>
+<p>Cuando el <strong>planificador de la CPU</strong> decide ejecutar un proceso, llama al <strong>asignador</strong>.</p>
+</li>
+<li>
+<p>El <strong>asignador</strong> comprueba si el siguiente proceso que debe ser ejecutado está en la memoria.
+Si no lo está y no hay memoria libre, el <strong>asignador</strong> hace que el <strong>gestor de la memoria</strong> intercambie el proceso con alguno de los que si lo está.</p>
+</li>
+<li>
+<p>Finalmente, el <strong>asignador</strong> ejecuta el resto del cambio de contexto (véase el <a href="#_cambio_de_contexto">Apartado 9.6</a>) para entregar la CPU al proceso seleccionado.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si a un sistema con <strong>planificación de CPU</strong> basado en prioridad llega a la <strong>cola de preparados</strong> un proceso de alta prioridad, el <strong>gestor de memoria</strong> intercambia algunos procesos de baja prioridad con el de alta prioridad y ejecuta este último.
+Cuando el proceso de alta prioridad termina, los de baja prioridad pueden ser intercambiados para continuar su ejecución.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_limitaciones">15.7.2. Limitaciones</h4>
+<div class="paragraph">
+<p>Sin embargo el <strong>intercambio</strong> presenta algunas limitaciones importantes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si un sistema <strong>reubica las direcciones en tiempo de compilación o carga</strong>, el
+proceso sólo puede ser intercambiado en la misma región de la memoria.
+Si embargo, si se utiliza <strong>reubicación en tiempo de ejecución</strong>, entonces el proceso puede ser intercambiado en cualquier región de la memoria, puesto que las <strong>direcciones físicas</strong> son calculadas durante la ejecución.</p>
+</li>
+<li>
+<p>El <strong>tiempo de cambio de contexto</strong> en un sistema con <strong>intercambio</strong> puede ser mucho mayor, puesto que incluye el tiempo que se tarda en hacer el intercambio.
+La mayor parte del tiempo de intercambio es el tiempo de transferencia con el disco, que puede ser de varios cientos de milisegundos, incluso utilizando los discos más rápidos.
+Esto afecta al <strong>tiempo de cuanto</strong> que siempre debe ser mucho mayor que el tiempo de <strong>cambio de contexto</strong>.</p>
+</li>
+<li>
+<p>Un proceso podría disponer de un espacio en memoria de 120MB pero estar
+utilizando sólo 2MB.
+Por tanto, es interesante que el sistema operativo conozca con exactitud la memoria utilizada por el proceso —y no la que podría estar utilizando como máximo— para reducir el tiempo de transferencia de los datos al disco durante el intercambio.</p>
+<div class="paragraph">
+<p>Para eso, el sistema operativo proporciona llamadas al sistema con las que un proceso con requerimientos dinámicos de memoria puede informar del cambio en su necesidad de memoria.
+Por ejemplo, los sistemas operativos modernos proporcionan llamadas al sistema para reservar y liberar memoria —como malloc() y free() en los sistemas POSIX— gracias a las que el sistema conoce las necesidades reales de los procesos.</p>
+</div>
+</li>
+<li>
+<p>El <strong>intercambio</strong> presenta dificultades cuando el proceso que va a ser sacado de la memoria está esperando por una operación de E/S que accede a la memoria del proceso para leer o escribir datos en ella.
+La soluciones podrían ser:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No intercambiar procesos con operaciones de E/S síncronas o asíncronas pendientes.</p>
+</li>
+<li>
+<p>Utilizar búferes del sistema operativo en las operaciones de E/S.
+Por ejemplo, en una operación <strong>write</strong> a un archivo, el sistema operativo copiaría primero los datos a un búfer interno y luego ordenaría la escritura de esos datos.
+Así el proceso podría ser intercambiado sin problemas.
+Las transferencias entre los búferes del sistema y la memoria de los procesos serían realizadas, por el sistema operativo, solo cuando los procesos residen en la memoria.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Debido fundamentalmente a que el tiempo de intercambio es muy alto, no se utiliza el intercambio estándar en los sistemas operativos actuales.
+Lo que si podemos encontrar en muchos sistemas son versiones modificadas de este mecanismo.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en muchas versiones antiguas de UNIX y en los sistemas modernos, el intercambio permanece desactivado y solo se activa cuando la cantidad de memoria usada supera cierto límite.
+Además, en los sistemas actuales no se intercambian procesos completos sino las porciones menos usadas de cada proceso, como veremos en el <a href="#_memoria_virtual">Apartado 17.1</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -13035,7 +13506,7 @@ Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por t
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fragmentación">17.11.3. Fragmentación</h4>
+<h4 id="_fragmentación_2">17.11.3. Fragmentación</h4>
 <div class="paragraph">
 <p>Las estrategia comentada no sufre de <em>fragmentación interna</em> porque se asigna exactamente la cantidad de memoria solicitada.
 Sin embargo si sufre de otro tipo de fragmentación denominada fragmentación externa.</p>
@@ -13092,20 +13563,20 @@ Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente
 <div class="content">
 <img src="C18-almacenamiento/images/disco_duro_físico.jpg" alt="disco duro físico">
 </div>
-<div class="title">Figura 40. Disco duro&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg">Wikipedia</a></div>
+<div class="title">Figura 42. Disco duro&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg">Wikipedia</a></div>
 </div>
 <div class="paragraph">
-<p>Tal y como se puede apreciar en la <a href="#disco_duro_físico">Figura 40</a> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
+<p>Tal y como se puede apreciar en la <a href="#disco_duro_físico">Figura 42</a> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
 La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.</p>
 </div>
 <div id="disco_duro_lógico" class="imageblock">
 <div class="content">
 <img src="C18-almacenamiento/images/disco_duro_lógico.svg" alt="disco duro lógico">
 </div>
-<div class="title">Figura 41. Estructura lógica de un disco magnético.</div>
+<div class="title">Figura 43. Estructura lógica de un disco magnético.</div>
 </div>
 <div class="paragraph">
-<p>Desde el punto de vista lógico (véase la <a href="#disco_duro_lógico">Figura 41</a>) la superficie de cada plato está dividida en <strong>pistas</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
+<p>Desde el punto de vista lógico (véase la <a href="#disco_duro_lógico">Figura 43</a>) la superficie de cada plato está dividida en <strong>pistas</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
 El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina <strong>cilindro</strong>.</p>
 </div>
 <div class="paragraph">
@@ -13142,13 +13613,13 @@ Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento
 Esta unidad es el <strong>archivo</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Un <strong>archivo</strong> o fichero es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario
+<p>Un <strong>archivo</strong> o fichero es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario.
 Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
-Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que estos se encuentren dentro de un archivo.</p>
+Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que éstos se encuentren dentro de un archivo.</p>
 </div>
 <div class="paragraph">
-<p>El sistema operativo puede ofrecer esta abstracción gracia al <strong>sistema de archivos</strong>.
-Este proporciona los mecanismos para el almacenamiento de lo datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.</p>
+<p>El sistema operativo puede ofrecer esta abstracción gracias al <strong>sistema de archivos</strong>.
+Éste proporciona los mecanismos para el almacenamiento de los datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.</p>
 </div>
 <div class="paragraph">
 <p>Los sistemas de archivos están compuestos de dos partes claramente diferenciadas:</p>
@@ -13156,7 +13627,7 @@ Este proporciona los mecanismos para el almacenamiento de lo datos y programas e
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Una colección de archivos</strong>, cada uno de los cuales almacena una serie de datos relacionados.</p>
+<p><strong>Una colección de archivos</strong>, cada una de las cuales almacena una serie de datos relacionados.</p>
 </li>
 <li>
 <p><strong>Una colección de estructuras de metadatos</strong>, que contienen información relativa a los archivos almacenados —nombre, ubicación en el disco, permisos, entre otros— y que se encarga de organizarlos; generalmente haciendo uso de una estructura de directorios.</p>
@@ -13194,10 +13665,10 @@ Sin embargo, la fiabilidad es inversamente proporcional al número de discos, ya
 <li>
 <p>En un <strong>conjunto RAID 1</strong> se crea una copia exacta —en espejo— de los datos en dos o más discos.
 El resultado es que, incluso con dos discos, se incrementa exponencialmente la fiabilidad respecto a tener uno solo, ya que para que el conjunto falle es necesario que lo hagan todos los discos.
-Adicionalmente, el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear la operaciones de lectura entre todos ellos.</p>
+Adicionalmente, el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear las operaciones de lectura entre todos ellos.</p>
 </li>
 <li>
-<p>En un <strong>conjunto RAID 5</strong> se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma
+<p>En un <strong>conjunto RAID 5</strong> se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma división.
 En RAID se denomina división o <em>stripe</em> a la serie de bloques consecutivos escogido cada uno de uno de los discos del conjunto.</p>
 <div class="paragraph">
 <p>El disco utilizado para almacenar el bloque de paridad cambia de forma escalonada de una división a la siguiente, de ahí que se diga que el bloque de paridad está distribuido.
@@ -13249,7 +13720,7 @@ Ejemplos típicos son:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>RAID puede implementarse en el hardware de la controladora de disco, de tal forma que sólo los discos conectados a esta pueden formar parte de un conjunto RAID determinado.
+<p>RAID puede implementarse en el hardware de la controladora de disco, de tal forma que sólo los discos conectados a ésta pueden formar parte de un conjunto RAID determinado.
 Esta solución es muy eficiente, especialmente cuando se utilizan niveles que requieren cálculo de la paridad, ya que se evita utilizar tiempo de CPU para ese trabajo.
 Sin embargo, estas controladoras son notablemente más caras que las que carecen de soporte para RAID.</p>
 </li>
@@ -13329,11 +13800,11 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 <div class="content">
 <img src="C19-sistema_de_archivos/images/estructura_sistema_de_archivos.svg" alt="estructura sistema de archivos">
 </div>
-<div class="title">Figura 42. Estructura de un sistema de archivos.</div>
+<div class="title">Figura 44. Estructura de un sistema de archivos.</div>
 </div>
 <div class="paragraph">
 <p>Los sistema de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
-En la <a href="#estructura_sistema_de_archivos">Figura 42</a> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
+En la <a href="#estructura_sistema_de_archivos">Figura 44</a> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.</p>
 </div>
 <div class="sect3">
@@ -13650,7 +14121,7 @@ Este puntero se actualiza, avanzando cada vez que se realiza un nueva lectura/es
 Además, se suelen incluir llamadas para otras operaciones comunes, como añadir datos al final de un archivo o el renombrado de un archivo existente.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Tabla 13. Funciones de la API para manipular archivos.</caption>
+<caption class="title">Tabla 14. Funciones de la API para manipular archivos.</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -14823,7 +15294,7 @@ Esta solución no sólo les permite tener las mismas propiedades que el uso de r
 </div>
 <div class="paragraph">
 <p>Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
-En la &lt;&lt;&gt;&gt; se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
+En la <a href="#estructura_sistema_de_archivos">Figura 44</a> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 El papel de cada uno de estos niveles fue descrito en el <a href="#_estructura_de_un_sistema_de_archivos">Apartado 19.1</a>.
 Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <a href="#_estructuras_de_metadatos_en_disco">Apartado 19.2</a> y en el <a href="#_estructuras_de_metadatos_en_memoria">Apartado 19.3</a>.</p>
@@ -14978,12 +15449,12 @@ La lista lineal también se extrae, pero no tiene que ser almacenada en un únic
 Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requiere un movimiento mínimo del cabezal del disco.</p>
 </div>
 <div class="paragraph">
-<p>El problema de la <strong>asignación contigua</strong> puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento (véase el <a href="#_asignación_de_memoria_contigua">Apartado 15.3</a>).
+<p>El problema de la <strong>asignación contigua</strong> puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento (véase el <a href="#_asignación_contigua_de_memoria">Apartado 15.5</a>).
 Es decir, que en un momento dado tendremos una petición de tamaño <em>N</em> que deberemos satisfacer con una lista de huecos libres de tamaño variable.
 Como estudiamos anteriormente, las estrategias más comunes son las de el <strong>primer ajuste</strong> y el <strong>mejor ajuste</strong>.</p>
 </div>
 <div class="sect4">
-<h5 id="_fragmentación_externa">Fragmentación externa</h5>
+<h5 id="_fragmentación_externa_2">Fragmentación externa</h5>
 <div class="paragraph">
 <p>La asignación contigua sufre el problema de la <strong>fragmentación externa</strong>.
 La solución sería utilizar alguna forma de <strong>compactación</strong> para unir los huecos libres, pero esto puede llevar mucho tiempo en discos duros de gran tamaño y en algunos sistemas esta tarea tiene que realizarse con el dispositivo desmontado.
@@ -15121,7 +15592,7 @@ Es decir, lo que hace FAT agrupa en un solo lugar los punteros de la <strong>asi
 <div class="content">
 <img src="C20-implementación_del_sistemas_de_archivos/images/estructura_fat.svg" alt="estructura fat">
 </div>
-<div class="title">Figura 43. Asignación enlazada en el sistema de archivos FAT.</div>
+<div class="title">Figura 45. Asignación enlazada en el sistema de archivos FAT.</div>
 </div>
 <div class="paragraph">
 <p>Eso significa que la FAT es una estructura crítica.
@@ -15143,7 +15614,7 @@ Eso implicar poder gestionar más cantidad clústeres, lo que permite gestionar 
 Por ejemplo, <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.</p>
 </div>
 <div class="paragraph">
-<p>Como se puede ver en la <a href="#estructura_fat">Figura 43</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+<p>Como se puede ver en la <a href="#estructura_fat">Figura 45</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
 La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
 Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.</p>
 </div>
@@ -15251,7 +15722,7 @@ Después podrían haber entradas que contienen punteros doblemente indirectos y 
 <div class="content">
 <img src="C20-implementación_del_sistemas_de_archivos/images/asignación_ext2.svg" alt="asignación ext2">
 </div>
-<div class="title">Figura 44. Asignación indexada combinada en el sistema de archivos ext2.</div>
+<div class="title">Figura 46. Asignación indexada combinada en el sistema de archivos ext2.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -15280,7 +15751,7 @@ Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almac
 <p>Dentro de cada <strong>inodo</strong> —entre otra información típica en un <strong>FCB</strong>— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.</p>
 </li>
 <li>
-<p>Como se puede ver en la <a href="#asignación_ext2">Figura 44</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
+<p>Como se puede ver en la <a href="#asignación_ext2">Figura 46</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
 Esto permite almacenar hasta \$2^64\$ bytes de información en cada archivo.</p>
 </li>
 </ul>
@@ -15802,7 +16273,7 @@ Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-10-30 19:57:29 UTC
+Última actualización 2020-11-02 12:36:30 UTC
 </div>
 </div>
 <style>
