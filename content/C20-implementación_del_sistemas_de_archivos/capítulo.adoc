@@ -10,7 +10,7 @@ include::../../config/attributes.adoc[]
 ====
 
 Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
-En la <<>> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
+En la <<estructura_sistema_de_archivos>> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 El papel de cada uno de estos niveles fue descrito en el <<_estructura_de_un_sistema_de_archivos>>.
 Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <<_estructuras_de_metadatos_en_disco>> y en el <<_estructuras_de_metadatos_en_memoria>>.

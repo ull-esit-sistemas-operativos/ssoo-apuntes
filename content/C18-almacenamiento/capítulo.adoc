@@ -55,16 +55,16 @@ Teniendo en cuenta la gran diversidad de dispositivos de almacenamiento que exis
 Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir una unidad de almacenamiento lógico que sea útil para los usuarios.
 Esta unidad es el *((archivo))*.
 
-Un *((archivo))* o ((fichero)) es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario 
+Un *((archivo))* o ((fichero)) es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario.
 Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
-Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que estos se encuentren dentro de un archivo.
+Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que éstos se encuentren dentro de un archivo.
 
-El sistema operativo puede ofrecer esta abstracción gracia al *sistema de archivos*(((sistema, archivos))).
-Este proporciona los mecanismos para el almacenamiento de lo datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.
+El sistema operativo puede ofrecer esta abstracción gracias al *sistema de archivos*(((sistema, archivos))).
+Éste proporciona los mecanismos para el almacenamiento de los datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.
 
 Los sistemas de archivos están compuestos de dos partes claramente diferenciadas:
 
-* *Una colección de archivos*, cada uno de los cuales almacena una serie de datos relacionados.
+* *Una colección de archivos*, cada una de las cuales almacena una serie de datos relacionados.
 
 * *Una colección de estructuras de metadatos*, que contienen información relativa a los archivos almacenados —nombre, ubicación en el disco, permisos, entre otros— y que se encarga de organizarlos; generalmente haciendo uso de una estructura de directorios.
 
@@ -90,9 +90,9 @@ Sin embargo, la fiabilidad es inversamente proporcional al número de discos, ya
 
 * En un *conjunto RAID 1* se crea una copia exacta —en espejo— de los datos en dos o más discos.
 El resultado es que, incluso con dos discos, se incrementa exponencialmente la fiabilidad respecto a tener uno solo, ya que para que el conjunto falle es necesario que lo hagan todos los discos.
-Adicionalmente, el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear la operaciones de lectura entre todos ellos.
+Adicionalmente, el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear las operaciones de lectura entre todos ellos.
 
-* En un *conjunto RAID 5* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma 
+* En un *conjunto RAID 5* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma división. 
 En RAID se denomina división o _stripe_ a la serie de bloques consecutivos escogido cada uno de uno de los discos del conjunto.
 +
 El disco utilizado para almacenar el bloque de paridad cambia de forma escalonada de una división a la siguiente, de ahí que se diga que el bloque de paridad está distribuido.
@@ -121,7 +121,7 @@ Ejemplos típicos son:
 
 La implementación de RAID es otra de las áreas donde existen diversas variantes:
 
-* RAID puede implementarse en el hardware de la controladora de disco, de tal forma que sólo los discos conectados a esta pueden formar parte de un conjunto RAID determinado.
+* RAID puede implementarse en el hardware de la controladora de disco, de tal forma que sólo los discos conectados a ésta pueden formar parte de un conjunto RAID determinado.
 Esta solución es muy eficiente, especialmente cuando se utilizan niveles que requieren cálculo de la paridad, ya que se evita utilizar tiempo de CPU para ese trabajo.
 Sin embargo, estas controladoras son notablemente más caras que las que carecen de soporte para RAID.
 
