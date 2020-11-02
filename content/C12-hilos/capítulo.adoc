@@ -113,7 +113,7 @@ En estos sistemas, es el hilo la unidad básica de uso de la CPU.
 Son los hilos los que se mueven por los estados del <<diagrama_estado_proceso>> y las colas de la <<colas_de_planificación_procesos>> y no los procesos.
 El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado *preparado* en el sistema y el *cambio de contexto* asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.
 
-Por tanto, es en *TCB* —y no en el *PCB*— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programas, el estado o la información de planificación de la CPU; además de un puntero al *PCB* al que pertenece el hilo con el resto de la información privada del proceso.
+Por tanto, es en *TCB* —y no en el *PCB*— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programa, el estado o la información de planificación de la CPU; además de un puntero al *PCB* al que pertenece el hilo con el resto de la información privada del proceso.
 
 Como el código y los datos de la librería residen en el espacio del núcleo, invocar una función de la misma requiere frecuentemente hacer una llamada al sistema.
 Obviamente, la librería del sistema ofrece funciones para no tener que hacer la llamada al sistema directamente.

@@ -80,7 +80,7 @@ En lo que respecta a los sistemas operativos:
 * Aparecen más lenguajes de programación.
 ====
 
-El ejemplo más destacado de esta época es el https://en.wikipedia.org/wiki/OS/360_and_successors[IBM OS/260]
+El ejemplo más destacado de esta época es el {ibmos360}
 Fue un sistema operativo desarrollado por IBM para su _mainframe_ https://en.wikipedia.org/wiki/IBM_System/360[IBM System/360] (S/360) (véase la <<instalación_ibm_system_360>>).
 Su versión DOS/360 (_Disk Operating System/360_) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.
 

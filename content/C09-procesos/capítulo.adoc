@@ -79,9 +79,6 @@ En la <<proceso_en_memoria>> se puede observar la disposición de algunos de est
 .Anatomía de un proceso en memoria.
 image::proceso_en_memoria.svg[]
 
-// TODO: Librerías compartidas
-// https://manybutfinite.com/post/anatomy-of-a-program-in-memory/
-
 == Estados de los procesos
 
 Cada proceso tiene un *estado* que cambia a lo largo de su ejecución y que está definido, parcialmente, por la actividad que realiza actualmente el propio proceso.
@@ -142,7 +139,7 @@ Por ejemplo la prioridad del proceso, punteros a las colas de planificación don
 
 * *Información de gestión de la memoria*.
 Incluye la información requerida para la gestión de la memoria.
-Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación de memoria contigua (véase el <<_asignación_de_memoria_contigua>> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <<_paginación>>)—.
+Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación contigua de memoria (véase el <<_asignación_contigua_de_memoria>> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <<_paginación>>)—.
 
 * *Información de registro*.
 Aquí se incluye la cantidad de CPU usada, límites de tiempo en el uso de la CPU, estadísticas de la cuenta del usuario a la que pertenece el proceso, estadísticas de la ejecución del proceso, etc.
