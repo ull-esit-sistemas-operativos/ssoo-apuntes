@@ -64,8 +64,8 @@ En los directorios implementados con una https://es.wikipedia.org/wiki/Tabla_has
 Para obtener la ubicación de dicho archivo dentro de la lista lineal, se usa un índice calculado con cierta función de dispersión a partir del nombre del archivo.
 
 El único inconveniente es que debemos tratar la posible aparición de colisiones, que son aquellas situaciones en las que dos nombres de archivo dan lugar, al aplicarles la función de dispersión, la misma ubicación en la tabla.
-Esto se puede resolver utilizando una lista enlazada en cada entrada de la lista —cada entrada en al lista señalaría la ubicación de la siguiente entrada de la lista que tiene el mismo valor para la función de dispersión— a cambio de que las búsquedas sean un poco más lentas.
-En cualquier caso, éste método será normalmente más rápido que una búsqueda lineal por todo el directorio.
+Esto se puede resolver utilizando una lista enlazada en cada entrada de la lista —cada entrada en la lista señalaría la ubicación de la siguiente entrada de la lista que tiene el mismo valor para la función de dispersión— a cambio de que las búsquedas sean un poco más lentas.
+En cualquier caso, este método será normalmente más rápido que una búsqueda lineal por todo el directorio.
 
 === Árbol B
 
@@ -75,7 +75,7 @@ Un caso concreto es el sistema de archivos {ntfs}, utilizado por Microsoft Windo
 {ntfs} utiliza una estructura de datos denominada https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+] para almacenar el índice de los nombres de archivo contenidos en un directorio.
 
 En la entrada en la *((MFT))* (_Master File Table_) de cada directorio se almacena un atributo denominado *raíz del índice*.
-Si el directorio es de pequeño tamaño, la *raíz del índice* contiene todas las entradas de archivos del directorio, pero Para un directorio de gran tamaño, la *raíz del índice* sólo puede almacenar unas pocas entradas de archivos del directorio.
+Si el directorio es de pequeño tamaño, la *raíz del índice* contiene todas las entradas de archivos del directorio, pero para un directorio de gran tamaño, la *raíz del índice* sólo puede almacenar unas pocas entradas de archivos del directorio.
 En ese caso la *raíz del índice* contiene el nivel superior del árbol B+.
 Es decir, cada una de esas entradas de archivos en la *raíz del índice* incluye también un puntero al bloque del disco que contiene un nodo del árbol con las entradas con nombres alfabéticamente anteriores a ese.
 Si en dicho nodo tampoco caben todas las entradas, sólo podrá contener algunas de ellas, por lo que cada una tendrá, a su vez, un puntero a un nuevo nodo del árbol; y así sucesivamente.
@@ -84,7 +84,7 @@ Si en dicho nodo tampoco caben todas las entradas, sólo podrá contener algunas
 
 Las ventajas de los árboles B+ son:
 
-* _Eliminan el coste de reordenar las entradas del directorio.
+* Eliminan el coste de reordenar las entradas del directorio.
 
 * La longitud desde la raíz del árbol hasta un nodo hoja es la misma para todas los caminos por el árbol, por lo que el tiempo de búsqueda tiene una cota superior.
 
@@ -134,7 +134,7 @@ El problema es que eso no siempre es posible.
 Por ejemplo, si vamos a copiar un archivo, es indudable que conocemos de antemano cuanto espacio necesita la copia.
 Pero ¿qué ocurre cuando vamos a crear uno nuevo? Entonces al crear un archivo es necesario que el usuario haga una estimación del espacio que va necesitar y se la indique al sistema.
 
-¿Y si la estimación no es correcta o posteriormente que queremos añadir nuevos datos al archivo? 
+¿Y si la estimación no es correcta o posteriormente queremos añadir nuevos datos al archivo? 
 Entonces, Lo más probable es que el espacio situado a ambos lados del archivo ya esté ocupado, si hemos utilizado la estrategia del *mejor ajuste*.
 Para resolver este problema existen dos estrategias:
 
@@ -183,7 +183,7 @@ La *asignación enlazada* sólo resulta eficaz para acceder a los archivos de ac
 Si necesitamos ir directamente al bloque i-ésimo de un archivo, tendremos que comenzar desde el principio e ir leyendo cada bloque para obtener el puntero que nos indica el siguiente bloque.
 Es muy posible que esas lecturas deban ir precedidas de un reposicionamiento de los cabezales del disco.
 
-Una solución parcial a esto puede ser guarda en la memoria una caché de las direcciones de los bloques de los archivos accedidos recientemente.
+Una solución parcial a esto puede ser guardar en la memoria una caché de las direcciones de los bloques de los archivos accedidos recientemente.
 
 ==== Eficiencia en el uso del espacio de almacenamiento
 
@@ -201,11 +201,11 @@ Teniendo en cuenta que los archivos están enlazados mediante punteros, parte de
 
 .Asignación enlazada en FAT y FAT32
 ****
-Los sistemas de archivos {fat} y {fat32} utiliza una variante del mecanismo de asignación enlazada en la que se emplea una *tabla de asignación de archivo*(((tabla, asignación de archivo))) o *((FAT))* (_File-Allocation Table_).
+Los sistemas de archivos {fat} y {fat32} utilizan una variante del mecanismo de asignación enlazada en la que se emplea una *tabla de asignación de archivo*(((tabla, asignación de archivo))) o *((FAT))* (_File-Allocation Table_).
 
 La FAT se almacena en una sección al principio del volumen.
 Contiene una entrada por cada *clúster* del disco y en cada una guarda el número del siguiente *clúster* del archivo.
-Es decir, lo que hace FAT agrupa en un solo lugar los punteros de la *asignación enlazada*.
+Es decir, lo que hace la FAT es agrupa en un solo lugar los punteros de la *asignación enlazada*.
 
 [[estructura_fat]]
 .Asignación enlazada en el sistema de archivos FAT.
@@ -222,8 +222,8 @@ Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestiona
 
 Aunque algunas versiones de Microsoft Windows NT llegaron a admitir 128 e, incluso, 512 bloques por clúster, con clústeres tan grandes la *fragmentación interna* es un problema.
 
-Por eso —entre otras coas— Microsoft introdujo {fat32}, que utiliza 32 bits para numerar los clústeres.
-Eso implicar poder gestionar más cantidad clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
+Por eso —entre otras cosas— Microsoft introdujo {fat32}, que utiliza 32 bits para numerar los clústeres.
+Eso implicar poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
 Por ejemplo, {fat32} podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.
 
 Como se puede ver en la <<estructura_fat>>, en los sistemas de archivos {fat} cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
@@ -276,7 +276,7 @@ Entre los mecanismos que pueden utilizarse para resolver este último problema e
 Por ejemplo, se puede utilizar el último puntero del bloque de índices para apuntar al siguiente bloque de índices.
 Si dicho puntero tiene valor 0, entonces estamos en el último bloque de índices del archivo.
 
-* En el *((índice multinivel))*, los punteros del bloque de índices no señalan a los bloques del archivo, sino a conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
+* En el *((índice multinivel))*, los punteros del bloque de índices no señalan a los bloques del archivo, sino a un conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
 Esta técnica puede puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.
 
 * En el *esquema combinado*(((esquema, combinado))) las primeras entradas del bloque de índices apuntan directamente a los primeros bloques del archivo.
@@ -297,7 +297,7 @@ Concretamente el mecanismo en {ext2} se implementa de la siguiente manera:
 * El disco se divide en múltiples grupos de bloques de disco.
 
 * En cada grupo, se utilizan los primeros bloques para almacenar una tabla de *inodos*(((inodo))).
-Estos *inodos* son los *FCB* de los archivos almacenados en el grupo.ç
+Estos *inodos* son los *FCB* de los archivos almacenados en el grupo.
 +
 El resto de los bloques se utilizan para almacenar los datos de los archivos representados por los *inodos* del grupo.
 
@@ -345,14 +345,14 @@ Sin embargo, debemos tener en cuenta que no es frecuente tener que recorrer la l
 
 [NOTE]
 ====
-Los sistemas de archivos {fat} incorporan el control de bloques libres dentro de la *tabla de asignación de archivos* guardando un 0 en loas entradas de los *clústeres* libres, por lo que no se necesita ningún método adicional.
+Los sistemas de archivos {fat} incorporan el control de bloques libres dentro de la *tabla de asignación de archivos* guardando un 0 en las entradas de los *clústeres* libres, por lo que no se necesita ningún método adicional.
 ====
 
 === Agrupamiento
 
 Una modificación de la técnica basada en la lista enlazada consiste en almacenar las direcciones de _N_ bloques libres en el primer bloque libre.
 Los primeros _N — 1_ de esos bloques estarían realmente libres, pero el último de ellos apuntaría a otro bloque con _N_ bloques libres.
-Así podría localizarse rápidamente las direcciones de un gran número de bloques libres, lo cual mejora la eficiencia respecto a la técnica de lista enlazada.
+Así podrían localizarse rápidamente las direcciones de un gran número de bloques libres, lo cual mejora la eficiencia respecto a la técnica de lista enlazada.
 
 === Recuento
 
@@ -397,7 +397,7 @@ Por ejemplo, el *FCB virtual*(((FCB, virtual))), que identifica de forma unívoc
 ====
 En Linux el *FCB virtual* se denomina *((vnodo))*.
 El *vnodo* de un archivo lo identifica de forma unívoca en todo el sistema, incluso diferenciando archivos en sistemas de archivos diferentes.
-Mientras que el *inodo* es un detalle de la implementación real del sistema de archivo, por lo que solo es único dentro del mismo sistema de archivos.
+Mientras que el *inodo* es un detalle de la implementación real del sistema de archivos, por lo que solo es único dentro del mismo sistema de archivos.
 ====
 
 Este nivel cumple con dos importantes funciones:
@@ -415,7 +415,7 @@ Las operaciones de la interfaz *VFS* pueden implementarse de tal forma que usen 
 === Implementación del sistema de archivos
 
 El tercer nivel es donde se implementa cada tipo de sistema de archivos o los distintos protocolos de los servidores de archivos en la red.
-La interfaz *VFS* recurre a la implementación correspondiente para cada tipo de sistema de archivos para satisfacer las solicitudes de los niveles superiores.
+La interfaz *VFS* recurre a la implementación correspondiente para cada tipo de sistema de archivos, para satisfacer las solicitudes de los niveles superiores.
 
 Así, por ejemplo, un {linux_read} puede implicar que se tenga que recuperar el *vnodo* del archivo involucrado desde la tabla de archivos abiertos, usando el descriptor de archivo indicado en la llamada al sistema.
 Después, se invocaría la operación *VFS* `read()` sobre el *vnodo*, en la implementación concreta de *VFS* según el tipo de sistema de archivos involucrado.
@@ -462,7 +462,7 @@ La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S d
 En la planificación *((FCFS))* (_First Come, First Served_) o *primero que llega, primero servido* la cola de E/S al disco es FIFO.
 Es decir, que las las solicitudes se atienden en orden de llegada.
 
-Es el algoritmo de planificación más simple y es equitativa, en sentido de que atiende a todos los procesos por igual.
+Es el algoritmo de planificación más simple y es equitativo, en sentido de que atiende a todos los procesos por igual.
 Pero, lamentablemente, no proporciona el servicio más rápido en disco duros magnéticos, donde interesa mover el brazo del disco lo menos posible.
 
 [NOTE]
@@ -524,7 +524,7 @@ Estos algoritmos funcionan de la siguiente manera:
 Si en lugar de copiar _N_ peticiones de la segunda a la primera cola, se copian todas las solicitudes pendientes, el algoritmo se denomina *((F-SCAN))*.
 
 Estos algoritmos previenen un problema denominado *((rigidez del brazo))* —o _arm stickiness_, en inglés— a diferencia de los algoritmos SSTF, SCAN, C-SCAN, LOOK y C-LOOK, que no lo hacen.
-El termino *rigidez del brazo* hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, lo que hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
+El termino *rigidez del brazo* hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, esto hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
 Como *F-SCAN*, *N-Step-SCAN* y *N-Step-LOOK* separan las solicitudes en dos colas —haciendo que las nuevas tengan que esperar— el brazo siempre continua su barrido hacia el extremo del disco.
 
 === Planificación CFQ
@@ -549,7 +549,7 @@ Como las escrituras con {linux_write}.
 Una solicitud asíncrona se inserta en una cola u otra según la prioridad del proceso que la generó.
 
 * Usando el algoritmo *_round-robin_*, el planificador *CFQ* recorre las colas y extrae de ellas las solicitudes durante el tiempo marcado por el cuanto de cada cola.
-Las solicitudes extraídas se insertan en la cola de E/S al disco, donde se ordenar para minimizar el *tiempo de búsqueda*, antes de ser enviadas al dispositivo.
+Las solicitudes extraídas se insertan en la cola de E/S al disco, donde se ordenan para minimizar el *tiempo de búsqueda*, antes de ser enviadas al dispositivo.
 
 [NOTE]
 ====

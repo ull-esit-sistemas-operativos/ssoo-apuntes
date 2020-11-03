@@ -49,14 +49,14 @@ El compilador genera los archivos de *código objeto*, que se conservan entre co
 Así, cada vez que se quiere generar una nueva versión del ejecutable, solo es necesario compilar los archivos de *código fuente* que hayan cambiado y luego enlazar juntos todos los archivos de *código objeto*.
 ====
 
-Al crear el *ejecutable* se puede guardar en él dependencias respecto a librerías que se enlazarán posteriormente, durante la carga o ejecución del programa, en una fase denominada *enlazado dinámico*(((enlazado, dinámico))).
+Al crear el *ejecutable* se pueden guardar en él dependencias respecto a librerías que se enlazarán posteriormente, durante la carga o ejecución del programa, en una fase denominada *enlazado dinámico*(((enlazado, dinámico))).
 
 En el momento en el que se va a ejecutar el programa, cuando está construyendo la imagen binaria del proceso en la memoria; el sistema operativo examina estas dependencias, carga las *librerías de enlace dinámico*(((librería, enlazado, dinámico))) indicadas —con extensiones `.so`, `dylib` o `.dll`— y resuelve las referencias del programa sus variables y funciones. 
 Las *librerías de enlace dinámico* contienen *código objeto*, enlazado en un formato especial de *ejecutable* diseñado para contener partes compartidas entre archivos ejecutables.
 
-Este proceso puede ocurrir mientras se carga el *ejecutable* —como se ha descrito— o cuando el programa usa por primera vez un elemento de la *librerías de enlace dinámico*.
+Este proceso puede ocurrir mientras se carga el *ejecutable* —como se ha descrito— o cuando el programa usa por primera vez un elemento de las *librerías de enlace dinámico*.
 También es común que el sistema ofrezca funciones para que los programas puedan cargar manualmente e invocar funciones de *librerías de enlace dinámico*.
-Esto es muy útil para crear programas que se pueda mejorar por medio de extensiones o _plugins_.
+Esto es muy útil para crear programas que se puedan mejorar por medio de extensiones o _plugins_.
 
 .Extensiones de archivos de programas.
 [cols="1h,3*" options=header]
@@ -134,7 +134,7 @@ Este tipo de código se puede ejecutar adecuadamente y sin modificaciones indepe
 
 Lamentablemente, esto puede limitar las características de la CPU que puede utilizar el compilador o, a veces, las instrucciones que usan direcciones absolutas son más rápidas que las que usan direcciones relativas, aunque en los procesadores modernos la diferencia apenas es perceptible.
 
-Por ejemplo, las CPU x86-64 soportan un modo de direccionamiento en el que la direcciones son relativas a la dirección en el contador de programa.
+Por ejemplo, las CPU x86-64 soportan un modo de direccionamiento en el que las direcciones son relativas a la dirección en el contador de programa.
 Esto simplifica generar código reubicable eficiente.
 Sin embargo, en las CPU x86 anteriores, las instrucciones de salto podían ser relativas al contador de programa, pero no ocurría así con aquellas destinadas a acceder a los datos del programa.
 
@@ -164,7 +164,7 @@ En el <<_protección_de_la_memoria>> vimos en los sistemas operativos modernos, 
 image::protección_memoria.svg[]
 
 En lugar de eso el sistema operativo —asistido por la *((MMU))* (_Memory-Management Unit_)— proporciona a cada proceso un *espacio de direcciones virtual*(((espacio de direcciones, virtual))) que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <<espacio_direcciones_virtual_frente_físico>>).
-Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la *MMU* en las *direcciones física*(((dirección, física))), con las que realmente se accede a la memoria.
+Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la *MMU* en las *direcciones físicas*(((dirección, física))), con las que realmente se accede a la memoria.
 El *espacio de direcciones físico*(((espacio de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un *espacio de direcciones virtual* dado.
 
 El mecanismo de protección descrito es una forma muy común de *reubicación de las direcciones en tiempo de ejecución*, que está presente en la mayor parte de los sistemas operativos de propósito general modernos.
@@ -172,7 +172,7 @@ Pero, a parte de la protección de la memoria, algunas otras características de
 
 * Los procesos pueden ser cargados en cualquier zona libre de la memoria física e incluso movidos de una región a otra durante la ejecución de los procesos, puesto que la transformación de las *direcciones virtuales* en *direcciones físicas* se realiza durante la ejecución de cada instrucción.
 
-* El código generado por el compilador puede ser *código absoluto*, puesto que de antemano se sabe que todas las ubicaciones del espacio de direcciones virtual van a estar disponible.
+* El código generado por el compilador puede ser *código absoluto*, puesto que de antemano se sabe que todas las ubicaciones del espacio de direcciones virtual van a estar disponibles.
 +
 Lo común es que los programas se ubiquen en una dirección fija en la parte baja del espacio de direcciones virtual.
 Por ejemplo, empezando en la dirección `0x00400000`, dejando libres los primeros 4 MiB del *espacio de direcciones virtual*.
@@ -200,7 +200,7 @@ Algunos sistemas operativos —como MS-DOS— sólo soportan este tipo de enlaza
 Generalmente el enlazado dinámico ocurre durante la carga del programa:
 
 . Durante la carga del ejecutable se comprueban las dependencias del mismo.
-Estas se almacenan en el mismo archivo en disco que dicho ejecutable.
+Éstas se almacenan en el mismo archivo en disco que dicho ejecutable.
 
 . Las librerías a enlazar se cargar y ubican en el espacio de direcciones virtual creado para el nuevo proceso.
 
@@ -208,7 +208,7 @@ Estas se almacenan en el mismo archivo en disco que dicho ejecutable.
 Así la invocación de las funciones por parte del programa se puede realizar de forma transparente, como si siempre hubieran formado parte del mismo.
 
 Cuando el enlazado se va a realizar en tiempo de ejecución se habla de *enlazado dinámico con carga diferida*(((enlazado, dinámico, carga diferida))).
-En ese caso el procedimiento es el siguiente.
+En ese caso el procedimiento es el siguiente:
 
 . Durante el enlazado estático del ejecutable se pone un _stub_ a cada referencia a alguna función de la librería que va a ser enlazada dinámicamente.
 
@@ -220,13 +220,13 @@ Esto permite que la siguiente ejecución de la función no incurra en ningún co
 
 Sin esta habilidad, cada programa en el sistema debería tener, por ejemplo, una copia de la librería del sistema incluida en su ejecutable.
 Esto significaría un desperdicio de espacio libre en disco y de memoria principal.
-Además, este esquema facilita la actualización de las librería, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.
+Además, este esquema facilita la actualización de las librerías, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.
 
 === Reubicación de las direcciones
 
 Durante la compilación de una *librería dinámica* no se conoce la región que va a ocupar, dentro de los espacios de direcciones virtuales de los distintos procesos que la van a utilizar, por lo que es necesario generar *código reubicable*.
 
-Atendiendo a lo visto en <<_reubicación_en_tiempo_de_carga>> existe fundamentalmente dos estrategias:
+Atendiendo a lo visto en <<_reubicación_en_tiempo_de_carga>> existen fundamentalmente dos estrategias:
 
 * El compilador puede generar *código independiente de la posición* (PIC).
 Esto permite reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código de una misma librería en los distintos procesos que la utilizan, pues en todas el código será exactamente el mismo.
@@ -239,7 +239,7 @@ Esto aumenta el tiempo de carga de las librerías y sólo permite que compartan 
 
 Habitualmente las librerías incluyen información acerca de su versión.
 Esta información puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en el sistema.
-Así los viejos programas se pueden ejecutar con las viejas versiones de las las librerías —o con versiones actualizadas pero compatibles— mientras los nuevos programas se ejecuten con las versiones más recientes e incompatibles con los viejos programas.
+Así los viejos programas se pueden ejecutar con las viejas versiones de las las librerías —o con versiones actualizadas pero compatibles— mientras los nuevos programas se ejecutan con las versiones más recientes e incompatibles con los viejos programas.
 
 A este sistema se lo conoce como *librerías compartidas*.
 
@@ -280,12 +280,12 @@ El resto sigue siendo un hueco libre, aunque de menor tamaño.
 
 . Si un proceso termina y se crean dos huecos adyacentes, se funden en uno solo.
 
-El *particionado dinámico* se utilizaba fundamentalmente en *sistema de procesamiento por lotes* y *multiprogramados*.
-En este último caso, el sistema operativo tenía una *cola de entrada* ordenada por el *planificador de largo plazo* y la recorría asignado memoria a los procesos, hasta que no quedara
+El *particionado dinámico* se utilizaba fundamentalmente en *sistemas de procesamiento por lotes* y *multiprogramados*.
+En este último caso, el sistema operativo tenía una *cola de entrada* ordenada por el *planificador de largo plazo* y la recorría asignando memoria a los procesos, hasta que no quedara
 ningún hueco libre con tamaño suficiente para alojar al siguiente en la cola.
-Entonces el sistema operativo podía esperaba hasta que algunos procesos terminarán y hubiera un hueco lo suficientemente grande en la memoria, para el siguiente proceso, o podía seguir buscando en la cola de entrada procesos de menores requerimientos, aunque para ello tuviera que saltarse algunos procesos.
+Entonces el sistema operativo podía esperar hasta que algunos procesos terminarán y hubiera un hueco lo suficientemente grande en la memoria, para el siguiente proceso, o podía seguir buscando en la cola de entrada procesos de menores requerimientos, aunque para ello tuviera que saltarse algunos procesos.
 
-En general, en un momento dado el sistema operativo una petición de tamaño _N_ debe satisfacer con una lista de huecos libres de tamaño variable.
+En general, en un momento dado el sistema operativo, debe satisfacer una petición de tamaño _N_ con una lista de huecos libres de tamaño variable.
 Esto no es más que un caso particular del problema clásico de la
 asignación dinámica de almacenamiento, para el cual hay diversas soluciones:
 
@@ -298,7 +298,7 @@ Indudablemente esto obliga a recorrer la lista de huecos completa o a tenerla or
 * En el *((peor ajuste))*(((ajuste, peor))) se escoge el hueco más grande.
 Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por tamaño.
 
-Para evaluar que estrategia es la mejor se han realizado algunas simulaciones con los siguientes resultados:
+Para evaluar que estrategia es la mejor, se han realizado algunas simulaciones con los siguientes resultados:
 
 * El *primer y el mejor ajuste* son mejores que el peor ajuste en términos de menor tiempo y mayor aprovechamiento del espacio de almacenamiento.
 
@@ -316,7 +316,7 @@ Vamos a comentar brevemente como afecta la *fragmentación* a la *asignación co
 (((fragmentación, externa)))
 
 La *fragmentación externa* ocurre cuando hay suficiente espacio libre para satisfacer una petición, pero el espacio no es contiguo.
-Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeños tamaños:
+Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeño tamaño:
 
 * Afecta tanto a la estrategia del *primer* como del *mejor ajuste*. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.
 
