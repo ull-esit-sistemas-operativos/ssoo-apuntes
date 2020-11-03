@@ -481,6 +481,8 @@ En caso afirmativo, podemos enviar un mensaje con {linux_mq_send} sabiendo que n
 
 === Señales en sistemas operativos POSIX
 
+// TODO: Diagrama: A Guide to Linux Signals http://www.linuxvoice.com/core-technology-signals/
+
 En los sistemas POSIX, una forma más sencilla de comunicar dos procesos del mismo sistema es mediante el envío de una *((señal))* de uno al otro.
 
 Los procesos pueden mandar señales utilizando la llamada al sistema {linux_kill}, que sólo requiere el identificador del proceso de destino y el número que identifica la señal.
