@@ -627,8 +627,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_método_básico">16.1. Método básico</a></li>
 <li><a href="#_soporte_hardware_de_la_tabla_de_páginas">16.2. Soporte hardware de la tabla de páginas</a></li>
-<li><a href="#_protección">16.3. Protección</a></li>
+<li><a href="#_protección_de_la_memoria_2">16.3. Protección de la memoria</a></li>
 <li><a href="#_páginas_compartidas">16.4. Páginas compartidas</a></li>
+<li><a href="#_paginación_jerárquica">16.5. Paginación jerárquica</a></li>
 </ul>
 </li>
 <li><a href="#_paginación_bajo_demanda">17. Paginación bajo demanda</a>
@@ -2183,7 +2184,7 @@ Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VM
 Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.</p>
 </div>
 <div class="paragraph">
-<p>La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo <em>microkernel</em> (véase el <a href="#_mach">Apartado 3.5.8</a> un poco más adelante) multiplataforma que corría sobre procesadores <a href="https://es.wikipedia.org/wiki/IA-32">x86</a>, <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS R4000</a> y <a href="https://es.wikipedia.org/wiki/PowerPC">PowerPC</a>.</p>
+<p>La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo <em>microkernel</em> (véase el <a href="#_mach">Apartado 3.5.8</a> un poco más adelante) multiplataforma que corría sobre procesadores <a href="https://es.wikipedia.org/wiki/IA-32">x86</a>, <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a> 4000 y <a href="https://es.wikipedia.org/wiki/PowerPC">PowerPC</a>.</p>
 </div>
 <div class="paragraph">
 <p>Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
@@ -7093,6 +7094,15 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una 
 </div>
 </div>
 </div>
+<div id="proceso_multihilo_en_memoria" class="imageblock">
+<div class="content">
+<img src="C12-hilos/images/proceso_multihilo_en_memoria.svg" alt="proceso multihilo en memoria">
+</div>
+<div class="title">Figura 31. Anatomía de un proceso multihilo en memoria.</div>
+</div>
+<div class="paragraph">
+<p>En la <a href="#proceso_multihilo_en_memoria">Figura 31</a> se puede observar como cambia la disposición de los elementos de un proceso en la memoria cuando es multihilo, respecto a lo que vimos en el <a href="#_el_proceso">Apartado 9.1</a>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_beneficios">12.2. Beneficios</h3>
@@ -7205,13 +7215,13 @@ Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (v
 </div>
 <div class="paragraph">
 <p>Éste, por lo general, es el modelo utilizado cuando el núcleo no soporta múltiples hilos de ejecución.
-En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son <strong>hilos de usuario</strong> (véase la <a href="#modelo_muchos_a_uno">Figura 31</a>).</p>
+En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son <strong>hilos de usuario</strong> (véase la <a href="#modelo_muchos_a_uno">Figura 32</a>).</p>
 </div>
 <div id="modelo_muchos_a_uno" class="imageblock">
 <div class="content">
 <img src="C12-hilos/images/modelo_muchos_a_uno.svg" alt="modelo muchos a uno">
 </div>
-<div class="title">Figura 31. Modelo muchos a uno.</div>
+<div class="title">Figura 32. Modelo muchos a uno.</div>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -7277,7 +7287,7 @@ En este caso, la librería de hilos se implementa en el núcleo, por lo que las 
 <div class="content">
 <img src="C12-hilos/images/modelo_uno_a_uno.svg" alt="modelo uno a uno">
 </div>
-<div class="title">Figura 32. Modelo uno a uno.</div>
+<div class="title">Figura 33. Modelo uno a uno.</div>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -7328,12 +7338,12 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hil
 <div class="content">
 <img src="C12-hilos/images/modelo_muchos_a_muchos.svg" alt="modelo muchos a muchos">
 </div>
-<div class="title">Figura 33. Modelo muchos a muchos.</div>
+<div class="title">Figura 34. Modelo muchos a muchos.</div>
 </div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>En el modelo <strong>muchos a muchos</strong> se mapean los <strong>hilos de usuario</strong> en un menor o igual número de <strong>hilos de núcleo</strong> del proceso (véase la <a href="#modelo_muchos_a_muchos">Figura 33</a>).</p>
+<p>En el modelo <strong>muchos a muchos</strong> se mapean los <strong>hilos de usuario</strong> en un menor o igual número de <strong>hilos de núcleo</strong> del proceso (véase la <a href="#modelo_muchos_a_muchos">Figura 34</a>).</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7381,13 +7391,13 @@ Así, el planificador de la librería puede asignarle alguno de los otros <stron
 <p>Existe una variación del modelo <strong>muchos a muchos</strong> donde, además de funcionar de la forma comentada anteriormente, se permite que un hilo de usuario quede ligado indefinidamente a un único hilo de núcleo, como en el modelo <strong>uno a uno</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Esta variación se denomina, en ocasiones, modelo de <strong>dos niveles</strong> (véase la <a href="#modelo_de_dos_niveles">Figura 34</a>).</p>
+<p>Esta variación se denomina, en ocasiones, modelo de <strong>dos niveles</strong> (véase la <a href="#modelo_de_dos_niveles">Figura 35</a>).</p>
 </div>
 <div id="modelo_de_dos_niveles" class="imageblock">
 <div class="content">
 <img src="C12-hilos/images/modelo_de_dos_niveles.svg" alt="modelo de dos niveles">
 </div>
-<div class="title">Figura 34. Modelo muchos a uno.</div>
+<div class="title">Figura 35. Modelo muchos a uno.</div>
 </div>
 </div>
 </div>
@@ -9665,10 +9675,10 @@ Por ejemplo, en los sistemas interactivos es más importante minimizar la <stron
 <div class="content">
 <img src="C14-planificación_de_CPU/images/histogramas_tiempo_de_ráfagas.svg" alt="histogramas tiempo de ráfagas">
 </div>
-<div class="title">Figura 35. Histograma de los tiempos de las ráfagas de CPU..</div>
+<div class="title">Figura 36. Histograma de los tiempos de las ráfagas de CPU..</div>
 </div>
 <div class="paragraph">
-<p>La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiper-exponencial (véase la <a href="#ráfagas_de_cpu">Figura 35</a>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
+<p>La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiper-exponencial (véase la <a href="#ráfagas_de_cpu">Figura 36</a>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
 Esto significa que los procesos se pueden clasificar entre aquellos que presentan un gran número de ráfagas de CPU cortas o aquellos con un pequeño número de ráfagas de CPU largas.</p>
 </div>
 <div class="exampleblock">
@@ -10353,7 +10363,7 @@ Se espera a que el proceso que actualmente se está ejecutando termine su ráfag
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)+(10-1)=</span></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (10-1)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-0)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
@@ -10522,7 +10532,7 @@ Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuand
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)(3-1)(9-4)=</span></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (3-1) + (9-4)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-0)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
@@ -10723,7 +10733,7 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">30</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)+(10-4)=</span></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (10-4)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(30-0)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
@@ -10731,18 +10741,18 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(4-2)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-2)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(4-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-3)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(10-3)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(10-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
 </tr>
 </tbody>
 <tfoot>
@@ -10752,7 +10762,7 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">4,67</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">14,67</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12,67</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10910,7 +10920,7 @@ Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, lo
 <div class="content">
 <img src="C14-planificación_de_CPU/images/planificación_colas_multinivel.svg" alt="planificación colas multinivel">
 </div>
-<div class="title">Figura 36. Ejemplo de planificación con colas multinivel.</div>
+<div class="title">Figura 37. Ejemplo de planificación con colas multinivel.</div>
 </div>
 <div class="paragraph">
 <p>Una cuestión interesante es como seleccionar la cola que debe escoger al siguiente proceso a ejecutar:</p>
@@ -10921,7 +10931,7 @@ Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, lo
 <p>Un opción común en los sistemas actuales es utilizar un <strong>planificador con prioridades</strong>.
 Es decir, que cada cola tenga una prioridad y así el planificador solo tiene que escoger la cola de prioridad más alta que no esté vacía.</p>
 <div class="paragraph">
-<p>Por ejemplo, en la <a href="#esquema_colas_multinivel">Figura 36</a>, mientras un proceso de prioridad 1 esté preparado, no se escoge ningún otro de prioridad inferior.
+<p>Por ejemplo, en la <a href="#esquema_colas_multinivel">Figura 37</a>, mientras un proceso de prioridad 1 esté preparado, no se escoge ningún otro de prioridad inferior.
 Si este planificador se implementa de forma expropiativa, el proceso que tiene asignada la CPU es expulsado si un proceso entra en una de las colas que tiene mayor prioridad que la suya.</p>
 </div>
 </li>
@@ -10954,17 +10964,17 @@ Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las
 <div class="content">
 <img src="C14-planificación_de_CPU/images/planificación_colas_multinivel_realimentadas.svg" alt="planificación colas multinivel realimentadas">
 </div>
-<div class="title">Figura 37. Ejemplo de planificación con colas multinivel realimentadas.</div>
+<div class="title">Figura 38. Ejemplo de planificación con colas multinivel realimentadas.</div>
 </div>
 <div class="paragraph">
 <p>Por ejemplo, supongamos un <strong>planificador de colas multinivel</strong> donde cada cola tiene una prioridad, así que se usa la <strong>planificación con prioridades</strong> para seleccionar la cola.
-En las colas se usa el algoritmo <strong>RR</strong> para seleccionar el siguiente proceso, siendo el <strong>cuanto</strong> de la cola mayor cuanto menos prioritaria es la cola (véase la <a href="#esquema_planificación_colas_multinivel_realimentadas">Figura 37</a>).
+En las colas se usa el algoritmo <strong>RR</strong> para seleccionar el siguiente proceso, siendo el <strong>cuanto</strong> de la cola mayor cuanto menos prioritaria es la cola (véase la <a href="#esquema_planificación_colas_multinivel_realimentadas">Figura 38</a>).
 Los procesos que llegan nuevos o desde el estado <strong>esperando</strong> lo hacen con la prioridad más alta —que por convención hemos decidido que sea 0— así que se insertan en la cola correspondiente.
 Mientras que los procesos expropiados por vencimiento del <strong>cuanto</strong> pierde un punto de prioridad, siendo insertados en una cola de prioridad menor.</p>
 </div>
 <div class="paragraph">
 <p>Con ese algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
-Por ejemplo, usando los valores del esquema de la <a href="#esquema_planificación_colas_multinivel_realimentadas">Figura 37</a>, los procesos de ráfagas de CPU entre 20 y 80 ms. acaban cayendo a la cola de prioridad 1 tras 20 ms. de ejecución.
+Por ejemplo, usando los valores del esquema de la <a href="#esquema_planificación_colas_multinivel_realimentadas">Figura 38</a>, los procesos de ráfagas de CPU entre 20 y 80 ms. acaban cayendo a la cola de prioridad 1 tras 20 ms. de ejecución.
 Así dejan paso a los procesos con ráfagas menores de 20 ms., que siempre se ejecutan con prioridad 0.
 Finalmente, los procesos de ráfagas mayores de 80 ms. van a la cola FCFS, desde donde sólo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la <strong>cola de preparados</strong></p>
 </div>
@@ -10978,10 +10988,10 @@ Finalmente, los procesos de ráfagas mayores de 80 ms. van a la cola FCFS, desde
 <div class="content">
 <img src="C14-planificación_de_CPU/images/vrr.svg" alt="vrr">
 </div>
-<div class="title">Figura 38. Ejemplo de planificación con RR virtual.</div>
+<div class="title">Figura 39. Ejemplo de planificación con RR virtual.</div>
 </div>
 <div class="paragraph">
-<p>Tal y como se ilustra en la <a href="#esquema_planificación_rr_virtual">Figura 38</a>, en el <strong>RR virtual</strong> los procesos por lo general tienen prioridad 1.
+<p>Tal y como se ilustra en la <a href="#esquema_planificación_rr_virtual">Figura 39</a>, en el <strong>RR virtual</strong> los procesos por lo general tienen prioridad 1.
 Sin embargo, aquellos que vuelven al estado <strong>preparado</strong> desde <strong>esperando</strong> después de una operación de E/S, obtienen una bonificación en la propiedad que los lleva a tener prioridad 0.
 Por tanto, los procesos que usan con más frecuencia la E/S, usan más la cola de prioridad más alta, por lo que se les asigna antes la CPU mayor frecuencia.</p>
 </div>
@@ -11004,7 +11014,7 @@ Esto hace que incluso los procesos con ráfagas de CPU más cortas acaben consum
 </div>
 <div class="paragraph">
 <p>En Windows las prioridades de los hilos se pueden ver desde dos perspectivas: la de Windows API y la del núcleo.
-Ambas tienen una organización muy diferente pero, en última instancia, las primeras deben mapearse en las segundas.</p>
+Ambas tienen una organización muy diferente pero, en última instancia, las primeras deben traducirse en las segundas.</p>
 </div>
 <table id="win32_clases_prioridad" class="tableblock frame-all grid-all stretch">
 <caption class="title">Tabla 10. Clases de prioridad en Windows API.</caption>
@@ -11054,10 +11064,10 @@ Por lo general, la clase de prioridad <code>NORMAL_PRIORITY_CLASS</code> es la c
 <div class="content">
 <img src="C14-planificación_de_CPU/images/administrador_de_tareas.jpg" alt="administrador de tareas">
 </div>
-<div class="title">Figura 39. Cambiar la prioridad de un proceso en el <strong>Administrador de tareas</strong>.</div>
+<div class="title">Figura 40. Cambiar la prioridad de un proceso en el <strong>Administrador de tareas</strong>.</div>
 </div>
 <div class="paragraph">
-<p>Con el <strong>Administrador de tareas</strong> de Windows podemos alterar fácilmente la clase de prioridad de un proceso durante su ejecución (véase la <a href="#windows_task_manager">Figura 39</a>).</p>
+<p>Con el <strong>Administrador de tareas</strong> de Windows podemos alterar fácilmente la clase de prioridad de un proceso durante su ejecución (véase la <a href="#windows_task_manager">Figura 40</a>).</p>
 </div>
 <table id="win32_prioridad_hilos" class="tableblock frame-all grid-all stretch">
 <caption class="title">Tabla 11. Clases de prioridad en Windows API.</caption>
@@ -11592,13 +11602,13 @@ Excepto por eso, el procedimiento normal de ejecución de un programa es similar
 <div class="sect2">
 <h3 id="_etapas_de_un_programa_de_usuario">15.1. Etapas de un programa de usuario</h3>
 <div class="paragraph">
-<p>En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la <a href="#etapas_programas_de_usuario">Figura 40</a>).</p>
+<p>En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la <a href="#etapas_programas_de_usuario">Figura 41</a>).</p>
 </div>
 <div id="etapas_programas_de_usuario" class="imageblock">
 <div class="content">
 <img src="C15-memoria_principal/images/etapas_de_un_programa_de_usuario.svg" alt="etapas de un programa de usuario">
 </div>
-<div class="title">Figura 40. Etapas de procesamiento de un programa de usuario.</div>
+<div class="title">Figura 41. Etapas de procesamiento de un programa de usuario.</div>
 </div>
 <div class="paragraph">
 <p>Los archivos de <strong>código fuente</strong> del programa son compilados por el compilador, generando un archivo de <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_objeto"><strong>código objeto</strong></a> —con extensiones <code>.o</code> u <code>.obj</code>— para cada uno.</p>
@@ -11628,16 +11638,16 @@ Así, cada vez que se quiere generar una nueva versión del ejecutable, solo es 
 </table>
 </div>
 <div class="paragraph">
-<p>Al crear el <strong>ejecutable</strong> se puede guardar en él dependencias respecto a librerías que se enlazarán posteriormente, durante la carga o ejecución del programa, en una fase denominada <strong>enlazado dinámico</strong>.</p>
+<p>Al crear el <strong>ejecutable</strong> se pueden guardar en él dependencias respecto a librerías que se enlazarán posteriormente, durante la carga o ejecución del programa, en una fase denominada <strong>enlazado dinámico</strong>.</p>
 </div>
 <div class="paragraph">
 <p>En el momento en el que se va a ejecutar el programa, cuando está construyendo la imagen binaria del proceso en la memoria; el sistema operativo examina estas dependencias, carga las <strong>librerías de enlace dinámico</strong> indicadas —con extensiones <code>.so</code>, <code>dylib</code> o <code>.dll</code>— y resuelve las referencias del programa sus variables y funciones.
 Las <strong>librerías de enlace dinámico</strong> contienen <strong>código objeto</strong>, enlazado en un formato especial de <strong>ejecutable</strong> diseñado para contener partes compartidas entre archivos ejecutables.</p>
 </div>
 <div class="paragraph">
-<p>Este proceso puede ocurrir mientras se carga el <strong>ejecutable</strong> —como se ha descrito— o cuando el programa usa por primera vez un elemento de la <strong>librerías de enlace dinámico</strong>.
+<p>Este proceso puede ocurrir mientras se carga el <strong>ejecutable</strong> —como se ha descrito— o cuando el programa usa por primera vez un elemento de las <strong>librerías de enlace dinámico</strong>.
 También es común que el sistema ofrezca funciones para que los programas puedan cargar manualmente e invocar funciones de <strong>librerías de enlace dinámico</strong>.
-Esto es muy útil para crear programas que se pueda mejorar por medio de extensiones o <em>plugins</em>.</p>
+Esto es muy útil para crear programas que se puedan mejorar por medio de extensiones o <em>plugins</em>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Tabla 13. Extensiones de archivos de programas.</caption>
@@ -11704,7 +11714,7 @@ A continuación, un compilador suele reasignar esas direcciones simbólicas en <
 Finalmente —el enlazador— que genera el ejecutable— o el cargador —que carga el programa en la memoria— convierte esas <strong>direcciones reubicables</strong> en <strong>direcciones absolutas</strong>, como <code>0x00210243</code>.</p>
 </div>
 <div class="paragraph">
-<p>Por tanto, en cada etapa se mapean las direcciones de un espacio de direcciones en el siguiente.
+<p>Por tanto, en cada etapa se traducen las direcciones de un espacio de direcciones en el siguiente.
 Sin embargo, para que al final el programa pueda ser ejecutado, es necesario que tanto a los datos como a las instrucciones se les reasignen en algún momento a <strong>direcciones absolutas</strong> de la memoria.
 Esto puede ocurrir en <strong>tiempo de compilación</strong>, <strong>tiempo de carga</strong> o <strong>tiempo de ejecución</strong></p>
 </div>
@@ -11750,7 +11760,7 @@ Este tipo de código se puede ejecutar adecuadamente y sin modificaciones indepe
 <p>Lamentablemente, esto puede limitar las características de la CPU que puede utilizar el compilador o, a veces, las instrucciones que usan direcciones absolutas son más rápidas que las que usan direcciones relativas, aunque en los procesadores modernos la diferencia apenas es perceptible.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, las CPU x86-64 soportan un modo de direccionamiento en el que la direcciones son relativas a la dirección en el contador de programa.
+<p>Por ejemplo, las CPU x86-64 soportan un modo de direccionamiento en el que las direcciones son relativas a la dirección en el contador de programa.
 Esto simplifica generar código reubicable eficiente.
 Sin embargo, en las CPU x86 anteriores, las instrucciones de salto podían ser relativas al contador de programa, pero no ocurría así con aquellas destinadas a acceder a los datos del programa.</p>
 </div>
@@ -11793,11 +11803,11 @@ De él hablaremos en el <a href="#_espacio_de_direcciones_virtual_frente_a_físi
 <div class="content">
 <img src="C15-memoria_principal/images/protección_memoria.svg" alt="protección memoria">
 </div>
-<div class="title">Figura 41. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
+<div class="title">Figura 42. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
 </div>
 <div class="paragraph">
-<p>En lugar de eso el sistema operativo —asistido por la <strong>MMU</strong> (<em>Memory-Management Unit</em>)— proporciona a cada proceso un <strong>espacio de direcciones virtual</strong> que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <a href="#espacio_direcciones_virtual_frente_físico">Figura 41</a>).
-Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas <strong>direcciones virtuales</strong> son convertidas por la <strong>MMU</strong> en las <strong>direcciones física</strong>, con las que realmente se accede a la memoria.
+<p>En lugar de eso el sistema operativo —asistido por la <strong>MMU</strong> (<em>Memory-Management Unit</em>)— proporciona a cada proceso un <strong>espacio de direcciones virtual</strong> que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <a href="#espacio_direcciones_virtual_frente_físico">Figura 42</a>).
+Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas <strong>direcciones virtuales</strong> son convertidas por la <strong>MMU</strong> en las <strong>direcciones físicas</strong>, con las que realmente se accede a la memoria.
 El <strong>espacio de direcciones físico</strong> es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un <strong>espacio de direcciones virtual</strong> dado.</p>
 </div>
 <div class="paragraph">
@@ -11810,7 +11820,7 @@ Pero, a parte de la protección de la memoria, algunas otras características de
 <p>Los procesos pueden ser cargados en cualquier zona libre de la memoria física e incluso movidos de una región a otra durante la ejecución de los procesos, puesto que la transformación de las <strong>direcciones virtuales</strong> en <strong>direcciones físicas</strong> se realiza durante la ejecución de cada instrucción.</p>
 </li>
 <li>
-<p>El código generado por el compilador puede ser <strong>código absoluto</strong>, puesto que de antemano se sabe que todas las ubicaciones del espacio de direcciones virtual van a estar disponible.</p>
+<p>El código generado por el compilador puede ser <strong>código absoluto</strong>, puesto que de antemano se sabe que todas las ubicaciones del espacio de direcciones virtual van a estar disponibles.</p>
 <div class="paragraph">
 <p>Lo común es que los programas se ubiquen en una dirección fija en la parte baja del espacio de direcciones virtual.
 Por ejemplo, empezando en la dirección <code>0x00400000</code>, dejando libres los primeros 4 MiB del <strong>espacio de direcciones virtual</strong>.</p>
@@ -11857,7 +11867,7 @@ Al ubicar los programas en las mismas regiones de los espacios de direcciones vi
 Algunos sistemas operativos —como MS-DOS— sólo soportan este tipo de enlazado.</p>
 </li>
 <li>
-<p>En el <strong>enlazado dinámico</strong>, éste se pospone hasta la carga o la ejecución_ (véase la <a href="#etapas_programas_de_usuario">Figura 40</a>).</p>
+<p>En el <strong>enlazado dinámico</strong>, éste se pospone hasta la carga o la ejecución_ (véase la <a href="#etapas_programas_de_usuario">Figura 41</a>).</p>
 </li>
 </ul>
 </div>
@@ -11868,7 +11878,7 @@ Algunos sistemas operativos —como MS-DOS— sólo soportan este tipo de enlaza
 <ol class="arabic">
 <li>
 <p>Durante la carga del ejecutable se comprueban las dependencias del mismo.
-Estas se almacenan en el mismo archivo en disco que dicho ejecutable.</p>
+Éstas se almacenan en el mismo archivo en disco que dicho ejecutable.</p>
 </li>
 <li>
 <p>Las librerías a enlazar se cargar y ubican en el espacio de direcciones virtual creado para el nuevo proceso.</p>
@@ -11881,7 +11891,7 @@ Así la invocación de las funciones por parte del programa se puede realizar de
 </div>
 <div class="paragraph">
 <p>Cuando el enlazado se va a realizar en tiempo de ejecución se habla de <strong>enlazado dinámico con carga diferida</strong>.
-En ese caso el procedimiento es el siguiente.</p>
+En ese caso el procedimiento es el siguiente:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -11901,7 +11911,7 @@ Esto permite que la siguiente ejecución de la función no incurra en ningún co
 <div class="paragraph">
 <p>Sin esta habilidad, cada programa en el sistema debería tener, por ejemplo, una copia de la librería del sistema incluida en su ejecutable.
 Esto significaría un desperdicio de espacio libre en disco y de memoria principal.
-Además, este esquema facilita la actualización de las librería, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.</p>
+Además, este esquema facilita la actualización de las librerías, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.</p>
 </div>
 <div class="sect3">
 <h4 id="_reubicación_de_las_direcciones_2">15.4.1. Reubicación de las direcciones</h4>
@@ -11909,7 +11919,7 @@ Además, este esquema facilita la actualización de las librería, puesto que lo
 <p>Durante la compilación de una <strong>librería dinámica</strong> no se conoce la región que va a ocupar, dentro de los espacios de direcciones virtuales de los distintos procesos que la van a utilizar, por lo que es necesario generar <strong>código reubicable</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Atendiendo a lo visto en <a href="#_reubicación_en_tiempo_de_carga">Apartado 15.2.2</a> existe fundamentalmente dos estrategias:</p>
+<p>Atendiendo a lo visto en <a href="#_reubicación_en_tiempo_de_carga">Apartado 15.2.2</a> existen fundamentalmente dos estrategias:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -11932,7 +11942,7 @@ Esto aumenta el tiempo de carga de las librerías y sólo permite que compartan 
 <div class="paragraph">
 <p>Habitualmente las librerías incluyen información acerca de su versión.
 Esta información puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en el sistema.
-Así los viejos programas se pueden ejecutar con las viejas versiones de las las librerías —o con versiones actualizadas pero compatibles— mientras los nuevos programas se ejecuten con las versiones más recientes e incompatibles con los viejos programas.</p>
+Así los viejos programas se pueden ejecutar con las viejas versiones de las las librerías —o con versiones actualizadas pero compatibles— mientras los nuevos programas se ejecutan con las versiones más recientes e incompatibles con los viejos programas.</p>
 </div>
 <div class="paragraph">
 <p>A este sistema se lo conoce como <strong>librerías compartidas</strong>.</p>
@@ -11993,13 +12003,13 @@ El resto sigue siendo un hueco libre, aunque de menor tamaño.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>El <strong>particionado dinámico</strong> se utilizaba fundamentalmente en <strong>sistema de procesamiento por lotes</strong> y <strong>multiprogramados</strong>.
-En este último caso, el sistema operativo tenía una <strong>cola de entrada</strong> ordenada por el <strong>planificador de largo plazo</strong> y la recorría asignado memoria a los procesos, hasta que no quedara
+<p>El <strong>particionado dinámico</strong> se utilizaba fundamentalmente en <strong>sistemas de procesamiento por lotes</strong> y <strong>multiprogramados</strong>.
+En este último caso, el sistema operativo tenía una <strong>cola de entrada</strong> ordenada por el <strong>planificador de largo plazo</strong> y la recorría asignando memoria a los procesos, hasta que no quedara
 ningún hueco libre con tamaño suficiente para alojar al siguiente en la cola.
-Entonces el sistema operativo podía esperaba hasta que algunos procesos terminarán y hubiera un hueco lo suficientemente grande en la memoria, para el siguiente proceso, o podía seguir buscando en la cola de entrada procesos de menores requerimientos, aunque para ello tuviera que saltarse algunos procesos.</p>
+Entonces el sistema operativo podía esperar hasta que algunos procesos terminarán y hubiera un hueco lo suficientemente grande en la memoria, para el siguiente proceso, o podía seguir buscando en la cola de entrada procesos de menores requerimientos, aunque para ello tuviera que saltarse algunos procesos.</p>
 </div>
 <div class="paragraph">
-<p>En general, en un momento dado el sistema operativo una petición de tamaño <em>N</em> debe satisfacer con una lista de huecos libres de tamaño variable.
+<p>En general, en un momento dado el sistema operativo, debe satisfacer una petición de tamaño <em>N</em> con una lista de huecos libres de tamaño variable.
 Esto no es más que un caso particular del problema clásico de la
 asignación dinámica de almacenamiento, para el cual hay diversas soluciones:</p>
 </div>
@@ -12020,7 +12030,7 @@ Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por t
 </ul>
 </div>
 <div class="paragraph">
-<p>Para evaluar que estrategia es la mejor se han realizado algunas simulaciones con los siguientes resultados:</p>
+<p>Para evaluar que estrategia es la mejor, se han realizado algunas simulaciones con los siguientes resultados:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -12053,7 +12063,7 @@ Vamos a comentar brevemente como afecta la <strong>fragmentación</strong> a la 
 </div>
 <div class="paragraph">
 <p>La <strong>fragmentación externa</strong> ocurre cuando hay suficiente espacio libre para satisfacer una petición, pero el espacio no es contiguo.
-Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeños tamaños:</p>
+Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeño tamaño:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -12061,7 +12071,7 @@ Es decir, el espacio de almacenamiento está fraccionado en un gran número de h
 <p>Afecta tanto a la estrategia del <strong>primer</strong> como del <strong>mejor ajuste</strong>. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.</p>
 </li>
 <li>
-<p>Algunos análisis estadísticos realizados con el <strong>primer ajuste</strong> revelan que incluso con algunas optimizaciones, con <em>N</em> bloques asignados se pierden \$0,5_N\$ por <strong>fragmentación externa</strong> —es decir, un tercio de toda la memoria no es utilizable—.
+<p>Algunos análisis estadísticos realizados con el <strong>primer ajuste</strong> revelan que incluso con algunas optimizaciones, con \$N\$ bloques asignados se pierden \$0,5N\$ por <strong>fragmentación externa</strong> —es decir, un tercio de toda la memoria no es utilizable—.
 A esto se lo conoce como la regla del 50%.</p>
 </li>
 </ul>
@@ -12161,12 +12171,11 @@ La mayor parte del tiempo de intercambio es el tiempo de transferencia con el di
 Esto afecta al <strong>tiempo de cuanto</strong> que siempre debe ser mucho mayor que el tiempo de <strong>cambio de contexto</strong>.</p>
 </li>
 <li>
-<p>Un proceso podría disponer de un espacio en memoria de 120MB pero estar
-utilizando sólo 2MB.
+<p>Un proceso podría disponer de un espacio en memoria de 120 MiB pero estar utilizando sólo 2 MiB.
 Por tanto, es interesante que el sistema operativo conozca con exactitud la memoria utilizada por el proceso —y no la que podría estar utilizando como máximo— para reducir el tiempo de transferencia de los datos al disco durante el intercambio.</p>
 <div class="paragraph">
 <p>Para eso, el sistema operativo proporciona llamadas al sistema con las que un proceso con requerimientos dinámicos de memoria puede informar del cambio en su necesidad de memoria.
-Por ejemplo, los sistemas operativos modernos proporcionan llamadas al sistema para reservar y liberar memoria —como malloc() y free() en los sistemas POSIX— gracias a las que el sistema conoce las necesidades reales de los procesos.</p>
+Por ejemplo, los sistemas operativos modernos proporcionan llamadas al sistema para reservar y liberar memoria —como <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a> en los sistemas POSIX— gracias a las que el sistema conoce las necesidades reales de los procesos.</p>
 </div>
 </li>
 <li>
@@ -12203,95 +12212,134 @@ Además, en los sistemas actuales no se intercambian procesos completos sino las
 <div class="sect1">
 <h2 id="_paginación">16. Paginación</h2>
 <div class="sectionbody">
+<div class="exampleblock right">
+<div class="content">
 <div class="paragraph">
-<p>El mapeo entre direcciones virtuales y físicas puede realizarse de diversas maneras.
-La forma más extendida es <em>la <strong>paginación</strong>, que no es sino un esquema de gestión de la memoria que permite que el espacio de direcciones físico de un proceso no sea continuo</em>.</p>
+<div class="title">Tiempo estimado de lectura</div>
+<p>22 minutos</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La traducción entre direcciones virtuales y físicas puede realizarse de diversas maneras.
+La forma más extendida es la <strong>paginación</strong>, que no es sino un esquema de gestión de la memoria que permite que el espacio de direcciones físico de un proceso no sea continuo, evitando el problema de la <strong>fragmentación externa</strong>.</p>
 </div>
 <div class="sect2">
 <h3 id="_método_básico">16.1. Método básico</h3>
 <div class="paragraph">
-<p>En la paginación <em>la memoria física se divide en bloques de tamaño fijo denominados <strong>marcos</strong>, mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados <strong>páginas</strong></em>.
-Cuando un proceso va a ser ejecutado sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.</p>
+<p>En la paginación la memoria física se divide en bloques de tamaño fijo denominados <strong>marcos</strong>, mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados <strong>páginas</strong>.
+Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.</p>
+</div>
+<div id="paginación" class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/paginación.svg" alt="paginación">
+</div>
+<div class="title">Figura 43. Soporte del hardware para la paginación.</div>
 </div>
 <div class="paragraph">
-<p>La paginación es una forma de <em>reubicación de las direcciones en tiempo de ejecución</em> donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la ):</p>
+<p>La paginación es una forma de <strong>reubicación de las direcciones en tiempo de ejecución</strong> donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <a href="#paginación">Figura 43</a>):</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>Cada dirección virtual generada por la CPU es divida en dos partes</em>: un <strong>número de página</strong> \$p\$ y un <strong>desplazamiento</strong> \$d\$.</p>
+<p>Cada dirección virtual generada por la CPU es divida en dos partes: un <strong>número de página</strong> \$p\$ y un <strong>desplazamiento</strong> \$d\$.</p>
 </li>
 <li>
-<p><em>El número de página es utilizado por la MMU para indexar la <strong>tabla de páginas</strong></em>, que contiene el <strong>número de marco</strong> \$f\$ de cada página en la memoria física.</p>
+<p>El <strong>número de página</strong> es utilizado por la MMU para indexar la <strong>tabla de páginas</strong>, que contiene el <strong>número de marco</strong> \$f\$ de cada <strong>página</strong> en la memoria física.</p>
 </li>
 <li>
-<p><em>El número de marco \$f\$ es combinado con el <strong>desplazamiento</strong> \$d\$</em> para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.</p>
+<p>El <strong>número de marco</strong> \$f\$ es combinado con el <strong>desplazamiento</strong> \$d\$ para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>El tamaño de las páginas —y el de los marcos— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MB, dependiendo de la arquitectura.
-Es decir, si el espacio de direcciones es de \$2^m\$ y el tamaño de página es de \$2^n\$, los \$m - n\$ bits de mayor orden del espacio de direcciones indican el <em>número de página</em>, mientras que los \$n\$ bits de menor orden indican el <em>desplazamiento</em> (véase la )</p>
+<p>El tamaño de las <strong>páginas</strong> —y el de los <strong>marcos</strong>— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
+Es decir, si el espacio de direcciones es de \$2^m\$ y el tamaño de página es de \$2^n\$, los \$m - n\$ bits de mayor orden de las direcciones virtuales indican el <strong>número de página</strong>, mientras que los \$n\$ bits de menor orden indican el <strong>desplazamiento</strong> (véase la <a href="#dirección_virtual_paginación">Figura 44</a>).</p>
+</div>
+<div id="dirección_virtual_paginación" class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/dirección_virtual_paginación.svg" alt="dirección virtual paginación">
+</div>
+<div class="title">Figura 44. Descomposición de las direcciones virtuales en paginación.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento \$n\$ necesita:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[n = \log_2 4096 = 12~\text{bits}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Si las direcciones virtuales son de 32 bits, eso deja para el número de página \$p\$:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[p = 32 - 12 = 20~\text{bits}\]
+</div>
+</div>
+<div class="paragraph">
+<p>por lo que el espacio de direcciones virtual tiene \$2^20\$ páginas —es decir, 1.048.576 páginas—.</p>
 </div>
 <div class="sect3">
 <h4 id="_desde_el_punto_de_vista_de_los_procesos">16.1.1. Desde el punto de vista de los procesos</h4>
 <div class="paragraph">
-<p>Cada página de un proceso requiere un marco.
+<p>Cada <strong>página</strong> de un proceso requiere un <strong>marco</strong>.
 Por tanto, cuando un proceso llega al sistema:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>Si el proceso requiere n páginas, el sistema operativo debe escoger n marcos</em>.
-Estos marcos son tomados de la <em>lista de marcos libres</em> que debe mantener el sistema.
-Puesto que son escogidos de allí donde los haya libres, <em>el espacio de direcciones físico puede no ser contiguo aunque los procesos vean un espacio de direcciones virtual contiguo</em>.</p>
+<p>Si el proceso requiere \$n\$ <strong>páginas</strong>, el sistema operativo debe escoger \$n\$ <strong>marcos</strong>.
+Estos <strong>marcos</strong> son tomados de la <strong>lista de marcos libres</strong> que debe mantener el sistema.
+Puesto que son escogidos de allí donde los haya libres, el <strong>espacio de direcciones físico</strong> puede no ser contiguo aunque los procesos vean un <strong>espacio de direcciones virtual</strong> contiguo.</p>
 </li>
 <li>
-<p>Los marcos seleccionados son asignados al proceso y <em>cada página del proceso es cargada en uno</em> de dichos marcos.</p>
+<p>Los <strong>marcos</strong> seleccionados son asignados al proceso y cada <strong>página</strong> del proceso es cargada en uno de dichos <strong>marcos</strong>.</p>
 </li>
 <li>
-<p><em>La tabla de páginas es actualizada</em> de manera que en la entrada de cada página del proceso se pone el número de marco correspondiente.</p>
+<p>La <strong>tabla de páginas</strong> es actualizada de manera que en la entrada de cada <strong>página</strong> del proceso se pone el número de <strong>marco</strong> correspondiente.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
 <p>Un aspecto importante de la paginación es la diferencia entre como ven los proceso la memoria y como es realmente la memoria física.
 Cada proceso ve la memoria como un espacio único que lo contiene sólo a él.
-Sin embargo la realidad es que el programa está disperso por la memoria física, que además puede almacenar a otros programas.
-<em>Esto es posible porque en cada momento la tabla de páginas sólo contiene las páginas del proceso actual</em>.</p>
+Sin embargo, la realidad es que el programa está disperso por la memoria física, que además puede almacenar a otros programas.
+Esto es posible porque en cada momento la <strong>tabla de páginas</strong> sólo contiene las <strong>páginas</strong> del proceso en ejecución en la CPU.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_desde_el_punto_de_vista_del_sistema_operativo">16.1.2. Desde el punto de vista del sistema operativo</h4>
 <div class="paragraph">
-<p>Puesto que el sistema operativo es quién gestiona la memoria física, <em>éste debe mantenerse al tanto de las particularidades de su uso</em>:</p>
+<p>Puesto que el sistema operativo es quién gestiona la memoria física, éste debe saber:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>Que marcos están asignados y a que página de que proceso o procesos</em>.</p>
+<p>Que <strong>marcos</strong> están asignados y a que <strong>página</strong> de que proceso o procesos.</p>
 </li>
 <li>
-<p><em>Que marcos están disponibles</em>.</p>
+<p>Que <strong>marcos</strong> están disponibles.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Toda esta información generalmente se guarda en una estructura denominada la <em><strong>tabla de marcos</strong>, que tiene una entrada por cada marco de la memoria física</em>.</p>
+<p>Toda esta información generalmente se guarda en una estructura denominada la <strong>tabla de marcos</strong>, que tiene una entrada por cada <strong>marco</strong> de la memoria física.</p>
 </div>
 <div class="paragraph">
-<p>Además <em>el sistema operativo debe mantener una copia de la tabla de páginas para cada proceso en el PCB</em>, igual que mantiene una copia del contador de programa y del contenido de los registros de la CPU.
+<p>Además, el sistema operativo debe mantener una copia de la <strong>tabla de páginas</strong> para cada proceso en el <strong>PCB</strong>, igual que mantiene una copia del contador de programa y del contenido de los registros de la CPU.
 Esta copia es utilizada:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Por <em>el asignador para sustituir la tabla de páginas hardware cuando realiza un cambio de contexto</em>.
-Por lo tanto el uso de la paginación incrementa el tiempo del cambio de contexto.</p>
+<p>Por el <strong>asignador</strong> para sustituir la <strong>tabla de páginas</strong> usada por la CPU cuando realiza un <strong>cambio de contexto</strong>.
+Por lo tanto, el uso de la paginación incrementa el tiempo del cambio de contexto.</p>
 </li>
 <li>
-<p><em>Para el mapeo manual de direcciones virtuales en físicas</em>.
-Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una operación de E/S y proporciona una dirección como parámetro, dicha dirección debe ser mapeada manualmente para producir la dirección física correspondiente que será utilizada por el hardware para realizar la operación.</p>
+<p>Para la traducción manual de direcciones virtuales en físicas.
+Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una operación de E/S y proporciona una dirección como parámetro, dicha dirección debe ser traducida manualmente para producir la dirección física correspondiente que será comunicada al hardware para realizar la operación.</p>
 </li>
 </ul>
 </div>
@@ -12299,66 +12347,221 @@ Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una 
 <div class="sect3">
 <h4 id="_tamaño_de_las_páginas">16.1.3. Tamaño de las páginas</h4>
 <div class="paragraph">
-<p>Una decisión de diseño importante es escoger el tamaño de las páginas adecuado:</p>
+<p>Una decisión de diseño importante es escoger el tamaño de las <strong>páginas</strong> adecuado:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>Con páginas más pequeñas esperamos tener menos fragmentación interna</em>.
-Los marcos son asignados como unidades indivisibles, por lo que si los requerimientos de memoria de un procesos no coinciden con un límite de páginas el último marco asignado no sería utilizado completamente (en ocasiones incluso se podría desperdiciar un marco completo).
-A ese fenómeno se lo conoce como <em>fragmentación interna</em></p>
+<p>Con <strong>páginas</strong> más pequeñas esperamos tener menos <strong>fragmentación interna</strong>.</p>
 </li>
 <li>
-<p><em>Con páginas más grande se pierde menos espacio en la tabla de páginas</em>.
-No olvidemos que cuanto más pequeñas son las páginas más páginas son necesarias y, por tanto, más entradas en la tabla de páginas se necesitan.
-Además <em>la E/S es más eficiente cuanto más datos son transferidos en cada operación</em>.</p>
+<p>Con páginas más grande se pierde menos espacio en la <strong>tabla de páginas</strong>.
+No olvidemos que cuanto más pequeñas son las <strong>páginas</strong> más <strong>páginas</strong> son necesarias y, por tanto, más entradas en la <strong>tabla de páginas</strong> se necesitan.
+Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Los tamaños de páginas típicos son 4 y 8 KB.
-Por ejemplo, normalmente cada entrada en la tabla de paginas es de 4 bytes —aunque esto también puede variar—.
-Eso significa que cada entrada puede direccionar a uno de los 2<sup>32</sup> marcos de la memoria física.
-Si suponemos que el tamaño de cada marco es de 4 KB, podemos determinar que el sistema es capaz de direccionar 2<sup>44</sup> bytes —o 16 TB— de memoria física, para lo que es necesario disponer de una tabla de páginas de 4 MB.</p>
+<p>Los tamaños de <strong>páginas</strong> típicos son 4 y 8 KiB.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1.048.576 páginas.
+Si se utilizan 4 bytes para cada entrada de la <strong>tabla de páginas</strong> —aunque esto también puede variar— eso significa que cada <strong>tabla de páginas</strong> ocupa 4 MiB de espacio.
+Mientras que con <strong>páginas</strong> de 8 KiB, la <strong>tabla de páginas</strong> ocuparía 2 MiB de espacios.</p>
+</div>
+<div class="paragraph">
+<p>También significa que si los 4 bytes de la <strong>tabla de páginas</strong> se utilizan para guardar únicamente el <strong>número de marco</strong>, cada entrada puede direccionar a uno de \$2^32\$ —o 4 GiB— <strong>marcos</strong> de la memoria física.
+Si el tamaño de cada <strong>marco</strong> es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar \$2^44\$ bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_soporte_hardware_de_la_tabla_de_páginas">16.2. Soporte hardware de la tabla de páginas</h3>
 <div class="paragraph">
-<p>La implementación en hardware de la tabla de páginas puede realizarse de diversas maneras:</p>
+<p>La implementación en hardware de la <strong>tabla de páginas</strong> puede realizarse de diversas maneras.</p>
+</div>
+<div class="sect3">
+<h4 id="_almacenada_en_registros_de_la_cpu">16.2.1. Almacenada en registros de la CPU</h4>
+<div class="paragraph">
+<p>La <strong>tabla de páginas</strong> del proceso actual en la CPU puede alojarse dentro de la propia CPU, en unos registros destinados a tal fin.</p>
+</div>
+<div class="paragraph">
+<p>Debido a la velocidad de los registros de la CPU, la implementación en registros es la más eficiente.
+Sin embargo, solo puede ser utilizado para <strong>tablas de páginas</strong> razonablemente pequeñas, ya que alojar tablas de más de 256 entradas en registros es muy costoso.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el DEC <a href="https://es.wikipedia.org/wiki/PDP-11">PDP-11</a> —para el que se diseño el primer UNIX— es un ejemplo de sistema con esta implementación.
+Utilizaba un espacio de direcciones de 16 bits y un tamaño de <strong>páginas</strong> de 8 KiB, por lo que sólo necesitaba 8 registros dedicados para alojar toda la <strong>tabla de páginas</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_almacenada_en_memoria">16.2.2. Almacenada en memoria</h4>
+<div class="paragraph">
+<p>La otra opción es alojar <strong>tabla de páginas</strong> del proceso actual en la memoria, normalmente en un formato definido por la CPU.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas modernos se utilizan <strong>tablas de páginas</strong> de un millón de entradas o más, que difícilmente pueden alojarse en registros dentro de la CPU.
+Por eso, los sistemas actuales almacenan la <strong>tabla de páginas</strong> del proceso actualmente en ejecución, en la memoria.
+Eso permite disponer de <strong>tablas de páginas</strong> de gran tamaño, aunque a costa de necesitar dos accesos a la memoria física por cada acceso a una dirección virtual.</p>
+</div>
+<div class="paragraph">
+<p>Para que la MMU pueda conocer la ubicación de la <strong>tabla de páginas</strong> durante la traducción de las direcciones, la CPU debe disponer de un registro —el <strong>PTBR</strong> (<em>Page-Table Base Register</em>)— donde se guarda la dirección de la <strong>tabla de páginas</strong> actual.</p>
+</div>
+<div class="paragraph">
+<p>Además, esto tiene la ventaja de que el <strong>cambio de contexto</strong> sea más rápido —respecto al uso de registros para almacenar la tabla de páginas— puesto que sólo es necesario cargar un único registro más —el <strong>PTBR</strong>— durante el mismo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tlb">16.2.3. TLB</h4>
+<div class="paragraph">
+<p>La solución al retraso originado por el acceso a la tabla de páginas, cuando ésta está en la
+memoria, pasa por que el sistema disponga de un pequeño caché de traducciones en hardware llamado <strong>TLB</strong> (<em>Translation Look-aside Buffer</em>).</p>
+</div>
+<div class="paragraph">
+<p>La <strong>TLB</strong> es una memoria asociativa de alta velocidad.
+Cada entrada de la <strong>TLB</strong> tiene dos partes: la <strong>clave</strong> —o etiqueta— y el valor.
+Cuando a la <strong>TLB</strong> se le entrega un elemento, este es comparado simultáneamente con todas las claves.
+Si se produce alguna coincidencia, la memoria devuelve el valor de la entrada correspondiente.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Debido a la forma que tienen de operar, son rápidas pero muy caras de fabricar.
+Por ello, el número de entradas es bajo, normalmente entre 64 y 1024.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_uso_básico_de_la_tlb">Uso básico de la TLB</h5>
+<div class="paragraph">
+<p>La <strong>TLB</strong> es utiliza con la <strong>tabla de páginas</strong> de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La <strong>TLB</strong> contiene unas pocas entradas de la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Cuando la CPU genera una dirección virtual, el <strong>número de página</strong> es entregado a la <strong>TLB</strong>.
+La <strong>TLB</strong> utiliza los números de páginas como <strong>clave</strong>, por lo que si hay alguna coincidencia, devolverá la entrada correspondiente de la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Si hay coincidencia, el <strong>número de marco</strong> es extraído de la entrada devuelta por la <strong>TLB</strong> y es utilizado para generar la dirección física.
+Todo este proceso puede requerir un 10% más de tiempo que si no se hiciera la traducción de las direcciones.</p>
+</li>
+<li>
+<p>Si no hay coincidencia, es necesario acceder a la <strong>tabla de páginas</strong> para obtener la entrada correspondiente directamente de ella.
+Indudablemente este acceso puede beneficiarse de la existencia de diferentes niveles de caché en el acceso a la memoria principal.</p>
+</li>
+<li>
+<p>En este último caso, la entrada recuperada debe ser añadida a la <strong>TLB</strong>, por lo que si está llena se debe seleccionar una para ser sustituida.
+Los algunos algoritmos de reemplazo utilizados van desde elegir una aleatoriamente hasta el <strong>LRU</strong> (<em>Least Recently Used</em>).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_borrado_de_la_tlb_en_el_cambio_de_contexto">Borrado de la TLB en el cambio de contexto</h5>
+<div class="paragraph">
+<p>Una cuestión importante es qué ocurre con las <strong>TLB</strong> cuando el sistema operativo realiza un <strong>cambio de contexto</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En general, es necesario que el asignador realice un borrado de la <strong>TLB</strong>.
+De lo contrario, el nuevo proceso podría utilizar las entradas de la <strong>tabla de páginas</strong> del viejo proceso, que estuvieran almacenadas en la <strong>TLB</strong>.
+Sin embargo, un proceso no tiene porque utilizar todas las entradas de la <strong>TLB</strong>.
+Por lo que sería mas interesante, no tener que borrar las entradas de procesos anteriores, mientras no sean necesarias, por si estos vuelven a ser ejecutados en la CPU.</p>
+</div>
+<div class="paragraph">
+<p>El borrado se puede evitar si cada entrada de la <strong>TLB</strong> tiene un <strong>ASID</strong> (<em>Address-Space Identification</em>), que no es más que un identificador único para cada proceso.
+En éste tipo de <strong>TLB</strong>, en la <strong>clave</strong> se buscan pares <strong>(número de página, ASID)</strong>, donde el primero proviene de la dirección virtual y el segundo es el <strong>ASID</strong> del proceso actual.
+De esta forma, si el <strong>número de página</strong> coincide pero no el <strong>ASID</strong>, se produce un fallo de la <strong>TLB</strong>.
+Esto obliga a acceder a la <strong>tabla de páginas</strong> en memoria para recuperar la entrada, evitando que se lea por error la entrada de un proceso anterior.</p>
+</div>
+<div class="paragraph">
+<p>Esta característica está presente en los procesadores <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a>  y <a href="https://es.wikipedia.org/wiki/UltraSPARC">Sun UltraSPARC</a>.
+Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la familia x86, a través de las extensiones de virtualización Intel VT y AMD Pacifica.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tiempos_de_acceso_a_la_memoria">Tiempos de acceso a la memoria</h5>
+<div class="paragraph">
+<p>El rendimiento de un sistema con paginación está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria \$T_(em)\$, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de <strong>TLB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En muchos sistemas informáticos el <strong>tiempo de acceso</strong> a la memoria física \$T_m\$ es de unos pocos nanosegundos.
+Por lo tanto, en el método de básico de paginación el <strong>tiempo de acceso efectivo</strong> es el doble del <strong>tiempo de acceso</strong> a la memoria:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_(em)=2T_m\$
+</div>
+</div>
+<div class="paragraph">
+<p>Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el <strong>número de marco</strong>, el <strong>tiempo de acceso efectivo</strong> será mayor.</p>
+</div>
+<div class="paragraph">
+<p>Supongamos que tenemos un sistema con <strong>TLB</strong> y que conocemos la probabilidad \$p\$ de que la entrada que consultamos esté en la <strong>TLB</strong>.
+Entonces, el <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad \$(1-p)\$ de que la entrada no esté en la <strong>TLB</strong> por el <strong>tiempo de acceso</strong> necesario en ese caso \$2T_m\$, mas la probabilidad de que la entrada sí esté en la <strong>TLB</strong> \$p\$ por el <strong>tiempo de acceso</strong> \$T_m\$ porque solo hace falta acceder una vez a la memoria:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_(em)=(1-p)2T_m+pT_m=(2-p)T_m\$
+</div>
+</div>
+<div class="paragraph">
+<p>Como se puede observar, cuanto más se aproxima a 1 la probabilidad \$p\$ de que la entrada esté en la <strong>TLB</strong>, más cerca está \$T_(em)\$ de \$T_m\$.</p>
+</div>
+<div class="paragraph">
+<p>Para mejorar esta probabilidad:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>Como un conjunto de registros dedicados de la CPU</em>.
-Es decir, la tabla de páginas del proceso actual es alojada dentro de la propia CPU, en unos registros destinados a tal fin.</p>
+<p>Las <strong>TLB</strong> permiten marcar algunas entradas como insustituibles.
+Esto normalmente se hace con las entradas de las <strong>páginas</strong> del código y los datos del núcleo, ya que son páginas que se utilizan con muchísima frecuencia.</p>
 </li>
 <li>
-<p><em>Almacenada en la memoria</em>.
-Es decir, la tabla de páginas del proceso actual es alojada en la memoria, normalmente en un formato definido por la CPU.</p>
+<p>Si la MMU soporta páginas de mayor tamaño que el estándar, se utilizan para alojar el código y los datos del núcleo.
+De esta forma se minimiza el número de entradas de la <strong>TLB</strong> que utilizan, con el fin de disponer de más entradas libres para los procesos en ejecución.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Debido a la velocidad de los registros de la CPU <em>la implementación como conjunto de registros es la más eficiente.</em> Sin embargo <em>sólo puede ser utilizado para tablas de páginas razonablemente pequeñas</em>.
-El DEC PDP-11 —para el que se diseño el primer UNIX— es un ejemplo de sistema con esta implementación.
-En el mismo se utilizaba un espacio de direcciones de 16 bits y un tamaño de páginas de 8 KB, por lo que sólo necesitaba 8 registros dedicados para alojar toda tabla de páginas.</p>
+<p>En la familia x86 el tamaño de página estándar es de 4 KiB, pero también se puede disponer de páginas de 4 MiB.
+En x86-64 las páginas de gran tamaño son de 2 MiB, aunque algunos modelos también soportan páginas de 1 GiB.</p>
 </div>
-<div class="paragraph">
-<p>En los sistemas modernos se utilizan tablas de páginas muchos más grandes —de un millón de entradas o más— que difícilmente pueden alojarse en registros dentro de la CPU, ya que alojar tablas de páginas de más de 256 entradas es muy costoso.
-Por eso los sistemas actuales almacenan la tabla de páginas del proceso en ejecución en la memoria._ Eso permite disponer tablas de páginas de gran tamaño_ aunque a costa de <em>necesitar dos acceso a la memoria física por cada acceso a una palabra de la memoria virtual<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></em>.</p>
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>Para que la MMU pueda conocer la ubicación de la tabla de páginas durante la traducción de las direcciones, <em>la CPU debe disponer de un registro —el <strong>PTBR</strong> (Page-Table Base Register)— donde se guarda la dirección de la tabla de páginas actual</em>.
-Además esto permite que el cambio de contexto sea más rápido —respecto al uso de registros para almacenar la tabla de páginas— puesto que sólo es necesario carga un único registro más —el PTBR— durante el mismo.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_protección">16.3. Protección</h3>
+<h3 id="_protección_de_la_memoria_2">16.3. Protección de la memoria</h3>
 <div class="paragraph">
-<p>La protección de las páginas <em>se consigue mediante unos <strong>bits de protección</strong> asociados a cada entrada de la tabla de páginas</em> y normalmente almacenados en la misma.
-Estos bits pueden ser:</p>
+<p>La protección de las páginas se consigue mediante unos bits que indican las operaciones que se pueden realizar sobre ellas.
+Normalmente, estos bits son almacenados en cada una de las entradas de la <strong>tabla de páginas</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_bits_de_protección">16.3.1. Bits de protección</h4>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>Los <strong>bits de protección</strong> de protección pueden ser:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -12366,84 +12569,268 @@ Estos bits pueden ser:</p>
 <p><strong>Solo lectura</strong>.</p>
 </li>
 <li>
-<p><strong>Lectura — Escritura</strong>.
-En algunos sistemas hay un bit específico para este permiso, mientras que en otros se utilizan bit separados como: <em>lectura</em>, <em>escritura</em> y <em>ejecución</em>.</p>
+<p><strong>Lectura&#8201;&#8212;&#8201;Escritura</strong>.
+En algunos sistemas hay un bit específico para este permiso, mientras que en otros se utilizan bit separados, como: <strong>lectura</strong>, <strong>escritura</strong> y <strong>ejecución</strong>; que se pueden combinar libremente.</p>
 </li>
 <li>
 <p><strong>Sólo ejecución</strong>.
 Que no existen en todas las plataformas.
-Por ejemplo, la familia Intel x86 careció de esta característica hasta que AMD la incluyó en su arquitectura AMD64, lo que obligó a Intel a incluirla en las versiones más modernas de su Pentium IV.
-El bit —que para ser exacto indica <em>no ejecución</em>— fue introducido para evitar cierto tipo de ataques de seguridad.</p>
+Por ejemplo, la familia x86 careció de esta característica hasta que AMD la incluyó en su arquitectura x86-64, lo que obligó a Intel a incluirla en las versiones más modernas de Pentium IV.
+El bit —que para ser exacto indica <strong>no ejecución</strong>— fue introducido para evitar cierto tipo de ataques de seguridad.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Durante la traducción de las direcciones la MMU comprueba que el tipo de acceso sea válido.
-Si esto no es así, se genera una excepción de violación de protección de memoria, dado que el acceso en un modo o autorizado se considera una instrucciones privilegiada.
-Normalmente el sistema operativo responde a dicha excepción terminando el proceso que la generó.</p>
+Si esto no lo es, se genera una excepción de violación de protección de memoria, dado que el acceso en un modo no autorizado se considera una instrucciones privilegiada.
+Normalmente, el sistema operativo responde a dicha excepción terminando el proceso que la generó.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bit_de_válido">16.3.2. Bit de válido</h4>
+<div class="paragraph">
+<p></p>
 </div>
 <div class="paragraph">
-<p><em>Además de los bits comentados se suele añadir a cada entrada un <strong>bit de válido</strong></em>:</p>
+<p>Además de los <strong>bits de protección</strong> comentados, se suele añadir a cada entrada un <strong>bit de válido</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>Cuando una página es válida</em>, la pagina asociada está en el espacio de direcciones virtual del proceso.
-Es decir, <em>es legal</em>.</p>
+<p>Cuando una <strong>página es válida</strong>, la pagina existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página se puede utilizar.
+Otro término comúnmente utilizado, es que la página es <strong>legal</strong>.</p>
 </li>
 <li>
-<p><em>Cuando la página no es inválida</em>, la página no está asociada al espacio de direcciones virtual del proceso.
-Es decir, <em>es ilegal</em>.</p>
+<p>Cuando la <strong>página no es inválida</strong>, la página no existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página no se puede utilizar.
+El término alternativo utilizado, es que la página es <strong>ilegal</strong>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><em>El sistema operativo puede utilizar este bit para permitir o denegar el acceso a una página</em>, por ejemplo porque no le ha asignado un marco ya que no está siendo utilizada por el proceso.
-Al igual que con los bits de permisos, los intentos de acceso a una página ilegal generan una excepción.</p>
+<p>Al igual que con los <strong>bit de protección</strong>, los intentos de acceso a una página ilegal generan una excepción.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, en la vemos el espacio de direcciones virtual y la tabla de páginas de un proceso de 5096 bytes en un sistema con páginas de 1024 bytes.
+<p>El sistema operativo puede utilizar este bit para permitir o denegar cualquier tipo de acceso a una <strong>página</strong>.
+Generalmente, porque no se le ha asignado un <strong>marco</strong> de memoria física, porque esa página no está siendo utilizada por el proceso.</p>
+</div>
+<div id="bit_de_válido_en_la_tabla_de_páginas" class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/bit_de_válido_en_la_tabla_de_páginas.svg" alt="bit de válido en la tabla de páginas">
+</div>
+<div class="title">Figura 45. Bit de válido en la tabla de páginas.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en la <a href="#bit_de_válido_en_la_tabla_de_páginas">Figura 45</a> vemos el espacio de direcciones virtual y la <strong>tabla de páginas</strong> de un proceso de 5096 bytes en un sistema con <strong>páginas</strong> de 1 KiB.
 Puesto que el proceso no ocupa todo el espacio de direcciones, sólo las direcciones de la 0 a la 5119 son válidas.
 En dicho ejemplo podemos apreciar varios fenómenos:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Debido a la fragmentación interna las direcciones de la 5097 a la 5119 son válidas, aunque el proceso solo ocupe hasta la 5096.
+<p>Debido a la <strong>fragmentación interna</strong>, las direcciones de la 5097 a la 5119 son válidas, aunque el proceso solo ocupe hasta la 5096.
 Es decir, se está asignando al proceso una porción de memoria que no necesita.</p>
 </li>
 <li>
-<p>Las páginas ocupadas por el proceso son válidas.
-Pero todas las paginas en direcciones por encima de la 5119 están marcadas como ilegales.
-<em>Así el sistema operativo no tiene que asignar marcos a páginas no utilizadas por el proceso</em>.</p>
+<p>Solo las <strong>páginas</strong> con datos y código del proceso son válidas.
+Mientras que todas las <strong>paginas</strong> en direcciones por encima de la 5119 están marcadas como ilegales.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>En general los procesos sólo necesitan una porción muy pequeña de su espacio de direcciones virtual.
-En esos casos es un desperdicio de memoria crear y almacenar un tabla de página completa con una entrada para cada página del espacio de direcciones.
-Para evitarlo <em>en algunas CPU existe el <strong>PTLR</strong> (Page-Table Length Register) que se utiliza para indicar el tamaño actual de la tabla de página</em>.
-Este valor es comparado por la MMU durante la traducción con el número de página de cada dirección virtual, de manera que las páginas con entradas más allá de la última almacenada en la tabla son consideradas ilegales.</p>
+<p>En general, los procesos sólo necesitan una porción muy pequeña de su espacio de direcciones virtual.
+Por ejemplo, en un sistema de 32 bits, muy pocos procesos necesitan los 3 GiB disponibles como máximo para cada proceso —el 1 GiB restante suele estar ocupado por el núcleo del sistema—.
+Utilizando el <strong>bit de válido</strong>, el sistema operativo no tiene que asignar <strong>marcos</strong> a <strong>páginas</strong> no utilizadas por el proceso, ahorrando mucha memoria.</p>
 </div>
 <div class="paragraph">
-<p>En realidad, tal y como vimos en el <a href="#_el_proceso">Apartado 9.1</a>, <em>lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la _.
-En la misma podemos observar como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
-Este esquema permite que tanto el _montón</em> —a través del mecanismo de asignación dinámica de memoria de <code>malloc()</code>— como la pila puedan extenderse, en base a las necesidades de memoria que tenga el proceso, sobre la región de memoria no ocupada.
-Esa región también puede ser parcialmente ocupada por librerías de enlace dinámico o por otros objetos compartidos que sean necesitados durante la ejecución del proceso.
-<em>En cualquier caso las páginas de dicha región forman parte del espacio de direcciones virtual pero no tienen marcos de memoria física asignados, en tanto en cuanto el proceso no las vaya a utilizar.
-La falta de marco es indicada por el sistema operativo utilizando el bit de válido para denegar el acceso</em>.</p>
+<p>En el <a href="#_tamaño_de_las_páginas">Apartado 16.1.3</a> vimos que el tamaño de la <strong>tabla de páginas</strong> se puede calcular como el número máximo de páginas del espacio de direcciones virtual multiplicado por el tamaño de cada entrada de la tabla.
+Así, en un sistema de 32 bits con páginas de 4 KiB y 4 bytes por entrada, se necesitan 4 MiB de memoria para almacenar la <strong>tabla de páginas</strong>.
+Como un proceso suele ocupar muy poco de su espacio de direcciones virtual, suele ser un desperdicio de memoria crear y almacenar un <strong>tabla de páginas</strong> completa, con una entrada para cada <strong>página</strong> del espacio de direcciones.</p>
+</div>
+<div class="paragraph">
+<p>Para evítalo, en algunas CPU existe el registro <strong>PTLR</strong> (<em>Page-Table Length Register</em>) que se utiliza para indicar el tamaño actual de la <strong>tabla de páginas</strong>.
+Este valor es comparado por la MMU, durante la traducción de las direcciones virtuales, con el <strong>número de página</strong> de cada dirección virtual, de manera que las <strong>páginas</strong> con entradas más allá de la última almacenada en la tabla son consideradas ilegales.</p>
+</div>
+<div id="proceso_en_memoria_disperso" class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/proceso_en_memoria.svg" alt="proceso en memoria">
+</div>
+<div class="title">Figura 46. Anatomía de un proceso en memoria.</div>
+</div>
+<div class="paragraph">
+<p>En realidad, el registro <strong>PTLR</strong> no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <a href="#_el_proceso">Apartado 9.1</a>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <a href="#proceso_en_memoria_disperso">Figura 46</a>.
+En ella podemos observar como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
+Este esquema permite que tanto el <strong>montón</strong> —a través del mecanismo de asignación dinámica de memoria— como la <strong>pila</strong> puedan extenderse —en base a las necesidades de memoria que tenga el proceso— sobre la región de memoria no ocupada.
+Esa región también puede ser parcialmente ocupada por <strong>librerías de enlace dinámico</strong> o regiones de <strong>memoria compartida</strong>, si son necesarias durante la ejecución del proceso.</p>
+</div>
+<div class="paragraph">
+<p>En cualquier caso, las <strong>páginas</strong> de la región no ocupada forman parte del espacio de direcciones virtual, pero no necesitan tener asignado ningún <strong>marco</strong> de memoria física, en tanto en cuanto el proceso no las vaya a utilizar.
+La falta de <strong>marco</strong> es indicada por el sistema operativo utilizando el <strong>bit de válido</strong> para denegar el acceso.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_páginas_compartidas">16.4. Páginas compartidas</h3>
 <div class="paragraph">
-<p>Una de las ventajas importantes de la paginación es la posibilidad de compartir páginas entre procesos.
-Para conseguir esto basta con que <em>las <strong>páginas compartidas</strong> de los distintos procesos tengan asignadas un mismo marco</em>.
-Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las páginas de código o los datos de sólo lectura con el fin de ahorrar memoria.
-También permite compartir las páginas de código de una librería compartida enlazada a diferentes procesos.</p>
+<p></p>
 </div>
 <div class="paragraph">
-<p>Compartir páginas no sólo permite ahorrar memoria pues en <em>los sistemas operativos modernos la memoria compartida (véase el <a href="#_memoria_compartida">Capítulo 11</a>) se implementa mediante páginas compartidas</em>.</p>
+<p>Una de las ventajas importantes de la paginación es la posibilidad de compartir <strong>páginas</strong> entre procesos.
+Para conseguir esto basta con que las <strong>páginas compartidas</strong> de los distintos procesos tengan asignadas un mismo <strong>marco</strong>.
+Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las <strong>páginas</strong> de código o los datos de sólo lectura con el fin de ahorrar memoria.
+También permite compartir las <strong>páginas</strong> de código de una librería compartida enlazada en diferentes procesos.</p>
+</div>
+<div class="paragraph">
+<p>Compartir <strong>páginas</strong> no sólo permite ahorrar memoria, pues en los sistemas operativos modernos la comunicación entre procesos mediante memoria compartida (véase el <a href="#_memoria_compartida">Capítulo 11</a>) se implementa mediante <strong>páginas compartidas</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_paginación_jerárquica">16.5. Paginación jerárquica</h3>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>Al método básico de paginación se lo conoce como <strong>tabla de páginas lineal</strong>.
+Sin embargo, las CPU comúnmente utilizan otras técnicas a la hora de estructurar la <strong>tabla de páginas</strong>.
+Una de las más comunes es la <strong>paginación jerárquica</strong>, utilizada en los procesadores de la familia x86 y en ARM, entre otros.</p>
+</div>
+<div class="paragraph">
+<p>La mayor parte de los sistemas modernos soportan el uso de espacios de direcciones de gran tamaño.
+Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 bits:</p>
+</div>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño del espacio de direcciones</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= \$2^32\$ = 4 GiB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño de página</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= \$2^12\$ = 4 KiB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>número de páginas</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= \$2^32 / 2^12\$ = \$2^{32-12}\$ = \$2^20\$ = 1.048.576 entradas</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Es decir, que si el tamaño de cada entrada fuera de 4 bytes, la <strong>tabla de páginas</strong> de un proceso podría ocupar hasta 4 MiB; que debe ser alojada en una región continúa del espacio de direcciones físico, por lo que podría darse el caso de que en algún momento no hubiera un hueco contiguo lo suficientemente grande.
+Una forma de resolver este problema es partir la <strong>tabla de páginas</strong>, de manera que no sea necesario asignarle la memoria de forma contigua.</p>
+</div>
+<div class="sect3">
+<h4 id="_paginación_jerárquica_de_dos_niveles">16.5.1. Paginación jerárquica de dos niveles</h4>
+<div class="paragraph">
+<p>La <strong>paginación jerárquica</strong> se basa en la idea de que un vector de gran tamaño puede ser mapeado en uno más pequeño, que a su vez puede ser mapeado en un vector de menor tamaño.</p>
+</div>
+<div id="paginación_jerárquica" class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/paginación_jerárquica.svg" alt="paginación jerárquica">
+</div>
+<div class="title">Figura 47. Esquema de paginación jerárquica de dos niveles.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de dirección de 32 bits y un tamaño de
+página de 4 KiB, entonces podemos dividir la tabla de páginas de 1.048.576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un <strong>marco</strong> de 4 KiB.</p>
+</div>
+<div class="paragraph">
+<p>Estos <strong>marcos</strong>, a su vez, pueden ser mapeadas por 1024 entradas con las direcciones físicas de cada <strong>marco</strong>.
+Si organizamos estas 1024 entradas en un vector lineal obtendríamos una <strong>tabla de páginas externa</strong> de 4 KiB (véase la <a href="#paginación_jerárquica">Figura 47</a>).</p>
+</div>
+<div class="paragraph">
+<p>Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativos mantienen la <strong>tabla de páginas externa</strong> en la memoria mientras el proceso se está ejecutando.
+Sin embargo, ahora la <strong>tabla de páginas</strong> está dividida en <strong>marcos</strong>, que no tienen porque ser asignados de forma contigua en la memoria.
+Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.</p>
+</div>
+<div class="paragraph">
+<p>Para tener dos niveles de 1024 entradas, solo es necesario dividir el <strong>número de página</strong> \$p\$ de la dirección virtual —que tenía \$2^20\$ bits— en dos <strong>números de página</strong> de \$2^10\$ bits cada uno:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/dirección_virtual_paginación_jerárquica.svg" alt="dirección virtual paginación jerárquica">
+</div>
+</div>
+<div class="paragraph">
+<p>Este es el método utilizado por la familia de procesadores x86.</p>
+</div>
+<div class="paragraph">
+<p>Otra variación de la <strong>paginación jerárquica de dos niveles</strong> es la utilizada por VAX.
+Estos sistemas utilizaban un arquitectura de 32 bits con un tamaño de página de 512 bytes.
+Las direcciones virtuales eran divididas de la siguiente manera:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="C16-paginación/images/dirección_virtual_vax.svg" alt="dirección virtual vax">
+</div>
+</div>
+<div class="paragraph">
+<p>El espacio de direcciones de un proceso estaba dividido en 3 secciones.
+Los 2 bits de orden más alto \$s\$ de las direcciones virtuales se utilizaban para indicar la <strong>sección</strong>.
+Cada <strong>sección</strong> estaba dividida en <strong>páginas</strong> de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales \$p\$ eran utilizadas para seleccionar la <strong>página</strong> concreta.</p>
+</div>
+<div class="paragraph">
+<p>Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
+Esto era importante, puesto que la <strong>tabla de páginas</strong> de una
+<strong>sección</strong> tenía un tamaño de 8 MiB.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_paginación_jerárquica_de_n_niveles">16.5.2. Paginación jerárquica de N niveles</h4>
+<div class="paragraph">
+<p>En general, en la <strong>paginación jerárquica</strong> de \$N\$ niveles el <strong>número de página</strong> \$p\$ de cada dirección virtual es dividido en \$N\$ números: \${ p_1, p_2, p_3, \ldots, p_N}\$, donde:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>\$p_1\$ se utiliza para indexar la <strong>tabla de páginas externa</strong> —también llamada <strong>directorio de páginas</strong> o <strong>tabla de páginas de nivel 0</strong>— cuya dirección conoce la CPU mediante el <strong>PTBR</strong>.
+La entrada obtenida de esta manera contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 1—.</p>
+</li>
+<li>
+<p>\$p_2\$ se utiliza para indexar la <strong>tabla de páginas de nivel 1</strong>.
+E, igualmente, la entrada así obtenida contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 2—.</p>
+</li>
+<li>
+<p>El proceso continúa hasta que \$p_N\$ se utiliza para indexar la <strong>tabla de páginas de nivel N-1</strong>, con la que se obtiene el <strong>número de marco</strong> que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento \$d\$ de la dirección virtual.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Como se puede ver, resolver una dirección virtual necesita tantos accesos a la memoria como niveles hay en la jerarquía.</p>
+</div>
+<div class="paragraph">
+<p>Debido a que la traducción funciona desde las <strong>tablas de páginas</strong> de nivel superior —nivel 0— hacia las de nivel inferior —nivel \$N-1\$— a esta estructura también se la conoce como <strong>tabla de paginas directa</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los procesadores <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a> y <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a> utilizan una variante denominada <strong>tabla de páginas virtualizada</strong>.
+En este esquema el último nivel de la <strong>paginación jerárquica</strong>, aunque esté en marcos separados en el espacio de direcciones físico, se mapea de manera continua en el espacio de direcciones virtual del proceso.</p>
+</div>
+<div class="paragraph">
+<p>Así, si la consulta a la <strong>TLB</strong> falla, se indexa la <strong>tabla de página</strong> directamente con direcciones virtuales usando el <strong>número de página</strong> completo.
+Esta consulta conlleva la traducción de la dirección virtual de la entrada indexada, que puede estar en la <strong>TLB</strong>.
+Si no es así, se pasa a recorrer la <strong>tabla de páginas</strong> desde el nivel 0 y usando direcciones físicas.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Existen algunos procesadores que utilizan más de dos niveles.
+Por ejemplo, los procesadores x86-64 utilizan un esquema de 4 niveles de paginación.
+Cada <strong>página</strong> es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la <strong>tabla de páginas</strong> es de 8 bytes —con el fin de poder almacenar direcciones de 64 bits— en cada una caben 512 entradas, por lo que los <strong>números de página</strong> de cada nivel necesitan 9 bits.
+Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits —resultado de multiplicar 4 niveles por 9 bits cada uno más 12 bits de desplazamiento— aunque el limite de la arquitectura para las direcciones virtuales sea de 64 bits.</p>
+</div>
 </div>
 </div>
 </div>
@@ -12896,7 +13283,7 @@ Este criterio da lugar a la familia de algoritmos <strong>LRU</strong> (Least Re
 </li>
 <li>
 <p><em>Normalmente el soporte por parte del hardware es a través de un bit en la tabla de páginas llamado <strong>bit de referencia</strong></em>.
-Este bit se pone a 1 cada vez que una instrucción ejecutada en la CPU referencia a una página, lo que permite al sistema operativo hacerse una idea aproximada<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup> de las páginas que han sido usadas recientemente.
+Este bit se pone a 1 cada vez que una instrucción ejecutada en la CPU referencia a una página, lo que permite al sistema operativo hacerse una idea aproximada<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> de las páginas que han sido usadas recientemente.
 A los algoritmos que siguen esta aproximación se los denomina <em>*NRU*</em> (Not Recently Used).</p>
 </li>
 <li>
@@ -13262,7 +13649,7 @@ Esto a la larga debería redundar en menos memoria asignada y menos operaciones 
 <p>En la actualidad el tamaño de página más común es de 4KB en sistemas de 32 bits y 8 KB en los de 64 bits, ya que son adecuados para la mayor parte de las aplicaciones.
 Sin embargo, <em>muchos sistemas modernos soportan el uso simultáneo de múltiples tamaños de página</em>.
 Esto permite que la mayor parte de las aplicaciones utilicen el tamaño estándar, mientras las que hacen un uso intensivo de la memoria puedan utilizar páginas de mayor tamaño.
-Por ejemplo, en la familia Intel x86 el tamaño estándar es de 4 KB, pero muchas bases de datos —como por ejemplo Oracle— y núcleos de sistema operativo —como por ejemplo Linux o Solaris— utilizan páginas de 4 MB<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup> cuando corren sobre dicha arquitectura.</p>
+Por ejemplo, en la familia Intel x86 el tamaño estándar es de 4 KB, pero muchas bases de datos —como por ejemplo Oracle— y núcleos de sistema operativo —como por ejemplo Linux o Solaris— utilizan páginas de 4 MB<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup> cuando corren sobre dicha arquitectura.</p>
 </div>
 </div>
 <div class="sect3">
@@ -13389,148 +13776,180 @@ Para evitar riesgos, el sistema suele considerar estás solicitudes como <em>con
 <div class="sect2">
 <h3 id="_interfaz_de_gestión_de_la_memoria">17.11. Interfaz de gestión de la memoria</h3>
 <div class="paragraph">
-<p>Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda— desde el punto de vista de los procesos en cualquier sistema moderno <em>prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual</em>.
-En los sistemas POSIX —como GNU/Linux— esta llamada es <code>mmap()</code> —junto a su opuesta <code>munmap()</code>— y sirve para:</p>
+<p>Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda— desde el punto de vista de los procesos en cualquier sistema moderno prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas POSIX esta llamada es <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> y en Windows API es <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc">VirtualAlloc()</a>, que use usan junto a sus opuestas <a href="https://man7.org/linux/man-pages/man2/munmap.2.html">munmap()</a> y <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualfree">VirtualFree()</a>, respectivamente.</p>
+</div>
+<div class="paragraph">
+<p>Ambas funciones permiten:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>Reservar una porción de espacio de direcciones virtual del proceso</em>.
-Obviamente la llamada sólo hace la reserva para que dicha región pueda ser usada por el proceso, siendo el componente de paginación bajo demanda el responsable de asignar la memoria física que la respalda.</p>
+<p>Reservar una porción de espacio de direcciones virtual del proceso.</p>
+<div class="paragraph">
+<p>La llamada solo hace la reserva de un rango de direcciones para pueda ser utilizado por el proceso —es decir, que las páginas en ese rango sean válidas— siendo el componente de paginación bajo demanda el responsable de asignar la memoria física que lo respalda, cuando el proceso acceda a esas direcciones.</p>
+</div>
 </li>
 <li>
-<p><em>Establecer permisos —lectura, escritura y ejecución—, opciones de compartición entre procesos, bloqueo de páginas en la memoria física, páginas de gran tamaño, etc.</em> en la región de memoria virtual a reservar.</p>
-</li>
-<li>
-<p><em>Mapear archivos en regiones del espacio de direcciones virtual</em>.</p>
+<p>Establecer permisos —lectura, escritura y ejecución—, opciones de compartición entre procesos, bloqueo de páginas en la memoria física, páginas de gran tamaño y otras opciones, en la región de memoria virtual a reservar.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Sin embargo <em>en funciones como <code>mmap()</code> la página es la unidad mínima en la gestión de la memoria</em>.
-Es decir, las regiones reservadas del espacio de direcciones virtual siempre comienzan en un borde de página y su tamaño es múltiplo del tamaño de página.
-La cuestión es como compatibilizar eso con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos como: <em>arrays</em>, cadenas de texto, estructuras, objetos, etc.
-Para esos casos <em>utilizar directamente <code>mmap()</code> no es una solución puesto que la fragmentación interna con llevaría un importante derroche de recursos</em>.</p>
+<p>Además, en los sistemas POSIX, <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> se utiliza también para mapear archivos en regiones del espacio de direcciones virtual.
+Mientras que Windows API para esa función se utilizan llamadas diferentes, como hemos visto.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ambas funciones ofrecen una buena cantidad de funcionalidades, pero operan a muy bajo nivel.
+Por eso en ambas la página es la unidad mínima en la gestión de la memoria.
+Es decir, las regiones reservadas del espacio de direcciones virtual siempre deben comienzar en un borde de página y su tamaño debe ser múltiplo del tamaño de página.</p>
+</div>
+<div class="paragraph">
+<p>El problema es cómo compatibilizar eso con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos, como: <em>arrays</em>, cadenas de texto, estructuras u  objetos.
+Para esos casos utilizar directamente <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc">VirtualAlloc()</a> no es una solución, puesto que la fragmentación interna conllevaría un importante derroche de recursos.</p>
 </div>
 <div class="sect3">
-<h4 id="_uso_del_espacio_de_direcciones_virtual_del_proceso">17.11.1. Uso del espacio de direcciones virtual del proceso</h4>
+<h4 id="_anatomía_del_espacio_de_direcciones_virtual_del_proceso">17.11.1. Anatomía del espacio de direcciones virtual del proceso</h4>
 <div class="paragraph">
-<p>Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la ):</p>
+<p>Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la <a href="#proceso_en_memoria_completo">Figura 48</a>):</p>
+</div>
+<div id="proceso_en_memoria_completo" class="imageblock">
+<div class="content">
+<img src="C17-memoria_virtual/images/proceso_en_memoria_completo.svg" alt="proceso en memoria completo">
+</div>
+<div class="title">Figura 48. Anatomía de un proceso en memoria.</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>La variables y constantes globales se almacenan en la sección de datos</em>, que tiene tamaño fijo ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.</p>
+<p>La variables y constantes globales se almacenan en el <strong>segmento de datos</strong>, que tiene tamaño fijo, ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.</p>
 </li>
 <li>
-<p><em>Las variables locales y los argumentos de las _funciones</em> se almacenan en la pila_ junto con la direcciones de retorno de las mismas.
-Esta es la ubicación ideal puesto que al retornar de una función, la pila se restablece al estado previo al que tenía cuando se invocó dicha función, haciendo que las variables locales y argumentos desaparezcan automáticamente.</p>
+<p>Las variables locales y los argumentos de las funciones se almacenan en la <strong>pila</strong>, junto con la direcciones de retorno para volver de las funciones.</p>
+<div class="paragraph">
+<p>Esta es la ubicación ideal para ellos, puesto que al retornar de una función, la pila se restablece al estado previo al que tenía cuando se invocó dicha función, haciendo que las variables locales y argumentos desaparezcan automáticamente.</p>
+</div>
 </li>
 <li>
-<p><em>Las variables asignadas dinámicamente —por ejemplo, usando <code>malloc()</code>/<code>free()</code> en C o <code>new</code>/<code>delete</code> en C&#43;&#43; o Java— se almacenan en el montón</em>, que no es más una región continua de memoria ubicada inmediatamente después de la sección de datos del proceso.</p>
+<p>Las variables reservadas dinámicamente —por ejemplo, usando <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a>/https://en.cppreference.com/w/c/memory/free[free()] en C o <a href="https://en.cppreference.com/w/cpp/language/new">new</a>/https://en.cppreference.com/w/cpp/language/delete[delete] en C&#43;&#43; o Java— se almacenan en el <strong>montón</strong>, que no es más una región continua de memoria ubicada inmediatamente después del <strong>segmento de datos</strong> del proceso.</p>
+</li>
+<li>
+<p>En la región entre el <strong>montón</strong> y la <strong>pila</strong> se ubican los <strong>archivos mapeados en memoria</strong>, las regiones de <strong>memoria compartida</strong>, las <strong>librerías de enlace dinámico</strong>, las <strong>pilas</strong> de cada hilo —en procesos multihilo— y, en general, la memoria reservada con funciones como <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> y <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc">VirtualAlloc()</a>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Cada lenguaje de programación debe proporcionar —por ejemplo a través de su <em>librería estándar</em>— un mecanismo en espacio de usuario adecuado para la gestión en tiempo de ejecución de la memoria del <em>montón</em> del proceso.
-Para eso cada lenguaje puede utilizar su propia implementación de dicho mecanismo o bien recurrir a la proporcionada por la <em>librería del sistema</em>.
-Por ejemplo, en los sistemas POSIX la <em>librería del sistema</em> proporciona su propia implementación, accesible a través de las funciones <code>malloc()</code> y <code>free()</code>, que es utilizada directamente por los programas escritos en C.
-Otros lenguajes de programación tienen otras interfaces para gestionar la memoria pero utilizan internamente las funciones <code>malloc()</code> y <code>free()</code> de la <em>librería estándar</em>.
-Pero este no es el caso ni de C&#43;&#43; ni de Java ni de otros muchos lenguajes; donde los operadores <code>new</code> y <code>delete</code> utilizan sus propios algoritmos de gestión de la memoria del montón más optimizados que <code>malloc()</code> y <code>free()</code> para la creación y destrucción de objetos de manera eficiente.</p>
+<p>Cada lenguaje de programación debe proporcionar —a través de su <strong>librería estándar</strong>— un mecanismo en espacio de usuario adecuado para la gestión en tiempo de ejecución de la memoria del <strong>montón</strong> del proceso.
+Para eso, cada lenguaje puede utilizar su propia implementación de dicho mecanismo o bien recurrir a la proporcionada por la <strong>librería del sistema</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en los sistemas POSIX la <strong>librería del sistema</strong> proporciona su propia implementación, accesible a través de las funciones <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a>, que es utilizada directamente por los programas escritos en C.
+Esta implementación hace uso de <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>, pero ofrece mayor control sobre la cantidad de memoria que podemos reservar, como veremos en el <a href="#_gestión_de_la_memoria_del_montón">Apartado 17.11.2</a>.</p>
+</div>
+<div class="paragraph">
+<p>Otros lenguajes de programación tienen otras interfaces para gestionar la memoria, pero utilizan internamente las funciones <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a> de la <strong>librería del sistema</strong>.
+Sin embargo, este no es el caso ni de C&#43;&#43; ni de Java ni de algunos otros lenguajes.
+En C&#43;&#43; los operadores <a href="https://en.cppreference.com/w/cpp/language/new">new</a> y <a href="https://en.cppreference.com/w/cpp/language/new">new</a> utilizan sus propios algoritmos de gestión de la memoria del <strong>montón</strong>, más optimizados que <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a> para la creación y destrucción de objetos de cualquier tamaño de manera eficiente.</p>
+</div>
+<div class="paragraph">
+<p>En Windows API ocurre algo similar.
+La <strong>librería del sistema</strong> proporcionar su propia gestión de la memoria del <strong>montón</strong>, que es accesible para cualquier programa a través de las funciones <a href="https://docs.microsoft.com/en-us/windows/win32/api/heapapi/nf-heapapi-heapalloc">HeapAlloc()</a> y <a href="https://docs.microsoft.com/en-us/windows/win32/api/heapapi/nf-heapapi-heapfree">HeapFree()</a>, y que se implementa sobre <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc">VirtualAlloc()</a>.
+La <strong>librería estándar</strong> de C utiliza, a su vez, esas funciones para implementar <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a>.
+Lo mismo ocurre en otros lenguajes, aunque no en todos, ya que algunos optan por implementar algoritmos más eficientes para sus casos de uso directamente sobre <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc">VirtualAlloc()</a>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_gestión_de_la_memoria_del_montón">17.11.2. Gestión de la memoria del montón</h4>
 <div class="paragraph">
-<p>Para ilustrar cómo se gestiona la memoria del <em>montón</em> utilizaremos como ejemplo el mecanismo empleado por la <em>librería del sistema</em> de los sistemas POSIX —accesible a través de las funciones <code>malloc()</code> y <code>free()</code>— aunque es importante tener en cuenta que esta tarea se realiza de manera muy similar en las implementaciones de otros sistemas operativos y lenguajes de programación.</p>
+<p>Para ilustrar cómo se puede gestionar la memoria del <strong>montón</strong> utilizaremos como ejemplo el mecanismo empleado por la <strong>librería del sistema</strong> de los sistemas POSIX —accesible a través de las funciones <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a>.
+Sin embargo, es importante tener en cuenta que esta tarea se realiza de manera muy similar en las implementaciones de otros sistemas operativos y lenguajes de programación.</p>
 </div>
 <div class="paragraph">
-<p>El funcionamiento básico de <code>malloc()</code> sigue las siguiente reglas:</p>
+<p>El funcionamiento básico de <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> sigue las siguiente reglas:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>Cuando la memoria solicitada supera cierto umbral —128KB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema `mmap()`</em>.
-Eso significa que las peticiones de gran tamaño realmente no consumen espacio del <em>montón</em>.</p>
+<p>Cuando la memoria solicitada supera cierto umbral —128KB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>.
+Eso significa que las peticiones de gran tamaño realmente no consumen espacio del <strong>montón</strong>, si no que se reservan del hueco entre el <strong>montón</strong> y la <strong>pila</strong>.</p>
 </li>
 <li>
-<p><em>En caso contrario la petición de memoria se atiende utilizando un algoritmo de reserva de memoria continua sobre el espacio libre en el montón.</em> Estos algoritmos los veremos posteriormente.</p>
-</li>
-<li>
-<p><em>Si no hay suficiente memoria libre contigua como para atender la petición se utiliza la llamada al sistema <code>brk()</code> para ampliar el tamaño del montón</em> sobre la región no asignada del espacio de direcciones virtual del proceso.</p>
+<p>Cuando un proceso hace una petición de memoria dinámica espera que el espacio ofrecido sea continuo en el espacio de direcciones virtual, por lo que la memoria del <strong>montón</strong> se gestiona usando un algoritmo de <strong>asignación contigua de memoria</strong> (véase la <a href="#_asignación_contigua_de_memoria">Apartado 15.5</a>)y, puesto que las peticiones pueden ser de tamaño variable, se utiliza con un esquema de <strong>particionado dinámico</strong>.</p>
+<div class="paragraph">
+<p>Es decir, que para las peticiones que no entran en el caso anterior, se busca en la tabla de huecos libres y ocupados del <strong>montón</strong> uno lo suficientemente como grande para atender la petición.
+Se asigna el espacio solicitado y el resto sigue marcado como hueco libre.</p>
+</div>
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Cuando un proceso hace una petición de memoria dinámica espera que el espacio ofrecido sea continuo en el espacio de direcciones virtual, por lo que es necesario utilizar algún algoritmo de <strong>asignación de memoria contigua</strong>.
-Como las peticiones de los procesos son de tamaño variable, la forma más eficiente de enfrentar este problema es utilizando lo que se denomina un esquema de <strong>particionado dinámico</strong>:</p>
+<p>La estrategia más común de búsqueda es el <strong>mejor ajuste</strong>, utilizando algún tipo de estructura de datos que mantenga los huecos libres ordenados por tamaño, para encontrar el de tamaño adecuado rápidamente.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>La librería mantiene una lista indicando que regiones del montón están libres y cuales no</em>.
-El montón se inicializa con un tamaño determinado completamente libre, por lo que es considerado como un gran hueco de memoria disponible.</p>
-</li>
-<li>
-<p><em>Cuando un proceso realiza una petición —a través de <code>malloc()</code>— se busca un hueco lo suficientemente grande para atenderla</em>.
-Si se encuentra, sólo se le asigna el espacio necesario, que es marcado como ocupado en la lista.
-El resto sigue siendo considerado como un hueco libre, aunque de menor tamaño.</p>
-</li>
-<li>
-<p><em>Si el proceso libera una porción de la memoria y se crean dos huecos adyacentes, se funden en uno solo</em>.</p>
+<p>Si no hay suficiente memoria libre contigua como para atender la petición, se utiliza la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>, para extender el tamaño del <strong>montón</strong> reservando una nueva región separada —a veces llamada <strong>arena</strong>— y comenzar a repartirla.</p>
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>En general, en un momento dado tenemos una petición de tamaño <em>n</em> que debemos satisfacer con una lista de huecos libres de tamaño variable.
-Esto no es más que un caso particular del <em>problema _clásico</em> de la asignación dinámica de almacenamiento_ para el que hay diversas soluciones:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>En el <strong>primer ajuste</strong> se escoge el primer hueco lo suficientemente grande como para satisfacer la petición</em>.
-La búsqueda puede ser desde el principio de la lista o desde donde ha terminado la búsqueda anterior.</p>
-</li>
-<li>
-<p><em>En el <strong>mejor ajuste</strong> se escoge el hueco más pequeño que sea lo suficientemente grande para satisfacer la petición</em>.
-Indudablemente esto obliga a recorrer la lista de huecos completa o a tenerla ordenada por tamaño.</p>
-</li>
-<li>
-<p><em>En el <strong>peor ajuste</strong> se escoge el hueco más grande</em>.
-Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por tamaño.</p>
-</li>
-</ul>
+<p>En aplicaciones pequeñas, algunas implementaciones intentan ampliar primero el espacio libre utilizando la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/brk.2.html">brk()</a>, que sirve para extender el <strong>montón</strong> sobre la región adyacente no asignada del espacio de direcciones virtual del proceso.
+Este es el caso de la implementación estándar de <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> en GNU/Linux.</p>
 </div>
 <div class="paragraph">
-<p>En la actualidad <em>la estrategia más común es utilizar el mejor ajuste junto con algún tipo de estructura de datos que mantenga los huecos libres ordenados por tamaño</em>, de manera que puedan ser encontrados eficientemente.</p>
+<p>La llamada al sistema <a href="https://man7.org/linux/man-pages/man2/brk.2.html">brk()</a> ha sido eliminada del estándar POSIX, pero algunos sistemas la mantienen por compatibilidad hacia atrás, dado que era la forma en la que tradicionalmente se ampliaba la memoria del <strong>montón</strong> en los primeros UNIX.
+En macOS esta llamada se emula con una región de 4 MiB reservada con <strong>mmap</strong> la primer vez que se utiliza.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_fragmentación_2">17.11.3. Fragmentación</h4>
 <div class="paragraph">
-<p>Las estrategia comentada no sufre de <em>fragmentación interna</em> porque se asigna exactamente la cantidad de memoria solicitada.
-Sin embargo si sufre de otro tipo de fragmentación denominada fragmentación externa.</p>
+<p>Las estrategia comentada sufre de <strong>fragmentación interna</strong>.
+En las peticiones grandes <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> reserva en múltiplos de tamaño de página, por lo que siempre se puede perder cierta cantidad, aunque pequeña en comparación al tamaño de la región reservada.
+En las peticiones pequeñas, la memoria se asigna en múltiplos de una unidad mínima —por ejemplo, 16 o 32 bytes— por lo que también se puede perder cierta cantidad de memoria.</p>
 </div>
 <div class="paragraph">
-<p><em>La <strong>fragmentación externa</strong> ocurre cuando hay suficiente espacio libre para satisfacer una petición pero el espacio no es contiguo</em>.
-Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeño tamaño, obligando a la librería a invocar la llamada al sistema <code>brk()</code> con el objetivo de incrementar el tamaño del montón.
-Este problema:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Afecta tanto a la estrategia del primer como del mejor ajuste</em>.
-Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.</p>
-</li>
-<li>
-<p>Algunos análisis estadísticos realizados con el primer ajuste revelan que <em>incluso con algunas optimizaciones, con n bloques asignados se pierden 0.5n por fragmentación externa</em>.
-Es decir, un tercio de la memoria no es utilizable.
-A esto se lo conoce como la <em>regla del 50%</em>.</p>
-</li>
-</ul>
+<p>Además sufre de <strong>fragmentación externa</strong>, porque después de que el proceso lleva un tiempo en ejecución, liberando y reservando memoria, el espacio puede comenzar a quedar fraccionado en un gran número de pequeños huecos, obligando a la librería a buscar más espacio para el <strong>montón</strong>, aunque en suma haya suficiente espacio en los huecos libres.</p>
 </div>
 <div class="paragraph">
-<p>Lamentablemente este problema no tiene una solución sencilla ya que aunque se podría intentar mover los bloques de memoria para que toda la memoria libre quedara en un único hueco, sería necesario modificar en tiempo de ejecución las direcciones virtuales utilizadas por el proceso en cada puntero o referencia a los bloques de memoria en el montón.</p>
+<p>Esto representa un reto para los desarrolladores de aplicaciones, que previsiblemente vayan a ejecutarse durante periodos muy largos de tiempo.
+En esos casos es común optar por librerías externas, que implementen gestores de memoria que fragmenten menos la memoria, o soluciones basadas en alguna forma de referencias indirectas y recolección de basura, para ocasionalmente poder compactar la memoria del <strong>montón</strong>.
+Esto último es lo que hace la máquina virtual de Java.</p>
 </div>
 </div>
 </div>
@@ -13563,20 +13982,20 @@ Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente
 <div class="content">
 <img src="C18-almacenamiento/images/disco_duro_físico.jpg" alt="disco duro físico">
 </div>
-<div class="title">Figura 42. Disco duro&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg">Wikipedia</a></div>
+<div class="title">Figura 49. Disco duro&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg">Wikipedia</a></div>
 </div>
 <div class="paragraph">
-<p>Tal y como se puede apreciar en la <a href="#disco_duro_físico">Figura 42</a> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
+<p>Tal y como se puede apreciar en la <a href="#disco_duro_físico">Figura 49</a> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
 La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.</p>
 </div>
 <div id="disco_duro_lógico" class="imageblock">
 <div class="content">
 <img src="C18-almacenamiento/images/disco_duro_lógico.svg" alt="disco duro lógico">
 </div>
-<div class="title">Figura 43. Estructura lógica de un disco magnético.</div>
+<div class="title">Figura 50. Estructura lógica de un disco magnético.</div>
 </div>
 <div class="paragraph">
-<p>Desde el punto de vista lógico (véase la <a href="#disco_duro_lógico">Figura 43</a>) la superficie de cada plato está dividida en <strong>pistas</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
+<p>Desde el punto de vista lógico (véase la <a href="#disco_duro_lógico">Figura 50</a>) la superficie de cada plato está dividida en <strong>pistas</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
 El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina <strong>cilindro</strong>.</p>
 </div>
 <div class="paragraph">
@@ -13800,17 +14219,17 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 <div class="content">
 <img src="C19-sistema_de_archivos/images/estructura_sistema_de_archivos.svg" alt="estructura sistema de archivos">
 </div>
-<div class="title">Figura 44. Estructura de un sistema de archivos.</div>
+<div class="title">Figura 51. Estructura de un sistema de archivos.</div>
 </div>
 <div class="paragraph">
 <p>Los sistema de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
-En la <a href="#estructura_sistema_de_archivos">Figura 44</a> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
+En la <a href="#estructura_sistema_de_archivos">Figura 51</a> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.</p>
 </div>
 <div class="sect3">
 <h4 id="_control_de_es">19.1.1. Control de E/S</h4>
 <div class="paragraph">
-<p>control de E/S</p>
+<p></p>
 </div>
 <div class="paragraph">
 <p>En el nivel más bajo, accediendo directamente a los dispositivos de almacenamiento, se encuentra el <strong>control de E/S</strong>.</p>
@@ -13859,7 +14278,7 @@ Mientras que en dispositivos que admiten direccionamiento LBA (<em>Logical Block
 <div class="paragraph">
 <p>El <strong>LBA</strong> es un método común para especificar la localización de los sectores de un disco.
 Usa un esquema de direccionamiento lineal, donde cada sector es identificado con un número entero único.
-Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía la desventaja de hacer públicos los detalles físicos del dispositivos de almacenamiento.</p>
+Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía la desventaja de hacer públicos los detalles físicos del dispositivo de almacenamiento.</p>
 </div>
 </td>
 </tr>
@@ -13876,10 +14295,10 @@ Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía 
 </div>
 <div class="paragraph">
 <p>Los bloques lógicos de cada archivo son numerados de 0 a <em>N</em>, pero los bloques físicos asignados a estos bloques lógicos no tienen porqué coincidir en los números de bloque.
-Por eso el <strong>módulo de organización de archivos</strong> debe utilizar la ubicación del contenido del archivo en el disco y la información sobre los bloques físicos asignados, para traducir las direcciones lógicas en direcciones físicas.</p>
+Por eso, el <strong>módulo de organización de archivos</strong> debe utilizar la ubicación del contenido del archivo en el disco y la información sobre los bloques físicos asignados, para traducir las direcciones lógicas en direcciones físicas.</p>
 </div>
 <div class="paragraph">
-<p>Además, el módulo de organización incluye el gestor de espacio libre, que controla los bloques no asignados y proporciona dichos bloques cuando el <strong>módulo de organización de archivos</strong> lo necesita, ya sea para crear un archivo nuevo o para extender uno existente.</p>
+<p>Además, el módulo de organización, incluye el gestor de espacio libre, que controla los bloques no asignados y proporciona dichos bloques cuando el <strong>módulo de organización de archivos</strong> lo necesita, ya sea para crear un archivo nuevo o para extender uno existente.</p>
 </div>
 </div>
 <div class="sect3">
@@ -13963,7 +14382,7 @@ En <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> esta información se al
 <div class="sect3">
 <h4 id="_estructura_de_directorios">19.2.4. Estructura de directorios</h4>
 <div class="paragraph">
-<p>Finalmente, por lo general los sistemas de archivos tienen una estructura de directorios, para organizar los archivos.ç</p>
+<p>Finalmente, por lo general los sistemas de archivos tienen una estructura de directorios, para organizar los archivos.</p>
 </div>
 <div class="paragraph">
 <p>En los sistemas de archivos de sistemas UNIX y Linux, cada directorio es como un archivo especial que almacena los nombres de los archivos que contiene y los índices de los <strong>inodos</strong> de cada uno de ellos.
@@ -13974,7 +14393,7 @@ En <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> es similar, aunque la e
 <div class="sect2">
 <h3 id="_estructuras_de_metadatos_en_memoria">19.3. Estructuras de metadatos en memoria</h3>
 <div class="paragraph">
-<p>La información almacenada en memoria se utiliza tanto para la gestión del sistema de archivo como para mejorar el rendimiento del mismo mediante mecanismos de caché.</p>
+<p>La información almacenada en memoria se utiliza tanto para la gestión del sistema de archivos como para mejorar el rendimiento del mismo mediante mecanismos de caché.</p>
 </div>
 <div class="paragraph">
 <p>Los datos se cargan en el momento de comenzar a utilizar el sistema de archivos —proceso denominado montaje— y se descartan cuando se va a dejar de hacer uso del mismo —es decir, en el desmontaje—.</p>
@@ -13988,14 +14407,14 @@ En <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> es similar, aunque la e
 <p>Una <strong>tabla de montaje</strong> en memoria que contiene información acerca de cada volumen montado en el sistema.</p>
 </li>
 <li>
-<p>Una caché en memoria de la <strong>estructura de directorios</strong> que almacena la información relativa a los directorios a los que se ha accedió recientemente.
+<p>Una caché en memoria de la <strong>estructura de directorios</strong> que almacena la información relativa a los directorios a los que se ha accedido recientemente.
 Los directorios que actúan como puntos de montaje pueden contener un puntero a la entrada, en la tabla de montaje, del volumen montado en el directorio.</p>
 </li>
 <li>
 <p>La <strong>tabla global de archivos abiertos</strong> que contiene una copia del <strong>FCB</strong> de cada archivo abierto en el sistema, además de otras informaciones.</p>
 </li>
 <li>
-<p>La <strong>tabla de archivos abiertos</strong>(tabla, archivos abiertos de cada proceso.
+<p>La <strong>tabla de archivos abiertos</strong> de cada proceso.
 El <strong>PCB</strong> de cada proceso contiene una tabla donde se listan los archivos abiertos por el proceso.</p>
 </li>
 </ul>
@@ -14018,7 +14437,7 @@ El proceso de montaje incluye los siguientes pasos:</p>
 <ol class="arabic">
 <li>
 <p>Al sistema operativo se le debe proporcionar el nombre o identificador del dispositivo y el punto de montaje.
-El <strong>punto de montaje</strong> es la ubicación dentro de la estructura de directorios —la ruta a directorio concreto— a la que queremos conectar el sistema de archivos.
+El <strong>punto de montaje</strong> es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
 Después de que el proceso de montaje se haya completado, los archivos y directorios del sistema de archivos montado serán accesibles como descendientes del directorio del <strong>punto de montaje</strong>.</p>
 </li>
 <li>
@@ -14026,7 +14445,7 @@ Después de que el proceso de montaje se haya completado, los archivos y directo
 Para ello lee el <strong>bloque de control de volumen</strong> y comprueba que tiene un formato válido.</p>
 </li>
 <li>
-<p>Finalmente el sistema operativo registra en la <strong>tabla de montaje</strong> el tipo de sistema de archivos y el identificador del del dispositivo montado.
+<p>Finalmente el sistema operativo registra en la <strong>tabla de montaje</strong> el tipo de sistema de archivos y el identificador del dispositivo montado.
 Después, almacena el índice de la entrada correspondiente en la <strong>tabla de montaje</strong> en la copia en memoria del <strong>FCB</strong> del directorio que hace de <strong>punto de montaje</strong>.</p>
 <div class="paragraph">
 <p>Esto permite que pueda ser recorrida la estructura de directorios de distintos sistemas de archivos, pasando de uno a otro de forma transparente, según sea necesario.</p>
@@ -14249,7 +14668,7 @@ En los sistemas POSIX se utiliza el término <strong>descriptor de archivo</stro
 <p>Después de utilizar la llamada al sistema <strong>open</strong>, cuando se desea solicitar una operación sobre un archivo, sólo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.</p>
 </div>
 <div class="paragraph">
-<p>En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos_:</p>
+<p>En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -14266,15 +14685,15 @@ Por ejemplo, se puede almacenar la posición actual utilizada por las operacione
 </ol>
 </div>
 <div class="paragraph">
-<p>Cuando un proceso invoca la llamada <strong>open</strong> se añade una entrada en la <strong>tabla de archivos abiertos del proceso</strong>, que a su vez apunta a la entrada correspondiente dentro de la <strong>tabla global del sistema</strong>.
+<p>Cuando un proceso invoca la llamada <strong>open</strong>, se añade una entrada en la <strong>tabla de archivos abiertos del proceso</strong>, que a su vez apunta a la entrada correspondiente dentro de la <strong>tabla global del sistema</strong>.
 Si el archivo no existe en esta última, también hay que crear una entrada en la tabla global del sistema haciendo uso de la información contenida en disco en el <strong>FCB</strong> correspondiente.</p>
 </div>
 <div class="paragraph">
-<p>Es muy común que la <strong>tabla global</strong> almacene un <strong>contador de aperturas</strong> para cada archivo, con el objetivo de indicar cuantos procesos lo mantienen abierto.</p>
+<p>Es muy común, que la <strong>tabla global</strong> almacene un <strong>contador de aperturas</strong> para cada archivo, con el objetivo de indicar cuantos procesos lo mantienen abierto.</p>
 </div>
 <div class="paragraph">
 <p>Cuando el archivo deja de ser utilizado activamente por el proceso, puede ser cerrado utilizado la llamada al sistema <strong>close</strong>.
-Entonces el <strong>contador se aperturas</strong> se decrementa, de forma que cuando alcance cero querrá decir que la entrada puede ser eliminada de la <strong>tabla global de archivos abiertos</strong>.</p>
+Entonces el <strong>contador de aperturas</strong> se decrementa, de forma que cuando alcance cero querrá decir que la entrada puede ser eliminada de la <strong>tabla global de archivos abiertos</strong>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -14291,14 +14710,14 @@ Por ejemplo, el sistema puede impedir que un usuario intente imprimir los archiv
 <ul>
 <li>
 <p>En MS-DOS y Microsoft Windows el tipo de archivo se incluye como parte del nombre del archivo.
-Es decir, el nombre se divide en dos partes: un nombre y una extensión,separadas por un punto.</p>
+Es decir, el nombre se divide en dos partes: un nombre y una extensión, separadas por un punto.</p>
 <div class="paragraph">
 <p>El sistema puede utilizar la extensión para conocer el tipo de archivo y el tipo de operaciones que se pueden realizar con el mismo.</p>
 </div>
 </li>
 <li>
 <p>En macOS cada archivo tiene un atributo que almacena el tipo —por ejemplo, TEXT para los archivos de texto o APPL para las aplicaciones— y otro que contiene el nombre del programa que lo creó.
-Cuando el usuario hace clic con el ratón sobre el icono de un archivo, el programa que lo creó se ejecuta automáticamente y este abre el archivo.</p>
+Cuando el usuario hace clic con el ratón sobre el icono de un archivo, el programa que lo creó se ejecuta automáticamente y éste abre el archivo.</p>
 </li>
 <li>
 <p>En los sistemas estilo UNIX se utiliza un <strong>número mágico</strong>, almacenado al principio de algunos archivos, para indicar el tipo del mismo.
@@ -14339,7 +14758,7 @@ Para gestionar todos esos datos necesitamos organizarlos de alguna manera, lo qu
 Esto es necesario, puesto que todos los archivos se encuentran en el mismo directorio.</p>
 </li>
 <li>
-<p>Incluso en los sistemas operativos monousuario, puede ser difícil para un usuario mantener organizados sus datos a media que se incrementa el número de archivos.</p>
+<p>Incluso en los sistemas operativos monousuario, puede ser difícil para un usuario mantener organizados sus datos a medida que se incrementa el número de archivos.</p>
 </li>
 </ul>
 </div>
@@ -14354,8 +14773,8 @@ Esto es necesario, puesto que todos los archivos se encuentran en el mismo direc
 </div>
 <div class="paragraph">
 <p>Cuando un usuario se conecta al sistema o inicia un trabajo, se explora el <strong>MFD</strong>.
-Esta es una tabla indexada por el nombre de los usuarios o por los números de cuenta, donde cada una de sus entradas apunta al <strong>UFD</strong> de dicho usuario.
-Puesto que cada <strong>UFD</strong> incluye sólo los archivos del usuario al que pertenece, el sistema operativo puede confinar todas las operaciones que puede realizar un usuarios sobre los archivos a su <strong>UFD</strong>.</p>
+Ésta es una tabla indexada por el nombre de los usuarios o por los números de cuenta, donde cada una de sus entradas apunta al <strong>UFD</strong> de dicho usuario.
+Puesto que cada <strong>UFD</strong> incluye sólo los archivos del usuario al que pertenece, el sistema operativo puede confinar todas las operaciones que puede realizar un usuario sobre los archivos a su <strong>UFD</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Aunque esto resuelve el problema de la colisión de nombres entre diferentes usuarios, también presenta algunas desventajas:</p>
@@ -14366,7 +14785,7 @@ Puesto que cada <strong>UFD</strong> incluye sólo los archivos del usuario al q
 <p>La estructura descrita aísla a los usuarios, lo cual puede ser un problema cuando éstos quieren compartir datos para cooperar en alguna tarea.</p>
 <div class="paragraph">
 <p>La solución pasa por utilizar <strong>nombres de ruta</strong> para designar a un archivo de forma unívoca.
-Por ejemplo, si el usuario <code>usera</code> quiere acceder a su archivo <code>test</code>, simplemente debe referirse a el como <code>test</code>.
+Por ejemplo, si el usuario <code>usera</code> quiere acceder a su archivo <code>test</code>, simplemente debe referirse a él como <code>test</code>.
 Mientras que si quiere acceder al archivo <code>test</code> del usuario <code>userb</code>, debe utilizar un <strong>nombre de ruta</strong> como <code>/userb/test</code>, donde se indica el nombre del usuario y el nombre del archivo.</p>
 </div>
 <div class="paragraph">
@@ -14374,7 +14793,7 @@ Mientras que si quiere acceder al archivo <code>test</code> del usuario <code>us
 </div>
 </li>
 <li>
-<p>Puede ser difícil para un usuario mantener organizados sus datos a media que se incrementa el número de archivos personales, incluso aunque tenga un directorio para él solo.</p>
+<p>Puede ser difícil para un usuario mantener organizados sus datos a medida que se incrementa el número de archivos personales, incluso aunque tenga un directorio para él solo.</p>
 </li>
 </ul>
 </div>
@@ -14383,7 +14802,7 @@ Mientras que si quiere acceder al archivo <code>test</code> del usuario <code>us
 <h4 id="_directorios_con_estructura_de_árbol">19.6.3. Directorios con estructura de árbol</h4>
 <div class="paragraph">
 <p>La estructura de directorio de dos niveles puede generalizarse en la <strong>estructura de directorios en árbol</strong> de altura arbitraria.
-Esto permite que los usuarios puedan crear sus propios subdirectorios para organizar sus archivo de la forma más conveniente.</p>
+Esto permite que los usuarios puedan crear sus propios subdirectorios para organizar sus archivos de la forma más conveniente.</p>
 </div>
 <div class="paragraph">
 <p>Cada sistema de archivos tiene un <strong>directorio raíz</strong> que puede contener tanto archivos como otros directorios.
@@ -14427,7 +14846,7 @@ Por lo que si necesitamos cambiar su <strong>directorio de trabajo</strong> —p
 <div class="paragraph">
 <p>Por ejemplo, en los sistemas POSIX el intérprete de comandos <strong>Bash</strong> se inicia usando el directorio personal del usuario como <strong>directorio de trabajo</strong>.
 El usuario puede cambiar el <strong>directorio de trabajo</strong> del proceso de la <strong>Bash</strong> usando el comando interno <code>cd</code>.
-Cuando se pide a la <strong>Bash</strong> que ejecute cualquier otro comando, esta crear un nuevo proceso hijo donde ejecutar el programa de dicho comando.
+Cuando se pide a la <strong>Bash</strong> que ejecute cualquier otro comando, ésta crea un nuevo proceso hijo donde ejecutar el programa de dicho comando.
 Ese proceso hereda el <strong>directorio de trabajo</strong> actual de <strong>Bash</strong>.</p>
 </div>
 </td>
@@ -14463,8 +14882,8 @@ Ese proceso hereda el <strong>directorio de trabajo</strong> actual de <strong>B
 </ul>
 </div>
 <div class="paragraph">
-<p>Con una <strong>estructura de directorios en árbol</strong> unos usuarios pueden acceder a los archivos de otros.
-Para eso, solo es necesario que se utilicen <strong>nombres de ruta</strong> para designar los archivos del otro usuario o que se cambie el <strong>directorio de trabajo actual</strong>.</p>
+<p>Con una <strong>estructura de directorios en árbol</strong>, unos usuarios pueden acceder a los archivos de otros.
+Para eso, solo es necesario que se utilicen <strong>nombres de ruta</strong> para designar los archivos del otro usuario, o que se cambie el <strong>directorio de trabajo actual</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Este tipo de estructura de directorios es la utilizada por MS-DOS y por las distintas versiones de Microsoft Windows.</p>
@@ -14477,7 +14896,7 @@ Para eso, solo es necesario que se utilicen <strong>nombres de ruta</strong> par
 <p>La <strong>estructura de directorio en grafo acíclico</strong> es una generalización natural del esquema con <strong>estructura en árbol</strong>.</p>
 </div>
 <div class="paragraph">
-<p>A diferencia de éste último, la <strong>estructura en grafo acíclico</strong> permite que los mismos archivos y subdirectorios existan simultáneamente en distintos lugares de la estructura de directorios.
+<p>A diferencia de este último, la <strong>estructura en grafo acíclico</strong> permite que los mismos archivos y subdirectorios existan simultáneamente en distintos lugares de la estructura de directorios.
 Eso significa que para acceder a un archivo o directorio pueden existir diversos <strong>nombres de ruta</strong>.</p>
 </div>
 <div class="paragraph">
@@ -14493,10 +14912,10 @@ Eso significa que para acceder a un archivo o directorio pueden existir diversos
 <li>
 <p>Se pueden crear una entrada de directorio especial denominada <strong>enlace</strong>.
 Un <strong>enlace</strong> es, generalmente, un archivo que contiene la ruta relativa o absoluta de otro archivo o subdirectorio.
-En los sistemas POSIX a estos se los conoce como <strong>enlaces simbólicos</strong>.</p>
+En los sistemas POSIX a éstos se los conoce como <strong>enlaces simbólicos</strong>.</p>
 </li>
 <li>
-<p>También se pueden duplicar toda la información de la entrada de directorio del archivo compartido en todos los directorios que también contienen dicho archivo.</p>
+<p>También se puede duplicar toda la información de la entrada de directorio del archivo compartido en todos los directorios que también contienen dicho archivo.</p>
 <div class="paragraph">
 <p>Así, mientras que los <strong>enlaces simbólicos</strong> son claramente diferentes de la entrada original de directorio, las entradas de directorio duplicadas hacen que la entrada original y la copia sean indistinguibles.
 En los sistemas POSIX, a este tipo de entradas duplicadas se las conoce como <strong>enlaces duros</strong>.</p>
@@ -14506,7 +14925,7 @@ En los sistemas POSIX, a este tipo de entradas duplicadas se las conoce como <st
 </div>
 <div class="paragraph">
 <p>Como <strong>enlaces simbólicos</strong> almacenan una ruta, pueden apuntar a archivos o directorios en otros sistemas de archivos.
-Mientras que los <strong>enlaces duros</strong> solo puedan apuntar a archivos en el mismo sistema de archivos.</p>
+Mientras que los <strong>enlaces duros</strong> solo pueden apuntar a archivos en el mismo sistema de archivos.</p>
 </div>
 <div class="paragraph">
 <p>En en los sistemas POSIX los <strong>enlaces duros</strong> se crean llamando a <a href="https://man7.org/linux/man-pages/man2/link.2.html">link()</a> y los <strong>enlaces simbólicos</strong> con <a href="https://man7.org/linux/man-pages/man2/symlink.2.html">symlink()</a>.</p>
@@ -14514,7 +14933,7 @@ Mientras que los <strong>enlaces duros</strong> solo puedan apuntar a archivos e
 <div class="paragraph">
 <p>En Microsoft Windows se soportan ambos tipos de enlaces desde la primera versión —Microsoft Windows NT 3.1— pero únicamente en el sistema de archivos <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> y solo por compatibilidad con las aplicaciones POSIX.
 Windows API no tuvo funciones para crear <strong>enlaces</strong> hasta mucho después.
-Por eso su uso en Microsoft Windows no están común.</p>
+Por eso su uso en Microsoft Windows no es tan común.</p>
 </div>
 <div class="paragraph">
 <p>En Windows API los <strong>enlaces duros</strong> se crean con <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createhardlinka">CreateHardLink()</a> desde Windows 2000.
@@ -14536,7 +14955,7 @@ No olvidemos que en los sistemas con estructura en grafo acíclico, cada archivo
 </div>
 </li>
 <li>
-<p>Los diseñadores deben enfrentarse a la cuestión de cuándo liberar el espacio asignado a un archivo enlazados.
+<p>Los diseñadores deben enfrentarse a la cuestión de cuándo liberar el espacio asignado a un archivo enlazado.
 Si lo hacemos cuando un usuario lo borra podríamos dejar <strong>enlaces</strong> que referencian a archivos que no existen.</p>
 </li>
 </ul>
@@ -14574,7 +14993,7 @@ Cuando se produzca un intento de acceder al archivos a través del <strong>enlac
 <li>
 <p>Otra opción es almacenar en la entrada del archivo original un contador con el número de referencias al archivo.
 Cada vez que se elimina una referencia se decrementa el contador.
-Cuando el contador sea 0, sabremos que a llegado el momento de liberar el espacio asignado.</p>
+Cuando el contador sea 0, sabremos que ha llegado el momento de liberar el espacio asignado.</p>
 <div class="paragraph">
 <p>En los sistemas UNIX se utiliza esta técnica para saber cuándo liberar el contenido de archivos con <strong>enlaces duros</strong>.</p>
 </div>
@@ -14584,7 +15003,7 @@ Cuando el contador sea 0, sabremos que a llegado el momento de liberar el espaci
 <div class="paragraph">
 <p>Por último, no debemos olvidar que la estructura de directorios en grafo se conserva acíclica si se prohíbe que hayan múltiples referencias a un mismo directorio.
 Ese es el motivo por el que en muchos sistemas POSIX no se permite, por defecto, que los <strong>enlaces duros</strong> hagan referencia a directorios.
-Sin embargo si se pueden utilizar <strong>enlaces simbólicos</strong> para este fin, puesto que al ser distinguibles del directorio original podemos evitar los ciclos, si mientras se explora se ignorar dichos enlaces.</p>
+Sin embargo si se pueden utilizar <strong>enlaces simbólicos</strong> para este fin, puesto que al ser distinguibles del directorio original podemos evitar los ciclos, si mientras se explora se ignoran dichos enlaces.</p>
 </div>
 </div>
 </div>
@@ -14655,13 +15074,13 @@ El propietario del archivo es quien define que operaciones pueden ser ejecutadas
 <p>Los identificadores del propietario y el grupo de un archivo se almacenan junto con los otros atributos en el FCB.</p>
 </div>
 <div class="paragraph">
-<p>Cuando un usuarios solicita realiza una operación sobre un archivo, se compara el identificador del usuario con el atributo del propietario para determinar si el solicitante es el propietario.
+<p>Cuando un usuario solicita realiza una operación sobre un archivo, se compara el identificador del usuario con el atributo del propietario para determinar si el solicitante es el propietario.
 Exactamente de la misma manera se puede proceder con los identificadores de grupo.
 El resultado de la comparación indica que permisos son aplicables.
 A continuación, el sistema aplica dichos permisos a la operación solicitada y la autoriza o deniega según sea el caso.</p>
 </div>
 <div class="paragraph">
-<p>Existen diversas implementaciones del esquema utilizado para determinar los permisos aplicables aun usuario que pretende operar sobre un archivo concreto.</p>
+<p>Existen diversas implementaciones del esquema utilizado para determinar los permisos aplicables a un usuario que pretende operar sobre un archivo concreto.</p>
 </div>
 <div class="sect4">
 <h5 id="_lista_de_control_de_acceso">Lista de control de acceso</h5>
@@ -14701,7 +15120,7 @@ Al crear un archivo nuevo, se puede indicar la <strong>ACL</strong> deseada a tr
 </td>
 <td class="content">
 <div class="paragraph">
-<p>También se puede consultar la <strong>ACL</strong> de cualquier objeto con permisos —incluidos los archi8ivos— usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getsecurityinfo">GetSecurityInfo()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getnamedsecurityinfoa">GetNamedSecurityInfo()</a> y modificarla usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setsecurityinfo">SetSecurityInfo()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setnamedsecurityinfoa">SetNamedSecurityInfo()</a>.</p>
+<p>También se puede consultar la <strong>ACL</strong> de cualquier objeto con permisos —incluidos los archivos— usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getsecurityinfo">GetSecurityInfo()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getnamedsecurityinfoa">GetNamedSecurityInfo()</a> y modificarla usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setsecurityinfo">SetSecurityInfo()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setnamedsecurityinfoa">SetNamedSecurityInfo()</a>.</p>
 </div>
 <div class="paragraph">
 <p>Las <strong>ACL</strong> y los <strong>descriptores de seguridad</strong> de Windows API son un tema complejo.
@@ -14756,12 +15175,12 @@ Se ignora si el archivo ya existe.</td>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Los bits a 1 del número especificado indican los permisos autorizados.
-Es muy común hacer en base octal, como en el ejemplo.</td>
+Es muy común hacerlo en base octal, como en el ejemplo.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Otra llamada al sistema que permite indicar permisos es <a href="https://man7.org/linux/man-pages/man2/mkdir.2.html">mkdir()</a>, que se utilizar para crear directorios</p>
+<p>Otra llamada al sistema que permite indicar permisos es <a href="https://man7.org/linux/man-pages/man2/mkdir.2.html">mkdir()</a>, que se utiliza para crear directorios</p>
 </div>
 <div class="paragraph">
 <p>En ambos casos, los permisos finalmente usados vienen determinados por la <strong><em>umask</em></strong> del proceso.
@@ -14769,7 +15188,7 @@ Esta es una propiedad numérica de los procesos —heredada de padres a hijos—
 Por ejemplo, si el argumento <code>mode</code> es 0666 y <strong><em>umask</em></strong> es 0022, los permisos efectivos al crear el archivo serán 0644.</p>
 </div>
 <div class="paragraph">
-<p>Un proceso puede cambiar su <strong><em>umask</em></strong> mediante la función <a href="https://man7.org/linux/man-pages/man2/umask.2.html">umask()</a> y los usuarios de <strong>Bash</strong> las de su <em>shell</em> usando el comando del mismo nombre.</p>
+<p>Un proceso puede cambiar su <strong><em>umask</em></strong> mediante la función <a href="https://man7.org/linux/man-pages/man2/umask.2.html">umask()</a> y los usuarios de <strong>Bash</strong>, las de su <em>shell</em> usando el comando del mismo nombre.</p>
 </div>
 <div class="paragraph">
 <p>Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando <a href="https://man7.org/linux/man-pages/man2/access.2.html">access()</a>.
@@ -14782,7 +15201,7 @@ Si necesitan leer los permisos, el propietario y el resto de <strong>metadatos</
 <div class="sect4">
 <h5 id="_combinar_ambos_tipos_de_listas_de_control_de_acceso">Combinar ambos tipos de listas de control de acceso</h5>
 <div class="paragraph">
-<p>Muchos sistemas POSXI también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las <strong>ACL</strong> más genéricas.
+<p>Muchos sistemas POSIX también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las <strong>ACL</strong> más genéricas.
 Sistemas operativos como Linux, macOS o FreeBSD implementan ambos tipos de ACL.</p>
 </div>
 <div class="admonitionblock note">
@@ -14871,7 +15290,7 @@ Las operaciones de lectura y escritura se realizan en esa copia.
 Cuando se cierra el archivo modificado, los cambios son enviados al servidor de archivos, para actualizar el archivo original.</p>
 </div>
 <div class="paragraph">
-<p>Aunque es posible implementar la <strong>semántica POSIX</strong> —como hacen otros sistemas de archivos en red— esta no escala adecuadamente porque implica mantener sincronizadas las copias locales de cada archivo.
+<p>Aunque es posible implementar la <strong>semántica POSIX</strong> —como hacen otros sistemas de archivos en red— ésta no escala adecuadamente, porque implica mantener sincronizadas las copias locales de cada archivo.
 Es decir, asegurar que los nodos no pueden modificar sus copias locales simultáneamente y que los cambios se propaguen adecuadamente entre las
 copias, antes de responder a cualquier operación de lectura solicitada por un proceso.
 Por eso el sistema de archivo AFS usa una semántica de coherencia diferente, denominada <strong>semántica de sesión</strong>.</p>
@@ -14916,7 +15335,7 @@ Para escribir algo en uno de estos archivos, es necesario crear una copia con un
 <div class="paragraph">
 <p>Para optimizar la implementación de esta semántica se suele usar una técnica similar al <strong>copy-on-write</strong>.
 Con esta técnica, cuando se va a modificar un archivo inmutable, se genera una copia que tiene la misma asignación de bloques que el archivo original.
-Cada vez que se va modificar la información de un bloque, se crear una copia de ese bloque, se aplican los cambios y se sustituye el identificador del bloque anterior por el del nuevo bloque en la asignación de bloques del archivo en el <strong>FCB</strong>
+Cada vez que se va modificar la información de un bloque, se crear una copia de ese bloque, se aplican los cambios y se sustituye el identificador del bloque anterior por el del nuevo bloque en la asignación de bloques del archivo en el <strong>FCB</strong>.
 Así, las copias de archivos inmutables se hacen más rápido y se ahorra espacio, dado que de cada archivo solo se guardan los bloques modificados.</p>
 </div>
 <div class="paragraph">
@@ -14959,7 +15378,7 @@ Así, varios procesos puedan leer el archivo al mismo tiempo, pero si un proceso
 <div class="sect4">
 <h5 id="_bloqueo_obligatorio_o_sugerido">Bloqueo obligatorio o sugerido</h5>
 <div class="paragraph">
-<p>Además. los sistemas operativos pueden proporcionar dos tipos de mecanismos de bloqueo de archivos:</p>
+<p>Además, los sistemas operativos pueden proporcionar dos tipos de mecanismos de bloqueo de archivos:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -14984,7 +15403,7 @@ Pero el sistema operativo no impedirá el acceso al archivo a un proceso que lo 
 En Windows API se puede indicar el modo de bloqueo al abrir el archivo con <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a> o se puede usar <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfile">LockFile()</a> para adquirir un bloqueo sobre una parte del contenido</p>
 </div>
 <div class="paragraph">
-<p>En los los sistemas UNIX y estilo UNIX, como regla general, no se bloquea un archivo al abrirlo.
+<p>En los sistemas UNIX y estilo UNIX, como regla general, no se bloquea un archivo al abrirlo.
 Existen diferentes mecanismos de bloqueo, algunos de los cuales pueden ser <strong>bloqueos obligatorio</strong>, pero por defecto son <strong>bloqueos sugeridos</strong>.</p>
 </div>
 <div class="sidebarblock">
@@ -15001,7 +15420,7 @@ El bloqueo se asocia al <strong>inodo</strong> y al <strong>PID</strong> del pro
 </li>
 <li>
 <p>Diferentes descriptores sobre el mismo archivo obtenidos llamando a <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> varias veces en el mismo proceso, comparten los bloqueos adquiridos.
-Así que usando este tipo de bloqueos es posible sincronizar distintos procesos pero no distintos hilos, ya que todos los hilos de un mismo proceso comparten la adquisición del bloqueo.</p>
+Así que, usando este tipo de bloqueos es posible sincronizar distintos procesos pero no distintos hilos, ya que todos los hilos de un mismo proceso comparten la adquisición del bloqueo.</p>
 </li>
 </ul>
 </div>
@@ -15033,7 +15452,7 @@ Por lo que no pueden usarse para sincronizar hilos de un mismo proceso, pero per
 <div class="paragraph">
 <p>Aparte de estos mecanismos, cada sistema operativo puede implementar algunas funcionalidades adicionales, no incluidas en el estándar POSIX.
 Por ejemplo, la llamada <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a> de Linux permite un tipo de bloqueo con las ventajas de los bloqueos originales de <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a> pero asociados a descriptores de archivo.
-Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como curre con los bloqueos BSD de <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock()</a>.</p>
+Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como ocurre con los bloqueos BSD de <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock()</a>.</p>
 </div>
 <div class="paragraph">
 <p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap19/filelock-server.c">filelock-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2021/src/cap19/filelock-client.cpp">filelock-client.cpp</a> se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
@@ -15042,7 +15461,7 @@ Mientras que el cliente <a href="https://github.com/ull-esit-sistemas-operativos
 Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en un ubicación conocida por ambos.</p>
 </div>
 <div class="paragraph">
-<p>Como el cliente lee el archivo con una única operación <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> y el servidor lo escribe con una única operación <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, no hacen falta el uso de bloqueo de archivos para sincronizarlos.
+<p>Como el cliente lee el archivo con una única operación <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> y el servidor lo escribe con una única operación <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, no hace falta el uso de bloqueo de archivos para sincronizarlos.
 Gracias a la semántica de coherencia POSIX, el cliente no puede leer el archivo en medio de la escritura.
 Es decir, o ve el PID completo escrito por el servidor o no ve ninguno.</p>
 </div>
@@ -15081,7 +15500,7 @@ Esto puede dejar el sistema de archivos en un estado incoherente, pues el estado
 <p>Los algoritmos de asignación y de gestión del espacio de almacenamiento dictan los tipos de problemas que el comprobador puede tratar de detectar y también el grado de éxito que puede tener en esa tarea.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, la pérdida de un <strong>FCB</strong>, cuando es este el que almacena la lista de bloques que contienen los datos del archivo, es desastrosa porque no hay forma de saber qué datos le pertenecen de entre todos los que hay en el disco.
+<p>Por ejemplo, la pérdida de un <strong>FCB</strong>, cuando es éste el que almacena la lista de bloques que contienen los datos del archivo, es desastrosa porque no hay forma de saber qué datos le pertenecen de entre todos los que hay en el disco.
 Por esta razón, UNIX almacena en caché las entradas de directorio para acelerar las lecturas, pero todas las escrituras de datos que provoquen algún cambio en la asignación de espacio o en algún otro tipo de metadato, se realizan síncronamente —antes de continuar ejecutando el proceso desde la llamada al sistema—.</p>
 </div>
 <div class="paragraph">
@@ -15114,7 +15533,7 @@ Mientras que en sistemas POSIX se llama <a href="https://es.wikipedia.org/wiki/F
 <p>Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada <strong>soft updates</strong> en su implementación del sistema de archivos <a href="https://es.wikipedia.org/wiki/Unix_File_System">UFS</a>.</p>
 </div>
 <div class="paragraph">
-<p>Cuando se monta un sistema de archivos con la opción <strong>soft updates</strong>, el sistema operativo desactiva la escritura síncrona de los <strong>metadatos</strong>, que comentamos anteriormente, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.</p>
+<p>Cuando se monta un sistema de archivos con la opción <strong>soft updates</strong>, el sistema operativo desactiva la escritura síncrona de los <strong>metadatos</strong>, que comentamos anteriormente, permitiendo que éstos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.</p>
 </div>
 <div class="paragraph">
 <p>Por ejemplo, cuando se van a escribir en el disco las modificaciones debidas a la creación de un nuevo archivo, el sistema se asegura de que primero se escribe el nuevo <strong>FCB</strong> —un <em>inodo</em>, en los sistemas UNIX BSD— y posteriormente se escribe el directorio con la nueva entrada de archivo con el identificador a dicho <strong>FCB</strong>.</p>
@@ -15176,8 +15595,8 @@ Por ejemplo, es utilizada en sistemas de archivos tales como: <a href="https://e
 <div class="sect4">
 <h5 id="_operaciones_sobre_datos">Operaciones sobre datos</h5>
 <div class="paragraph">
-<p>Es importante recordar que lo se guardan en el <strong>registro</strong> son las operaciones sobre los <strong>metadatos</strong>, porque se trata de preserva la coherencia del sistema de archivos en caso de fallo del sistema.
-Sin embargo, esto quiere decir que se pueden perder lo que no son operaciones sobre los <strong>metadatos</strong>, como por ejemplo, las operaciones que modifican los datos de los archivos, con lo que lo estos pueden acabar almacenando datos corruptos o antiguos.</p>
+<p>Es importante recordar que lo se guarda en el <strong>registro</strong> son las operaciones sobre los <strong>metadatos</strong>, porque se trata de preservar la coherencia del sistema de archivos en caso de fallo del sistema.
+Sin embargo, ésto quiere decir que se pueden perder lo que no son operaciones sobre los <strong>metadatos</strong>, como por ejemplo, las operaciones que modifican los datos de los archivos, con lo que lo éstos pueden acabar almacenando datos corruptos o antiguos.</p>
 </div>
 <div class="paragraph">
 <p>Para evitar en parte este problema, algunos sistemas de archivos fuerzan la escritura de los datos en el disco antes de <strong>confirmar</strong> la transacción en el <strong>registro</strong>.</p>
@@ -15200,7 +15619,7 @@ De esta forma, las incluye en la lista de operaciones guardadas en el <strong>re
 <p>Un efecto colateral de la utilización de un <strong>registro</strong> es la mejora del rendimiento en el acceso al sistema de archivo.</p>
 </div>
 <div class="paragraph">
-<p>La razón de esta mejora es que las costosas escrituras síncronas —es decir, antes de devolver el control al proceso— de los <strong>metadatos</strong> en lugares aleatorios del volumen se transforman en escrituras síncronas secuenciales —que son mucho más eficientes— en el <strong>registro</strong>.
+<p>La razón de esta mejora, es que las costosas escrituras síncronas —es decir, antes de devolver el control al proceso— de los <strong>metadatos</strong> en lugares aleatorios del volumen se transforman en escrituras síncronas secuenciales —que son mucho más eficientes— en el <strong>registro</strong>.
 Mientras que todas las operaciones indicadas en el <strong>registro</strong> se aplican asíncronamente mediante escrituras aleatorias en las estructuras apropiadas, por lo que pueden ser reordenadas a conveniencia para maximizar el rendimiento.</p>
 </div>
 <div class="paragraph">
@@ -15217,7 +15636,7 @@ Es decir, el control se devuelve al proceso antes de terminar de escribir las op
 <div class="paragraph">
 <p>El uso de escrituras asíncronas en el <strong>registro</strong> es peligroso.
 Cualquier caída del sistema podría provocar la corrupción del <strong>registro</strong>, porque las escrituras asíncronas pueden ocurrir en cualquier orden.
-Esto, aparentemente, eliminar cualquier ventaja de utilizar un <strong>registro</strong> de operaciones.
+Esto, aparentemente, elimina cualquier ventaja de utilizar un <strong>registro</strong> de operaciones.
 Sin embargo, XFS impone cierto orden en las operaciones de escritura sobre el registro —de forma similar a como se hace con los <strong>soft updates</strong>— de tal manera que la coherencia del registro está asegurada.</p>
 </div>
 <div class="paragraph">
@@ -15226,7 +15645,7 @@ Sin embargo, XFS impone cierto orden en las operaciones de escritura sobre el re
 <div class="paragraph">
 <p>Como hemos comentado, en otros <strong>sistemas de archivos basados en registro</strong>, el registro es un recurso al que se accede en <strong>exclusión mutua</strong>.
 Es decir, las operaciones de una <strong>transacción</strong> se deben escribir antes de devolver el control al proceso y de permitir que otro proceso a la espera escriba las operaciones de su <strong>transacción</strong>.
-Estas esperas en el acceso al <strong>registro</strong> son las que <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> evita permitiendo su modificación de manera asíncrona.</p>
+Estas esperas en el acceso al <strong>registro</strong> son las que <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> evita, permitiendo su modificación de manera asíncrona.</p>
 </div>
 </div>
 </div>
@@ -15236,8 +15655,8 @@ Estas esperas en el acceso al <strong>registro</strong> son las que <a href="htt
 <h4 id="_sistemas_de_archivos_basados_en_copia_durante_la_escritura">19.8.4. Sistemas de archivos basados en copia durante la escritura</h4>
 <div class="paragraph">
 <p><em>Las técnicas anteriores son necesarias para preservar la coherencia porque la modificación de los metadatos se hace sobrescribiendo los datos que ya existen</em>.
-Es decir, cuando se crea un nuevo archivo el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
-Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estadoinconsistente.</p>
+Es decir, cuando se crea un nuevo archivo, el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
+Si algunos de estos cambios tienen lugar pero otros no, el disco puede quedar en estado inconsistente.</p>
 </div>
 <div class="paragraph">
 <p><em>Los <strong>sistemas de archivos basados en copia durante la escritura</strong></em> —o <em>copy-on-write</em>— <em>evitan cambiar los metadatos sobrescribiendo en el sitio</em>.
@@ -15254,9 +15673,9 @@ Por ejemplo, al crear un archivo:</p>
 <li>
 <p><em>Se busca un FCB libre, se lee el bloque que lo contiene en la memoria principal, se modifica y se escribe en un bloque libre</em>.
 El sistema de archivos debe tener alguna estructura de datos que permita encontrar el bloque que contiene un FCB a partir de su identificador.
-Por lo general esta estructura es algún tipo de árbol.
+Por lo general, esta estructura es algún tipo de árbol.
 Así que se modifica el nodo del árbol que señala al bloque con el nuevo FCB para que conozca la nueva ubicación.
-Este cambio implica crear un copia del bloque de dicho nodo con el cambio, lo que a su vez significa modificar el nodo que señala a este.
+Este cambio, implica crear un copia del bloque de dicho nodo con el cambio, lo que a su vez significa modificar el nodo que señala a este.
 Y así sucesivamente hasta llegar a la raíz del árbol de FCB.</p>
 </li>
 <li>
@@ -15294,7 +15713,7 @@ Esta solución no sólo les permite tener las mismas propiedades que el uso de r
 </div>
 <div class="paragraph">
 <p>Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
-En la <a href="#estructura_sistema_de_archivos">Figura 44</a> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
+En la <a href="#estructura_sistema_de_archivos">Figura 51</a> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 El papel de cada uno de estos niveles fue descrito en el <a href="#_estructura_de_un_sistema_de_archivos">Apartado 19.1</a>.
 Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <a href="#_estructuras_de_metadatos_en_disco">Apartado 19.2</a> y en el <a href="#_estructuras_de_metadatos_en_memoria">Apartado 19.3</a>.</p>
@@ -15371,8 +15790,8 @@ Para obtener la ubicación de dicho archivo dentro de la lista lineal, se usa un
 </div>
 <div class="paragraph">
 <p>El único inconveniente es que debemos tratar la posible aparición de colisiones, que son aquellas situaciones en las que dos nombres de archivo dan lugar, al aplicarles la función de dispersión, la misma ubicación en la tabla.
-Esto se puede resolver utilizando una lista enlazada en cada entrada de la lista —cada entrada en al lista señalaría la ubicación de la siguiente entrada de la lista que tiene el mismo valor para la función de dispersión— a cambio de que las búsquedas sean un poco más lentas.
-En cualquier caso, éste método será normalmente más rápido que una búsqueda lineal por todo el directorio.</p>
+Esto se puede resolver utilizando una lista enlazada en cada entrada de la lista —cada entrada en la lista señalaría la ubicación de la siguiente entrada de la lista que tiene el mismo valor para la función de dispersión— a cambio de que las búsquedas sean un poco más lentas.
+En cualquier caso, este método será normalmente más rápido que una búsqueda lineal por todo el directorio.</p>
 </div>
 </div>
 <div class="sect3">
@@ -15386,7 +15805,7 @@ En cualquier caso, éste método será normalmente más rápido que una búsqued
 </div>
 <div class="paragraph">
 <p>En la entrada en la <strong>MFT</strong> (<em>Master File Table</em>) de cada directorio se almacena un atributo denominado <strong>raíz del índice</strong>.
-Si el directorio es de pequeño tamaño, la <strong>raíz del índice</strong> contiene todas las entradas de archivos del directorio, pero Para un directorio de gran tamaño, la <strong>raíz del índice</strong> sólo puede almacenar unas pocas entradas de archivos del directorio.
+Si el directorio es de pequeño tamaño, la <strong>raíz del índice</strong> contiene todas las entradas de archivos del directorio, pero para un directorio de gran tamaño, la <strong>raíz del índice</strong> sólo puede almacenar unas pocas entradas de archivos del directorio.
 En ese caso la <strong>raíz del índice</strong> contiene el nivel superior del árbol B+.
 Es decir, cada una de esas entradas de archivos en la <strong>raíz del índice</strong> incluye también un puntero al bloque del disco que contiene un nodo del árbol con las entradas con nombres alfabéticamente anteriores a ese.
 Si en dicho nodo tampoco caben todas las entradas, sólo podrá contener algunas de ellas, por lo que cada una tendrá, a su vez, un puntero a un nuevo nodo del árbol; y así sucesivamente.</p>
@@ -15397,7 +15816,7 @@ Si en dicho nodo tampoco caben todas las entradas, sólo podrá contener algunas
 <div class="ulist">
 <ul>
 <li>
-<p>_Eliminan el coste de reordenar las entradas del directorio.</p>
+<p>Eliminan el coste de reordenar las entradas del directorio.</p>
 </li>
 <li>
 <p>La longitud desde la raíz del árbol hasta un nodo hoja es la misma para todas los caminos por el árbol, por lo que el tiempo de búsqueda tiene una cota superior.</p>
@@ -15475,7 +15894,7 @@ El problema es que eso no siempre es posible.</p>
 Pero ¿qué ocurre cuando vamos a crear uno nuevo? Entonces al crear un archivo es necesario que el usuario haga una estimación del espacio que va necesitar y se la indique al sistema.</p>
 </div>
 <div class="paragraph">
-<p>¿Y si la estimación no es correcta o posteriormente que queremos añadir nuevos datos al archivo?
+<p>¿Y si la estimación no es correcta o posteriormente queremos añadir nuevos datos al archivo?
 Entonces, Lo más probable es que el espacio situado a ambos lados del archivo ya esté ocupado, si hemos utilizado la estrategia del <strong>mejor ajuste</strong>.
 Para resolver este problema existen dos estrategias:</p>
 </div>
@@ -15555,7 +15974,7 @@ Por ejemplo, si cada bloque tiene 512 bytes de tamaño y un puntero requiere 4 b
 Es muy posible que esas lecturas deban ir precedidas de un reposicionamiento de los cabezales del disco.</p>
 </div>
 <div class="paragraph">
-<p>Una solución parcial a esto puede ser guarda en la memoria una caché de las direcciones de los bloques de los archivos accedidos recientemente.</p>
+<p>Una solución parcial a esto puede ser guardar en la memoria una caché de las direcciones de los bloques de los archivos accedidos recientemente.</p>
 </div>
 </div>
 <div class="sect4">
@@ -15581,18 +16000,18 @@ Sin embargo, esto también incrementaría el grado de <strong>fragmentación int
 <div class="content">
 <div class="title">Asignación enlazada en FAT y FAT32</div>
 <div class="paragraph">
-<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> y <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> utiliza una variante del mecanismo de asignación enlazada en la que se emplea una <strong>tabla de asignación de archivo</strong> o <strong>FAT</strong> (<em>File-Allocation Table</em>).</p>
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> y <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> utilizan una variante del mecanismo de asignación enlazada en la que se emplea una <strong>tabla de asignación de archivo</strong> o <strong>FAT</strong> (<em>File-Allocation Table</em>).</p>
 </div>
 <div class="paragraph">
 <p>La FAT se almacena en una sección al principio del volumen.
 Contiene una entrada por cada <strong>clúster</strong> del disco y en cada una guarda el número del siguiente <strong>clúster</strong> del archivo.
-Es decir, lo que hace FAT agrupa en un solo lugar los punteros de la <strong>asignación enlazada</strong>.</p>
+Es decir, lo que hace la FAT es agrupa en un solo lugar los punteros de la <strong>asignación enlazada</strong>.</p>
 </div>
 <div id="estructura_fat" class="imageblock">
 <div class="content">
 <img src="C20-implementación_del_sistemas_de_archivos/images/estructura_fat.svg" alt="estructura fat">
 </div>
-<div class="title">Figura 45. Asignación enlazada en el sistema de archivos FAT.</div>
+<div class="title">Figura 52. Asignación enlazada en el sistema de archivos FAT.</div>
 </div>
 <div class="paragraph">
 <p>Eso significa que la FAT es una estructura crítica.
@@ -15609,12 +16028,12 @@ Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestiona
 <p>Aunque algunas versiones de Microsoft Windows NT llegaron a admitir 128 e, incluso, 512 bloques por clúster, con clústeres tan grandes la <strong>fragmentación interna</strong> es un problema.</p>
 </div>
 <div class="paragraph">
-<p>Por eso —entre otras coas— Microsoft introdujo <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a>, que utiliza 32 bits para numerar los clústeres.
-Eso implicar poder gestionar más cantidad clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor <strong>fragmentación interna</strong>.
+<p>Por eso —entre otras cosas— Microsoft introdujo <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a>, que utiliza 32 bits para numerar los clústeres.
+Eso implicar poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor <strong>fragmentación interna</strong>.
 Por ejemplo, <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.</p>
 </div>
 <div class="paragraph">
-<p>Como se puede ver en la <a href="#estructura_fat">Figura 45</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+<p>Como se puede ver en la <a href="#estructura_fat">Figura 52</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
 La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
 Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.</p>
 </div>
@@ -15705,7 +16124,7 @@ Si dicho puntero tiene valor 0, entonces estamos en el último bloque de índice
 </div>
 </li>
 <li>
-<p>En el <strong>índice multinivel</strong>, los punteros del bloque de índices no señalan a los bloques del archivo, sino a conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
+<p>En el <strong>índice multinivel</strong>, los punteros del bloque de índices no señalan a los bloques del archivo, sino a un conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
 Esta técnica puede puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.</p>
 </li>
 <li>
@@ -15722,7 +16141,7 @@ Después podrían haber entradas que contienen punteros doblemente indirectos y 
 <div class="content">
 <img src="C20-implementación_del_sistemas_de_archivos/images/asignación_ext2.svg" alt="asignación ext2">
 </div>
-<div class="title">Figura 46. Asignación indexada combinada en el sistema de archivos ext2.</div>
+<div class="title">Figura 53. Asignación indexada combinada en el sistema de archivos ext2.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -15742,7 +16161,7 @@ Concretamente el mecanismo en <a href="https://es.wikipedia.org/wiki/Ext2">ext2<
 </li>
 <li>
 <p>En cada grupo, se utilizan los primeros bloques para almacenar una tabla de <strong>inodos</strong>.
-Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almacenados en el grupo.ç</p>
+Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almacenados en el grupo.</p>
 <div class="paragraph">
 <p>El resto de los bloques se utilizan para almacenar los datos de los archivos representados por los <strong>inodos</strong> del grupo.</p>
 </div>
@@ -15751,7 +16170,7 @@ Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almac
 <p>Dentro de cada <strong>inodo</strong> —entre otra información típica en un <strong>FCB</strong>— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.</p>
 </li>
 <li>
-<p>Como se puede ver en la <a href="#asignación_ext2">Figura 46</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
+<p>Como se puede ver en la <a href="#asignación_ext2">Figura 53</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
 Esto permite almacenar hasta \$2^64\$ bytes de información en cada archivo.</p>
 </li>
 </ul>
@@ -15824,7 +16243,7 @@ Sin embargo, debemos tener en cuenta que no es frecuente tener que recorrer la l
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> incorporan el control de bloques libres dentro de la <strong>tabla de asignación de archivos</strong> guardando un 0 en loas entradas de los <strong>clústeres</strong> libres, por lo que no se necesita ningún método adicional.</p>
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> incorporan el control de bloques libres dentro de la <strong>tabla de asignación de archivos</strong> guardando un 0 en las entradas de los <strong>clústeres</strong> libres, por lo que no se necesita ningún método adicional.</p>
 </div>
 </td>
 </tr>
@@ -15836,7 +16255,7 @@ Sin embargo, debemos tener en cuenta que no es frecuente tener que recorrer la l
 <div class="paragraph">
 <p>Una modificación de la técnica basada en la lista enlazada consiste en almacenar las direcciones de <em>N</em> bloques libres en el primer bloque libre.
 Los primeros <em>N — 1</em> de esos bloques estarían realmente libres, pero el último de ellos apuntaría a otro bloque con <em>N</em> bloques libres.
-Así podría localizarse rápidamente las direcciones de un gran número de bloques libres, lo cual mejora la eficiencia respecto a la técnica de lista enlazada.</p>
+Así podrían localizarse rápidamente las direcciones de un gran número de bloques libres, lo cual mejora la eficiencia respecto a la técnica de lista enlazada.</p>
 </div>
 </div>
 <div class="sect3">
@@ -15902,7 +16321,7 @@ Por ejemplo, el <strong>FCB virtual</strong>, que identifica de forma unívoca a
 <div class="paragraph">
 <p>En Linux el <strong>FCB virtual</strong> se denomina <strong>vnodo</strong>.
 El <strong>vnodo</strong> de un archivo lo identifica de forma unívoca en todo el sistema, incluso diferenciando archivos en sistemas de archivos diferentes.
-Mientras que el <strong>inodo</strong> es un detalle de la implementación real del sistema de archivo, por lo que solo es único dentro del mismo sistema de archivos.</p>
+Mientras que el <strong>inodo</strong> es un detalle de la implementación real del sistema de archivos, por lo que solo es único dentro del mismo sistema de archivos.</p>
 </div>
 </td>
 </tr>
@@ -15934,7 +16353,7 @@ Las operaciones de la interfaz <strong>VFS</strong> pueden implementarse de tal 
 <h4 id="_implementación_del_sistema_de_archivos">20.4.3. Implementación del sistema de archivos</h4>
 <div class="paragraph">
 <p>El tercer nivel es donde se implementa cada tipo de sistema de archivos o los distintos protocolos de los servidores de archivos en la red.
-La interfaz <strong>VFS</strong> recurre a la implementación correspondiente para cada tipo de sistema de archivos para satisfacer las solicitudes de los niveles superiores.</p>
+La interfaz <strong>VFS</strong> recurre a la implementación correspondiente para cada tipo de sistema de archivos, para satisfacer las solicitudes de los niveles superiores.</p>
 </div>
 <div class="paragraph">
 <p>Así, por ejemplo, un <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> puede implicar que se tenga que recuperar el <strong>vnodo</strong> del archivo involucrado desde la tabla de archivos abiertos, usando el descriptor de archivo indicado en la llamada al sistema.
@@ -15994,7 +16413,7 @@ La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S d
 Es decir, que las las solicitudes se atienden en orden de llegada.</p>
 </div>
 <div class="paragraph">
-<p>Es el algoritmo de planificación más simple y es equitativa, en sentido de que atiende a todos los procesos por igual.
+<p>Es el algoritmo de planificación más simple y es equitativo, en sentido de que atiende a todos los procesos por igual.
 Pero, lamentablemente, no proporciona el servicio más rápido en disco duros magnéticos, donde interesa mover el brazo del disco lo menos posible.</p>
 </div>
 <div class="admonitionblock note">
@@ -16104,7 +16523,7 @@ Estos algoritmos funcionan de la siguiente manera:</p>
 </div>
 <div class="paragraph">
 <p>Estos algoritmos previenen un problema denominado <strong>rigidez del brazo</strong> —o <em>arm stickiness</em>, en inglés— a diferencia de los algoritmos SSTF, SCAN, C-SCAN, LOOK y C-LOOK, que no lo hacen.
-El termino <strong>rigidez del brazo</strong> hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, lo que hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
+El termino <strong>rigidez del brazo</strong> hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, esto hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
 Como <strong>F-SCAN</strong>, <strong>N-Step-SCAN</strong> y <strong>N-Step-LOOK</strong> separan las solicitudes en dos colas —haciendo que las nuevas tengan que esperar— el brazo siempre continua su barrido hacia el extremo del disco.</p>
 </div>
 </div>
@@ -16151,7 +16570,7 @@ Una solicitud asíncrona se inserta en una cola u otra según la prioridad del p
 </li>
 <li>
 <p>Usando el algoritmo <strong><em>round-robin</em></strong>, el planificador <strong>CFQ</strong> recorre las colas y extrae de ellas las solicitudes durante el tiempo marcado por el cuanto de cada cola.
-Las solicitudes extraídas se insertan en la cola de E/S al disco, donde se ordenar para minimizar el <strong>tiempo de búsqueda</strong>, antes de ser enviadas al dispositivo.</p>
+Las solicitudes extraídas se insertan en la cola de E/S al disco, donde se ordenan para minimizar el <strong>tiempo de búsqueda</strong>, antes de ser enviadas al dispositivo.</p>
 </li>
 </ul>
 </div>
@@ -16262,18 +16681,15 @@ Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. La solución a este problema pasa porque la CPU disponga de una eficiente y pequeña —de entre 64 y 1024 entradas— memoria caché en la que almacenar las entradas de la tabla de página previamente utilizadas en la traducción de las direcciones. A dicha caché se la denomina TLB (Translation Look-aside Buffer). Obviamente es necesario que el asignador borre la TLB durante los cambios de contexto.
+<a href="#_footnoteref_1">1</a>. Se trata de una aproximación puesto que usando el <em>bit de referencia</em> el sistema operativo no puede conocer con exactitud la última vez que una página fue utilizada. Sin embargo, aunque existen soluciones exactas que hacen uso de un contador o de una pila que se actualiza en cada acceso a las páginas, se trata de soluciones muy costosas como para ser implementarlas en hardware.
 </div>
 <div class="footnote" id="_footnotedef_2">
-<a href="#_footnoteref_2">2</a>. Se trata de una aproximación puesto que usando el <em>bit de referencia</em> el sistema operativo no puede conocer con exactitud la última vez que una página fue utilizada. Sin embargo, aunque existen soluciones exactas que hacen uso de un contador o de una pila que se actualiza en cada acceso a las páginas, se trata de soluciones muy costosas como para ser implementarlas en hardware.
-</div>
-<div class="footnote" id="_footnotedef_3">
-<a href="#_footnoteref_3">3</a>. Es común que los núcleos de los sistemas operativos utilicen páginas de gran tamaño para alojar su código y sus datos. De esta forma se minimiza el número de entradas de la TLB que utilizan, con el fin de disponer de más entradas libres para los procesos en ejecución.
+<a href="#_footnoteref_2">2</a>. Es común que los núcleos de los sistemas operativos utilicen páginas de gran tamaño para alojar su código y sus datos. De esta forma se minimiza el número de entradas de la TLB que utilizan, con el fin de disponer de más entradas libres para los procesos en ejecución.
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-11-02 12:36:30 UTC
+Última actualización 2020-11-07 22:46:53 UTC
 </div>
 </div>
 <style>
