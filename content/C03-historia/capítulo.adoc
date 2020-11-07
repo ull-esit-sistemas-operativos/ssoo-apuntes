@@ -346,7 +346,7 @@ Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VM
 Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de un API nativo no documentado públicamente.
 Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.
 
-La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo _microkernel_ (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores {x86}, https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha], https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS R4000] y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
+La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo _microkernel_ (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores {x86}, {decalpha}, {mips} 4000 y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
 
 Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
 Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.

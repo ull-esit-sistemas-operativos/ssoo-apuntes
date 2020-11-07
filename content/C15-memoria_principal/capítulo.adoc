@@ -105,7 +105,7 @@ Por ejemplo, en el código fuente de un programa las direcciones son generalment
 A continuación, un compilador suele reasignar esas direcciones simbólicas en *direcciones reubicables*(((dirección, reubicable))) del estilo de «120 bytes desde el comienzo del módulo».
 Finalmente —el enlazador— que genera el ejecutable— o el cargador —que carga el programa en la memoria— convierte esas *direcciones reubicables* en *direcciones absolutas*(((dirección, absoluta))), como `0x00210243`.
 
-Por tanto, en cada etapa se mapean las direcciones de un espacio de direcciones en el siguiente.
+Por tanto, en cada etapa se traducen las direcciones de un espacio de direcciones en el siguiente.
 Sin embargo, para que al final el programa pueda ser ejecutado, es necesario que tanto a los datos como a las instrucciones se les reasignen en algún momento a *direcciones absolutas* de la memoria.
 Esto puede ocurrir en *tiempo de compilación*, *tiempo de carga* o *tiempo de ejecución*
 
@@ -159,6 +159,7 @@ De él hablaremos en el <<_espacio_de_direcciones_virtual_frente_a_físico>>.
 
 En el <<_protección_de_la_memoria>> vimos en los sistemas operativos modernos, como medida de protección, los procesos no tienen acceso libre a la memoria física.
 
+// Esta figura aparece también en el Capítulo 7: Modo dual
 [[espacio_direcciones_virtual_frente_físico]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::protección_memoria.svg[]
@@ -320,7 +321,7 @@ Es decir, el espacio de almacenamiento está fraccionado en un gran número de h
 
 * Afecta tanto a la estrategia del *primer* como del *mejor ajuste*. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.
 
-* Algunos análisis estadísticos realizados con el *primer ajuste* revelan que incluso con algunas optimizaciones, con _N_ bloques asignados se pierden stem:[0,5_N] por *fragmentación externa* —es decir, un tercio de toda la memoria no es utilizable—.
+* Algunos análisis estadísticos realizados con el *primer ajuste* revelan que incluso con algunas optimizaciones, con stem:[N] bloques asignados se pierden stem:[0,5N] por *fragmentación externa* —es decir, un tercio de toda la memoria no es utilizable—.
 A esto se lo conoce como la regla del 50%.
 
 Existen diversas soluciones a este problema:
@@ -383,12 +384,11 @@ Si embargo, si se utiliza *reubicación en tiempo de ejecución*, entonces el pr
 La mayor parte del tiempo de intercambio es el tiempo de transferencia con el disco, que puede ser de varios cientos de milisegundos, incluso utilizando los discos más rápidos.
 Esto afecta al *tiempo de cuanto* que siempre debe ser mucho mayor que el tiempo de *cambio de contexto*.
 
-* Un proceso podría disponer de un espacio en memoria de 120MB pero estar
-utilizando sólo 2MB.
+* Un proceso podría disponer de un espacio en memoria de 120 MiB pero estar utilizando sólo 2 MiB.
 Por tanto, es interesante que el sistema operativo conozca con exactitud la memoria utilizada por el proceso —y no la que podría estar utilizando como máximo— para reducir el tiempo de transferencia de los datos al disco durante el intercambio.
 +
 Para eso, el sistema operativo proporciona llamadas al sistema con las que un proceso con requerimientos dinámicos de memoria puede informar del cambio en su necesidad de memoria.
-Por ejemplo, los sistemas operativos modernos proporcionan llamadas al sistema para reservar y liberar memoria —como malloc() y free() en los sistemas POSIX— gracias a las que el sistema conoce las necesidades reales de los procesos.
+Por ejemplo, los sistemas operativos modernos proporcionan llamadas al sistema para reservar y liberar memoria —como {clang_malloc} y {clang_free} en los sistemas POSIX— gracias a las que el sistema conoce las necesidades reales de los procesos.
 
 * El *intercambio* presenta dificultades cuando el proceso que va a ser sacado de la memoria está esperando por una operación de E/S que accede a la memoria del proceso para leer o escribir datos en ella.
 La soluciones podrían ser:
