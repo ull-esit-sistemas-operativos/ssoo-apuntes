@@ -2,6 +2,7 @@
 :clang_stdatomic: https://en.cppreference.com/w/c/atomic[<stdatomic.h>]
 :clang_stdio: https://en.cppreference.com/w/c/io[<stdio.h>]
 :clang_exit: https://www.man7.org/linux/man-pages/man3/exit.3.html[exit()]
+:clang_free: https://en.cppreference.com/w/c/memory/free[free()]
 :clang_fopen: https://en.cppreference.com/w/c/io/fopen[fopen()]
 :clang_main: https://en.cppreference.com/w/c/language/main_function[main()]
 :clang_malloc: https://en.cppreference.com/w/c/memory/malloc[malloc()]
@@ -22,6 +23,7 @@
 :cpp_condition_variable: https://en.cppreference.com/w/cpp/thread/condition_variable[std::condition_variable]
 :cpp_iostream: https://en.cppreference.com/w/cpp/header/iostream[std::iostream]
 :cpp_new: https://en.cppreference.com/w/cpp/language/new[new]
+:cpp_delete: https://en.cppreference.com/w/cpp/language/delete[delete]
 :cpp_mutex_lock: https://en.cppreference.com/w/cpp/thread/mutex/lock[std::mutex:::lock()]
 :cpp_mutex_unlock: https://en.cppreference.com/w/cpp/thread/mutex/unlock[std::mutex::unlock()]
 :cpp_mutex: https://en.cppreference.com/w/cpp/thread/mutex[std::mutex]
@@ -38,6 +40,7 @@
 :linux_chown: https://man7.org/linux/man-pages/man2/chown.2.html[chown()]
 :linux_close: https://man7.org/linux/man-pages/man2/close.2.html[close()]
 :linux_connect: https://man7.org/linux/man-pages/man2/connect.2.html[connect()]
+:linux_brk: https://man7.org/linux/man-pages/man2/brk.2.html[brk()]
 :linux_dup2: https://man7.org/linux/man-pages/man2/dup.2.html[dup2()]
 :linux_epoll: https://man7.org/linux/man-pages/man7/epoll.7.html[epoll()]
 :linux_errno: https://man7.org/linux/man-pages/man3/errno.3.html[errno]
@@ -52,6 +55,7 @@
 :linux_kill: https://man7.org/linux/man-pages/man2/kill.2.html[kill()]
 :linux_listen: https://man7.org/linux/man-pages/man2/listen.2.html[listen()]
 :linux_mmap: https://man7.org/linux/man-pages/man2/mmap.2.html[mmap()]
+:linux_munmap: https://man7.org/linux/man-pages/man2/munmap.2.html[munmap()]
 :linux_poll: https://man7.org/linux/man-pages/man2/poll.2.html[poll()]
 :linux_mkfifo: https://man7.org/linux/man-pages/man3/mkfifo.3.html[mkfifo()]
 :linux_mq_open: https://man7.org/linux/man-pages/man3/mq_open.3.html[mq_open()]
@@ -162,6 +166,8 @@
 :win32_getmessage: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagea[GetMessage()]
 :win32_getpriorityclass: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getpriorityclass[GetPriorityClass()]
 :win32_getsecurityinfo: https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getsecurityinfo[GetSecurityInfo()]
+:win32_heapalloc: https://docs.microsoft.com/en-us/windows/win32/api/heapapi/nf-heapapi-heapalloc[HeapAlloc()]
+:win32_heapfree: https://docs.microsoft.com/en-us/windows/win32/api/heapapi/nf-heapapi-heapfree[HeapFree()]
 :win32_initializeconditionvariable: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-initializeconditionvariable[InitializeConditionVariable()]
 :win32_initializecriticalsectionandspincount: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-initializecriticalsectionandspincount[InitializeCriticalSectionAndSpinCount()]
 :win32_initializecriticalsection: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-initializecriticalsection[InitializeCriticalSection()]
@@ -197,6 +203,8 @@
 :win32_processinformation: https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information[PROCESS_INFORMATION]
 :win32_wakeallconditionvariable: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-wakeallconditionvariable[WakeAllConditionVariable()]
 :win32_wakeconditionvariable: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-wakeconditionvariable[WakeConditionVariable()]
+:win32_virtualalloc: https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc[VirtualAlloc()]
+:win32_virtualfree: https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualfree[VirtualFree()]
 
 // UNIX
 :unix: https://es.wikipedia.org/wiki/Unix[UNIX]
@@ -233,6 +241,8 @@
 :x86: https://es.wikipedia.org/wiki/IA-32[x86]
 :ultrasparc: https://es.wikipedia.org/wiki/UltraSPARC[Sun UltraSPARC]
 :itanium: https://es.wikipedia.org/wiki/Intel_Itanium[Intel Itanium]
+:decalpha: https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha]
+:mips: https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS]
 
 // Sistemas de archivos
 :btrfs: https://es.wikipedia.org/wiki/Btrfs[Btrfs]
