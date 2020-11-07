@@ -71,10 +71,9 @@ Como vimos en el <<componente_gestión_de_procesos>> varios procesos pueden esta
 Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demás propiedades.
 ====
 
-// TODO: Subir código (no pegado abajo) y bajar la pila o crear otra imagen para el caso de Linux.
-// TODO: Añadir lo que es espacio de usuario.
 En la <<proceso_en_memoria>> se puede observar la disposición de algunos de estos elementos de un proceso en el espacio de usuario en la memoria.
 
+// Esta figura aparece también en el Capítulo 16: Paginación
 [[proceso_en_memoria]]
 .Anatomía de un proceso en memoria.
 image::proceso_en_memoria.svg[]

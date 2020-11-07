@@ -55,6 +55,12 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una 
 * *Otros recursos del proceso* como archivos, _sockets_, tuberías y dispositivos abiertos, regiones de memoria compartida, señales, directorio actual de trabajo, entre muchos otros recursos.
 ====
 
+[[proceso_multihilo_en_memoria]]
+.Anatomía de un proceso multihilo en memoria.
+image::proceso_multihilo_en_memoria.svg[]
+
+En la <<proceso_multihilo_en_memoria>> se puede observar como cambia la disposición de los elementos de un proceso en la memoria cuando es multihilo, respecto a lo que vimos en el <<_el_proceso>>.
+
 == Beneficios
 
 Son muchos los beneficios que aporta la programación multihilo:

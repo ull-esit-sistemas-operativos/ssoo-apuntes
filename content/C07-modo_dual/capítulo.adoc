@@ -145,6 +145,7 @@ Mientras que el *espacio de direcciones físico*(((espacio de direcciones, físi
 ====
 
 // TODO: Señalar el espacio de usuario y de núcleo.
+// Esta figura aparece también en el Capítulo 15: Memoria principal
 [[protección_memoria]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::protección_memoria.svg[]
