@@ -592,7 +592,7 @@ Y los tiempos de espera y ejecución promedio correspondientes serían:
 
 |P1
 |17
->|[.lightcell]#(0-0)+(10-1)=#|9
+>|[.lightcell]#(0-0) + (10-1)=#|9
 >|[.lightcell]#(17-0)=#|17
 
 |P2
@@ -701,7 +701,7 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 
 |P1
 |4
->|[.lightcell]#(0-0)+(3-1)+(9-4)=#|7
+>|[.lightcell]#(0-0) + (3-1) + (9-4)=#|7
 >|[.lightcell]#(17-0)=#|17
 
 |P2
@@ -822,25 +822,25 @@ Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 
 |P1
 |30
->|[.lightcell]#(0-0)+(10-4)=#|6
+>|[.lightcell]#(0-0) + (10-4)=#|6
 >|[.lightcell]#(30-0)=#|24
 
 |P2
 |7
->|[.lightcell]#(4-2)=#|2
->|[.lightcell]#(7-2)=#|5
+>|[.lightcell]#(4-1)=#|3
+>|[.lightcell]#(7-1)=#|6
 
 |P3
 |10
->|[.lightcell]#(7-3)=#|4
->|[.lightcell]#(10-3)=#|7
+>|[.lightcell]#(7-2)=#|5
+>|[.lightcell]#(10-2)=#|8
 
 |Tiempos promedio (ms.)
 |
 |
 |4,67
 |
-|14,67 
+|12,67 
 |===
 
 ==== Rendimiento
@@ -1007,7 +1007,7 @@ Las actuales versiones de sistemas operativos Windows pertenecen a la familia de
 El núcleo de la familia Windows NT es multihilo e internamente implementa un algoritmo de planificación expropiativa con colas multinivel realimentadas basado en prioridades.
 
 En Windows las prioridades de los hilos se pueden ver desde dos perspectivas: la de Windows API y la del núcleo.
-Ambas tienen una organización muy diferente pero, en última instancia, las primeras deben mapearse en las segundas.
+Ambas tienen una organización muy diferente pero, en última instancia, las primeras deben traducirse en las segundas.
 
 [[win32_clases_prioridad]]
 .Clases de prioridad en Windows API.
