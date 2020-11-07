@@ -87,7 +87,7 @@ end
 desc 'Test de variables no definidas'
 task :test_missing_variables => OUTPUT_HTML_FILE do |t|
     document = Nokogiri::HTML.parse(open(OUTPUT_HTML_FILE))
-    variables = document.xpath('//body//text()').flat_map do |text|
+    variables = document.xpath('//body//text()[not(ancestor::div[@class="stemblock"])]').flat_map do |text|
         matches = text.content.gsub(/\\\$.*?\\\$/, "").scan(/\{\w+\}/)
     end.uniq.sort
 
