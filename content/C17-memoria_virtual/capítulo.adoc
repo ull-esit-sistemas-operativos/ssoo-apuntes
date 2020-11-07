@@ -601,92 +601,103 @@ Para evitar riesgos, el sistema suele considerar estás solicitudes como _consej
 
 == Interfaz de gestión de la memoria
 
-Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda— desde el punto de vista de los procesos en cualquier sistema moderno _prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual_.
-En los sistemas POSIX —como GNU/Linux— esta llamada es `mmap()` —junto a su opuesta `munmap()`— y sirve para:
+Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda— desde el punto de vista de los procesos en cualquier sistema moderno prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual.
 
-* _Reservar una porción de espacio de direcciones virtual del proceso_.
-Obviamente la llamada sólo hace la reserva para que dicha región pueda ser usada por el proceso, siendo el componente de paginación bajo demanda el responsable de asignar la memoria física que la respalda.
+En los sistemas POSIX esta llamada es {linux_mmap} y en Windows API es {win32_virtualalloc}, que use usan junto a sus opuestas {linux_munmap} y {win32_virtualfree}, respectivamente.
 
-* _Establecer permisos —lectura, escritura y ejecución—, opciones de compartición entre procesos, bloqueo de páginas en la memoria física, páginas de gran tamaño, etc._ en la región de memoria virtual a reservar.
+Ambas funciones permiten:
 
-* _Mapear archivos en regiones del espacio de direcciones virtual_.
+* Reservar una porción de espacio de direcciones virtual del proceso.
++
+La llamada solo hace la reserva de un rango de direcciones para pueda ser utilizado por el proceso —es decir, que las páginas en ese rango sean válidas— siendo el componente de paginación bajo demanda el responsable de asignar la memoria física que lo respalda, cuando el proceso acceda a esas direcciones.
 
-Sin embargo _en funciones como `mmap()` la página es la unidad mínima en la gestión de la memoria_.
-Es decir, las regiones reservadas del espacio de direcciones virtual siempre comienzan en un borde de página y su tamaño es múltiplo del tamaño de página.
-La cuestión es como compatibilizar eso con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos como: _arrays_, cadenas de texto, estructuras, objetos, etc.
-Para esos casos _utilizar directamente `mmap()` no es una solución puesto que la fragmentación interna con llevaría un importante derroche de recursos_.
+* Establecer permisos —lectura, escritura y ejecución—, opciones de compartición entre procesos, bloqueo de páginas en la memoria física, páginas de gran tamaño y otras opciones, en la región de memoria virtual a reservar.
 
-=== Uso del espacio de direcciones virtual del proceso
+[NOTE]
+====
+Además, en los sistemas POSIX, {linux_mmap} se utiliza también para mapear archivos en regiones del espacio de direcciones virtual.
+Mientras que Windows API para esa función se utilizan llamadas diferentes, como hemos visto.
+====
 
-Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la ):
+Ambas funciones ofrecen una buena cantidad de funcionalidades, pero operan a muy bajo nivel.
+Por eso en ambas la página es la unidad mínima en la gestión de la memoria.
+Es decir, las regiones reservadas del espacio de direcciones virtual siempre deben comienzar en un borde de página y su tamaño debe ser múltiplo del tamaño de página.
 
-* _La variables y constantes globales se almacenan en la sección de datos_, que tiene tamaño fijo ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.
+El problema es cómo compatibilizar eso con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos, como: _arrays_, cadenas de texto, estructuras u  objetos.
+Para esos casos utilizar directamente {linux_mmap} o {win32_virtualalloc} no es una solución, puesto que la fragmentación interna conllevaría un importante derroche de recursos.
 
-* _Las variables locales y los argumentos de las _funciones_ se almacenan en la pila_ junto con la direcciones de retorno de las mismas.
-Esta es la ubicación ideal puesto que al retornar de una función, la pila se restablece al estado previo al que tenía cuando se invocó dicha función, haciendo que las variables locales y argumentos desaparezcan automáticamente.
+=== Anatomía del espacio de direcciones virtual del proceso
 
-* _Las variables asignadas dinámicamente —por ejemplo, usando `malloc()`/`free()` en C o `new`/`delete` en {cpp} o Java— se almacenan en el montón_, que no es más una región continua de memoria ubicada inmediatamente después de la sección de datos del proceso.
+Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la <<proceso_en_memoria_completo>>):
 
-Cada lenguaje de programación debe proporcionar —por ejemplo a través de su _librería estándar_— un mecanismo en espacio de usuario adecuado para la gestión en tiempo de ejecución de la memoria del _montón_ del proceso.
-Para eso cada lenguaje puede utilizar su propia implementación de dicho mecanismo o bien recurrir a la proporcionada por la _librería del sistema_.
-Por ejemplo, en los sistemas POSIX la _librería del sistema_ proporciona su propia implementación, accesible a través de las funciones `malloc()` y `free()`, que es utilizada directamente por los programas escritos en C.
-Otros lenguajes de programación tienen otras interfaces para gestionar la memoria pero utilizan internamente las funciones `malloc()` y `free()` de la _librería estándar_.
-Pero este no es el caso ni de {cpp} ni de Java ni de otros muchos lenguajes; donde los operadores `new` y `delete` utilizan sus propios algoritmos de gestión de la memoria del montón más optimizados que `malloc()` y `free()` para la creación y destrucción de objetos de manera eficiente.
+[[proceso_en_memoria_completo]]
+.Anatomía de un proceso en memoria.
+image::proceso_en_memoria_completo.svg[]
 
-// TODO: Si se mete la memoria contigua, reescribir.
+* La variables y constantes globales se almacenan en el *segmento de datos*(((segmento, datos))), que tiene tamaño fijo, ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.
+
+* Las variables locales y los argumentos de las funciones se almacenan en la *((pila))*, junto con la direcciones de retorno para volver de las funciones.
++
+Esta es la ubicación ideal para ellos, puesto que al retornar de una función, la pila se restablece al estado previo al que tenía cuando se invocó dicha función, haciendo que las variables locales y argumentos desaparezcan automáticamente.
+
+* Las variables reservadas dinámicamente —por ejemplo, usando {clang_malloc}/{clang_free} en C o {cpp_new}/{cpp_delete} en {cpp} o Java— se almacenan en el *((montón))*, que no es más una región continua de memoria ubicada inmediatamente después del *segmento de datos* del proceso.
+
+* En la región entre el *montón* y la *pila* se ubican los *archivos mapeados en memoria*, las regiones de *memoria compartida*, las *librerías de enlace dinámico*, las *pilas* de cada hilo —en procesos multihilo— y, en general, la memoria reservada con funciones como {linux_mmap} y {win32_virtualalloc}.
+
+Cada lenguaje de programación debe proporcionar —a través de su *librería estándar*— un mecanismo en espacio de usuario adecuado para la gestión en tiempo de ejecución de la memoria del *montón* del proceso.
+Para eso, cada lenguaje puede utilizar su propia implementación de dicho mecanismo o bien recurrir a la proporcionada por la *librería del sistema*.
+
+Por ejemplo, en los sistemas POSIX la *librería del sistema* proporciona su propia implementación, accesible a través de las funciones {clang_malloc} y {clang_free}, que es utilizada directamente por los programas escritos en C.
+Esta implementación hace uso de {linux_mmap}, pero ofrece mayor control sobre la cantidad de memoria que podemos reservar, como veremos en el <<_gestión_de_la_memoria_del_montón>>.
+
+Otros lenguajes de programación tienen otras interfaces para gestionar la memoria, pero utilizan internamente las funciones {clang_malloc} y {clang_free} de la *librería del sistema*.
+Sin embargo, este no es el caso ni de {cpp} ni de Java ni de algunos otros lenguajes.
+En {cpp} los operadores {cpp_new} y {cpp_new} utilizan sus propios algoritmos de gestión de la memoria del *montón*, más optimizados que {clang_malloc} y {clang_free} para la creación y destrucción de objetos de cualquier tamaño de manera eficiente.
+
+En Windows API ocurre algo similar.
+La *librería del sistema* proporcionar su propia gestión de la memoria del *montón*, que es accesible para cualquier programa a través de las funciones {win32_heapalloc} y {win32_heapfree}, y que se implementa sobre {win32_virtualalloc}.
+La *librería estándar* de C utiliza, a su vez, esas funciones para implementar {clang_malloc} y {clang_free}.
+Lo mismo ocurre en otros lenguajes, aunque no en todos, ya que algunos optan por implementar algoritmos más eficientes para sus casos de uso directamente sobre {win32_virtualalloc}.
+
 === Gestión de la memoria del montón
 
-Para ilustrar cómo se gestiona la memoria del _montón_ utilizaremos como ejemplo el mecanismo empleado por la _librería del sistema_ de los sistemas POSIX —accesible a través de las funciones `malloc()` y `free()`— aunque es importante tener en cuenta que esta tarea se realiza de manera muy similar en las implementaciones de otros sistemas operativos y lenguajes de programación.
+Para ilustrar cómo se puede gestionar la memoria del *montón* utilizaremos como ejemplo el mecanismo empleado por la *librería del sistema* de los sistemas POSIX —accesible a través de las funciones {clang_malloc} y {clang_free}.
+Sin embargo, es importante tener en cuenta que esta tarea se realiza de manera muy similar en las implementaciones de otros sistemas operativos y lenguajes de programación.
 
-El funcionamiento básico de `malloc()` sigue las siguiente reglas:
+El funcionamiento básico de {clang_malloc} sigue las siguiente reglas:
 
-. _Cuando la memoria solicitada supera cierto umbral —128KB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema `mmap()`_.
-Eso significa que las peticiones de gran tamaño realmente no consumen espacio del _montón_.
+. Cuando la memoria solicitada supera cierto umbral —128KB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema {linux_mmap}.
+Eso significa que las peticiones de gran tamaño realmente no consumen espacio del *montón*, si no que se reservan del hueco entre el *montón* y la *pila*.
 
-. _En caso contrario la petición de memoria se atiende utilizando un algoritmo de reserva de memoria continua sobre el espacio libre en el montón._ Estos algoritmos los veremos posteriormente.
+. Cuando un proceso hace una petición de memoria dinámica espera que el espacio ofrecido sea continuo en el espacio de direcciones virtual, por lo que la memoria del *montón* se gestiona usando un algoritmo de *asignación contigua de memoria* (véase la <<_asignación_contigua_de_memoria>>)y, puesto que las peticiones pueden ser de tamaño variable, se utiliza con un esquema de *particionado dinámico*.
++
+Es decir, que para las peticiones que no entran en el caso anterior, se busca en la tabla de huecos libres y ocupados del *montón* uno lo suficientemente como grande para atender la petición.
+Se asigna el espacio solicitado y el resto sigue marcado como hueco libre.
 
-. _Si no hay suficiente memoria libre contigua como para atender la petición se utiliza la llamada al sistema `brk()` para ampliar el tamaño del montón_ sobre la región no asignada del espacio de direcciones virtual del proceso.
+[NOTE]
+====
+La estrategia más común de búsqueda es el *mejor ajuste*, utilizando algún tipo de estructura de datos que mantenga los huecos libres ordenados por tamaño, para encontrar el de tamaño adecuado rápidamente.
+====
 
-Cuando un proceso hace una petición de memoria dinámica espera que el espacio ofrecido sea continuo en el espacio de direcciones virtual, por lo que es necesario utilizar algún algoritmo de *asignación de memoria contigua*.
-Como las peticiones de los procesos son de tamaño variable, la forma más eficiente de enfrentar este problema es utilizando lo que se denomina un esquema de *particionado dinámico*:
+. Si no hay suficiente memoria libre contigua como para atender la petición, se utiliza la llamada al sistema {linux_mmap}, para extender el tamaño del *montón* reservando una nueva región separada —a veces llamada *((arena))*— y comenzar a repartirla.
 
-. _La librería mantiene una lista indicando que regiones del montón están libres y cuales no_.
-El montón se inicializa con un tamaño determinado completamente libre, por lo que es considerado como un gran hueco de memoria disponible.
+[NOTE]
+====
+En aplicaciones pequeñas, algunas implementaciones intentan ampliar primero el espacio libre utilizando la llamada al sistema {linux_brk}, que sirve para extender el *montón* sobre la región adyacente no asignada del espacio de direcciones virtual del proceso.
+Este es el caso de la implementación estándar de {clang_malloc} en GNU/Linux.
 
-. _Cuando un proceso realiza una petición —a través de `malloc()`— se busca un hueco lo suficientemente grande para atenderla_.
-Si se encuentra, sólo se le asigna el espacio necesario, que es marcado como ocupado en la lista.
-El resto sigue siendo considerado como un hueco libre, aunque de menor tamaño.
-
-. _Si el proceso libera una porción de la memoria y se crean dos huecos adyacentes, se funden en uno solo_.
-
-En general, en un momento dado tenemos una petición de tamaño _n_ que debemos satisfacer con una lista de huecos libres de tamaño variable.
-Esto no es más que un caso particular del _problema _clásico_ de la asignación dinámica de almacenamiento_ para el que hay diversas soluciones:
-
-* _En el *primer ajuste* se escoge el primer hueco lo suficientemente grande como para satisfacer la petición_.
-La búsqueda puede ser desde el principio de la lista o desde donde ha terminado la búsqueda anterior.
-
-* _En el *mejor ajuste* se escoge el hueco más pequeño que sea lo suficientemente grande para satisfacer la petición_.
-Indudablemente esto obliga a recorrer la lista de huecos completa o a tenerla ordenada por tamaño.
-
-* _En el *peor ajuste* se escoge el hueco más grande_.
-Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por tamaño.
-
-En la actualidad _la estrategia más común es utilizar el mejor ajuste junto con algún tipo de estructura de datos que mantenga los huecos libres ordenados por tamaño_, de manera que puedan ser encontrados eficientemente.
+La llamada al sistema {linux_brk} ha sido eliminada del estándar POSIX, pero algunos sistemas la mantienen por compatibilidad hacia atrás, dado que era la forma en la que tradicionalmente se ampliaba la memoria del *montón* en los primeros UNIX.
+En macOS esta llamada se emula con una región de 4 MiB reservada con *mmap* la primer vez que se utiliza.
+====
 
 === Fragmentación
 
-Las estrategia comentada no sufre de _fragmentación interna_ porque se asigna exactamente la cantidad de memoria solicitada.
-Sin embargo si sufre de otro tipo de fragmentación denominada fragmentación externa.
+Las estrategia comentada sufre de *fragmentación interna*.
+En las peticiones grandes {linux_mmap} reserva en múltiplos de tamaño de página, por lo que siempre se puede perder cierta cantidad, aunque pequeña en comparación al tamaño de la región reservada.
+En las peticiones pequeñas, la memoria se asigna en múltiplos de una unidad mínima —por ejemplo, 16 o 32 bytes— por lo que también se puede perder cierta cantidad de memoria.
 
-_La *fragmentación externa* ocurre cuando hay suficiente espacio libre para satisfacer una petición pero el espacio no es contiguo_.
-Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeño tamaño, obligando a la librería a invocar la llamada al sistema `brk()` con el objetivo de incrementar el tamaño del montón.
-Este problema:
+Además sufre de *fragmentación externa*, porque después de que el proceso lleva un tiempo en ejecución, liberando y reservando memoria, el espacio puede comenzar a quedar fraccionado en un gran número de pequeños huecos, obligando a la librería a buscar más espacio para el *montón*, aunque en suma haya suficiente espacio en los huecos libres.
 
-* _Afecta tanto a la estrategia del primer como del mejor ajuste_.
-Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.
-
-* Algunos análisis estadísticos realizados con el primer ajuste revelan que _incluso con algunas optimizaciones, con n bloques asignados se pierden 0.5n por fragmentación externa_.
-Es decir, un tercio de la memoria no es utilizable.
-A esto se lo conoce como la _regla del 50%_.
-
-Lamentablemente este problema no tiene una solución sencilla ya que aunque se podría intentar mover los bloques de memoria para que toda la memoria libre quedara en un único hueco, sería necesario modificar en tiempo de ejecución las direcciones virtuales utilizadas por el proceso en cada puntero o referencia a los bloques de memoria en el montón.
+Esto representa un reto para los desarrolladores de aplicaciones, que previsiblemente vayan a ejecutarse durante periodos muy largos de tiempo.
+En esos casos es común optar por librerías externas, que implementen gestores de memoria que fragmenten menos la memoria, o soluciones basadas en alguna forma de referencias indirectas y recolección de basura, para ocasionalmente poder compactar la memoria del *montón*.
+Esto último es lo que hace la máquina virtual de Java.
