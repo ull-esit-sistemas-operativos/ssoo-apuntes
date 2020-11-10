@@ -14,7 +14,7 @@
 :C07_reading_time: 17 minutos
 :C08_words: 1907
 :C08_reading_time: 10 minutos
-:C09_words: 7809
+:C09_words: 7808
 :C09_reading_time: 39 minutos
 :C10_words: 6465
 :C10_reading_time: 32 minutos
@@ -26,12 +26,12 @@
 :C13_reading_time: 30 minutos
 :C14_words: 10179
 :C14_reading_time: 51 minutos
-:C15_words: 4414
+:C15_words: 4413
 :C15_reading_time: 22 minutos
-:C16_words: 4484
-:C16_reading_time: 22 minutos
-:C17_words: 8982
-:C17_reading_time: 45 minutos
+:C16_words: 2077
+:C16_reading_time: 10 minutos
+:C17_words: 12888
+:C17_reading_time: 1 horas y 4 minutos
 :C18_words: 2018
 :C18_reading_time: 10 minutos
 :C19_words: 10887
