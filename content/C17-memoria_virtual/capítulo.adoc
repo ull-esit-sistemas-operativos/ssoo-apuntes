@@ -14,7 +14,7 @@ La *memoria virtual*(((memoria, virtual))) es una técnica que permite la ejecuc
 Los programas suelen tener partes de código que rara vez son ejecutadas.
 Por ejemplo, las funciones para manejar condiciones de error que, aunque útiles, generalmente nunca son invocadas.
 También es frecuente que se reserve más memoria para datos de lo que realmente es necesario.
-Por ejemplo, muchos programadores tienen la costumbres de hacer cosas tales como declarar un _array_ de 65536 elementos, cuando realmente sólo necesitan 255.
+Por ejemplo, muchos programadores tienen la costumbre, de hacer cosas tales como declarar un _array_ de 65536 elementos, cuando realmente sólo necesitan 255.
 Teniendo todo esto en cuenta, y con el fin de mejorar el aprovechamiento de la memoria, parece que sería interesante no tener que cargar todas las porciones de los procesos y que, aun así, pudieran ejecutarse.
 Eso es exactamente lo que proporciona la *memoria virtual*.
 
@@ -37,7 +37,7 @@ La *paginación bajo demanda*(((paginación, bajo demanda))) es la técnica con 
 En la *paginación bajo demanda* las páginas individuales, en las que se dividen los espacios de direcciones virtuales de los diferentes procesos, pueden ser sacadas de la memoria de manera temporal y copiadas a un almacenamiento de respaldo, para posteriormente volver a ser traídas a la memoria cuando son necesitadas por su proceso.
 A este proceso de guardado y recuperación de las páginas sobre el almacenamiento de respaldo se lo denomina *((intercambio))* o *_((swapping))_* y es llevado a cabo por un componente del sistema operativo denominado el *((paginador))*.
 
-Para que se puedan cargar las páginas cuando son necesitadas por su proceso hace falta que el *paginador* sepa cuándo lo son.
+Para que se puedan cargar las páginas cuando son necesitadas por su proceso, hace falta que el *paginador* sepa cuándo lo son.
 Eso requiere que el hardware proporcione algún tipo de soporte, por ejemplo, incorporando un *bit de válido*(((bit, válido))) a la entrada de cada página en la tabla de páginas, que se utiliza de la siguiente manera:
 
 * Cuando el *bit de válido*(((bit, válido))) está a 1 la página es legal y está en la memoria.
@@ -45,7 +45,7 @@ Es decir, la página existe en el espacio de direcciones virtual del proceso y t
 
 * Cuando el *bit de válido* está a 0, pueden ocurrir varias cosas:
 
-** La página es legal pero esta almacenada en disco y no en la memoria.
+** La página es legal pero está almacenada en disco y no en la memoria.
 
 ** La página no es legal.
 Es decir, no existe en el espacio de direcciones virtual del proceso.
@@ -55,7 +55,7 @@ Esto puede ser debido a que la página esté en un hueco del espacio de direccio
 Si un proceso accede a una página legal, no ocurre nada y la instrucción se ejecuta con normalidad.
 Pero si accede a una página marcada como inválida:
 
-. Al intentar acceder a la página, la MMU comprueba el bit de válido y genera una excepción de *((fallo página))* al estar marcada como inválida.
+. Al intentar acceder a la página, la MMU comprueba el bit de válido y genera una excepción de *((fallo de página))* al estar marcada como inválida.
 Dicha excepción es capturada por el sistema operativo.
 
 . El sistema operativo comprueba en una tabla interna si la página es legal o no.
@@ -65,7 +65,7 @@ Esta tabla interna suele almacenarse en el PCB del proceso como parte de la info
 . Si la página es ilegal, el proceso ha cometido un error y debe ser terminado.
 En sistemas POSIX, por ejemplo, el sistema envía al proceso una señal de *violación de segmento* que lo obliga a terminar.
 
-. Si la página es legal, se cargada desde el disco:
+. Si la página es legal, se carga desde el disco:
 
 .. El núcleo busca un marco de memoria libre que, por ejemplo, se puede escoger de la lista de marcos libres del sistema.
 
@@ -80,7 +80,7 @@ Generalmente esto se hace colocando el proceso nuevamente en la *cola de prepara
 
 Un caso extremo de la paginación bajo demanda es la *paginación bajo demanda pura*(((paginación, bajo demanda, pura))).
 En ella la ejecución de un proceso se inicia sin cargar ninguna página en la memoria.
-Cuando el sistema operativo sitúa el contador de programas en la primera instrucción del proceso —que es una página no residente en memoria— se genera inmediatamente un *fallo de página*.
+Cuando el sistema operativo sitúa el contador de programa en la primera instrucción del proceso —que es una página no residente en memoria— se genera inmediatamente un *fallo de página*.
 La página es cargada en la memoria —tal y como hemos descrito anteriormente— y el proceso continua ejecutándose, fallando cuando sea necesario con cada página que necesite y no esté cargada.
 Las principales ventajas de la *paginación bajo demanda pura* son:
 
@@ -118,7 +118,7 @@ Sin embargo, esto no ocurre puesto que los programas tienden a tener localidad d
 Como con la *paginación*, el rendimiento de un sistema con *paginación bajo demanda* también está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria teniendo en cuenta mecanismos del sistema operativo.
 
 Supongamos que conocemos la probabilidad stem:[p_(fp)] de que ocurra un fallo de página.
-El *tiempo de acceso efectivo* se podría calcular como la probabilidad de que no ocurra un fallo de página stem:[(1-p_(fp)] por el *tiempo de acceso* a la memoria stem:[T_m], mas la probabilidad de que ocurra un fallo de página stem:[p] por el tiempo necesario para gestionar cada fallo de página —o *tiempo de fallo de página*(((tiempo, fallo de página)))— stem:[T_(fp)]:
+El *tiempo de acceso efectivo* se podría calcular como la probabilidad de que no ocurra un fallo de página stem:[(1-p_(fp))] por el *tiempo de acceso* a la memoria stem:[T_m], mas la probabilidad de que ocurra un fallo de página stem:[p] por el tiempo necesario para gestionar cada fallo de página —o *tiempo de fallo de página*(((tiempo, fallo de página)))— stem:[T_(fp)]:
 
 [stem]
 ++++
@@ -140,7 +140,7 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 
 Como se puede apreciar, la mayor parte del *tiempo de fallo de página* es debido al tiempo requerido para acceder al *dispositivo de intercambio*.
 
-Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página* ya que comparativamente consumen mucho menos tiempos.
+Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página* ya que comparativamente consumen mucho menos tiempo.
 Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_m] es de 200 ns. y que la probabilidad stem:[p_(fp)] es muy pequeña —es decir, stem:[p ≪ 1]—:
 
 [stem]
@@ -166,7 +166,7 @@ Por tanto, es necesario mantener la *tasa de fallos de página* stem:[tau_(fp)] 
 
 Por simplicidad, por el momento hemos considerado stem:[T_m] como el tiempo de acceso a la memoria física.
 Sin embargo, realmente estamos en un sistema que utiliza paginación —incluso con varios niveles— y que puede tener una TLB para mejorar su rendimiento.
-Entonces, si queremos ser más precisos, podemos considerar stem:[T_m] como el *tiempo de acceso efectivo* que vimos en el << _tiempos_de_acceso_a_la_memoria>> para el método básico de paginación.
+Entonces, si queremos ser más precisos, podemos considerar stem:[T_m] como el *tiempo de acceso efectivo* que vimos en el <<_tiempos_de_acceso_a_la_memoria>> para el método básico de paginación.
 Por lo que sustituyendolo en la expresión anterior:
 
 [stem]
@@ -211,9 +211,9 @@ El *_copy-on-write_* minimiza de la siguiente manera el número de marcos que de
 .Copy-on-write antes de que el proceso 1 modifique la página A.
 image::copy-on-write1.svg[]
 
-. Cuando la llamada al sistema {linux_fork}` crea el nuevo proceso lo hace de forma que éste comparta todas sus páginas con las del padre (véase la <<copy_on_write_1>>).
+. Cuando la llamada al sistema {linux_fork} crea el nuevo proceso lo hace de forma que éste comparta todas sus páginas con las del padre (véase la <<copy_on_write_1>>).
 +
-Sin el *_copy-on-write_* el {linux_fork} tendría que asignar marcos de memoria física a el hijo, para a continuación copiar las páginas del padre en ellos.
+Sin el *_copy-on-write_* el {linux_fork} tendría que asignar marcos de memoria física al hijo, para a continuación copiar las páginas del padre en ellos.
 Sin embargo, con el *_copy-on-write_* padre e hijo mapean sus páginas en los mismos marcos, evitando tener que asignar memoria libre.
 
 . Las páginas compartidas se marcan como *_copy-on-write_*.
@@ -235,11 +235,11 @@ image::copy-on-write2.svg[]
 Para esto se sustituye la página compartida por otra que contiene una copia pero que ya no está compartida.
 Obviamente, la nueva página debe ser marcada como de escritura para que en el futuro pueda ser modificada por el proceso.
 
-. La página original marcada como *_copy-on-write_* puede ser marcada como de escritura y no como *_copy-on-write_*, pero salo si no va a seguir siendo compartida.
+. La página original marcada como *_copy-on-write_* puede ser marcada como de escritura y no como *_copy-on-write_*, pero solo si no va a seguir siendo compartida.
 Esto es así porque una página marcada como *_copy-on-write_* puede estar siendo compartida con otros procesos.
 
 . El sistema operativo puede reiniciar el proceso.
-A partir de ahora éste puede escribir en la página sin afectar al resto de los procesos.
+A partir de ahora, éste puede escribir en la página sin afectar al resto de los procesos.
 Sin embargo, puede seguir compartiendo otras páginas en *_copy-on-write_*.
 
 El *_copy-on-write_* permite ahorrar memoria y tiempo en la creación de los procesos, puesto que sólo se copian las páginas que son modificadas por éstos.
@@ -262,7 +262,7 @@ Es decir, en un primer acceso a una página mapeada se produce un *fallo de pág
 * Las escrituras en disco se suelen realizar de forma asíncrona.
 Es decir, los datos no se escriben inmediatamente en disco cuando se modifica la página, sino que el sistema operativo comprueba periódicamente las páginas modificadas y las escribe en disco.
 
-* Los marcos utilizados en el mapeo pueden ser compartidos, lo que permite compartir los datos de los archivo.
+* Los marcos utilizados en el mapeo pueden ser compartidos, lo que permite compartir los datos de los archivos.
 Además, se puede incluir soporte de *_copy-on-write_*, lo que permite a los procesos compartir buena parte de un archivo en modo de sólo lectura, pero disponiendo de sus propias copias de aquellas páginas que modifiquen.
 +
 Indudablemente, para que los procesos puedan compartir datos es necesario que exista algún tipo de coordinación (véase el <<_sincronización>>).
@@ -295,14 +295,14 @@ void* p = mmap(
 <2> La longitud de la región del archivo a mapear.
 Si queremos mapear todo el archivo, podemos usar {linux_lseek} para conocer su longitud.
 <3> Si no se mapea todo el archivo, se puede indicar la posición del archivo donde comenzar el mapeo.
-Esta posición deben ser múltiplo del tamaño de página.
+Esta posición debe ser múltiplo del tamaño de página.
 <4> Permisos de la memoria mapeada.
 Deben coincidir con el modo con el que se abrió el archivo.
 
-Una vez mapeado el archivo, si no se van a crear más mapeos, se puede cerrar el descriptor de archivo con {linux_close}
+Una vez mapeado el archivo, si no se van a crear más mapeos, se puede cerrar el descriptor de archivo con {linux_close}.
 Y la región de memoria mapeada se puede liberar, al terminar, con {linux_munmap}.
 
-En {mapped-files_cpp} se puede ver el ejemplo de un programa que cuenta el número de líneas, palabra y caracteres de un archivo.
+En {mapped_files_cpp} se puede ver el ejemplo de un programa que cuenta el número de líneas, palabra y caracteres de un archivo.
 Para acceder a él, primero lo mapea en memoria, evitando tener que usar {linux_read} para leer su contenido.
 El programa usa la clase definida en {memory_map_hpp} para gestionar el mapeo del archivo.
 Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema comentadas.
@@ -310,7 +310,7 @@ Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema 
 Con Windows API el proceso requiere un paso más. Primero hay que usar el manejador del archivo abierto para crear un *objeto de mapeo de archivo* con {win32_createfilemapping}.
 Después, el manejador devuelto por {win32_createfilemapping} es usado con {win32_mapviewoffile} para mapear el archivo en la memoria del proceso.
 
-Para liberar la memoria mapeada se utiliza {win32_unmapviewoffile}.
+Para liberar la memoria mapeada, se utiliza {win32_unmapviewoffile}.
 Mientras que para cerrar el manejador del *objeto de mapeo de archivo* se usa {win32_closehandle}, como es habitual.
 
 === Mapeo de archivos en el núcleo
@@ -323,7 +323,7 @@ Por tanto, el núcleo mapea el archivo en el espacio de direcciones del proceso.
 
 Pero en Linux, Microsoft Windows y otros sistemas operativos modernos, adicionalmente, cuando un archivo es abierto con llamadas al sistemas estándar —como *open*— el archivo es mapeado en el espacio de direcciones del núcleo y las llamadas *read* y *write* son traducidas en accesos a la memoria en dicha región.
 No importa como sea abierto el archivo.
-Estos sistemas tratan toda la E/S a archivos como mapeada en memoria, permitiendo que el acceso a los mismos tenga lugar a través del eficiente componente de gestión de la memoria.
+Estos sistemas tratan toda la E/S a archivos como mapeada en memoria, permitiendo que el acceso a los mismos, tenga lugar a través del eficiente componente de gestión de la memoria.
 
 == Reemplazo de página
 
@@ -577,7 +577,7 @@ Utilizándolo, podemos implementar diversas aproximaciones al algoritmo LRU.
 (((algoritmo, reemplazo, NRU)))
 (((reemplazo, NRU)))
 
-En el *algoritmo de reemplazo de página ((NRU))* utilizar el *bit de referencia* de la siguiente manera:
+En el *algoritmo de reemplazo de página ((NRU))* se utiliza el *bit de referencia* de la siguiente manera:
 
 . En intervalos regulares de tiempo, todos los *bits de referencia* son puestos a cero por el sistema operativo.
 
@@ -643,7 +643,7 @@ El *reemplazo LRU aproximado con bits de referencia adicionales*, o de *envejeci
 . A intervalos regulares —por ejemplo, cada 100 ms.— el sistema operativo desplaza los *bits de referencia adicionales* de cada página; insertando el *bit de referencia* de la página en el bit de orden más alto y descartando el bit de orden más bajo.
 
 . Cuando haya que escoger una página para ser reemplazada se escoge la que tenga el valor más pequeño en el conjunto de *bits de referencia adicionales*.
-Esto es así puesto que dicho conjunto contiene la historia de referencias de la página.
+Esto es así, puesto que dicho conjunto contiene la historia de referencias de la página.
 Por ejemplo, stem:[{1 1 0 0 0 1 0 0}] es más reciente que stem:[{0 1 1 1 0 1 1 1}].
 
 . Se puede utilizar el *algoritmo de reemplazo de página FIFO* o escoger un aleatoriamente, si dos páginas tienen el mismo valor.
@@ -752,7 +752,7 @@ Será utilizada pronto y la página tendría que ser escrita a disco para ser re
 Cuando el reemplazo de página es invocado:
 
 * Se examina la clase a la que pertenece cada página y se reemplaza un página en la clase de menor importancia que no esté vacía.
-Indudablemente, deberemos examinar la lista varis veces antes encontrar la página que debe ser reemplazada.
+Indudablemente, deberemos examinar la lista varias veces antes encontrar la página que debe ser reemplazada.
 
 *  A intervalos regulares los *bits de referencia* de todas las páginas son puestos a cero por el sistema operativo.
 
@@ -820,7 +820,7 @@ Vamos a ilustrarlo con un ejemplo:
 
 * Indicaremos el valor de los contadores con un superíndice junto al número de página.
 
-* En caso de coincidencia, utilizaremos el reemplazo *FIFO para seleccionar la víctima.
+* En caso de coincidencia, utilizaremos el reemplazo *FIFO* para seleccionar la víctima.
 
 [.small, cols='20*^']
 |====
@@ -839,7 +839,7 @@ Vamos a ilustrarlo con un ejemplo:
 ===== Reemplazo MFU
 
 En el *algoritmo de reemplazo de página ((MFU))* (_Most Frequently Used_), se escoge la página con el contador más alto.
-Se basa en el argumento de que la página con el contador más pequeño probablemente acaba de ser traída por lo que aún no ha sido utilizada.
+Se basa en el argumento de que la página con el contador más pequeño probablemente acaba de ser traída, por lo que aún no ha sido utilizada.
 
 Vamos a ilustrarlo con un ejemplo:
 
@@ -886,13 +886,13 @@ Este esquema aumenta la probabilidad de que una página no esté marcada como mo
 
 === Reemplazo local frente a global
 
-Cuando un proceso necesita un marco, el algoritmo de reemplazo puede tanto extraerlo de cualquier proceso como ser obligado a considerar sólo aquellas páginas que pertenecen al proceso que generó el fallo.
+Cuando un proceso necesita un marco, el algoritmo de reemplazo puede, tanto extraerlo de cualquier proceso, como ser obligado a considerar sólo aquellas páginas que pertenecen al proceso que generó el fallo.
 Eso permite clasificar los algoritmos de reemplazo en dos categorías:
 
 * En el *reemplazo local*(((reemplazo, local))) sólo se pueden escoger marcos de entre los asignados al proceso.
 Por tanto:
 
-** El número de marcos asignados a un proceso no cambia por que ocurran *fallos de páginas*.
+** El número de marcos asignados a un proceso no cambia por que ocurran *fallos de página*.
 
 ** El mayor inconveniente es que un proceso no puede hacer disponible a otros procesos los marcos de memoria que menos utiliza.
 
@@ -916,7 +916,7 @@ Así, si a cada proceso se le proporciona el número mínimo de marcos necesario
 
 El *mínimo número de marcos* viene establecido por diversos factores:
 
-* Cuando ocurre un fallo de página la instrucción que la ha provocado debe ser reiniciada después de cargar la página en un marco libre.
+* Cuando ocurre un fallo de página, la instrucción que la ha provocado, debe ser reiniciada después de cargar la página en un marco libre.
 Por lo tanto, un proceso debe disponer de suficientes marcos como para guardar todas las páginas a las que una única instrucción pueda acceder pues, de lo contrario, el proceso nunca podría ser reiniciado al fallar permanentemente en alguno de los acceso a memoria de la instrucción.
 Obviamente, este límite viene establecido por la arquitectura de la máquina.
 
@@ -944,7 +944,7 @@ Esto podía ocasionar que aumentara la *tasa de fallos de página* del proceso q
 
 . Al aumentar los *fallos de pagina* el uso de la CPU decrecía, por lo que el sistema operativo cargaba más procesos para aumentar el *grado de multiprogramación* y con ello el uso de la CPU.
 
-. Esto reducía la cantidad de memoria disponible para cada proceso, lo que aumentaba la *tasa de fallos de páginas*, que nuevamente reducía el uso de la CPU
+. Esto reducía la cantidad de memoria disponible para cada proceso, lo que aumentaba la *tasa de fallos de páginas*, que nuevamente reducía el uso de la CPU.
 
 . Este mecanismo iteraba hasta reducir considerablemente el rendimiento del sistema.
 
@@ -952,13 +952,13 @@ Esto podía ocasionar que aumentara la *tasa de fallos de página* del proceso q
 .Hiperpaginación en sistemas multiprogramados.
 image::hiperpaginación.svg[]
 
-El fenómeno comentado se ilustra en la <<hiperpaginación>>, donde se muestra el uso de la CPU frente al número de procesos cargados en el sistema.
+El fenómeno comentado, se ilustra en la <<hiperpaginación>>, donde se muestra el uso de la CPU frente al número de procesos cargados en el sistema.
 Cuando esto último aumenta, el uso de la CPU aumenta hasta alcanzar un máximo.
 Si el *grado de multiprogramación* supera dicho punto, el sistema comienza a *hiperpaginar*, por lo que el uso de la CPU disminuye bruscamente.
 Por lo tanto, si el sistema está *hiperpaginando*, es necesario reducir el *grado de multiprogramación* con el objetivo de liberar memoria.
 
 En los sistemas operativos modernos ocurre algo parecido a lo descrito para los sistemas multiprogramados, aunque sin el efecto en cadena ocasionado por el intento del planificador de largo plazo de maximizar el uso de la CPU, ya que estos sistemas carecen de dicho planificador.
-Sea como fuere, en ambos casos los procesos *hiperpaginan* si no se les asigna un número suficiente de marcos, haciendo que sea imposible utilizarlos.
+Sea como fuere, en ambos casos, los procesos *hiperpaginan* si no se les asigna un número suficiente de marcos, haciendo que sea imposible utilizarlos.
 
 === Soluciones a la hiperpaginación
 
@@ -967,7 +967,7 @@ Para el problema de la *hiperpaginación* existen diversas soluciones:
 * Utilizar un algoritmo de reemplazo local, pues de esta manera un proceso que *hiperpagina* no puede afectar a otro.
 +
 Sin embargo, esto no es cierto del todo.
-El uso intensivo del *dispositivo de intercambio* podría afectar al rendimiento del sistema al aumentar el *tiempo de acceso efectivo* al disco.
+El uso intensivo del *dispositivo de intercambio* podría afectar al rendimiento del sistema, al aumentar el *tiempo de acceso efectivo* al disco.
 
 * Proporcionar a un proceso tantos marcos como le hagan falta.
 Como ya hemos comentados en diversas ocasiones, para evitar la *hiperpaginación* es necesario asignar al procesos al menos un número mínimos de marcos, que a priori no es conocido.
@@ -1009,9 +1009,9 @@ Mientras que en stem:[t_2] el conjunto de trabajo es stem:[{3, 4}].
 Obviamente, la precisión del *conjunto de trabajo* como aproximación de la *localidad* del programa depende del parámetro stem:[Delta].
 Por ejemplo:
 
-* Si stem:[Delta] es muy pequeña, el *conjunto de trabajo* no cubría toda la *localidad*.
+* Si stem:[Delta] es muy pequeña, el *conjunto de trabajo* no cubriría toda la *localidad*.
 
-* Si stem:[Delta] es muy grande, el *conjunto de trabajo* se superpondrían a varias *localidades*.
+* Si stem:[Delta] es muy grande, el *conjunto de trabajo* se superpondría a varias *localidades*.
 
 === Uso del conjunto del trabajo para evitar la hiperpaginación
 
@@ -1043,7 +1043,7 @@ Es de suponer que las páginas con el *bit de referencia* a 1 forman parte de la
 
 == Otras consideraciones
 
-Ya hemos comentado que las principales decisiones que deben ser tomadas en el diseño de un sistema con *paginación bajo demanda* son la elección del *algoritmo de reemplazo* y la del de *asignación de marcos de página*.
+Ya hemos comentado que las principales decisiones que deben ser tomadas en el diseño de un sistema con *paginación bajo demanda* son la elección del *algoritmo de reemplazo* y la de la *asignación de marcos de página*.
 Sin embargo, hay otras consideraciones que deben ser tenidas en cuenta.
 
 === Prepaginado
@@ -1063,13 +1063,13 @@ El sistema puede determinar que el acceso va ser de tipo secuencial, tanto media
 +
 En cualquier caso, si el sistema determina que el acceso al archivo es secuencial, en cada *fallo de página* puede cargar tanto la página demanda como las siguientes, en previsión de que vayan a ser utilizas por el proceso.
 
-En general, el único inconveniente del *prepaginado* es que debe ser ajustarlo para que el coste del mismo sea inferior al de servir los *fallos de página*.
+En general, el único inconveniente del *prepaginado* es que debe ser ajustado para que el coste del mismo sea inferior al de servir los *fallos de página*.
 
 === Aplicaciones en modo RAW
 
 Algunas aplicaciones, cuando acceden sus datos a través de los mecanismos de memoria virtual del sistema operativo, ofrecen peor rendimiento del que conseguirían si este mecanismo no existiera.
 
-El ejemplo típico son los gestores de bases de datos, que conocen sus necesidades de memoria y disco mejor que cualquier sistema operativo de propósito general, por lo que salen beneficiadas si implementan sus propios algoritmos de gestión de la memoria y de _buffering_ de E/S.
+El ejemplo típico, son los gestores de bases de datos, que conocen sus necesidades de memoria y disco mejor que cualquier sistema operativo de propósito general, por lo que salen beneficiadas si implementan sus propios algoritmos de gestión de la memoria y de _buffering_ de E/S.
 
 Por eso muchos sistemas operativos modernos permiten que los programas que lo soliciten puedan acceder a los discos en *modo RAW*.
 En el *modo RAW* no hay sistema de archivos, ni paginación bajo demanda, ni bloqueo de archivos, ni prepaginación, ni muchos otros servicios del sistema operativo; por lo que dichas aplicaciones deben implementar sus propios algoritmos de almacenamiento y gestión de la memoria.
@@ -1091,7 +1091,7 @@ Por ejemplo, en un caso extremo, un proceso de 100 KiB solo podría generar un *
 ** La E/S para acceder al contenido de cada página requiere menos tiempo.
 +
 En general el tiempo de transferencia es proporcional a la cantidad de información transferida, lo que debería beneficiar a los sistemas con páginas de pequeño tamaño.
-Sin embargo, la latencia y el tiempo requerido para posicionar la cabeza lectora de los discos es muy superior al tiempo de transferencias de datos, por lo que es más eficiente tener menos transferencias de mayor tamaño —como cuando se usan páginas de grandes— que más transferencias de menor tamaño —como cuando se usan páginas pequeñas—.
+Sin embargo, la latencia y el tiempo requerido para posicionar la cabeza lectora de los discos es muy superior al tiempo de transferencias de datos, por lo que es más eficiente tener menos transferencias de mayor tamaño —como cuando se usan páginas grandes— que más transferencias de menor tamaño —como cuando se usan páginas pequeñas—.
 
 * *Con páginas pequeñas*:
 
@@ -1151,7 +1151,7 @@ Además, algunos estudios indican que los lenguajes orientados a objetos tienden
 
 * El compilador y el cargador también pueden tener un efecto importante:
 
-** Separando el código de los datos para permitir que las paginas de código pueda ser de sólo lectura.
+** Separando el código de los datos para permitir que las paginas de código puedan ser de sólo lectura.
 Esto es interesante porque las paginas no modificadas no tienen que ser escritas antes de ser reemplazadas.
 
 ** El compilador puede colocar las funciones que se llaman entre sí en la misma página.
@@ -1166,7 +1166,7 @@ Para evitarlo existen diversas soluciones:
 
 * Se puede utilizar la memoria del núcleo como búfer en las operaciones de E/S.
 +
-En una escritura, esto obliga a la llamada al sistema a copiar los datos desde las páginas del proceso a la memoria del núcleo, antes de solicitar la operación de E/S.
+En una escritura, ésto obliga a la llamada al sistema a copiar los datos desde las páginas del proceso a la memoria del núcleo, antes de solicitar la operación de E/S.
 Mientras que en las operaciones de lectura sería justo al contrario.
 
 * Cada página puede tener un *bit de bloqueo* que se utiliza para indicar qué páginas no pueden ser seleccionadas para reemplazo.
@@ -1177,42 +1177,41 @@ Además los *bits de bloqueo*(((bit, bloqueo))) se pueden utilizar en otras much
 
 * Bloquear las páginas que acaban de ser cargadas.
 +
-Esto evita que un *fallo de página* en un proceso de mayor prioridad pueda reclamar el marco antes de que el proceso para el que se cargó la página originalmente sea reiniciado, desperdiciando el trabajo de cargarla y provocando un nuevo *fallo de página*.
+Ésto evita que un *fallo de página* en un proceso de mayor prioridad pueda reclamar el marco antes de que el proceso para el que se cargó la página originalmente sea reiniciado, desperdiciando el trabajo de cargarla y provocando un nuevo *fallo de página*.
 +
-Para implementarlo, se puede poner el *bit de bloqueo* a 1 cuando la página se carga.
-Volviéndolo después a poner a 0 cuando el proceso es planificado por primera vez tras el *fallo de página* que provocó la carga de la página.
+Para implementarlo, se puede poner el *bit de bloqueo* a 1 cuando la página se carga, volviéndolo después a poner a 0 cuando el proceso es planificado por primera vez, tras el *fallo de página* que provocó la carga de la página.
 
-* En los sistemas con *tiempo real flexible* se suele permitir que las tareas de tiempo real informen de cuáles son las páginas más importantes, con el fin de que sean bloqueadas para evitar que puedan ser reemplazadas.
+* En los sistemas con *tiempo real flexible*, se suele permitir que las tareas de tiempo real informen de cuáles son las páginas más importantes, con el fin de que sean bloqueadas para evitar que puedan ser reemplazadas.
 +
-Para evitar riesgos, el sistema suele considerar estás solicitudes como «consejos de bloqueo».
+Para evitar riesgos, el sistema suele considerar estas solicitudes como «consejos de bloqueo».
 De esta manera el sistema es libre de descartar dichos consejos si el conjunto de marcos libres llega a ser demasiado pequeño o si un proceso pide bloquear demasiadas páginas.
 
 == Interfaz de gestión de la memoria
 
-Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda— desde el punto de vista de los procesos en cualquier sistema moderno prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual.
+Gracias a la abstracción de las técnicas de memoria virtual —como la paginación bajo demanda—, desde el punto de vista de los procesos, en cualquier sistema moderno prácticamente sólo hace falta una llamada al sistema para gestionar su espacio de direcciones virtual.
 
-En los sistemas POSIX esta llamada es {linux_mmap} y en Windows API es {win32_virtualalloc}, que use usan junto a sus opuestas {linux_munmap} y {win32_virtualfree}, respectivamente.
+En los sistemas POSIX esta llamada es {linux_mmap} y en Windows API es {win32_virtualalloc}, que se usan junto a sus opuestas {linux_munmap} y {win32_virtualfree}, respectivamente.
 
 Ambas funciones permiten:
 
-* Reservar una porción de espacio de direcciones virtual del proceso.
+* Reservar una porción del espacio de direcciones virtual del proceso.
 +
-La llamada solo hace la reserva de un rango de direcciones para pueda ser utilizado por el proceso —es decir, que las páginas en ese rango sean válidas— siendo el componente de paginación bajo demanda el responsable de asignar la memoria física que lo respalda, cuando el proceso acceda a esas direcciones.
+La llamada solo hace la reserva de un rango de direcciones para pueda ser utilizado por el proceso —es decir, que las páginas en ese rango sean válidas— siendo el componente de paginación bajo demanda, el responsable de asignar la memoria física que lo respalda, cuando el proceso acceda a esas direcciones.
 
 * Establecer permisos —lectura, escritura y ejecución—, opciones de compartición entre procesos, bloqueo de páginas en la memoria física, páginas de gran tamaño y otras opciones, en la región de memoria virtual a reservar.
 
 [NOTE]
 ====
 Además, en los sistemas POSIX, {linux_mmap} se utiliza también para mapear archivos en regiones del espacio de direcciones virtual.
-Mientras que Windows API para esa función se utilizan llamadas diferentes, como hemos visto.
+Mientras que en Windows API para esa función se utilizan llamadas diferentes, como hemos visto.
 ====
 
 Ambas funciones ofrecen una buena cantidad de funcionalidades, pero operan a muy bajo nivel.
 Por eso en ambas la página es la unidad mínima en la gestión de la memoria.
-Es decir, las regiones reservadas del espacio de direcciones virtual siempre deben comienzar en un borde de página y su tamaño debe ser múltiplo del tamaño de página.
+Es decir, las regiones reservadas del espacio de direcciones virtual, siempre deben comienzar en un borde de página y su tamaño debe ser múltiplo del tamaño de página.
 
-El problema es cómo compatibilizar eso con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos, como: _arrays_, cadenas de texto, estructuras u  objetos.
-Para esos casos utilizar directamente {linux_mmap} o {win32_virtualalloc} no es una solución, puesto que la fragmentación interna conllevaría un importante derroche de recursos.
+El problema es cómo compatibilizar eso, con las necesidades reales de los programas, que durante su ejecución necesitan reservar y liberar constantemente memoria para pequeños elementos, como: _arrays_, cadenas de texto, estructuras u  objetos.
+Para esos casos, utilizar directamente {linux_mmap} o {win32_virtualalloc} no es una solución, puesto que la fragmentación interna conllevaría un importante derroche de recursos.
 
 === Anatomía del espacio de direcciones virtual del proceso
 
@@ -1222,28 +1221,28 @@ Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcc
 .Anatomía de un proceso en memoria.
 image::proceso_en_memoria_completo.svg[]
 
-* La variables y constantes globales se almacenan en el *segmento de datos*(((segmento, datos))), que tiene tamaño fijo, ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.
+* Las variables y constantes globales se almacenan en el *segmento de datos*(((segmento, datos))), que tiene tamaño fijo, ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.
 
-* Las variables locales y los argumentos de las funciones se almacenan en la *((pila))*, junto con la direcciones de retorno para volver de las funciones.
+* Las variables locales y los argumentos de las funciones se almacenan en la *((pila))*, junto con las direcciones de retorno para volver de las funciones.
 +
-Esta es la ubicación ideal para ellos, puesto que al retornar de una función, la pila se restablece al estado previo al que tenía cuando se invocó dicha función, haciendo que las variables locales y argumentos desaparezcan automáticamente.
+Ésta es la ubicación ideal para ellos, puesto que al retornar de una función, la pila se restablece al estado previo al que tenía cuando se invocó dicha función, haciendo que las variables locales y argumentos desaparezcan automáticamente.
 
 * Las variables reservadas dinámicamente —por ejemplo, usando {clang_malloc}/{clang_free} en C o {cpp_new}/{cpp_delete} en {cpp} o Java— se almacenan en el *((montón))*, que no es más una región continua de memoria ubicada inmediatamente después del *segmento de datos* del proceso.
 
 * En la región entre el *montón* y la *pila* se ubican los *archivos mapeados en memoria*, las regiones de *memoria compartida*, las *librerías de enlace dinámico*, las *pilas* de cada hilo —en procesos multihilo— y, en general, la memoria reservada con funciones como {linux_mmap} y {win32_virtualalloc}.
 
-Cada lenguaje de programación debe proporcionar —a través de su *librería estándar*— un mecanismo en espacio de usuario adecuado para la gestión en tiempo de ejecución de la memoria del *montón* del proceso.
+Cada lenguaje de programación, debe proporcionar —a través de su *librería estándar*— un mecanismo en espacio de usuario, adecuado para la gestión en tiempo de ejecución de la memoria del *montón* del proceso.
 Para eso, cada lenguaje puede utilizar su propia implementación de dicho mecanismo o bien recurrir a la proporcionada por la *librería del sistema*.
 
-Por ejemplo, en los sistemas POSIX la *librería del sistema* proporciona su propia implementación, accesible a través de las funciones {clang_malloc} y {clang_free}, que es utilizada directamente por los programas escritos en C.
+Por ejemplo, en los sistemas POSIX, la *librería del sistema* proporciona su propia implementación, accesible a través de las funciones {clang_malloc} y {clang_free}, que es utilizada directamente por los programas escritos en C.
 Esta implementación hace uso de {linux_mmap}, pero ofrece mayor control sobre la cantidad de memoria que podemos reservar, como veremos en el <<_gestión_de_la_memoria_del_montón>>.
 
 Otros lenguajes de programación tienen otras interfaces para gestionar la memoria, pero utilizan internamente las funciones {clang_malloc} y {clang_free} de la *librería del sistema*.
 Sin embargo, este no es el caso ni de {cpp} ni de Java ni de algunos otros lenguajes.
-En {cpp} los operadores {cpp_new} y {cpp_new} utilizan sus propios algoritmos de gestión de la memoria del *montón*, más optimizados que {clang_malloc} y {clang_free} para la creación y destrucción de objetos de cualquier tamaño de manera eficiente.
+En {cpp}, los operadores {cpp_new} y {cpp_delete} utilizan sus propios algoritmos de gestión de la memoria del *montón*, más optimizados que {clang_malloc} y {clang_free} para la creación y destrucción de objetos de cualquier tamaño de manera eficiente.
 
 En Windows API ocurre algo similar.
-La *librería del sistema* proporcionar su propia gestión de la memoria del *montón*, que es accesible para cualquier programa a través de las funciones {win32_heapalloc} y {win32_heapfree}, y que se implementa sobre {win32_virtualalloc}.
+La *librería del sistema* proporciona su propia gestión de la memoria del *montón*, que es accesible para cualquier programa a través de las funciones {win32_heapalloc} y {win32_heapfree}, y que se implementa sobre {win32_virtualalloc}.
 La *librería estándar* de C utiliza, a su vez, esas funciones para implementar {clang_malloc} y {clang_free}.
 Lo mismo ocurre en otros lenguajes, aunque no en todos, ya que algunos optan por implementar algoritmos más eficientes para sus casos de uso directamente sobre {win32_virtualalloc}.
 
@@ -1257,11 +1256,11 @@ El funcionamiento básico de {clang_malloc} sigue las siguiente reglas:
 . Cuando la memoria solicitada supera cierto umbral —128KB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema {linux_mmap}.
 Eso significa que las peticiones de gran tamaño realmente no consumen espacio del *montón*, si no que se reservan del hueco entre el *montón* y la *pila*.
 
-. Cuando un proceso hace una petición de memoria dinámica espera que el espacio ofrecido sea continuo en el espacio de direcciones virtual, por lo que la memoria del *montón* se gestiona usando un algoritmo de *asignación contigua de memoria* (véase la <<_asignación_contigua_de_memoria>>)y, puesto que las peticiones pueden ser de tamaño variable, se utiliza con un esquema de *particionado dinámico*.
+. Cuando un proceso hace una petición de memoria dinámica espera que el espacio ofrecido sea continuo en el espacio de direcciones virtual, por lo que la memoria del *montón* se gestiona usando un algoritmo de *asignación contigua de memoria* (véase <<_asignación_contigua_de_memoria>>) y, puesto que las peticiones pueden ser de tamaño variable, se utiliza con un esquema de *particionado dinámico*.
 +
 Es decir, que para las peticiones que no entran en el caso anterior, se busca en la tabla de huecos libres y ocupados del *montón* uno lo suficientemente como grande para atender la petición.
 Se asigna el espacio solicitado y el resto sigue marcado como hueco libre.
-
++
 [NOTE]
 ====
 La estrategia más común de búsqueda es el *mejor ajuste*, utilizando algún tipo de estructura de datos que mantenga los huecos libres ordenados por tamaño, para encontrar el de tamaño adecuado rápidamente.
@@ -1281,11 +1280,11 @@ En macOS esta llamada se emula con una región de 4 MiB reservada con *mmap* la 
 === Fragmentación
 
 Las estrategia comentada sufre de *fragmentación interna*.
-En las peticiones grandes {linux_mmap} reserva en múltiplos de tamaño de página, por lo que siempre se puede perder cierta cantidad, aunque pequeña en comparación al tamaño de la región reservada.
+En las peticiones grandes, {linux_mmap} reserva en múltiplos de tamaño de página, por lo que siempre se puede perder cierta cantidad, aunque pequeña en comparación al tamaño de la región reservada.
 En las peticiones pequeñas, la memoria se asigna en múltiplos de una unidad mínima —por ejemplo, 16 o 32 bytes— por lo que también se puede perder cierta cantidad de memoria.
 
 Además sufre de *fragmentación externa*, porque después de que el proceso lleva un tiempo en ejecución, liberando y reservando memoria, el espacio puede comenzar a quedar fraccionado en un gran número de pequeños huecos, obligando a la librería a buscar más espacio para el *montón*, aunque en suma haya suficiente espacio en los huecos libres.
 
-Esto representa un reto para los desarrolladores de aplicaciones, que previsiblemente vayan a ejecutarse durante periodos muy largos de tiempo.
-En esos casos es común optar por librerías externas, que implementen gestores de memoria que fragmenten menos la memoria, o soluciones basadas en alguna forma de referencias indirectas y recolección de basura, para ocasionalmente poder compactar la memoria del *montón*.
-Esto último es lo que hace la máquina virtual de Java.
+Ésto, representa un reto para los desarrolladores de aplicaciones, que previsiblemente vayan a ejecutarse durante periodos muy largos de tiempo.
+En esos casos, es común optar por librerías externas, que implementen gestores de memoria que fragmenten menos la memoria, o soluciones basadas en alguna forma de referencias indirectas y recolección de basura, para ocasionalmente poder compactar la memoria del *montón*.
+Esto último, es lo que hace la máquina virtual de Java.
