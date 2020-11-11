@@ -1,6 +1,6 @@
 = Historia de los sistemas operativos
 ifndef::sectiondir[:sectiondir: .]
-:imagesdir: {sectiondir}/images
+:imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
 [.right]

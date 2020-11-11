@@ -16,9 +16,9 @@ INCLUDED_FILES = FileList[File.join(CONTENT_DIR, "**/*.adoc"),
                           File.join(CONFIG_DIR, "**/*.yml")
                         ].exclude(DOCUMENT_MAIN_FILE)
 
-MEDIA_FILES = FileList[File.join(CONTENT_DIR, "**/images/**", "*.jpg"),
-                       File.join(CONTENT_DIR, "**/images/**", "*.png"),
-                       File.join(CONTENT_DIR, "**/images/**", "*.svg")]
+MEDIA_FILES = FileList[File.join(CONTENT_DIR, "**/media/**", "*.jpg"),
+                       File.join(CONTENT_DIR, "**/media/**", "*.png"),
+                       File.join(CONTENT_DIR, "**/media/**", "*.svg")]
 
 OUTPUT_HTML_FILE = File.join(OUTPUT_DIR, "html", "index.html")
 OUTPUT_HTML_DIR = File.dirname(OUTPUT_HTML_FILE)

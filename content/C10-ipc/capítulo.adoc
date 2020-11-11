@@ -1,6 +1,6 @@
 = Comunicación mediante de paso de mensajes
 ifndef::sectiondir[:sectiondir: .]
-:imagesdir: {sectiondir}/images
+:imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
 [.right]

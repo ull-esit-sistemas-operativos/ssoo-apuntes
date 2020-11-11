@@ -1,166 +1,410 @@
 = Paginación
 ifndef::sectiondir[:sectiondir: .]
-:imagesdir: {sectiondir}/images
+:imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-El mapeo entre direcciones virtuales y físicas puede realizarse de diversas maneras.
-La forma más extendida es _la **paginación**, que no es sino un esquema de gestión de la memoria que permite que el espacio de direcciones físico de un proceso no sea continuo_.
+[.right]
+====
+.Tiempo estimado de lectura
+{C16_reading_time}
+====
 
-// TODO: Ver si meter la tabla de páginas jerarquica (al menos)
-// TODO: Otras, solo mencionar y decir en qué consisten.
+La traducción entre direcciones virtuales y físicas puede realizarse de diversas maneras.
+La forma más extendida es la *((paginación))*, que no es sino un esquema de gestión de la memoria que permite que el espacio de direcciones físico de un proceso no sea continuo, evitando el problema de la *fragmentación externa*.
 
 == Método básico
 
-En la paginación _la memoria física se divide en bloques de tamaño fijo denominados **marcos**, mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados **páginas**_.
-Cuando un proceso va a ser ejecutado sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.
+En la paginación la memoria física se divide en bloques de tamaño fijo denominados *marcos*(((marco))), mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados *páginas*(((página))).
+Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.
 
-La paginación es una forma de _reubicación de las direcciones en tiempo de ejecución_ donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la ):
+[[paginación]]
+.Soporte del hardware para la paginación.
+image::paginación.svg[]
 
-. _Cada dirección virtual generada por la CPU es divida en dos partes_: un *número de página* stem:[p] y un *desplazamiento* stem:[d].
+La paginación es una forma de *reubicación de las direcciones en tiempo de ejecución* donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <<paginación>>):
 
-. _El número de página es utilizado por la MMU para indexar la **tabla de páginas**_, que contiene el *número de marco* stem:[f] de cada página en la memoria física.
+. Cada dirección virtual generada por la CPU es divida en dos partes: un *número de página* stem:[p] y un *desplazamiento* stem:[d].
 
-. _El número de marco stem:[f] es combinado con el *desplazamiento* stem:[d]_ para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.
+. El *número de página*(((número, página))) es utilizado por la MMU para indexar la *tabla de páginas*(((tabla, páginas))), que contiene el *número de marco*(((número, marco))) stem:[f] de cada *página* en la memoria física.
 
-// TODO: Incluir la formula.
+. El *número de marco*(((número, marco))) stem:[f] es combinado con el *desplazamiento* stem:[d] para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.
 
-El tamaño de las páginas —y el de los marcos— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MB, dependiendo de la arquitectura.
-Es decir, si el espacio de direcciones es de stem:[2^m] y el tamaño de página es de stem:[2^n], los stem:[m - n] bits de mayor orden del espacio de direcciones indican el _número de página_, mientras que los stem:[n] bits de menor orden indican el _desplazamiento_ (véase la )
+El tamaño de las *páginas* —y el de los *marcos*— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
+Es decir, si el espacio de direcciones es de stem:[2^m] y el tamaño de página es de stem:[2^n], los stem:[m - n] bits de mayor orden de las direcciones virtuales indican el *número de página*, mientras que los stem:[n] bits de menor orden indican el *desplazamiento* (véase la <<dirección_virtual_paginación>>).
+
+[[dirección_virtual_paginación]]
+.Descomposición de las direcciones virtuales en paginación.
+image::dirección_virtual_paginación.svg[]
+
+Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento stem:[n] necesita: 
+
+[latexmath]
+++++
+n = \log_2 4096 = 12~\text{bits}
+++++
+
+Si las direcciones virtuales son de 32 bits, eso deja para el número de página stem:[p]:
+
+[latexmath]
+++++
+p = 32 - 12 = 20~\text{bits}
+++++
+
+por lo que el espacio de direcciones virtual tiene stem:[2^20] páginas —es decir, 1.048.576 páginas—.
 
 === Desde el punto de vista de los procesos
 
-Cada página de un proceso requiere un marco.
+Cada *página* de un proceso requiere un *marco*.
 Por tanto, cuando un proceso llega al sistema:
 
-. _Si el proceso requiere n páginas, el sistema operativo debe escoger n marcos_.
-Estos marcos son tomados de la _lista de marcos libres_ que debe mantener el sistema.
-Puesto que son escogidos de allí donde los haya libres, _el espacio de direcciones físico puede no ser contiguo aunque los procesos vean un espacio de direcciones virtual contiguo_.
+. Si el proceso requiere stem:[n] *páginas*, el sistema operativo debe escoger stem:[n] *marcos*.
+Estos *marcos* son tomados de la *lista de marcos libres*(((lista, marcos libres))) que debe mantener el sistema.
+Puesto que son escogidos de allí donde los haya libres, el *espacio de direcciones físico* puede no ser contiguo aunque los procesos vean un *espacio de direcciones virtual* contiguo.
 
-. Los marcos seleccionados son asignados al proceso y _cada página del proceso es cargada en uno_ de dichos marcos.
+. Los *marcos* seleccionados son asignados al proceso y cada *página* del proceso es cargada en uno de dichos *marcos*.
 
-. _La tabla de páginas es actualizada_ de manera que en la entrada de cada página del proceso se pone el número de marco correspondiente.
+. La *tabla de páginas* es actualizada de manera que en la entrada de cada *página* del proceso se pone el número de *marco* correspondiente.
 
 Un aspecto importante de la paginación es la diferencia entre como ven los proceso la memoria y como es realmente la memoria física.
 Cada proceso ve la memoria como un espacio único que lo contiene sólo a él.
-Sin embargo la realidad es que el programa está disperso por la memoria física, que además puede almacenar a otros programas.
-_Esto es posible porque en cada momento la tabla de páginas sólo contiene las páginas del proceso actual_.
+Sin embargo, la realidad es que el programa está disperso por la memoria física, que además puede almacenar a otros programas.
+Esto es posible porque en cada momento la *tabla de páginas* sólo contiene las *páginas* del proceso en ejecución en la CPU.
 
 === Desde el punto de vista del sistema operativo
 
-Puesto que el sistema operativo es quién gestiona la memoria física, _éste debe mantenerse al tanto de las particularidades de su uso_:
+Puesto que el sistema operativo es quién gestiona la memoria física, éste debe saber:
 
-* _Que marcos están asignados y a que página de que proceso o procesos_.
+* Que *marcos* están asignados y a que *página* de que proceso o procesos.
 
-* _Que marcos están disponibles_.
+* Que *marcos* están disponibles.
 
-Toda esta información generalmente se guarda en una estructura denominada la _**tabla de marcos**, que tiene una entrada por cada marco de la memoria física_.
+Toda esta información generalmente se guarda en una estructura denominada la *tabla de marcos*(((tabla, marcos))), que tiene una entrada por cada *marco* de la memoria física.
 
-Además _el sistema operativo debe mantener una copia de la tabla de páginas para cada proceso en el PCB_, igual que mantiene una copia del contador de programa y del contenido de los registros de la CPU.
+Además, el sistema operativo debe mantener una copia de la *tabla de páginas* para cada proceso en el *PCB*, igual que mantiene una copia del contador de programa y del contenido de los registros de la CPU.
 Esta copia es utilizada:
 
-* Por _el asignador para sustituir la tabla de páginas hardware cuando realiza un cambio de contexto_.
-Por lo tanto el uso de la paginación incrementa el tiempo del cambio de contexto.
+* Por el *asignador* para sustituir la *tabla de páginas* usada por la CPU cuando realiza un *cambio de contexto*.
+Por lo tanto, el uso de la paginación incrementa el tiempo del cambio de contexto.
 
-* _Para el mapeo manual de direcciones virtuales en físicas_.
-Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una operación de E/S y proporciona una dirección como parámetro, dicha dirección debe ser mapeada manualmente para producir la dirección física correspondiente que será utilizada por el hardware para realizar la operación.
+* Para la traducción manual de direcciones virtuales en físicas.
+Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una operación de E/S y proporciona una dirección como parámetro, dicha dirección debe ser traducida manualmente para producir la dirección física correspondiente que será comunicada al hardware para realizar la operación.
 
 === Tamaño de las páginas
 
-Una decisión de diseño importante es escoger el tamaño de las páginas adecuado:
+Una decisión de diseño importante es escoger el tamaño de las *páginas* adecuado:
 
-* _Con páginas más pequeñas esperamos tener menos fragmentación interna_.
-Los marcos son asignados como unidades indivisibles, por lo que si los requerimientos de memoria de un procesos no coinciden con un límite de páginas el último marco asignado no sería utilizado completamente (en ocasiones incluso se podría desperdiciar un marco completo).
-A ese fenómeno se lo conoce como _fragmentación interna_
+* Con *páginas* más pequeñas esperamos tener menos *fragmentación interna*.
 
-* _Con páginas más grande se pierde menos espacio en la tabla de páginas_.
-No olvidemos que cuanto más pequeñas son las páginas más páginas son necesarias y, por tanto, más entradas en la tabla de páginas se necesitan.
-Además _la E/S es más eficiente cuanto más datos son transferidos en cada operación_.
+* Con páginas más grande se pierde menos espacio en la *tabla de páginas*.
+No olvidemos que cuanto más pequeñas son las *páginas* más *páginas* son necesarias y, por tanto, más entradas en la *tabla de páginas* se necesitan.
+Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez.
 
-Los tamaños de páginas típicos son 4 y 8 KB.
-Por ejemplo, normalmente cada entrada en la tabla de paginas es de 4 bytes —aunque esto también puede variar—.
-Eso significa que cada entrada puede direccionar a uno de los 2^32^ marcos de la memoria física.
-Si suponemos que el tamaño de cada marco es de 4 KB, podemos determinar que el sistema es capaz de direccionar 2^44^ bytes —o 16 TB— de memoria física, para lo que es necesario disponer de una tabla de páginas de 4 MB.
+Los tamaños de *páginas* típicos son 4 y 8 KiB.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1.048.576 páginas.
+Si se utilizan 4 bytes para cada entrada de la *tabla de páginas* —aunque esto también puede variar— eso significa que cada *tabla de páginas* ocupa 4 MiB de espacio.
+Mientras que con *páginas* de 8 KiB, la *tabla de páginas* ocuparía 2 MiB de espacios.
+
+También significa que si los 4 bytes de la *tabla de páginas* se utilizan para guardar únicamente el *número de marco*, cada entrada puede direccionar a uno de stem:[2^32] —o 4 GiB— *marcos* de la memoria física.
+Si el tamaño de cada *marco* es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar stem:[2^44] bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.
 
 == Soporte hardware de la tabla de páginas
 
-La implementación en hardware de la tabla de páginas puede realizarse de diversas maneras:
+La implementación en hardware de la *tabla de páginas* puede realizarse de diversas maneras.
 
-* _Como un conjunto de registros dedicados de la CPU_.
-Es decir, la tabla de páginas del proceso actual es alojada dentro de la propia CPU, en unos registros destinados a tal fin.
+=== Almacenada en registros de la CPU
 
-* _Almacenada en la memoria_.
-Es decir, la tabla de páginas del proceso actual es alojada en la memoria, normalmente en un formato definido por la CPU.
+La *tabla de páginas* del proceso actual en la CPU puede alojarse dentro de la propia CPU, en unos registros destinados a tal fin.
 
-Debido a la velocidad de los registros de la CPU _la implementación como conjunto de registros es la más eficiente._ Sin embargo _sólo puede ser utilizado para tablas de páginas razonablemente pequeñas_.
-El DEC PDP-11 —para el que se diseño el primer UNIX— es un ejemplo de sistema con esta implementación.
-En el mismo se utilizaba un espacio de direcciones de 16 bits y un tamaño de páginas de 8 KB, por lo que sólo necesitaba 8 registros dedicados para alojar toda tabla de páginas.
+Debido a la velocidad de los registros de la CPU, la implementación en registros es la más eficiente.
+Sin embargo, solo puede ser utilizado para *tablas de páginas* razonablemente pequeñas, ya que alojar tablas de más de 256 entradas en registros es muy costoso.
 
-En los sistemas modernos se utilizan tablas de páginas muchos más grandes —de un millón de entradas o más— que difícilmente pueden alojarse en registros dentro de la CPU, ya que alojar tablas de páginas de más de 256 entradas es muy costoso.
-Por eso los sistemas actuales almacenan la tabla de páginas del proceso en ejecución en la memoria._ Eso permite disponer tablas de páginas de gran tamaño_ aunque a costa de _necesitar dos acceso a la memoria física por cada acceso a una palabra de la memoria virtualfootnote:[La solución a este problema pasa porque la CPU disponga de una eficiente y pequeña —de entre 64 y 1024 entradas— memoria caché en la que almacenar las entradas de la tabla de página previamente utilizadas en la traducción de las direcciones.
-A dicha caché se la denomina TLB (Translation Look-aside Buffer).
-Obviamente es necesario que el asignador borre la TLB durante los cambios de contexto.]_.
+Por ejemplo, el DEC https://es.wikipedia.org/wiki/PDP-11[PDP-11] —para el que se diseño el primer UNIX— es un ejemplo de sistema con esta implementación.
+Utilizaba un espacio de direcciones de 16 bits y un tamaño de *páginas* de 8 KiB, por lo que sólo necesitaba 8 registros dedicados para alojar toda la *tabla de páginas*.
 
-Para que la MMU pueda conocer la ubicación de la tabla de páginas durante la traducción de las direcciones, _la CPU debe disponer de un registro —el *PTBR* (Page-Table Base Register)— donde se guarda la dirección de la tabla de páginas actual_.
-Además esto permite que el cambio de contexto sea más rápido —respecto al uso de registros para almacenar la tabla de páginas— puesto que sólo es necesario carga un único registro más —el PTBR— durante el mismo.
+=== Almacenada en memoria
 
-== Protección
+La otra opción es alojar *tabla de páginas* del proceso actual en la memoria, normalmente en un formato definido por la CPU.
 
-La protección de las páginas _se consigue mediante unos *bits de protección* asociados a cada entrada de la tabla de páginas_ y normalmente almacenados en la misma.
-Estos bits pueden ser:
+En los sistemas modernos se utilizan *tablas de páginas* de un millón de entradas o más, que difícilmente pueden alojarse en registros dentro de la CPU.
+Por eso, los sistemas actuales almacenan la *tabla de páginas* del proceso actualmente en ejecución, en la memoria.
+Eso permite disponer de *tablas de páginas* de gran tamaño, aunque a costa de necesitar dos accesos a la memoria física por cada acceso a una dirección virtual.
+
+Para que la MMU pueda conocer la ubicación de la *tabla de páginas* durante la traducción de las direcciones, la CPU debe disponer de un registro —el *((PTBR))* (_Page-Table Base Register_)— donde se guarda la dirección de la *tabla de páginas* actual.
+
+Además, esto tiene la ventaja de que el *cambio de contexto* sea más rápido —respecto al uso de registros para almacenar la tabla de páginas— puesto que sólo es necesario cargar un único registro más —el *PTBR*— durante el mismo.
+
+=== TLB
+
+La solución al retraso originado por el acceso a la tabla de páginas, cuando ésta está en la memoria, pasa por que el sistema disponga de un pequeño caché de traducciones en hardware llamado *((TLB))* (_Translation Look-aside Buffer_).
+
+La *TLB* es una memoria asociativa de alta velocidad.
+Cada entrada de la **TLB** tiene dos partes: la *clave* —o etiqueta— y el valor.
+Cuando a la *TLB* se le entrega un elemento, este es comparado simultáneamente con todas las claves.
+Si se produce alguna coincidencia, la memoria devuelve el valor de la entrada correspondiente.
+
+[NOTE]
+====
+Debido a la forma que tienen de operar, son rápidas pero muy caras de fabricar.
+Por ello, el número de entradas es bajo, normalmente entre 64 y 1024.
+====
+
+==== Uso básico de la TLB
+
+// TODO: Diagrama
+
+La *TLB* es utiliza con la *tabla de páginas* de la siguiente manera:
+
+. La *TLB* contiene unas pocas entradas de la *tabla de páginas*.
+
+. Cuando la CPU genera una dirección virtual, el *número de página* es entregado a la *TLB*.
+La *TLB* utiliza los números de páginas como *clave*, por lo que si hay alguna coincidencia, devolverá la entrada correspondiente de la *tabla de páginas*.
+
+. Si hay coincidencia, el *número de marco* es extraído de la entrada devuelta por la *TLB* y es utilizado para generar la dirección física.
+Todo este proceso puede requerir un 10% más de tiempo que si no se hiciera la traducción de las direcciones.
+
+. Si no hay coincidencia, es necesario acceder a la *tabla de páginas* para obtener la entrada correspondiente directamente de ella.
+Indudablemente este acceso puede beneficiarse de la existencia de diferentes niveles de caché en el acceso a la memoria principal.
+
+. En este último caso, la entrada recuperada debe ser añadida a la *TLB*, por lo que si está llena se debe seleccionar una para ser sustituida.
+Los algunos algoritmos de reemplazo utilizados van desde elegir una aleatoriamente hasta el *((LRU))* (_Least Recently Used_).
+
+==== Borrado de la TLB en el cambio de contexto
+
+Una cuestión importante es qué ocurre con las *TLB* cuando el sistema operativo realiza un *cambio de contexto*.
+
+En general, es necesario que el asignador realice un borrado de la *TLB*.
+De lo contrario, el nuevo proceso podría utilizar las entradas de la *tabla de páginas* del viejo proceso, que estuvieran almacenadas en la *TLB*.
+Sin embargo, un proceso no tiene porque utilizar todas las entradas de la *TLB*.
+Por lo que sería mas interesante, no tener que borrar las entradas de procesos anteriores, mientras no sean necesarias, por si estos vuelven a ser ejecutados en la CPU.
+
+El borrado se puede evitar si cada entrada de la *TLB* tiene un *((ASID))* (_Address-Space Identification_), que no es más que un identificador único para cada proceso.
+En éste tipo de *TLB*, en la *clave* se buscan pares *(número de página, ASID)*, donde el primero proviene de la dirección virtual y el segundo es el *ASID* del proceso actual.
+De esta forma, si el *número de página* coincide pero no el *ASID*, se produce un fallo de la *TLB*.
+Esto obliga a acceder a la *tabla de páginas* en memoria para recuperar la entrada, evitando que se lea por error la entrada de un proceso anterior.
+
+Esta característica está presente en los procesadores {decalpha}, {mips}  y {ultrasparc}.
+Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la familia x86, a través de las extensiones de virtualización Intel VT y AMD Pacifica.
+
+==== Tiempos de acceso a la memoria
+
+El rendimiento de un sistema con paginación está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria stem:[T_(em)], que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de *TLB*.
+
+En muchos sistemas informáticos el *tiempo de acceso*(((tiempo, acceso))) a la memoria física stem:[T_m] es de unos pocos nanosegundos.
+Por lo tanto, en el método de básico de paginación el *tiempo de acceso efectivo* es el doble del *tiempo de acceso* a la memoria:
+
+[stem]
+++++
+T_(em)=2T_m
+++++
+
+Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el *número de marco*, el *tiempo de acceso efectivo* será mayor.
+
+Supongamos que tenemos un sistema con *TLB* y que conocemos la probabilidad stem:[p] de que la entrada que consultamos esté en la *TLB*.
+Entonces, el *tiempo de acceso efectivo* se podría calcular como la probabilidad stem:[(1-p)] de que la entrada no esté en la *TLB* por el *tiempo de acceso* necesario en ese caso stem:[2T_m], mas la probabilidad de que la entrada sí esté en la *TLB* stem:[p] por el *tiempo de acceso* stem:[T_m] porque solo hace falta acceder una vez a la memoria:
+
+[stem]
+++++
+T_(em)=(1-p)2T_m+pT_m=(2-p)T_m
+++++
+
+Como se puede observar, cuanto más se aproxima a 1 la probabilidad stem:[p] de que la entrada esté en la *TLB*, más cerca está stem:[T_(em)] de stem:[T_m].
+
+Para mejorar esta probabilidad:
+
+* Las *TLB* permiten marcar algunas entradas como insustituibles.
+Esto normalmente se hace con las entradas de las *páginas* del código y los datos del núcleo, ya que son páginas que se utilizan con muchísima frecuencia.
+
+* Si la MMU soporta páginas de mayor tamaño que el estándar, se utilizan para alojar el código y los datos del núcleo.
+De esta forma se minimiza el número de entradas de la *TLB* que utilizan, con el fin de disponer de más entradas libres para los procesos en ejecución.
+
+[NOTE]
+====
+En la familia x86 el tamaño de página estándar es de 4 KiB, pero también se puede disponer de páginas de 4 MiB.
+En x86-64 las páginas de gran tamaño son de 2 MiB, aunque algunos modelos también soportan páginas de 1 GiB.
+====
+
+== Protección de la memoria
+
+La protección de las páginas se consigue mediante unos bits que indican las operaciones que se pueden realizar sobre ellas.
+Normalmente, estos bits son almacenados en cada una de las entradas de la *tabla de páginas*.
+
+=== Bits de protección
+(((bit, protección)))
+
+Los *bits de protección* de protección pueden ser:
 
 * *Solo lectura*.
 
-* *Lectura — Escritura*.
-En algunos sistemas hay un bit específico para este permiso, mientras que en otros se utilizan bit separados como: _lectura_, _escritura_ y _ejecución_.
+* *Lectura -- Escritura*.
+En algunos sistemas hay un bit específico para este permiso, mientras que en otros se utilizan bit separados, como: *lectura*, *escritura* y *ejecución*; que se pueden combinar libremente.
 
 * *Sólo ejecución*.
 Que no existen en todas las plataformas.
-Por ejemplo, la familia Intel x86 careció de esta característica hasta que AMD la incluyó en su arquitectura AMD64, lo que obligó a Intel a incluirla en las versiones más modernas de su Pentium IV.
-El bit —que para ser exacto indica _no ejecución_— fue introducido para evitar cierto tipo de ataques de seguridad.
+Por ejemplo, la familia x86 careció de esta característica hasta que AMD la incluyó en su arquitectura x86-64, lo que obligó a Intel a incluirla en las versiones más modernas de Pentium IV.
+El bit —que para ser exacto indica *no ejecución*— fue introducido para evitar cierto tipo de ataques de seguridad.
 
 Durante la traducción de las direcciones la MMU comprueba que el tipo de acceso sea válido.
-Si esto no es así, se genera una excepción de violación de protección de memoria, dado que el acceso en un modo o autorizado se considera una instrucciones privilegiada.
-Normalmente el sistema operativo responde a dicha excepción terminando el proceso que la generó.
+Si esto no lo es, se genera una excepción de violación de protección de memoria, dado que el acceso en un modo no autorizado se considera una instrucciones privilegiada.
+Normalmente, el sistema operativo responde a dicha excepción terminando el proceso que la generó.
 
-_Además de los bits comentados se suele añadir a cada entrada un **bit de válido**_:
+=== Bit de válido
+(((bit, válido)))
 
-* _Cuando una página es válida_, la pagina asociada está en el espacio de direcciones virtual del proceso.
-Es decir, _es legal_.
+Además de los *bits de protección* comentados, se suele añadir a cada entrada un *bit de válido*:
 
-* _Cuando la página no es inválida_, la página no está asociada al espacio de direcciones virtual del proceso.
-Es decir, _es ilegal_.
+* Cuando una *página es válida*, la pagina existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página se puede utilizar.
+Otro término comúnmente utilizado, es que la página es *legal*(((página, legal))).
 
-_El sistema operativo puede utilizar este bit para permitir o denegar el acceso a una página_, por ejemplo porque no le ha asignado un marco ya que no está siendo utilizada por el proceso.
-Al igual que con los bits de permisos, los intentos de acceso a una página ilegal generan una excepción.
+* Cuando la *página no es inválida*, la página no existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página no se puede utilizar.
+El término alternativo utilizado, es que la página es *ilegal*(((página, ilegal))).
 
-Por ejemplo, en la vemos el espacio de direcciones virtual y la tabla de páginas de un proceso de 5096 bytes en un sistema con páginas de 1024 bytes.
+Al igual que con los *bit de protección*, los intentos de acceso a una página ilegal generan una excepción.
+
+El sistema operativo puede utilizar este bit para permitir o denegar cualquier tipo de acceso a una *página*.
+Generalmente, porque no se le ha asignado un *marco* de memoria física, porque esa página no está siendo utilizada por el proceso.
+
+[[bit_de_válido_en_la_tabla_de_páginas]]
+.Bit de válido en la tabla de páginas.
+image::bit_de_válido_en_la_tabla_de_páginas.svg[]
+
+Por ejemplo, en la <<bit_de_válido_en_la_tabla_de_páginas>> vemos el espacio de direcciones virtual y la *tabla de páginas* de un proceso de 5096 bytes en un sistema con *páginas* de 1 KiB.
 Puesto que el proceso no ocupa todo el espacio de direcciones, sólo las direcciones de la 0 a la 5119 son válidas.
 En dicho ejemplo podemos apreciar varios fenómenos:
 
-* Debido a la fragmentación interna las direcciones de la 5097 a la 5119 son válidas, aunque el proceso solo ocupe hasta la 5096.
+* Debido a la *fragmentación interna*, las direcciones de la 5097 a la 5119 son válidas, aunque el proceso solo ocupe hasta la 5096.
 Es decir, se está asignando al proceso una porción de memoria que no necesita.
 
-* Las páginas ocupadas por el proceso son válidas.
-Pero todas las paginas en direcciones por encima de la 5119 están marcadas como ilegales.
-_Así el sistema operativo no tiene que asignar marcos a páginas no utilizadas por el proceso_.
+* Solo las *páginas* con datos y código del proceso son válidas.
+Mientras que todas las *paginas* en direcciones por encima de la 5119 están marcadas como ilegales.
 
-En general los procesos sólo necesitan una porción muy pequeña de su espacio de direcciones virtual.
-En esos casos es un desperdicio de memoria crear y almacenar un tabla de página completa con una entrada para cada página del espacio de direcciones.
-Para evitarlo _en algunas CPU existe el *PTLR* (Page-Table Length Register) que se utiliza para indicar el tamaño actual de la tabla de página_.
-Este valor es comparado por la MMU durante la traducción con el número de página de cada dirección virtual, de manera que las páginas con entradas más allá de la última almacenada en la tabla son consideradas ilegales.
+En general, los procesos sólo necesitan una porción muy pequeña de su espacio de direcciones virtual.
+Por ejemplo, en un sistema de 32 bits, muy pocos procesos necesitan los 3 GiB disponibles como máximo para cada proceso —el 1 GiB restante suele estar ocupado por el núcleo del sistema—.
+Utilizando el *bit de válido*, el sistema operativo no tiene que asignar *marcos* a *páginas* no utilizadas por el proceso, ahorrando mucha memoria.
 
-En realidad, tal y como vimos en el <<_el_proceso>>, _lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la _.
-En la misma podemos observar como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
-Este esquema permite que tanto el _montón_ —a través del mecanismo de asignación dinámica de memoria de `malloc()`— como la pila puedan extenderse, en base a las necesidades de memoria que tenga el proceso, sobre la región de memoria no ocupada.
-Esa región también puede ser parcialmente ocupada por librerías de enlace dinámico o por otros objetos compartidos que sean necesitados durante la ejecución del proceso.
-_En cualquier caso las páginas de dicha región forman parte del espacio de direcciones virtual pero no tienen marcos de memoria física asignados, en tanto en cuanto el proceso no las vaya a utilizar.
-La falta de marco es indicada por el sistema operativo utilizando el bit de válido para denegar el acceso_.
+En el <<_tamaño_de_las_páginas>> vimos que el tamaño de la *tabla de páginas* se puede calcular como el número máximo de páginas del espacio de direcciones virtual multiplicado por el tamaño de cada entrada de la tabla.
+Así, en un sistema de 32 bits con páginas de 4 KiB y 4 bytes por entrada, se necesitan 4 MiB de memoria para almacenar la *tabla de páginas*.
+Como un proceso suele ocupar muy poco de su espacio de direcciones virtual, suele ser un desperdicio de memoria crear y almacenar un *tabla de páginas* completa, con una entrada para cada *página* del espacio de direcciones.
+
+Para evítalo, en algunas CPU existe el registro *((PTLR))* (_Page-Table Length Register_) que se utiliza para indicar el tamaño actual de la *tabla de páginas*.
+Este valor es comparado por la MMU, durante la traducción de las direcciones virtuales, con el *número de página* de cada dirección virtual, de manera que las *páginas* con entradas más allá de la última almacenada en la tabla son consideradas ilegales.
+
+// Esta figura aparece también en el Capítulo 9: Procesos
+[[proceso_en_memoria_disperso]]
+.Anatomía de un proceso en memoria.
+image::proceso_en_memoria.svg[]
+
+En realidad, el registro *PTLR* no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <<_el_proceso>>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <<proceso_en_memoria_disperso>>.
+En ella podemos observar como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
+Este esquema permite que tanto el *montón* —a través del mecanismo de asignación dinámica de memoria— como la *pila* puedan extenderse —en base a las necesidades de memoria que tenga el proceso— sobre la región de memoria no ocupada.
+Esa región también puede ser parcialmente ocupada por *librerías de enlace dinámico* o regiones de *memoria compartida*, si son necesarias durante la ejecución del proceso.
+
+En cualquier caso, las *páginas* de la región no ocupada forman parte del espacio de direcciones virtual, pero no necesitan tener asignado ningún *marco* de memoria física, en tanto en cuanto el proceso no las vaya a utilizar.
+La falta de *marco* es indicada por el sistema operativo utilizando el *bit de válido* para denegar el acceso.
 
 == Páginas compartidas
+(((página, compartida)))
 
-Una de las ventajas importantes de la paginación es la posibilidad de compartir páginas entre procesos.
-Para conseguir esto basta con que _las *páginas compartidas* de los distintos procesos tengan asignadas un mismo marco_.
-Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las páginas de código o los datos de sólo lectura con el fin de ahorrar memoria.
-También permite compartir las páginas de código de una librería compartida enlazada a diferentes procesos.
+Una de las ventajas importantes de la paginación es la posibilidad de compartir *páginas* entre procesos.
+Para conseguir esto basta con que las *páginas compartidas* de los distintos procesos tengan asignadas un mismo *marco*.
+Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las *páginas* de código o los datos de sólo lectura con el fin de ahorrar memoria.
+También permite compartir las *páginas* de código de una librería compartida enlazada en diferentes procesos.
 
-Compartir páginas no sólo permite ahorrar memoria pues en _los sistemas operativos modernos la memoria compartida (véase el <<_memoria_compartida>>) se implementa mediante páginas compartidas_.
+Compartir *páginas* no sólo permite ahorrar memoria, pues en los sistemas operativos modernos la comunicación entre procesos mediante memoria compartida (véase el <<_memoria_compartida>>) se implementa mediante *páginas compartidas*.
+
+== Paginación jerárquica
+(((paginación, jerárquica)))
+
+Al método básico de paginación se lo conoce como *tabla de páginas lineal*(((tabla, páginas, lineal))).
+Sin embargo, las CPU comúnmente utilizan otras técnicas a la hora de estructurar la *tabla de páginas*.
+Una de las más comunes es la *paginación jerárquica*, utilizada en los procesadores de la familia x86 y en ARM, entre otros.
+
+La mayor parte de los sistemas modernos soportan el uso de espacios de direcciones de gran tamaño.
+Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 bits:
+
+[cols=2*, grid="none", frame="none"]
+|===
+
+|*tamaño del espacio de direcciones*
+|= stem:[2^32] = 4 GiB
+
+|*tamaño de página* 
+|= stem:[2^12] = 4 KiB
+
+|*número de páginas*
+|= stem:[2^32 / 2^12] = stem:[2^{32-12}] = stem:[2^20] = 1.048.576 entradas
+
+|===
+
+Es decir, que si el tamaño de cada entrada fuera de 4 bytes, la *tabla de páginas* de un proceso podría ocupar hasta 4 MiB; que debe ser alojada en una región continúa del espacio de direcciones físico, por lo que podría darse el caso de que en algún momento no hubiera un hueco contiguo lo suficientemente grande.
+Una forma de resolver este problema es partir la *tabla de páginas*, de manera que no sea necesario asignarle la memoria de forma contigua.
+
+=== Paginación jerárquica de dos niveles
+
+La *paginación jerárquica* se basa en la idea de que un vector de gran tamaño puede ser mapeado en uno más pequeño, que a su vez puede ser mapeado en un vector de menor tamaño.
+
+[[paginación_jerárquica]]
+.Esquema de paginación jerárquica de dos niveles.
+image::paginación_jerárquica.svg[]
+
+Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de dirección de 32 bits y un tamaño de
+página de 4 KiB, entonces podemos dividir la tabla de páginas de 1.048.576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
+
+Estos *marcos*, a su vez, pueden ser mapeadas por 1024 entradas con las direcciones físicas de cada *marco*.
+Si organizamos estas 1024 entradas en un vector lineal obtendríamos una *tabla de páginas externa*(((tabla, páginas, externa))) de 4 KiB (véase la <<paginación_jerárquica>>).
+
+Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativos mantienen la *tabla de páginas externa* en la memoria mientras el proceso se está ejecutando.
+Sin embargo, ahora la *tabla de páginas* está dividida en *marcos*, que no tienen porque ser asignados de forma contigua en la memoria.
+Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.
+
+Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* stem:[p] de la dirección virtual —que tenía stem:[2^20] bits— en dos *números de página* de stem:[2^10] bits cada uno:
+
+image::dirección_virtual_paginación_jerárquica.svg[]
+
+Este es el método utilizado por la familia de procesadores x86.
+
+Otra variación de la *paginación jerárquica de dos niveles* es la utilizada por VAX.
+Estos sistemas utilizaban un arquitectura de 32 bits con un tamaño de página de 512 bytes.
+Las direcciones virtuales eran divididas de la siguiente manera:
+
+image::dirección_virtual_vax.svg[]
+
+El espacio de direcciones de un proceso estaba dividido en 3 secciones.
+Los 2 bits de orden más alto stem:[s] de las direcciones virtuales se utilizaban para indicar la *sección*.
+Cada *sección* estaba dividida en *páginas* de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales stem:[p] eran utilizadas para seleccionar la *página* concreta.
+
+Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
+Esto era importante, puesto que la *tabla de páginas* de una
+*sección* tenía un tamaño de 8 MiB.
+
+=== Paginación jerárquica de N niveles
+
+En general, en la *paginación jerárquica* de stem:[N] niveles el *número de página* stem:[p] de cada dirección virtual es dividido en stem:[N] números: stem:[{ p_1, p_2, p_3, \ldots, p_N}], donde:
+
+. stem:[p_1] se utiliza para indexar la *tabla de páginas externa* —también llamada *directorio de páginas*(((directorio, páginas))) o *tabla de páginas de nivel 0*(((tabla, páginas, nivel 0)))— cuya dirección conoce la CPU mediante el *PTBR*.
+La entrada obtenida de esta manera contiene la dirección en la memoria física de una porción de la *tabla de páginas* en el siguiente nivel —el nivel 1—.
+
+. stem:[p_2] se utiliza para indexar la *tabla de páginas de nivel 1*.
+E, igualmente, la entrada así obtenida contiene la dirección en la memoria física de una porción de la *tabla de páginas* en el siguiente nivel —el nivel 2—.
+
+. El proceso continúa hasta que stem:[p_N] se utiliza para indexar la *tabla de páginas de nivel N-1*, con la que se obtiene el *número de marco* que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento stem:[d] de la dirección virtual.
+
+Como se puede ver, resolver una dirección virtual necesita tantos accesos a la memoria como niveles hay en la jerarquía.
+
+Debido a que la traducción funciona desde las *tablas de páginas* de nivel superior —nivel 0— hacia las de nivel inferior —nivel stem:[N-1]— a esta estructura también se la conoce como *tabla de paginas directa*(((tabla, páginas, directa))).
+
+[NOTE]
+====
+Los procesadores {decalpha} y {mips} utilizan una variante denominada *tabla de páginas virtualizada*(((tabla, páginas, virtualizada))).
+En este esquema el último nivel de la *paginación jerárquica*, aunque esté en marcos separados en el espacio de direcciones físico, se mapea de manera continua en el espacio de direcciones virtual del proceso.
+
+Así, si la consulta a la *TLB* falla, se indexa la *tabla de página* directamente con direcciones virtuales usando el *número de página* completo.
+Esta consulta conlleva la traducción de la dirección virtual de la entrada indexada, que puede estar en la *TLB*. 
+Si no es así, se pasa a recorrer la *tabla de páginas* desde el nivel 0 y usando direcciones físicas.
+====
+
+Existen algunos procesadores que utilizan más de dos niveles.
+Por ejemplo, los procesadores x86-64 utilizan un esquema de 4 niveles de paginación.
+Cada *página* es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la *tabla de páginas* es de 8 bytes —con el fin de poder almacenar direcciones de 64 bits— en cada una caben 512 entradas, por lo que los *números de página* de cada nivel necesitan 9 bits.
+Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits —resultado de multiplicar 4 niveles por 9 bits cada uno más 12 bits de desplazamiento— aunque el limite de la arquitectura para las direcciones virtuales sea de 64 bits.
