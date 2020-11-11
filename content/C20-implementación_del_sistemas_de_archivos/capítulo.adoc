@@ -154,7 +154,7 @@ El motivo es que cuantos más bloques contiguos sean asignados a un archivo, men
 En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128 MiB, compuestas por bloques, generalmente, de 4KiB.
 
 === Asignación enlazada
-(((asignación, enlazada, disco)))
+(((asignación, enlazada)))
 
 // TODO: Diagrama
 
@@ -243,7 +243,7 @@ Una de las ventajas de este esquema es que mejora el tiempo de los accesos aleat
 ****
 
 === Asignación indexada
-(((asignación, indexada, disco)))
+(((asignación, indexada)))
 
 El mecanismo de *asignación indexada* agrupa todos los punteros de la asignación enlazada en una única ubicación: el *bloque de índices*(((bloque, índices))).
 Así se resuelve la falta de eficiencia de la asignación enlazada convencional —en ausencia de FAT— cuando se realizan accesos aleatorios.
