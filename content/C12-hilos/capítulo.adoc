@@ -18,6 +18,8 @@ Por eso muchos sistemas operativos modernos han extendido el concepto de proceso
 A cada una de estas secuencias de instrucciones se las conoce como *((hilo))* de ejecución.
 Los procesos con varios hilos pueden realizar varias tareas a la vez.
 
+//TODO: Aclarar esto. Mira libro de system programming para los diagramas de secuencia de hilos para usar en SS.OO
+
 == Introducción
 
 Desde que introducimos el concepto de *((proceso))* hemos considerado que es la unidad básica de uso de la CPU.
