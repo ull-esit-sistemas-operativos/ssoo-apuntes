@@ -5152,7 +5152,7 @@ Como el proceso hijo es una copia del proceso padre, la variable existe en ambos
 <td><a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a> hace que el proceso padre interrumpa su ejecución hasta que algún hijo termine y devuelve el estado de salida en <code>status</code>.
 <div class="paragraph">
 <p>Debemos asegurarnos de llamar a <a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a> o <a href="https://man7.org/linux/man-pages/man2/waitpid.2.html">waitpid()</a> una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, dónde se guarda el estado de salida.
-No hacerlo genera <strong>procesos zombi</strong>(proceso, zombi o <em>defunct</em>.</p>
+No hacerlo genera <strong>procesos zombi</strong> o <em>defunct</em>.</p>
 </div></td>
 </tr>
 <tr>
@@ -15752,7 +15752,7 @@ La información se almacena grabándola magnéticamente sobre los platos, para l
 <div class="title">Figura 50. Estructura lógica de un disco magnético.</div>
 </div>
 <div class="paragraph">
-<p>Desde el punto de vista lógico (véase la <a href="#disco_duro_lógico">Figura 50</a>) la superficie de cada plato está dividida en <strong>pistas</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
+<p>Desde el punto de vista lógico (véase la <a href="#disco_duro_lógico">Figura 50</a>) la superficie de cada plato está dividida en <strong>pista</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
 El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina <strong>cilindro</strong>.</p>
 </div>
 <div class="paragraph">
@@ -16194,7 +16194,7 @@ El proceso de montaje incluye los siguientes pasos:</p>
 <ol class="arabic">
 <li>
 <p>Al sistema operativo se le debe proporcionar el nombre o identificador del dispositivo y el punto de montaje.
-El <strong>punto de montaje</strong> es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
+El <strong></strong> es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
 Después de que el proceso de montaje se haya completado, los archivos y directorios del sistema de archivos montado serán accesibles como descendientes del directorio del <strong>punto de montaje</strong>.</p>
 </li>
 <li>
@@ -18451,7 +18451,7 @@ Tanenbaum, A. y Bos, H. «Modern Operating Systems». 4ª ed. Prentice Hall Pres
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-11-10 22:25:27 UTC
+Última actualización 2020-11-11 12:23:20 UTC
 </div>
 </div>
 <style>
