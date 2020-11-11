@@ -262,7 +262,6 @@
 :xfs: link:https://es.wikipedia.org/wiki/XFS[XFS]
 
 // Ejemplos
-:ejemplos_branch: master
 :ejemplos_repo: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/tree/{ejemplos_branch}[ull-esit-sistemas-operativos/ssoo-ejemplos]
 :anom_shared_memory_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap11/anom-shared-memory.cpp[anom-shared-memory.cpp]
 :syscall_s: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{ejemplos_branch}/src/cap06/syscall.s[syscalls.s]
