@@ -38,7 +38,7 @@ Lo más común es que su tamaño sea de 512 bytes.
 ====
 
 === Sistema básico de archivos
-(((sistema básico de archivos)))
+(((sistema de archivos, básico)))
 
 El *sistema básico de archivos* se encarga de enviar comandos genéricos al controlador de dispositivo apropiado, con el fin de leer y escribir bloques físicos en el disco.
 Cada bloque físico se identifica mediante su dirección de disco numérica.
@@ -69,7 +69,7 @@ El *sistema lógico de archivos* gestiona los *metadatos*.
 En los *((metadatos))* se incluye toda la estructura del sistema de archivos, excepto los propios datos de los archivos.
 
 Entre dichos *metadatos* está la *estructura de directorios* y los *bloques de control de archivo*.
-Un *bloque de control de archivo*(((bloque, control de archivo))) o *((FCB))* (_File Control Block_) contiene información acerca del archivo, incluyendo su propietario, los permisos y la ubicación del contenido del mismo.
+Un *bloque de control de archivo*(((bloque, de control, archivo))) o *((FCB))* (_File Control Block_) contiene información acerca del archivo, incluyendo su propietario, los permisos y la ubicación del contenido del mismo.
 
 Además, el *sistema lógico de archivos* también es responsable de las tareas de protección y seguridad.
 
@@ -91,7 +91,7 @@ Estas estructuras varían dependiendo del sistema operativo y del sistema de arc
 Sin embargo, a continuación intentaremos describir brevemente las estructuras en disco más comunes.
 
 === Bloque de control de arranque
-(((bloque, control de arranque)))
+(((bloque, de control, arranque)))
 (((bloque, inicio)))
 (((sector, arranque)))
 
@@ -100,7 +100,7 @@ En todo sistema de archivos suele haber un *bloque de control de arranque* —ta
 Este bloque puede estar vacío, si el volumen no contiene un sistema operativo.
 
 === Bloque de control de volumen
-(((bloque, control de volumen)))
+(((bloque, de control, volumen)))
 
 El *bloque de control de volumen* contiene todos los detalles acerca del volumen.
 Por ejemplo, el número máximo de bloques, el tamaño de los bloques, el número de bloques libres y punteros a los mismos; así como un contador de bloques de información *FCB* ocupados y punteros a estos.
@@ -109,7 +109,7 @@ A esta estructura se la denomina *((superbloque))*, en los sistemas de archivos 
 Mientras que en {ntfs} esta información se almacena en la *tabla maestra de archivos* o *((MFT))* (_Master File Table_).
 
 === Bloque de control de archivo
-(((bloque, control de archivo)))
+(((bloque, de control, archivo)))
 
 Todo sistema de archivos tiene un *bloque de control de archivo* o *((FCB))* (_File Control Block_) por archivo, en que se almacenan numerosos detalles sobre cada uno de los archivos 
 Por ejemplo, los permisos, el propietario, el tamaño y la ubicación de los bloques de datos, entre otros.
@@ -156,7 +156,7 @@ Un sistema de archivos debe *montarse* para que sus archivos sean accesibles a l
 El proceso de montaje incluye los siguientes pasos:
 
 . Al sistema operativo se le debe proporcionar el nombre o identificador del dispositivo y el punto de montaje.
-El *((punto de montaje))* es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
+El *(((punto, de montaje)))* es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
 Después de que el proceso de montaje se haya completado, los archivos y directorios del sistema de archivos montado serán accesibles como descendientes del directorio del *punto de montaje*.
 
 . A continuación el sistema operativo verifica que el dispositivo contiene un sistema de archivos válido.
@@ -380,9 +380,9 @@ Aunque esto resuelve el problema de la colisión de nombres entre diferentes usu
 
 * La estructura descrita aísla a los usuarios, lo cual puede ser un problema cuando éstos quieren compartir datos para cooperar en alguna tarea.
 +
-La solución pasa por utilizar *((nombres de ruta))* para designar a un archivo de forma unívoca.
+La solución pasa por utilizar *nombres de ruta*(((nombre, de ruta))) para designar a un archivo de forma unívoca.
 Por ejemplo, si el usuario `usera` quiere acceder a su archivo `test`, simplemente debe referirse a él como `test`.
-Mientras que si quiere acceder al archivo `test` del usuario `userb`, debe utilizar un *((nombre de ruta))* como `/userb/test`, donde se indica el nombre del usuario y el nombre del archivo.
+Mientras que si quiere acceder al archivo `test` del usuario `userb`, debe utilizar un *nombre de ruta* como `/userb/test`, donde se indica el nombre del usuario y el nombre del archivo.
 +
 En general, cada sistema operativo utiliza su propia sintaxis par nombrar los archivos contenidos en los directorios de otros usuarios.
 
@@ -431,11 +431,11 @@ Los *nombres de ruta* es la forma en la que se indica la ubicación de un archiv
 
 Los *nombres de ruta* pueden ser de dos tipos:
 
-* Un *nombre de ruta absoluto*(((nombre, ruta absoluto))) comienza en la raíz y va indicando los directorios que componen la ruta de forma descendente hasta llegar al archivo especificado.
+* Un *nombre de ruta absoluto*(((nombre, de ruta, absoluto))) comienza en la raíz y va indicando los directorios que componen la ruta de forma descendente hasta llegar al archivo especificado.
 +
 Por ejemplo, `/usr/share/doc`, `C:\Programa Files\WindowsApps` o `\Windows\System32`
 
-* Un *nombre de ruta relativo*(((nombre, ruta relativo))) define una ruta a partir del *directorio de trabajo actual*.
+* Un *nombre de ruta relativo*(((nombre, de ruta ,relativo))) define una ruta a partir del *directorio de trabajo actual*.
 +
 Por ejemplo, `Imágenes/Enero/000001.jpg`, `Downloads\horario.zip` o `C:Desktop\Proyectos`.
 

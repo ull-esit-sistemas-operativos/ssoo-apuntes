@@ -9,7 +9,7 @@ include::../../config/attributes.adoc[]
 {C17_reading_time}
 ====
 
-La *((memoria virtual))* es una técnica que permite la ejecución de procesos sin que éstos tengan que ser cargados completamente en la memoria.
+La *memoria virtual*(((memoria, virtual))) es una técnica que permite la ejecución de procesos sin que éstos tengan que ser cargados completamente en la memoria.
 
 Los programas suelen tener partes de código que rara vez son ejecutadas.
 Por ejemplo, las funciones para manejar condiciones de error que, aunque útiles, generalmente nunca son invocadas.
@@ -38,7 +38,7 @@ En la *paginación bajo demanda* las páginas individuales, en las que se divide
 A este proceso de guardado y recuperación de las páginas sobre el almacenamiento de respaldo se lo denomina *((intercambio))* o *_((swapping))_* y es llevado a cabo por un componente del sistema operativo denominado el *((paginador))*.
 
 Para que se puedan cargar las páginas cuando son necesitadas por su proceso hace falta que el *paginador* sepa cuándo lo son.
-Eso requiere que el hardware proporcione algún tipo de soporte, por ejemplo, incorporando un *bit de válido*(((bit, valido))) a la entrada de cada página en la tabla de páginas, que se utiliza de la siguiente manera:
+Eso requiere que el hardware proporcione algún tipo de soporte, por ejemplo, incorporando un *bit de válido*(((bit, válido))) a la entrada de cada página en la tabla de páginas, que se utiliza de la siguiente manera:
 
 * Cuando el *bit de válido*(((bit, válido))) está a 1 la página es legal y está en la memoria.
 Es decir, la página existe en el espacio de direcciones virtual del proceso y tiene asignado un marco de memoria física.
@@ -97,7 +97,7 @@ Los requerimientos hardware para que un sistema operativo pueda soportar la *pag
 * Disponibilidad de un dispositivo de almacenamiento secundario.
 +
 En este dispositivos se guardan las páginas que no están presentes en la memoria principal.
-Normalmente se trata de un disco conocido como *((dispositivo de intercambio))*, mientras que la sección de disco utilizada concretamente para dicho propósito se conoce como *((espacio de intercambio))* o *_swap_*.
+Normalmente se trata de un disco conocido como *((dispositivo de intercambio))*, mientras que la sección de disco utilizada concretamente para dicho propósito se conoce como *espacio de intercambio*(((espacio, de intercambio))) o *_swap_*.
 
 * Posibilidad de reiniciar cualquier instrucción después de un fallo de página.
 +
@@ -248,7 +248,7 @@ Por eso se trata de una técnica común en múltiples sistemas operativos, como 
 El *_copy-on-write_* es especialmente interesante si a continuación se va a utilizar la llamada al sistema {linux_exec} puesto que si es así, copiar el espacio de direcciones completo es una pérdida de tiempo.
 
 == Archivos mapeados en memoria
-(((archivos, mapeados en memoria)))
+(((archivo, mapeado en memoria)))
 
 Los *archivos mapeados en memoria* permiten acceder a un archivo como parte del espacio de direcciones virtuales de un proceso.
 Algunas de las características de esta técnica son:
@@ -401,7 +401,7 @@ Indudablemente, para determinar el número de *fallos de página* también debem
 
 ==== Reemplazo FIFO
 (((algoritmo, reemplazo, FIFO)))
-(((remplazo, FIFO)))
+(((reemplazo, FIFO)))
 
 El *algoritmo de reemplazo de páginas ((FIFO))* es el más sencillo.
 Funciona de la siguiente manera:
@@ -461,7 +461,7 @@ Como se puede apreciar, el número de *fallos de página* con cuatro marcos es s
 
 ==== Reemplazo óptimo
 (((algoritmo, reemplazo, óptimo)))
-(((remplazo, óptimo)))
+(((reemplazo, óptimo)))
 
 Como resultado del descubrimiento de la *anormalidad de Belady* se comenzó a buscar un algoritmo de reemplazo de página óptimo.
 Es decir:
@@ -491,7 +491,7 @@ Por lo que sólo se usa en estudios comparativos, con el fin de saber cuánto se
 
 ==== Reemplazo LRU
 (((algoritmo, reemplazo, LRU)))
-(((remplazo, LRU)))
+(((reemplazo, LRU)))
 
 El *algoritmo de reemplazo de página ((LRU))* (_Least Recently Used_) es una aproximación del óptimo.
 La hipótesis es que si una página no ha sido usada durante un gran periodo de tiempo, entonces
@@ -575,7 +575,7 @@ Utilizándolo, podemos implementar diversas aproximaciones al algoritmo LRU.
 
 ===== Reemplazo NRU
 (((algoritmo, reemplazo, NRU)))
-(((remplazo, NRU)))
+(((reemplazo, NRU)))
 
 En el *algoritmo de reemplazo de página ((NRU))* utilizar el *bit de referencia* de la siguiente manera:
 
@@ -810,8 +810,8 @@ La solución es utilizar el *algoritmo LRU aproximado con bits de referencia adi
 ===== Reemplazo LFU
 (((algoritmo, reemplazo, NFU)))
 (((algoritmo, reemplazo, LFU)))
-(((remplazo, NFU)))
-(((remplazo, LFU)))
+(((reemplazo, NFU)))
+(((reemplazo, LFU)))
 
 En el *algoritmo de reemplazo de página ((LFU))* (_Least Frequently Used_) o *((NFU))*  (_Not Frequently Used_) se escoge la página con el contador más bajo.
 Esto es así puesto que suponemos que las páginas menos referenciadas son las que no se están utilizando de forma más activa.
@@ -864,7 +864,7 @@ Vamos a ilustrarlo con un ejemplo:
 Por extraña que parezca esta política, suele ser más eficiente que el *LRU* cuando se utiliza en las aplicaciones de almacenamiento de datos, porque algunas las páginas se utilizan intensamente durante breves periodos de tiempo pero están un tiempo sin utilizarse.
 
 === Algoritmos de buffering de páginas
-(((algoritmos, buffering de páginas)))
+(((algoritmo, buffering de páginas)))
 
 Existen otros procedimientos que pueden ser utilizados, junto con alguno de los *algoritmos de reemplazo* comentados, con el objetivo de mejorar su eficiencia.
 Estos procedimientos se agrupan dentro de lo que se denomina *algoritmos de _buffering_ de páginas*.

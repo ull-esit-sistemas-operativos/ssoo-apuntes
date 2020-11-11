@@ -23,7 +23,7 @@ Así que todo lo que comentemos a partir de ahora sobre la planificación de pro
 En cualquier caso, sea cual sea el algoritmo de planificación utilizado, éste debe ser muy rápido, ya que es ejecutado con mucha frecuencia —aproximadamente una vez cada 100 milisegundos—.
 
 == Planificación expropiativa
-(((planificación, expropiativa)))
+(((planificación, de CPU, expropiativa)))
 
 El planificador deben ser invocado necesariamente en los siguientes casos, dado que en ellos la CPU queda libre y es conveniente aprovecharla planificando otro proceso, en lugar de dejarla desocupada:
 
@@ -33,7 +33,7 @@ Por ejemplo, por solicitar una operación de E/S, esperar a que un hijo termine,
 
 . Cuando un proceso termina.
 
-Cuando el planificador de la CPU es invocado solo en los casos anteriores, decimos que tenemos un sistema operativo con *planificación cooperativa*(((planificación, cooperativa))) o *no expropiativa*(((planificación, no expropiativa))).
+Cuando el planificador de la CPU es invocado solo en los casos anteriores, decimos que tenemos un sistema operativo con *planificación cooperativa*(((planificación, de CPU, cooperativa))) o *no expropiativa*(((planificación, de CPU, no expropiativa))).
 ====
 
 En la *planificación cooperativa* cuando la CPU es asignada a un proceso, éste la acapara hasta terminar o hasta pasar al estado de *esperando*.
@@ -49,7 +49,7 @@ Sin embargo, las decisiones de planificación también pueden ser tomadas en otr
 . Cuando un proceso pasa de *esperando* a **preparado**.
 Por ejemplo, porque para un proceso ha terminado la operación de E/S por la que estaba esperando.
 
-Cuando el planificador es invocado en los cuatro casos decimos que tenemos *planificación expropiativa*(((planificación, expropiativa))) o *apropiativa*(((planificación, apropiativa))).
+Cuando el planificador es invocado en los cuatro casos decimos que tenemos *planificación expropiativa*(((planificación, de CPU, expropiativa))) o *apropiativa*(((planificación, de CPU, apropiativa))).
 ====
 
 La *planificación expropiativa* sí requiere de un soporte adecuado por parte del hardware, por lo que se utiliza en los sistemas operativos modernos.
@@ -79,7 +79,7 @@ Esta tarea implica realizar las siguientes funciones:
 * Saltar al punto adecuado del programa para continuar la ejecución del proceso.
 
 Puesto que el *asignador* es invocado para cada intercambio de procesos en la CPU, es necesario que el tiempo que tarda en detener un proceso e iniciar otro sea lo más corto posible.
-Al tiempo que transcurre desde que un proceso es escogido para ser planificado en la CPU hasta que es asignado a la misma se lo denomina *((latencia de asignación))*.
+Al tiempo que transcurre desde que un proceso es escogido para ser planificado en la CPU hasta que es asignado a la misma se lo denomina *latencia de asignación*(((latencia, de asignación))).
 
 == Criterios de planificación
 
@@ -209,7 +209,7 @@ Lo haremos considerando que cada proceso tiene una única ráfaga de CPU.
 Sin embargo, no debemos olvidar que para ser precisos necesitaríamos utilizar muchos más procesos, donde cada uno estuviera compuesto de una secuencia de miles de ráfagas alternativas de CPU y de E/S.
 
 === Planificación FCFS
-(((planificación, FCFS)))
+(((planificación, de CPU, FCFS)))
 
 En la planificación *((FCFS))* (_First Come, First Served_) o *primero que llega, primero servido* la cola es FIFO:
 
@@ -382,7 +382,7 @@ Esto reduce la utilización de la CPU y de los dispositivos de E/S por debajo de
 procesos mas cortos se ejecutasen primero.
 
 === Planificación SJF
-(((planificación, SJF)))
+(((planificación, de CPU, SJF)))
 
 La planificación *((SJF))* (_Shortest-Job First_) o *primero el más corto*, consiste en:
 
@@ -541,7 +541,7 @@ En otro caso, dado que tanto stem:[\alpha] como stem:[1 -\alpha] son menores de 
 El problema es que todos estos cálculos consumen tiempo de CPU, cuando el planificador debe ser lo más rápido posible, dado que se ejecuta con mucha frecuencia.
 
 === Planificación SRTF
-(((planificación, SRTF)))
+(((planificación, de CPU, SRTF)))
 
 El algoritmo *SJF* es *cooperativo*, pero se puede implementar de forma *expropiativa*, en cuyo caso se llama *((SRTF))* (Shortest-Remaing-Time First).
 La diferencia está en lo que ocurre cuando un nuevo proceso llega a la *cola de preparados*.
@@ -624,7 +624,7 @@ Sin embargo, debemos tener en cuenta que —aunque no lo estemos considerando en
 Los algoritmos expropiativos también suelen ofrecer mejores tiempos de respuesta, puesto que un proceso que llega a la *cola de preparados* puede ser asignado a la CPU sin esperar a que el proceso que se ejecuta en ella actualmente termine su ráfaga de CPU.
 
 === Planificación con prioridades
-(((planificación, prioridades)))
+(((planificación, de CPU, prioridades)))
 
 En la *planificación con prioridades* se asocia una prioridad a cada proceso, de tal forma que el de prioridad más alta es asignado a la CPU.
 En caso de igual prioridad, se utiliza *FCFS*.
@@ -752,7 +752,7 @@ Por el contrario, un criterio como el tiempo de ráfaga de CPU pueda dar lugar u
 
 ==== Muerte por inanición
 
-El mayor problema de éste tipo de planificación es el *((bloqueo indefinido))* o *((muerte por inanición))*.
+El mayor problema de éste tipo de planificación es el *bloqueo indefinido*(((bloqueo, indefinido))) o *((muerte por inanición))*.
 Si hay un conjunto de procesos de alta prioridad demandando CPU continuamente, el algoritmo puede dejar a algunos procesos de menor prioridad esperando indefinidamente.
 
 Una solución a este problema es aplicar mecanismos de *((envejecimiento))*.
@@ -762,8 +762,8 @@ De esta manera los proceso de baja prioridad tarde o temprano tendrán una oport
 Una vez se les asigna la CPU, se restablece su prioridad al valor original.
 
 === Planificación RR
-(((planificación, RR)))
-(((planificación, Round-Robin)))
+(((planificación, de CPU, RR)))
+(((planificación, de CPU, Round-Robin)))
 
 El algoritmo *((RR))* (_Round-Robin_) es similar al *FCFS* pero añadiendo la expropiación para conmutar
 entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.
@@ -888,7 +888,7 @@ Esto hace que se desaprovechen los dispositivos de E/S y genera un incremento de
 Para evitarlo se puede optar por un *planificador de colas multinivel* —para resolver el problema combinando el algoritmo *RR* con otro que priorice adecuadamente los procesos limitados por la E/S (véase el <<_planificación_con_colas_multinivel>>)— o por la *planificación equitativa* que veremos a continuación.
 
 === Planificación equitativa
-(((planificación, equitativa)))
+(((planificación, de CPU, equitativa)))
 
 Hasta el momento hemos hablado de planificadores que se centran en cuál es el proceso más importante para ejecutarlo a continuación.
 Sin embargo otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
@@ -927,7 +927,7 @@ donde stem:[W] es la suma de los pesos de todos los procesos en la *cola de prep
 // https://www.geeksforgeeks.org/completely-fair-scheduler-cfs-and-brain-fuck-scheduler-bfs/
 
 === Planificación con colas multinivel
-(((planificación, multinivel)))
+(((planificación, de CPU, multinivel)))
 
 Los diseñadores recurren a la *planificación de colas multinivel* cuando quieren combinar las características de varios algoritmos.
 
@@ -962,7 +962,7 @@ Sin embargo, en este tipo de *colas multinivel* la asignación de los procesos a
 Mientras que hoy en día es común que los procesos se muevan entre colas según las características del proceso.
 
 === Planificación con colas multinivel realimentadas
-(((planificación, multinivel, realimentada)))
+(((planificación, de CPU, multinivel realimentada)))
 
 Para aumentar la flexibilidad de la planificación con colas multinivel se puede permitir a los procesos pasar de una cola a otra.
 Así se pueden clasificar en colas distintas procesos con diferente tiempos de ráfaga de CPU.
@@ -984,7 +984,7 @@ Finalmente, los procesos de ráfagas mayores de 80 ms. van a la cola FCFS, desde
 
 La *planificador de colas multinivel realimentadas* también se puede utilizar para pasar a colas superiores los procesos que han esperado mucho tiempo en colas inferiores, evitando la *muerte por inanición*, que puede afecta a los sistemas de *planificación de colas multinivel* con *prioridad fija*.
 
-Por ejemplo, el algoritmo *RR virtual*(((planificación, RR virtual)))(((RR, virtual))) es un caso de *planificador de colas multinivel realimentadas* que resuelve los problemas del *RR*, en cuanto al reparto de la CPU entre procesos limitados por la E/S y limitados por la CPU (véase el <<_reparto_equitativo_del_tiempo_de_cpu>>).
+Por ejemplo, el algoritmo *RR virtual*(((planificación, de CPU, RR virtual)))(((RR, virtual))) es un caso de *planificador de colas multinivel realimentadas* que resuelve los problemas del *RR*, en cuanto al reparto de la CPU entre procesos limitados por la E/S y limitados por la CPU (véase el <<_reparto_equitativo_del_tiempo_de_cpu>>).
 
 [[esquema_planificación_rr_virtual]]
 .Ejemplo de planificación con RR virtual.

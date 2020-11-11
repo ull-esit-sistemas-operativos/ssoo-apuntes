@@ -9,7 +9,7 @@ include::../../config/attributes.adoc[]
 {C11_reading_time}
 ====
 
-La *((memoria compartida))* es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
+La *memoria compartida*(((memoria, compartida))) es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
 Por eso, para que pueda haber memoria compartida es necesario que los dos procesos estén de acuerdo en eliminar dicha restricción.
 
 Dos procesos que comparten una región de la memoria pueden intercambiar información simplemente leyendo y escribiendo datos en la misma.
@@ -31,7 +31,7 @@ Como ocurre con las tuberías (véase el <<_tuberías>>) la memoria compartida p
 
 == Memoria compartida anónima
 
-La *memoria compartida anónima*(((memoria compartida, anónima))) solo existe para el proceso que la crea y para sus procesos hijos, que heredan el acceso.
+La *memoria compartida anónima*(((memoria, compartida, anónima))) solo existe para el proceso que la crea y para sus procesos hijos, que heredan el acceso.
 Es por tanto, una forma eficiente de comunicar procesos padres e hijos.
 
 En lo sistemas POSIX, las funciones y operadores de reserva de memoria como {clang_malloc} y {cpp_new}, utilizan internamente la llamada al sistema {linux_mmap}.
@@ -96,7 +96,7 @@ Para eso hay que llamar a {win32_mapviewoffile} pasándole el manejador `hMapFil
 
 == Memoria compartida con nombre
 
-La *memoria compartida con nombre*(((memoria compartida, con nombre))) es pública para el resto del sistema, por lo que teóricamente cualquier proceso con permisos puede acceder a ella para comunicarse con otros procesos.
+La *memoria compartida con nombre*(((memoria, compartida, con nombre))) es pública para el resto del sistema, por lo que teóricamente cualquier proceso con permisos puede acceder a ella para comunicarse con otros procesos.
 
 Como ocurre en las tuberías con nombre, los *objetos de memoria compartida con nombre* hay que crearlos antes de comenzar a utilizarlos.
 Para eso los sistemas POSIX ofrecen la función {linux_shm_open}.

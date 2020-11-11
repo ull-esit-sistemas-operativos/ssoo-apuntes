@@ -113,7 +113,7 @@ Como en el caso del estado *nuevo*, este estado existe porque terminar un proces
 El diagrama de estados de los procesos, con las transiciones posibles entre ellos, se muestra en la <<diagrama_estado_proceso>>.
 
 == Bloque de control de proceso
-(((bloque de control, proceso)))
+(((bloque, de control, proceso)))
 
 El *bloque de control de proceso* o *((PCB))* (_Process Control Block_) es una estructura de datos que representa a cada proceso en el sistema operativo y que guarda información sobre su estado de actividad actual.
 
@@ -424,8 +424,8 @@ Algunos ejemplo podrían ser: dispositivos de E/S, memoria compartida, tuberías
 En POSIX todo proceso tiene, por defecto, tres archivos abiertos que corresponden a tres dispositivos de E/S especiales:
 
  * *Entrada estándar*(((entrada estándar))), de dónde los procesos leen la entrada del teclado de la terminal.
- * *Salida estándar*(((salida estándar))), donde el proceso escribe para mostrar texto en la pantalla de la terminal.
- * *Salida de error*(((salida de error))), usada para mostrar errores en la pantalla de la terminal.
+ * *Salida estándar*(((salida, estándar))), donde el proceso escribe para mostrar texto en la pantalla de la terminal.
+ * *Salida de error*(((salida, de error))), usada para mostrar errores en la pantalla de la terminal.
 
 Debido a la herencia de los archivos abiertos del proceso padre, todo proceso hijo tiene acceso a estos tres mismos dispositivos.
 Y a su vez también la tendrán sus hijos y los hijos de éstos.
@@ -510,7 +510,7 @@ Cuando un proceso termina, todos los recursos son liberados, incluyendo: la memo
 |====
 
 En todo caso un proceso puede provocar la terminación de otro proceso a través de una llamada al sistema.
-Por ejemplo, en sistemas POSIX se usa un mecanismo llamado *((señales))*:
+Por ejemplo, en sistemas POSIX se usa un mecanismo llamado *señales*(((señal))):
 
 [source, c]
 ----
@@ -725,7 +725,7 @@ Como el proceso hijo es una copia del proceso padre, la variable existe en ambos
 <8> {linux_wait} hace que el proceso padre interrumpa su ejecución hasta que algún hijo termine y devuelve el estado de salida en `status`.
 +
 Debemos asegurarnos de llamar a {linux_wait} o {linux_waitpid} una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, dónde se guarda el estado de salida.
-No hacerlo genera *procesos zombi*(((proceso, zombi)) o _defunct_.
+No hacerlo genera *procesos zombi*(((proceso, zombi))) o _defunct_.
 
 <9> El valor de salida del proceso hijo lo obtiene el proceso a través del estado de salida devuelto por {linux_wait}.
 Pero ese estado contiene más información sobre la causa por la que el proceso terminó.

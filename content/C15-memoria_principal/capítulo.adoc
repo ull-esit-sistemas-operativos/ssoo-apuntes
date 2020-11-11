@@ -164,9 +164,9 @@ En el <<_protección_de_la_memoria>> vimos en los sistemas operativos modernos, 
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::protección_memoria.svg[]
 
-En lugar de eso el sistema operativo —asistido por la *((MMU))* (_Memory-Management Unit_)— proporciona a cada proceso un *espacio de direcciones virtual*(((espacio de direcciones, virtual))) que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <<espacio_direcciones_virtual_frente_físico>>).
+En lugar de eso el sistema operativo —asistido por la *((MMU))* (_Memory-Management Unit_)— proporciona a cada proceso un *espacio de direcciones virtual*(((espacio, de direcciones, virtual))) que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <<espacio_direcciones_virtual_frente_físico>>).
 Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la *MMU* en las *direcciones físicas*(((dirección, física))), con las que realmente se accede a la memoria.
-El *espacio de direcciones físico*(((espacio de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un *espacio de direcciones virtual* dado.
+El *espacio de direcciones físico*(((espacio, de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un *espacio de direcciones virtual* dado.
 
 El mecanismo de protección descrito es una forma muy común de *reubicación de las direcciones en tiempo de ejecución*, que está presente en la mayor parte de los sistemas operativos de propósito general modernos.
 Pero, a parte de la protección de la memoria, algunas otras características de dicho mecanismo son:
@@ -253,7 +253,7 @@ Por tanto, necesitamos considerar de que formas debemos asignar la memoria dispo
 En este apartado estudiaremos la técnica más simple, denominada *asignación contigua de memoria*.
 Mientras que en capítulos posteriores vemos técnicas más avanzadas de hacer esta asignación.
 
-En la *((asignación contigua de memoria))* a cada proceso se le asigna una única sección de memoria contigua.
+En la *asignación contigua de memoria*(((asignación, contigua, memoria))) a cada proceso se le asigna una única sección de memoria contigua.
 Esto se puede hacer mediante *particionado fijo* o *particionado dinámico*
 
 === Particionado fijo

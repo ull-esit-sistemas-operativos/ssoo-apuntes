@@ -759,7 +759,7 @@ Existen dos alternativas desde el punto de vista de como implementar esta espera
 Entonces el planificador de la CPU escogerá a otro proceso para ser ejecutado.
 
 * El hilo puede iterar comprobando constantemente la condición hasta que se cumple.
-A esa técnica se la denomina *((espera ocupada))*.
+A esa técnica se la denomina *espera ocupada*(((espera, ocupada))).
 
 Este tipo de *espera ocupada* desperdicia tiempo de CPU que otro hilo podría utilizar de forma más productiva, por lo que sólo se utiliza en el caso de esperas previsiblemente cortas.
 Para evitar que las esperas ocupadas sean demasiado largas, los sistema operativos nunca expulsan de la CPU a hilos que se estén ejecutando dentro de secciones críticas controladas por objetos de sincronización con este tipo de espera, con la idea de que salgan de la sección crítica los antes posible.
@@ -797,7 +797,7 @@ Si lo hiciera sólo puede hacerlo mediante operaciones *leer-modificar-escribir*
 * No modifica su propio código y no llama a otras funciones que no sean reentrantes.
 
 === Seguridad en hilos
-(((seguridad en hilos)))
+(((seguridad, en hilos)))
 (((función, segura en hilos)))
 
 Una función es *segura en hilos* o *((thread-safe))* si al manipular estructuras compartidas de datos lo hace de tal manera que se garantiza la ejecución segura de la misma por múltiples hilos al mismo tiempo.

@@ -109,7 +109,7 @@ El siguiente problema es cómo asignar el espacio disponible en el disco a los a
 Como la unidad mínima de asignación de espacio a un archivo es el bloque, la fragmentación interna suele ser un problema común a todos los métodos que veremos a continuación.
 
 === Asignación contigua
-(((asignación, contigua)))
+(((asignación, contigua, disco)))
 
 La *asignación contigua* requiere que cada archivo ocupe un conjunto contiguo de bloques en el disco.
 Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requiere un movimiento mínimo del cabezal del disco.
@@ -154,7 +154,7 @@ El motivo es que cuantos más bloques contiguos sean asignados a un archivo, men
 En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128 MiB, compuestas por bloques, generalmente, de 4KiB.
 
 === Asignación enlazada
-(((asignación, enlazada)))
+(((asignación, enlazada, disco)))
 
 // TODO: Diagrama
 
@@ -243,7 +243,7 @@ Una de las ventajas de este esquema es que mejora el tiempo de los accesos aleat
 ****
 
 === Asignación indexada
-(((asignación, indexada)))
+(((asignación, indexada, disco)))
 
 El mecanismo de *asignación indexada* agrupa todos los punteros de la asignación enlazada en una única ubicación: el *bloque de índices*(((bloque, índices))).
 Así se resuelve la falta de eficiencia de la asignación enlazada convencional —en ausencia de FAT— cuando se realizan accesos aleatorios.
@@ -276,7 +276,7 @@ Entre los mecanismos que pueden utilizarse para resolver este último problema e
 Por ejemplo, se puede utilizar el último puntero del bloque de índices para apuntar al siguiente bloque de índices.
 Si dicho puntero tiene valor 0, entonces estamos en el último bloque de índices del archivo.
 
-* En el *((índice multinivel))*, los punteros del bloque de índices no señalan a los bloques del archivo, sino a un conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
+* En el *índice multinivel*(((esquema, índice multinivel))), los punteros del bloque de índices no señalan a los bloques del archivo, sino a un conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
 Esta técnica puede puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.
 
 * En el *esquema combinado*(((esquema, combinado))) las primeras entradas del bloque de índices apuntan directamente a los primeros bloques del archivo.
@@ -428,7 +428,7 @@ Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo d
 
 === Rendimiento del acceso a disco
 
-En un disco duro magnético el *tiempo de acceso al disco*(((tiempo, acceso al disco))) stem:[T^d] viene determinado por el *tiempo de búsqueda* stem:[T^b] y la *latencia rotacional* stem:[T^r]:
+En un disco duro magnético el *tiempo de acceso al disco*(((tiempo, acceso, al disco))) stem:[T^d] viene determinado por el *tiempo de búsqueda* stem:[T^b] y la *latencia rotacional* stem:[T^r]:
 
 [stem]
 ++++
@@ -457,7 +457,7 @@ La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S d
 // TODO: Problemas de planificación de disco.
 
 === Planificación FCFS
-(((planificación, FCFS)))
+(((planificación, de disco, FCFS)))
 
 En la planificación *((FCFS))* (_First Come, First Served_) o *primero que llega, primero servido* la cola de E/S al disco es FIFO.
 Es decir, que las las solicitudes se atienden en orden de llegada.
@@ -472,7 +472,7 @@ Se suele utilizar en los discos basados en memorias de estado sólido, donde reo
 ====
 
 === Planificación SSTF
-(((planificación, SSTF)))
+(((planificación, de disco, SSTF)))
 
 En la planificación *((SSTF))* (_Sortest_ _Seek Time First_) o algoritmo de *tiempo de búsqueda más corto*, de toda cola se selecciona la solicitud con el menor *tiempo de búsqueda* desde la posición actual de la cabeza.
 Este algoritmo de planificación primero da servicio a las solicitudes cercanas a la posición actual de la cabeza, antes de alejarse para dar servicio a otras solicitudes, dado que el *tiempo de búsqueda* se incrementa a medida que lo hace el número de cilindros que es necesario recorrer para llegar a una posición dada.
@@ -480,8 +480,8 @@ Este algoritmo de planificación primero da servicio a las solicitudes cercanas 
 Aun así, la solución no es óptima, dado que puede provocar inanición de algunas solicitudes, si van llegando constantemente nuevas solicitudes sobre regiones cercanas a donde está actualmente la cabeza del disco.
 
 === Planificación SCAN y C-SCAN
-(((planificación, SCAN)))
-(((planificación, C-SCAN)))
+(((planificación, de disco, SCAN)))
+(((planificación, de disco, C-SCAN)))
 
 En la planificación *((SCAN))*, algoritmo de *exploración* o del *ascensor*, el brazo del disco comienza en un extremo del disco y se mueve hacia el otro, atendiendo solicitudes a medida que pasa por cada cilindro, hasta llegar al otro extremo del disco.
 En el otro extremo, la dirección de movimiento de la cabeza se invierte para recorrer el disco en sentido inverso, repitiendo el proceso.
@@ -493,8 +493,8 @@ A la variante del *SCAN* que cuando llega a un extremo vuelve al inicio, para vo
 Con esta variante el tiempo que tiene que esperar una solicitud para ser atendida es más uniforme que con el algoritmo *SCAN* original.
 
 === Planificación LOOK y C-LOOK
-(((planificación, LOOK)))
-(((planificación, C-LOOK)))
+(((planificación, de disco, LOOK)))
+(((planificación, de disco, C-LOOK)))
 
 En teoría los algoritmos *SCAN* y *C-SCAN* hacen que el brazo recorra los cilindros del primero al último, pero normalmente no se suelen implementar así.
 
@@ -508,9 +508,9 @@ Linux utilizó *C-LOOK*, bajo el nombre de *_elevator_*, como planificador de E/
 ====
 
 === Planificación N-Step-SCAN, N-Step-LOOK y F-SCAN
-(((planificación, N-Step-SCAN)))
-(((planificación, N-Step-LOOK)))
-(((planificación, F-SCAN)))
+(((planificación, de disco, N-Step-SCAN)))
+(((planificación, de disco, N-Step-LOOK)))
+(((planificación, de disco, F-SCAN)))
 
 Los algoritmos *((N-Step-SCAN))* y *((N-Step-LOOK))* son variantes de los algoritmos *SCAN* y *LOOK*, respectivamente; donde se limita a _N_ el número de solicitudes que se atenderán en cada barrido del brazo del disco.
 Estos algoritmos funcionan de la siguiente manera:
@@ -528,7 +528,7 @@ El termino *rigidez del brazo* hace referencia a cuando hay un flujo continuo de
 Como *F-SCAN*, *N-Step-SCAN* y *N-Step-LOOK* separan las solicitudes en dos colas —haciendo que las nuevas tengan que esperar— el brazo siempre continua su barrido hacia el extremo del disco.
 
 === Planificación CFQ
-(((planificación, CFQ)))
+(((planificación, de disco, CFQ)))
 
 El planificador *((CFQ))* (_Completely Fair Queuing_) se diseñó para compartir de forma equitativa el *ancho de banda* entre todos los procesos que solicitan acceso al disco.
 Fue utilizado por defecto en muchas distribuciones de Linux hasta la versión 5.0 del núcleo y funciona de la siguiente manera:
