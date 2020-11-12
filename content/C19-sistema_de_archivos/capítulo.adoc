@@ -303,7 +303,7 @@ En concreto la operación *open*:
 . Retorna al proceso devolviendo un identificador —en forma de puntero o de índice— a la nueva entrada en la tabla de archivos abiertos.
 
 El nombre con el que se designa a esas entradas en la tabla de archivos abiertos varía de unos sistemas operativos a otros.
-En los sistemas POSIX se utiliza el término *descriptor de archivo*(((descriptor, archivo))) —o _file descriptor_— mientras que en los sistemas Microsoft Windows se prefiere el término *manejador de archivo*(((manejador, archivo))) —o _file handler_—.
+En los sistemas POSIX se utiliza el término *((descriptor de archivo))* —o _file descriptor_— mientras que en los sistemas Microsoft Windows se prefiere el término *manejador de archivo*(((manejador, archivo))) —o _file handler_—.
 
 Después de utilizar la llamada al sistema *open*, cuando se desea solicitar una operación sobre un archivo, sólo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.
 
@@ -624,9 +624,9 @@ Otra llamada al sistema que permite indicar permisos es {linux_mkdir}, que se ut
 
 En ambos casos, los permisos finalmente usados vienen determinados por la *_((umask))_* del proceso.
 Esta es una propiedad numérica de los procesos —heredada de padres a hijos— que indica qué permisos del argumento `mode` de {linux_open} y {linux_mkdir} se desactivan al crear un archivo o directorio.
-Por ejemplo, si el argumento `mode` es 0666 y *_((umask))_* es 0022, los permisos efectivos al crear el archivo serán 0644.
+Por ejemplo, si el argumento `mode` es 0666 y *_umask_* es 0022, los permisos efectivos al crear el archivo serán 0644.
 
-Un proceso puede cambiar su *_((umask))_* mediante la función {linux_umask} y los usuarios de *Bash*, las de su _shell_ usando el comando del mismo nombre.
+Un proceso puede cambiar su *_umask_* mediante la función {linux_umask} y los usuarios de *Bash*, las de su _shell_ usando el comando del mismo nombre.
 
 Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando {linux_access}.
 Y pueden cambiar su propietario y el grupo llamando a la función {linux_chown}.

@@ -53,9 +53,9 @@ Sin embargo algunos dispositivos, de cara al resto del sistema informático, emu
 
 Teniendo en cuenta la gran diversidad de dispositivos de almacenamiento que existen, para que el sistema informático sea cómodo de utilizar, el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
 Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir una unidad de almacenamiento lógico que sea útil para los usuarios.
-Esta unidad es el *((archivo))*.
+Esta unidad es el *archivo*.
 
-Un *((archivo))* o ((fichero)) es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario.
+Un *((archivo))* o *((fichero))* es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario.
 Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
 Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que éstos se encuentren dentro de un archivo.
 

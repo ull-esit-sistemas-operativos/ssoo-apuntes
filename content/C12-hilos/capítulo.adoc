@@ -720,7 +720,7 @@ Las señales síncronas son enviadas al mismo proceso que las origina.
 Un ejemplo de este tipo de señales es la terminación de procesos con teclas especiales como kbd:[CTRL+C] o kbd:[CTRL-D], que envían al proceso las señales `SIGINT` y `SIGHUP` respectivamente.
 También lo son las señales enviadas desde otro proceso, como cuando el proceso *init* envía `SIGTERM` al resto de procesos para informales que deben terminar porque el sistema se va a apagar.
 
-Como hemos visto, las señales que llegan a un proceso pueden ser interceptadas por una función definida por el programador llamada *manejador de señal*(((manejador, limpieza))).
+Como hemos visto, las señales que llegan a un proceso pueden ser interceptadas por una función definida por el programador llamada *manejador de señal*(((manejador, señal))).
 
 Las señales también son anteriores a los hilos, por lo que cuando aparecieron los hilos se tuvieron que tomar decisiones sobre como iban a encajar ambos conceptos.
 Por ejemplo, decidir cuál de los hilos del proceso, será interrumpido cuando llegue una señal, para ejecutar el manejador de señales.

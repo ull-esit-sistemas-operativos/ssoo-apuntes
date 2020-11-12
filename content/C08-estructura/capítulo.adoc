@@ -21,7 +21,7 @@ Los sistemas con *estructura sencilla* se caracterizan por:
 * No tener una estructura bien definida.
 Los componentes no están bien separados y las interfaces entre ellos no están bien definidas.
 
-* Son sistemas *((monolíticos))*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.
+* Son sistemas *monolíticos*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.
 ====
 
 === MS-DOS
@@ -67,7 +67,7 @@ Por ejemplo, al corregir un _bug_ o añadir una nueva funcionalidad solo hay que
 * Ser menos eficiente que la de los sistemas de *estructura sencilla*.
 En cada capa los argumentos son transformados y los datos necesarios deben de ser transferidos al invocar operaciones en la capa inferior, por lo que cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.
 
-* También son sistemas *((monolíticos))*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.
+* También son sistemas *monolíticos*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.
 ====
 
 Un ejemplo de este tipo de sistemas operativos es el {os2}.
@@ -180,7 +180,7 @@ Los sistemas con *estructura modular* se caracterizan por:
 
 * Todos los módulos pueden llamar a funciones de la interfaz de cualquier otro módulo, a diferencia de los sistemas operativos con *estructura en capas*, donde una capa solo podía usar a la inmediatamente inferior.
 
-* También son sistemas *((monolíticos))*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.
+* También son sistemas *monolíticos*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.
 ====
 
 Estos núcleos suelen disponer de un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.

@@ -40,7 +40,7 @@ A este proceso de guardado y recuperación de las páginas sobre el almacenamien
 Para que se puedan cargar las páginas cuando son necesitadas por su proceso, hace falta que el *paginador* sepa cuándo lo son.
 Eso requiere que el hardware proporcione algún tipo de soporte, por ejemplo, incorporando un *bit de válido*(((bit, válido))) a la entrada de cada página en la tabla de páginas, que se utiliza de la siguiente manera:
 
-* Cuando el *bit de válido*(((bit, válido))) está a 1 la página es legal y está en la memoria.
+* Cuando el *bit de válido* está a 1 la página es legal y está en la memoria.
 Es decir, la página existe en el espacio de direcciones virtual del proceso y tiene asignado un marco de memoria física.
 
 * Cuando el *bit de válido* está a 0, pueden ocurrir varias cosas:
@@ -342,7 +342,7 @@ Es decir, debemos modificar la función que ejecuta los pasos descritos en el <<
 
 ... Si no hay, usar un *algoritmo de reemplazo de página* para seleccionar una víctima.
 
-... Escribir la víctima en el disco y cambiar las *tablas de paginas y de marcos libres* de acuerdo a la nueva situación.
+... Escribir la víctima en el disco y cambiar las *tablas de páginas y de marcos libres* de acuerdo a la nueva situación.
 Para evitar mantener la CPU ocupada, el sistema debe solicitar la escritura de la página y poner al proceso en estado de *esperando*.
 
 .. Se solicita una operación de disco para leer la página deseada en el marco asignado.
@@ -1151,8 +1151,8 @@ Además, algunos estudios indican que los lenguajes orientados a objetos tienden
 
 * El compilador y el cargador también pueden tener un efecto importante:
 
-** Separando el código de los datos para permitir que las paginas de código puedan ser de sólo lectura.
-Esto es interesante porque las paginas no modificadas no tienen que ser escritas antes de ser reemplazadas.
+** Separando el código de los datos para permitir que las páginas de código puedan ser de sólo lectura.
+Esto es interesante porque las páginas no modificadas no tienen que ser escritas antes de ser reemplazadas.
 
 ** El compilador puede colocar las funciones que se llaman entre sí en la misma página.
 

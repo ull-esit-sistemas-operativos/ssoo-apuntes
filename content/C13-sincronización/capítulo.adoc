@@ -784,7 +784,7 @@ A la hora de decidir utilizar una librería en un programa multihilo es necesari
 (((reentrante)))
 (((función, reentrante)))
 
-Una función es *((reentrante))* puede ser interrumpida en medio de su ejecución y, mientras espera, volver a ser llamada con total seguridad.
+Una función es *reentrante* puede ser interrumpida en medio de su ejecución y, mientras espera, volver a ser llamada con total seguridad.
 Obviamente las funciones recursivas deben ser reentrantes para poder llamarse a sí mismas una y otra vez con seguridad.
 
 En el contexto de la programación multihilo, ocurre una reentrada cuando durante la ejecución de una función por parte de un hilo, este es interrumpido por el sistema operativo para planificar posteriormente a otro del mismo proceso que invoca la misma función.
