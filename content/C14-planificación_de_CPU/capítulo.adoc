@@ -434,13 +434,13 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 
 |P1
 |6
->|[.lightcell]#(16-3)=#|13
->|[.lightcell]#(24-3)=#|21
+>|[.lightcell]#(0-0)=#|0
+>|[.lightcell]#(6-0)=#|6
 
 |P2
 |24
->|[.lightcell]#(6-1)=#|5
->|[.lightcell]#(9-1)=#|8
+>|[.lightcell]#(16-1)=#|15
+>|[.lightcell]#(24-1)=#|23
 
 |P3
 |16
@@ -449,8 +449,8 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 
 |P4
 |9
->|[.lightcell]#(0-0)=#|0
->|[.lightcell]#(6-0)=#|6
+>|[.lightcell]#(6-3)=#|3
+>|[.lightcell]#(9-3)=#|6
 
 |Tiempos promedio (ms.)
 |
