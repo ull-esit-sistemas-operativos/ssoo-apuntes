@@ -145,7 +145,7 @@ La autoría del mismo se le atribuye a un grupo de programadores, liderados por 
 Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.
 
 [[dec_pdp11]]
-.Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales https://en.wikipedia.org/wiki/Teletype_Model_33[Teletype 33] -- Fuente: https://www.bell-labs.com/usr/dmr/www/picture.html[Dennis Ritchie]
+.Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales https://en.wikipedia.org/wiki/Teletype_Model_33[Teletype 33] -- Fuente: https://www.bell-labs.com/usr/dmr/www/[Dennis Ritchie]
 image::dec_pdp11_ken_den.jpg[]
 
 La primer versión de UNIX fue implementada en ensamblador, como era común en la época.
