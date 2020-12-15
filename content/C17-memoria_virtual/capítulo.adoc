@@ -281,7 +281,7 @@ En el API POSIX con esto es suficiente para usar la llamada al sistema {linux_mm
 
 [source,c]
 ----
-int lenght = lseek( fd, 0, SEEK_END ); <2>
+int length = lseek( fd, 0, SEEK_END ); <2>
 void* p = mmap(
     NULL,
     length,                 <2>
