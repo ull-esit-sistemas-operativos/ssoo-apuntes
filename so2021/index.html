@@ -12838,7 +12838,7 @@ Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits �
 <div class="content">
 <div class="paragraph">
 <div class="title">Tiempo estimado de lectura</div>
-<p>1 horas y 5 minutos</p>
+<p>1 horas y 4 minutos</p>
 </div>
 </div>
 </div>
@@ -14336,7 +14336,7 @@ Pero esto no tiene que coincidir con una cantidad fija de referencias en la traz
 </table>
 <div class="paragraph">
 <p>Se puede mejorar el algoritmo anterior considerando tanto el <strong>bit de referencia</strong> como el <strong>bit de modificado</strong>, para clasificar las páginas en distintas categorías y escoger una página en la mejor categoría.
-Este es el tipo más común de <strong>algoritmo de reemplazo de página NRU</strong>, pero lo veremos en el <a href="#_algoritmo_de_la_segunda_oportunidad_mejorado">Apartado 17.4.1.5.4</a> bajo el nombre de <strong>Algoritmo de la segunda oportunidad mejorado</strong>.</p>
+Este es el tipo más común de <strong>algoritmo de reemplazo de página NRU</strong>, pero lo veremos en el <a href="#_reemplazo_nru_mejorado">Apartado 17.4.1.5.4</a>.</p>
 </div>
 </div>
 <div class="sect5">
@@ -14758,11 +14758,11 @@ Esta cola contiene todas las páginas con marcos asignados y en el orden en que 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_algoritmo_de_la_segunda_oportunidad_mejorado">Algoritmo de la segunda oportunidad mejorado</h6>
+<h6 id="_reemplazo_nru_mejorado">Reemplazo NRU mejorado</h6>
 <div class="paragraph">
 <p>Se puede mejorar el <strong>algoritmo de la segunda oportunidad</strong> considerando tanto el <strong>bit de referencia</strong> como el <strong>bit de modificado</strong>.
-Algunos autores denominan a este algoritmo como <strong>algoritmo de la segunda oportunidad mejorado</strong>, mientras otro lo llaman <strong>NRU</strong>,
-ya que es una versión mejorada del algoritmo del <a href="#_reemplazo_nru">Apartado 17.4.1.5.1</a>.</p>
+Algunos autores también denominan a este algoritmo como <strong>NRU</strong>, aunque nosotros lo llamaremos <strong>NRU mejorado</strong> ya que
+también es una versión mejorada del algoritmo del <a href="#_reemplazo_nru">Apartado 17.4.1.5.1</a>.</p>
 </div>
 <div class="paragraph">
 <p>Con esos dos bits, el sistema operativo clasifica las páginas en una de las siguientes cuatro clases:</p>
@@ -14835,7 +14835,7 @@ Indudablemente, deberemos examinar la lista varias veces antes encontrar la pág
 <li>
 <p>Indicaremos el principio de la cola con una flecha junto al número de página.
 Sirve para mantener un orden en las páginas, de tal forma que si hay varios candidatos de la misma categoría, se escoja el primero encontrado.
-Si la elección en caso de varios candidatos es aleatoria, por ejemplo, no hace falta ese puntero.</p>
+Si, por ejemplo, la elección en caso de varios candidatos es aleatoria, no hace falta ese puntero.</p>
 </li>
 </ul>
 </div>
@@ -18808,7 +18808,7 @@ Tanenbaum, A. y Bos, H. «Modern Operating Systems». 4ª ed. Prentice Hall Pres
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-12-15 14:11:49 UTC
+Última actualización 2020-12-18 17:58:24 UTC
 </div>
 </div>
 <style>
