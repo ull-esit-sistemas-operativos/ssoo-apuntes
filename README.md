@@ -20,28 +20,29 @@ Y para los tests:
 Todas las dependencias se pueden instalar fácilmente con *Bundle*:
 
 ~~~~
+$ bundle config build.nokogiri --use-system-libraries
 $ bundle install
 ~~~~
 
 o a mano con *Gem*:
 
 ~~~
-$ sudo gem install asciidoctor rouge
-$ sudo gem install asciidoctor-pdf asciidoctor-epub3 --pre
+$ sudo gem install asciidoctor asciidoctor-pdf rouge
+$ sudo gem install asciidoctor-epub3 --pre -- --use-system-libraries
 $ sudo gem install html-proofer
 ~~~ 
 
 Algunas gemas son extensiones nativas, así que es necesario instalar previamente los siguientes paquetes nativos de los que dependen:
 
  * ruby-dev
+ * pkg-config
  * libxml2-dev
  * libxslt-dev
- * zlib1g-dev
 
 Por ejemplo, en distribuciones derivadas de Debian:
 
 ~~~
-$ sudo apt install ruby-dev libxml2-dev libxslt-dev zlib1g-dev
+$ sudo apt install ruby-dev pkg-config libxml2-dev libxslt-dev
 ~~~
 
 ## Ejemplos
