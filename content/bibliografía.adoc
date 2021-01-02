@@ -4,58 +4,58 @@
 Parte de los contenidos de este documento están basados en las siguientes fuentes:
 
 * [[[Bavier2000]]]
-Bavier, A. «Creating New CPU Schedulers with Virtual Time». En 21st IEEE Real-Time Systems Symposium (RTSS 2000) WIP Proceedings, 2000.
+Bavier, A. (2000). Creating New CPU Schedulers with Virtual Time. _WIP Proceedings of 21st IEEE Real-Time Systems Symposium (RTSS 2000)_.
 
 * [[[Chase2009]]]
-Chase, K. y Russinovich, M. «Processes, Threads, and Jobs in the Windows Operating System». [en línea]. Pearson, 2009 [2009]. URL https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&seqNum=7
+Chase, K. y Russinovich, M. (2009). _Processes, Threads, and Jobs in the Windows Operating System_. The Microsoft Press Store by Pearson. https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&seqNum=7
 
 * [[[Friedman1999]]]
-Friedman, M. B. «Windows NT Page Replacement Policies». En 25th International Computer Measurement Group Conference, December 5-10, 1999, Pag. 234-244.
+Friedman, M. B. (1999). Windows NT Page Replacement Policies. _Proceedings of 25th International Computer Measurement Group Conference_ (pp. 234-244).
 
 * [[[Ganger2000]]]
-Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. «Soft Updates: A Solution to the Metadata Update Problem in File Systems». En ACM Transactions on Computer Systems, Vol. 18, No. 2, May 2000, Pag. 127—153.
+Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. (2000). Soft Updates: A Solution to the Metadata Update Problem in File Systems. _ACM Transactions on Computer Systems_, 18 (2), 127—153.
 
 * [[[Gaydov2016]]]
-Gaydov, V. «File locking in Linux» [en línea]. 2016 [2020]. URL https://gavv.github.io/articles/file-locks/
+Gaydov, V. (2016). _File locking in Linux_. https://gavv.github.io/articles/file-locks/
 
 * [[[Gorman2004]]]
-Gorman, M. «Understanding the Linux Virtual Memory Manager». Prentice Hall, 2004.
+Gorman, M. (2004). _Understanding the Linux Virtual Memory Manager_. Prentice Hall.
 
 * [[[Hailperin2006]]]
-Hailperin, M. «Operating Systems and Middleware: Supporting Controlled Interaction». Course Technology, 2006.
+Hailperin, M. (2006). _Operating Systems and Middleware: Supporting Controlled Interaction_. Course Technology.
 
 * [[[Jacob1998]]]
-Jacob, B y Mudge, T. «Virtual Memory: Issues of Implementation». Computer, 31:33-43, 1998. ISSN 0018-9162. DOI: 10.1109/2.683005. URL http://dx.doi.org/10.1109/2.683005.
+Jacob, B y Mudge, T. (1998). Virtual Memory: Issues of Implementation. _Computer_, 31, 33-43. http://dx.doi.org/10.1109/2.683005
 
 * [[[Microsoft2005]]]
-«Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn» [en línea]. Microsoft Corporation, 2005. URL https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn.
+Microsoft Corporation. (2005). _Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn_. SlideShare. https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn.
 
 * [[[Microsoft2003]]]
-«Kernel Enhancements for Windows XP» [en línea]. Microsoft Corporation, 2003 [2006]. ARCHIVADO https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx.
+Microsoft Corporation. (2003). _Kernel Enhancements for Windows XP_. https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx
 
 * [[[Microsoft2018]]]
-«Scheduling Priorities» [en línea]. Microsoft Corporation, 2018 [2020]. URL https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
-
-* [[[SGI2006]]]
-«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007]. URL https://goo.gl/YF82JB
+Microsoft Corporation. (2018). _Scheduling Priorities_. https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
 
 * [[[Silberschatz2004]]]
-Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=184173.titn./[«Operating System Concepts with Java»]. 6º ed. John Wiley & Sons Inc., 2004.
+Silberschatz, A., Galvin, P. y Gagne, G. (2004). _Operating System Concepts with Java_. (6º ed.) John Wiley & Sons Inc.
 
 * [[[Silberschatz2005]]]
-Silberschatz, A., Galvin, P. y Gagne, G. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&xsqf99=345629.titn./[«Fundamentos de Sistemas Operativos»]. 7ª ed. McGraw Hill, 2005.
+Silberschatz, A., Galvin, P. y Gagne, G. (2006). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=345629[_Fundamentos de Sistemas Operativos_]. (7ª ed.) McGraw Hill Interamericana.
+
+* [[[SGI2006]]]
+Silicon Graphics Inc. (2006). _XFS Filesystem Structure_. https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html
 
 * [[[Solomon2005]]]
-Solomon, D. A. y Russinovich, M. «Windows OS Internals -- Unit OS4: Scheduling and Dispatch 4.4. Windows Thread» [en línea]. 2005 [2009]. URL https://slideplayer.com/slide/6972581/
+Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. Windows Thread. _Windows OS Internals_. https://slideplayer.com/slide/6972581/
 
 * [[[Stallings2005]]]
-Stallings, W. http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530[«Sistemas operativos: Aspectos internos y principios de diseño»]. 5ª ed. Pearson, 2005
+Stallings, W. (2005). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530[_Sistemas operativos: Aspectos internos y principios de diseño_]. (5ª ed.) Pearson
 
 * [[[Sun2006]]]
-«ZFS On-Disk Specification [en línea]». Sun Microsystems, Inc. 2006 [2009]. URL http://www.giis.co.in/Zfs_ondiskformat.pdf
+Sun Microsystems, Inc. (2006). _ZFS On-Disk Specification_. http://www.giis.co.in/Zfs_ondiskformat.pdf
 
 * [[[Tanenbaum2014]]]
-Tanenbaum, A. y Bos, H. «Modern Operating Systems». 4ª ed. Prentice Hall Press 2014.
+Tanenbaum, A. y Bos, H. (2014). _Modern Operating Systems_. (4ª ed.) Prentice Hall Press
 
 * [[[Wikipedia-cmalloc]]]
-«C dynamic memory allocation» [en línea]. Wikipedia (en), [2011]. URL http://goo.gl/OkFJ3
+C dynamic memory allocation. En _Wikipedia_. https://en.wikipedia.org/wiki/C_dynamic_memory_allocation
