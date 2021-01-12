@@ -34,7 +34,7 @@ Microsoft Corporation. (2005). _Kernel Enhancements for Microsoft Windows Vista 
 Microsoft Corporation. (2003). _Kernel Enhancements for Windows XP_. https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx
 
 * [[[Microsoft2018]]]
-Microsoft Corporation. (2018). _Scheduling Priorities_. https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
+Microsoft Corporation. (2018). _Processes and Threads: Scheduling Priorities_. https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
 
 * [[[Silberschatz2004]]]
 Silberschatz, A., Galvin, P. y Gagne, G. (2004). _Operating System Concepts with Java_. (6º ed.) John Wiley & Sons Inc.
