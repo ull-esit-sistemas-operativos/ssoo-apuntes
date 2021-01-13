@@ -1,3 +1,4 @@
+require 'json'
 require "nokogiri"
 
 READING_SPEED_IN_WORDS_PER_MINUTE = 200
@@ -80,8 +81,14 @@ task :tests => [:test_missing_variables, :test_htmlproofer]
 
 desc 'Test de HTMLProofer'
 task :test_htmlproofer => :html do |t|
-    typhoeus_config = '{"ssl_verifyhost": 0, "ssl_verifypeer": false}'
-    sh "htmlproofer", "--typhoeus_config", typhoeus_config, OUTPUT_HTML_DIR
+    typhoeus_config =  {
+        :headers => {
+            "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0",
+        },
+        :ssl_verifyhost => 0,
+        :ssl_verifypeer => false,
+    }
+    sh "htmlproofer", "--typhoeus_config", typhoeus_config.to_json, OUTPUT_HTML_DIR
 end
 
 desc 'Test de variables no definidas'
