@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.12">
 <meta name="author" content="Jesús Torres">
 <title>Sistemas Operativos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -48,7 +48,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 *,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -63,10 +63,8 @@ img{-ms-interpolation-mode:bicubic}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.stretch{width:100%}
 .subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
 a{color:#2156a5;text-decoration:underline;line-height:inherit}
 a:hover,a:focus{color:#1d4b8f}
 a img{border:0}
@@ -106,19 +104,22 @@ h1{font-size:2.75em}
 h2{font-size:2.3125em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
 h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede;word-wrap:normal}
 table thead,table tfoot{background:#f7f8f7}
 table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt{background:#f8f8f7}
-table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
 .clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
 .clearfix::after,.float-group::after{clear:both}
-:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-:not(pre)>code.nobreak{word-wrap:normal}
-:not(pre)>code.nowrap{white-space:nowrap}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
 pre>code{display:block}
@@ -183,7 +184,7 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
 #content #toc>:first-child{margin-top:0}
 #content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
 #footer-text{color:rgba(255,255,255,.8);line-height:1.44}
 #content{margin-bottom:.625em}
 .sect1{padding-bottom:.625em}
@@ -206,7 +207,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
 .exampleblock>.content>:first-child{margin-top:0}
@@ -216,7 +217,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
 .exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
@@ -262,21 +263,20 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
-table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
 td.tableblock>.content>:last-child{margin-bottom:-1.25em}
-td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
 table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
 table.frame-sides{border-width:0 1px}
-table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
 table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
@@ -285,7 +285,7 @@ th.valign-top,td.valign-top{vertical-align:top}
 th.valign-bottom,td.valign-bottom{vertical-align:bottom}
 th.valign-middle,td.valign-middle{vertical-align:middle}
 table thead th,table tfoot th{font-weight:bold}
-tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th{background:#f7f8f7}
 tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
 p.tableblock>code:only-child{background:none;padding:0}
 p.tableblock{font-size:1em}
@@ -314,6 +314,7 @@ ol.lowergreek{list-style-type:lower-greek}
 .hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
 .colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
 .colist td:not([class]):first-child img{max-width:none}
@@ -386,7 +387,7 @@ a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
 .admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
 .admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:50%;border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
 .conum[data-value] *{color:#fff!important}
 .conum[data-value]+b{display:none}
 .conum[data-value]::after{content:attr(data-value)}
@@ -413,6 +414,7 @@ thead{display:table-header-group}
 svg{max-width:100%}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
 #toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
 body.book #header{text-align:center}
@@ -437,6 +439,221 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 <meta name='robots' content='noindex,nofollow'>
 <style>
     .imageblock {
@@ -13543,10 +13760,10 @@ Esta misma cola FIFO es utilizada en algunos algoritmos que veremos posteriormen
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
@@ -13565,11 +13782,11 @@ Esta misma cola FIFO es utilizada en algunos algoritmos que veremos posteriormen
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
 </tr>
@@ -13589,7 +13806,7 @@ Esta misma cola FIFO es utilizada en algunos algoritmos que veremos posteriormen
 <td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
@@ -13611,7 +13828,7 @@ Esta misma cola FIFO es utilizada en algunos algoritmos que veremos posteriormen
 <td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
+<td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
@@ -16722,17 +16939,17 @@ Además, se suelen incluir llamadas para otras operaciones comunes, como añadir
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Renombrar archivos</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename()</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefile">MoveFile()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefilea">MoveFile()</a></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Copiar archivos</p></th>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefile">MoveFile()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefilea">MoveFile()</a></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Mover archivos</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename()</a> <span class="lightcell">solo en el mismo sistema de archivos</span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfile">CopyFile()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfilea">CopyFile()</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -18727,79 +18944,79 @@ Mientras que para dispositivos NVM Express se utiliza <strong>NONE</strong>, que
 <ul class="bibliography">
 <li>
 <p><a id="Bavier2000"></a>[Bavier2000]
-Bavier, A. «Creating New CPU Schedulers with Virtual Time». En 21st IEEE Real-Time Systems Symposium (RTSS 2000) WIP Proceedings, 2000.</p>
+Bavier, A. (2000). Creating New CPU Schedulers with Virtual Time. <em>WIP Proceedings of 21st IEEE Real-Time Systems Symposium (RTSS 2000)</em>.</p>
 </li>
 <li>
 <p><a id="Chase2009"></a>[Chase2009]
-Chase, K. y Russinovich, M. «Processes, Threads, and Jobs in the Windows Operating System». [en línea]. Pearson, 2009 [2009]. URL <a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=7" class="bare">https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=7</a></p>
+Chase, K. y Russinovich, M. (2009). <em>Processes, Threads, and Jobs in the Windows Operating System</em>. The Microsoft Press Store by Pearson. <a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=7" class="bare">https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=7</a></p>
 </li>
 <li>
 <p><a id="Friedman1999"></a>[Friedman1999]
-Friedman, M. B. «Windows NT Page Replacement Policies». En 25th International Computer Measurement Group Conference, December 5-10, 1999, Pag. 234-244.</p>
+Friedman, M. B. (1999). Windows NT Page Replacement Policies. <em>Proceedings of 25th International Computer Measurement Group Conference</em> (pp. 234-244).</p>
 </li>
 <li>
 <p><a id="Ganger2000"></a>[Ganger2000]
-Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. «Soft Updates: A Solution to the Metadata Update Problem in File Systems». En ACM Transactions on Computer Systems, Vol. 18, No. 2, May 2000, Pag. 127—153.</p>
+Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. (2000). Soft Updates: A Solution to the Metadata Update Problem in File Systems. <em>ACM Transactions on Computer Systems</em>, 18 (2), 127—153.</p>
 </li>
 <li>
 <p><a id="Gaydov2016"></a>[Gaydov2016]
-Gaydov, V. «File locking in Linux» [en línea]. 2016 [2020]. URL <a href="https://gavv.github.io/articles/file-locks/" class="bare">https://gavv.github.io/articles/file-locks/</a></p>
+Gaydov, V. (2016). <em>File locking in Linux</em>. <a href="https://gavv.github.io/articles/file-locks/" class="bare">https://gavv.github.io/articles/file-locks/</a></p>
 </li>
 <li>
 <p><a id="Gorman2004"></a>[Gorman2004]
-Gorman, M. «Understanding the Linux Virtual Memory Manager». Prentice Hall, 2004.</p>
+Gorman, M. (2004). <em>Understanding the Linux Virtual Memory Manager</em>. Prentice Hall.</p>
 </li>
 <li>
 <p><a id="Hailperin2006"></a>[Hailperin2006]
-Hailperin, M. «Operating Systems and Middleware: Supporting Controlled Interaction». Course Technology, 2006.</p>
+Hailperin, M. (2006). <em>Operating Systems and Middleware: Supporting Controlled Interaction</em>. Course Technology.</p>
 </li>
 <li>
 <p><a id="Jacob1998"></a>[Jacob1998]
-Jacob, B y Mudge, T. «Virtual Memory: Issues of Implementation». Computer, 31:33-43, 1998. ISSN 0018-9162. DOI: 10.1109/2.683005. URL <a href="http://dx.doi.org/10.1109/2.683005" class="bare">http://dx.doi.org/10.1109/2.683005</a>.</p>
+Jacob, B y Mudge, T. (1998). Virtual Memory: Issues of Implementation. <em>Computer</em>, 31, 33-43. <a href="http://dx.doi.org/10.1109/2.683005" class="bare">http://dx.doi.org/10.1109/2.683005</a></p>
 </li>
 <li>
 <p><a id="Microsoft2005"></a>[Microsoft2005]
-«Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn» [en línea]. Microsoft Corporation, 2005. URL <a href="https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn" class="bare">https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn</a>.</p>
+Microsoft Corporation. (2005). <em>Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn</em>. SlideShare. <a href="https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn" class="bare">https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn</a>.</p>
 </li>
 <li>
 <p><a id="Microsoft2003"></a>[Microsoft2003]
-«Kernel Enhancements for Windows XP» [en línea]. Microsoft Corporation, 2003 [2006]. ARCHIVADO <a href="https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx" class="bare">https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx</a>.</p>
+Microsoft Corporation. (2003). <em>Kernel Enhancements for Windows XP</em>. <a href="https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx" class="bare">https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx</a></p>
 </li>
 <li>
 <p><a id="Microsoft2018"></a>[Microsoft2018]
-«Scheduling Priorities» [en línea]. Microsoft Corporation, 2018 [2020]. URL <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities" class="bare">https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities</a></p>
-</li>
-<li>
-<p><a id="SGI2006"></a>[SGI2006]
-«XFS Filesystem Structure» [en línea]. Silicon Graphics Inc, 2006 [2007]. URL <a href="https://goo.gl/YF82JB" class="bare">https://goo.gl/YF82JB</a></p>
+Microsoft Corporation. (2018). <em>Processes and Threads: Scheduling Priorities</em>. <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities" class="bare">https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities</a></p>
 </li>
 <li>
 <p><a id="Silberschatz2004"></a>[Silberschatz2004]
-Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&amp;xsqf99=184173.titn./">«Operating System Concepts with Java»</a>. 6º ed. John Wiley &amp; Sons Inc., 2004.</p>
+Silberschatz, A., Galvin, P. y Gagne, G. (2004). <em>Operating System Concepts with Java</em>. (6º ed.) John Wiley &amp; Sons Inc.</p>
 </li>
 <li>
 <p><a id="Silberschatz2005"></a>[Silberschatz2005]
-Silberschatz, A., Galvin, P. y Gagne, G. <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?ACC=DOSEARCH&amp;xsqf99=345629.titn./">«Fundamentos de Sistemas Operativos»</a>. 7ª ed. McGraw Hill, 2005.</p>
+Silberschatz, A., Galvin, P. y Gagne, G. (2006). <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=345629"><em>Fundamentos de Sistemas Operativos</em></a>. (7ª ed.) McGraw Hill Interamericana.</p>
+</li>
+<li>
+<p><a id="SGI2006"></a>[SGI2006]
+Silicon Graphics Inc. (2006). <em>XFS Filesystem Structure</em>. <a href="https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html" class="bare">https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html</a></p>
 </li>
 <li>
 <p><a id="Solomon2005"></a>[Solomon2005]
-Solomon, D. A. y Russinovich, M. «Windows OS Internals&#8201;&#8212;&#8201;Unit OS4: Scheduling and Dispatch 4.4. Windows Thread» [en línea]. 2005 [2009]. URL <a href="https://slideplayer.com/slide/6972581/" class="bare">https://slideplayer.com/slide/6972581/</a></p>
+Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. Windows Thread. <em>Windows OS Internals</em>. <a href="https://slideplayer.com/slide/6972581/" class="bare">https://slideplayer.com/slide/6972581/</a></p>
 </li>
 <li>
 <p><a id="Stallings2005"></a>[Stallings2005]
-Stallings, W. <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530">«Sistemas operativos: Aspectos internos y principios de diseño»</a>. 5ª ed. Pearson, 2005</p>
+Stallings, W. (2005). <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530"><em>Sistemas operativos: Aspectos internos y principios de diseño</em></a>. (5ª ed.) Pearson</p>
 </li>
 <li>
 <p><a id="Sun2006"></a>[Sun2006]
-«ZFS On-Disk Specification [en línea]». Sun Microsystems, Inc. 2006 [2009]. URL <a href="http://www.giis.co.in/Zfs_ondiskformat.pdf" class="bare">http://www.giis.co.in/Zfs_ondiskformat.pdf</a></p>
+Sun Microsystems, Inc. (2006). <em>ZFS On-Disk Specification (Draft)</em>. <a href="https://es.scribd.com/document/217201456/Zfs-ondiskformat" class="bare">https://es.scribd.com/document/217201456/Zfs-ondiskformat</a></p>
 </li>
 <li>
 <p><a id="Tanenbaum2014"></a>[Tanenbaum2014]
-Tanenbaum, A. y Bos, H. «Modern Operating Systems». 4ª ed. Prentice Hall Press 2014.</p>
+Tanenbaum, A. y Bos, H. (2014). <em>Modern Operating Systems</em>. (4ª ed.) Prentice Hall Press</p>
 </li>
 <li>
 <p><a id="Wikipedia-cmalloc"></a>[Wikipedia-cmalloc]
-«C dynamic memory allocation» [en línea]. Wikipedia (en), [2011]. URL <a href="http://goo.gl/OkFJ3" class="bare">http://goo.gl/OkFJ3</a></p>
+C dynamic memory allocation. En <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/C_dynamic_memory_allocation" class="bare">https://en.wikipedia.org/wiki/C_dynamic_memory_allocation</a></p>
 </li>
 </ul>
 </div>
@@ -18808,220 +19025,9 @@ Tanenbaum, A. y Bos, H. «Modern Operating Systems». 4ª ed. Prentice Hall Pres
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2020-12-18 17:58:24 UTC
+Última actualización 2021-01-13 12:58:45 UTC
 </div>
 </div>
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
-}
-pre.rouge .gr {
-  color: #aa0000;
-}
-pre.rouge .gh {
-  color: #999999;
-}
-pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
-}
-pre.rouge .go {
-  color: #888888;
-}
-pre.rouge .gp {
-  color: #555555;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #aaaaaa;
-}
-pre.rouge .gt {
-  color: #aa0000;
-}
-pre.rouge .kc {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kd {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #008080;
-}
-pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .o {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #bbbbbb;
-}
-pre.rouge {
-  background-color: #f8f8f8;
-}
-</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",
@@ -19038,13 +19044,13 @@ MathJax.Hub.Config({
 })
 MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
   MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
       data.math.root.display = "block"
     }
     return data
   })
 })
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
