@@ -106,7 +106,7 @@ Para eso los sistemas POSIX ofrecen la función {linux_shm_open}.
 int shmfd = shm_open(   <4>
     "/foo-shm",         <1>
     O_RDWR | O_CREAT,   <2>
-    666                 <3>
+    0666                <3>
 );
 ----
 <1> Nombre que identifica al objeto de memoria compartida.
