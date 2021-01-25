@@ -49,14 +49,14 @@ Silicon Graphics Inc. (2006). _XFS Filesystem Structure_. https://xfs.org/docs/x
 Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. Windows Thread. _Windows OS Internals_. https://slideplayer.com/slide/6972581/
 
 * [[[Stallings2005]]]
-Stallings, W. (2005). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530[_Sistemas operativos: Aspectos internos y principios de diseño_]. (5ª ed.) Pearson
+Stallings, W. (2005). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530[_Sistemas operativos: Aspectos internos y principios de diseño_]. (5ª ed.) Pearson.
 
 * [[[Sun2006]]]
 Sun Microsystems, Inc. (2006). _ZFS On-Disk Specification (Draft)_. https://es.scribd.com/document/217201456/Zfs-ondiskformat
 // http://www.giis.co.in/Zfs_ondiskformat.pdf
 
 * [[[Tanenbaum2014]]]
-Tanenbaum, A. y Bos, H. (2014). _Modern Operating Systems_. (4ª ed.) Prentice Hall Press
+Tanenbaum, A. y Bos, H. (2014). _Modern Operating Systems_. (4ª ed.) Prentice Hall Press.
 
 * [[[Wikipedia-cmalloc]]]
 C dynamic memory allocation. En _Wikipedia_. https://en.wikipedia.org/wiki/C_dynamic_memory_allocation
