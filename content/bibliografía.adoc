@@ -31,7 +31,7 @@ Jacob, B y Mudge, T. (1998). Virtual Memory: Issues of Implementation. _Computer
 Microsoft Corporation. (2005). _Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn_. SlideShare. https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn.
 
 * [[[Microsoft2003]]]
-Microsoft Corporation. (2003). _Kernel Enhancements for Windows XP_. https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx
+Microsoft Corporation. (2003). _Kernel Enhancements for Windows XP_. Archivado en https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx
 
 * [[[Microsoft2018]]]
 Microsoft Corporation. (2018). _Processes and Threads: Scheduling Priorities_. https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
