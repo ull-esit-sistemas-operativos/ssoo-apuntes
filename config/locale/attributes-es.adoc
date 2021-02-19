@@ -20,4 +20,5 @@ ifdef::preface-title[:preface-title: Prefacio]
 :toc-title: Tabla de Contenido
 :untitled-label: Sin título
 :version-label: Versión
+:video-caption: Vídeo
 :warning-caption: Aviso

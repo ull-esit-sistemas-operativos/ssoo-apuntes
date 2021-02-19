@@ -1,0 +1,6 @@
+// Archivo de configuración específica del backed PDF.
+//
+// Archivo de tema para asciidoctor-pdf
+:pdf-theme: config/pdf/pdf-theme.yml
+// Activar la portada
+:title-page:

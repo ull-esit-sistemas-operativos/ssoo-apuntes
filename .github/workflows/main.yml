@@ -1,12 +1,10 @@
-name: Generar, testear y publicar
+name: Publicar
 
 on:
-  push:
-    branches-ignore: [master]
-  pull_request:
-    branches-ignore: [master]
   workflow_dispatch:
-      branches-ignore: [master]
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-and-publish:
@@ -18,35 +16,39 @@ jobs:
       with:
           persist-credentials: false
 
-    - name: Extract el nombre de la rama
-      uses: nelonoel/branch-name@v1
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-
     - name: Configurar Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
 
     - name: Instalar dependencias
-      run: bundle install
+      run: |
+        sudo apt-get update -y -qq
+        sudo apt-get install pkg-config libxml2-dev libxslt-dev default-jre graphviz bison flex libffi-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev fonts-lyx cmake
+        bundle config build.nokogiri --use-system-libraries
+        bundle install
+
+    - name: Testear
+      run: bundle exec rake tests:all
 
     - name: Generar la documentación
-      run: bundle exec rake build
-    
-    - name: Testear
-      run: bundle exec rake tests
+      run: bundle exec rake build:html build:pdf
 
-    - name: Publicar
-      if: |
-        github.event != 'pull_request' || (
-          github.event.pull_request.types == 'closed' &&
-          github.event.pull_request.merged_by != ''
-        )
+    - name: Publicar web
       uses: JamesIves/github-pages-deploy-action@3.6.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: output/html
-        TARGET_FOLDER: ${{ env.BRANCH_NAME }}
+        TARGET_FOLDER: ${{ github.ref }}
         CLEAN: true
+
+    - name: Publicar como 'release'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: output/pdf/{*/*.pdf,*.zip}
+        tag: ${{ github.ref }}
+        file_glob: true
+        overwrite: true
+        prerelease: true

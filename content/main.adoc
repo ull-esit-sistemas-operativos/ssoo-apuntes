@@ -1,7 +1,7 @@
 = Sistemas Operativos
 Jesús Torres <jmtorres@ull.es>
-Curso 20XX-20XY
-:ejemplos_branch: master
+include::version.adoc[]
+Curso {academic-year}
 include::../config/attributes.adoc[]
 include::enlaces.adoc[]
 include::docstats.adoc[]

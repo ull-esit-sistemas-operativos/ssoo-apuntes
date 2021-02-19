@@ -1,0 +1,2 @@
+:academic-year: 20XX-20XY
+:ejemplos_branch: master

@@ -1,0 +1,17 @@
+extends: default
+title-page:
+  authors:
+    content:
+      name_only: "{author}"
+      with_email: "{author} <{email}>"
+      with_url: "{url}[{author}]"
+image:
+  align: center
+  caption:
+    align: inherit
+admonition:
+  icon:
+    time:
+      name: fa-clock
+      stroke_color: 871452
+      size: 24
