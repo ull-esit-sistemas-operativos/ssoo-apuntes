@@ -66,18 +66,20 @@ Project::find_documents().each do |document|
         end
     end
 
-    namespace :build do
-        desc 'Generar la versión en HTML de todos los documentos del proyecto'
-        task :html => "#{document[:namespace_prefix]}build:html"
+    if ! document[:namespace_prefix].empty?
+        namespace :build do
+            desc 'Generar la versión en HTML de todos los documentos del proyecto'
+            task :html => "#{document[:namespace_prefix]}build:html"
 
-        desc 'Generar la versión en PDF de todos los documentos del proyecto'
-        task :pdf => "#{document[:namespace_prefix]}build:pdf"
+            desc 'Generar la versión en PDF de todos los documentos del proyecto'
+            task :pdf => "#{document[:namespace_prefix]}build:pdf"
 
-        desc 'Generar la versión en EPUB de todos los documentos del proyecto'
-        task :epub => "#{document[:namespace_prefix]}build:epub"
+            desc 'Generar la versión en EPUB de todos los documentos del proyecto'
+            task :epub => "#{document[:namespace_prefix]}build:epub"
 
-        desc 'Generar el archivo de estadísticas de todos los documentos del proyecto'
-        task :docstats => "#{document[:namespace_prefix]}build:docstats"
+            desc 'Generar el archivo de estadísticas de todos los documentos del proyecto'
+            task :docstats => "#{document[:namespace_prefix]}build:docstats"
+        end
     end
 
     namespace "#{document[:namespace_prefix]}tests" do
@@ -98,17 +100,19 @@ Project::find_documents().each do |document|
         end
     end
 
-    namespace :tests do
+    if ! document[:namespace_prefix].empty?
+        namespace :tests do
 
-        desc 'Ejecutar todos los tests en todos los documentos del proyecto'
-        task :all => "#{document[:namespace_prefix]}tests:all"
+            desc 'Ejecutar todos los tests en todos los documentos del proyecto'
+            task :all => "#{document[:namespace_prefix]}tests:all"
 
-        desc 'Ejecutar el test de HTMLProofer en todos los documentos del proyecto'
-        task :htmlproofer => "#{document[:namespace_prefix]}tests:htmlproofer"
+            desc 'Ejecutar el test de HTMLProofer en todos los documentos del proyecto'
+            task :htmlproofer => "#{document[:namespace_prefix]}tests:htmlproofer"
 
-        desc 'Ejecutar el test de variables no definidas en todos los documentos del proyecto'
-        task :missing_variables => "#{document[:namespace_prefix]}tests:missing_variables"
+            desc 'Ejecutar el test de variables no definidas en todos los documentos del proyecto'
+            task :missing_variables => "#{document[:namespace_prefix]}tests:missing_variables"
 
+        end
     end
 
     # Tareas de limpieza

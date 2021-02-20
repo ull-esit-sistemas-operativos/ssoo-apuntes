@@ -19,7 +19,7 @@ module Project
 
     def find_documents()
         FileList[File.join(SOURCE_DIRECTORY, "**/#{DOCUMENT_MAIN_FILE}")].map do |pathname|
-            source_directory_regex = %r(^#{SOURCE_DIRECTORY}/)
+            source_directory_regex = %r(^#{SOURCE_DIRECTORY}/?)
             source_directory = File.dirname pathname
             namespaces = source_directory.sub(source_directory_regex, "").split("/")
             output_directories = {
