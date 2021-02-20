@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C06_reading_time}
+*Tiempo de lectura:* {s06-reading-time}
 ====
 
 Un sistema operativo proporciona un entorno controlado para la ejecución de programas.

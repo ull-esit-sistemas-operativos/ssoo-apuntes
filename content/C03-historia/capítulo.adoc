@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C03_reading_time}
+*Tiempo de lectura:* {s03-reading-time}
 ====
 
 La historia de los sistemas operativos se puede dividir en cinco grandes etapas o generaciones, obviamente conectadas con las generaciones de los ordenadores donde funcionaban.

@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C20_reading_time}
+*Tiempo de lectura:* {s20-reading-time}
 ====
 
 Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.

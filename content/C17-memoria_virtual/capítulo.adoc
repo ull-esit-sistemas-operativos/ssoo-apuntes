@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C17_reading_time}
+*Tiempo de lectura:* {s17-reading-time}
 ====
 
 La *memoria virtual*(((memoria, virtual))) es una técnica que permite la ejecución de procesos sin que éstos tengan que ser cargados completamente en la memoria.

@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C16_reading_time}
+*Tiempo de lectura:* {s16-reading-time}
 ====
 
 La traducción entre direcciones virtuales y físicas puede realizarse de diversas maneras.

@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C19_reading_time}
+*Tiempo de lectura:* {s19-reading-time}
 ====
 
 Como hemos comentado, cada volumen puede albergar un sistema de archivos.

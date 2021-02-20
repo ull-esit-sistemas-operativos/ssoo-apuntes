@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C09_reading_time}
+*Tiempo de lectura:* {s09-reading-time}
 ====
 
 Los primeros sistemas informáticos solo permitían que un programa se ejecutara cada vez.

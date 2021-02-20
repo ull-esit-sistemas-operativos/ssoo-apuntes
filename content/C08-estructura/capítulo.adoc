@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C08_reading_time}
+*Tiempo de lectura:* {s08-reading-time}
 ====
 
 Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <<_componentes_del_sistema>>).

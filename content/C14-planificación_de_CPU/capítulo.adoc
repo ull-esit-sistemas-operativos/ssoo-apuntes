@@ -3,10 +3,9 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C13_reading_time}
+*Tiempo de lectura:* {s14-reading-time}
 ====
 
 El *planificador de la CPU*(((planificador, CPU))) o *planificador de corto plazo*(((planificador, corto plazo))) tiene la misión de seleccionar de la *cola de preparados* el siguiente proceso o hilo de núcleo a ejecutar.

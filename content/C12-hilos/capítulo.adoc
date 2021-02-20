@@ -3,12 +3,10 @@ ifndef::sectiondir[:sectiondir: .]
 :imagesdir: {sectiondir}/media
 include::../../config/attributes.adoc[]
 
-[.right]
+[TIME]
 ====
-.Tiempo estimado de lectura
-{C12_reading_time}
+*Tiempo de lectura:* {s12-reading-time}
 ====
-
 En el modelo de proceso que hemos descrito hasta el momento, cada proceso tiene una única secuencia de instrucciones que se ejecuta en la CPU.
 Si los procesos solo pueden tener una única secuencia de instrucciones, solo pueden realizar una tarea a la vez.
 Por ejemplo, en un procesador de textos en un sistema operativo con este modelo de procesos, el usuario nunca podría escribir al mismo tiempo que se comprueba la ortografía.
