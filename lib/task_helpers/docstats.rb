@@ -16,7 +16,7 @@ module Docstats
             formatted_string = "#{hours} horas"
         end
 
-        if minutes > 0
+        if hours > 0 && minutes > 0
             formatted_string += " y "
         end
 
@@ -67,7 +67,7 @@ module Docstats
         document_stats =  get_body_stats(document.css('#content'))
 
         document_stats[:sections] = document.css(".sect1").map do |section|
-            get_body_stats(section)
+            get_section_stats(section)
         end
 
         return document_stats
@@ -83,13 +83,13 @@ module Docstats
         EOF
 
         output_content += document_stats[:sections].map do |stats|
-            next unless not stats[:sec1tion_number].nil?
-            section_number = "%02i" % stats[:sec1tion_number]
+            next unless not stats[:section_number].nil?
+            section_number = "%02i" % stats[:section_number]
             <<~EOF
-            :S#{section_number}-characters: #{stats[:characters]}
-            :S#{section_number}-words: #{stats[:words]}
-            :S#{section_number}-paragraphs: #{stats[:paragraphs]}
-            :S#{section_number}-reading-time: #{format_reading_time(stats[:reading_time])}
+            :s#{section_number}-characters: #{stats[:characters]}
+            :s#{section_number}-words: #{stats[:words]}
+            :s#{section_number}-paragraphs: #{stats[:paragraphs]}
+            :s#{section_number}-reading-time: #{format_reading_time(stats[:reading_time])}
             EOF
         end.join()
 
