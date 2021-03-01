@@ -140,7 +140,7 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 Como se puede apreciar, la mayor parte del *tiempo de fallo de página* es debido al tiempo requerido para acceder al *dispositivo de intercambio*.
 
 Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página* ya que comparativamente consumen mucho menos tiempo.
-Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_m] es de 200 ns. y que la probabilidad stem:[p_(fp)] es muy pequeña —es decir, stem:[p ≪ 1]—:
+Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_m] es de 200ns y que la probabilidad stem:[p_(fp)] es muy pequeña —es decir, stem:[p ≪ 1]—:
 
 [latexmath]
 ++++
@@ -160,7 +160,7 @@ T_(em) approx T_(m) + tau_(fp)
 
 donde stem:[tau_(fp)=p_(fp) T_(fp)].
 
-Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, stem:[p_(fp) = 0.001]— el *tiempo de acceso efectivo* es de 8.2 ms., por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
+Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, stem:[p_(fp) = 0.001]— el *tiempo de acceso efectivo* es de 8.2ms, por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
 Por tanto, es necesario mantener la *tasa de fallos de página* stem:[tau_(fp)] lo más baja posible para mantener un rendimiento adecuado.
 
 Por simplicidad, por el momento hemos considerado stem:[T_m] como el tiempo de acceso a la memoria física.
@@ -641,9 +641,9 @@ Este es el tipo más común de *algoritmo de reemplazo de página NRU*, pero lo 
 Podemos obtener información adicional sobre el orden en que se realizan las referencias, guardando los *bits de referencia* en intervalos periódicos de tiempo.
 El *reemplazo LRU aproximado con bits de referencia adicionales*, o de *envejecimiento*, consiste en lo siguiente:
 
-. A parte del *bit de referencia*, cada página tiene un conjunto de *bits de referencia adicionales* —por ejemplo, 8 bits— que se guardan en alguna tabla interna que mantiene el sistema operativo.
+. A parte del *bit de referencia*, cada página tiene un conjunto de *bits de referencia adicionales* —por ejemplo, 8bits— que se guardan en alguna tabla interna que mantiene el sistema operativo.
 
-. A intervalos regulares —por ejemplo, cada 100 ms.— el sistema operativo desplaza los *bits de referencia adicionales* de cada página; insertando el *bit de referencia* de la página en el bit de orden más alto y descartando el bit de orden más bajo.
+. A intervalos regulares —por ejemplo, cada 100ms— el sistema operativo desplaza los *bits de referencia adicionales* de cada página; insertando el *bit de referencia* de la página en el bit de orden más alto y descartando el bit de orden más bajo.
 
 . Cuando haya que escoger una página para ser reemplazada se escoge la que tenga el valor más pequeño en el conjunto de *bits de referencia adicionales*.
 Esto es así, puesto que dicho conjunto contiene la historia de referencias de la página.
@@ -655,7 +655,7 @@ Vamos a ilustrarlo con un ejemplo:
 
 * Utilizaremos 3 marcos de página.
 
-* Utilizaremos 2 bits adicionales.
+* Utilizaremos 2bits adicionales.
 
 * Indicaremos el valor del *bit de referencia* y de los *bits adicionales* con un superíndice junto al número de página.
 
@@ -1110,7 +1110,7 @@ Sin embargo, la latencia y el tiempo requerido para posicionar la cabeza lectora
 ** Teóricamente, se obtiene una mejor resolución para asignar y transferir al disco sólo la memoria que realmente necesitamos.
 Esto a la larga debería redundar en menos memoria asignada y menos operaciones de E/S.
 
-En la actualidad, el tamaño de página más común es de 4 KiB en sistemas de 32 bits y 8 KiB en los de 64 bits, ya que son adecuados para la mayor parte de las aplicaciones.
+En la actualidad, el tamaño de página más común es de 4 KiB en sistemas de 32bits y 8 KiB en los de 64bits, ya que son adecuados para la mayor parte de las aplicaciones.
 Sin embargo, muchos sistemas modernos soportan el uso simultáneo de múltiples tamaños de página.
 Esto permite que la mayor parte de las aplicaciones utilicen el tamaño estándar, mientras las que hacen un uso intensivo de la memoria —como es el caso de los gestores de bases de datos— puedan utilizar páginas de mayor tamaño.
 

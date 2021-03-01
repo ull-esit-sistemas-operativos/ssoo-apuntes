@@ -769,7 +769,7 @@ entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.
 
 Este algoritmo requiere los siguientes elementos:
 
-* Definir una *((ventana de tiempo))* o *((cuanto))*, generalmente entre 10 y 100 ms.
+* Definir una *((ventana de tiempo))* o *((cuanto))*, generalmente entre 10 y 100ms
 
 * Definir la *cola de preparados* como una cola circular, dónde el planificador asigna la CPU a cada proceso en intervalos de tiempo de hasta un *cuanto*, como máximo.
 
@@ -785,7 +785,7 @@ El temporizador interrumpirá el proceso al terminar el cuanto e informará al s
 Este algoritmo es *expropiativo* puesto que los procesos son expropiados por la interrupción del temporizador.
 Como se puede intuir, originalmente fue diseñado para los *sistemas de tiempo compartido*, para repartir la CPU por igual entre los procesos de los usuarios del sistema. 
 
-Ilustremos el algoritmo con un ejemplo con cuanto de 4 ms.:
+Ilustremos el algoritmo con un ejemplo con cuanto de 4ms:
 
 [cols="3*^" options=header]
 |===
@@ -869,7 +869,7 @@ Se busca así equilibrar los criterios anteriores, evitando que el tiempo de cua
 
 [NOTE]
 ====
-Actualmente se utilizan tiempos de cuanto de entre 10 y 100 ms.
+Actualmente se utilizan tiempos de cuanto de entre 10 y 100ms
 Estos tiempos son mucho mayores que los tiempos de cambios de contexto, que generalmente son inferiores a 10µs.
 ====
 
@@ -977,9 +977,9 @@ Los procesos que llegan nuevos o desde el estado *esperando* lo hacen con la pri
 Mientras que los procesos expropiados por vencimiento del *cuanto* pierde un punto de prioridad, siendo insertados en una cola de prioridad menor.
 
 Con ese algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
-Por ejemplo, usando los valores del esquema de la <<esquema_planificación_colas_multinivel_realimentadas>>, los procesos de ráfagas de CPU entre 20 y 80 ms. acaban cayendo a la cola de prioridad 1 tras 20 ms. de ejecución.
-Así dejan paso a los procesos con ráfagas menores de 20 ms., que siempre se ejecutan con prioridad 0.
-Finalmente, los procesos de ráfagas mayores de 80 ms. van a la cola FCFS, desde donde sólo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la *cola de preparados*
+Por ejemplo, usando los valores del esquema de la <<esquema_planificación_colas_multinivel_realimentadas>>, los procesos de ráfagas de CPU entre 20 y 80ms acaban cayendo a la cola de prioridad 1 tras 20ms de ejecución.
+Así dejan paso a los procesos con ráfagas menores de 20ms, que siempre se ejecutan con prioridad 0.
+Finalmente, los procesos de ráfagas mayores de 80ms van a la cola FCFS, desde donde sólo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la *cola de preparados*
 
 La *planificador de colas multinivel realimentadas* también se puede utilizar para pasar a colas superiores los procesos que han esperado mucho tiempo en colas inferiores, evitando la *muerte por inanición*, que puede afecta a los sistemas de *planificación de colas multinivel* con *prioridad fija*.
 
@@ -1175,7 +1175,7 @@ Así el sistema puede determinar con precisión el tiempo que se ha estado ejecu
 
 [NOTE]
 ====
-Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (_Time Stamp Counter_ o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.
+Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (_Time Stamp Counter_ o TSC) de 64bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.
 
 Para más información véase https://en.wikipedia.org/wiki/Time_Stamp_Counter[«Time Stamp Counter -- Wikipedia»].
 ====
@@ -1267,7 +1267,7 @@ Puesto que en este caso la ejecución de cualquier operación en el núcleo pued
 Esto hace que el diseño de un núcleo de estas características sea mucho más complejo.
 
 Microsoft Windows —desde Windows NT—, Linux —desde la versión 2.6—, {solaris} y {netbsd} son algunos ejemplos de sistemas operativos con núcleos expropiables.
-En el caso concreto de Solaris la latencia de asignación es inferior a 1 ms., mientras que con la expropiación del núcleo desactivada ésta puede superar los 100 ms.
+En el caso concreto de Solaris la latencia de asignación es inferior a 1ms, mientras que con la expropiación del núcleo desactivada ésta puede superar los 100ms
 
 .Expropiación en el núcleo de Linux
 ****

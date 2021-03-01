@@ -20,7 +20,7 @@ Algunas de las API disponibles para los desarrolladores de aplicaciones son Wind
 
 {windows_api} es el nombre que recibe la *interfaz de programación de aplicaciones* de Microsoft Windows, con la que prácticamente tienen que interactuar todas las aplicaciones, de una forma u otra.
 
-Antiguamente se denominaba Win32 API, pero Microsoft ha querido aglutinar bajo una misma denominación las distintas versiones de la API de Windows que han existido, como Win16 —usada en las versiones de 16 bits de Windows— o Win64 —que es la variante de Win32 adaptada a arquitecturas de 64 bits—.
+Antiguamente se denominaba Win32 API, pero Microsoft ha querido aglutinar bajo una misma denominación las distintas versiones de la API de Windows que han existido, como Win16 —usada en las versiones de 16bits de Windows— o Win64 —que es la variante de Win32 adaptada a arquitecturas de 64bits—.
 
 Está compuesta por funciones en C almacenadas, principalmente, en las librerías de enlace dinámico ({dll}): `kernel32.dll`, `user32.dll` y `gdi32.dll`.
 Aunque según se ha ido ampliando la API, se han incorporado otras librerías adicionales.
@@ -70,7 +70,7 @@ Por ejemplo, en MIPS e Intel x86 se usa la instrucción `syscall`, que lanza un 
 
 Al realizar una llamada, es necesario que el sistema sepa qué operación le está pidiendo el proceso.
 Esto se suele hacer poniendo un número identificativo de la llamada en un registro concreto de la CPU.
-Por ejemplo, en Linux para x86 la llamada al sistema {linux_open} —que se utiliza para abrir archivos— se identifica con el número 2 o con el 5, según si es en 64 o en 32 bits, respectivamente.
+Por ejemplo, en Linux para x86 la llamada al sistema {linux_open} —que se utiliza para abrir archivos— se identifica con el número 2 o con el 5, según si es en 64 o en 32bits, respectivamente.
 Este número se debe guardar en el registro `v0` en MIPS o `eax` en x86, antes de la instrucción `syscall`.
 
 Los números utilizados para identificar cada llamada al sistema dependen del sistema operativo.
@@ -94,12 +94,12 @@ Consiste en copiar los parámetros de la llamada al sistema en una tabla en la m
 Así no se limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
 +
 Era utilizado por Microsoft Windows 2000 y anteriores.
-También en Linux para x86 32 bits, cuando el número de parámetros es superior a 6.
+También en Linux para x86 32bits, cuando el número de parámetros es superior a 6.
 
 * *Mediante la pila del proceso* se insertan los parámetros de la llamada al sistema en la pila del proceso —que también se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar a funciones— y el sistema operativo los recupera de allí durante la llamada al sistema.
 Al igual que en el caso anterior, tampoco limita el número de parámetros que pueden ser pasados en cada llamada al sistema.
 +
-Es utilizado, por ejemplo, en sistemas UNIX BSD y en Windows XP y posteriores para x86 de 32 bits.
+Es utilizado, por ejemplo, en sistemas UNIX BSD y en Windows XP y posteriores para x86 de 32bits.
 
 [[linux_mips_syscall]]
 .Llamada al sistema en Linux MIPS.
@@ -135,7 +135,7 @@ La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operat
 
 <4> Al ejecutar la siguiente instrucción del código del programa, el registro `v0` contendrá el número de bytes escritos.
 
-En {syscall_s} se puede ver un ejemplo completo similar, pero para Linux x86 de 64 bits.
+En {syscall_s} se puede ver un ejemplo completo similar, pero para Linux x86 de 64bits.
 ====
 
 En cualquier caso, sea cual sea el método utilizado, el sistema operativo es responsable de comprobar de manera estricta la validez de los parámetros enviados en la llamada al sistema antes de realizar cualquier operación, puesto que nunca debe confiar en que los procesos hagan su trabajo correctamente.

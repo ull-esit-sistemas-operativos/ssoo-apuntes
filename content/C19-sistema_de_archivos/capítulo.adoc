@@ -595,7 +595,7 @@ Para solucionar algunos de los problemas de las *ACL* muchos sistemas utilizan *
 Para condensar la longitud de la lista de control de acceso, generalmente los sistemas clasifican a los usuarios en tres grupos: *propietario*, *grupo* y *otros*.
 Así sólo es necesario un campo para cada clase de usuario, siendo cada campo una colección de bits, donde cada uno permite o deniega el tipo de acceso asociado al mismo.
 
-Por ejemplo, en los sistemas POSIX se definen 3 campos —*propietario*, *grupo* y *otros*) de 3 bits cada uno: `rwx`, donde `r` controla el acceso de lectura, `w` controla el acceso de escritura y `x` controla la ejecución.
+Por ejemplo, en los sistemas POSIX se definen 3 campos —*propietario*, *grupo* y *otros*) de 3bits cada uno: `rwx`, donde `r` controla el acceso de lectura, `w` controla el acceso de escritura y `x` controla la ejecución.
 
 Las ACL condensadas son más sencillas de construir.
 Al mismo tiempo, por tener una longitud fija, es mucho más simple gestionar el espacio para el *FCB* donde se almacenan.

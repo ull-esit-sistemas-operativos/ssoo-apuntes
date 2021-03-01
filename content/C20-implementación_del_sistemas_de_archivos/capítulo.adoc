@@ -215,13 +215,13 @@ Si se corrompe, puede provocar la pérdida de todo el sistema de archivos.
 Por eso, realmente se almacenan dos copias de la FAT al principio del volumen.
 
 El indexar con clústeres —o grupos de bloques— sirve para ubicar cerca bloques contiguos, pero sobre todo es una decisión de diseño para permitir que los sistemas de archivos {fat} puedan gestionar volúmenes más grandes.
-Por ejemplo, la FAT de MS-DOS 3.0 y posteriores usaba 16 bits para numerar los clústeres —por eso se llamaba FAT16—.
+Por ejemplo, la FAT de MS-DOS 3.0 y posteriores usaba 16bits para numerar los clústeres —por eso se llamaba FAT16—.
 Si FAT16 trabaja directamente con bloques y cada bloque tuviera 512 bytes, no podría gestionar volúmenes de más de stem:[512* 2^16] bytes, es decir, 32 MiB.
 Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestionar volúmenes de hasta 2 GiB.
 
 Aunque algunas versiones de Microsoft Windows NT llegaron a admitir 128 e, incluso, 512 bloques por clúster, con clústeres tan grandes la *fragmentación interna* es un problema.
 
-Por eso —entre otras cosas— Microsoft introdujo {fat32}, que utiliza 32 bits para numerar los clústeres.
+Por eso —entre otras cosas— Microsoft introdujo {fat32}, que utiliza 32bits para numerar los clústeres.
 Eso implicar poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
 Por ejemplo, {fat32} podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.
 
