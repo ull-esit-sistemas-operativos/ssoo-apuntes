@@ -20,7 +20,7 @@ class TimeAdmonitionBlockDocinfo < Extensions::DocinfoProcessor
   def process doc
     if (doc.basebackend? 'html') && doc.backend != 'pdf'
       '<style>
-.admonitionblock td.icon .icon-time:before {content:"\f017";color:#871452;}
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
 </style>'
     end
   end
