@@ -320,7 +320,7 @@ Es decir, el espacio de almacenamiento está fraccionado en un gran número de h
 
 * Afecta tanto a la estrategia del *primer* como del *mejor ajuste*. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.
 
-* Algunos análisis estadísticos realizados con el *primer ajuste* revelan que incluso con algunas optimizaciones, con stem:[N] bloques asignados se pierden stem:[0,5N] por *fragmentación externa* —es decir, un tercio de toda la memoria no es utilizable—.
+* Algunos análisis estadísticos realizados con el *primer ajuste* revelan que incluso con algunas optimizaciones, con stem:[N] bloques asignados se pierden latexmath:[0.5N] por *fragmentación externa* —es decir, un tercio de toda la memoria no es utilizable—.
 A esto se lo conoce como la regla del 50%.
 
 Existen diversas soluciones a este problema:

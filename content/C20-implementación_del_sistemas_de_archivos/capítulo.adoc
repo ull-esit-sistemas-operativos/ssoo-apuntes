@@ -188,7 +188,7 @@ Una solución parcial a esto puede ser guardar en la memoria una caché de las d
 
 En la *asignación enlazada* se pierde cierta cantidad de espacio con los punteros.
 
-Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0,758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.
+Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0.758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.
 
 La solución para este problema consiste en asignar los bloques en grupos —denominados *clústeres*(((clúster)))—.
 Así, el primer bloque de cada *clúster* sólo tendría que almacenar un puntero al siguiente *clúster*, lo que reduciría la cantidad de espacio desperdiciada en los punteros y mejoraría la eficiencia al reducir el número de reposicionamientos del cabezal del disco.

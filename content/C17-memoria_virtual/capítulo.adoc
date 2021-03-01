@@ -160,7 +160,7 @@ T_(em) approx T_(m) + tau_(fp)
 
 donde stem:[tau_(fp)=p_(fp) T_(fp)].
 
-Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, stem:[p_(fp) = 0,001]— el *tiempo de acceso efectivo* es de 8,2 ms., por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
+Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, stem:[p_(fp) = 0.001]— el *tiempo de acceso efectivo* es de 8.2 ms., por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
 Por tanto, es necesario mantener la *tasa de fallos de página* stem:[tau_(fp)] lo más baja posible para mantener un rendimiento adecuado.
 
 Por simplicidad, por el momento hemos considerado stem:[T_m] como el tiempo de acceso a la memoria física.
@@ -1142,7 +1142,7 @@ Por lo tanto:
 
 * Si el sistema le asigna 128 marcos o más, el proceso solo generará 128 fallos de página.
 
-* Si el sistema operativo le asigna un solo marco, el proceso tendrá 16,384 fallos, aproximadamente.
+* Si el sistema operativo le asigna un solo marco, el proceso tendrá 16{K}384 fallos, aproximadamente.
 
 Sin embargo, el ejemplo sería diferente si el bucle interno del programa recorriera las columnas del _array_ y no las filas:
 

@@ -49,7 +49,7 @@ Si las direcciones virtuales son de 32 bits, eso deja para el número de página
 p = 32 - 12 = 20\ text{bits}
 ++++
 
-por lo que el espacio de direcciones virtual tiene stem:[2^20] páginas —es decir, 1.048.576 páginas—.
+por lo que el espacio de direcciones virtual tiene stem:[2^20] páginas —es decir, 1{K}048{K}576 páginas—.
 
 === Desde el punto de vista de los procesos
 
@@ -99,7 +99,7 @@ No olvidemos que cuanto más pequeñas son las *páginas*, más *páginas* son n
 Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez.
 
 Los tamaños de *páginas* típicos son 4 y 8 KiB.
-En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1.048.576 páginas.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1{K}048{K}576 páginas.
 Si se utilizan 4 bytes para cada entrada de la *tabla de páginas* —aunque esto también puede variar— eso significa que cada *tabla de páginas* ocupa 4 MiB de espacio.
 Mientras que con *páginas* de 8 KiB, la *tabla de páginas* ocuparía 2 MiB de espacios.
 
@@ -332,7 +332,7 @@ Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 b
 |= stem:[2^12] = 4 KiB
 
 |*número de páginas*
-|= stem:[2^32 / 2^12] = stem:[2^{32-12}] = stem:[2^20] = 1.048.576 entradas
+|= stem:[2^32 / 2^12] = stem:[2^{32-12}] = stem:[2^20] = 1{K}048{K}576 entradas
 
 |===
 
@@ -348,7 +348,7 @@ La *paginación jerárquica* se basa en la idea de que un vector de gran tamaño
 image::paginación_jerárquica.svg[]
 
 Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de
-página de 4 KiB, entonces podemos dividir la tabla de páginas de 1.048.576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
+página de 4 KiB, entonces podemos dividir la tabla de páginas de 1{K}048{K}576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
 
 Estos *marcos*, a su vez, pueden ser mapeados por 1024 entradas con las direcciones físicas de cada *marco*.
 Si organizamos estas 1024 entradas en un vector lineal, obtendríamos una *tabla de páginas externa*(((tabla, páginas, externa))) de 4 KiB (véase la <<paginación_jerárquica>>).

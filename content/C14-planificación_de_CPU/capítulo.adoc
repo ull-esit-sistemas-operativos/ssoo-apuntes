@@ -283,9 +283,9 @@ Utilizando el diagrama anterior, podemos calcular fácilmente los *tiempos de es
 |Tiempos promedio (ms.)
 |
 |
-|18,75
+|18.75
 |
-|26,75 
+|26.75 
 |===
 
 Lo interesante es que el resultado cambia si los procesos llegan en otro orden.
@@ -351,9 +351,9 @@ Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 |Tiempos promedio (ms.)
 |
 |
-|2,75
+|2.75
 |
-|10,75 
+|10.75 
 |===
 
 Aunque el tiempo total necesario para ejecutar los ráfagas de los 4 procesos, los criterios utilizados reflejan que el algoritmo se comporta mucho mejor en el segundo caso.
@@ -454,9 +454,9 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 |Tiempos promedio (ms.)
 |
 |
-|6,25
+|6.25
 |
-|12,25 
+|12.25 
 |===
 
 Sin embargo, si hubiéramos utilizado el algoritmo *FCFS* los tiempos hubieran sido mucho peores:
@@ -493,9 +493,9 @@ Sin embargo, si hubiéramos utilizado el algoritmo *FCFS* los tiempos hubieran s
 |Tiempos promedio (ms.)
 |
 |
-|8,75
+|8.75
 |
-|14,75 
+|14.75 
 |===
 
 El algoritmo *SJF* es óptimo en el sentido de que el *tiempo de espera promedio* es mínimo, porque reduce más el tiempo de espera de los procesos cortos y aumenta el de los procesos largos.
@@ -612,9 +612,9 @@ Y los tiempos de espera y ejecución promedio correspondientes serían:
 |Tiempos promedio (ms.)
 |
 |
-|6,50
+|6.50
 |
-|13,00 
+|13.00 
 |===
 
 Es muy complicado predecir cuál de los dos algoritmos será mejor para un conjunto concreto de procesos.
@@ -726,9 +726,9 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 |Tiempos promedio (ms.)
 |
 |
-|7,80
+|7.80
 |
-|12,20 
+|12.20 
 |===
 
 Que estos algoritmos ofrezcan mejores o peores resultados que otros, obviamente depende de los criterios utilizados para asignar las prioridades.
@@ -837,9 +837,9 @@ Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 |Tiempos promedio (ms.)
 |
 |
-|4,67
+|4.67
 |
-|12,67 
+|12.67 
 |===
 
 ==== Rendimiento
