@@ -39,14 +39,14 @@ Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, po
 
 [stem]
 ++++
-n = log_2 4096 = 12\ text{bits}
+n = log_2 4096 = 12\ "bits"
 ++++
 
 Si las direcciones virtuales son de 32 bits, eso deja para el número de página stem:[p]:
 
 [stem]
 ++++
-p = 32 - 12 = 20\ text{bits}
+p = 32 - 12 = 20\ "bits"
 ++++
 
 por lo que el espacio de direcciones virtual tiene stem:[2^20] páginas —es decir, 1{K}048{K}576 páginas—.
@@ -379,7 +379,7 @@ Esto era importante, puesto que la *tabla de páginas* de una
 
 === Paginación jerárquica de N niveles
 
-En general, en la *paginación jerárquica* de stem:[N] niveles el *número de página* stem:[p] de cada dirección virtual es dividido en stem:[N] números: stem:[{ p_1, p_2, p_3, \ldots, p_N}], donde:
+En general, en la *paginación jerárquica* de stem:[N] niveles el *número de página* stem:[p] de cada dirección virtual es dividido en stem:[N] números: latexmath:[\{ p_1, p_2, p_3, \ldots, p_N\}], donde:
 
 . stem:[p_1] se utiliza para indexar la *tabla de páginas externa* —también llamada *directorio de páginas*(((directorio, páginas))) o *tabla de páginas de nivel 0*(((tabla, páginas, nivel 0)))— cuya dirección conoce la CPU mediante el *PTBR*.
 La entrada obtenida de esta manera, contiene la dirección en la memoria física de una porción de la *tabla de páginas* en el siguiente nivel —el nivel 1—.
