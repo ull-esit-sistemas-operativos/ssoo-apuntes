@@ -6,8 +6,6 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     afm (0.2.2)
     asciidoctor (2.0.12)
-    asciidoctor-diagram (2.0.5)
-      asciidoctor (>= 1.5.7, < 3.x)
     asciidoctor-epub3 (1.5.0.alpha.19)
       asciidoctor (>= 1.5.6, < 3.0.0)
       gepub (~> 1.0.0)
@@ -104,11 +102,11 @@ PLATFORMS
 
 DEPENDENCIES
   asciidoctor
-  asciidoctor-diagram
   asciidoctor-epub3 (~> 1.5.0.alpha.18)
   asciidoctor-mathematical
   asciidoctor-pdf
   html-proofer
+  nokogiri
   rake
   rouge
 
