@@ -21,11 +21,18 @@ jobs:
       with:
         ruby-version: 2.7
 
-    - name: Instalar dependencias
+    - name: Instalar dependencias (nativas)
       run: |
         sudo apt-get update -y -qq
-        sudo apt-get install pkg-config libxml2-dev libxslt-dev default-jre graphviz bison flex libffi-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev fonts-lyx cmake
-        bundle config build.nokogiri --use-system-libraries
+        sudo apt-get install pkg-config libxml2-dev libxslt-dev
+        # asciidoctor-mathematical
+        sudo apt-get install bison flex libffi-dev libxml2-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev fonts-lyx cmake
+
+    - name: Instalar dependencias (gemas)
+      run: |
+        bundle config set build.nokogiri --use-system-libraries
+        bundle config set without epub3
+        bundle config set deployment true
         bundle install
 
     - name: Testear
@@ -43,11 +50,11 @@ jobs:
         TARGET_FOLDER: ${{ github.ref }}
         CLEAN: true
 
-    - name: Publicar como 'release'
+    - name: Publicar en 'Releases'
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: output/pdf/{*/*.pdf,*.zip}
+        file: output/pdf/*.pdf
         tag: ${{ github.ref }}
         file_glob: true
         overwrite: true
