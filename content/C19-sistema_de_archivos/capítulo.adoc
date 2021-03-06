@@ -223,7 +223,7 @@ Muchos sistemas también disponen de operaciones para consultar y modificar dive
 Además, se suelen incluir llamadas para otras operaciones comunes, como añadir datos al final de un archivo o el renombrado de un archivo existente.
 
 .Funciones de la API para manipular archivos.
-[cols="1h,2*" options=header]
+[cols="1 h,2*" options=header]
 |====
 |
 |POSIX API         

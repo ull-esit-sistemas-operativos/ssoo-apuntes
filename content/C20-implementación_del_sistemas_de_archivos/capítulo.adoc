@@ -150,7 +150,7 @@ La ubicación de las *extensiones* de un archivo se registran en el FCB, guardan
 
 Los sistemas de archivo {xfs} y {ext4} utilizan *extensiones* para optimizar su funcionamiento.
 El motivo es que cuantos más bloques contiguos sean asignados a un archivo, menos reposicionamientos del cabezal del disco son necesarios para leerlos.
-En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128 MiB, compuestas por bloques, generalmente, de 4KiB.
+En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128 MiB, compuestas por bloques, generalmente, de 4 KiB.
 
 === Asignación enlazada
 (((asignación, enlazada)))
