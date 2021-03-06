@@ -17,6 +17,11 @@ module Project
         File.join(CONFIG_DIRECTORY, "**/*.yml"),
     ]
 
+    def documents()
+        @store ||= Project::find_documents()
+    end
+    module_function :documents
+
     def find_documents()
         FileList[File.join(SOURCE_DIRECTORY, "**/#{DOCUMENT_MAIN_FILE}")].map do |pathname|
             source_directory_regex = %r(^#{SOURCE_DIRECTORY}/?)
@@ -26,6 +31,8 @@ module Project
                 :html => make_output_dirname(source_directory, "html"),
                 :pdf => make_output_dirname(source_directory, "pdf"),
                 :epub => make_output_dirname(source_directory, "epub"),
+                :docbook => make_output_dirname(source_directory, "docbook"),
+                :docx => make_output_dirname(source_directory, "docx"),
             }
 
             {
@@ -40,20 +47,21 @@ module Project
                     *CONFIG_FILES
                 ],
                 :media_files => find_media_files(source_directory),
-                :output_pathname => {
+                :output_pathnames => {
                     :html => File.join(output_directories[:html], "index.html"), 
                     :pdf => File.join(output_directories[:pdf], get_output_documment_filename(namespaces, "pdf")),
                     :epub => File.join(output_directories[:epub], get_output_documment_filename(namespaces, "epub")),
+                    :docbook => File.join(output_directories[:docbook], get_output_documment_filename(namespaces, "docbook")),
+                    :docx => File.join(output_directories[:docx], get_output_documment_filename(namespaces, "docx")),
                 },
                 :docstats_pathname => File.join(source_directory, DOCUMENT_STATS_FILE),
             }
-
         end
     end
     module_function :find_documents
 
     def make_output_dirname(source_directory, backend)
-        source_directory.sub(%r(^#{SOURCE_DIRECTORY}), File.join(OUTPUT_DIRECTORY, backend))
+        source_directory.sub(%r(^#{SOURCE_DIRECTORY}), File.join(Project::PROJECT_DIRECTORY, OUTPUT_DIRECTORY, backend))
     end
     module_function :make_output_dirname
 
