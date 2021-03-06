@@ -641,7 +641,7 @@ Este es el tipo más común de *algoritmo de reemplazo de página NRU*, pero lo 
 Podemos obtener información adicional sobre el orden en que se realizan las referencias, guardando los *bits de referencia* en intervalos periódicos de tiempo.
 El *reemplazo LRU aproximado con bits de referencia adicionales*, o de *envejecimiento*, consiste en lo siguiente:
 
-. A parte del *bit de referencia*, cada página tiene un conjunto de *bits de referencia adicionales* —por ejemplo, 8bits— que se guardan en alguna tabla interna que mantiene el sistema operativo.
+. A parte del *bit de referencia*, cada página tiene un conjunto de *bits de referencia adicionales* —por ejemplo, 8 bits— que se guardan en alguna tabla interna que mantiene el sistema operativo.
 
 . A intervalos regulares —por ejemplo, cada 100ms— el sistema operativo desplaza los *bits de referencia adicionales* de cada página; insertando el *bit de referencia* de la página en el bit de orden más alto y descartando el bit de orden más bajo.
 
@@ -655,7 +655,7 @@ Vamos a ilustrarlo con un ejemplo:
 
 * Utilizaremos 3 marcos de página.
 
-* Utilizaremos 2bits adicionales.
+* Utilizaremos 2 bits adicionales.
 
 * Indicaremos el valor del *bit de referencia* y de los *bits adicionales* con un superíndice junto al número de página.
 
@@ -1110,7 +1110,7 @@ Sin embargo, la latencia y el tiempo requerido para posicionar la cabeza lectora
 ** Teóricamente, se obtiene una mejor resolución para asignar y transferir al disco sólo la memoria que realmente necesitamos.
 Esto a la larga debería redundar en menos memoria asignada y menos operaciones de E/S.
 
-En la actualidad, el tamaño de página más común es de 4 KiB en sistemas de 32bits y 8 KiB en los de 64bits, ya que son adecuados para la mayor parte de las aplicaciones.
+En la actualidad, el tamaño de página más común es de 4 KiB en sistemas de 32 bits y 8 KiB en los de 64 bits, ya que son adecuados para la mayor parte de las aplicaciones.
 Sin embargo, muchos sistemas modernos soportan el uso simultáneo de múltiples tamaños de página.
 Esto permite que la mayor parte de las aplicaciones utilicen el tamaño estándar, mientras las que hacen un uso intensivo de la memoria —como es el caso de los gestores de bases de datos— puedan utilizar páginas de mayor tamaño.
 

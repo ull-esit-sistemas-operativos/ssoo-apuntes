@@ -42,7 +42,7 @@ Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, po
 n = log_2 4096 = 12\ "bits"
 ++++
 
-Si las direcciones virtuales son de 32bits, eso deja para el número de página stem:[p]:
+Si las direcciones virtuales son de 32 bits, eso deja para el número de página stem:[p]:
 
 [stem]
 ++++
@@ -99,7 +99,7 @@ No olvidemos que cuanto más pequeñas son las *páginas*, más *páginas* son n
 Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez.
 
 Los tamaños de *páginas* típicos son 4 y 8 KiB.
-En un sistema de 32bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1{K}048{K}576 páginas.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1{K}048{K}576 páginas.
 Si se utilizan 4 bytes para cada entrada de la *tabla de páginas* —aunque esto también puede variar— eso significa que cada *tabla de páginas* ocupa 4 MiB de espacio.
 Mientras que con *páginas* de 8 KiB, la *tabla de páginas* ocuparía 2 MiB de espacios.
 
@@ -118,7 +118,7 @@ Debido a la velocidad de los registros de la CPU, la implementación en registro
 Sin embargo, solo puede ser utilizado para *tablas de páginas* razonablemente pequeñas, ya que alojar tablas de más de 256 entradas en registros es muy costoso.
 
 Por ejemplo, el DEC https://es.wikipedia.org/wiki/PDP-11[PDP-11] —para el que se diseño el primer UNIX— es un ejemplo de sistema con esta implementación.
-Utilizaba un espacio de direcciones de 16bits y un tamaño de *páginas* de 8 KiB, por lo que sólo necesitaba 8 registros dedicados para alojar toda la *tabla de páginas*.
+Utilizaba un espacio de direcciones de 16 bits y un tamaño de *páginas* de 8 KiB, por lo que sólo necesitaba 8 registros dedicados para alojar toda la *tabla de páginas*.
 
 === Almacenada en memoria
 
@@ -279,11 +279,11 @@ Es decir, se está asignando al proceso una porción de memoria que no necesita.
 Mientras que todas las *páginas* con direcciones por encima de la 5119 están marcadas como ilegales.
 
 En general, los procesos sólo necesitan una porción muy pequeña de su espacio de direcciones virtual.
-Por ejemplo, en un sistema de 32bits, muy pocos procesos necesitan los 3 GiB disponibles como máximo para cada proceso —el 1 GiB restante suele estar ocupado por el núcleo del sistema—.
+Por ejemplo, en un sistema de 32 bits, muy pocos procesos necesitan los 3 GiB disponibles como máximo para cada proceso —el 1 GiB restante suele estar ocupado por el núcleo del sistema—.
 Utilizando el *bit de válido*, el sistema operativo no tiene que asignar *marcos* a *páginas* no utilizadas por el proceso, ahorrando mucha memoria.
 
 En el <<_tamaño_de_las_páginas>>, vimos que el tamaño de la *tabla de páginas* se puede calcular como el número máximo de páginas del espacio de direcciones virtual multiplicado por el tamaño de cada entrada de la tabla.
-Así, en un sistema de 32bits con páginas de 4 KiB y 4 bytes por entrada, se necesitan 4 MiB de memoria para almacenar la *tabla de páginas*.
+Así, en un sistema de 32 bits con páginas de 4 KiB y 4 bytes por entrada, se necesitan 4 MiB de memoria para almacenar la *tabla de páginas*.
 Como un proceso suele ocupar muy poco de su espacio de direcciones virtual, suele ser un desperdicio de memoria crear y almacenar una *tabla de páginas* completa, con una entrada para cada *página* del espacio de direcciones.
 
 Para evítarlo, en algunas CPU existe el registro *((PTLR))* (_Page-Table Length Register_) que se utiliza para indicar el tamaño actual de la *tabla de páginas*.
@@ -320,7 +320,7 @@ Sin embargo, las CPU comúnmente, utilizan otras técnicas a la hora de estructu
 Una de las más comunes es la *paginación jerárquica*, utilizada en los procesadores de la familia x86 y en ARM, entre otros.
 
 La mayor parte de los sistemas modernos soportan el uso de espacios de direcciones de gran tamaño.
-Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32bits:
+Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 bits:
 
 [cols=2*, grid="none", frame="none"]
 |===
@@ -347,7 +347,7 @@ La *paginación jerárquica* se basa en la idea de que un vector de gran tamaño
 .Esquema de paginación jerárquica de dos niveles.
 image::paginación_jerárquica.svg[]
 
-Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32bits y un tamaño de
+Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de
 página de 4 KiB, entonces podemos dividir la tabla de páginas de 1{K}048{K}576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
 
 Estos *marcos*, a su vez, pueden ser mapeados por 1024 entradas con las direcciones físicas de cada *marco*.
@@ -357,21 +357,21 @@ Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativ
 Sin embargo, ahora la *tabla de páginas* está dividida en *marcos*, que no tienen porqué ser asignados de forma contigua en la memoria.
 Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.
 
-Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* stem:[p] de la dirección virtual —que tenía stem:[2^20]bits— en dos *números de página* de stem:[2^10]bits cada uno:
+Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* stem:[p] de la dirección virtual —que tenía stem:[2^20] bits— en dos *números de página* de stem:[2^10] bits cada uno:
 
 image::dirección_virtual_paginación_jerárquica.svg[]
 
 Este es el método utilizado por la familia de procesadores x86.
 
 Otra variación de la *paginación jerárquica de dos niveles* es la utilizada por VAX.
-Estos sistemas utilizaban un arquitectura de 32bits con un tamaño de página de 512 bytes.
+Estos sistemas utilizaban un arquitectura de 32 bits con un tamaño de página de 512 bytes.
 Las direcciones virtuales eran divididas de la siguiente manera:
 
 image::dirección_virtual_vax.svg[]
 
 El espacio de direcciones de un proceso estaba dividido en 3 secciones.
-Los 2bits de orden más alto stem:[s] de las direcciones virtuales se utilizaban para indicar la *sección*.
-Cada *sección* estaba dividida en *páginas* de 512 bytes, por lo que los siguientes 21bits de las direcciones virtuales stem:[p] eran utilizadas para seleccionar la *página* concreta.
+Los 2 bits de orden más alto stem:[s] de las direcciones virtuales se utilizaban para indicar la *sección*.
+Cada *sección* estaba dividida en *páginas* de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales stem:[p] eran utilizadas para seleccionar la *página* concreta.
 
 Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
 Esto era importante, puesto que la *tabla de páginas* de una
@@ -405,5 +405,5 @@ Si no es así, se pasa a recorrer la *tabla de páginas* desde el nivel 0 y usan
 
 Existen algunos procesadores que utilizan más de dos niveles.
 Por ejemplo, los procesadores x86-64 utilizan un esquema de 4 niveles de paginación.
-Cada *página* es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la *tabla de páginas* es de 8 bytes —con el fin de poder almacenar direcciones de 64bits— en cada una caben 512 entradas, por lo que los *números de página* de cada nivel necesitan 9bits.
-Eso significa que de las direcciones virtuales se utilizan actualmente 48bits —resultado de multiplicar 4 niveles por 9bits cada uno más 12bits de desplazamiento—, aunque el limite de la arquitectura para las direcciones virtuales sea de 64bits.
+Cada *página* es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la *tabla de páginas* es de 8 bytes —con el fin de poder almacenar direcciones de 64 bits— en cada una caben 512 entradas, por lo que los *números de página* de cada nivel necesitan 9 bits.
+Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits —resultado de multiplicar 4 niveles por 9 bits cada uno más 12 bits de desplazamiento—, aunque el limite de la arquitectura para las direcciones virtuales sea de 64 bits.

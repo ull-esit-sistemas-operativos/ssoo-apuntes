@@ -1175,7 +1175,7 @@ Así el sistema puede determinar con precisión el tiempo que se ha estado ejecu
 
 [NOTE]
 ====
-Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (_Time Stamp Counter_ o TSC) de 64bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.
+Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (_Time Stamp Counter_ o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.
 
 Para más información véase https://en.wikipedia.org/wiki/Time_Stamp_Counter[«Time Stamp Counter -- Wikipedia»].
 ====

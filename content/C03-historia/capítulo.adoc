@@ -182,7 +182,7 @@ Otro ejemplo destacable es https://en.wikipedia.org/wiki/PlayStation_4_system_so
 
 === VMS
 
-https://en.wikipedia.org/wiki/OpenVMS[VMS] es un sistema operativo de 32bits diseñado originalmente por Digital Equipment Corporation (DEC) —ahora propiedad de HP— en 1978 para usarlo en minicomputadoras https://es.wikipedia.org/wiki/VAX[VAX].
+https://en.wikipedia.org/wiki/OpenVMS[VMS] es un sistema operativo de 32 bits diseñado originalmente por Digital Equipment Corporation (DEC) —ahora propiedad de HP— en 1978 para usarlo en minicomputadoras https://es.wikipedia.org/wiki/VAX[VAX].
 Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.
 
 [[dec_vax11]]
@@ -278,7 +278,7 @@ El aumento de popularidad de Windows llevo a Microsoft a dejar de centrarse en e
 Inicialmente ambas compañías acordaron que IBM tomaría el mantenimiento de OS/2 1.0 y el desarrollo de OS/2 2.0, mientras Microsoft continuaría desarrollando OS/2 3.0, que entonces era conocido como «NT OS/2».
 Sin embargo Microsoft finalmente decidió renombrar NT OS/2 como Windows NT, dejando el futuro desarrollo de OS/2 en manos de IBM.
 
-OS/2 Warp 3 fue un sistema completo de 32bits lanzado en 1994.
+OS/2 Warp 3 fue un sistema completo de 32 bits lanzado en 1994.
 Le seguiría OS/2 Warp 4, en 1996.
 Poco después, IBM anunció que OS/2 desaparecería.
 
@@ -302,7 +302,7 @@ Por ello puede ser considerado como un sistema operativo.
 
 === Windows 95, 98, Me
 
-La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráficos híbridos de 16/32bits.
+La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráficos híbridos de 16/32 bits.
 
 [[windows_95]]
 .Escritorio de Microsoft Windows 95 -- Fuente: http://www.guidebookgallery.org/screenshots/win95[Guidebook]
@@ -310,7 +310,7 @@ image::windows_95.png[]
 
 Windows 95 fue lanzado en 1995.
 Fue el primer Windows unido a una versión de MS-DOS específica, aunque este hecho se intentaba mantener oculto.
-Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <<windows_95>>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32bits.
+Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <<windows_95>>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.
 
 [NOTE]
 ====
@@ -322,12 +322,12 @@ Esto ocasionaba problemas con programas que no devolvía la CPU al sistema con l
 
 Windows 98 fue lanzado el 25 de junio de 1998.
 Le siguió Windows Me, el 14 de septiembre de 2000.
-Windows Me fue la última versión de la familia de sistemas operativos híbridos de 16/32bits que sucedió a la familia Windows 3.x.
+Windows Me fue la última versión de la familia de sistemas operativos híbridos de 16/32 bits que sucedió a la familia Windows 3.x.
 
 [[_windows_nt]]
 === Windows NT, 2000, XP, Vista, 7, 8 y 10
 
-Windows NT fue un sistema operativo de 32bits.
+Windows NT fue un sistema operativo de 32 bits.
 El primero de la familia de sistemas operativos Microsoft Windows actuales.
 
 Su desarrollo empezó en 1988 con el nombre de OS/2 3.0.

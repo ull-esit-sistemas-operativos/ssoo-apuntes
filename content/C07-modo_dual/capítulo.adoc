@@ -83,10 +83,10 @@ Para más información, véase https://es.wikipedia.org/wiki/Anillo_(seguridad_i
 En los procesadores x86 es importante no confundir los *modos real*(((modo, real))) y *protegido*(((modo, protegido))) con el modo dual y los niveles de privilegio de los que estamos hablando.
 
 Por compatibilidad hacia atrás, los procesadores x86 se inician en modo real, donde se comportan como una CPU {intel8086}.
-En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —ya que los procesadores {intel8086} solo tenían 20bits para direcciones de memoria—.
+En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —ya que los procesadores {intel8086} solo tenían 20 bits para direcciones de memoria—.
 
 Cuando un sistema operativo moderno arranca, lo primero que hace es iniciar el modo protegido, en el que se activan todas las características de la CPU.
-Entra otras, el direccionamiento de 32 o 64bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.
+Entra otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.
 
 Para más información, véase https://es.wikipedia.org/wiki/Modo_protegido[«Modo protegido -- Wikipedia»].
 
@@ -136,7 +136,7 @@ Sin embargo, en los sistemas operativos modernos, los procesos no tienen acceso 
 
 * A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina *espacio de direcciones virtual*(((espacio, de direcciones, virtual))) del proceso.
 Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
-Por ejemplo, en una CPU de 32bits el espacio de direcciones virtual tiene 4 GiB, desde la dirección 0x00000000 a 0xFFFFFFFF.
+Por ejemplo, en una CPU de 32 bits el espacio de direcciones virtual tiene 4 GiB, desde la dirección 0x00000000 a 0xFFFFFFFF.
 
 * En los accesos a la memoria principal durante la ejecución del proceso, estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la CPU en direcciones físicas, antes de ser enviadas a la memoria principal.
 Por tanto las *direcciones físicas*(((dirección, física))) son las direcciones reales que ve la memoria.
