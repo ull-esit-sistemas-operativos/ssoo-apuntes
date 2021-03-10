@@ -12,7 +12,7 @@ Estos servicios son proporcionados gracias al funcionamiento coordinado de los d
 
 // TODO: Repasar esta imagen para que coincida con los servicios indicados aquí.
 .Diagrama general de organización de los sistemas operativos.
-image::organización_sistema.svg[]
+image::{sectiondir}/organización_sistema.svg[]
 
 Aunque cada sistema operativo proporciona servicios diferentes, es posible identificar unas pocas clases comunes.
 

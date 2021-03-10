@@ -223,7 +223,7 @@ En la <<api_win32>> se ilustra el papel de todos los elementos comentados, con e
 
 [[api_win32]]
 .Elementos de la interfaz de programación de aplicaciones en Microsoft Windows.
-image::interfaz_programación_aplicaciones_win32.svg[]
+image::{sectiondir}/interfaz_programación_aplicaciones_win32.svg[]
 
 En ambos casos, la librería estándar llama a la función {win32_createfile} de la librería del sistema de Windows, que finalmente realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
 Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<_componentes_del_sistema>>).
@@ -275,6 +275,6 @@ Además, ambos lenguajes pueden invocar directamente la librería del sistema �
 
 [[api_posix]]
 .Elementos de la interfaz de programación de aplicaciones en GNU/Linux.
-image::interfaz_programación_aplicaciones_posix.svg[]
+image::{sectiondir}/interfaz_programación_aplicaciones_posix.svg[]
 
 La única diferencia es que en <<api_posix>> las funciones {clang_fopen} y {linux_open} están realmente en la misma librería, porque en los sistemas POSIX la librería del sistema y la librería estándar de C pueden ser la misma, dado que el estándar POSIX se diseñó como un superconjunto de la librería estándar de C.

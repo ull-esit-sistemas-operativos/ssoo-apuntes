@@ -13,7 +13,7 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 
 [[estructura_sistema_de_archivos]]
 .Estructura de un sistema de archivos.
-image::estructura_sistema_de_archivos.svg[]
+image::{sectiondir}/estructura_sistema_de_archivos.svg[]
 
 Los sistema de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
 En la <<estructura_sistema_de_archivos>> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.

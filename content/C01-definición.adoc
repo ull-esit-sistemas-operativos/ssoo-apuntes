@@ -51,7 +51,7 @@ Es decir, describiendo sus funciones dentro de un sistema informático cualquier
 
 [[componentes_sistema_informático]]
 .Vista abstracta de los componentes de un sistema informático.
-image::componentes_sistema_informático.svg[]
+image::{sectiondir}/componentes_sistema_informático.svg[]
 
 Un *sistema informático*(((sistema, informático))) puede ser dividido, _grosso modo_, en cuatro componentes: el hardware, los usuarios, los programas de aplicación y el sistema operativo (véase la <<componentes_sistema_informático>>):
 

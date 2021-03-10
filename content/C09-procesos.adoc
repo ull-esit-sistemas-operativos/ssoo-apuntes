@@ -73,7 +73,7 @@ En la <<proceso_en_memoria>> se puede observar la disposición de algunos de est
 // Esta figura aparece también en el Capítulo 16: Paginación
 [[proceso_en_memoria]]
 .Anatomía de un proceso en memoria.
-image::proceso_en_memoria.svg[]
+image::{sectiondir}/proceso_en_memoria.svg[]
 
 == Estados de los procesos
 
@@ -81,7 +81,7 @@ Cada proceso tiene un *estado* que cambia a lo largo de su ejecución y que est�
 
 [[diagrama_estado_proceso]]
 .Diagrama de estado de un proceso.
-image::diagrama_estado_proceso.svg[]
+image::{sectiondir}/diagrama_estado_proceso.svg[]
 
 Los estados por los que puede pasar un procesos varían de un sistema operativo a otro, aunque los siguientes son comunes a todos ellos:
 
@@ -173,7 +173,7 @@ Una manera habitual de representar la planificación de procesos es a través de
 
 [[colas_de_planificación_procesos]]
 .Diagrama de colas de la planificación de procesos.
-image::colas_planificación_procesos.svg[]
+image::{sectiondir}/colas_planificación_procesos.svg[]
 
 ====
 Analizándolo podemos tener una idea clara del flujo típico de los procesos dentro del sistema:
@@ -973,4 +973,4 @@ Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_comunicación_
 
 [[modelos_de_comunicación]]
 .Modelos de comunicación.
-image::modelos_comunicación.svg[]
+image::{sectiondir}/modelos_comunicación.svg[]

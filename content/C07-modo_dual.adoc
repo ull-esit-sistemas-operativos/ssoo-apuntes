@@ -145,7 +145,7 @@ Mientras que el *espacio de direcciones físico*(((espacio, de direcciones, fís
 // Esta figura aparece también en el Capítulo 15: Memoria principal
 [[protección_memoria]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
-image::protección_memoria.svg[]
+image::{sectiondir}/protección_memoria.svg[]
 
 La conversión de una dirección virtual en una física, la realiza en tiempo de ejecución un componente de la CPU denominado MMU (_Memory-Management Unit_).
 
