@@ -11,73 +11,73 @@ include::código.adoc[leveloffset=+1]
 
 = Introducción
 :sectiondir: C01-definición
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C02-tipos_de_sistemas
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C03-historia
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 = Organización de los sistemas operativos
 include::P02-preámbulo.adoc[]
 
 :sectiondir: C04-componentes
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C05-servicios
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C06-api
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C07-modo_dual
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C08-estructura
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 = Gestión de procesos
 
 :sectiondir: C09-procesos
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C10-ipc
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C11-memoria_compartida
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C12-hilos
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C13-sincronización
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C14-planificación_de_CPU
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 = Gestión de la memoria
 
 :sectiondir: C15-memoria_principal
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C16-paginación
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C17-memoria_virtual
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 = Gestión del almacenamiento
 
 :sectiondir: C18-almacenamiento
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C19-sistema_de_archivos
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 :sectiondir: C20-implementación_del_sistemas_de_archivos
-include::{sectiondir}/capítulo.adoc[leveloffset=+1]
+include::{sectiondir}.adoc[leveloffset=+1]
 
 include::bibliografía.adoc[leveloffset=+1]
 

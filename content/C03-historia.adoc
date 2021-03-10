@@ -1,7 +1,5 @@
 = Historia de los sistemas operativos
-ifndef::sectiondir[:sectiondir: .]
-:imagesdir: {sectiondir}/media
-include::../../config/attributes.adoc[]
+include::../config/attributes.adoc[]
 
 [TIME]
 ====

@@ -1,7 +1,5 @@
 = Implementación de sistemas de archivos
-ifndef::sectiondir[:sectiondir: .]
-:imagesdir: {sectiondir}/media
-include::../../config/attributes.adoc[]
+include::../config/attributes.adoc[]
 
 [TIME]
 ====
