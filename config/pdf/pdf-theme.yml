@@ -2,8 +2,8 @@ extends: default
 font:
   catalog:
     Ink Free:
-      normal: InkFree.ttf
-      bold: InkFree.ttf
+      normal: InkFree-normal.ttf
+      bold: InkFree-bold.ttf
     ## Default theme fonts
     # Noto Serif supports Latin, Latin-1 Supplement, Latin Extended-A, Greek, Cyrillic, Vietnamese & an assortment of symbols
     Noto Serif:
