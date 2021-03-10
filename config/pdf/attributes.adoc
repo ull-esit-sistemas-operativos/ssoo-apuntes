@@ -2,5 +2,7 @@
 //
 // Archivo de tema para asciidoctor-pdf
 :pdf-theme: config/pdf/pdf-theme.yml
+// Directorio de fuentes adicionales
+:pdf-fontsdir: config/fonts;GEM_FONTS_DIR
 // Activar la portada
 :title-page:
