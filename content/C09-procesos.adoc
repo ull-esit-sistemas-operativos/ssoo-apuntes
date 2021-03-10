@@ -30,9 +30,9 @@ Ejecutan el código contenido en los _programas de aplicación_.
 Sin embargo, en lo que resta de capítulo, no estableceremos ninguna distinción entre ellos.
 En lo que respecta a la gestión de estos procesos en el sistema, no hay ninguna diferencia.
 
-== El ((proceso))
+== El proceso
 
-Como ya hemos comentado con anterioridad, un *proceso* es un programa en ejecución (véase el <<componente_gestión_de_procesos>> para una definición más completa).
+Como ya hemos comentado con anterioridad, un *((proceso))* es un programa en ejecución (véase el <<componente_gestión_de_procesos>> para una definición más completa).
 Sin embargo, los procesos no solo están compuestos por el código del programa, sino que también son importantes otros elementos:
 
 ====

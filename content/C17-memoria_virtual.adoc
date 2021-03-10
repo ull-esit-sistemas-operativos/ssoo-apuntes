@@ -127,25 +127,25 @@ Por tanto, para calcular el *tiempo de acceso efectivo* stem:[T_(em)] necesitamo
 * Servir la excepción de fallo de página.
 +
 Esto incluye capturar la interrupción, salvar los registros y el estado del proceso, determinar que la interrupción es debida a una excepción de *fallo de página*, comprobar si la página es legal y determinar la localización de la misma en el disco.
-Aproximadamente, en realizar esta tarea el sistema puede tardar de 1 a 100μs.
+Aproximadamente, en realizar esta tarea el sistema puede tardar de 1 a 100 μs.
 
 * Leer la página en un marco libre.
 En esta tarea se puede tardar alrededor de 8 ms, pero este tiempo puede ser mucho mayor si el dispositivo está ocupado y se debe esperar a que se realicen otras operaciones.
 
 * Reiniciar el proceso.
-Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre 1 y 100μs.
+Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre 1 y 100 μs.
 
 Como se puede apreciar, la mayor parte del *tiempo de fallo de página* es debido al tiempo requerido para acceder al *dispositivo de intercambio*.
 
 Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página* ya que comparativamente consumen mucho menos tiempo.
-Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_m] es de 200 ns y que la probabilidad stem:[p_(fp)] es muy pequeña —es decir, stem:[p ≪ 1]—:
+Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_m] es de 200 ns y que la probabilidad stem:[p_(fp)] es muy pequeña —es decir, latexmath:[p \ll 1]—:
 
 [latexmath]
 ++++
 \begin{split}
-T_{em} &= (1-p_{fp}) \cdot 200\,\text{ns.}+p_{fp} \cdot 8\,\text{ms.} \\
-       &= (1-p_{fp}) \cdot 200\,\text{ns.}+p_{fp} \cdot 8\,000\,000\,\text{ms.} \\
-       &\approx 200\,\text{ns.} + 7\,999\,800\,\text{ms.} \cdot p
+T_{em} &= (1-p_{fp}) \cdot 200\,\text{ns}+p_{fp} \cdot 8\,\text{ms.} \\
+       &= (1-p_{fp}) \cdot 200\,\text{ns}+p_{fp} \cdot 8\,000\,000\,\text{ms.} \\
+       &\approx 200\,\text{ns} + 7\,999\,800\,\text{ms.} \cdot p
 \end{split}
 ++++
 
