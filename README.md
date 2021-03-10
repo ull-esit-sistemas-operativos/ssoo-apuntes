@@ -46,6 +46,13 @@ sudo gem uninstall mathematical
 sudo gem install mathematical
 ~~~
 
+### Fuente Ink Free
+
+Ink Free es la fuente usada en los diagramas de estilo informal que imitan estar dibujados a mano.
+Viene incluida con Windows 10 y Office, pero también se puede descargar en distintos formatos desde sitios como [onlinewebfonts.com](https://www.onlinewebfonts.com/download/0801c08e5412f54e4b4e9ad146d83a12).
+
+Para usarla con [diagrams.net](http://diagrams.net) para crear los diagramas primero debe añadirse como _Web Fonts_ con nombre "Ink Free" y URL `https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/fonts/InkFree.woff`.
+
 ## Ejemplos
 
 El código de los ejemplos está disponible en [ull-esit-sistemas-operativos/ssoo-ejemplos](https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos).
