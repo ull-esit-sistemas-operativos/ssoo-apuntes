@@ -51,7 +51,11 @@ sudo gem install mathematical
 Ink Free es la fuente usada en los diagramas de estilo informal que imitan estar dibujados a mano.
 Viene incluida con Windows 10 y Office, pero también se puede descargar en distintos formatos desde sitios como [onlinewebfonts.com](https://www.onlinewebfonts.com/download/0801c08e5412f54e4b4e9ad146d83a12).
 
-Para usarla con [diagrams.net](http://diagrams.net) para crear los diagramas primero debe añadirse como _Web Fonts_ con nombre "Ink Free" y URL `https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/fonts/InkFree.woff`.
+Para usarla con [diagrams.net](http://diagrams.net) para crear los diagramas primero debe añadirse como *Web Fonts* con nombre "Ink Free" y URL `https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/fonts/InkFree.woff`.
+
+### SVG: _Viewer does not support full SVG 1.1_
+
+En el estilo de los textos de los diagramas creados con [diagrams.net](http://diagrams.net) deben estar desmarcados *Word Wrap* y *Formatted Text*, para que los SVG incrustados en el PDF no se muestren con el mensaje _Viewer does not support full SVG 1.1_. 
 
 ## Ejemplos
 
