@@ -290,7 +290,7 @@ Este valor es comparado por la MMU, durante la traducción de las direcciones vi
 // Esta figura aparece también en el Capítulo 9: Procesos
 [[proceso_en_memoria_disperso]]
 .Anatomía de un proceso en memoria.
-image::{sectiondir}/proceso_en_memoria.svg[]
+image::C09-procesos/proceso_en_memoria.svg[]
 
 En realidad, el registro *PTLR* no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <<_el_proceso>>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <<proceso_en_memoria_disperso>>.
 En ella, podemos observar, como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
