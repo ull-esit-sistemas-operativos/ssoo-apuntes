@@ -1,5 +1,6 @@
 = Paginación
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C16-paginación
 
 [TIME]
 ====
@@ -16,7 +17,7 @@ Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacen
 
 [[paginación]]
 .Soporte del hardware para la paginación.
-image::{sectiondir}/paginación.svg[]
+image::paginación.svg[]
 
 La paginación es una forma de *reubicación de las direcciones en tiempo de ejecución* donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <<paginación>>):
 
@@ -31,7 +32,7 @@ Es decir, si el espacio de direcciones es de stem:[2^m] y el tamaño de página 
 
 [[dirección_virtual_paginación]]
 .Descomposición de las direcciones virtuales en paginación.
-image::{sectiondir}/dirección_virtual_paginación.svg[]
+image::dirección_virtual_paginación.svg[]
 
 Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento stem:[n] necesita: 
 
@@ -264,7 +265,7 @@ Generalmente, porque no se le ha asignado un *marco* de memoria física, ya que 
 
 [[bit_de_válido_en_la_tabla_de_páginas]]
 .Bit de válido en la tabla de páginas.
-image::{sectiondir}/bit_de_válido_en_la_tabla_de_páginas.svg[]
+image::bit_de_válido_en_la_tabla_de_páginas.svg[]
 
 Por ejemplo, en la <<bit_de_válido_en_la_tabla_de_páginas>>, vemos el espacio de direcciones virtual y la *tabla de páginas* de un proceso de 5096 bytes en un sistema con *páginas* de 1 KiB.
 Puesto que el proceso no ocupa todo el espacio de direcciones, sólo las direcciones de la 0 a la 5119 son válidas.
@@ -290,7 +291,7 @@ Este valor es comparado por la MMU, durante la traducción de las direcciones vi
 // Esta figura aparece también en el Capítulo 9: Procesos
 [[proceso_en_memoria_disperso]]
 .Anatomía de un proceso en memoria.
-image::C09-procesos/proceso_en_memoria.svg[]
+image::../C09-procesos/proceso_en_memoria.svg[]
 
 En realidad, el registro *PTLR* no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <<_el_proceso>>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <<proceso_en_memoria_disperso>>.
 En ella, podemos observar, como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
@@ -343,7 +344,7 @@ La *paginación jerárquica* se basa en la idea de que un vector de gran tamaño
 
 [[paginación_jerárquica]]
 .Esquema de paginación jerárquica de dos niveles.
-image::{sectiondir}/paginación_jerárquica.svg[]
+image::paginación_jerárquica.svg[]
 
 Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de
 página de 4 KiB, entonces podemos dividir la tabla de páginas de 1{K}048{K}576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
@@ -357,7 +358,7 @@ Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre
 
 Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* stem:[p] de la dirección virtual —que tenía stem:[2^20] bits— en dos *números de página* de stem:[2^10] bits cada uno:
 
-image::{sectiondir}/dirección_virtual_paginación_jerárquica.svg[]
+image::dirección_virtual_paginación_jerárquica.svg[]
 
 Este es el método utilizado por la familia de procesadores x86.
 
@@ -365,7 +366,7 @@ Otra variación de la *paginación jerárquica de dos niveles* es la utilizada p
 Estos sistemas utilizaban un arquitectura de 32 bits con un tamaño de página de 512 bytes.
 Las direcciones virtuales eran divididas de la siguiente manera:
 
-image::{sectiondir}/dirección_virtual_vax.svg[]
+image::dirección_virtual_vax.svg[]
 
 El espacio de direcciones de un proceso estaba dividido en 3 secciones.
 Los 2 bits de orden más alto stem:[s] de las direcciones virtuales se utilizaban para indicar la *sección*.

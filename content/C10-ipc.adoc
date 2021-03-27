@@ -1,5 +1,6 @@
 = Comunicación mediante de paso de mensajes
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C10-ipc
 
 [TIME]
 ====

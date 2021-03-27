@@ -1,5 +1,6 @@
 = Componentes del sistema
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C04-componentes
 
 [TIME]
 ====

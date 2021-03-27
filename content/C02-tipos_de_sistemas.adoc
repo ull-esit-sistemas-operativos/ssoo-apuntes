@@ -1,5 +1,6 @@
 = Tipos de sistemas operativos
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C02-tipos_de_sistemas
 
 [TIME]
 ====
@@ -41,7 +42,7 @@ No había sistema operativo y el operador debía cargar y ejecutar cada programa
 
 [[consola_ibm_705]]
 .Operadora en la consola de un mainframe IBM 705 -- Fuente: link:++https://www.ibm.com/ibm/history/ibm100/images/icp/Y444110I58591Z46/us__en_us__ibm100__700_series__705__620x350.jpg++[IBM]
-image::{sectiondir}/consola_ibm_705.jpg[]
+image::consola_ibm_705.jpg[]
 
 Estos sistemas se convirtieron en *sistemas de procesamiento por lotes* o *sistemas en _batch_* cuando se comenzó a utilizar un pequeño programa —llamado *monitor del sistema*— cuya función era cargar y ejecutar sin interrupción un conjunto —o lote— de programas.
 
@@ -50,7 +51,7 @@ Para ello se utilizaba un lector de tarjetas autónomo, independiente del _mainf
 
 [[sistemas_procesamiento_lotes]]
 .Organización de la memoria en sistemas de procesamiento por lotes.
-image::{sectiondir}/sistemas_procesamiento_lotes.svg[]
+image::sistemas_procesamiento_lotes.svg[]
 
 ====
 El *((monitor)) del sistema* es un predecesor de los sistemas operativos y tenía las siguientes características:
@@ -80,7 +81,7 @@ A estos sistemas se los llamó *multiprogramados*.
 
 [[sistemas_multiprogramados]]
 .Organización de la memoria en sistemas multiprogramados.
-image::{sectiondir}/sistemas_multiprogramados.svg[]
+image::sistemas_multiprogramados.svg[]
 // TODO: Hacer un dibujo más elaborado con cola de entrada
 
 ====
@@ -189,7 +190,7 @@ Entonces comenzaron a recibir el nombre de _ordenadores domésticos_ y de su man
 
 [[ordenadores_domésticos_1977]]
 .Los tres ordenadores que la revista Byte denominó como la "Trinidad de 1977" de la computación doméstica: el https://es.wikipedia.org/wiki/Commodore_PET[Commodore PET 2001], el https://es.wikipedia.org/wiki/Apple_II[Apple II] y el https://es.wikipedia.org/wiki/TRS-80[TRS-80 Model I] -- Fuente: https://commons.wikimedia.org/wiki/File:Trinity77.jpg[Wikipedia]
-image::{sectiondir}/ordenadores_domésticos_1977.jpg[]
+image::ordenadores_domésticos_1977.jpg[]
 
 Los _mainframes_ y las minicomputadoras de la época siguieron siendo los ordenadores corporativos por excelencia, ya que eran mucho más grandes y potentes, y también costosos.
 
@@ -259,7 +260,7 @@ En la actualidad existen dos tipos de sistemas multiprocesador:
 
 [[smp]]
 .Arquitectura de un sistema de multiprocesamiento simétrico.
-image::{sectiondir}/multiprocesamiento_simétrico.svg[]
+image::multiprocesamiento_simétrico.svg[]
 
 * En los *sistemas de multiprocesamiento simétrico*(((sistema, multiprocesamiento, simétrico)))(((multiprocesamiento, simétrico))) o *SMP* (_Symmetric Multiprocessing_) todos los procesadores son iguales.
 Todos comparten los mismos recursos, pueden acceder a los

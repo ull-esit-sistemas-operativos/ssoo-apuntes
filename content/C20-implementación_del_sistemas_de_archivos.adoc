@@ -1,5 +1,6 @@
 = Implementación de sistemas de archivos
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C20-implementación_del_sistemas_de_archivos
 
 [TIME]
 ====
@@ -206,7 +207,7 @@ Es decir, lo que hace la FAT es agrupa en un solo lugar los punteros de la *asig
 
 [[estructura_fat]]
 .Asignación enlazada en el sistema de archivos FAT.
-image::{sectiondir}/estructura_fat.svg[]
+image::estructura_fat.svg[]
 
 Eso significa que la FAT es una estructura crítica.
 Si se corrompe, puede provocar la pérdida de todo el sistema de archivos.
@@ -284,7 +285,7 @@ Para mejorar el rendimiento de los mecanismos de asignación indexados, es muy c
 
 [[asignación_ext2]]
 .Asignación indexada combinada en el sistema de archivos ext2.
-image::{sectiondir}/asignación_ext2.svg[]
+image::asignación_ext2.svg[]
 
 [NOTE]
 ====

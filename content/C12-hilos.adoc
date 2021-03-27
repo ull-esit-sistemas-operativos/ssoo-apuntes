@@ -1,5 +1,6 @@
 = Hilos
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C12-hilos
 
 [TIME]
 ====
@@ -27,7 +28,7 @@ Sin embargo, en los *sistemas operativos multihilo*(((sistema operativo, multihi
 
 [[multihilo]]
 .Comparación entre procesos monohilo y proceso multihilo.
-image::{sectiondir}/procesos_multihilo.svg[]
+image::procesos_multihilo.svg[]
 
 ====
 Cada hilo tiene una serie de recursos propios dentro del proceso (véase la <<multihilo>>):
@@ -55,7 +56,7 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una 
 
 [[proceso_multihilo_en_memoria]]
 .Anatomía de un proceso multihilo en memoria.
-image::{sectiondir}/proceso_multihilo_en_memoria.svg[]
+image::proceso_multihilo_en_memoria.svg[]
 
 En la <<proceso_multihilo_en_memoria>> se puede observar como cambia la disposición de los elementos de un proceso en la memoria cuando es multihilo, respecto a lo que vimos en el <<_el_proceso>>.
 
@@ -144,7 +145,7 @@ En ese caso, la única entidad planificable en la CPU que conoce el núcleo es e
 
 [[modelo_muchos_a_uno]]
 .Modelo muchos a uno.
-image::{sectiondir}/modelo_muchos_a_uno.svg[]
+image::modelo_muchos_a_uno.svg[]
 
 ====
 Las principales características de este modelo son:
@@ -191,7 +192,7 @@ En este caso, la librería de hilos se implementa en el núcleo, por lo que las 
 
 [[modelo_uno_a_uno]]
 .Modelo uno a uno.
-image::{sectiondir}/modelo_uno_a_uno.svg[]
+image::modelo_uno_a_uno.svg[]
 
 ====
 Las principales características de este modelo son:
@@ -225,7 +226,7 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los *hilos de n
 
 [[modelo_muchos_a_muchos]]
 .Modelo muchos a muchos.
-image::{sectiondir}/modelo_muchos_a_muchos.svg[]
+image::modelo_muchos_a_muchos.svg[]
 
 ====
 En el modelo *muchos a muchos* se mapean los *hilos de usuario* en un menor o igual número de *hilos de núcleo* del proceso (véase la <<modelo_muchos_a_muchos>>).
@@ -267,7 +268,7 @@ Esta variación se denomina, en ocasiones, modelo de *dos niveles* (véase la <<
 
 [[modelo_de_dos_niveles]]
 .Modelo muchos a uno.
-image::{sectiondir}/modelo_de_dos_niveles.svg[]
+image::modelo_de_dos_niveles.svg[]
 
 == Operaciones sobre los hilos
 

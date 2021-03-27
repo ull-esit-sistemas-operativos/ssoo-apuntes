@@ -1,5 +1,6 @@
 = Historia de los sistemas operativos
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C03-historia
 
 [TIME]
 ====
@@ -62,7 +63,7 @@ Para su desarrollo se basaron en un monitor del sistema creado en 1955 por progr
 
 [[instalación_ibm_702]]
 .Instalación de un mainframe IBM 702 -- Fuente: https://commons.wikimedia.org/wiki/File:BRL61-IBM_702.jpg[Wikipedia]
-image::{sectiondir}/instalación_ibm_702.jpg[]
+image::instalación_ibm_702.jpg[]
 
 [[_historia_tercera_generación]]
 == 3ª Generación (1965-1968)
@@ -83,7 +84,7 @@ Su versión DOS/360 (_Disk Operating System/360_) fue el primer sistema operativ
 
 [[instalación_ibm_system_360]]
 .Instalación de un mainframe IBM System/360 -- Fuente: http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/[IBM]
-image::{sectiondir}/instalación_ibm_system_360.jpg[]
+image::instalación_ibm_system_360.jpg[]
 
 Se anunció en 1964 pero fue lanzado en 1966, con un año de retraso respecto a la fecha prevista originalmente.
 Los motivos fundamentales fueron ciertos problemas de organización interna de la compañía y la falta de experiencia en proyectos de esa envergadura.
@@ -117,7 +118,7 @@ https://es.wikipedia.org/wiki/Multics[MULTICS] fue anunciado en 1964, fruto de l
 
 [[multics_mainframe]]
 .Mainframe GE-6180 con sistema MULTICS, entorno a 1976 en el MIT -- Fuente: http://www.multicians.org/multics-stories.html[Multicians]
-image::{sectiondir}/multics_mainframe.jpg[]
+image::multics_mainframe.jpg[]
 
 Fue el primer sistema operativo en proporcionar un sistema de archivos jerárquico, intérprete de comandos implementado como programa de usuario, listas de control de acceso individuales para cada archivo y enlazado dinámico, entre otras características novedosas.
 
@@ -143,7 +144,7 @@ Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.
 
 [[dec_pdp11]]
 .Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales https://en.wikipedia.org/wiki/Teletype_Model_33[Teletype 33] -- Fuente: https://www.bell-labs.com/usr/dmr/www/[Dennis Ritchie]
-image::{sectiondir}/dec_pdp11_ken_den.jpg[]
+image::dec_pdp11_ken_den.jpg[]
 
 La primer versión de UNIX fue implementada en ensamblador, como era común en la época.
 Posteriormente, Dennis Ritchie y Brian Kernighan diseñaron un nuevo lenguaje de programación llamado «C», especialmente pensado para que UNIX fuera escrito con él.
@@ -185,7 +186,7 @@ Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.
 
 [[dec_vax11]]
 .Instalación de VAX 11/780 en 1980 -- Fuente: http://www.chilton-computing.org.uk/[Science and Technology Facilities Council]
-image::{sectiondir}/dec_vax11.jpg[]
+image::dec_vax11.jpg[]
 
 Las siglas VMS vienen de _Virtual Memory System_, ya que una de sus principales características era explotar el concepto de *memoria virtual*.
 Este concepto también es muy utilizando en los sistemas operativos modernos.
@@ -262,7 +263,7 @@ En la versión 1.1, lanzada en noviembre de 1988, se le añadió interfaz gráfi
 // Fuente: http://pages.prodigy.net/michaln/history/os211/index.html
 [[os_2_1]]
 .Panel de control de Microsoft-IBM OS/2 1.1 -- Fuente: Michal Necasek
-image::{sectiondir}/os_2_1.png[]
+image::os_2_1.png[]
 
 [NOTE]
 ====
@@ -287,7 +288,7 @@ Windows 3.0 fue la primera versión de éxito de Windows, permitiendo a Microsof
 
 [[windows_30]]
 .Administrador de programas de Microsoft Windows 3.0 -- Fuente: https://guidebookgallery.org/screenshots/win30[Guidebook]
-image::{sectiondir}/windows_30.png[]
+image::windows_30.png[]
 
 En 1983, Microsoft anunció el desarrollo de Windows, una interfaz gráfica de usuario para su sistema MS-DOS, que se usaba en los IBM PC y compatibles desde 1981.
 Windows requería una instalación previa de MS-DOS y era iniciado como un programa más, que podía ser terminado en cualquier momento, devolviendo al usuario a la línea de comandos de MS-DOS.
@@ -304,7 +305,7 @@ La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráf
 
 [[windows_95]]
 .Escritorio de Microsoft Windows 95 -- Fuente: http://www.guidebookgallery.org/screenshots/win95[Guidebook]
-image::{sectiondir}/windows_95.png[]
+image::windows_95.png[]
 
 Windows 95 fue lanzado en 1995.
 Fue el primer Windows unido a una versión de MS-DOS específica, aunque este hecho se intentaba mantener oculto.
@@ -401,7 +402,7 @@ Por tanto, la mezcla de Mach con UNIX BSD de OpenStep es la base del sistema ope
 
 [[openstep_42]]
 .Entorno gráfico de OpenStep 4.2 -- Fuente: https://guidebookgallery.org/screenshots/openstep42[Guidebook]
-image::{sectiondir}/openstep_42.png[]
+image::openstep_42.png[]
 
 [NOTE]
 ====
@@ -410,4 +411,4 @@ Se trata de un sistema {freebsd} adaptado para correr sobre el núcleo Mach.
 ====
 
 .Línea de tiempo de la historia de los sistemas operativos.
-image::{sectiondir}/historia_sistemas_operativos.svg[]
+image::historia_sistemas_operativos.svg[]

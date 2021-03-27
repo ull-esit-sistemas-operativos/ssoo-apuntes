@@ -10,74 +10,39 @@ include::docstats.adoc[]
 include::código.adoc[leveloffset=+1]
 
 = Introducción
-:sectiondir: C01-definición
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C02-tipos_de_sistemas
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C03-historia
-include::{sectiondir}.adoc[leveloffset=+1]
+include::C01-definición.adoc[leveloffset=+1]
+include::C02-tipos_de_sistemas.adoc[leveloffset=+1]
+include::C03-historia.adoc[leveloffset=+1]
 
 = Organización de los sistemas operativos
 include::P02-preámbulo.adoc[]
 
-:sectiondir: C04-componentes
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C05-servicios
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C06-api
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C07-modo_dual
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C08-estructura
-include::{sectiondir}.adoc[leveloffset=+1]
+include::C04-componentes.adoc[leveloffset=+1]
+include::C05-servicios.adoc[leveloffset=+1]
+include::C06-api.adoc[leveloffset=+1]
+include::C07-modo_dual.adoc[leveloffset=+1]
+include::C08-estructura.adoc[leveloffset=+1]
 
 = Gestión de procesos
 
-:sectiondir: C09-procesos
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C10-ipc
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C11-memoria_compartida
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C12-hilos
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C13-sincronización
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C14-planificación_de_CPU
-include::{sectiondir}.adoc[leveloffset=+1]
+include::C09-procesos.adoc[leveloffset=+1]
+include::C10-ipc.adoc[leveloffset=+1]
+include::C11-memoria_compartida.adoc[leveloffset=+1]
+include::C12-hilos.adoc[leveloffset=+1]
+include::C13-sincronización.adoc[leveloffset=+1]
+include::C14-planificación_de_CPU.adoc[leveloffset=+1]
 
 = Gestión de la memoria
 
-:sectiondir: C15-memoria_principal
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C16-paginación
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C17-memoria_virtual
-include::{sectiondir}.adoc[leveloffset=+1]
+include::C15-memoria_principal.adoc[leveloffset=+1]
+include::C16-paginación.adoc[leveloffset=+1]
+include::C17-memoria_virtual.adoc[leveloffset=+1]
 
 = Gestión del almacenamiento
 
-:sectiondir: C18-almacenamiento
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C19-sistema_de_archivos
-include::{sectiondir}.adoc[leveloffset=+1]
-
-:sectiondir: C20-implementación_del_sistemas_de_archivos
-include::{sectiondir}.adoc[leveloffset=+1]
+include::C18-almacenamiento.adoc[leveloffset=+1]
+include::C19-sistema_de_archivos.adoc[leveloffset=+1]
+include::C20-implementación_del_sistemas_de_archivos.adoc[leveloffset=+1]
 
 include::bibliografía.adoc[leveloffset=+1]
 

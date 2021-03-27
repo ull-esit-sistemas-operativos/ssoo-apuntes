@@ -1,5 +1,6 @@
 = Memoria principal
 include::../config/attributes.adoc[]
+:imagesdir: {imagesbasedir}/C15-memoria_principal
 
 [TIME]
 ====
@@ -29,7 +30,7 @@ En la mayor parte de los casos, un programa de usuario debe pasar por diferentes
 
 [[etapas_programas_de_usuario]]
 .Etapas de procesamiento de un programa de usuario.
-image::{sectiondir}/etapas_de_un_programa_de_usuario.svg[]
+image::etapas_de_un_programa_de_usuario.svg[]
 
 Los archivos de *código fuente*(((código, fuente))) del programa son compilados por el compilador, generando un archivo de https://es.wikipedia.org/wiki/C%C3%B3digo_objeto[*código objeto*] —con extensiones `.o` u `.obj`— para cada uno.
 
@@ -159,7 +160,7 @@ En el <<_protección_de_la_memoria>> vimos en los sistemas operativos modernos, 
 // Esta figura aparece también en el Capítulo 7: Modo dual
 [[espacio_direcciones_virtual_frente_físico]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
-image::{sectiondir}/protección_memoria.svg[]
+image::protección_memoria.svg[]
 
 En lugar de eso el sistema operativo —asistido por la *((MMU))* (_Memory-Management Unit_)— proporciona a cada proceso un *espacio de direcciones virtual*(((espacio, de direcciones, virtual))) que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <<espacio_direcciones_virtual_frente_físico>>).
 Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la *MMU* en las *direcciones físicas*(((dirección, física))), con las que realmente se accede a la memoria.
