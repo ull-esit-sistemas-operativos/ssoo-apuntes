@@ -782,7 +782,7 @@ Vamos a ilustrarlo con un ejemplo:
 
 * Indicaremos el principio de la cola con una flecha junto al número de página.
 Sirve para mantener un orden en las páginas, de tal forma que si hay varios candidatos de la misma categoría, se escoja el primero encontrado.
-Si la elección en caso de varios candidatos es aleatoria, por ejemplo, no hace falta ese puntero.
+Si, por ejemplo, la elección en caso de varios candidatos es aleatoria, no hace falta ese puntero.
 
 [.small, cols='20*^']
 |====
