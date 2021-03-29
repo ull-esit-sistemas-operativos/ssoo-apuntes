@@ -16,6 +16,13 @@ jobs:
       with:
           persist-credentials: false
 
+    - name: Obtener el nombre de la rama
+      id: branch_name
+      run: |
+        echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+        echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+        echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
     - name: Configurar Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -47,7 +54,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: output/html
-        TARGET_FOLDER: ${{ github.ref }}
+        TARGET_FOLDER: ${{ steps.branch_name.outputs.SOURCE_NAME }}
         CLEAN: true
 
     - name: Publicar en 'Releases'
