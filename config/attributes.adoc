@@ -1,4 +1,5 @@
 :doctype: book
+include::symbols.adoc[]
 // Configuración del idioma.
 :lang: es
 include::locale/attributes.adoc[]

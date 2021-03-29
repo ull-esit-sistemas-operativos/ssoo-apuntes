@@ -246,7 +246,7 @@ Las principales de ventajas de estos sistemas son:
 
 * *Aumentan la cantidad de trabajo realizado*. A mayor número de procesadores, mayor cantidad
 de trabajo puede realizar el sistema.
-Sin embargo debemos de tener en cuenta que un sistema con stem:[N] CPU no es un sistema stem:[N] veces más
+Sin embargo debemos de tener en cuenta que un sistema con _N_ CPU no es un sistema _N_ veces más
 rápido.
 Cuando varios procesadores cooperan para realizar una tarea, existe cierta pérdida de
 rendimiento debida a los mecanismos de sincronización requeridos para controlar el acceso a los recursos compartidos por los procesadores.

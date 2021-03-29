@@ -257,7 +257,7 @@ En este caso el proceso transmisor se bloquea en espera hasta que el receptor re
 
 * Con **buffering automático**(((buffering, automático))), dónde existe dos opciones:
 
-** Con *capacidad limitada*(((capacidad, limitada))) la cola tiene una capacidad máxima de stem:[N] mensaje, por lo que si la cola se llena el proceso transmisor se bloquea a la espera de que haya espacio en la cola.
+** Con *capacidad limitada*(((capacidad, limitada))) la cola tiene una capacidad máxima de _N_ mensaje, por lo que si la cola se llena el proceso transmisor se bloquea a la espera de que haya espacio en la cola.
 Obviamente, mientras la cola no se llene en transmisor puede seguir metiendo mensajes sin bloquearse.
 
 ** Con *capacidad ilimitada*(((capacidad, ilimitada))) la cola es de longitud potencialmente infinita, lo que permite que el transmisor nunca espere.

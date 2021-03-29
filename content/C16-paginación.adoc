@@ -21,41 +21,41 @@ image::paginación.svg[]
 
 La paginación es una forma de *reubicación de las direcciones en tiempo de ejecución* donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <<paginación>>):
 
-. Cada dirección virtual generada por la CPU es divida en dos partes: un *número de página* stem:[p] y un *desplazamiento* stem:[d].
+. Cada dirección virtual generada por la CPU es divida en dos partes: un *número de página* _p_ y un *desplazamiento* _d_.
 
-. El *número de página*(((número, página))) es utilizado por la MMU para indexar la *tabla de páginas*(((tabla, páginas))), que contiene el *número de marco* stem:[f] de cada *página* en la memoria física.
+. El *número de página*(((número, página))) es utilizado por la MMU para indexar la *tabla de páginas*(((tabla, páginas))), que contiene el *número de marco* _f_ de cada *página* en la memoria física.
 
-. El *número de marco*(((número, marco))) stem:[f] es combinado con el *desplazamiento* stem:[d] para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.
+. El *número de marco*(((número, marco))) _f_ es combinado con el *desplazamiento* _d_ para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.
 
 El tamaño de las *páginas* —y el de los *marcos*— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
-Es decir, si el espacio de direcciones es de stem:[2^m] y el tamaño de página es de stem:[2^n], los stem:[m - n] bits de mayor orden de las direcciones virtuales indican el *número de página*, mientras que los stem:[n] bits de menor orden indican el *desplazamiento* (véase la <<dirección_virtual_paginación>>).
+Es decir, si el espacio de direcciones es de 2^_m_^ y el tamaño de página es de 2^_n_^, los _m_ - _n_ bits de mayor orden de las direcciones virtuales indican el *número de página*, mientras que los _n_ bits de menor orden indican el *desplazamiento* (véase la <<dirección_virtual_paginación>>).
 
 [[dirección_virtual_paginación]]
 .Descomposición de las direcciones virtuales en paginación.
 image::dirección_virtual_paginación.svg[]
 
-Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento stem:[n] necesita: 
+Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento _n_ necesita: 
 
 [stem]
 ++++
 n = log_2 4096 = 12\ "bits"
 ++++
 
-Si las direcciones virtuales son de 32 bits, eso deja para el número de página stem:[p]:
+Si las direcciones virtuales son de 32 bits, eso deja para el número de página _p_:
 
 [stem]
 ++++
 p = 32 - 12 = 20\ "bits"
 ++++
 
-por lo que el espacio de direcciones virtual tiene stem:[2^20] páginas —es decir, 1{K}048{K}576 páginas—.
+por lo que el espacio de direcciones virtual tiene 2^20^ páginas —es decir, 1{K}048{K}576 páginas—.
 
 === Desde el punto de vista de los procesos
 
 Cada *página* de un proceso requiere un *marco*.
 Por tanto, cuando un proceso llega al sistema:
 
-. Si el proceso requiere stem:[n] *páginas*, el sistema operativo debe escoger stem:[n] *marcos*.
+. Si el proceso requiere _n_ *páginas*, el sistema operativo debe escoger _n_ *marcos*.
 Estos *marcos* son tomados de la *lista de marcos libres*(((lista, marcos libres))) que debe mantener el sistema.
 Puesto que son escogidos de allí donde los haya libres, el *espacio de direcciones físico* puede no ser contiguo, aunque los procesos vean un *espacio de direcciones virtual* contiguo.
 
@@ -102,8 +102,8 @@ En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes—
 Si se utilizan 4 bytes para cada entrada de la *tabla de páginas* —aunque esto también puede variar— eso significa que cada *tabla de páginas* ocupa 4 MiB de espacio.
 Mientras que con *páginas* de 8 KiB, la *tabla de páginas* ocuparía 2 MiB de espacios.
 
-También significa que si los 4 bytes de la *tabla de páginas* se utilizan para guardar únicamente el *número de marco*, cada entrada puede direccionar a uno de stem:[2^32] —o 4 GiB— *marcos* de la memoria física.
-Si el tamaño de cada *marco* es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar stem:[2^44] bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.
+También significa que si los 4 bytes de la *tabla de páginas* se utilizan para guardar únicamente el *número de marco*, cada entrada puede direccionar a uno de 2^32^ —o 4 GiB— *marcos* de la memoria física.
+Si el tamaño de cada *marco* es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar 2^44^ bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.
 
 == Soporte hardware de la tabla de páginas
 
@@ -185,9 +185,9 @@ Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la
 
 ==== Tiempos de acceso a la memoria
 
-El rendimiento de un sistema con paginación, está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria stem:[T_(em)], que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de *TLB*.
+El rendimiento de un sistema con paginación, está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria _T~em~_, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de *TLB*.
 
-En muchos sistemas informáticos, el *tiempo de acceso*(((tiempo, acceso))) a la memoria física stem:[T_m] es de unos pocos nanosegundos.
+En muchos sistemas informáticos, el *tiempo de acceso*(((tiempo, acceso))) a la memoria física _T~m~_ es de unos pocos nanosegundos.
 Por lo tanto, en el método de básico de paginación el *tiempo de acceso efectivo* es el doble del *tiempo de acceso* a la memoria:
 
 [stem]
@@ -197,15 +197,15 @@ T_(em)=2T_m
 
 Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el *número de marco*, el *tiempo de acceso efectivo* será mayor.
 
-Supongamos que tenemos un sistema con *TLB* y que conocemos la probabilidad stem:[p] de que la entrada que consultamos esté en la *TLB*.
-Entonces, el *tiempo de acceso efectivo* se podría calcular como la probabilidad stem:[(1-p)] de que la entrada no esté en la *TLB*, por el *tiempo de acceso* necesario, en ese caso stem:[2T_m], mas la probabilidad de que la entrada sí esté en la *TLB* stem:[p], por el *tiempo de acceso* stem:[T_m], porque solo hace falta acceder una vez a la memoria:
+Supongamos que tenemos un sistema con *TLB* y que conocemos la probabilidad _p_ de que la entrada que consultamos esté en la *TLB*.
+Entonces, el *tiempo de acceso efectivo* se podría calcular como la probabilidad (1 - _p_) de que la entrada no esté en la *TLB*, por el *tiempo de acceso* necesario, en ese caso 2__T~m~__, mas la probabilidad de que la entrada sí esté en la *TLB* _p_, por el *tiempo de acceso* _T~m~_, porque solo hace falta acceder una vez a la memoria:
 
 [stem]
 ++++
 T_(em)=(1-p) 2T_m+pT_m=(2-p) T_m
 ++++
 
-Como se puede observar, cuanto más se aproxima a 1 la probabilidad stem:[p] de que la entrada esté en la *TLB*, más cerca está stem:[T_(em)] de stem:[T_m].
+Como se puede observar, cuanto más se aproxima a 1 la probabilidad _p_ de que la entrada esté en la *TLB*, más cerca está _T~em~_ de _T~m~_.
 
 Para mejorar esta probabilidad:
 
@@ -325,13 +325,13 @@ Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 b
 |===
 
 |*tamaño del espacio de direcciones*
-|= stem:[2^32] = 4 GiB
+|= 2^32^ = 4 GiB
 
 |*tamaño de página* 
-|= stem:[2^12] = 4 KiB
+|= 2^12^ = 4 KiB
 
 |*número de páginas*
-|= stem:[2^32 / 2^12] = stem:[2^{32-12}] = stem:[2^20] = 1{K}048{K}576 entradas
+|= 2^32^ / 2^12^ = 2^32-12^ = 2^20^ = 1{K}048{K}576 entradas
 
 |===
 
@@ -356,7 +356,7 @@ Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativ
 Sin embargo, ahora la *tabla de páginas* está dividida en *marcos*, que no tienen porqué ser asignados de forma contigua en la memoria.
 Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.
 
-Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* stem:[p] de la dirección virtual —que tenía stem:[2^20] bits— en dos *números de página* de stem:[2^10] bits cada uno:
+Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* _p_ de la dirección virtual —que tenía 2^20^ bits— en dos *números de página* de 2^10^ bits cada uno:
 
 image::dirección_virtual_paginación_jerárquica.svg[]
 
@@ -369,8 +369,8 @@ Las direcciones virtuales eran divididas de la siguiente manera:
 image::dirección_virtual_vax.svg[]
 
 El espacio de direcciones de un proceso estaba dividido en 3 secciones.
-Los 2 bits de orden más alto stem:[s] de las direcciones virtuales se utilizaban para indicar la *sección*.
-Cada *sección* estaba dividida en *páginas* de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales stem:[p] eran utilizadas para seleccionar la *página* concreta.
+Los 2 bits de orden más alto _s_ de las direcciones virtuales se utilizaban para indicar la *sección*.
+Cada *sección* estaba dividida en *páginas* de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales _p_ eran utilizadas para seleccionar la *página* concreta.
 
 Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
 Esto era importante, puesto que la *tabla de páginas* de una
@@ -378,19 +378,19 @@ Esto era importante, puesto que la *tabla de páginas* de una
 
 === Paginación jerárquica de N niveles
 
-En general, en la *paginación jerárquica* de stem:[N] niveles el *número de página* stem:[p] de cada dirección virtual es dividido en stem:[N] números: latexmath:[\{ p_1, p_2, p_3, \ldots, p_N\}], donde:
+En general, en la *paginación jerárquica* de _n_ niveles el *número de página* _p_ de cada dirección virtual es dividido en _n_ números: { _p_~1~, _p_~2~, _p_~3~, {dots}, _p~N~_}, donde:
 
-. stem:[p_1] se utiliza para indexar la *tabla de páginas externa* —también llamada *directorio de páginas*(((directorio, páginas))) o *tabla de páginas de nivel 0*(((tabla, páginas, nivel 0)))— cuya dirección conoce la CPU mediante el *PTBR*.
+. _p_~1~ se utiliza para indexar la *tabla de páginas externa* —también llamada *directorio de páginas*(((directorio, páginas))) o *tabla de páginas de nivel 0*(((tabla, páginas, nivel 0)))— cuya dirección conoce la CPU mediante el *PTBR*.
 La entrada obtenida de esta manera, contiene la dirección en la memoria física de una porción de la *tabla de páginas* en el siguiente nivel —el nivel 1—.
 
-. stem:[p_2] se utiliza para indexar la *tabla de páginas de nivel 1*.
+. _p_~2~ se utiliza para indexar la *tabla de páginas de nivel 1*.
 E, igualmente, la entrada así obtenida contiene la dirección en la memoria física de una porción de la *tabla de páginas* en el siguiente nivel —el nivel 2—.
 
-. El proceso continúa hasta que stem:[p_N], se utiliza para indexar la *tabla de páginas de nivel N-1*, con la que se obtiene el *número de marco* que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento stem:[d] de la dirección virtual.
+. El proceso continúa hasta que _p~N~_, se utiliza para indexar la *tabla de páginas de nivel N-1*, con la que se obtiene el *número de marco* que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento _d_ de la dirección virtual.
 
 Como se puede ver, resolver una dirección virtual necesita tantos accesos a la memoria como niveles hay en la jerarquía.
 
-Debido a que la traducción funciona desde las *tablas de páginas* de nivel superior —nivel 0— hacia las de nivel inferior —nivel stem:[N-1]—, a esta estructura también se la conoce como *tabla de páginas directa*(((tabla, páginas, directa))).
+Debido a que la traducción funciona desde las *tablas de páginas* de nivel superior —nivel 0— hacia las de nivel inferior —nivel _N_ - 1—, a esta estructura también se la conoce como *tabla de páginas directa*(((tabla, páginas, directa))).
 
 [NOTE]
 ====

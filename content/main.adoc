@@ -3,7 +3,6 @@ Jesús Torres <jmtorres@ull.es>
 include::version.adoc[]
 Curso {academic-year}
 include::../config/attributes.adoc[]
-include::symbols.adoc[]
 include::enlaces.adoc[]
 include::docstats.adoc[]
 

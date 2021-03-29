@@ -215,7 +215,7 @@ Por eso, realmente se almacenan dos copias de la FAT al principio del volumen.
 
 El indexar con clústeres —o grupos de bloques— sirve para ubicar cerca bloques contiguos, pero sobre todo es una decisión de diseño para permitir que los sistemas de archivos {fat} puedan gestionar volúmenes más grandes.
 Por ejemplo, la FAT de MS-DOS 3.0 y posteriores usaba 16 bits para numerar los clústeres —por eso se llamaba FAT16—.
-Si FAT16 trabaja directamente con bloques y cada bloque tuviera 512 bytes, no podría gestionar volúmenes de más de stem:[512* 2^16] bytes, es decir, 32 MiB.
+Si FAT16 trabaja directamente con bloques y cada bloque tuviera 512 bytes, no podría gestionar volúmenes de más de 512{x}2^16^ bytes, es decir, 32 MiB.
 Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestionar volúmenes de hasta 2 GiB.
 
 Aunque algunas versiones de Microsoft Windows NT llegaron a admitir 128 e, incluso, 512 bloques por clúster, con clústeres tan grandes la *fragmentación interna* es un problema.
@@ -302,7 +302,7 @@ El resto de los bloques se utilizan para almacenar los datos de los archivos rep
 * Dentro de cada *inodo* —entre otra información típica en un *FCB*— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.
 
 * Como se puede ver en la <<asignación_ext2>>, los primeros 12 punteros en el *inodo* son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
-Esto permite almacenar hasta stem:[2^64] bytes de información en cada archivo.
+Esto permite almacenar hasta 2^64^ bytes de información en cada archivo.
 ====
 
 == Gestión del espacio libre
@@ -426,15 +426,15 @@ Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo d
 
 === Rendimiento del acceso a disco
 
-En un disco duro magnético el *tiempo de acceso al disco*(((tiempo, acceso, al disco))) stem:[T^d] viene determinado por el *tiempo de búsqueda* stem:[T^b] y la *latencia rotacional* stem:[T^r]:
+En un disco duro magnético el *tiempo de acceso al disco*(((tiempo, acceso, al disco))) _T^d^_ viene determinado por el *tiempo de búsqueda* _T^b^_ y la *latencia rotacional* _T^r^_:
 
 [stem]
 ++++
 T_d=T_b+T_r
 ++++
 
-El *tiempo de búsqueda*(((tiempo, búsqueda))) stem:[T^b] es el tiempo que se tarda en mover el brazo del disco hasta el cilindro deseado.
-Mientras que la *latencia rotacional*(((latencia, rotacional))) stem:[T^r] es el tiempo que hay que esperar para que el disco gira hasta que la cabeza llegue al sector deseado del cilindro.
+El *tiempo de búsqueda*(((tiempo, búsqueda))) _T^b^_ es el tiempo que se tarda en mover el brazo del disco hasta el cilindro deseado.
+Mientras que la *latencia rotacional*(((latencia, rotacional))) _T^r^_ es el tiempo que hay que esperar para que el disco gira hasta que la cabeza llegue al sector deseado del cilindro.
 Por lo tanto, el *tiempo de acceso al disco* es menor cuando se realizan accesos consecutivos a sectores físicamente próximos que cuando están dispersos por todo el disco.
 
 // TODO: Diagrama del concepto de tasa de transferencia.

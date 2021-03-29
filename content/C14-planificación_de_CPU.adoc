@@ -519,22 +519,22 @@ Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos 
 
 donde:
 
-* stem:[\tau_{n+1}] es la estimación de tiempo de la siguiente ráfaga de CPU
-* stem:[t_{n}] es el tiempo real de la última ráfaga
-* stem:[\alpha] es el peso relativo del tiempo real de la última ráfaga.
-* stem:[\tau_{n}] es la estimación de tiempo de la última ráfaga.
+* _{tau}_~_n_+1~ es la estimación de tiempo de la siguiente ráfaga de CPU
+* _t~n~_ es el tiempo real de la última ráfaga
+* _{alpha}_ es el peso relativo del tiempo real de la última ráfaga.
+* _{tau}~n~_ es la estimación de tiempo de la última ráfaga.
 
-La expresión es recursiva, dado que stem:[\tau_{n}] se calcula usando la ecuación con stem:[t_{n-1}] y stem:[\tau_{n-1}]; que a su vez depende de stem:[t_{n-2}] y stem:[\tau_{n-2}], y así sucesivamente.
+La expresión es recursiva, dado que _{tau}~n~_ se calcula usando la ecuación con _t_~_n_-1~ y _{tau}_~_n_-1~; que a su vez depende de _t_~_n_-2~ y _{tau}_~_n_-2~, y así sucesivamente.
 
-Si desarrollamos la formula sustituyendo los valores, veremos que stem:[t_{n}] se pondera con stem:[\alpha], stem:[t_{n-1}] con stem:[(1 - \alpha)\alpha], stem:[t_{n-2}] con stem:[(1 - \alpha)^2\alpha], y así sucesivamente:
+Si desarrollamos la formula sustituyendo los valores, veremos que _t~n~_ se pondera con _{alpha}_, _t_~_n_-1~ con (1 - _{alpha}_)_{alpha}_, _t_~_n_-2~ con(1 - _{alpha}_)^2^_{alpha}_, y así sucesivamente:
 
 [latexmath]
 ++++
 \tau_{n+1}=\alpha{}t_n + (1 - \alpha)\alpha{}t_{n-1} + (1 - \alpha)^2\alpha{}t_{n-2} + \ldots
 ++++
 
-Si stem:[\alpha = 1], stem:[\tau_{n+1} = \alpha\t_n], ignorando el resto del histórico.
-En otro caso, dado que tanto stem:[\alpha] como stem:[1 -\alpha] son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los stem:[t_{n}] contribuyan menos cuanto más alejados del tiempo actual.
+Si _{alpha}_ = 1, _{tau}_~_n_+1~ = _{alpha}t~n~_, ignorando el resto del histórico.
+En otro caso, dado que tanto _{alpha}_ como 1 - _{alpha}_ son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los _t~n~_ contribuyan menos cuanto más alejados del tiempo actual.
 
 El problema es que todos estos cálculos consumen tiempo de CPU, cuando el planificador debe ser lo más rápido posible, dado que se ejecuta con mucha frecuencia.
 
@@ -910,14 +910,14 @@ Otro ejemplo es Zircon, el _microkernel_ de {google_fuchsia}, que está inmerso 
 Para más información véase https://developer.ibm.com/technologies/linux/tutorials/l-completely-fair-scheduler/[«Inside the Linux 2.6 Completely Fair Schedule -- IBM Developer»] y https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler[«Zircon Fair Scheduler -- Fuchsia Project»].
 ====
 
-Si durante un periodo de tiempo stem:[T], un proceso stem:[P_i] tiene peso stem:[w_i], a ese proceso le corresponde un tiempo de CPU stem:[t_i]:
+Si durante un periodo de tiempo _T_, un proceso _P~i~_ tiene peso _w~i~_, a ese proceso le corresponde un tiempo de CPU _t~i~_:
 
 [stem]
 ++++
 t_i = w_i/W T
 ++++
 
-donde stem:[W] es la suma de los pesos de todos los procesos en la *cola de preparados* durante stem:[T]. 
+donde _W_ es la suma de los pesos de todos los procesos en la *cola de preparados* durante _T_. 
 
 // TODO: El problema es que los procesos entran y salen de la cola de preparados, por lo que éste cálculo es dinámico.
 // TODO: Hacer un problema como los que hemos visto en otros planificadores

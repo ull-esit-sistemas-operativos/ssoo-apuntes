@@ -115,15 +115,15 @@ Sin embargo, esto no ocurre puesto que los programas tienden a tener localidad d
 
 Como con la *paginación*, el rendimiento de un sistema con *paginación bajo demanda* también está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria teniendo en cuenta mecanismos del sistema operativo.
 
-Supongamos que conocemos la probabilidad stem:[p_(fp)] de que ocurra un fallo de página.
-El *tiempo de acceso efectivo* se podría calcular como la probabilidad de que no ocurra un fallo de página latexmath:[(1-p_{fp})] por el *tiempo de acceso* a la memoria stem:[T_m], mas la probabilidad de que ocurra un fallo de página stem:[p] por el tiempo necesario para gestionar cada fallo de página —o *tiempo de fallo de página*(((tiempo, fallo de página)))— stem:[T_(fp)]:
+Supongamos que conocemos la probabilidad _p~fp~_ de que ocurra un fallo de página.
+El *tiempo de acceso efectivo* se podría calcular como la probabilidad de que no ocurra un fallo de página (1 - _p~fp~_) por el *tiempo de acceso* a la memoria _T~m~_, mas la probabilidad de que ocurra un fallo de página _p_ por el tiempo necesario para gestionar cada fallo de página —o *tiempo de fallo de página*(((tiempo, fallo de página)))— _T~fp~_:
 
 [latexmath]
 ++++
 T_{em}=(1-p_{fp}) T_m+p_{fp} T_{fp}
 ++++
 
-Por tanto, para calcular el *tiempo de acceso efectivo* stem:[T_(em)] necesitamos estimar el *tiempo de fallo de página* stem:[T_(fp)], que se consume fundamentalmente en:
+Por tanto, para calcular el *tiempo de acceso efectivo* _T~em~_ necesitamos estimar el *tiempo de fallo de página* _T~fp~_, que se consume fundamentalmente en:
 
 * Servir la excepción de fallo de página.
 +
@@ -139,7 +139,7 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 Como se puede apreciar, la mayor parte del *tiempo de fallo de página* es debido al tiempo requerido para acceder al *dispositivo de intercambio*.
 
 Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página* ya que comparativamente consumen mucho menos tiempo.
-Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_m] es de 200 ns y que la probabilidad stem:[p_(fp)] es muy pequeña —es decir, latexmath:[p \ll 1]—:
+Vamos suponer que el *tiempo de acceso* a la memoria _T~m~_ es de 200 ns y que la probabilidad _p~fp~_ es muy pequeña —es decir, p {ll} 1—:
 
 [latexmath]
 ++++
@@ -150,21 +150,26 @@ T_{em} &= (1-p_{fp}) \cdot 200\,\text{ns}+p_{fp} \cdot 8\,\text{ms.} \\
 \end{split}
 ++++
 
-Como se puede apreciar el *tiempo de acceso efectivo* es proporcional a la *tasa de fallos de página*(((tasa, fallos de página))) stem:[tau_(fp)]:
+Como se puede apreciar el *tiempo de acceso efectivo* es proporcional a la *tasa de fallos de página*(((tasa, fallos de página))) _{tau}~fp~_:
 
 [stem]
 ++++
 T_(em) approx T_(m) + tau_(fp)
 ++++
 
-donde stem:[tau_(fp)=p_(fp) T_(fp)].
+donde: 
 
-Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, stem:[p_(fp) = 0.001]— el *tiempo de acceso efectivo* es de 8.2 ms, por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
-Por tanto, es necesario mantener la *tasa de fallos de página* stem:[tau_(fp)] lo más baja posible para mantener un rendimiento adecuado.
+[stem]
+++++
+tau_(fp)=p_(fp) T_(fp)
+++++
 
-Por simplicidad, por el momento hemos considerado stem:[T_m] como el tiempo de acceso a la memoria física.
+Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, _p~fp~ =_ 0.001— el *tiempo de acceso efectivo* es de 8.2 ms, por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
+Por tanto, es necesario mantener la *tasa de fallos de página* _{tau}~fp~_ lo más baja posible para mantener un rendimiento adecuado.
+
+Por simplicidad, por el momento hemos considerado _T~m~_ como el tiempo de acceso a la memoria física.
 Sin embargo, realmente estamos en un sistema que utiliza paginación —incluso con varios niveles— y que puede tener una TLB para mejorar su rendimiento.
-Entonces, si queremos ser más precisos, podemos considerar stem:[T_m] como el *tiempo de acceso efectivo* que vimos en el <<_tiempos_de_acceso_a_la_memoria>> para el método básico de paginación.
+Entonces, si queremos ser más precisos, podemos considerar _T~m~_ como el *tiempo de acceso efectivo* que vimos en el <<_tiempos_de_acceso_a_la_memoria>> para el método básico de paginación.
 Por lo que sustituyéndolo en la expresión anterior:
 
 [latexmath]
@@ -172,7 +177,7 @@ Por lo que sustituyéndolo en la expresión anterior:
 T_{em} \approx (2-p_{tlb}) T_m + tau_{fp}
 ++++
 
-donde stem:[p_(tlb)] es la probabilidad de que una entrada esté en la TLB y stem:[T_m] ahora sí es el *tiempo de acceso* a la memoria física.
+donde _p~tlb~_ es la probabilidad de que una entrada esté en la TLB y _T~m~_ ahora sí es el *tiempo de acceso* a la memoria física.
 
 ==== Manejo y uso del espacio de intercambio
 
@@ -383,7 +388,7 @@ Para reducir el número de datos podemos hacer dos cosas:
 
 * De cada referencia sólo necesitamos considerar el número de página.
 
-* Si tenemos una referencia a la página stem:[p], cualquier referencia inmediatamente posterior a dicha página stem:[p] nunca provocará un fallo de página, por lo que podemos ignorarlas.
+* Si tenemos una referencia a la página _p_, cualquier referencia inmediatamente posterior a dicha página _p_ nunca provocará un fallo de página, por lo que podemos ignorarlas.
 Esto no tendría porque ser cierto y si consideramos que hay varios procesos en el sistema y unos pueden expropiar a los otros.
 Pero por simplicidad, ese no es nuestro caso.
 
@@ -555,9 +560,9 @@ reemplazo, puesto que esta se puede extraer directamente del final de la pila.
 
 El *algoritmo reemplazo LRU* pertenece a una clase denominada *algoritmos de pila*, que nunca se
 ven afectados por la *anormalidad de Belady*.
-En estos algoritmos, las páginas en memoria en un instante dado para stem:[N] marcos son un subconjunto de las que podrían haber con stem:[N+1] marcos.
-Concretamente, en el *algoritmo LRU* las páginas en los marcos son las stem:[N] páginas más referenciadas recientemente.
-Si el número de marcos aumentase, estas stem:[N] páginas seguirían estando en memoria, pues siguen siendo las referenciadas más recientemente.
+En estos algoritmos, las páginas en memoria en un instante dado para _N_ marcos son un subconjunto de las que podrían haber con _N_ + 1 marcos.
+Concretamente, en el *algoritmo LRU* las páginas en los marcos son las _N_ páginas más referenciadas recientemente.
+Si el número de marcos aumentase, estas _N_ páginas seguirían estando en memoria, pues siguen siendo las referenciadas más recientemente.
 
 ==== Reemplazo LRU aproximado
 
@@ -646,7 +651,7 @@ El *reemplazo LRU aproximado con bits de referencia adicionales*, o de *envejeci
 
 . Cuando haya que escoger una página para ser reemplazada se escoge la que tenga el valor más pequeño en el conjunto de *bits de referencia adicionales*.
 Esto es así, puesto que dicho conjunto contiene la historia de referencias de la página.
-Por ejemplo, stem:[{1 1 0 0 0 1 0 0}] es más reciente que stem:[{0 1 1 1 0 1 1 1}].
+Por ejemplo, {1 1 0 0 0 1 0 0} es más reciente que {0 1 1 1 0 1 1 1}.
 
 . Se puede utilizar el *algoritmo de reemplazo de página FIFO* o escoger un aleatoriamente, si dos páginas tienen el mismo valor.
 
@@ -1002,9 +1007,9 @@ Sin embargo, si damos al proceso menos marcos de los que necesita su *localidad*
 
 El *modelo de conjunto de trabajo* es una estrategia que permite obtener una aproximación de la *localidad* del programa y consiste en lo siguiente:
 
-* Definir el parámetro stem:[Delta] como el tamaño de la *ventana del conjunto de trabajo*.
+* Definir el parámetro _{Delta}_ como el tamaño de la *ventana del conjunto de trabajo*.
 
-* En un instante dado, el conjunto de páginas presente en las stem:[Delta] últimas referencias a la memoria se consideran el *((conjunto de trabajo))*.
+* En un instante dado, el conjunto de páginas presente en las _{Delta}_ últimas referencias a la memoria se consideran el *((conjunto de trabajo))*.
 
 * Por lo tanto, el *conjunto de trabajo* es una aproximación de *localidad* del programa.
 
@@ -1012,30 +1017,30 @@ Por ejemplo, dada la siguiente lista de referencias a páginas en la memoria:
 
 image::modelo_de_conjunto_de_trabajo.svg[]
 
-si stem:[Delta = 10] referencias a la memoria, entonces el conjunto de trabajo en stem:[t_1] es stem:[{1, 2, 5, 6, 7}].
-Mientras que en stem:[t_2] el conjunto de trabajo es stem:[{3, 4}].
+si _{Delta}_ = 10 referencias a la memoria, entonces el conjunto de trabajo en _t_~1~ es {1, 2, 5, 6, 7}.
+Mientras que en _t_~2~ el conjunto de trabajo es {3, 4}.
 
-Obviamente, la precisión del *conjunto de trabajo* como aproximación de la *localidad* del programa depende del parámetro stem:[Delta].
+Obviamente, la precisión del *conjunto de trabajo* como aproximación de la *localidad* del programa depende del parámetro _{Delta}_.
 Por ejemplo:
 
-* Si stem:[Delta] es muy pequeña, el *conjunto de trabajo* no cubriría toda la *localidad*.
+* Si _{Delta}_ es muy pequeña, el *conjunto de trabajo* no cubriría toda la *localidad*.
 
-* Si stem:[Delta] es muy grande, el *conjunto de trabajo* se superpondría a varias *localidades*.
+* Si _{Delta}_ es muy grande, el *conjunto de trabajo* se superpondría a varias *localidades*.
 
 === Uso del conjunto del trabajo para evitar la hiperpaginación
 
 El uso del conjunto de trabajo es bastante sencillo:
 
-. Los diseñadores del sistema seleccionan stem:[Delta].
+. Los diseñadores del sistema seleccionan _{Delta}_.
 
 . El sistema operativo monitoriza el *conjunto de trabajo* de cada proceso y le asigna tantos marcos como páginas haya en el *conjunto de trabajo*.
 
 . Si sobran suficientes marcos otro proceso puede ser iniciado —en el caso de los sistemas multiprogramados— o se puede destinar la memoria libre a otros usos.
 
-. Si el *tamaño del conjunto de trabajo* total stem:[WSS] crece y excede el número de marcos disponibles, el sistema podría seleccionar un proceso para ser suspendido.
+. Si el *tamaño del conjunto de trabajo* total _WSS_ crece y excede el número de marcos disponibles, el sistema podría seleccionar un proceso para ser suspendido.
 Éste podrá volver a ser reiniciado más tarde.
 
-Donde el *tamaño del conjunto de trabajo* stem:[WSS] es la suma del *tamaño de los conjuntos de trabajo* stem:[WSS_i] para cada proceso stem:[i]:
+Donde el *tamaño del conjunto de trabajo* _WSS_ es la suma del *tamaño de los conjuntos de trabajo* _WSS~i~_ para cada proceso _i_:
 
 [stem]
 ++++
@@ -1043,11 +1048,11 @@ WSS=sum WSS_i
 ++++
 
 y representa la demanda total de marcos.
-Por eso, si stem:[WSS] es mayor que el número de marcos disponibles, habrá *hiperpaginación*.
+Por eso, si _WSS_ es mayor que el número de marcos disponibles, habrá *hiperpaginación*.
 
 El sencillo algoritmo anterior permite evitar la *hiperpaginación*.
 Sin embargo, el problema está en como mover la *ventana del conjunto de trabajo* en cada referencia, con el fin de volver a calcular el *conjunto de trabajo*.
-Una posible aproximación sería utilizar un temporizador que periódicamente invocase a una función encargada de examinar el *bit de referencia* de las páginas en la ventana stem:[Delta].
+Una posible aproximación sería utilizar un temporizador que periódicamente invocase a una función encargada de examinar el *bit de referencia* de las páginas en la ventana _{Delta}_.
 Es de suponer que las páginas con el *bit de referencia* a 1 forman parte de la *localidad* del programa y por tanto serán el *conjunto de trabajo* a lo largo del siguiente periodo.
 
 == Otras consideraciones
