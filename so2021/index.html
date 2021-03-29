@@ -672,6 +672,9 @@ pre.rouge {
         font-weight: bold;
     }
 </style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -684,7 +687,8 @@ pre.rouge {
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
 <ul class="sectlevel1">
-<li><a href="#_ejemplos_de_código">Ejemplos de código</a></li>
+<li><a href="#_versiones">Versiones</a></li>
+<li><a href="#_código_de_los_ejemplos">Código de los ejemplos</a></li>
 <li><a href="#_introducción">Parte I: Introducción</a>
 <ul class="sectlevel1">
 <li><a href="#_qué_es_un_sistema_operativo">1. ¿Qué es un sistema operativo?</a>
@@ -901,10 +905,19 @@ pre.rouge {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_ejemplos_de_código">Ejemplos de código</h2>
+<h2 id="_versiones">Versiones</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En algunos capítulos se enlazan ejemplos de código para ilustrar en mayor detalle los conceptos tratados.
+<p>Este documento está disponible actualmente en versiones en formatos HTML y PDF.
+La primera se puede visitar en el <a href="https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/so2021">sitio web</a> del proyecto, mientras que la segunda se puede descargar desde <span class="icon"><i class="fa fa-github"></i></span> <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-apuntes/releases/tag/so2021">ull-esit-sistemas-operativos/ssoo-apuntes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_código_de_los_ejemplos">Código de los ejemplos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En algunos capítulos se enlazan programas de ejemplo para ilustrar en mayor detalle los conceptos tratados.
 Todos los ejemplos están disponibles en el repositorio <span class="icon"><i class="fa fa-github"></i></span> <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/tree/so2021">ull-esit-sistemas-operativos/ssoo-ejemplos</a>, de donde se pueden descargar.</p>
 </div>
 <div class="paragraph">
@@ -943,13 +956,19 @@ Mientras que en Microsoft Windows hacen falta las <a href="https://go.microsoft.
 <div class="sect1">
 <h2 id="_qué_es_un_sistema_operativo">1. ¿Qué es un sistema operativo?</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>7 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 7 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>¿Qué es un sistema operativo? ¿cuáles son sus responsabilidades en el contexto de un sistema informático? ¿cómo cumple con ellas?
@@ -1029,7 +1048,7 @@ Es decir, describiendo sus funciones dentro de un sistema informático cualquier
 </div>
 <div id="componentes_sistema_informático" class="imageblock">
 <div class="content">
-<img src="C01-definición/media/componentes_sistema_informático.svg" alt="componentes sistema informático">
+<img src="media/C01-definición/componentes_sistema_informático.svg" alt="componentes sistema informático">
 </div>
 <div class="title">Figura 1. Vista abstracta de los componentes de un sistema informático.</div>
 </div>
@@ -1140,13 +1159,19 @@ Sin embargo, en los tres casos el sistema operativo es el responsable de la gest
 <div class="sect1">
 <h2 id="_tipos_de_sistemas_operativos">2. Tipos de sistemas operativos</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>23 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 23 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Ahora que sabemos que todos los sistemas operativos hacen lo mismo pero que el «cómo» lo hacen difiere de un tipo de sistema informático a otro, vamos a ver los tipos de sistemas informáticos, las características de los sistemas operativos que los gestionan y cómo han evolucionado a lo largo de la historia.</p>
@@ -1211,7 +1236,7 @@ Se caracterizan no tanto por la potencia de su CPU como por su: gran capacidad d
 </div>
 <div id="consola_ibm_705" class="imageblock">
 <div class="content">
-<img src="C02-tipos_de_sistemas/media/consola_ibm_705.jpg" alt="consola ibm 705">
+<img src="media/C02-tipos_de_sistemas/consola_ibm_705.jpg" alt="consola ibm 705">
 </div>
 <div class="title">Figura 2. Operadora en la consola de un mainframe IBM 705&#8201;&#8212;&#8201;Fuente: <a href="https://www.ibm.com/ibm/history/ibm100/images/icp/Y444110I58591Z46/us__en_us__ibm100__700_series__705__620x350.jpg">IBM</a></div>
 </div>
@@ -1224,7 +1249,7 @@ Para ello se utilizaba un lector de tarjetas autónomo, independiente del <em>ma
 </div>
 <div id="sistemas_procesamiento_lotes" class="imageblock">
 <div class="content">
-<img src="C02-tipos_de_sistemas/media/sistemas_procesamiento_lotes.svg" alt="sistemas procesamiento lotes">
+<img src="media/C02-tipos_de_sistemas/sistemas_procesamiento_lotes.svg" alt="sistemas procesamiento lotes">
 </div>
 <div class="title">Figura 3. Organización de la memoria en sistemas de procesamiento por lotes.</div>
 </div>
@@ -1274,7 +1299,7 @@ Así el sistema operativo —como podemos comenzar a llamarlo— tiene la oportu
 </div>
 <div id="sistemas_multiprogramados" class="imageblock">
 <div class="content">
-<img src="C02-tipos_de_sistemas/media/sistemas_multiprogramados.svg" alt="sistemas multiprogramados">
+<img src="media/C02-tipos_de_sistemas/sistemas_multiprogramados.svg" alt="sistemas multiprogramados">
 </div>
 <div class="title">Figura 4. Organización de la memoria en sistemas multiprogramados.</div>
 </div>
@@ -1460,7 +1485,7 @@ Entonces comenzaron a recibir el nombre de <em>ordenadores domésticos</em> y de
 </div>
 <div id="ordenadores_domésticos_1977" class="imageblock">
 <div class="content">
-<img src="C02-tipos_de_sistemas/media/ordenadores_domésticos_1977.jpg" alt="ordenadores domésticos 1977">
+<img src="media/C02-tipos_de_sistemas/ordenadores_domésticos_1977.jpg" alt="ordenadores domésticos 1977">
 </div>
 <div class="title">Figura 5. Los tres ordenadores que la revista Byte denominó como la "Trinidad de 1977" de la computación doméstica: el <a href="https://es.wikipedia.org/wiki/Commodore_PET">Commodore PET 2001</a>, el <a href="https://es.wikipedia.org/wiki/Apple_II">Apple II</a> y el <a href="https://es.wikipedia.org/wiki/TRS-80">TRS-80 Model I</a>&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Trinity77.jpg">Wikipedia</a></div>
 </div>
@@ -1558,7 +1583,7 @@ Sin embargo, en la actualidad cualquier dispositivo digital u ordenador domésti
 <li>
 <p><strong>Aumentan la cantidad de trabajo realizado</strong>. A mayor número de procesadores, mayor cantidad
 de trabajo puede realizar el sistema.
-Sin embargo debemos de tener en cuenta que un sistema con \$N\$ CPU no es un sistema \$N\$ veces más
+Sin embargo debemos de tener en cuenta que un sistema con <em>N</em> CPU no es un sistema <em>N</em> veces más
 rápido.
 Cuando varios procesadores cooperan para realizar una tarea, existe cierta pérdida de
 rendimiento debida a los mecanismos de sincronización requeridos para controlar el acceso a los recursos compartidos por los procesadores.</p>
@@ -1577,7 +1602,7 @@ En caso de fallo el sistema no se detendría pero si trabajaría más despacio.<
 </div>
 <div id="smp" class="imageblock">
 <div class="content">
-<img src="C02-tipos_de_sistemas/media/multiprocesamiento_simétrico.svg" alt="multiprocesamiento simétrico">
+<img src="media/C02-tipos_de_sistemas/multiprocesamiento_simétrico.svg" alt="multiprocesamiento simétrico">
 </div>
 <div class="title">Figura 6. Arquitectura de un sistema de multiprocesamiento simétrico.</div>
 </div>
@@ -1828,13 +1853,19 @@ Por eso la mayor parte de los sistemas de escritorio actuales soportan tareas de
 <div class="sect1">
 <h2 id="_historia_de_los_sistemas_operativos">3. Historia de los sistemas operativos</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>19 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 19 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>La historia de los sistemas operativos se puede dividir en cinco grandes etapas o generaciones, obviamente conectadas con las generaciones de los ordenadores donde funcionaban.</p>
@@ -1935,7 +1966,7 @@ Para su desarrollo se basaron en un monitor del sistema creado en 1955 por progr
 </div>
 <div id="instalación_ibm_702" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/instalación_ibm_702.jpg" alt="instalación ibm 702">
+<img src="media/C03-historia/instalación_ibm_702.jpg" alt="instalación ibm 702">
 </div>
 <div class="title">Figura 7. Instalación de un mainframe IBM 702&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:BRL61-IBM_702.jpg">Wikipedia</a></div>
 </div>
@@ -1969,7 +2000,7 @@ Su versión DOS/360 (<em>Disk Operating System/360</em>) fue el primer sistema o
 </div>
 <div id="instalación_ibm_system_360" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/instalación_ibm_system_360.jpg" alt="instalación ibm system 360">
+<img src="media/C03-historia/instalación_ibm_system_360.jpg" alt="instalación ibm system 360">
 </div>
 <div class="title">Figura 8. Instalación de un mainframe IBM System/360&#8201;&#8212;&#8201;Fuente: <a href="http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/">IBM</a></div>
 </div>
@@ -2027,7 +2058,7 @@ Respecto a los ordenadores, es el resultado del desarrollo de los microprocesado
 </div>
 <div id="multics_mainframe" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/multics_mainframe.jpg" alt="multics mainframe">
+<img src="media/C03-historia/multics_mainframe.jpg" alt="multics mainframe">
 </div>
 <div class="title">Figura 9. Mainframe GE-6180 con sistema MULTICS, entorno a 1976 en el MIT&#8201;&#8212;&#8201;Fuente: <a href="http://www.multicians.org/multics-stories.html">Multicians</a></div>
 </div>
@@ -2063,7 +2094,7 @@ Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.</p>
 </div>
 <div id="dec_pdp11" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/dec_pdp11_ken_den.jpg" alt="dec pdp11 ken den">
+<img src="media/C03-historia/dec_pdp11_ken_den.jpg" alt="dec pdp11 ken den">
 </div>
 <div class="title">Figura 10. Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales <a href="https://en.wikipedia.org/wiki/Teletype_Model_33">Teletype 33</a>&#8201;&#8212;&#8201;Fuente: <a href="https://www.bell-labs.com/usr/dmr/www/">Dennis Ritchie</a></div>
 </div>
@@ -2138,7 +2169,7 @@ Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.</p>
 </div>
 <div id="dec_vax11" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/dec_vax11.jpg" alt="dec vax11">
+<img src="media/C03-historia/dec_vax11.jpg" alt="dec vax11">
 </div>
 <div class="title">Figura 11. Instalación de VAX 11/780 en 1980&#8201;&#8212;&#8201;Fuente: <a href="http://www.chilton-computing.org.uk/">Science and Technology Facilities Council</a></div>
 </div>
@@ -2268,7 +2299,7 @@ En la versión 1.1, lanzada en noviembre de 1988, se le añadió interfaz gráfi
 </div>
 <div id="os_2_1" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/os_2_1.png" alt="os 2 1">
+<img src="media/C03-historia/os_2_1.png" alt="os 2 1">
 </div>
 <div class="title">Figura 12. Panel de control de Microsoft-IBM OS/2 1.1&#8201;&#8212;&#8201;Fuente: Michal Necasek</div>
 </div>
@@ -2308,7 +2339,7 @@ Windows 3.0 fue la primera versión de éxito de Windows, permitiendo a Microsof
 </div>
 <div id="windows_30" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/windows_30.png" alt="windows 30">
+<img src="media/C03-historia/windows_30.png" alt="windows 30">
 </div>
 <div class="title">Figura 13. Administrador de programas de Microsoft Windows 3.0&#8201;&#8212;&#8201;Fuente: <a href="https://guidebookgallery.org/screenshots/win30">Guidebook</a></div>
 </div>
@@ -2331,7 +2362,7 @@ Por ello puede ser considerado como un sistema operativo.</p>
 </div>
 <div id="windows_95" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/windows_95.png" alt="windows 95">
+<img src="media/C03-historia/windows_95.png" alt="windows 95">
 </div>
 <div class="title">Figura 14. Escritorio de Microsoft Windows 95&#8201;&#8212;&#8201;Fuente: <a href="http://www.guidebookgallery.org/screenshots/win95">Guidebook</a></div>
 </div>
@@ -2477,7 +2508,7 @@ Por tanto, la mezcla de Mach con UNIX BSD de OpenStep es la base del sistema ope
 </div>
 <div id="openstep_42" class="imageblock">
 <div class="content">
-<img src="C03-historia/media/openstep_42.png" alt="openstep 42">
+<img src="media/C03-historia/openstep_42.png" alt="openstep 42">
 </div>
 <div class="title">Figura 15. Entorno gráfico de OpenStep 4.2&#8201;&#8212;&#8201;Fuente: <a href="https://guidebookgallery.org/screenshots/openstep42">Guidebook</a></div>
 </div>
@@ -2498,7 +2529,7 @@ Se trata de un sistema <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C03-historia/media/historia_sistemas_operativos.svg" alt="historia sistemas operativos">
+<img src="media/C03-historia/historia_sistemas_operativos.svg" alt="historia sistemas operativos">
 </div>
 <div class="title">Figura 16. Línea de tiempo de la historia de los sistemas operativos.</div>
 </div>
@@ -2533,13 +2564,19 @@ Se trata de un sistema <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</
 <div class="sect1">
 <h2 id="_componentes_del_sistema">4. Componentes del sistema</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>11 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 11 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Crear un software tan complejo como un sistema operativo no es sencillo, por ello resulta más práctico dividirlo en piezas más pequeñas especializadas en aspectos concretos de la gestión del sistema.</p>
@@ -2904,13 +2941,19 @@ Por eso es necesario disponer de mecanismos de <strong>seguridad</strong> que se
 <div class="sect1">
 <h2 id="_servicios_del_sistema">5. Servicios del sistema</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>5 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 5 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Un sistema operativo proporciona un entorno para la ejecución de programas.
@@ -2919,7 +2962,7 @@ Estos servicios son proporcionados gracias al funcionamiento coordinado de los d
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C05-servicios/media/organización_sistema.svg" alt="organización sistema">
+<img src="media/C05-servicios/organización_sistema.svg" alt="organización sistema">
 </div>
 <div class="title">Figura 17. Diagrama general de organización de los sistemas operativos.</div>
 </div>
@@ -3034,13 +3077,19 @@ Ha esta colección de aplicaciones se la suele conocer con el término de <stron
 <div class="sect1">
 <h2 id="_interfaz_de_programación_de_aplicaciones">6. Interfaz de programación de aplicaciones</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>15 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 15 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Un sistema operativo proporciona un entorno controlado para la ejecución de programas.
@@ -3200,7 +3249,7 @@ Así que necesita tres argumentos:</p>
 <p>Al terminar devuelve el número de bytes escritos en el archivo, que puede ser inferior a <code>SIZE</code>.</p>
 </div>
 <div class="paragraph">
-<p>El identificador de la llamada al sistema es 4004, según el <a href="https://git.linux-mips.org/cgit/ralf/linux.git/tree/arch/mips/include/uapi/asm/unistd.h">listado de llamadas al sistema</a> para Linux en MIPS.</p>
+<p>El identificador de la llamada al sistema es 4004, según el <a href="https://github.com/torvalds/linux/blob/v4.20/arch/mips/include/uapi/asm/unistd.h">listado de llamadas al sistema</a> para Linux en MIPS.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3365,7 +3414,7 @@ Sin embargo, debemos valorar que así perdemos portabilidad, ya que ahora nuestr
 </div>
 <div id="api_win32" class="imageblock">
 <div class="content">
-<img src="C06-api/media/interfaz_programación_aplicaciones_win32.svg" alt="interfaz programación aplicaciones win32">
+<img src="media/C06-api/interfaz_programación_aplicaciones_win32.svg" alt="interfaz programación aplicaciones win32">
 </div>
 <div class="title">Figura 18. Elementos de la interfaz de programación de aplicaciones en Microsoft Windows.</div>
 </div>
@@ -3460,7 +3509,7 @@ Además, ambos lenguajes pueden invocar directamente la librería del sistema �
 </div>
 <div id="api_posix" class="imageblock">
 <div class="content">
-<img src="C06-api/media/interfaz_programación_aplicaciones_posix.svg" alt="interfaz programación aplicaciones posix">
+<img src="media/C06-api/interfaz_programación_aplicaciones_posix.svg" alt="interfaz programación aplicaciones posix">
 </div>
 <div class="title">Figura 19. Elementos de la interfaz de programación de aplicaciones en GNU/Linux.</div>
 </div>
@@ -3473,13 +3522,19 @@ Además, ambos lenguajes pueden invocar directamente la librería del sistema �
 <div class="sect1">
 <h2 id="_operación_del_sistema_operativo">7. Operación del sistema operativo</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>17 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 17 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, necesitamos estar seguros de que un error en un programa sólo afecte al proceso que lo ejecuta —por ejemplo, que un proceso no puede modificar la memoria de otro proceso o la del núcleo del sistema—.
@@ -3705,7 +3760,7 @@ Mientras que el <strong>espacio de direcciones físico</strong> es el conjunto d
 </div>
 <div id="protección_memoria" class="imageblock">
 <div class="content">
-<img src="C07-modo_dual/media/protección_memoria.svg" alt="protección memoria">
+<img src="media/C07-modo_dual/protección_memoria.svg" alt="protección memoria">
 </div>
 <div class="title">Figura 20. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
 </div>
@@ -3963,13 +4018,19 @@ Estos procesos <strong>login</strong> son monitorizados por <strong>init</strong
 <div class="sect1">
 <h2 id="_sistemas_operativos_por_su_estructura">8. Sistemas operativos por su estructura</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>10 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 10 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <a href="#_componentes_del_sistema">Capítulo 4</a>).
@@ -4006,7 +4067,7 @@ Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el 
 </div>
 <div id="estructura_msdos" class="imageblock">
 <div class="content">
-<img src="C08-estructura/media/estructura_msdos.svg" alt="estructura msdos">
+<img src="media/C08-estructura/estructura_msdos.svg" alt="estructura msdos">
 </div>
 <div class="title">Figura 21. Esquema de la estructura de MS-DOS.</div>
 </div>
@@ -4021,7 +4082,7 @@ Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el 
 </div>
 <div id="estructura_unix" class="imageblock">
 <div class="content">
-<img src="C08-estructura/media/estructura_unix.svg" alt="estructura unix">
+<img src="media/C08-estructura/estructura_unix.svg" alt="estructura unix">
 </div>
 <div class="title">Figura 22. Esquema de la estructura de UNIX.</div>
 </div>
@@ -4074,7 +4135,7 @@ En cada capa los argumentos son transformados y los datos necesarios deben de se
 </div>
 <div id="estructura_os2" class="imageblock">
 <div class="content">
-<img src="C08-estructura/media/estructura_os2.svg" alt="estructura os2">
+<img src="media/C08-estructura/estructura_os2.svg" alt="estructura os2">
 </div>
 <div class="title">Figura 23. Esquema de la estructura de IBM OS/2.</div>
 </div>
@@ -4140,7 +4201,7 @@ También sirve para que los componentes del sistema se comuniquen entre sí y se
 </div>
 <div id="estructura_minix3" class="imageblock">
 <div class="content">
-<img src="C08-estructura/media/estructura_minix3.svg" alt="estructura minix3">
+<img src="media/C08-estructura/estructura_minix3.svg" alt="estructura minix3">
 </div>
 <div class="title">Figura 24. Esquema de la estructura microkernel de MINIX 3.</div>
 </div>
@@ -4258,7 +4319,7 @@ Posteriormente pueden cargar módulos adicionales, tanto durante la inicializaci
 </div>
 <div id="estructura_linux" class="imageblock">
 <div class="content">
-<img src="C08-estructura/media/estructura_linux.svg" alt="estructura linux">
+<img src="media/C08-estructura/estructura_linux.svg" alt="estructura linux">
 </div>
 <div class="title">Figura 25. Esquema de la estructura del núcleo Linux.</div>
 </div>
@@ -4287,13 +4348,19 @@ Un error en cualquier componente puede comprometer o hacer caer el sistema.</p>
 <div class="sect1">
 <h2 id="_procesos">9. Procesos</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>39 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 39 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Los primeros sistemas informáticos solo permitían que un programa se ejecutara cada vez.
@@ -4404,7 +4471,7 @@ Todos tendrán una copia del mismo segmento de código, pero diferente: contador
 </div>
 <div id="proceso_en_memoria" class="imageblock">
 <div class="content">
-<img src="C09-procesos/media/proceso_en_memoria.svg" alt="proceso en memoria">
+<img src="media/C09-procesos/proceso_en_memoria.svg" alt="proceso en memoria">
 </div>
 <div class="title">Figura 26. Anatomía de un proceso en memoria.</div>
 </div>
@@ -4416,7 +4483,7 @@ Todos tendrán una copia del mismo segmento de código, pero diferente: contador
 </div>
 <div id="diagrama_estado_proceso" class="imageblock">
 <div class="content">
-<img src="C09-procesos/media/diagrama_estado_proceso.svg" alt="diagrama estado proceso">
+<img src="media/C09-procesos/diagrama_estado_proceso.svg" alt="diagrama estado proceso">
 </div>
 <div class="title">Figura 27. Diagrama de estado de un proceso.</div>
 </div>
@@ -4547,7 +4614,7 @@ Cada dispositivo de E/S tiene asociada una <strong>cola de dispositivo</strong> 
 </div>
 <div id="colas_de_planificación_procesos" class="imageblock">
 <div class="content">
-<img src="C09-procesos/media/colas_planificación_procesos.svg" alt="colas planificación procesos">
+<img src="media/C09-procesos/colas_planificación_procesos.svg" alt="colas planificación procesos">
 </div>
 <div class="title">Figura 28. Diagrama de colas de la planificación de procesos.</div>
 </div>
@@ -5723,7 +5790,7 @@ Veremos cada uno en detalle en el <a href="#_memoria_compartida">Capítulo 11</a
 </div>
 <div id="modelos_de_comunicación" class="imageblock">
 <div class="content">
-<img src="C09-procesos/media/modelos_comunicación.svg" alt="modelos comunicación">
+<img src="media/C09-procesos/modelos_comunicación.svg" alt="modelos comunicación">
 </div>
 <div class="title">Figura 29. Modelos de comunicación.</div>
 </div>
@@ -5734,13 +5801,19 @@ Veremos cada uno en detalle en el <a href="#_memoria_compartida">Capítulo 11</a
 <div class="sect1">
 <h2 id="_comunicación_mediante_de_paso_de_mensajes">10. Comunicación mediante de paso de mensajes</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>32 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 32 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>El <strong>paso de mensajes</strong> es un mecanismo que permite a los procesos compartir información y sincronizar sus acciones sin necesidad de compartir recursos —compartir memoria, archivos, etc.—</p>
@@ -6183,7 +6256,7 @@ En este caso el proceso transmisor se bloquea en espera hasta que el receptor re
 <div class="ulist">
 <ul>
 <li>
-<p>Con <strong>capacidad limitada</strong> la cola tiene una capacidad máxima de \$N\$ mensaje, por lo que si la cola se llena el proceso transmisor se bloquea a la espera de que haya espacio en la cola.
+<p>Con <strong>capacidad limitada</strong> la cola tiene una capacidad máxima de <em>N</em> mensaje, por lo que si la cola se llena el proceso transmisor se bloquea a la espera de que haya espacio en la cola.
 Obviamente, mientras la cola no se llene en transmisor puede seguir metiendo mensajes sin bloquearse.</p>
 </li>
 <li>
@@ -6976,13 +7049,19 @@ En los distintos métodos se puede ver como se utilizan las funciones de la libr
 <div class="sect1">
 <h2 id="_memoria_compartida">11. Memoria compartida</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>5 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 5 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>La <strong>memoria compartida</strong> es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
@@ -7142,7 +7221,7 @@ Para eso los sistemas POSIX ofrecen la función <a href="https://www.man7.org/li
 <pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">shmfd</span> <span class="o">=</span> <span class="n">shm_open</span><span class="p">(</span>   <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="s">"/foo-shm"</span><span class="p">,</span>         <i class="conum" data-value="1"></i><b>(1)</b>
     <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_CREAT</span><span class="p">,</span>   <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="mi">666</span>                 <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="mo">0666</span>                <i class="conum" data-value="3"></i><b>(3)</b>
 <span class="p">);</span></code></pre>
 </div>
 </div>
@@ -7233,13 +7312,19 @@ Simplemente hay que indicar el nombre en el último argumento de la función.</p
 <div class="sect1">
 <h2 id="_hilos">12. Hilos</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>35 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 35 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>En el modelo de proceso que hemos descrito hasta el momento, cada proceso tiene una única secuencia de instrucciones que se ejecuta en la CPU.
@@ -7261,7 +7346,7 @@ Sin embargo, en los <strong>sistemas operativos multihilo</strong> es el <strong
 </div>
 <div id="multihilo" class="imageblock">
 <div class="content">
-<img src="C12-hilos/media/procesos_multihilo.svg" alt="procesos multihilo">
+<img src="media/C12-hilos/procesos_multihilo.svg" alt="procesos multihilo">
 </div>
 <div class="title">Figura 30. Comparación entre procesos monohilo y proceso multihilo.</div>
 </div>
@@ -7310,7 +7395,7 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una 
 </div>
 <div id="proceso_multihilo_en_memoria" class="imageblock">
 <div class="content">
-<img src="C12-hilos/media/proceso_multihilo_en_memoria.svg" alt="proceso multihilo en memoria">
+<img src="media/C12-hilos/proceso_multihilo_en_memoria.svg" alt="proceso multihilo en memoria">
 </div>
 <div class="title">Figura 31. Anatomía de un proceso multihilo en memoria.</div>
 </div>
@@ -7433,7 +7518,7 @@ En ese caso, la única entidad planificable en la CPU que conoce el núcleo es e
 </div>
 <div id="modelo_muchos_a_uno" class="imageblock">
 <div class="content">
-<img src="C12-hilos/media/modelo_muchos_a_uno.svg" alt="modelo muchos a uno">
+<img src="media/C12-hilos/modelo_muchos_a_uno.svg" alt="modelo muchos a uno">
 </div>
 <div class="title">Figura 32. Modelo muchos a uno.</div>
 </div>
@@ -7499,7 +7584,7 @@ En este caso, la librería de hilos se implementa en el núcleo, por lo que las 
 </div>
 <div id="modelo_uno_a_uno" class="imageblock">
 <div class="content">
-<img src="C12-hilos/media/modelo_uno_a_uno.svg" alt="modelo uno a uno">
+<img src="media/C12-hilos/modelo_uno_a_uno.svg" alt="modelo uno a uno">
 </div>
 <div class="title">Figura 33. Modelo uno a uno.</div>
 </div>
@@ -7550,7 +7635,7 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hil
 </div>
 <div id="modelo_muchos_a_muchos" class="imageblock">
 <div class="content">
-<img src="C12-hilos/media/modelo_muchos_a_muchos.svg" alt="modelo muchos a muchos">
+<img src="media/C12-hilos/modelo_muchos_a_muchos.svg" alt="modelo muchos a muchos">
 </div>
 <div class="title">Figura 34. Modelo muchos a muchos.</div>
 </div>
@@ -7609,7 +7694,7 @@ Así, el planificador de la librería puede asignarle alguno de los otros <stron
 </div>
 <div id="modelo_de_dos_niveles" class="imageblock">
 <div class="content">
-<img src="C12-hilos/media/modelo_de_dos_niveles.svg" alt="modelo de dos niveles">
+<img src="media/C12-hilos/modelo_de_dos_niveles.svg" alt="modelo de dos niveles">
 </div>
 <div class="title">Figura 35. Modelo muchos a uno.</div>
 </div>
@@ -8356,13 +8441,19 @@ Esta estrategia facilita el diseño del programa para que manejen las señales a
 <div class="sect1">
 <h2 id="_sincronización">13. Sincronización</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>30 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 30 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>En el <a href="#_memoria_compartida">Capítulo 11</a> vimos que varios procesos pueden compartir regiones de la memoria con el objeto de cooperar en las tareas que deben desempeñar.
@@ -9611,13 +9702,19 @@ Por ejemplo, <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">str
 <div class="sect1">
 <h2 id="_planificación_de_la_cpu">14. Planificación de la CPU</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>30 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 51 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>El <strong>planificador de la CPU</strong> o <strong>planificador de corto plazo</strong> tiene la misión de seleccionar de la <strong>cola de preparados</strong> el siguiente proceso o hilo de núcleo a ejecutar.
@@ -9887,7 +9984,7 @@ Por ejemplo, en los sistemas interactivos es más importante minimizar la <stron
 </div>
 <div id="ráfagas_de_cpu" class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/histogramas_tiempo_de_ráfagas.svg" alt="histogramas tiempo de ráfagas">
+<img src="media/C14-planificación/histogramas_tiempo_de_ráfagas.svg" alt="histogramas tiempo de ráfagas">
 </div>
 <div class="title">Figura 36. Histograma de los tiempos de las ráfagas de CPU..</div>
 </div>
@@ -9977,8 +10074,8 @@ Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráf
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Tiempo de llegada (ms.)</th>
-<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms.)</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10009,7 +10106,7 @@ Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráf
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/fcfs1.svg" alt="fcfs1">
+<img src="media/C14-planificación/fcfs1.svg" alt="fcfs1">
 </div>
 </div>
 <div class="paragraph">
@@ -10027,9 +10124,9 @@ Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráf
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10068,12 +10165,12 @@ Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráf
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">18,75</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">18.75</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">26,75</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">26.75</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10090,8 +10187,8 @@ Por ejemplo, P1 podría llegar el último:</p>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Tiempo de llegada (ms.)</th>
-<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms.)</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10122,7 +10219,7 @@ Por ejemplo, P1 podría llegar el último:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/fcfs2.svg" alt="fcfs2">
+<img src="media/C14-planificación/fcfs2.svg" alt="fcfs2">
 </div>
 </div>
 <div class="paragraph">
@@ -10140,9 +10237,9 @@ Por ejemplo, P1 podría llegar el último:</p>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10181,12 +10278,12 @@ Por ejemplo, P1 podría llegar el último:</p>
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">2,75</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2.75</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">10,75</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10.75</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10262,8 +10359,8 @@ procesos mas cortos se ejecutasen primero.</p>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Tiempo de llegada (ms.)</th>
-<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms.)</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10294,7 +10391,7 @@ procesos mas cortos se ejecutasen primero.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/sjf.svg" alt="sjf">
+<img src="media/C14-planificación/sjf.svg" alt="sjf">
 </div>
 </div>
 <div class="paragraph">
@@ -10312,9 +10409,9 @@ procesos mas cortos se ejecutasen primero.</p>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10353,12 +10450,12 @@ procesos mas cortos se ejecutasen primero.</p>
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">6,25</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6.25</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">12,25</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12.25</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10377,9 +10474,9 @@ procesos mas cortos se ejecutasen primero.</p>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10418,12 +10515,12 @@ procesos mas cortos se ejecutasen primero.</p>
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">8,75</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8.75</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">14,75</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14.75</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10458,24 +10555,24 @@ Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos 
 <div class="ulist">
 <ul>
 <li>
-<p>\$\tau_{n+1}\$ es la estimación de tiempo de la siguiente ráfaga de CPU</p>
+<p><em>&#964;</em><sub><em>n</em>+1</sub> es la estimación de tiempo de la siguiente ráfaga de CPU</p>
 </li>
 <li>
-<p>\$t_{n}\$ es el tiempo real de la última ráfaga</p>
+<p><em>t<sub>n</sub></em> es el tiempo real de la última ráfaga</p>
 </li>
 <li>
-<p>\$\alpha\$ es el peso relativo del tiempo real de la última ráfaga.</p>
+<p><em>&#945;</em> es el peso relativo del tiempo real de la última ráfaga.</p>
 </li>
 <li>
-<p>\$\tau_{n}\$ es la estimación de tiempo de la última ráfaga.</p>
+<p><em>&#964;<sub>n</sub></em> es la estimación de tiempo de la última ráfaga.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>La expresión es recursiva, dado que \$\tau_{n}\$ se calcula usando la ecuación con \$t_{n-1}\$ y \$\tau_{n-1}\$; que a su vez depende de \$t_{n-2}\$ y \$\tau_{n-2}\$, y así sucesivamente.</p>
+<p>La expresión es recursiva, dado que <em>&#964;<sub>n</sub></em> se calcula usando la ecuación con <em>t</em><sub><em>n</em>-1</sub> y <em>&#964;</em><sub><em>n</em>-1</sub>; que a su vez depende de <em>t</em><sub><em>n</em>-2</sub> y <em>&#964;</em><sub><em>n</em>-2</sub>, y así sucesivamente.</p>
 </div>
 <div class="paragraph">
-<p>Si desarrollamos la formula sustituyendo los valores, veremos que \$t_{n}\$ se pondera con \$\alpha\$, \$t_{n-1}\$ con \$(1 - \alpha)\alpha\$, \$t_{n-2}\$ con \$(1 - \alpha)^2\alpha\$, y así sucesivamente:</p>
+<p>Si desarrollamos la formula sustituyendo los valores, veremos que <em>t<sub>n</sub></em> se pondera con <em>&#945;</em>, <em>t</em><sub><em>n</em>-1</sub> con (1 - <em>&#945;</em>)<em>&#945;</em>, <em>t</em><sub><em>n</em>-2</sub> con(1 - <em>&#945;</em>)<sup>2</sup><em>&#945;</em>, y así sucesivamente:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -10483,8 +10580,8 @@ Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos 
 </div>
 </div>
 <div class="paragraph">
-<p>Si \$\alpha = 1\$, \$\tau_{n+1} = \alpha\t_n\$, ignorando el resto del histórico.
-En otro caso, dado que tanto \$\alpha\$ como \$1 -\alpha\$ son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los \$t_{n}\$ contribuyan menos cuanto más alejados del tiempo actual.</p>
+<p>Si <em>&#945;</em> = 1, <em>&#964;</em><sub><em>n</em>+1</sub> = <em>&#945;t<sub>n</sub></em>, ignorando el resto del histórico.
+En otro caso, dado que tanto <em>&#945;</em> como 1 - <em>&#945;</em> son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los <em>t<sub>n</sub></em> contribuyan menos cuanto más alejados del tiempo actual.</p>
 </div>
 <div class="paragraph">
 <p>El problema es que todos estos cálculos consumen tiempo de CPU, cuando el planificador debe ser lo más rápido posible, dado que se ejecuta con mucha frecuencia.</p>
@@ -10518,8 +10615,8 @@ Se espera a que el proceso que actualmente se está ejecutando termine su ráfag
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Tiempo de llegada (ms.)</th>
-<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms.)</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10550,7 +10647,7 @@ Se espera a que el proceso que actualmente se está ejecutando termine su ráfag
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/srtf.svg" alt="srtf">
+<img src="media/C14-planificación/srtf.svg" alt="srtf">
 </div>
 </div>
 <div class="paragraph">
@@ -10568,9 +10665,9 @@ Se espera a que el proceso que actualmente se está ejecutando termine su ráfag
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10609,12 +10706,12 @@ Se espera a que el proceso que actualmente se está ejecutando termine su ráfag
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">6,50</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6.50</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">13,00</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13.00</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10676,8 +10773,8 @@ Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuand
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Tiempo de llegada (ms.)</th>
-<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms.)</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
 <th class="tableblock halign-center valign-top">Prioridad</th>
 </tr>
 </thead>
@@ -10719,7 +10816,7 @@ Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuand
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/prioridad.svg" alt="prioridad">
+<img src="media/C14-planificación/prioridad.svg" alt="prioridad">
 </div>
 </div>
 <div class="paragraph">
@@ -10737,9 +10834,9 @@ Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuand
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10786,12 +10883,12 @@ Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuand
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">7,80</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7.80</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">12,20</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12.20</p></td>
 </tr>
 </tfoot>
 </table>
@@ -10854,7 +10951,7 @@ entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.<
 <div class="ulist">
 <ul>
 <li>
-<p>Definir una <strong>ventana de tiempo</strong> o <strong>cuanto</strong>, generalmente entre 10 y 100 ms.</p>
+<p>Definir una <strong>ventana de tiempo</strong> o <strong>cuanto</strong>, generalmente entre 10 y 100 ms</p>
 </li>
 <li>
 <p>Definir la <strong>cola de preparados</strong> como una cola circular, dónde el planificador asigna la CPU a cada proceso en intervalos de tiempo de hasta un <strong>cuanto</strong>, como máximo.</p>
@@ -10882,7 +10979,7 @@ El temporizador interrumpirá el proceso al terminar el cuanto e informará al s
 Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de tiempo compartido</strong>, para repartir la CPU por igual entre los procesos de los usuarios del sistema.</p>
 </div>
 <div class="paragraph">
-<p>Ilustremos el algoritmo con un ejemplo con cuanto de 4 ms.:</p>
+<p>Ilustremos el algoritmo con un ejemplo con cuanto de 4 ms:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -10893,8 +10990,8 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Tiempo de llegada (ms.)</th>
-<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms.)</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10920,7 +11017,7 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/rr.svg" alt="rr">
+<img src="media/C14-planificación/rr.svg" alt="rr">
 </div>
 </div>
 <div class="paragraph">
@@ -10938,9 +11035,9 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">Instante de finalización (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms.)</th>
-<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms.)</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
 </tr>
 </thead>
 <tbody>
@@ -10971,12 +11068,12 @@ Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de t
 </tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms.)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">4,67</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4.67</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">12,67</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12.67</p></td>
 </tr>
 </tfoot>
 </table>
@@ -11032,8 +11129,8 @@ Se busca así equilibrar los criterios anteriores, evitando que el tiempo de cua
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Actualmente se utilizan tiempos de cuanto de entre 10 y 100 ms.
-Estos tiempos son mucho mayores que los tiempos de cambios de contexto, que generalmente son inferiores a 10µs.</p>
+<p>Actualmente se utilizan tiempos de cuanto de entre 10 y 100 ms
+Estos tiempos son mucho mayores que los tiempos de cambios de contexto, que generalmente son inferiores a 10 µs.</p>
 </div>
 </td>
 </tr>
@@ -11100,7 +11197,7 @@ Otro ejemplo es Zircon, el <em>microkernel</em> de <a href="https://es.wikipedia
 </table>
 </div>
 <div class="paragraph">
-<p>Si durante un periodo de tiempo \$T\$, un proceso \$P_i\$ tiene peso \$w_i\$, a ese proceso le corresponde un tiempo de CPU \$t_i\$:</p>
+<p>Si durante un periodo de tiempo <em>T</em>, un proceso <em>P<sub>i</sub></em> tiene peso <em>w<sub>i</sub></em>, a ese proceso le corresponde un tiempo de CPU <em>t<sub>i</sub></em>:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -11108,7 +11205,7 @@ Otro ejemplo es Zircon, el <em>microkernel</em> de <a href="https://es.wikipedia
 </div>
 </div>
 <div class="paragraph">
-<p>donde \$W\$ es la suma de los pesos de todos los procesos en la <strong>cola de preparados</strong> durante \$T\$.</p>
+<p>donde <em>W</em> es la suma de los pesos de todos los procesos en la <strong>cola de preparados</strong> durante <em>T</em>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -11132,7 +11229,7 @@ Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, lo
 </div>
 <div id="esquema_colas_multinivel" class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/planificación_colas_multinivel.svg" alt="planificación colas multinivel">
+<img src="media/C14-planificación/planificación_colas_multinivel.svg" alt="planificación colas multinivel">
 </div>
 <div class="title">Figura 37. Ejemplo de planificación con colas multinivel.</div>
 </div>
@@ -11176,7 +11273,7 @@ Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las
 </div>
 <div id="esquema_planificación_colas_multinivel_realimentadas" class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/planificación_colas_multinivel_realimentadas.svg" alt="planificación colas multinivel realimentadas">
+<img src="media/C14-planificación/planificación_colas_multinivel_realimentadas.svg" alt="planificación colas multinivel realimentadas">
 </div>
 <div class="title">Figura 38. Ejemplo de planificación con colas multinivel realimentadas.</div>
 </div>
@@ -11188,9 +11285,9 @@ Mientras que los procesos expropiados por vencimiento del <strong>cuanto</strong
 </div>
 <div class="paragraph">
 <p>Con ese algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
-Por ejemplo, usando los valores del esquema de la <a href="#esquema_planificación_colas_multinivel_realimentadas">Figura 38</a>, los procesos de ráfagas de CPU entre 20 y 80 ms. acaban cayendo a la cola de prioridad 1 tras 20 ms. de ejecución.
-Así dejan paso a los procesos con ráfagas menores de 20 ms., que siempre se ejecutan con prioridad 0.
-Finalmente, los procesos de ráfagas mayores de 80 ms. van a la cola FCFS, desde donde sólo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la <strong>cola de preparados</strong></p>
+Por ejemplo, usando los valores del esquema de la <a href="#esquema_planificación_colas_multinivel_realimentadas">Figura 38</a>, los procesos de ráfagas de CPU entre 20 y 80 ms acaban cayendo a la cola de prioridad 1 tras 20 ms de ejecución.
+Así dejan paso a los procesos con ráfagas menores de 20 ms, que siempre se ejecutan con prioridad 0.
+Finalmente, los procesos de ráfagas mayores de 80 ms van a la cola FCFS, desde donde sólo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la <strong>cola de preparados</strong></p>
 </div>
 <div class="paragraph">
 <p>La <strong>planificador de colas multinivel realimentadas</strong> también se puede utilizar para pasar a colas superiores los procesos que han esperado mucho tiempo en colas inferiores, evitando la <strong>muerte por inanición</strong>, que puede afecta a los sistemas de <strong>planificación de colas multinivel</strong> con <strong>prioridad fija</strong>.</p>
@@ -11200,7 +11297,7 @@ Finalmente, los procesos de ráfagas mayores de 80 ms. van a la cola FCFS, desde
 </div>
 <div id="esquema_planificación_rr_virtual" class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/vrr.svg" alt="vrr">
+<img src="media/C14-planificación/vrr.svg" alt="vrr">
 </div>
 <div class="title">Figura 39. Ejemplo de planificación con RR virtual.</div>
 </div>
@@ -11276,7 +11373,7 @@ Por lo general, la clase de prioridad <code>NORMAL_PRIORITY_CLASS</code> es la c
 </div>
 <div id="windows_task_manager" class="imageblock">
 <div class="content">
-<img src="C14-planificación_de_CPU/media/administrador_de_tareas.jpg" alt="administrador de tareas">
+<img src="media/C14-planificación/administrador_de_tareas.jpg" alt="administrador de tareas">
 </div>
 <div class="title">Figura 40. Cambiar la prioridad de un proceso en el <strong>Administrador de tareas</strong>.</div>
 </div>
@@ -11588,7 +11685,7 @@ Esto hace que el diseño de un núcleo de estas características sea mucho más 
 </div>
 <div class="paragraph">
 <p>Microsoft Windows —desde Windows NT—, Linux —desde la versión 2.6—, <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> y <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a> son algunos ejemplos de sistemas operativos con núcleos expropiables.
-En el caso concreto de Solaris la latencia de asignación es inferior a 1 ms., mientras que con la expropiación del núcleo desactivada ésta puede superar los 100 ms.</p>
+En el caso concreto de Solaris la latencia de asignación es inferior a 1 ms, mientras que con la expropiación del núcleo desactivada ésta puede superar los 100 ms</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -11777,13 +11874,19 @@ Mientras que en Microsoft Windows, a partir de Windows Vista también se utiliza
 <div class="sect1">
 <h2 id="_memoria_principal">15. Memoria principal</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>22 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 22 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>La memoria es un recurso central para el funcionamiento de un sistema operativo moderno, puesto que es el único medio de almacenamiento al que la CPU puede acceder directamente.
@@ -11820,7 +11923,7 @@ Excepto por eso, el procedimiento normal de ejecución de un programa es similar
 </div>
 <div id="etapas_programas_de_usuario" class="imageblock">
 <div class="content">
-<img src="C15-memoria_principal/media/etapas_de_un_programa_de_usuario.svg" alt="etapas de un programa de usuario">
+<img src="media/C15-memoria_principal/etapas_de_un_programa_de_usuario.svg" alt="etapas de un programa de usuario">
 </div>
 <div class="title">Figura 41. Etapas de procesamiento de un programa de usuario.</div>
 </div>
@@ -12015,7 +12118,7 @@ De él hablaremos en el <a href="#_espacio_de_direcciones_virtual_frente_a_físi
 </div>
 <div id="espacio_direcciones_virtual_frente_físico" class="imageblock">
 <div class="content">
-<img src="C15-memoria_principal/media/protección_memoria.svg" alt="protección memoria">
+<img src="media/C15-memoria_principal/protección_memoria.svg" alt="protección memoria">
 </div>
 <div class="title">Figura 42. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
 </div>
@@ -12285,7 +12388,7 @@ Es decir, el espacio de almacenamiento está fraccionado en un gran número de h
 <p>Afecta tanto a la estrategia del <strong>primer</strong> como del <strong>mejor ajuste</strong>. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.</p>
 </li>
 <li>
-<p>Algunos análisis estadísticos realizados con el <strong>primer ajuste</strong> revelan que incluso con algunas optimizaciones, con \$N\$ bloques asignados se pierden \$0,5N\$ por <strong>fragmentación externa</strong> —es decir, un tercio de toda la memoria no es utilizable—.
+<p>Algunos análisis estadísticos realizados con el <strong>primer ajuste</strong> revelan que incluso con algunas optimizaciones, con <em>N</em> bloques asignados se pierden 0.5<em>N</em> por <strong>fragmentación externa</strong> —es decir, un tercio de toda la memoria no es utilizable—.
 A esto se lo conoce como la regla del 50%.</p>
 </li>
 </ul>
@@ -12426,13 +12529,19 @@ Además, en los sistemas actuales no se intercambian procesos completos sino las
 <div class="sect1">
 <h2 id="_paginación">16. Paginación</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>22 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 22 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>La traducción entre direcciones virtuales y físicas puede realizarse de diversas maneras.
@@ -12446,7 +12555,7 @@ Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacen
 </div>
 <div id="paginación" class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/paginación.svg" alt="paginación">
+<img src="media/C16-paginación/paginación.svg" alt="paginación">
 </div>
 <div class="title">Figura 43. Soporte del hardware para la paginación.</div>
 </div>
@@ -12456,44 +12565,44 @@ Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacen
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Cada dirección virtual generada por la CPU es divida en dos partes: un <strong>número de página</strong> \$p\$ y un <strong>desplazamiento</strong> \$d\$.</p>
+<p>Cada dirección virtual generada por la CPU es divida en dos partes: un <strong>número de página</strong> <em>p</em> y un <strong>desplazamiento</strong> <em>d</em>.</p>
 </li>
 <li>
-<p>El <strong>número de página</strong> es utilizado por la MMU para indexar la <strong>tabla de páginas</strong>, que contiene el <strong>número de marco</strong> \$f\$ de cada <strong>página</strong> en la memoria física.</p>
+<p>El <strong>número de página</strong> es utilizado por la MMU para indexar la <strong>tabla de páginas</strong>, que contiene el <strong>número de marco</strong> <em>f</em> de cada <strong>página</strong> en la memoria física.</p>
 </li>
 <li>
-<p>El <strong>número de marco</strong> \$f\$ es combinado con el <strong>desplazamiento</strong> \$d\$ para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.</p>
+<p>El <strong>número de marco</strong> <em>f</em> es combinado con el <strong>desplazamiento</strong> <em>d</em> para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
 <p>El tamaño de las <strong>páginas</strong> —y el de los <strong>marcos</strong>— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
-Es decir, si el espacio de direcciones es de \$2^m\$ y el tamaño de página es de \$2^n\$, los \$m - n\$ bits de mayor orden de las direcciones virtuales indican el <strong>número de página</strong>, mientras que los \$n\$ bits de menor orden indican el <strong>desplazamiento</strong> (véase la <a href="#dirección_virtual_paginación">Figura 44</a>).</p>
+Es decir, si el espacio de direcciones es de 2<sup><em>m</em></sup> y el tamaño de página es de 2<sup><em>n</em></sup>, los <em>m</em> - <em>n</em> bits de mayor orden de las direcciones virtuales indican el <strong>número de página</strong>, mientras que los <em>n</em> bits de menor orden indican el <strong>desplazamiento</strong> (véase la <a href="#dirección_virtual_paginación">Figura 44</a>).</p>
 </div>
 <div id="dirección_virtual_paginación" class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/dirección_virtual_paginación.svg" alt="dirección virtual paginación">
+<img src="media/C16-paginación/dirección_virtual_paginación.svg" alt="dirección virtual paginación">
 </div>
 <div class="title">Figura 44. Descomposición de las direcciones virtuales en paginación.</div>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento \$n\$ necesita:</p>
+<p>Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento <em>n</em> necesita:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$n = log_2 4096 = 12\ text{bits}\$
+\$n = log_2 4096 = 12\ "bits"\$
 </div>
 </div>
 <div class="paragraph">
-<p>Si las direcciones virtuales son de 32 bits, eso deja para el número de página \$p\$:</p>
+<p>Si las direcciones virtuales son de 32 bits, eso deja para el número de página <em>p</em>:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$p = 32 - 12 = 20\ text{bits}\$
+\$p = 32 - 12 = 20\ "bits"\$
 </div>
 </div>
 <div class="paragraph">
-<p>por lo que el espacio de direcciones virtual tiene \$2^20\$ páginas —es decir, 1.048.576 páginas—.</p>
+<p>por lo que el espacio de direcciones virtual tiene 2<sup>20</sup> páginas —es decir, 1&#x2009;048&#x2009;576 páginas—.</p>
 </div>
 <div class="sect3">
 <h4 id="_desde_el_punto_de_vista_de_los_procesos">16.1.1. Desde el punto de vista de los procesos</h4>
@@ -12504,7 +12613,7 @@ Por tanto, cuando un proceso llega al sistema:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Si el proceso requiere \$n\$ <strong>páginas</strong>, el sistema operativo debe escoger \$n\$ <strong>marcos</strong>.
+<p>Si el proceso requiere <em>n</em> <strong>páginas</strong>, el sistema operativo debe escoger <em>n</em> <strong>marcos</strong>.
 Estos <strong>marcos</strong> son tomados de la <strong>lista de marcos libres</strong> que debe mantener el sistema.
 Puesto que son escogidos de allí donde los haya libres, el <strong>espacio de direcciones físico</strong> puede no ser contiguo, aunque los procesos vean un <strong>espacio de direcciones virtual</strong> contiguo.</p>
 </li>
@@ -12577,13 +12686,13 @@ Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez
 </div>
 <div class="paragraph">
 <p>Los tamaños de <strong>páginas</strong> típicos son 4 y 8 KiB.
-En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1.048.576 páginas.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1&#x2009;048&#x2009;576 páginas.
 Si se utilizan 4 bytes para cada entrada de la <strong>tabla de páginas</strong> —aunque esto también puede variar— eso significa que cada <strong>tabla de páginas</strong> ocupa 4 MiB de espacio.
 Mientras que con <strong>páginas</strong> de 8 KiB, la <strong>tabla de páginas</strong> ocuparía 2 MiB de espacios.</p>
 </div>
 <div class="paragraph">
-<p>También significa que si los 4 bytes de la <strong>tabla de páginas</strong> se utilizan para guardar únicamente el <strong>número de marco</strong>, cada entrada puede direccionar a uno de \$2^32\$ —o 4 GiB— <strong>marcos</strong> de la memoria física.
-Si el tamaño de cada <strong>marco</strong> es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar \$2^44\$ bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.</p>
+<p>También significa que si los 4 bytes de la <strong>tabla de páginas</strong> se utilizan para guardar únicamente el <strong>número de marco</strong>, cada entrada puede direccionar a uno de 2<sup>32</sup> —o 4 GiB— <strong>marcos</strong> de la memoria física.
+Si el tamaño de cada <strong>marco</strong> es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar 2<sup>44</sup> bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.</p>
 </div>
 </div>
 </div>
@@ -12703,10 +12812,10 @@ Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la
 <div class="sect4">
 <h5 id="_tiempos_de_acceso_a_la_memoria">Tiempos de acceso a la memoria</h5>
 <div class="paragraph">
-<p>El rendimiento de un sistema con paginación, está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria \$T_(em)\$, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de <strong>TLB</strong>.</p>
+<p>El rendimiento de un sistema con paginación, está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria <em>T<sub>em</sub></em>, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de <strong>TLB</strong>.</p>
 </div>
 <div class="paragraph">
-<p>En muchos sistemas informáticos, el <strong>tiempo de acceso</strong> a la memoria física \$T_m\$ es de unos pocos nanosegundos.
+<p>En muchos sistemas informáticos, el <strong>tiempo de acceso</strong> a la memoria física <em>T<sub>m</sub></em> es de unos pocos nanosegundos.
 Por lo tanto, en el método de básico de paginación el <strong>tiempo de acceso efectivo</strong> es el doble del <strong>tiempo de acceso</strong> a la memoria:</p>
 </div>
 <div class="stemblock">
@@ -12718,8 +12827,8 @@ Por lo tanto, en el método de básico de paginación el <strong>tiempo de acces
 <p>Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el <strong>número de marco</strong>, el <strong>tiempo de acceso efectivo</strong> será mayor.</p>
 </div>
 <div class="paragraph">
-<p>Supongamos que tenemos un sistema con <strong>TLB</strong> y que conocemos la probabilidad \$p\$ de que la entrada que consultamos esté en la <strong>TLB</strong>.
-Entonces, el <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad \$(1-p)\$ de que la entrada no esté en la <strong>TLB</strong>, por el <strong>tiempo de acceso</strong> necesario, en ese caso \$2T_m\$, mas la probabilidad de que la entrada sí esté en la <strong>TLB</strong> \$p\$, por el <strong>tiempo de acceso</strong> \$T_m\$, porque solo hace falta acceder una vez a la memoria:</p>
+<p>Supongamos que tenemos un sistema con <strong>TLB</strong> y que conocemos la probabilidad <em>p</em> de que la entrada que consultamos esté en la <strong>TLB</strong>.
+Entonces, el <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad (1 - <em>p</em>) de que la entrada no esté en la <strong>TLB</strong>, por el <strong>tiempo de acceso</strong> necesario, en ese caso 2<em>T<sub>m</sub></em>, mas la probabilidad de que la entrada sí esté en la <strong>TLB</strong> <em>p</em>, por el <strong>tiempo de acceso</strong> <em>T<sub>m</sub></em>, porque solo hace falta acceder una vez a la memoria:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -12727,7 +12836,7 @@ Entonces, el <strong>tiempo de acceso efectivo</strong> se podría calcular como
 </div>
 </div>
 <div class="paragraph">
-<p>Como se puede observar, cuanto más se aproxima a 1 la probabilidad \$p\$ de que la entrada esté en la <strong>TLB</strong>, más cerca está \$T_(em)\$ de \$T_m\$.</p>
+<p>Como se puede observar, cuanto más se aproxima a 1 la probabilidad <em>p</em> de que la entrada esté en la <strong>TLB</strong>, más cerca está <em>T<sub>em</sub></em> de <em>T<sub>m</sub></em>.</p>
 </div>
 <div class="paragraph">
 <p>Para mejorar esta probabilidad:</p>
@@ -12830,7 +12939,7 @@ Generalmente, porque no se le ha asignado un <strong>marco</strong> de memoria f
 </div>
 <div id="bit_de_válido_en_la_tabla_de_páginas" class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/bit_de_válido_en_la_tabla_de_páginas.svg" alt="bit de válido en la tabla de páginas">
+<img src="media/C16-paginación/bit_de_válido_en_la_tabla_de_páginas.svg" alt="bit de válido en la tabla de páginas">
 </div>
 <div class="title">Figura 45. Bit de válido en la tabla de páginas.</div>
 </div>
@@ -12867,7 +12976,7 @@ Este valor es comparado por la MMU, durante la traducción de las direcciones vi
 </div>
 <div id="proceso_en_memoria_disperso" class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/proceso_en_memoria.svg" alt="proceso en memoria">
+<img src="media/C09-procesos/proceso_en_memoria.svg" alt="proceso en memoria">
 </div>
 <div class="title">Figura 46. Anatomía de un proceso en memoria.</div>
 </div>
@@ -12920,15 +13029,15 @@ Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño del espacio de direcciones</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">= \$2^32\$ = 4 GiB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>32</sup> = 4 GiB</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño de página</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">= \$2^12\$ = 4 KiB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>12</sup> = 4 KiB</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>número de páginas</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">= \$2^32 / 2^12\$ = \$2^{32-12}\$ = \$2^20\$ = 1.048.576 entradas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>32</sup> / 2<sup>12</sup> = 2<sup>32-12</sup> = 2<sup>20</sup> = 1&#x2009;048&#x2009;576 entradas</p></td>
 </tr>
 </tbody>
 </table>
@@ -12943,13 +13052,13 @@ Una forma de resolver este problema es partir la <strong>tabla de páginas</stro
 </div>
 <div id="paginación_jerárquica" class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/paginación_jerárquica.svg" alt="paginación jerárquica">
+<img src="media/C16-paginación/paginación_jerárquica.svg" alt="paginación jerárquica">
 </div>
 <div class="title">Figura 47. Esquema de paginación jerárquica de dos niveles.</div>
 </div>
 <div class="paragraph">
 <p>Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de
-página de 4 KiB, entonces podemos dividir la tabla de páginas de 1.048.576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un <strong>marco</strong> de 4 KiB.</p>
+página de 4 KiB, entonces podemos dividir la tabla de páginas de 1&#x2009;048&#x2009;576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un <strong>marco</strong> de 4 KiB.</p>
 </div>
 <div class="paragraph">
 <p>Estos <strong>marcos</strong>, a su vez, pueden ser mapeados por 1024 entradas con las direcciones físicas de cada <strong>marco</strong>.
@@ -12961,11 +13070,11 @@ Sin embargo, ahora la <strong>tabla de páginas</strong> está dividida en <stro
 Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.</p>
 </div>
 <div class="paragraph">
-<p>Para tener dos niveles de 1024 entradas, solo es necesario dividir el <strong>número de página</strong> \$p\$ de la dirección virtual —que tenía \$2^20\$ bits— en dos <strong>números de página</strong> de \$2^10\$ bits cada uno:</p>
+<p>Para tener dos niveles de 1024 entradas, solo es necesario dividir el <strong>número de página</strong> <em>p</em> de la dirección virtual —que tenía 2<sup>20</sup> bits— en dos <strong>números de página</strong> de 2<sup>10</sup> bits cada uno:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/dirección_virtual_paginación_jerárquica.svg" alt="dirección virtual paginación jerárquica">
+<img src="media/C16-paginación/dirección_virtual_paginación_jerárquica.svg" alt="dirección virtual paginación jerárquica">
 </div>
 </div>
 <div class="paragraph">
@@ -12978,13 +13087,13 @@ Las direcciones virtuales eran divididas de la siguiente manera:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C16-paginación/media/dirección_virtual_vax.svg" alt="dirección virtual vax">
+<img src="media/C16-paginación/dirección_virtual_vax.svg" alt="dirección virtual vax">
 </div>
 </div>
 <div class="paragraph">
 <p>El espacio de direcciones de un proceso estaba dividido en 3 secciones.
-Los 2 bits de orden más alto \$s\$ de las direcciones virtuales se utilizaban para indicar la <strong>sección</strong>.
-Cada <strong>sección</strong> estaba dividida en <strong>páginas</strong> de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales \$p\$ eran utilizadas para seleccionar la <strong>página</strong> concreta.</p>
+Los 2 bits de orden más alto <em>s</em> de las direcciones virtuales se utilizaban para indicar la <strong>sección</strong>.
+Cada <strong>sección</strong> estaba dividida en <strong>páginas</strong> de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales <em>p</em> eran utilizadas para seleccionar la <strong>página</strong> concreta.</p>
 </div>
 <div class="paragraph">
 <p>Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
@@ -12995,20 +13104,20 @@ Esto era importante, puesto que la <strong>tabla de páginas</strong> de una
 <div class="sect3">
 <h4 id="_paginación_jerárquica_de_n_niveles">16.5.2. Paginación jerárquica de N niveles</h4>
 <div class="paragraph">
-<p>En general, en la <strong>paginación jerárquica</strong> de \$N\$ niveles el <strong>número de página</strong> \$p\$ de cada dirección virtual es dividido en \$N\$ números: \${ p_1, p_2, p_3, \ldots, p_N}\$, donde:</p>
+<p>En general, en la <strong>paginación jerárquica</strong> de <em>n</em> niveles el <strong>número de página</strong> <em>p</em> de cada dirección virtual es dividido en <em>n</em> números: { <em>p</em><sub>1</sub>, <em>p</em><sub>2</sub>, <em>p</em><sub>3</sub>, &#8230;, <em>p<sub>N</sub></em>}, donde:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>\$p_1\$ se utiliza para indexar la <strong>tabla de páginas externa</strong> —también llamada <strong>directorio de páginas</strong> o <strong>tabla de páginas de nivel 0</strong>— cuya dirección conoce la CPU mediante el <strong>PTBR</strong>.
+<p><em>p</em><sub>1</sub> se utiliza para indexar la <strong>tabla de páginas externa</strong> —también llamada <strong>directorio de páginas</strong> o <strong>tabla de páginas de nivel 0</strong>— cuya dirección conoce la CPU mediante el <strong>PTBR</strong>.
 La entrada obtenida de esta manera, contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 1—.</p>
 </li>
 <li>
-<p>\$p_2\$ se utiliza para indexar la <strong>tabla de páginas de nivel 1</strong>.
+<p><em>p</em><sub>2</sub> se utiliza para indexar la <strong>tabla de páginas de nivel 1</strong>.
 E, igualmente, la entrada así obtenida contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 2—.</p>
 </li>
 <li>
-<p>El proceso continúa hasta que \$p_N\$, se utiliza para indexar la <strong>tabla de páginas de nivel N-1</strong>, con la que se obtiene el <strong>número de marco</strong> que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento \$d\$ de la dirección virtual.</p>
+<p>El proceso continúa hasta que <em>p<sub>N</sub></em>, se utiliza para indexar la <strong>tabla de páginas de nivel N-1</strong>, con la que se obtiene el <strong>número de marco</strong> que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento <em>d</em> de la dirección virtual.</p>
 </li>
 </ol>
 </div>
@@ -13016,7 +13125,7 @@ E, igualmente, la entrada así obtenida contiene la dirección en la memoria fí
 <p>Como se puede ver, resolver una dirección virtual necesita tantos accesos a la memoria como niveles hay en la jerarquía.</p>
 </div>
 <div class="paragraph">
-<p>Debido a que la traducción funciona desde las <strong>tablas de páginas</strong> de nivel superior —nivel 0— hacia las de nivel inferior —nivel \$N-1\$—, a esta estructura también se la conoce como <strong>tabla de páginas directa</strong>.</p>
+<p>Debido a que la traducción funciona desde las <strong>tablas de páginas</strong> de nivel superior —nivel 0— hacia las de nivel inferior —nivel <em>N</em> - 1—, a esta estructura también se la conoce como <strong>tabla de páginas directa</strong>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -13051,13 +13160,19 @@ Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits �
 <div class="sect1">
 <h2 id="_memoria_virtual">17. Memoria virtual</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>1 horas y 4 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 1 hora y 4 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>La <strong>memoria virtual</strong> es una técnica que permite la ejecución de procesos sin que éstos tengan que ser cargados completamente en la memoria.</p>
@@ -13233,16 +13348,16 @@ Sin embargo, esto no ocurre puesto que los programas tienden a tener localidad d
 <p>Como con la <strong>paginación</strong>, el rendimiento de un sistema con <strong>paginación bajo demanda</strong> también está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria teniendo en cuenta mecanismos del sistema operativo.</p>
 </div>
 <div class="paragraph">
-<p>Supongamos que conocemos la probabilidad \$p_(fp)\$ de que ocurra un fallo de página.
-El <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad de que no ocurra un fallo de página \$(1-p_(fp))\$ por el <strong>tiempo de acceso</strong> a la memoria \$T_m\$, mas la probabilidad de que ocurra un fallo de página \$p\$ por el tiempo necesario para gestionar cada fallo de página —o <strong>tiempo de fallo de página</strong>— \$T_(fp)\$:</p>
+<p>Supongamos que conocemos la probabilidad <em>p<sub>fp</sub></em> de que ocurra un fallo de página.
+El <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad de que no ocurra un fallo de página (1 - <em>p<sub>fp</sub></em>) por el <strong>tiempo de acceso</strong> a la memoria <em>T<sub>m</sub></em>, mas la probabilidad de que ocurra un fallo de página <em>p</em> por el tiempo necesario para gestionar cada fallo de página —o <strong>tiempo de fallo de página</strong>— <em>T<sub>fp</sub></em>:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$T_(em)=(1-p_(fp)) T_m+p_(fp) T_(fp)\$
+\[T_{em}=(1-p_{fp}) T_m+p_{fp} T_{fp}\]
 </div>
 </div>
 <div class="paragraph">
-<p>Por tanto, para calcular el <strong>tiempo de acceso efectivo</strong> \$T_(em)\$ necesitamos estimar el <strong>tiempo de fallo de página</strong> \$T_(fp)\$, que se consume fundamentalmente en:</p>
+<p>Por tanto, para calcular el <strong>tiempo de acceso efectivo</strong> <em>T<sub>em</sub></em> necesitamos estimar el <strong>tiempo de fallo de página</strong> <em>T<sub>fp</sub></em>, que se consume fundamentalmente en:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -13250,16 +13365,16 @@ El <strong>tiempo de acceso efectivo</strong> se podría calcular como la probab
 <p>Servir la excepción de fallo de página.</p>
 <div class="paragraph">
 <p>Esto incluye capturar la interrupción, salvar los registros y el estado del proceso, determinar que la interrupción es debida a una excepción de <strong>fallo de página</strong>, comprobar si la página es legal y determinar la localización de la misma en el disco.
-Aproximadamente, en realizar esta tarea el sistema puede tardar de 1 a 100μs.</p>
+Aproximadamente, en realizar esta tarea el sistema puede tardar de 1 a 100 μs.</p>
 </div>
 </li>
 <li>
 <p>Leer la página en un marco libre.
-En esta tarea se puede tardar alrededor de 8ms, pero este tiempo puede ser mucho mayor si el dispositivo está ocupado y se debe esperar a que se realicen otras operaciones.</p>
+En esta tarea se puede tardar alrededor de 8 ms, pero este tiempo puede ser mucho mayor si el dispositivo está ocupado y se debe esperar a que se realicen otras operaciones.</p>
 </li>
 <li>
 <p>Reiniciar el proceso.
-Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre 1 y 100μs.</p>
+Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre 1 y 100 μs.</p>
 </li>
 </ul>
 </div>
@@ -13268,19 +13383,19 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 </div>
 <div class="paragraph">
 <p>Para ilustrar el cálculo del <strong>tiempo de acceso efectivo</strong> a la memoria, solo vamos a considerar el tiempo requerido para acceder al <strong>dispositivo de intercambio</strong>, ignorando las otras tareas a realizar durante el <strong>fallo de página</strong> ya que comparativamente consumen mucho menos tiempo.
-Vamos suponer que el <strong>tiempo de acceso</strong> a la memoria \$T_m\$ es de 200 ns. y que la probabilidad \$p_(fp)\$ es muy pequeña —es decir, \$p ≪ 1\$—:</p>
+Vamos suponer que el <strong>tiempo de acceso</strong> a la memoria <em>T<sub>m</sub></em> es de 200 ns y que la probabilidad <em>p<sub>fp</sub></em> es muy pequeña —es decir, p &#8810; 1—:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\${:
-(T_(em),=,     (1-p_(fp))*200\ text{ns.}+p_(fp) * 8\ text{ms.}),
-(      ,=,     (1-p_(fp))*200\ text{ns.}+p_(fp) * 8000000\ text{ns.}),
-(     ,approx, 200\ text{ns.} + 7999800\ text{ns.} * p )
-:}\$
+\[\begin{split}
+T_{em} &amp;= (1-p_{fp}) \cdot 200\,\text{ns}+p_{fp} \cdot 8\,\text{ms.} \\
+       &amp;= (1-p_{fp}) \cdot 200\,\text{ns}+p_{fp} \cdot 8\,000\,000\,\text{ms.} \\
+       &amp;\approx 200\,\text{ns} + 7\,999\,800\,\text{ms.} \cdot p
+\end{split}\]
 </div>
 </div>
 <div class="paragraph">
-<p>Como se puede apreciar el <strong>tiempo de acceso efectivo</strong> es proporcional a la <strong>tasa de fallos de página</strong> \$tau_(fp)\$:</p>
+<p>Como se puede apreciar el <strong>tiempo de acceso efectivo</strong> es proporcional a la <strong>tasa de fallos de página</strong> <em>&#964;<sub>fp</sub></em>:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -13288,25 +13403,30 @@ Vamos suponer que el <strong>tiempo de acceso</strong> a la memoria \$T_m\$ es d
 </div>
 </div>
 <div class="paragraph">
-<p>donde \$tau_(fp)=p_(fp) T_(fp)\$.</p>
-</div>
-<div class="paragraph">
-<p>Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, \$p_(fp) = 0,001\$— el <strong>tiempo de acceso efectivo</strong> es de 8,2 ms., por lo que el rendimiento del sistema es 40 veces inferior debido a la <strong>paginación bajo demanda</strong>.
-Por tanto, es necesario mantener la <strong>tasa de fallos de página</strong> \$tau_(fp)\$ lo más baja posible para mantener un rendimiento adecuado.</p>
-</div>
-<div class="paragraph">
-<p>Por simplicidad, por el momento hemos considerado \$T_m\$ como el tiempo de acceso a la memoria física.
-Sin embargo, realmente estamos en un sistema que utiliza paginación —incluso con varios niveles— y que puede tener una TLB para mejorar su rendimiento.
-Entonces, si queremos ser más precisos, podemos considerar \$T_m\$ como el <strong>tiempo de acceso efectivo</strong> que vimos en el <a href="#_tiempos_de_acceso_a_la_memoria">Apartado 16.2.3.3</a> para el método básico de paginación.
-Por lo que sustituyendolo en la expresión anterior:</p>
+<p>donde:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$T_(em) approx (2-p_(tlb)) T_m + tau_(fp)\$
+\$tau_(fp)=p_(fp) T_(fp)\$
 </div>
 </div>
 <div class="paragraph">
-<p>donde \$p_(tlb)\$ es la probabilidad de que una entrada esté en la TLB y \$T_m\$ ahora sí es el <strong>tiempo de acceso</strong> a la memoria física.</p>
+<p>Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, <em>p<sub>fp</sub> =</em> 0.001— el <strong>tiempo de acceso efectivo</strong> es de 8.2 ms, por lo que el rendimiento del sistema es 40 veces inferior debido a la <strong>paginación bajo demanda</strong>.
+Por tanto, es necesario mantener la <strong>tasa de fallos de página</strong> <em>&#964;<sub>fp</sub></em> lo más baja posible para mantener un rendimiento adecuado.</p>
+</div>
+<div class="paragraph">
+<p>Por simplicidad, por el momento hemos considerado <em>T<sub>m</sub></em> como el tiempo de acceso a la memoria física.
+Sin embargo, realmente estamos en un sistema que utiliza paginación —incluso con varios niveles— y que puede tener una TLB para mejorar su rendimiento.
+Entonces, si queremos ser más precisos, podemos considerar <em>T<sub>m</sub></em> como el <strong>tiempo de acceso efectivo</strong> que vimos en el <a href="#_tiempos_de_acceso_a_la_memoria">Apartado 16.2.3.3</a> para el método básico de paginación.
+Por lo que sustituyéndolo en la expresión anterior:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[T_{em} \approx (2-p_{tlb}) T_m + tau_{fp}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde <em>p<sub>tlb</sub></em> es la probabilidad de que una entrada esté en la TLB y <em>T<sub>m</sub></em> ahora sí es el <strong>tiempo de acceso</strong> a la memoria física.</p>
 </div>
 </div>
 <div class="sect4">
@@ -13359,7 +13479,7 @@ El <strong><em>copy-on-write</em></strong> minimiza de la siguiente manera el n�
 </div>
 <div id="copy_on_write_1" class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/copy-on-write1.svg" alt="copy on write1">
+<img src="media/C17-memoria_virtual/copy-on-write1.svg" alt="copy on write1">
 </div>
 <div class="title">Figura 48. Copy-on-write antes de que el proceso 1 modifique la página A.</div>
 </div>
@@ -13389,7 +13509,7 @@ Si se ha intentado escribir en una página de solo lectura, el proceso ha cometi
 </div>
 <div id="copy_on_write_2" class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/copy-on-write2.svg" alt="copy on write2">
+<img src="media/C17-memoria_virtual/copy-on-write2.svg" alt="copy on write2">
 </div>
 <div class="title">Figura 49. Copy-on-write después de que el proceso 1 modifique la página A.</div>
 </div>
@@ -13646,7 +13766,7 @@ Para reducir el número de datos podemos hacer dos cosas:</p>
 <p>De cada referencia sólo necesitamos considerar el número de página.</p>
 </li>
 <li>
-<p>Si tenemos una referencia a la página \$p\$, cualquier referencia inmediatamente posterior a dicha página \$p\$ nunca provocará un fallo de página, por lo que podemos ignorarlas.
+<p>Si tenemos una referencia a la página <em>p</em>, cualquier referencia inmediatamente posterior a dicha página <em>p</em> nunca provocará un fallo de página, por lo que podemos ignorarlas.
 Esto no tendría porque ser cierto y si consideramos que hay varios procesos en el sistema y unos pueden expropiar a los otros.
 Pero por simplicidad, ese no es nuestro caso.</p>
 </li>
@@ -13859,7 +13979,7 @@ Sin embargo, aunque esto pase, todo seguirá funcionado correctamente, aunque au
 </div>
 <div id="fallos_de_página_frente_a_marcos" class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/fallos_de_página_frente_a_marcos.svg" alt="fallos de página frente a marcos">
+<img src="media/C17-memoria_virtual/fallos_de_página_frente_a_marcos.svg" alt="fallos de página frente a marcos">
 </div>
 <div class="title">Figura 50. Fallos de página frente a número de marcos.</div>
 </div>
@@ -13870,7 +13990,7 @@ Es lo que se conoce como la <strong>anormalidad de Belady</strong>.</p>
 </div>
 <div id="anormalidad_de_belady" class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/anormalidad_de_belady.svg" alt="anormalidad de belady">
+<img src="media/C17-memoria_virtual/anormalidad_de_belady.svg" alt="anormalidad de belady">
 </div>
 <div class="title">Figura 51. Fallos de página con el algoritmo de reemplazo FIFO.</div>
 </div>
@@ -14277,9 +14397,9 @@ reemplazo, puesto que esta se puede extraer directamente del final de la pila.</
 <div class="paragraph">
 <p>El <strong>algoritmo reemplazo LRU</strong> pertenece a una clase denominada <strong>algoritmos de pila</strong>, que nunca se
 ven afectados por la <strong>anormalidad de Belady</strong>.
-En estos algoritmos, las páginas en memoria en un instante dado para \$N\$ marcos son un subconjunto de las que podrían haber con \$N+1\$ marcos.
-Concretamente, en el <strong>algoritmo LRU</strong> las páginas en los marcos son las \$N\$ páginas más referenciadas recientemente.
-Si el número de marcos aumentase, estas \$N\$ páginas seguirían estando en memoria, pues siguen siendo las referenciadas más recientemente.</p>
+En estos algoritmos, las páginas en memoria en un instante dado para <em>N</em> marcos son un subconjunto de las que podrían haber con <em>N</em> + 1 marcos.
+Concretamente, en el <strong>algoritmo LRU</strong> las páginas en los marcos son las <em>N</em> páginas más referenciadas recientemente.
+Si el número de marcos aumentase, estas <em>N</em> páginas seguirían estando en memoria, pues siguen siendo las referenciadas más recientemente.</p>
 </div>
 </div>
 <div class="sect4">
@@ -14568,12 +14688,12 @@ El <strong>reemplazo LRU aproximado con bits de referencia adicionales</strong>,
 <p>A parte del <strong>bit de referencia</strong>, cada página tiene un conjunto de <strong>bits de referencia adicionales</strong> —por ejemplo, 8 bits— que se guardan en alguna tabla interna que mantiene el sistema operativo.</p>
 </li>
 <li>
-<p>A intervalos regulares —por ejemplo, cada 100 ms.— el sistema operativo desplaza los <strong>bits de referencia adicionales</strong> de cada página; insertando el <strong>bit de referencia</strong> de la página en el bit de orden más alto y descartando el bit de orden más bajo.</p>
+<p>A intervalos regulares —por ejemplo, cada 100 ms— el sistema operativo desplaza los <strong>bits de referencia adicionales</strong> de cada página; insertando el <strong>bit de referencia</strong> de la página en el bit de orden más alto y descartando el bit de orden más bajo.</p>
 </li>
 <li>
 <p>Cuando haya que escoger una página para ser reemplazada se escoge la que tenga el valor más pequeño en el conjunto de <strong>bits de referencia adicionales</strong>.
 Esto es así, puesto que dicho conjunto contiene la historia de referencias de la página.
-Por ejemplo, \${1 1 0 0 0 1 0 0}\$ es más reciente que \${0 1 1 1 0 1 1 1}\$.</p>
+Por ejemplo, {1 1 0 0 0 1 0 0} es más reciente que {0 1 1 1 0 1 1 1}.</p>
 </li>
 <li>
 <p>Se puede utilizar el <strong>algoritmo de reemplazo de página FIFO</strong> o escoger un aleatoriamente, si dos páginas tienen el mismo valor.</p>
@@ -14978,8 +15098,7 @@ Esta cola contiene todas las páginas con marcos asignados y en el orden en que 
 <h6 id="_reemplazo_nru_mejorado">Reemplazo NRU mejorado</h6>
 <div class="paragraph">
 <p>Se puede mejorar el <strong>algoritmo de la segunda oportunidad</strong> considerando tanto el <strong>bit de referencia</strong> como el <strong>bit de modificado</strong>.
-Algunos autores también denominan a este algoritmo como <strong>NRU</strong>, aunque nosotros lo llamaremos <strong>NRU mejorado</strong> ya que
-también es una versión mejorada del algoritmo del <a href="#_reemplazo_nru">Apartado 17.4.1.5.1</a>.</p>
+Algunos autores también denominan a este algoritmo como <strong>NRU</strong>, aunque nosotros lo llamaremos <strong>NRU mejorado</strong>, ya que también es una versión mejorada del algoritmo del <a href="#_reemplazo_nru">Apartado 17.4.1.5.1</a>.</p>
 </div>
 <div class="paragraph">
 <p>Con esos dos bits, el sistema operativo clasifica las páginas en una de las siguientes cuatro clases:</p>
@@ -15726,7 +15845,7 @@ Esto podía ocasionar que aumentara la <strong>tasa de fallos de página</strong
 </div>
 <div id="hiperpaginación" class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/hiperpaginación.svg" alt="hiperpaginación">
+<img src="media/C17-memoria_virtual/hiperpaginación.svg" alt="hiperpaginación">
 </div>
 <div class="title">Figura 52. Hiperpaginación en sistemas multiprogramados.</div>
 </div>
@@ -15798,10 +15917,10 @@ Sin embargo, si damos al proceso menos marcos de los que necesita su <strong>loc
 <div class="ulist">
 <ul>
 <li>
-<p>Definir el parámetro \$Delta\$ como el tamaño de la <strong>ventana del conjunto de trabajo</strong>.</p>
+<p>Definir el parámetro <em>&#916;</em> como el tamaño de la <strong>ventana del conjunto de trabajo</strong>.</p>
 </li>
 <li>
-<p>En un instante dado, el conjunto de páginas presente en las \$Delta\$ últimas referencias a la memoria se consideran el <strong>conjunto de trabajo</strong>.</p>
+<p>En un instante dado, el conjunto de páginas presente en las <em>&#916;</em> últimas referencias a la memoria se consideran el <strong>conjunto de trabajo</strong>.</p>
 </li>
 <li>
 <p>Por lo tanto, el <strong>conjunto de trabajo</strong> es una aproximación de <strong>localidad</strong> del programa.</p>
@@ -15813,24 +15932,24 @@ Sin embargo, si damos al proceso menos marcos de los que necesita su <strong>loc
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/modelo_de_conjunto_de_trabajo.svg" alt="modelo de conjunto de trabajo">
+<img src="media/C17-memoria_virtual/modelo_de_conjunto_de_trabajo.svg" alt="modelo de conjunto de trabajo">
 </div>
 </div>
 <div class="paragraph">
-<p>si \$Delta = 10\$ referencias a la memoria, entonces el conjunto de trabajo en \$t_1\$ es \${1, 2, 5, 6, 7}\$.
-Mientras que en \$t_2\$ el conjunto de trabajo es \${3, 4}\$.</p>
+<p>si <em>&#916;</em> = 10 referencias a la memoria, entonces el conjunto de trabajo en <em>t</em><sub>1</sub> es {1, 2, 5, 6, 7}.
+Mientras que en <em>t</em><sub>2</sub> el conjunto de trabajo es {3, 4}.</p>
 </div>
 <div class="paragraph">
-<p>Obviamente, la precisión del <strong>conjunto de trabajo</strong> como aproximación de la <strong>localidad</strong> del programa depende del parámetro \$Delta\$.
+<p>Obviamente, la precisión del <strong>conjunto de trabajo</strong> como aproximación de la <strong>localidad</strong> del programa depende del parámetro <em>&#916;</em>.
 Por ejemplo:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Si \$Delta\$ es muy pequeña, el <strong>conjunto de trabajo</strong> no cubriría toda la <strong>localidad</strong>.</p>
+<p>Si <em>&#916;</em> es muy pequeña, el <strong>conjunto de trabajo</strong> no cubriría toda la <strong>localidad</strong>.</p>
 </li>
 <li>
-<p>Si \$Delta\$ es muy grande, el <strong>conjunto de trabajo</strong> se superpondría a varias <strong>localidades</strong>.</p>
+<p>Si <em>&#916;</em> es muy grande, el <strong>conjunto de trabajo</strong> se superpondría a varias <strong>localidades</strong>.</p>
 </li>
 </ul>
 </div>
@@ -15843,7 +15962,7 @@ Por ejemplo:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Los diseñadores del sistema seleccionan \$Delta\$.</p>
+<p>Los diseñadores del sistema seleccionan <em>&#916;</em>.</p>
 </li>
 <li>
 <p>El sistema operativo monitoriza el <strong>conjunto de trabajo</strong> de cada proceso y le asigna tantos marcos como páginas haya en el <strong>conjunto de trabajo</strong>.</p>
@@ -15852,13 +15971,13 @@ Por ejemplo:</p>
 <p>Si sobran suficientes marcos otro proceso puede ser iniciado —en el caso de los sistemas multiprogramados— o se puede destinar la memoria libre a otros usos.</p>
 </li>
 <li>
-<p>Si el <strong>tamaño del conjunto de trabajo</strong> total \$WSS\$ crece y excede el número de marcos disponibles, el sistema podría seleccionar un proceso para ser suspendido.
+<p>Si el <strong>tamaño del conjunto de trabajo</strong> total <em>WSS</em> crece y excede el número de marcos disponibles, el sistema podría seleccionar un proceso para ser suspendido.
 Éste podrá volver a ser reiniciado más tarde.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Donde el <strong>tamaño del conjunto de trabajo</strong> \$WSS\$ es la suma del <strong>tamaño de los conjuntos de trabajo</strong> \$WSS_i\$ para cada proceso \$i\$:</p>
+<p>Donde el <strong>tamaño del conjunto de trabajo</strong> <em>WSS</em> es la suma del <strong>tamaño de los conjuntos de trabajo</strong> <em>WSS<sub>i</sub></em> para cada proceso <em>i</em>:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -15867,12 +15986,12 @@ Por ejemplo:</p>
 </div>
 <div class="paragraph">
 <p>y representa la demanda total de marcos.
-Por eso, si \$WSS\$ es mayor que el número de marcos disponibles, habrá <strong>hiperpaginación</strong>.</p>
+Por eso, si <em>WSS</em> es mayor que el número de marcos disponibles, habrá <strong>hiperpaginación</strong>.</p>
 </div>
 <div class="paragraph">
 <p>El sencillo algoritmo anterior permite evitar la <strong>hiperpaginación</strong>.
 Sin embargo, el problema está en como mover la <strong>ventana del conjunto de trabajo</strong> en cada referencia, con el fin de volver a calcular el <strong>conjunto de trabajo</strong>.
-Una posible aproximación sería utilizar un temporizador que periódicamente invocase a una función encargada de examinar el <strong>bit de referencia</strong> de las páginas en la ventana \$Delta\$.
+Una posible aproximación sería utilizar un temporizador que periódicamente invocase a una función encargada de examinar el <strong>bit de referencia</strong> de las páginas en la ventana <em>&#916;</em>.
 Es de suponer que las páginas con el <strong>bit de referencia</strong> a 1 forman parte de la <strong>localidad</strong> del programa y por tanto serán el <strong>conjunto de trabajo</strong> a lo largo del siguiente periodo.</p>
 </div>
 </div>
@@ -16019,7 +16138,7 @@ Por lo tanto:</p>
 <p>Si el sistema le asigna 128 marcos o más, el proceso solo generará 128 fallos de página.</p>
 </li>
 <li>
-<p>Si el sistema operativo le asigna un solo marco, el proceso tendrá 16,384 fallos, aproximadamente.</p>
+<p>Si el sistema operativo le asigna un solo marco, el proceso tendrá 16&#x2009;384 fallos, aproximadamente.</p>
 </li>
 </ul>
 </div>
@@ -16169,7 +16288,7 @@ Para esos casos, utilizar directamente <a href="https://man7.org/linux/man-pages
 </div>
 <div id="proceso_en_memoria_completo" class="imageblock">
 <div class="content">
-<img src="C17-memoria_virtual/media/proceso_en_memoria_completo.svg" alt="proceso en memoria completo">
+<img src="media/C17-memoria_virtual/proceso_en_memoria_completo.svg" alt="proceso en memoria completo">
 </div>
 <div class="title">Figura 53. Anatomía de un proceso en memoria.</div>
 </div>
@@ -16224,7 +16343,7 @@ Sin embargo, es importante tener en cuenta que esta tarea se realiza de manera m
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Cuando la memoria solicitada supera cierto umbral —128KB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>.
+<p>Cuando la memoria solicitada supera cierto umbral —128 KiB en sistemas GNU/Linux— es reservada directamente mediante la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>.
 Eso significa que las peticiones de gran tamaño realmente no consumen espacio del <strong>montón</strong>, si no que se reservan del hueco entre el <strong>montón</strong> y la <strong>pila</strong>.</p>
 </li>
 <li>
@@ -16296,13 +16415,19 @@ Esto último, es lo que hace la máquina virtual de Java.</p>
 <div class="sect1">
 <h2 id="_almacenamiento_secundario">18. Almacenamiento secundario</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>10 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 10 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_dispositivos_de_almacenamiento">18.1. Dispositivos de almacenamiento</h3>
@@ -16317,7 +16442,7 @@ Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente
 </div>
 <div id="disco_duro_físico" class="imageblock">
 <div class="content">
-<img src="C18-almacenamiento/media/disco_duro_físico.jpg" alt="disco duro físico">
+<img src="media/C18-almacenamiento/disco_duro_físico.jpg" alt="disco duro físico">
 </div>
 <div class="title">Figura 54. Disco duro&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg">Wikipedia</a></div>
 </div>
@@ -16327,7 +16452,7 @@ La información se almacena grabándola magnéticamente sobre los platos, para l
 </div>
 <div id="disco_duro_lógico" class="imageblock">
 <div class="content">
-<img src="C18-almacenamiento/media/disco_duro_lógico.svg" alt="disco duro lógico">
+<img src="media/C18-almacenamiento/disco_duro_lógico.svg" alt="disco duro lógico">
 </div>
 <div class="title">Figura 55. Estructura lógica de un disco magnético.</div>
 </div>
@@ -16538,13 +16663,19 @@ Además, como ya hemos comentado, el software de gestión de volúmenes puede in
 <div class="sect1">
 <h2 id="_sistemas_de_archivos">19. Sistemas de archivos</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>54 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 54 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Como hemos comentado, cada volumen puede albergar un sistema de archivos.
@@ -16554,7 +16685,7 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 <h3 id="_estructura_de_un_sistema_de_archivos">19.1. Estructura de un sistema de archivos</h3>
 <div id="estructura_sistema_de_archivos" class="imageblock">
 <div class="content">
-<img src="C19-sistema_de_archivos/media/estructura_sistema_de_archivos.svg" alt="estructura sistema de archivos">
+<img src="media/C19-sistema_de_archivos/estructura_sistema_de_archivos.svg" alt="estructura sistema de archivos">
 </div>
 <div class="title">Figura 56. Estructura de un sistema de archivos.</div>
 </div>
@@ -18040,13 +18171,19 @@ Esta solución no sólo les permite tener las mismas propiedades que el uso de r
 <div class="sect1">
 <h2 id="_implementación_de_sistemas_de_archivos">20. Implementación de sistemas de archivos</h2>
 <div class="sectionbody">
-<div class="exampleblock right">
-<div class="content">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title">Tiempo estimado de lectura</div>
-<p>31 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 31 minutos</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
@@ -18257,7 +18394,7 @@ Esto puede hacerse siempre que exista suficiente espacio, aunque puede consumir 
 <div class="paragraph">
 <p>Los sistemas de archivo <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> y <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> utilizan <strong>extensiones</strong> para optimizar su funcionamiento.
 El motivo es que cuantos más bloques contiguos sean asignados a un archivo, menos reposicionamientos del cabezal del disco son necesarios para leerlos.
-En <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> el espacio se asigna a los archivos en <strong>extensiones</strong> de hasta 128 MiB, compuestas por bloques, generalmente, de 4KiB.</p>
+En <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> el espacio se asigna a los archivos en <strong>extensiones</strong> de hasta 128 MiB, compuestas por bloques, generalmente, de 4 KiB.</p>
 </div>
 </div>
 </div>
@@ -18320,7 +18457,7 @@ Es muy posible que esas lecturas deban ir precedidas de un reposicionamiento de 
 <p>En la <strong>asignación enlazada</strong> se pierde cierta cantidad de espacio con los punteros.</p>
 </div>
 <div class="paragraph">
-<p>Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0,758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.</p>
+<p>Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0.758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.</p>
 </div>
 <div class="paragraph">
 <p>La solución para este problema consiste en asignar los bloques en grupos —denominados <strong>clústeres</strong>—.
@@ -18346,7 +18483,7 @@ Es decir, lo que hace la FAT es agrupa en un solo lugar los punteros de la <stro
 </div>
 <div id="estructura_fat" class="imageblock">
 <div class="content">
-<img src="C20-implementación_del_sistemas_de_archivos/media/estructura_fat.svg" alt="estructura fat">
+<img src="media/C20-implemantación_sistema_de_archivos/estructura_fat.svg" alt="estructura fat">
 </div>
 <div class="title">Figura 57. Asignación enlazada en el sistema de archivos FAT.</div>
 </div>
@@ -18358,7 +18495,7 @@ Por eso, realmente se almacenan dos copias de la FAT al principio del volumen.</
 <div class="paragraph">
 <p>El indexar con clústeres —o grupos de bloques— sirve para ubicar cerca bloques contiguos, pero sobre todo es una decisión de diseño para permitir que los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> puedan gestionar volúmenes más grandes.
 Por ejemplo, la FAT de MS-DOS 3.0 y posteriores usaba 16 bits para numerar los clústeres —por eso se llamaba FAT16—.
-Si FAT16 trabaja directamente con bloques y cada bloque tuviera 512 bytes, no podría gestionar volúmenes de más de \$512* 2^16\$ bytes, es decir, 32 MiB.
+Si FAT16 trabaja directamente con bloques y cada bloque tuviera 512 bytes, no podría gestionar volúmenes de más de 512&#215;2<sup>16</sup> bytes, es decir, 32 MiB.
 Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestionar volúmenes de hasta 2 GiB.</p>
 </div>
 <div class="paragraph">
@@ -18476,7 +18613,7 @@ Después podrían haber entradas que contienen punteros doblemente indirectos y 
 </div>
 <div id="asignación_ext2" class="imageblock">
 <div class="content">
-<img src="C20-implementación_del_sistemas_de_archivos/media/asignación_ext2.svg" alt="asignación ext2">
+<img src="media/C20-implemantación_sistema_de_archivos/asignación_ext2.svg" alt="asignación ext2">
 </div>
 <div class="title">Figura 58. Asignación indexada combinada en el sistema de archivos ext2.</div>
 </div>
@@ -18508,7 +18645,7 @@ Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almac
 </li>
 <li>
 <p>Como se puede ver en la <a href="#asignación_ext2">Figura 58</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
-Esto permite almacenar hasta \$2^64\$ bytes de información en cada archivo.</p>
+Esto permite almacenar hasta 2<sup>64</sup> bytes de información en cada archivo.</p>
 </li>
 </ul>
 </div>
@@ -18708,7 +18845,7 @@ Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo d
 <div class="sect3">
 <h4 id="_rendimiento_del_acceso_a_disco">20.5.1. Rendimiento del acceso a disco</h4>
 <div class="paragraph">
-<p>En un disco duro magnético el <strong>tiempo de acceso al disco</strong> \$T^d\$ viene determinado por el <strong>tiempo de búsqueda</strong> \$T^b\$ y la <strong>latencia rotacional</strong> \$T^r\$:</p>
+<p>En un disco duro magnético el <strong>tiempo de acceso al disco</strong> <em>T<sup>d</sup></em> viene determinado por el <strong>tiempo de búsqueda</strong> <em>T<sup>b</sup></em> y la <strong>latencia rotacional</strong> <em>T<sup>r</sup></em>:</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -18716,8 +18853,8 @@ Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo d
 </div>
 </div>
 <div class="paragraph">
-<p>El <strong>tiempo de búsqueda</strong> \$T^b\$ es el tiempo que se tarda en mover el brazo del disco hasta el cilindro deseado.
-Mientras que la <strong>latencia rotacional</strong> \$T^r\$ es el tiempo que hay que esperar para que el disco gira hasta que la cabeza llegue al sector deseado del cilindro.
+<p>El <strong>tiempo de búsqueda</strong> <em>T<sup>b</sup></em> es el tiempo que se tarda en mover el brazo del disco hasta el cilindro deseado.
+Mientras que la <strong>latencia rotacional</strong> <em>T<sup>r</sup></em> es el tiempo que hay que esperar para que el disco gira hasta que la cabeza llegue al sector deseado del cilindro.
 Por lo tanto, el <strong>tiempo de acceso al disco</strong> es menor cuando se realizan accesos consecutivos a sectores físicamente próximos que cuando están dispersos por todo el disco.</p>
 </div>
 <div class="paragraph">
@@ -18980,7 +19117,7 @@ Microsoft Corporation. (2005). <em>Kernel Enhancements for Microsoft Windows Vis
 </li>
 <li>
 <p><a id="Microsoft2003"></a>[Microsoft2003]
-Microsoft Corporation. (2003). <em>Kernel Enhancements for Windows XP</em>. <a href="https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx" class="bare">https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx</a></p>
+Microsoft Corporation. (2003). <em>Kernel Enhancements for Windows XP</em>. Archivado en <a href="https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx" class="bare">https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx</a></p>
 </li>
 <li>
 <p><a id="Microsoft2018"></a>[Microsoft2018]
@@ -19004,7 +19141,7 @@ Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. 
 </li>
 <li>
 <p><a id="Stallings2005"></a>[Stallings2005]
-Stallings, W. (2005). <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530"><em>Sistemas operativos: Aspectos internos y principios de diseño</em></a>. (5ª ed.) Pearson</p>
+Stallings, W. (2005). <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530"><em>Sistemas operativos: Aspectos internos y principios de diseño</em></a>. (5ª ed.) Pearson.</p>
 </li>
 <li>
 <p><a id="Sun2006"></a>[Sun2006]
@@ -19012,7 +19149,7 @@ Sun Microsystems, Inc. (2006). <em>ZFS On-Disk Specification (Draft)</em>. <a hr
 </li>
 <li>
 <p><a id="Tanenbaum2014"></a>[Tanenbaum2014]
-Tanenbaum, A. y Bos, H. (2014). <em>Modern Operating Systems</em>. (4ª ed.) Prentice Hall Press</p>
+Tanenbaum, A. y Bos, H. (2014). <em>Modern Operating Systems</em>. (4ª ed.) Prentice Hall Press.</p>
 </li>
 <li>
 <p><a id="Wikipedia-cmalloc"></a>[Wikipedia-cmalloc]
@@ -19025,7 +19162,7 @@ C dynamic memory allocation. En <em>Wikipedia</em>. <a href="https://en.wikipedi
 </div>
 <div id="footer">
 <div id="footer-text">
-Última actualización 2021-01-13 12:58:45 UTC
+Última actualización 2021-03-29 19:43:52 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
