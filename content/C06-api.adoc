@@ -114,7 +114,7 @@ Así que necesita tres argumentos:
 
 Al terminar devuelve el número de bytes escritos en el archivo, que puede ser inferior a `SIZE`.
 
-El identificador de la llamada al sistema es 4004, según el https://git.linux-mips.org/cgit/ralf/linux.git/tree/arch/mips/include/uapi/asm/unistd.h[listado de llamadas al sistema] para Linux en MIPS.
+El identificador de la llamada al sistema es 4004, según el https://github.com/torvalds/linux/blob/v4.20/arch/mips/include/uapi/asm/unistd.h[listado de llamadas al sistema] para Linux en MIPS.
 
 [source]
 ----
