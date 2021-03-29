@@ -1,6 +1,6 @@
 = Planificación de la CPU
 include::../config/attributes.adoc[]
-:chapdir: C14-planificación_de_CPU
+:chapdir: C14-planificación
 
 [TIME]
 ====

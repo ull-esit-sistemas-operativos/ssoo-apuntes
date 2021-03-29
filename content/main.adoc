@@ -29,7 +29,7 @@ include::C10-ipc.adoc[leveloffset=+1]
 include::C11-memoria_compartida.adoc[leveloffset=+1]
 include::C12-hilos.adoc[leveloffset=+1]
 include::C13-sincronización.adoc[leveloffset=+1]
-include::C14-planificación_de_CPU.adoc[leveloffset=+1]
+include::C14-planificación.adoc[leveloffset=+1]
 
 = Gestión de la memoria
 include::C15-memoria_principal.adoc[leveloffset=+1]
@@ -39,7 +39,7 @@ include::C17-memoria_virtual.adoc[leveloffset=+1]
 = Gestión del almacenamiento
 include::C18-almacenamiento.adoc[leveloffset=+1]
 include::C19-sistema_de_archivos.adoc[leveloffset=+1]
-include::C20-implementación_del_sistemas_de_archivos.adoc[leveloffset=+1]
+include::C20-implemantación_sistema_de_archivos.adoc[leveloffset=+1]
 
 include::bibliografía.adoc[leveloffset=+1]
 
