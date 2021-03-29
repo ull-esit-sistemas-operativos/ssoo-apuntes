@@ -1,6 +1,6 @@
 = Memoria virtual
 include::../config/attributes.adoc[]
-:imagesdir: {imagesbasedir}/C17-memoria_virtual
+:chapdir: C17-memoria_virtual
 
 [TIME]
 ====
@@ -212,7 +212,7 @@ El *_copy-on-write_* minimiza de la siguiente manera el número de marcos que de
 
 [[copy_on_write_1]]
 .Copy-on-write antes de que el proceso 1 modifique la página A.
-image::copy-on-write1.svg[]
+image::{chapdir}/copy-on-write1.svg[]
 
 . Cuando la llamada al sistema {linux_fork} crea el nuevo proceso lo hace de forma que éste comparta todas sus páginas con las del padre (véase la <<copy_on_write_1>>).
 +
@@ -231,7 +231,7 @@ Si se ha intentado escribir en una página de solo lectura, el proceso ha cometi
 
 [[copy_on_write_2]]
 .Copy-on-write después de que el proceso 1 modifique la página A.
-image::copy-on-write2.svg[]
+image::{chapdir}/copy-on-write2.svg[]
 
 . Si el sistema detecta una escritura a una página de *_copy-on-write_* solo tiene que copiarla en un marco libre y mapearlo en el espacio de direcciones del proceso (véase la <<copy_on_write_2>>).
 +
@@ -446,7 +446,7 @@ Sin embargo, aunque esto pase, todo seguirá funcionado correctamente, aunque au
 
 [[fallos_de_página_frente_a_marcos]]
 .Fallos de página frente a número de marcos.
-image::fallos_de_página_frente_a_marcos.svg[]
+image::{chapdir}/fallos_de_página_frente_a_marcos.svg[]
 
 Es de esperar que si el número de marcos disponibles aumenta, el número de *fallos de página* disminuya (véase la <<fallos_de_página_frente_a_marcos>>).
 Sin embargo, con el *algoritmo FIFO* el número de *fallos de página* puede aumentar cuando el número de marcos disponibles se incrementa.
@@ -454,7 +454,7 @@ Es lo que se conoce como la *((anormalidad de Belady))*.
 
 [[anormalidad_de_belady]]
 .Fallos de página con el algoritmo de reemplazo FIFO.
-image::anormalidad_de_belady.svg[]
+image::{chapdir}/anormalidad_de_belady.svg[]
 
 Para ilustrarlo consideraremos la siguiente traza de referencias:
 
@@ -964,7 +964,7 @@ Esto podía ocasionar que aumentara la *tasa de fallos de página* del proceso q
 
 [[hiperpaginación]]
 .Hiperpaginación en sistemas multiprogramados.
-image::hiperpaginación.svg[]
+image::{chapdir}/hiperpaginación.svg[]
 
 El fenómeno comentado, se ilustra en la <<hiperpaginación>>, donde se muestra el uso de la CPU frente al número de procesos cargados en el sistema.
 Cuando esto último aumenta, el uso de la CPU aumenta hasta alcanzar un máximo.
@@ -1015,7 +1015,7 @@ El *modelo de conjunto de trabajo* es una estrategia que permite obtener una apr
 
 Por ejemplo, dada la siguiente lista de referencias a páginas en la memoria:
 
-image::modelo_de_conjunto_de_trabajo.svg[]
+image::{chapdir}/modelo_de_conjunto_de_trabajo.svg[]
 
 si _{Delta}_ = 10 referencias a la memoria, entonces el conjunto de trabajo en _t_~1~ es {1, 2, 5, 6, 7}.
 Mientras que en _t_~2~ el conjunto de trabajo es {3, 4}.
@@ -1233,7 +1233,7 @@ Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcc
 
 [[proceso_en_memoria_completo]]
 .Anatomía de un proceso en memoria.
-image::proceso_en_memoria_completo.svg[]
+image::{chapdir}/proceso_en_memoria_completo.svg[]
 
 * Las variables y constantes globales se almacenan en el *segmento de datos*(((segmento, datos))), que tiene tamaño fijo, ya que las dimensiones de estas variables se conocen de antemano en tiempo de compilación, al igual que ocurre con el código del programa.
 

@@ -4,7 +4,6 @@ include::symbols.adoc[]
 :lang: es
 include::locale/attributes.adoc[]
 // Rutas a las imágenes
-:imagesbasedir: media
 :imagesdir: media
 :imagesoutdir: {outdir}/{imagesdir}
 // Activar las referencias de texto completo con: etiqueta, número y título.

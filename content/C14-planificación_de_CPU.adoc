@@ -1,6 +1,6 @@
 = Planificación de la CPU
 include::../config/attributes.adoc[]
-:imagesdir: {imagesbasedir}/C14-planificación_de_CPU
+:chapdir: C14-planificación_de_CPU
 
 [TIME]
 ====
@@ -175,7 +175,7 @@ _Finalmente, la última ráfaga de CPU finaliza con una llamada al sistema —ge
 
 [[ráfagas_de_cpu]]
 .Histograma de los tiempos de las ráfagas de CPU..
-image::histogramas_tiempo_de_ráfagas.svg[]
+image::{chapdir}/histogramas_tiempo_de_ráfagas.svg[]
 
 La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiper-exponencial (véase la <<ráfagas_de_cpu>>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
 Esto significa que los procesos se pueden clasificar entre aquellos que presentan un gran número de ráfagas de CPU cortas o aquellos con un pequeño número de ráfagas de CPU largas.
@@ -248,7 +248,7 @@ Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráf
 
 En la siguiente figura podemos ver el https://es.wikipedia.org/wiki/Diagrama_de_Gantt[diagrama de Gantt] de la planificación considerando que se utiliza el algoritmo *FCFS*:
 
-image::fcfs1.svg[]
+image::{chapdir}/fcfs1.svg[]
 
 Utilizando el diagrama anterior, podemos calcular fácilmente los *tiempos de espera y de ejecución promedio*:
 
@@ -316,7 +316,7 @@ Tiempo de ráfaga de CPU (ms)
 
 Entonces el resultado de la planificación sería el que se muestra en la siguiente figura:
 
-image::fcfs2.svg[]
+image::{chapdir}/fcfs2.svg[]
 
 Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 
@@ -419,7 +419,7 @@ Ilustremos el algoritmo con un ejemplo:
 
 Considerando que se utiliza el algoritmo *SJF* obtendremos el siguiente diagrama de Gantt:
 
-image::sjf.svg[]
+image::{chapdir}/sjf.svg[]
 
 Con los *tiempos de espera y ejecución promedio* correspondientes:
 
@@ -577,7 +577,7 @@ Ilustremos el algoritmo con un ejemplo:
 
 El resultado es el que se muestra en el siguiente diagrama de Gantt:
 
-image::srtf.svg[]
+image::{chapdir}/srtf.svg[]
 
 Y los tiempos de espera y ejecución promedio correspondientes serían:
 
@@ -686,7 +686,7 @@ Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuand
 
 En las condiciones anteriores, si utilizamos el algoritmo de planificación por prioridades expropiativo, obtendremos el diagrama de Gantt de la siguiente figura:
 
-image::prioridad.svg[]
+image::{chapdir}/prioridad.svg[]
 
 Con los *tiempos de espera y ejecución promedio* correspondientes:
 
@@ -807,7 +807,7 @@ Ilustremos el algoritmo con un ejemplo con cuanto de 4 ms:
 
 El resultado es el que se muestra en el siguiente diagrama de Gantt:
 
-image::rr.svg[]
+image::{chapdir}/rr.svg[]
 
 Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 
@@ -940,7 +940,7 @@ Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, lo
 
 [[esquema_colas_multinivel]]
 .Ejemplo de planificación con colas multinivel.
-image::planificación_colas_multinivel.svg[]
+image::{chapdir}/planificación_colas_multinivel.svg[]
 
 Una cuestión interesante es como seleccionar la cola que debe escoger al siguiente proceso a ejecutar:
 
@@ -968,7 +968,7 @@ Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las
 
 [[esquema_planificación_colas_multinivel_realimentadas]]
 .Ejemplo de planificación con colas multinivel realimentadas.
-image::planificación_colas_multinivel_realimentadas.svg[]
+image::{chapdir}/planificación_colas_multinivel_realimentadas.svg[]
 
 Por ejemplo, supongamos un *planificador de colas multinivel* donde cada cola tiene una prioridad, así que se usa la *planificación con prioridades* para seleccionar la cola.
 En las colas se usa el algoritmo *RR* para seleccionar el siguiente proceso, siendo el *cuanto* de la cola mayor cuanto menos prioritaria es la cola (véase la <<esquema_planificación_colas_multinivel_realimentadas>>).
@@ -986,7 +986,7 @@ Por ejemplo, el algoritmo *RR virtual*(((planificación, de CPU, RR virtual)))((
 
 [[esquema_planificación_rr_virtual]]
 .Ejemplo de planificación con RR virtual.
-image::vrr.svg[]
+image::{chapdir}/vrr.svg[]
 
 Tal y como se ilustra en la <<esquema_planificación_rr_virtual>>, en el *RR virtual* los procesos por lo general tienen prioridad 1.
 Sin embargo, aquellos que vuelven al estado *preparado* desde *esperando* después de una operación de E/S, obtienen una bonificación en la propiedad que los lleva a tener prioridad 0.
@@ -1040,7 +1040,7 @@ Por lo general, la clase de prioridad `NORMAL_PRIORITY_CLASS` es la clase por de
 
 [[windows_task_manager]]
 .Cambiar la prioridad de un proceso en el *Administrador de tareas*.
-image::administrador_de_tareas.jpg[]
+image::{chapdir}/administrador_de_tareas.jpg[]
 
 Con el *Administrador de tareas* de Windows podemos alterar fácilmente la clase de prioridad de un proceso durante su ejecución (véase la <<windows_task_manager>>).
 

@@ -1,6 +1,6 @@
 = Memoria compartida
 include::../config/attributes.adoc[]
-:imagesdir: {imagesbasedir}/C11-memoria_compartida
+:chapdir: C11-memoria_compartida
 
 [TIME]
 ====

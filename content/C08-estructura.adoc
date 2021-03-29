@@ -1,6 +1,6 @@
 = Sistemas operativos por su estructura
 include::../config/attributes.adoc[]
-:imagesdir: {imagesbasedir}/C08-estructura
+:chapdir: C08-estructura
 
 [TIME]
 ====
@@ -30,7 +30,7 @@ Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el 
 // TODO: Programa residente como núcleo
 [[estructura_msdos]]
 .Esquema de la estructura de MS-DOS.
-image::estructura_msdos.svg[]
+image::{chapdir}/estructura_msdos.svg[]
 
 Como el {intel8086} para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.
 
@@ -40,7 +40,7 @@ Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde s
 
 [[estructura_unix]]
 .Esquema de la estructura de UNIX.
-image::estructura_unix.svg[]
+image::{chapdir}/estructura_unix.svg[]
 
 El núcleo proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
 En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, si no se compartimenta adecuadamente.
@@ -72,7 +72,7 @@ Un ejemplo de este tipo de sistemas operativos es el {os2}.
 
 [[estructura_os2]]
 .Esquema de la estructura de IBM OS/2.
-image::estructura_os2.svg[]
+image::{chapdir}/estructura_os2.svg[]
 
 === Dificultades con el diseño
 
@@ -114,7 +114,7 @@ Dado que los componentes del sistema están aislados unos de otros —ya que se 
 
 [[estructura_minix3]]
 .Esquema de la estructura microkernel de MINIX 3.
-image::estructura_minix3.svg[]
+image::{chapdir}/estructura_minix3.svg[]
 
 Generalmente esta comunicación se implementa mediante paso de mensajes (véase el <<_comunicación_entre_procesos>>).
 
@@ -186,7 +186,7 @@ Posteriormente pueden cargar módulos adicionales, tanto durante la inicializaci
 
 [[estructura_linux]]
 .Esquema de la estructura del núcleo Linux.
-image::estructura_linux.svg[]
+image::{chapdir}/estructura_linux.svg[]
 
 En este aspecto se asemejan a los núcleos *microkernel*, ya que el módulo principal sólo tiene funciones básicas.
 Sin embargo los núcleos modulares:

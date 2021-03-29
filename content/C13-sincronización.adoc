@@ -1,6 +1,6 @@
 = Sincronización
 include::../config/attributes.adoc[]
-:imagesdir: {imagesbasedir}/C13-sincronización
+:chapdir: C13-sincronización
 
 [TIME]
 ====

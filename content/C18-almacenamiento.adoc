@@ -1,6 +1,6 @@
 = Almacenamiento secundario
 include::../config/attributes.adoc[]
-:imagesdir: {imagesbasedir}/C18-almacenamiento
+:chapdir: C18-almacenamiento
 
 [TIME]
 ====
@@ -17,14 +17,14 @@ Los discos magnéticos son el tipo principal de almacenamiento secundario, gener
 
 [[disco_duro_físico]]
 .Disco duro -- Fuente: https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg[Wikipedia]
-image::disco_duro_físico.jpg[]
+image::{chapdir}/disco_duro_físico.jpg[]
 
 Tal y como se puede apreciar en la <<disco_duro_físico>> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
 La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.
 
 [[disco_duro_lógico]]
 .Estructura lógica de un disco magnético.
-image::disco_duro_lógico.svg[]
+image::{chapdir}/disco_duro_lógico.svg[]
 
 Desde el punto de vista lógico (véase la <<disco_duro_lógico>>) la superficie de cada plato está dividida en *pista*(((pista))) circulares, cada una de las cuales se subdivide en *sectores*(((sector))).
 El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina *((cilindro))*.
