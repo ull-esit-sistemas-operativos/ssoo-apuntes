@@ -1,7 +1,7 @@
 [ejemplos]
-= Ejemplos de código
+= Código de los ejemplos
 
-En algunos capítulos se enlazan ejemplos de código para ilustrar en mayor detalle los conceptos tratados.
+En algunos capítulos se enlazan programas de ejemplo para ilustrar en mayor detalle los conceptos tratados.
 Todos los ejemplos están disponibles en el repositorio icon:github[] {ejemplos_repo}, de donde se pueden descargar.
 
 Para compilar los ejemplos, es necesario disponer de herramientas de desarrollo para C y {cpp}.

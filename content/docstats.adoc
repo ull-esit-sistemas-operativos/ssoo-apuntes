@@ -1,7 +1,7 @@
-:document-characters: 511847
-:document-words: 101284
-:document-paragraphs: 1691
-:document-reading-time: 8 horas y 26 minutos
+:document-characters: 512059
+:document-words: 101319
+:document-paragraphs: 1692
+:document-reading-time: 8 horas y 27 minutos
 :s01-characters: 7527
 :s01-words: 1370
 :s01-paragraphs: 26

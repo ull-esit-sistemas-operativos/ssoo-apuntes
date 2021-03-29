@@ -7,6 +7,7 @@ include::enlaces.adoc[]
 include::docstats.adoc[]
 
 // Contenidos
+include::releases.adoc[leveloffset=+1]
 include::código.adoc[leveloffset=+1]
 
 = Introducción

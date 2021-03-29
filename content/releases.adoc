@@ -1,0 +1,5 @@
+[releases]
+= Versiones
+
+Este documento está disponible actualmente en versiones en formatos HTML y PDF.
+La primera se puede visitar en el {website} del proyecto, mientras que la segunda se puede descargar desde icon:github[] {github_release}.
