@@ -624,7 +624,7 @@ Pero esto no tiene que coincidir con una cantidad fija de referencias en la traz
 |====
 
 Se puede mejorar el algoritmo anterior considerando tanto el *bit de referencia* como el *bit de modificado*, para clasificar las páginas en distintas categorías y escoger una página en la mejor categoría.
-Este es el tipo más común de *algoritmo de reemplazo de página NRU*, pero lo veremos en el <<_algoritmo_de_la_segunda_oportunidad_mejorado>> bajo el nombre de *Algoritmo de la segunda oportunidad mejorado*.
+Este es el tipo más común de *algoritmo de reemplazo de página NRU*, pero lo veremos en el <<_reemplazo_nru_mejorado>>.
 
 //NOTA: Si se implementa el NRU mediante una cola circular de páginas que se extraen, examina y vuelve a insertar,
 // para que en caso de coincidencia el algoritmo usado sea FIFO, al meter el bit de modificado y las clases, el
@@ -728,10 +728,14 @@ Vamos a ilustrarlo con un ejemplo:
 
 |====
 
-===== Algoritmo de la segunda oportunidad mejorado
+===== Reemplazo NRU mejorado
+
+// NOTA: En cursos anteriores este era el "Algoritmo de la segunda oportunidad mejorado" y era ligeramente diferente
+// al explicado aquí. Este curso es el "NRU mejorado" porque al cambiarlo se ha decidido explicar la vieja forma,
+// con el nombre de siempre, y esta variante, con un nuevo nombre.
 
 Se puede mejorar el *algoritmo de la segunda oportunidad* considerando tanto el *bit de referencia* como el *bit de modificado*.
-Algunos autores denominan a este algoritmo como *algoritmo de la segunda oportunidad mejorado*, mientras otro lo llaman *((NRU))*, ya que es una versión mejorada del algoritmo del <<_reemplazo_nru>>.
+Algunos autores también denominan a este algoritmo como *((NRU))*, aunque nosotros lo llamaremos *NRU mejorado*, ya que también es una versión mejorada del algoritmo del <<_reemplazo_nru>>.
 
 Con esos dos bits, el sistema operativo clasifica las páginas en una de las siguientes cuatro clases:
 
