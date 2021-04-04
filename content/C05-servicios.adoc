@@ -30,32 +30,24 @@ Es normal querer hacer seguimiento de los recursos que los usuarios usan y en qu
 Esto puede ser útil para facturar a los usuarios por el uso de los recursos —por ejemplo, facturar por el tiempo de CPU— para configurar el sistema mejorando el rendimiento o para limitar cuánto de cada recurso puede usar cada usuario como máximo.
 
 * *Protección y seguridad*.
-Protección implica asegurar que el acceso a los recursos del sistema
-está controlado.
-Por ejemplo, que la información almacenada en un sistema multiusuario sólo puede ser accedida por su propietario o que un proceso no pueda interferir con otro o con el sistema operativo.
-La seguridad del sistema respecto a los agentes exteriores también es
-importante.
+Protección implica asegurar que el acceso a los recursos del sistema está controlado.
+Por ejemplo, que la información almacenada en un sistema multiusuario solo pueda ser accedida por su propietario o que un proceso no pueda interferir con otro o con el sistema operativo.
+La seguridad del sistema respecto a los agentes exteriores también es importante.
 Empieza obligando a los usuarios a autenticarse en él para obtener acceso a los recursos del mismo, pero incluye defender de intentos de acceso inválidos a través de la red.
 
 == Servicios útiles para el usuario
 
-* *Interfaz de usuario*. Los sistemas operativos diseñados para que los usuarios interactúen con ellos deben proporcionar una interfaz de usuario adecuada, que puede ser diferente formas según le propósito del sistema.
+* *Interfaz de usuario*. Los sistemas operativos diseñados para que los usuarios interactúen con ellos deben proporcionar una interfaz de usuario adecuada, que puede tener diferentes formas según el propósito del sistema.
 
-* *Operaciones de E/S*. Un programa puede necesitar realizar operaciones de E/S que pueden
-involucrar a archivos o a dispositivos de E/S.
+* *Operaciones de E/S*. Un programa puede necesitar realizar operaciones de E/S que pueden involucrar a archivos o a dispositivos de E/S.
 Por eficiencia y protección un usuario, normalmente los procesos no puede tener acceso directo a los dispositivos; por lo que el sistema operativo debe proporcionar medios para solicitar estas operaciones a los componentes correspondientes del sistema operativo.
 
-* *Manipulación de sistemas de archivos*. Los programas necesitan leer y escribir archivos y
-directorios, crearlos y borrarlos por nombre, buscar un archivo dado y listar información
-acerca del mismo.
+* *Manipulación de sistemas de archivos*. Los programas necesitan leer y escribir archivos y directorios, crearlos y borrarlos por nombre, buscar un archivo dado y listar información acerca del mismo.
 
-* *Comunicaciones*. Los procesos necesitan poder intercambiar información entre ellos, tanto si
-se ejecutan en el mismo ordenador, como en diferentes equipos unidos por una red.
+* *Comunicaciones*. Los procesos necesitan poder intercambiar información entre ellos, tanto si se ejecutan en el mismo ordenador, como en diferentes equipos unidos por una red.
 
-* *Detección de errores*. El sistema operativo necesita tener conocimiento de los posibles errores y para cada tipo de error debe tomar la acción apropiada para asegurar una computación consiste y segura.
-Por ejemplo, pueden haber errores del hardware —como fallos de energía o errores en la
-memoria— en la E/S —como errores de paridad o falta de papel en la impresora— y en los
-programas de usuario —como desbordamientos aritméticos o accesos ilegales a la memoria—.
+* *Detección de errores*. El sistema operativo necesita tener conocimiento de los posibles errores y para cada tipo de error debe tomar la acción apropiada para asegurar una computación consistente y segura.
+Por ejemplo, puede haber errores del hardware —como fallos de energía o errores en la memoria— en la E/S —como errores de paridad o falta de papel en la impresora— y en los programas de usuario —como desbordamientos aritméticos o accesos ilegales a la memoria—.
 
 == Interfaz de usuario
 (((interfaz, de usuario)))
@@ -77,10 +69,10 @@ Por ejemplo, la _shell_ de los sistemas UNIX permite indicar comandos uno a uno 
 
 Puesto que la interfaz de usuario puede variar de un sistema a otro, y de un usuario a otro dentro del mismo sistema, no se suele etiquetar como un componente básico del sistema operativo, sino como un servicio ofrecido por el sistema operativo.
 
-A parte de la interfaz de usuario, cualquier sistema operativo moderno incluye una colección de **programas del sistema**(((programa, del sistema))).
+Aparte de la interfaz de usuario, cualquier sistema operativo moderno incluye una colección de **programas del sistema**(((programa, del sistema))).
 El papel de estos programas del sistema es proporcionar un entorno conveniente para la ejecución y desarrollo de programas.
 Entre los programas del sistema se suelen incluir aplicaciones para manipular archivos y directorios, programas para obtener información sobre el estado del sistema —como la fecha y hora o la memoria y el espacio en disco disponible— herramientas de desarrollo —como intérpretes, compiladores, enlazadores y depuradores— programas de comunicaciones —como clientes de correo electrónico y navegadores web— etc.
 
 Además, muchos sistemas operativos disponen de programas que son útiles para resolver los problemas más comunes de los usuarios.
 Entre estos programas se suelen incluir: editores de archivos de texto y procesadores de texto, hojas de cálculo, sistemas de base de datos, juegos, etc.
-Ha esta colección de aplicaciones se la suele conocer con el término de *((utilidades del sistema))* o *programas de aplicación*(((programa, de aplicación))).
+A esta colección de aplicaciones se la suele conocer con el término de *((utilidades del sistema))* o *programas de aplicación*(((programa, de aplicación))).

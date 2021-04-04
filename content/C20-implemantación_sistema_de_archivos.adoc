@@ -13,7 +13,7 @@ Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas 
 El papel de cada uno de estos niveles fue descrito en el <<_estructura_de_un_sistema_de_archivos>>.
 Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <<_estructuras_de_metadatos_en_disco>> y en el <<_estructuras_de_metadatos_en_memoria>>.
 
-A continuación, vamos a profundizar aun más en las estructuras y operaciones utilizadas para implementar los sistemas de archivos
+A continuación, vamos a profundizar aún más en las estructuras y operaciones utilizadas para implementar los sistemas de archivos
 
 == Implementación de directorios
 
@@ -24,7 +24,7 @@ En esta sección vamos a estudiar las formas más comunes de implementar la estr
 
 === Lista lineal
 
-El método mas simple para implementar un directorio consiste en utilizar una lista lineal o vector de nombres de archivos e identificadores del *FCB*.
+El método más simple para implementar un directorio consiste en utilizar una lista lineal o vector de nombres de archivos e identificadores del *FCB*.
 
 // TODO: Esquema de esta estructura.
 
@@ -53,7 +53,7 @@ También se puede utilizar una lista enlazada, tanto para reducir el tiempo nece
 Los sistemas de archivos {fat} y {fat32} implementan los directorios utilizando una lista lineal, donde en cada entrada se almacena el nombre del archivo y el *FCB* del mismo.
 Al borrar un archivo, la entrada correspondiente se marca poniendo 0xE5 en el primer caracter del nombre del archivo.
 
-Los sistemas de archivos {ext2} y {ufs} también utilizan una lista lineal no ordenada, donde sólo se almacena el nombre del archivo o subdirectorio y el identificador del *inodo* —el FCB, esos sistemas de archivo— correspondiente.
+Los sistemas de archivos {ext2} y {ufs} también utilizan una lista lineal no ordenada, donde solo se almacena el nombre del archivo o subdirectorio y el identificador del *inodo* —el FCB, esos sistemas de archivo— correspondiente.
 En caso de borrar un archivo, el identificador del *inodo* se pone a 0.
 
 === Tabla de dispersión
@@ -73,10 +73,10 @@ Un caso concreto es el sistema de archivos {ntfs}, utilizado por Microsoft Windo
 {ntfs} utiliza una estructura de datos denominada https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+] para almacenar el índice de los nombres de archivo contenidos en un directorio.
 
 En la entrada en la *((MFT))* (_Master File Table_) de cada directorio se almacena un atributo denominado *raíz del índice*.
-Si el directorio es de pequeño tamaño, la *raíz del índice* contiene todas las entradas de archivos del directorio, pero para un directorio de gran tamaño, la *raíz del índice* sólo puede almacenar unas pocas entradas de archivos del directorio.
+Si el directorio es de pequeño tamaño, la *raíz del índice* contiene todas las entradas de archivos del directorio, pero para un directorio de gran tamaño, la *raíz del índice* solo puede almacenar unas pocas entradas de archivos del directorio.
 En ese caso la *raíz del índice* contiene el nivel superior del árbol B+.
 Es decir, cada una de esas entradas de archivos en la *raíz del índice* incluye también un puntero al bloque del disco que contiene un nodo del árbol con las entradas con nombres alfabéticamente anteriores a ese.
-Si en dicho nodo tampoco caben todas las entradas, sólo podrá contener algunas de ellas, por lo que cada una tendrá, a su vez, un puntero a un nuevo nodo del árbol; y así sucesivamente.
+Si en dicho nodo tampoco caben todas las entradas, solo podrá contener algunas de ellas, por lo que cada una tendrá, a su vez, un puntero a un nuevo nodo del árbol; y así sucesivamente.
 
 // TODO: Diagrama de esta estructura.
 
@@ -88,7 +88,7 @@ Las ventajas de los árboles B+ son:
 
 .Implementación de directorios en XFS
 ****
-El sistema de archivos {xfs} también utiliza un https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+], pero en éste caso la implementación es un poco más compleja:
+El sistema de archivos {xfs} también utiliza un https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+], pero en este caso la implementación es un poco más compleja:
 
 * Un directorio de pequeño tamaño almacena sus entradas como una lista lineal no ordenada dentro de su mismo *inodo* o FCB.
 
@@ -114,7 +114,7 @@ Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requ
 
 El problema de la *asignación contigua* puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento (véase el <<_asignación_contigua_de_memoria>>).
 Es decir, que en un momento dado tendremos una petición de tamaño _N_ que deberemos satisfacer con una lista de huecos libres de tamaño variable.
-Como estudiamos anteriormente, las estrategias más comunes son las de el *primer ajuste* y el *mejor ajuste*.
+Como estudiamos anteriormente, las estrategias más comunes son las del *primer ajuste* y el *mejor ajuste*.
 
 ==== Fragmentación externa
 
@@ -122,23 +122,23 @@ La asignación contigua sufre el problema de la *fragmentación externa*.
 La solución sería utilizar alguna forma de *compactación* para unir los huecos libres, pero esto puede llevar mucho tiempo en discos duros de gran tamaño y en algunos sistemas esta tarea tiene que realizarse con el dispositivo desmontado.
 Por eso es conveniente evitar utilizar técnicas de compactación en los sistemas en producción.
 
-Afortunadamente, la mayor parte de los sistemas operativos modernos que necesitan mecanismos de *desfragmentación* pueden realizar esta tarea sin detener el sistema, aunque la perdida de rendimiento puede ser significativa.
+Afortunadamente, la mayor parte de los sistemas operativos modernos que necesitan mecanismos de *desfragmentación* pueden realizar esta tarea sin detener el sistema, aunque la pérdida de rendimiento puede ser significativa.
 
 ==== Estimación del tamaño del archivo
 
 En la asignación contigua es necesario determinar cuánto espacio necesita un archivo antes de asignárselo.
 El problema es que eso no siempre es posible.
 
-Por ejemplo, si vamos a copiar un archivo, es indudable que conocemos de antemano cuanto espacio necesita la copia.
-Pero ¿qué ocurre cuando vamos a crear uno nuevo? Entonces al crear un archivo es necesario que el usuario haga una estimación del espacio que va necesitar y se la indique al sistema.
+Por ejemplo, si vamos a copiar un archivo, es indudable que conocemos de antemano cuánto espacio necesita la copia.
+Pero ¿qué ocurre cuando vamos a crear uno nuevo? Entonces al crear un archivo es necesario que el usuario haga una estimación del espacio que va a necesitar y se la indique al sistema.
 
 ¿Y si la estimación no es correcta o posteriormente queremos añadir nuevos datos al archivo? 
-Entonces, Lo más probable es que el espacio situado a ambos lados del archivo ya esté ocupado, si hemos utilizado la estrategia del *mejor ajuste*.
+Entonces, lo más probable es que el espacio situado a ambos lados del archivo ya esté ocupado, si hemos utilizado la estrategia del *mejor ajuste*.
 Para resolver este problema existen dos estrategias:
 
 * La primera, es terminar el programa de usuario, emitiendo un error.
 Entonces, el usuario deberá volver a crear el archivo indicando más espacio y volver a ejecutar el programa.
-Puesto que las ejecuciones repetidas pueden ser muy costosas, lo más común es que el usuario acabe sobrestimando el espacio, lo que dará como resultado un desperdicio considerable de espacio.
+Puesto que las ejecuciones repetidas pueden ser muy costosas, lo más común es que el usuario acabe sobreestimando el espacio, lo que dará como resultado un desperdicio considerable de espacio.
 
 * La segunda, es buscar un hueco libre de mayor tamaño y copiar el contenido del archivo al nuevo espacio.
 Esto puede hacerse siempre que exista suficiente espacio, aunque puede consumir bastante tiempo.
@@ -170,16 +170,16 @@ Este mecanismo resuelve todos los problemas de la asignación contigua y además
 
 * *No hay fragmentación externa*, puesto que pueden utilizarse cualquier bloque libre para satisfacer una solicitud de espacio.
 
-* *No es necesario declarar el espacio del archivo* en el momento de crearlo, pues el archivo podrá siempre podrá crecer mientras hayan bloques libres.
+* *No es necesario declarar el espacio del archivo* en el momento de crearlo, pues el archivo podrá siempre podrá crecer mientras haya bloques libres.
 
 Sin embargo, la asignación enlazada también tiene sus desventajas.
 
 ==== Eficiencia en accesos aleatorios
 
-La *asignación enlazada* sólo resulta eficaz para acceder a los archivos de acceso secuencial.
+La *asignación enlazada* solo resulta eficaz para acceder a los archivos de acceso secuencial.
 
 Si necesitamos ir directamente al bloque i-ésimo de un archivo, tendremos que comenzar desde el principio e ir leyendo cada bloque para obtener el puntero que nos indica el siguiente bloque.
-Es muy posible que esas lecturas deban ir precedidas de un reposicionamiento de los cabezales del disco.
+Es muy posible que esas lecturas debán ir precedidas de un reposicionamiento de los cabezales del disco.
 
 Una solución parcial a esto puede ser guardar en la memoria una caché de las direcciones de los bloques de los archivos accedidos recientemente.
 
@@ -190,8 +190,8 @@ En la *asignación enlazada* se pierde cierta cantidad de espacio con los punter
 Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0.758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.
 
 La solución para este problema consiste en asignar los bloques en grupos —denominados *clústeres*(((clúster)))—.
-Así, el primer bloque de cada *clúster* sólo tendría que almacenar un puntero al siguiente *clúster*, lo que reduciría la cantidad de espacio desperdiciada en los punteros y mejoraría la eficiencia al reducir el número de reposicionamientos del cabezal del disco.
-Sin embargo, esto también incrementaría el grado de *fragmentación interna* pues se pierde más espacio cuando un *clúster* está parcialmente lleno.
+Así, el primer bloque de cada *clúster* solo tendría que almacenar un puntero al siguiente *clúster*, lo que reduciría la cantidad de espacio desperdiciada en los punteros y mejoraría la eficiencia al reducir el número de reposicionamientos del cabezal del disco.
+Sin embargo, esto también incrementa el grado de *fragmentación interna* pues se pierde más espacio cuando un *clúster* está parcialmente lleno.
 
 ==== Fiabilidad
 
@@ -203,7 +203,7 @@ Los sistemas de archivos {fat} y {fat32} utilizan una variante del mecanismo de 
 
 La FAT se almacena en una sección al principio del volumen.
 Contiene una entrada por cada *clúster* del disco y en cada una guarda el número del siguiente *clúster* del archivo.
-Es decir, lo que hace la FAT es agrupa en un solo lugar los punteros de la *asignación enlazada*.
+Es decir, lo que hace la FAT es agrupar en un solo lugar los punteros de la *asignación enlazada*.
 
 [[estructura_fat]]
 .Asignación enlazada en el sistema de archivos FAT.
@@ -221,10 +221,10 @@ Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestiona
 Aunque algunas versiones de Microsoft Windows NT llegaron a admitir 128 e, incluso, 512 bloques por clúster, con clústeres tan grandes la *fragmentación interna* es un problema.
 
 Por eso —entre otras cosas— Microsoft introdujo {fat32}, que utiliza 32 bits para numerar los clústeres.
-Eso implicar poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
+Eso implica poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
 Por ejemplo, {fat32} podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.
 
-Como se puede ver en la <<estructura_fat>>, en los sistemas de archivos {fat} cada entrada de directorio contiene, a parte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+Como se puede ver en la <<estructura_fat>>, en los sistemas de archivos {fat} cada entrada de directorio contiene, aparte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
 La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
 Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.
 
@@ -260,7 +260,7 @@ Este mecanismo soporta el acceso aleatorio eficiente, además de no sufrir el pr
 Sin embargo, también tiene sus desventajas:
 
 * Se pierde más espacio en los punteros que con el mecanismo de asignación enlazada, pues siempre hay que reservar un *bloque de índices* completo para cada archivo.
-Mientras que con la asignación enlazada, sólo se pierde el espacio de los punteros que realmente es necesario utilizar.
+Mientras que con la asignación enlazada, solo se pierde el espacio de los punteros que realmente es necesario utilizar.
 
 * Al diseñar el sistema de archivos debemos determinar el tamaño del *bloque de índices*.
 +
@@ -275,11 +275,11 @@ Por ejemplo, se puede utilizar el último puntero del bloque de índices para ap
 Si dicho puntero tiene valor 0, entonces estamos en el último bloque de índices del archivo.
 
 * En el *índice multinivel*(((esquema, índice multinivel))), los punteros del bloque de índices no señalan a los bloques del archivo, sino a un conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
-Esta técnica puede puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.
+Esta técnica puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.
 
 * En el *esquema combinado*(((esquema, combinado))) las primeras entradas del bloque de índices apuntan directamente a los primeros bloques del archivo.
 Mientras que las siguientes entradas contiene punteros indirectos, que apunta a un conjunto de bloques de índices de segundo nivel.
-Después podrían haber entradas que contienen punteros doblemente indirectos y luego entradas con punteros triplemente indirectos.
+Después podría haber entradas que contienen punteros doblemente indirectos y luego entradas con punteros triplemente indirectos.
 
 Para mejorar el rendimiento de los mecanismos de asignación indexados, es muy común que el sistema operativo intente mantener los bloques de índices en la memoria.
 
@@ -325,7 +325,7 @@ Sin embargo, leer el vector de bits, modificarlo y actualizarlo en disco en cada
 Por tanto, usar vectores de bits es ineficiente, a menos que se mantenga el vector completo en la memoria principal, escribiéndose ocasionalmente en el disco.
 
 Esto último puede ser imposible para los discos de gran tamaño, en función de la cantidad de memoria principal.
-Por ejemplo, un disco de 40 GiB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MiB, lo que no es un gran requisito para un sistema moderno pero si lo era hace dos décadas.
+Por ejemplo, un disco de 40 GiB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MiB, lo que no es un gran requisito para un sistema moderno, pero sí lo era hace dos décadas.
 
 [NOTE]
 ====
@@ -336,7 +336,7 @@ El sistema de archivo NTFS y la familia _extended filesystem_ —es decir, {ext}
 
 Otra técnica consiste en enlazar todos los bloques de disco libres.
 Para eso se puede guardar un puntero al primer bloque libre en una ubicación especial del disco y que ese bloque contenga un puntero al siguiente bloque libre del disco.
-El segundo bloque contendría un puntero al tercer bloque libre, y así sucesivamente.
+El segundo bloque contenga un puntero al tercer bloque libre, y así sucesivamente.
 
 El inconveniente es que recorrer la lista no resulta eficiente, pues tenemos que leer cada bloque para conocer la dirección del siguiente bloque libre en disco.
 Sin embargo, debemos tener en cuenta que no es frecuente tener que recorrer la lista de espacio libre completa porque, por lo general, basta con encontrar el primer bloque libre para asignar el espacio.
@@ -358,7 +358,7 @@ Generalmente los bloques son asignados o liberados en bloques contiguos, especia
 Esto puede ser aprovechado para mantener una lista donde cada entrada almacena la dirección del primer bloque de un conjunto de bloques libres contiguo, así como el número de bloques del conjunto.
 
 Por ejemplo, el sistema de archivos {xfs} utiliza un árbol B+ para almacenar las direcciones de las extensiones de bloques libres y mantenerlas ordenadas por el tamaño de la extensión a la que apuntan.
-Así el sistema operativo puede localizar rápidamente el espacio libre necesario para satisfacer una necesidad de espacio concreta.
+Así el sistema operativo puede localizar rápidamente el espacio libre necesario para satisfacer una necesidad concreta.
 
 == Sistemas de archivos virtuales
 
@@ -416,8 +416,8 @@ El tercer nivel es donde se implementa cada tipo de sistema de archivos o los di
 La interfaz *VFS* recurre a la implementación correspondiente para cada tipo de sistema de archivos, para satisfacer las solicitudes de los niveles superiores.
 
 Así, por ejemplo, un {linux_read} puede implicar que se tenga que recuperar el *vnodo* del archivo involucrado desde la tabla de archivos abiertos, usando el descriptor de archivo indicado en la llamada al sistema.
-Después, se invocaría la operación *VFS* `read()` sobre el *vnodo*, en la implementación concreta de *VFS* según el tipo de sistema de archivos involucrado.
-Será esa implementación quien extraiga del *vnodo* la información necesaria —por ejemplo, el *inodo* real del archivo en el sistema de archivos— para llevar acabo la operación indicada, según las especificidades del sistema de archivos.
+Después, se invoca la operación *VFS* `read()` sobre el *vnodo*, en la implementación concreta de *VFS* según el tipo de sistema de archivos involucrado.
+Será esa implementación quien extraiga del *vnodo* la información necesaria —por ejemplo, el *inodo* real del archivo en el sistema de archivos— para llevar a cabo la operación indicada, según las especificidades del sistema de archivos.
 
 == Planificación de disco
 
@@ -439,7 +439,7 @@ Por lo tanto, el *tiempo de acceso al disco* es menor cuando se realizan accesos
 
 // TODO: Diagrama del concepto de tasa de transferencia.
 
-El *((ancho de banda))* o *tasa de transferencia*(((tasa, transferencia))) del disco es el total de bytes transferidos en una petición dividido por el tiempo total que transcurre desde la primera solicitud de servicio hasta el final de la última transferencia, con la que se termina de atender la petición.
+El *((ancho de banda))* o *tasa de transferencia*(((tasa, transferencia))) del disco es el total de bytes transferidos en una petición dividida por el tiempo total que transcurre desde la primera solicitud de servicio hasta el final de la última transferencia, con la que se termina de atender la petición.
 Al considerar todo el tiempo necesario para atender la petición, a más *tiempo de acceso al disco* menor es el *ancho de banda*.
 
 En los dispositivos de almacenamiento basados en memorias de estado sólido (véase el <<_memorias_de_estado_sólido>>) el tiempo de acceso viene determinado por las características de la memoria —entre otros factores— lo que hace que las diferencias entre accesos secuenciales y accesos aleatorios sean mucho menos significativas.
@@ -458,10 +458,10 @@ La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S d
 (((planificación, de disco, FCFS)))
 
 En la planificación *((FCFS))* (_First Come, First Served_) o *primero que llega, primero servido* la cola de E/S al disco es FIFO.
-Es decir, que las las solicitudes se atienden en orden de llegada.
+Es decir, que las solicitudes se atienden en orden de llegada.
 
 Es el algoritmo de planificación más simple y es equitativo, en sentido de que atiende a todos los procesos por igual.
-Pero, lamentablemente, no proporciona el servicio más rápido en disco duros magnéticos, donde interesa mover el brazo del disco lo menos posible.
+Pero, lamentablemente, no proporciona el servicio más rápido en discos duros magnéticos, donde interesa mover el brazo del disco lo menos posible.
 
 [NOTE]
 ====
@@ -522,8 +522,8 @@ Estos algoritmos funcionan de la siguiente manera:
 Si en lugar de copiar _N_ peticiones de la segunda a la primera cola, se copian todas las solicitudes pendientes, el algoritmo se denomina *((F-SCAN))*.
 
 Estos algoritmos previenen un problema denominado *((rigidez del brazo))* —o _arm stickiness_, en inglés— a diferencia de los algoritmos SSTF, SCAN, C-SCAN, LOOK y C-LOOK, que no lo hacen.
-El termino *rigidez del brazo* hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, esto hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
-Como *F-SCAN*, *N-Step-SCAN* y *N-Step-LOOK* separan las solicitudes en dos colas —haciendo que las nuevas tengan que esperar— el brazo siempre continua su barrido hacia el extremo del disco.
+El término *rigidez del brazo* hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, esto hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
+Como *F-SCAN*, *N-Step-SCAN* y *N-Step-LOOK* separan las solicitudes en dos colas —haciendo que las nuevas tengan que esperar— el brazo siempre continúa su barrido hacia el extremo del disco.
 
 === Planificación CFQ
 (((planificación, de disco, CFQ)))
@@ -552,7 +552,7 @@ Las solicitudes extraídas se insertan en la cola de E/S al disco, donde se orde
 [NOTE]
 ====
 Actualmente, los planificadores *CFS* y *NOOP* se consideran obsoletos.
-En su lugar el planificador por defecto en Linux para SSD y discos duros es *mq-deadline* —un adaptación del planificador https://en.wikipedia.org/wiki/Deadline_scheduler[deadline], también obsoleto—.
+En su lugar el planificador por defecto en Linux para SSD y discos duros es *mq-deadline* —una adaptación del planificador https://en.wikipedia.org/wiki/Deadline_scheduler[deadline], también obsoleto—.
 Mientras que para dispositivos NVM Express se utiliza *NONE*, que básicamente desactiva la planificación de la E/S de disco.
 
 Otros planificadores disponibles actualmente son http://algo.ing.unimo.it/people/paolo/disk_sched/[BFQ] —diseñado para minimizar la latencia— y Kyber.

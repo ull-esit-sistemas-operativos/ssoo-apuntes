@@ -16,6 +16,6 @@ Para compilar es necesario hacer lo siguiente desde la línea de comandos:
 
 En Microsoft Windows estos comandos deben ejecutarse desde la consola de *Developer Command Prompt*.
 
-En cada sistema solo se compilarán los ejemplos compatibles, que se guardarán en el directorio `build/bin/`, desde dónde se pueden ejecutar para probarlos.
+En cada sistema solo se compilarán los ejemplos compatibles, que se guardarán en el directorio `build/bin/`, desde donde se pueden ejecutar para probarlos.
 
 El código fuente de los ejemplos está en el directorio `src/`, dentro del subdirectorio numerado con el capítulo correspondiente.

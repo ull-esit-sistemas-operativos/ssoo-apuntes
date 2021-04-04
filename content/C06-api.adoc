@@ -32,8 +32,8 @@ Provee un conjunto muy amplio de servicios: E/S a archivos y dispositivos, gesti
 Esto permite que un mismo programa pueda ser ejecutado en distintos sistemas operativos, siempre que sean compatibles con POSIX.
 
 El lenguaje C fue diseñado originalmente para implementar sistemas UNIX y por eso la librería estándar de C tenía mucho parecido con la librería del sistema de UNIX.
-Con el tiempo, al ir añadiendo más funcionalidades, la librería del sistema de los sistemas UNIX de los distintos fabricantes fue divergiendo, haciendo muy complicado desarrollar programas que usaran las características más avanzadas y que a la vez pudieran ejecutarse en varios de ellos.
-Por eso el {ieee} desarrollo el estándar POSIX, que define una API común para todos los UNIX y sistemas estilo UNIX modernos —como es el caso de GNU/Linux—.
+Con el tiempo, al ir añadiendo más funcionalidades, la librería del sistema de los sistemas UNIX de los distintos fabricantes fue divergiendo, haciendo muy complicado desarrollar programas que usasen las características más avanzadas y que a la vez pudieran ejecutarse en varios de ellos.
+Por eso el {ieee} desarrolló el estándar POSIX, que define una API común para todos los UNIX y sistemas estilo UNIX modernos —como es el caso de GNU/Linux—.
 Así que la práctica totalidad de estos sistemas son compatible POSIX.
 
 Por su origen, la API POSIX es un superconjunto de la API de la librería estándar de C.
@@ -65,7 +65,7 @@ Eso significa que para que un proceso pueda invocar los servicios que necesita h
 === Invocar llamadas al sistema
 
 Generalmente una llamada al sistema se invoca mediante una instrucción específica en lenguaje ensamblador que genera una *excepción* —que no es más que una interrupción lanzada por la propia CPU al detectar instrucciones especiales o un error al ejecutar una instrucción, como una división por 0 o un acceso indebido a ciertas zonas de la memoria—.
-Por ejemplo, en MIPS e Intel x86 se usa la instrucción `syscall`, que lanza un excepción, haciendo que la CPU salte a una rutina en el código del núcleo del sistema, deteniendo así la ejecución del proceso que la invocó.
+Por ejemplo, en MIPS e Intel x86 se usa la instrucción `syscall`, que lanza una excepción, haciendo que la CPU salte a una rutina en el código del núcleo del sistema, deteniendo así la ejecución del proceso que la invocó.
 
 Al realizar una llamada, es necesario que el sistema sepa qué operación le está pidiendo el proceso.
 Esto se suele hacer poniendo un número identificativo de la llamada en un registro concreto de la CPU.
@@ -103,7 +103,7 @@ Es utilizado, por ejemplo, en sistemas UNIX BSD y en Windows XP y posteriores pa
 [[linux_mips_syscall]]
 .Llamada al sistema en Linux MIPS.
 ====
-Veamos como invocar directamente la llamada al sistema {linux_write} en Linux para MIPS.
+Veamos cómo invocar directamente la llamada al sistema {linux_write} en Linux para MIPS.
 
 Esta llamada sirve para escribir datos en un archivo.
 Así que necesita tres argumentos:
@@ -186,7 +186,7 @@ Por eso, junto a cada intérprete o compilador de cada lenguaje de programación
 Estas librerías generalmente no forman parte del sistema operativo, sino de las herramientas de desarrollo de cada lenguaje de programación, y constituyen la *interfaz de programación de aplicaciones* del lenguaje al que acompañan.
 
 La *librería estándar* necesita acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que la usan.
-Es decir, cuando un programa invoca alguna función o método de la librería estándar que lo acompaña, es muy probable que ésta necesite invocar uno o más servicios del sistema operativo para atender la petición convenientemente.
+Es decir, cuando un programa invoca alguna función o método de la librería estándar que lo acompaña, es muy probable que esta necesite invocar uno o más servicios del sistema operativo para atender la petición convenientemente.
 Para ello la *librería estándar* utiliza la *librería del sistema* que acompaña al sistema operativo, que a su vez realiza las *llamadas al sistema* necesarias.
 ====
 
@@ -198,14 +198,14 @@ Las llamadas al sistema y la librería del sistema de los sistemas operativos of
 Los archivos se abren indicando su ruta y, al hacerlo, el sistema operativo devuelve un identificador del archivo abierto (véase {linux_open}).
 Este identificador se puede usar para leer o escribir en bytes el contenido del archivo.
 
-Si embargo en C, {cpp} y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o _stream_ (véase {clang_stdio} e {cpp_iostream}).
-En él. se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.
+Sin embargo en C, {cpp} y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o _stream_ (véase {clang_stdio} e {cpp_iostream}).
+En él se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.
 
 Los flujos pueden ser de texto o binarios, lo que implica algunas transformaciones en los datos.
 Además van ligados al concepto del _buffering_, es decir, que los bytes o caracteres escritos en el flujo no se «envían» inmediatamente, sino que se acumulan en la memoria para ser enviados en bloque.
 
 Todas estas características adicionales las implementa la *librería estándar*.
-Pero por debajo, al final, los datos tiene que ser escritos en un archivo, una impresora o el monitor, recursos que gestiona el sistema operativo.
+Pero por debajo, al final, los datos tienen que ser escritos en un archivo, una impresora o el monitor, recursos que gestiona el sistema operativo.
 Por lo tanto, las *librerías estándar* necesitan hacer uso de la *librería del sistema* para comunicarse con el sistema operativo.
 
 '''
@@ -253,8 +253,7 @@ HANDLE WINAPI CreateFile(
 <4> Permisos del archivo, en caso de crearlo.
 <5> Acción en caso de que el archivo exista o no: siempre crear, solo abrir, truncar si existe, etc.
 <6> Atributos del archivo, en caso de crearlo.
-<7> Archivo abierto del que copiar los atributos para copiarlo en éste,
-en caso de crearlo.
+<7> Archivo abierto del que copiar los atributos para copiarlo en este, en caso de crearlo.
 
 que {clang_fopen} no posee:
 

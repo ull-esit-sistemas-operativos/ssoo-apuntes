@@ -8,14 +8,14 @@ include::../config/attributes.adoc[]
 ====
 
 ¿Qué es un sistema operativo? ¿cuáles son sus responsabilidades en el contexto de un sistema informático? ¿cómo cumple con ellas?
-Éstas son algunas de las cuestiones que responderemos en este capítulo.
+Estas son algunas de las cuestiones que responderemos en este capítulo.
 Aunque, cómo veremos, no son preguntas sencillas de responder.
 
 == Definición de sistema operativo
 
 En general no existe una definición universal de lo qué es un *((sistema operativo))*, aunque si muchas propuestas de diferentes autores:
 
-* Hay quién considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un sistema operativo».
+* Hay quien considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un sistema operativo».
 +
 En realidad esta definición no es muy precisa, puesto que las características incluidas pueden variar enormemente de un sistema a otro.
 Por ejemplo, algunos sistemas operativos apenas alcanzan el megabyte de espacio, careciendo incluso de las aplicaciones más básicas, mientras que otros ocupan gigabytes de espacio, incluyen una interfaz gráfica basada en ventanas y las aplicaciones más comunes que cualquier usuario puede necesitar.
@@ -27,15 +27,15 @@ Aunque pueda parecer lo contrario, la cuestión de qué componentes son parte o 
 Microsoft afirmaba que ambos productos eran realmente uno solo y que su unión fue el resultado de un proceso de innovación.
 Mientras tanto, la otra parte alegaba que el navegador era un producto distinto y separado, que no formaba parte del sistema operativo y que todo el asunto restringía la libre competencia en el mercado de los navegadores.
 
-Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados Unidos tenían mucho sentido, ¿pero qué ocurriría si se planteara este mismo asunto en la actualidad?.
+Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados Unidos tenían mucho sentido, ¿pero qué ocurriría si se plantea este mismo asunto en la actualidad?.
 ¿Concibes que tu móvil o tu ordenador no trajeran de serie un navegador?
 
 Para más información, véase https://es.wikipedia.org/wiki/Caso_Estados_Unidos_contra_Microsoft[«Caso Estados Unidos contra Microsoft -- Wikipedia»].
 ====
 
-* Una definición mucho más común es que el sistema operativo es «aquel programa que se ejecuta continuamente en el ordenador» —lo que denominamos comúnmente como _**((kernel))**_ o *((núcleo))* del sistema— siendo todo lo demás programas del sistema y aplicaciones.
+* Una definición mucho más común es que el sistema operativo es «aquel programa que se ejecuta continuamente en el ordenador» —lo que denominamos comúnmente como _**((kernel))**_ o *((núcleo))* del sistema— siendo todo lo demas programas del sistema y aplicaciones.
 +
-Sin embargo, en algunos casos ésta definición excluye como parte del sistema operativo algunos servicios que intuitivamente solemos considerar dentro del mismo.
+Sin embargo, en algunos casos esta definición excluye como parte del sistema operativo algunos servicios que intuitivamente solemos considerar dentro del mismo.
 Por ejemplo, si aplicamos esta definición a los sistemas operativos de estructura microkernel, no podríamos decir que servicios básicos como la comunicación en red, los sistemas de archivos y la gestión de la memoria son parte del sistema operativo.
 +
 [NOTE]
@@ -67,7 +67,7 @@ En lugar de que cada aplicación intente hacerlo por su cuenta, es mucho más se
 
 Por lo tanto, el sistema operativo controla, coordina el acceso y asigna los recursos computacionales del hardware a los distintos programas de aplicación.
 
-En realidad ésta es solo una de las dos perspectivas desde las que se pueden analizar las funciones del sistema operativo.
+En realidad esta es solo una de las dos perspectivas desde las que se pueden analizar las funciones del sistema operativo.
 Es la denominada como: *perspectiva del sistema informático*, mientras que la otra es la *perspectiva del usuario*.
 
 === Perspectiva del sistema informático
@@ -89,7 +89,7 @@ En resumen, desde la perspectiva del sistema informático, las funciones del *((
 
 Un *sistema operativo*:
 
-* No hace trabajo directamente útil para los usuarios.
+* No hace un trabajo directamente útil para los usuarios.
 
 * Pero proporciona un entorno adecuado para que los programas de aplicación lo hagan.
 
@@ -104,13 +104,13 @@ Sin embargo, debemos tener en cuenta que la interfaz varía con el tipo de siste
 Por ejemplo, los usuarios que se sientan frente a un sistema de escritorio disponen de: monitor, teclado, ratón y una unidad central.
 Estos sistemas se diseñan buscando la máxima productividad en equipos donde un usuario monopoliza todos los recursos; por lo que el sistema operativo se diseña considerando fundamentalmente la facilidad de uso, poniendo algo de atención en el rendimiento y nada en el aprovechamiento de los recursos.
 
-Esto difiere mucho de otro tipo de sistema informático dónde múltiples usuarios se sientan frente a terminales conectadas a un gran ordenador central.
+Esto difiere mucho de otro tipo de sistema informático, donde múltiples usuarios se sientan frente a terminales conectadas a un gran ordenador central.
 Así todos los usuarios comparten los recursos del sistema informático y pueden intercambiar información entre sí.
 En este tipo de sistemas el sistema operativo maximiza el aprovechamiento de los recursos con el objeto de garantizar que toda la CPU, memoria y E/S son empleadas de forma eficiente y que ningún usuario utiliza más de lo que le corresponde.
 Obviamente, en este tipo de sistemas la facilidad de uso está en un segundo plano.
 
 Otros sistemas operativos se diseñan para sistemas informáticos que tienen poca o ninguna interacción con los usuarios.
-Es, por ejemplo, el caso de los sistema empotrados de los electrodomésticos.
+Es, por ejemplo, el caso de los sistemas empotrados de los electrodomésticos.
 
 Todos estos tipos de sistemas tienen interfaces muy diferentes, lo que dificulta obtener una definición única de sistema operativo desde la perspectiva del usuario.
 

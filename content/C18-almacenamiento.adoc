@@ -54,10 +54,10 @@ Esta unidad es el *archivo*.
 
 Un *((archivo))* o *((fichero))* es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario.
 Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
-Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que éstos se encuentren dentro de un archivo.
+Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que estos se encuentren dentro de un archivo.
 
 El sistema operativo puede ofrecer esta abstracción gracias al *sistema de archivos*(((sistema, archivos))).
-Éste proporciona los mecanismos para el almacenamiento de los datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.
+Este proporciona los mecanismos para el almacenamiento de los datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.
 
 Los sistemas de archivos están compuestos de dos partes claramente diferenciadas:
 
@@ -71,7 +71,7 @@ Los dispositivos de almacenamiento comentados anteriormente pueden ser utilizado
 Sin embargo, en ocasiones es interesante hacer divisiones con el objeto de disponer de múltiples sistemas de archivos en el mismo dispositivo.
 Cada una de esas divisiones es un *volumen*.
 
-En otros casos interesa combinar divisiones o dispositivos de almacenamiento completos para crear espacios de mayor tamaño —también denominadas *volúmenes*— cada una de las cuales puede albergar un único sistema de archivos.
+En otros casos interesa combinar divisiones o dispositivos de almacenamiento completos para crear espacios de mayor tamaño —también denominados *volúmenes*— cada una de las cuales puede albergar un único sistema de archivos.
 Así que en general, utilizaremos el término *((volumen))* para referirnos a un espacio de almacenamiento que alberga un sistema de archivos, tanto si ese espacio es una pequeña parte del espacio completo del dispositivo, como si se trata de una estructura de mayor tamaño compuesta a partir de varios dispositivos.
 
 A continuación comentaremos brevemente las tecnologías utilizadas con mayor frecuencia para construir estos volúmenes.
@@ -82,7 +82,7 @@ La tecnología *((RAID))* (_Redundant Array of Inexpensive Disks_) permite combi
 En concreto se definen diversos *niveles RAID*, de entre los cuales los más comunes son:
 
 * En un *conjunto RAID 0* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos, sin incluir ningún tipo de información redundante.
-Esto permite leer y escribir más datos en el mismo tiempo, ya que se pueden enviar en paralelo peticiones a los distintos discos.
+Esto permite leer y escribir más datos al mismo tiempo, ya que se pueden enviar en paralelo peticiones a los distintos discos.
 Sin embargo, la fiabilidad es inversamente proporcional al número de discos, ya que para que el conjunto falle basta con que lo haga cualquiera de ellos.
 
 * En un *conjunto RAID 1* se crea una copia exacta —en espejo— de los datos en dos o más discos.
@@ -90,7 +90,7 @@ El resultado es que, incluso con dos discos, se incrementa exponencialmente la f
 Adicionalmente, el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear las operaciones de lectura entre todos ellos.
 
 * En un *conjunto RAID 5* se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma división. 
-En RAID se denomina división o _stripe_ a la serie de bloques consecutivos escogido cada uno de uno de los discos del conjunto.
+En RAID se denomina división o _stripe_ a la serie de bloques consecutivos, escogidos de cada uno de los discos del conjunto.
 +
 El disco utilizado para almacenar el bloque de paridad cambia de forma escalonada de una división a la siguiente, de ahí que se diga que el bloque de paridad está distribuido.
 Algunos aspectos adicionales a tener en cuenta son que:
@@ -99,12 +99,12 @@ Algunos aspectos adicionales a tener en cuenta son que:
 Por lo tanto las escrituras en un conjunto RAID 5 son costosas en términos de operaciones de disco y tráfico.
 
 ** Los bloques de paridad no se leen durante las lecturas de datos, ya que eso reduciría el rendimiento.
-Sólo se hace en caso de que la lectura de un sector falle, puesto que el sector en la misma posición relativa dentro de cada uno de los otros bloques de datos de la división y en el bloque de paridad se pueden utilizar para reconstruir el sector erróneo.
+Solo se hace en caso de que la lectura de un sector falle, puesto que el sector en la misma posición relativa dentro de cada uno de los otros bloques de datos de la división y en el bloque de paridad se pueden utilizar para reconstruir el sector erróneo.
 
 ** En un conjunto RAID 5 el fallo de 2 discos provoca la pérdida completa de los datos.
-Esto significa que aunque se pueden añadir discos de manera ilimitada, eso no suele ocurrir puesto que a más discos en el conjunto más probabilidad de que fallen dos de ellos.
+Esto significa que aunque se pueden añadir discos de manera ilimitada, eso no suele ocurrir, puesto que a más discos en el conjunto más probabilidad de que fallen dos de ellos.
 
-* En un *conjunto RAID 6* se utiliza la misma estrategia que en RAID 5 pero en cada división hay dos bloques de paridad —en lugar de uno— en dos discos diferentes.
+* En un *conjunto RAID 6* se utiliza la misma estrategia que en RAID 5, pero en cada división hay dos bloques de paridad —en lugar de uno— en dos discos diferentes.
 Esto permite que fallen hasta dos discos sin perder los datos.
 
 * En un conjunto con niveles anidados se combinan varios niveles RAID básicos como si fueran capas superpuestas.
@@ -112,23 +112,23 @@ Ejemplos típicos son:
 
 ** *RAID 0+1*, donde se hace un espejo de un conjunto RAID 0.
 
-** *RAID 1+0* o *RAID 10*, donde diversos conjuntos en espejo se combina en un RAID 0, aumentando la capacidad total.
+** *RAID 1+0* o *RAID 10*, donde diversos conjuntos en espejo se combinan en un RAID 0, aumentando la capacidad total.
 
 ** *RAID 50*, donde diversos conjuntos RAID 5 se combinan en un RAID 0, aumentando también la capacidad total.
 
 La implementación de RAID es otra de las áreas donde existen diversas variantes:
 
-* RAID puede implementarse en el hardware de la controladora de disco, de tal forma que sólo los discos conectados a ésta pueden formar parte de un conjunto RAID determinado.
+* RAID puede implementarse en el hardware de la controladora de disco, de tal forma que solo los discos conectados a esta pueden formar parte de un conjunto RAID determinado.
 Esta solución es muy eficiente, especialmente cuando se utilizan niveles que requieren cálculo de la paridad, ya que se evita utilizar tiempo de CPU para ese trabajo.
 Sin embargo, estas controladoras son notablemente más caras que las que carecen de soporte para RAID.
 
 * RAID puede implementarse dentro del sistema operativo en lo que se denomina el *software de gestión de volúmenes*(((gestión, volúmenes))).
-En este caso las soluciones RAID con paridad son bastante lentas, por lo que normalmente sólo se soportan los niveles RAID 0, 1, 10 o 0+1.
-Algunas controladoras de disco modernas que dicen venir con soporte RAID realmente implementan esta tecnología en software, a nivel del controlador de dispositivo, mientras que en el hardware sólo se implementan unas características de apoyo mínimas.
+En este caso las soluciones RAID con paridad son bastante lentas, por lo que normalmente solo se soportan los niveles RAID 0, 1, 10 o 0+1.
+Algunas controladoras de disco modernas que dicen venir con soporte RAID realmente implementan esta tecnología en software, a nivel del controlador de dispositivo, mientras que en el hardware solo se implementan unas características de apoyo mínimas.
 En algunos entornos se denomina a este tipo de implementaciones _fakeRAID_ o _hostRAID_.
 
 Cada conjunto RAID se comporta como una unidad de almacenamiento independiente desde el punto de vista del resto del sistema, por lo que se puede utilizar entero para albergar un único sistema de archivos.
-Sin embargo, lo más común es dividirlo en regiones con el objeto de utilizar múltiples sistemas de archivos o combinarlo en estructuras de mayor tamaño, para lo cuál se pueden utilizar alguna de las técnicas que veremos a continuación.
+Sin embargo, lo más común es dividirlo en regiones con el objeto de utilizar múltiples sistemas de archivos o combinarlo en estructuras de mayor tamaño, para lo cual se pueden utilizar alguna de las técnicas que veremos a continuación.
 
 === Particiones
 

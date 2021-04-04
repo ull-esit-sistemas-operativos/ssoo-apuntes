@@ -7,7 +7,7 @@ include::../config/attributes.adoc[]
 *Tiempo de lectura:* {s11-reading-time}
 ====
 
-La *memoria compartida*(((memoria, compartida))) es una estrategia para comunicar procesos dónde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
+La *memoria compartida*(((memoria, compartida))) es una estrategia para comunicar procesos donde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
 Por eso, para que pueda haber memoria compartida es necesario que los dos procesos estén de acuerdo en eliminar dicha restricción.
 
 Dos procesos que comparten una región de la memoria pueden intercambiar información simplemente leyendo y escribiendo datos en la misma.
@@ -23,7 +23,7 @@ Las principales ventajas de la memoria compartida frente a otros mecanismos de c
 Puesto que la comunicación tiene lugar a la velocidad de la memoria principal, se trata de un mecanismo tremendamente rápido.
 
 * **Conveniencia**.
-Puesto que el mecanismo de comunicación sólo requiere leer y escribir de la memoria, se trata de un sistema muy sencillo y fácil de utilizar.
+Puesto que el mecanismo de comunicación solo requiere leer y escribir de la memoria, se trata de un sistema muy sencillo y fácil de utilizar.
 
 Como ocurre con las tuberías (véase el <<_tuberías>>) la memoria compartida puede ser anónima o con nombre.
 
@@ -32,7 +32,7 @@ Como ocurre con las tuberías (véase el <<_tuberías>>) la memoria compartida p
 La *memoria compartida anónima*(((memoria, compartida, anónima))) solo existe para el proceso que la crea y para sus procesos hijos, que heredan el acceso.
 Es por tanto, una forma eficiente de comunicar procesos padres e hijos.
 
-En lo sistemas POSIX, las funciones y operadores de reserva de memoria como {clang_malloc} y {cpp_new}, utilizan internamente la llamada al sistema {linux_mmap}.
+En los sistemas POSIX, las funciones y operadores de reserva de memoria como {clang_malloc} y {cpp_new}, utilizan internamente la llamada al sistema {linux_mmap}.
 Esta función se puede llamar de la siguiente manera para reservar `length` bytes de memoria.
 
 [source,c]
@@ -89,7 +89,7 @@ HANDLE hMapFile = CreateFileMapping( <3>
 ----
 <1> Permisos de acceso para la memoria reservada.
 <2> Cantidad de memoria a reservar en bytes.
-<3> A diferencia de {linux_mmap}, {win32_createfilemapping} crea un objeto de memoria compartida pero no hace visible esa memoria para nuestro proceso.
+<3> A diferencia de {linux_mmap}, {win32_createfilemapping} crea un objeto de memoria compartida, pero no hace visible esa memoria para nuestro proceso.
 Para eso hay que llamar a {win32_mapviewoffile} pasándole el manejador `hMapFile` devuelto por {win32_createfilemapping}.
 
 == Memoria compartida con nombre

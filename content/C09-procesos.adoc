@@ -7,7 +7,7 @@ include::../config/attributes.adoc[]
 *Tiempo de lectura:* {s09-reading-time}
 ====
 
-Los primeros sistemas informáticos solo permitían que un programa se ejecutara cada vez.
+Los primeros sistemas informáticos solo permitían que un programa se ejecutase cada vez.
 Dicho programa tenía control completo sobre el sistema y acceso a todos los recursos del mismo.
 Por el contrario, los sistemas *multitarea* actuales permiten que múltiples programas sean cargados y ejecutados concurrentemente.
 
@@ -25,7 +25,7 @@ Por último, antes de continuar, es importante señalar que en un sistema operat
 * *Procesos del sistema*(((proceso, sistema))).
 Ejecutan el código del sistema operativo contenido en los *programas del sistema*, que generalmente sirven para hacer tareas del sistema operativo que es mejor mantener fuera del núcleo.
 
-* *Procesos de usuario*(((proceso, usuario))) 
+* *Procesos de usuario*(((proceso, usuario))).
 Ejecutan el código contenido en los _programas de aplicación_.
 
 Sin embargo, en lo que resta de capítulo, no estableceremos ninguna distinción entre ellos.
@@ -46,7 +46,7 @@ Contiene las variables globales y estáticas del programa que se inicializan con
 También es conocido como segmento *.data*.
 
 Segmento BSS(((segmento, BSS)))::
-Contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita   .
+Contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita.
 También es conocido como segmento *.bss*.
 
 Pila(((pila))):: 
@@ -65,8 +65,8 @@ El resto de elementos los crea el sistema operativo al cargar el programa y crea
 
 [NOTE]
 ====
-Como vimos en el <<componente_gestión_de_procesos>> varios procesos pueden estar asociados al mismo programa pero no por eso dejan de ser distintos procesos.
-Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demás propiedades.
+Como vimos en el <<componente_gestión_de_procesos>> varios procesos pueden estar asociados al mismo programa, pero no por eso dejan de ser distintos procesos.
+Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demas propiedades.
 ====
 
 En la <<proceso_en_memoria>> se puede observar la disposición de algunos de estos elementos de un proceso en el espacio de usuario en la memoria.
@@ -84,7 +84,7 @@ Cada proceso tiene un *estado* que cambia a lo largo de su ejecución y que est�
 .Diagrama de estado de un proceso.
 image::{chapdir}/diagrama_estado_proceso.svg[]
 
-Los estados por los que puede pasar un procesos varían de un sistema operativo a otro, aunque los siguientes son comunes a todos ellos:
+Los estados por los que puede pasar un proceso varían de un sistema operativo a otro, aunque los siguientes son comunes a todos ellos:
 
 Nuevo::
 El proceso está en proceso de creación.
@@ -94,7 +94,7 @@ Necesita de varias operaciones que pueden tardar tiempo en realizarse, como: res
 Ejecutando::
 El proceso está siendo ejecutado en la CPU.
 Para eso tiene que haber sido escogido por el planificador de la CPU de entre todos los procesos en estado *preparado*.
-Sólo puede haber un proceso en este estado por CPU en el sistema.
+Solo puede haber un proceso en este estado por CPU en el sistema.
 
 Esperando::
 El proceso está esperando por algún *evento* como, por ejemplo, que termine una operación de E/S solicitada previamente o que otro proceso termine su ejecución.
@@ -150,8 +150,8 @@ Incluye la lista de dispositivos de E/S reservados por el proceso, la lista de a
 En los sistemas operativos hay diferentes *colas de planificación* para los procesos en distintos *estados*.
 
 Cola de trabajo(((cola, trabajo)))::
-Contiene a todos los trabajos en el sistema, de manera que cuando entran en el sistema van a esta cola, a la espera de ser escogidos para ser cargados en la memoria y ejecutados.
-Esta cola existía en los *sistemas multiprogramados* pero no existe en los sistemas operativos modernos.
+Contiene todos los trabajos en el sistema, de manera que cuando entran en el sistema van a esta cola, a la espera de ser escogidos para ser cargados en la memoria y ejecutados.
+Esta cola existía en los *sistemas multiprogramados*, pero no existe en los sistemas operativos modernos.
 
 Cola de preparados(((cola, preparados)))::
 Contiene a los procesos que están en estado *preparado*.
@@ -248,9 +248,9 @@ Algunas CPU disponen de instrucciones especiales para salvar y cargar todos los 
 Esto reduce el tiempo que la CPU está ocupada en los cambios de contexto.
 
 Otra opción es el uso de https://en.wikipedia.org/wiki/Register_file[juegos de registros], como es el caso de los procesadores {ultrasparc} e {itanium}.
-Con ellos el juegos de registros actual de la CPU se mapea sobre un banco de registros mucho más extenso.
+Con ellos el juego de registros actual de la CPU se mapea sobre un banco de registros mucho más extenso.
 Al hacer cambio de contexto, se mapea el juego de registros a otros registros diferentes del banco.
-Esto permite que la CPU almacene de forma eficiente el valor de los registros de más de un proceso, sin que en cada cambio de contexto sea necesario copiarlos al PCB del proceso en la memoria principal.
+Esto permite a la CPU almacenar de forma eficiente el valor de los registros de más de un proceso, sin que en cada cambio de contexto sea necesario copiarlos al PCB del proceso en la memoria principal.
 ====
 
 == Operaciones sobre los procesos
@@ -315,7 +315,7 @@ En los sistemas POSIX es muy sencillo de ver ejecutando el comando {cmd_pstree}.
 // TODO: Poner una captura de pstree
 
 En estos sistemas el proceso *((init))* es el proceso padre raíz de todos los procesos de usuario.
-Su PID siempre es 1 ya que es el primer proceso creado por el sistema operativo al terminar la inicialización del núcleo.
+Su PID siempre es 1, ya que es el primer proceso creado por el sistema operativo al terminar la inicialización del núcleo.
 Por lo tanto, es el responsable de crear todos los otros procesos que son necesarios para el funcionamiento del sistema.
 
 ==== Cómo obtienen los procesos hilos los recursos que necesitan
@@ -331,7 +331,7 @@ Esta es la opción más común en los sistemas de propósito general actuales, c
 . Que los procesos hijo solo puedan aspirar a obtener un subconjunto de los recursos de su padre.
 Esto es interesante en sistemas diseñados para ser muy robustos, ya que evita que un proceso pueda sobrecargar el sistema creando múltiples procesos que consuman demasiada memoria o tiempo de CPU.
 
-En este último caso, el proceso padre puede estar obligado a repartir sus recursos entre los procesos hijo. O pueda que el sistema les permita compartir algunos de esos recursos —como memoria o archivos— con algunos de sus hijos.
+En este último caso, el proceso padre puede estar obligado a repartir sus recursos entre los procesos hijo. O puede que el sistema les permita compartir algunos de esos recursos —como memoria o archivos— con algunos de sus hijos.
 
 ==== Cómo pasar parámetros de inicialización a los procesos hijo
 
@@ -417,18 +417,18 @@ En algunos sistemas operativos los procesos hijos pueden heredar cierto tipo de 
 
 Por ejemplo, en los sistemas POSIX todos los archivos abiertos por un proceso son heredados en el mismo estado por sus hijos.
 Lo interesante es que en estos sistemas muchos recursos se gestionan como archivos.
-Algunos ejemplo podrían ser: dispositivos de E/S, memoria compartida, tuberías, _sockets_ y otros mecanismos de comunicación. 
+Algunos ejemplos podrían ser: dispositivos de E/S, memoria compartida, tuberías, _sockets_ y otros mecanismos de comunicación. 
 
 En POSIX todo proceso tiene, por defecto, tres archivos abiertos que corresponden a tres dispositivos de E/S especiales:
 
- * *Entrada estándar*(((entrada estándar))), de dónde los procesos leen la entrada del teclado de la terminal.
+ * *Entrada estándar*(((entrada estándar))), de donde los procesos leen la entrada del teclado de la terminal.
  * *Salida estándar*(((salida, estándar))), donde el proceso escribe para mostrar texto en la pantalla de la terminal.
  * *Salida de error*(((salida, de error))), usada para mostrar errores en la pantalla de la terminal.
 
 Debido a la herencia de los archivos abiertos del proceso padre, todo proceso hijo tiene acceso a estos tres mismos dispositivos.
-Y a su vez también la tendrán sus hijos y los hijos de éstos.
+Y a su vez también la tendrán sus hijos y los hijos de estos.
 De esta manera, todo proceso tiene acceso a los dispositivos de E/S de la terminal donde se ejecuta.
-Pero también permite a un proceso controlar el destino de la E/S de un proceso hijo —y de los hijos de éste—.
+Pero también permite a un proceso controlar el destino de la E/S de un proceso hijo —y de los hijos de este—.
 
 Por ejemplo, si antes de crear el proceso hijo sustituye el dispositivo de salida estándar por un archivo real, todo lo que el hijo intente mostrar por pantalla se guardará en dicho archivo, en lugar de mostrarse.
 Mientras que si lo hace con el dispositivo de entrada estándar, todo lo que pretenda leer de teclado realmente lo leerá de un archivo que el padre puede haber preparado, como si de algún tipo de control remoto se tratara.
@@ -438,7 +438,7 @@ Mientras que si lo hace con el dispositivo de entrada estándar, todo lo que pre
 Esta misma idea se puede extender a procesos que ofrecen servicios, ya sea a otros procesos del mismo sistema o a redes de ordenadores, como Internet.
 
 Cada conexión con un cliente es como archivo abierto, por lo que los hijos del proceso heredan las conexiones.
-Así que es común la estrategia de crear un hijo por conexión para que la atienda en nombre del padre, mientras éste se encarga de recibir nuevas conexiones.
+Así que es común la estrategia de crear un hijo por conexión para que la atienda en nombre del padre, mientras este se encarga de recibir nuevas conexiones.
 ====
 
 En Microsoft Windows existe un mecanismo similar pero no por defecto.
@@ -452,7 +452,7 @@ Se suelen contemplar dos posibilidades en términos de la ejecución del padre:
 . Que el padre continúe ejecutándose al mismo tiempo que el hijo.
 Es lo más común en los sistemas multitarea actuales.
 
-. Que le padre quede detenido a la espera que de algunos o todos sus hijos terminen.
+. Que el padre quede detenido a la espera de que algunos o todos sus hijos terminen.
 Era lo más frecuente en sistemas monotarea, como {msdos}.
 
 ==== Cómo se construye el espacio de direcciones de los procesos hijo
@@ -524,13 +524,13 @@ TerminateProcess(handle);
 
 Habitualmente el proceso que invoca estas funciones es el proceso padre, ya que puede que sea el único con permisos para hacerlo.
 
-Los motivos para terminar un procesos hijo pueden ser:
+Los motivos para terminar un proceso hijo pueden ser:
 
 * *El hijo ha excedido el uso de algunos de los recursos reservados*.
 Obviamente esto tiene sentido cuando los hijos utilizan un subconjunto de los recursos asignados al padre.
 
 * *La tarea asignada al hijo ya no es necesaria*.
-Por ejemplo, se creó para comprimir un archivo pero el usuario ha pedido cancelar la operación.
+Por ejemplo, se creó para comprimir un archivo, pero el usuario ha pedido cancelar la operación.
 
 * *El padre termina y el sistema operativo está diseñado para no permitir que el hijo pueda seguir ejecutándose si no tiene un padre*.
 En esos sistemas, la terminación de un proceso provoca que el sistema operativo inicie lo que se denomina una *((terminación en cascada))*, en la que termina todos los procesos que cuelgan de dicho proceso.
@@ -561,7 +561,7 @@ Como hemos comentado anteriormente, para acceder a todas las funcionalidades ofr
 En Windows la librería del sistema ofrece la función {win32_createprocess}.
 A diferencia de {clang_system}, recibe muchísimos argumentos, ya que permite configurar bastantes aspectos de la creación de un nuevo proceso.
 
-En el <<ejemplo_createprocess>> se puede ver como se usa {win32_createprocess} para ejecutar un programa y esperar a que termine, de forma similar a como lo hace {clang_system}.
+En el <<ejemplo_createprocess>> se puede ver cómo se usa {win32_createprocess} para ejecutar un programa y esperar a que termine, de forma similar a como lo hace {clang_system}.
 
 [[ejemplo_createprocess]]
 .Crear un proceso usando Windows API
@@ -646,7 +646,7 @@ Así el sistema operativo sabe que las estructuras de datos relacionadas con el 
 ==== POSIX API
 
 Por el contrario, en los sistemas POSIX se utiliza una estrategia muy diferente.
-Los nuevos procesos se crean con la llamada {linux_fork}, que se encargar de crearlo como una copia del proceso padre.
+Los nuevos procesos se crean con la llamada {linux_fork}, que se encarga de crearlo como una copia del proceso padre.
 
 .Crear un proceso en sistemas POSIX
 ====
@@ -695,7 +695,7 @@ else if (child > 0) <3> <4>
 }
 else { <5>
     // Aquí solo entra el padre si no pudo crear el hijo
-    fprintf( stderr, "Error (%d) al crear el procesos: %s\n", errno, strerror(errno) ); <6>
+    fprintf( stderr, "Error (%d) al crear el proceso: %s\n", errno, strerror(errno) ); <6>
     return 1;
 }
 ----
@@ -718,19 +718,18 @@ El motivo del error se puede conocer a través de la variable global {linux_errn
 La función {linux_strerror} permite obtener un texto descriptivo de cualquier valor de {linux_errno}, lo que siempre resulta útil para crear mensajes de error que ayuden a determinar dónde estuvo el problema.
 
 <7> A modo de ejemplo hemos guardado el PID del proceso en la variable `pid`, antes de la llamada a {linux_fork}.
-Como el proceso hijo es una copia del proceso padre, la variable existe en ambos pero en el proceso hijo su valor coincide con lo devuelto por {linux_getppid} mientras que en el proceso padre con lo devuelto por {linux_getpid}.
+Como el proceso hijo es una copia del proceso padre, la variable existe en ambos, pero en el proceso hijo su valor coincide con lo devuelto por {linux_getppid} mientras que en el proceso padre con lo devuelto por {linux_getpid}.
 
 <8> {linux_wait} hace que el proceso padre interrumpa su ejecución hasta que algún hijo termine y devuelve el estado de salida en `status`.
 +
-Debemos asegurarnos de llamar a {linux_wait} o {linux_waitpid} una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, dónde se guarda el estado de salida.
+Debemos asegurarnos de llamar a {linux_wait} o {linux_waitpid} una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, donde se guarda el estado de salida.
 No hacerlo genera *procesos zombi*(((proceso, zombi))) o _defunct_.
 
 <9> El valor de salida del proceso hijo lo obtiene el proceso a través del estado de salida devuelto por {linux_wait}.
 Pero ese estado contiene más información sobre la causa por la que el proceso terminó.
 Para recuperar el valor de salida se usa la macro `WEXITSTATUS` sobre el estado de salida.
 
-Lo siguiente es un posible resultado de ejecutar el programa anterior en una terminal de Linux,
-numerado con las anotaciones realizadas al código:
+Lo siguiente es un posible resultado de ejecutar el programa anterior en una terminal de Linux, numerado con las anotaciones realizadas al código:
 
 ----
 $ ./fork
@@ -756,7 +755,7 @@ Aunque pueda parecer algo complejo, esta estrategia facilita la comunicación en
 Es muy sencillo lanzar otro proceso para hacer una tarea en paralelo que tendrá automáticamente una copia de los datos del proceso original.
 
 Como se trata de una copia, las nuevas variables o la modificación de variables existentes que realice cualquiera de los procesos, no serán visibles para el otro.
-Es decir, después del {linux_fork} ambos procesos son complemente independientes.
+Es decir, después del {linux_fork} ambos procesos son completamente independientes.
 Pero como el proceso hijo hereda el acceso a todo tipo de recursos abiertos por el proceso padre, como: archivos, tuberías, _sockets_ o regiones de memoria compartida, entre muchos otros recursos; es muy sencillo crear un canal de comunicación entre ambos procesos, si fuera necesario.
 
 Sin embargo, {linux_fork} no proporciona una funcionalidad similar a la de {clang_system}.
@@ -782,7 +781,7 @@ if (child == 0)
 
     execl( "/bin/ls", "ls", "-l", NULL ); <2> <3> <5>
     
-    fprintf( stderr, "Error (%d) al ejecuta el programa: %s\n", errno, strerror(errno) ); <6>
+    fprintf( stderr, "Error (%d) al ejecutar el programa: %s\n", errno, strerror(errno) ); <6>
     return -1; <7>
 }
 else if (child > 0)
@@ -800,7 +799,7 @@ else if (child > 0)
 }
 else {
     // Aquí solo entra el padre si no pudo crear el hijo
-    fprintf( stderr, "Error (%d) al crear el procesos: %s\n", errno, strerror(errno) );
+    fprintf( stderr, "Error (%d) al crear el proceso: %s\n", errno, strerror(errno) );
     return 3;
 }
 ----
@@ -815,22 +814,21 @@ Es decir, que el programa del comando `/bin/ls` recibirá `ls` y `-l` en `argv[0
 El `NULL` del final indica cuando no hay más argumentos de línea de comandos para pasar.
 
 <4> Antes de ejecutar la función {linux_exec} se pueden hacer cosas para configurar adecuadamente el proceso donde se ejecutará el nuevo programa.
-Por ejemplo, cambiar las variables de entorno, redirigir la E/S estándar, cambiar el usuario al que pertenece el proceso —si originalmente se ejecuta con un usuario con ese privilegio— o cerrar archivos abiertos del procesos padre que ha heredado el proceso hijo y que, obviamente, no queremos que se queden abiertos para programas diferentes al nuestro.
+Por ejemplo, cambiar las variables de entorno, redirigir la E/S estándar, cambiar el usuario al que pertenece el proceso —si originalmente se ejecuta con un usuario con ese privilegio— o cerrar archivos abiertos del proceso padre que ha heredado el proceso hijo y que, obviamente, no queremos que se queden abiertos para programas diferentes al nuestro.
 
 <5> Las funciones {linux_exec} no retornan si tienen éxito, porque el programa actual es sustituido por el indicado, que comenzará a ejecutarse de su {clang_main}.
 
 <6> Si la función {linux_exec} retorna es porque falló y, como es común, el motivo del error está disponible en {linux_errno}.
 Un motivo de fallo muy típico es que el ejecutable indicado no exista.
 
-<7> Si la función {linux_exec} retorna, la ejecución del programa en el proceso hijo continua hasta salir de {clang_main}.
+<7> Si la función {linux_exec} retorna, la ejecución del programa en el proceso hijo continúa hasta salir de {clang_main}.
 Generalmente, el proceso hijo no es útil si no puede ejecutar el programa que le hemos indicado.
 Por eso es importante asegurarnos de que el proceso hijo termina, si {linux_exec} falla.
 
 <8> Mientras todo lo anterior ocurre en el proceso hijo, el proceso padre espera.
 Cuando el proceso hijo termine, el padre podrá obtener su estado de salir para saber si tuvo éxito o no.
 
-Lo siguiente es un posible resultado de ejecutar el programa anterior en una terminal de Linux,
-numerado con las anotaciones realizadas al código:
+Lo siguiente es un posible resultado de ejecutar el programa anterior en una terminal de Linux, numerado con las anotaciones realizadas al código:
 
 ----
 $ ./fork-exec
@@ -875,8 +873,8 @@ ls: cannot access '/foo': No such file or directory <1>
 [PADRE] El valor de salida de mi hijo fue: 2 <2>
 [PADRE] ¡Adios!
 ----
-<1> El comando `ls` se ejecuta pero falla porque el directorio indicado no existe.
-<2> Por eso el programa, al terminar el proceso, no devuelve 0 sino 2 y es ese el valor que recibe el proceso padre.
+<1> El comando `ls` se ejecuta, pero falla porque el directorio indicado no existe.
+<2> Por eso el programa, al terminar el proceso, no devuelve 0 si no 2 y es ese el valor que recibe el proceso padre.
 Esto le permite saber al proceso padre que el comando `ls` no tuvo éxito. 
 
 Y finalmente cambiemos la línea de la función {linux_exec} así:
@@ -894,7 +892,7 @@ $ ./fork-exec
 [PADRE] Voy a esperar a que mi hijo termine...
 [HIJO] ¡Soy el proceso hijo!
 [HIJO] Voy a ejecutar el comando 'ls'
-Error (2) al ejecuta el programa: No such file or directory <1>
+Error (2) al ejecutar el programa: No such file or directory <1>
 [PADRE] El valor de salida de mi hijo fue: 255 <2>
 [PADRE] ¡Adios!
 ----
@@ -912,7 +910,7 @@ Esa diferencia se puede conocer fijándonos en las letras al final del nombre de
 
 * *Con 'p'*, como `execlp()` o `execvp()`, la función busca el ejecutable como lo hace la _shell_.
 Es decir, si el primer argumento no contiene ninguna '/' se toma como el nombre del ejecutable y se busca en los directorios listados en la variable de entorno `PATH`.
-Si el primero argumento contienen alguna '/', se considera una ruta y se busca directamente el ejecutable en ella.
+Si el primer argumento contiene alguna '/', se considera una ruta y se busca directamente el ejecutable en ella.
 
 * *Con 'l'*, como `execl()` o `execlp()`, los argumentos de línea de comandos para pasar al programa se indican directamente como argumentos diferentes de la función —por ejemplo `execl("/bin/ls", "ls", "-l", "-a" NULL)`— lo que es ideal cuando el número de argumentos es fijo.
 La lista de argumentos debe terminar en `NULL`.
@@ -948,7 +946,7 @@ Dado que varios usuarios pueden estar interesados en los mismos bloques de infor
 
 * *Velocidad de cómputo*.
 Para que una tarea se ejecute más rápido se puede partir en subtareas que se ejecuten en paralelo.
-Es importante destacar que la mejora en la velocidad sólo es posible si el sistema tiene varios componentes de procesamiento como procesadores —si se quiere acelerar la ejecución en la CPU— o canales E/S —si se quieren acelerar las operaciones de E/S —.
+Es importante destacar que la mejora en la velocidad solo es posible si el sistema tiene varios componentes de procesamiento como procesadores —si se quiere acelerar la ejecución en la CPU— o canales E/S —si se quieren acelerar las operaciones de E/S —.
 
 * *Modularidad*.
 Podemos querer crear nuestro software de forma modular, dividiendo las funciones del programa en procesos separados que se comunican entre sí.
@@ -957,7 +955,7 @@ Podemos querer crear nuestro software de forma modular, dividiendo las funciones
 Incluso un usuario individual puede querer hacer varias tareas al mismo tiempo.
 Por ejemplo, editar, imprimir y compilar al mismo tiempo.
 
-Las ejecución simultánea de procesos cooperativos requiere mecanismos tanto para comunicar unos con otros como para sincronizar sus acciones (véase el <<_sincronización>>).
+La ejecución simultánea de procesos cooperativos requiere mecanismos tanto para comunicar unos con otros como para sincronizar sus acciones (véase el <<_sincronización>>).
 
 === Comunicación entre procesos
 

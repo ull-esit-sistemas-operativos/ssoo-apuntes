@@ -28,9 +28,9 @@ Se programaban directamente en lenguaje máquina.
 Algunos ejemplos de ordenadores destacables fueron:
 
 https://es.wikipedia.org/wiki/ENIAC[ENIAC] (1945):: Se le considera el primer ordenador electrónico digital de propósito general, aunque existe cierta polémica sobre este punto.
-Lo cierto es que se construyeron otros ordenadores antes que éste pero o no eran de propósito general —como las famosas computadoras https://es.wikipedia.org/wiki/Colossus[Colossus] (1944), que fueron diseñadas para ayudar en https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis[criptoanálisis]— o no eran electrónicos sino electro-mecánicos —como la computadora https://es.wikipedia.org/wiki/Z3[Z3] (1941), que usaba https://es.wikipedia.org/wiki/Rel%C3%A9[relés]—.
+Lo cierto es que se construyeron otros ordenadores antes que este, pero o no eran de propósito general —como las famosas computadoras https://es.wikipedia.org/wiki/Colossus[Colossus] (1944), que fueron diseñadas para ayudar en https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis[criptoanálisis]— o no eran electrónicos sino electromecánicos —como la computadora https://es.wikipedia.org/wiki/Z3[Z3] (1941), que usaba https://es.wikipedia.org/wiki/Rel%C3%A9[relés]—.
 +
-No era un producto comercial sino un proyecto experimental de defensa que principalmente se diseño y utilizó para calcular tablas de tiro de artillería destinadas al Laboratorio de Investigación Balística del Ejército de los Estados Unidos.
+No era un producto comercial sino un proyecto experimental de defensa que principalmente se diseñó y utilizó para calcular tablas de tiro de artillería destinadas al Laboratorio de Investigación Balística del Ejército de los Estados Unidos.
 +
 https://es.wikipedia.org/wiki/Z4[Z4] (1945) fue el primer ordenador digital comercial, pero era electro-mecánico.
 
@@ -45,7 +45,7 @@ El IBM 7090 —versión transistorizada del 709, que utilizaba válvulas de vac�
 [[_historia_segunda_generación]]
 == 2ª Generación (1955-64)
 
-En la segunda generación de ordenadores los transistores reemplazan a las válvulas de vacío.
+En la segunda generación de ordenadores los transistores reemplazaron a las válvulas de vacío.
 
 ====
 En lo que respecta a los sistemas operativos:
@@ -86,7 +86,7 @@ Su versión DOS/360 (_Disk Operating System/360_) fue el primer sistema operativ
 .Instalación de un mainframe IBM System/360 -- Fuente: http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/[IBM]
 image::{chapdir}/instalación_ibm_system_360.jpg[]
 
-Se anunció en 1964 pero fue lanzado en 1966, con un año de retraso respecto a la fecha prevista originalmente.
+Se anunció en 1964, pero fue lanzado en 1966, con un año de retraso respecto a la fecha prevista originalmente.
 Los motivos fundamentales fueron ciertos problemas de organización interna de la compañía y la falta de experiencia en proyectos de esa envergadura.
 Las previsiones iniciales eran de 1 millón de líneas de código y miles de componentes de software.
 
@@ -117,7 +117,7 @@ A continuación veremos los ejemplos más representativos de esta época.
 https://es.wikipedia.org/wiki/Multics[MULTICS] fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general.
 
 [[multics_mainframe]]
-.Mainframe GE-6180 con sistema MULTICS, entorno a 1976 en el MIT -- Fuente: http://www.multicians.org/multics-stories.html[Multicians]
+.Mainframe GE-6180 con sistema MULTICS, en torno a 1976 en el MIT -- Fuente: http://www.multicians.org/multics-stories.html[Multicians]
 image::{chapdir}/multics_mainframe.jpg[]
 
 Fue el primer sistema operativo en proporcionar un sistema de archivos jerárquico, intérprete de comandos implementado como programa de usuario, listas de control de acceso individuales para cada archivo y enlazado dinámico, entre otras características novedosas.
@@ -127,10 +127,10 @@ Es decir, como si todos los archivos estuvieran mapeados en memoria, permitiendo
 
 === VM/CMS
 
-https://es.wikipedia.org/wiki/VM_(sistema_operativo)[VM/CMS] es un sistema de IBM utilizado en los _mainframe_ https://en.wikipedia.org/wiki/IBM_System/360[IBM System/360], System/370, System/390 y zSeries.
+https://es.wikipedia.org/wiki/VM_(sistema_operativo)[VM/CMS] es un sistema de IBM utilizado en los _mainframes_ https://en.wikipedia.org/wiki/IBM_System/360[IBM System/360], System/370, System/390 y zSeries.
 VM es un https://es.wikipedia.org/wiki/Hipervisor[hipervisor] que se encarga de virtualizar el hardware para crear múltiples máquinas virtuales, dando la sensación de que cada una es un _mainframe_ independiente.
 
-Como sistema operativo de las maquinas virtuales, una opción común es CMS, un sistema interactivo y monousuario muy ligero, diseñado para operar fundamentalmente en una máquina virtual de VM.
+Como sistema operativo de las máquinas virtuales, una opción común es CMS, un sistema interactivo y monousuario muy ligero, diseñado para operar fundamentalmente en una máquina virtual de VM.
 Gracias a VM/CMS, cada usuario tiene la sensación de trabajar en un sistema completamente independiente y seguro.
 
 El desarrollo de VM/CMS comenzó en 1965 y la primera versión estuvo disponible a primeros de 1966.
@@ -139,29 +139,29 @@ Las versiones actuales se denominan IBM z/VM.
 === UNIX
 
 {unix} fue desarrollado originalmente por Bell Labs en 1970 para los sistemas https://es.wikipedia.org/wiki/PDP-11[PDP-11/20] (véase la <<dec_pdp11>>).
-La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS pero a menor escala; después de que Bell Labs abandonara el proyecto MULTICS en 1969.
+La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS, pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
 Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.
 
 [[dec_pdp11]]
 .Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales https://en.wikipedia.org/wiki/Teletype_Model_33[Teletype 33] -- Fuente: https://www.bell-labs.com/usr/dmr/www/[Dennis Ritchie]
 image::{chapdir}/dec_pdp11_ken_den.jpg[]
 
-La primer versión de UNIX fue implementada en ensamblador, como era común en la época.
+La primera versión de UNIX fue implementada en ensamblador, como era común en la época.
 Posteriormente, Dennis Ritchie y Brian Kernighan diseñaron un nuevo lenguaje de programación llamado «C», especialmente pensado para que UNIX fuera escrito con él.
 Eso facilitó que UNIX pudiera ser portado a ordenadores diferentes.
 Además, gracias al lenguaje C, el código era más conciso y compacto, lo que se tradujo en que se pudieron desarrollar nuevas funcionalidades más rápidamente.
 
 AT&T, la compañía matriz de Bell Labs, no podía competir en la industria de los ordenadores, por lo que puso el código fuente de UNIX a disposición de universidades, compañías privadas y del gobierno de los Estados Unidos.
-Eso aumento su difusión y dio resultados inesperados.
+Eso aumentó su difusión y dio resultados inesperados.
 Por ejemplo, una de las variantes más importantes de UNIX fue {bsd}, desarrollada por la Universidad de California en Berkeley.
 
 [NOTE]
 ====
 La versión 4.2BSD (_Berkeley Software Distribution_) de esta variante de UNIX fue la primera que incluyó la interfaz de _sockets_ para facilitar la comunicación entre procesos a través de Internet y otras redes.
-Esta interfaz se ha convertido en estándar en prácticamente cualquier sistemas operativo.
+Esta interfaz se ha convertido en estándar en prácticamente cualquier sistema operativo.
 
 También implementó y ayudó a difundir el estándar de comunicaciones TCP/IP, base de la actual Internet.
-Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de UNIX BSD en su implementaciones de los protocolos TCP/IP y de diversas utilidades de red.
+Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de UNIX BSD en sus implementaciones de los protocolos TCP/IP y de diversas utilidades de red.
 ====
 
 En la actualidad se considera que hay dos grandes familias de UNIX y las distintas variantes pertenecen a una u otra en función del UNIX del que derivaron originalmente:
@@ -189,8 +189,8 @@ Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.
 image::{chapdir}/dec_vax11.jpg[]
 
 Las siglas VMS vienen de _Virtual Memory System_, ya que una de sus principales características era explotar el concepto de *memoria virtual*.
-Este concepto también es muy utilizando en los sistemas operativos modernos.
-Permite que los procesos se ejecuten aislados, unos de otros, en la memoria principal y sin tener que ser cargados completamente, lo que permite que cada uno consuma memos memoria.
+Este concepto también es muy utilizado en los sistemas operativos modernos.
+Permite que los procesos se ejecuten aislados, unos de otros, en la memoria principal y sin tener que ser cargados completamente, lo que permite que cada uno consuma menos memoria.
 
 VMS era un sistema multiusuario y multiprocesador que podía distribuir el trabajo entre varias máquinas, lo que le permitía ser tolerante a fallos.
 
@@ -207,7 +207,7 @@ El https://es.wikipedia.org/wiki/OS/400[IBM OS/400] es un sistema utilizado en l
 Fueron introducidos en el mercado en 1988, pero aún es posible verlos en algunas organizaciones.
 En 2008 el sistema operativo IBM OS/400 pasó a llamarse IBM i y siguen publicándose nuevas versiones en la actualidad.
 
-== 5º Generación (desde 1980):
+== 5ª Generación (desde 1980):
 
 Esta última generación abarca desde la década de 1980 hasta la actualidad.
 
@@ -221,7 +221,7 @@ Respecto a los sistemas operativos:
 
 [NOTE]
 ====
-Se puede observar una muestra de la interfaz gráfica de usuario de algunos estos sistemas en el artículo https://www.webdesignerdepot.com/2009/03/operating-system-interface-design-between-1981-2009/[«Operating System Interface Design Between 1981-2009»].
+Se puede observar una muestra de la interfaz gráfica de usuario de algunos de estos sistemas en el artículo https://www.webdesignerdepot.com/2009/03/operating-system-interface-design-between-1981-2009/[«Operating System Interface Design Between 1981-2009»].
 ====
 
 === CP/M
@@ -239,7 +239,7 @@ Fue el primer sistema operativo del {ibmpc} —lanzado en 1981— y durante much
 
 MS-DOS fue creado por Seattle Computer Products (SCP) con el nombre de https://es.wikipedia.org/wiki/QDOS[86-DOS] en 1979.
 Se basaron en ideas de CP/M, pues pretendían ofrecer una versión de CP/M para procesadores {intel8086}.
-Inicialmente era conocido como QDOS (_Quick and Dirty Operating System_) pero SCP le cambió el nombre en 1980, cuando comenzaron al licenciarlo.
+Inicialmente era conocido como QDOS (_Quick and Dirty Operating System_) pero SCP le cambió el nombre en 1980, cuando comenzaron a licenciarlo.
 Posteriormente Microsoft adquirió el sistema y lo vendió a IBM en 1981 con el nombre de MS-DOS.
 
 Tanto IBM como Microsoft lanzaron versiones de DOS, aunque originalmente IBM solamente validaba y empaquetaba el software de Microsoft.
@@ -273,9 +273,9 @@ Para más información, véase el <<_operación_en_modo_dual>>
 ====
 
 La colaboración entre IBM y Microsoft terminó en 1990, entre el lanzamiento de Windows 3.0 y la de OS/2 1.3.
-El aumento de popularidad de Windows llevo a Microsoft a dejar de centrarse en el desarrollo de OS/2, lo que hizo que IBM se preocupara por los continuos retrasos en el desarrollo de OS/2 2.0.
+El aumento de popularidad de Windows llevó a Microsoft a dejar de centrarse en el desarrollo de OS/2, lo que hizo que IBM se preocupara por los continuos retrasos en el desarrollo de OS/2 2.0.
 Inicialmente ambas compañías acordaron que IBM tomaría el mantenimiento de OS/2 1.0 y el desarrollo de OS/2 2.0, mientras Microsoft continuaría desarrollando OS/2 3.0, que entonces era conocido como «NT OS/2».
-Sin embargo Microsoft finalmente decidió renombrar NT OS/2 como Windows NT, dejando el futuro desarrollo de OS/2 en manos de IBM.
+Sin embargo, Microsoft finalmente decidió renombrar NT OS/2 como Windows NT, dejando el futuro desarrollo de OS/2 en manos de IBM.
 
 OS/2 Warp 3 fue un sistema completo de 32 bits lanzado en 1994.
 Le seguiría OS/2 Warp 4, en 1996.
@@ -294,9 +294,9 @@ En 1983, Microsoft anunció el desarrollo de Windows, una interfaz gráfica de u
 Windows requería una instalación previa de MS-DOS y era iniciado como un programa más, que podía ser terminado en cualquier momento, devolviendo al usuario a la línea de comandos de MS-DOS.
 
 MS-DOS le proporcionaba a Windows controladores de dispositivo para ciertas tareas, como el acceso al CD-ROM o a la interfaz de red.
-Sin embargo Windows ejecutaba aplicaciones especificas de Windows, almacenadas en un formato ejecutable mucho más complejo que el de los programas de MS-DOS.
+Sin embargo Windows ejecutaba aplicaciones específicas de Windows, almacenadas en un formato ejecutable mucho más complejo que el de los programas de MS-DOS.
 Además, debido a que MS-DOS no aislaba a las aplicaciones del hardware y no se protegía así mismo de los errores en dichas aplicaciones, Windows disponía de controladores de dispositivo propios, así como sus propios sistemas de gestión de procesos y de memoria.
-En realidad Windows no se ejecutaba sobre MS-DOS, sino que hacía uso de él.
+En realidad Windows no se ejecutaba sobre MS-DOS, si no que hacía uso de él.
 Por ello puede ser considerado como un sistema operativo.
 
 === Windows 95, 98, Me
@@ -313,7 +313,7 @@ Entre las características de Windows 95 destacan: mejoras significativas en la 
 
 [NOTE]
 ====
-Como veremos en el <<_planificación_expropiativa>>, la planificación expropiativa es una técnica que permite al sistema operativo expulsar de la CPU a los procesos en ciertas circunstancias; como, por ejemplo, que lleven demasiado tiempo utilizando la CPU de forma ininterrumpida.
+Como veremos en el <<_planificación_expropiativa>>, la planificación expropiativa es una técnica que permite al sistema operativo expulsar de la CPU a los procesos en ciertas circunstancias; como, por ejemplo, que llevan demasiado tiempo utilizando la CPU de forma ininterrumpida.
 
 En la familia Windows 3.x la planificación era cooperativa, es decir, los procesos abandonaban la CPU voluntariamente.
 Esto ocasionaba problemas con programas que no devolvía la CPU al sistema con la suficiente frecuencia, ya que así el resto de procesos no tenía ocasión de ejecutarse para hacer su trabajo o responder al usuario.
@@ -331,7 +331,7 @@ El primero de la familia de sistemas operativos Microsoft Windows actuales.
 
 Su desarrollo empezó en 1988 con el nombre de OS/2 3.0.
 Cuando Windows 3.0 fue lanzado en mayo de 1990, tuvo tanto éxito que Microsoft decidió cambiar la API del aún en desarrollo NT OS/2 —que era como Microsoft lo llamaba entonces— pasando de ser una versión extendida de la API de OS/2 a una versión extendida de la API de Windows 3.0.
-Esta decisión causó tensión entre Microsoft e IBM y provocó que finalmente la colaboración terminara.
+Esta decisión causó tensión entre Microsoft e IBM y provocó que finalmente terminara la colaboración.
 
 [NOTE]
 ====
@@ -341,7 +341,7 @@ Una interfaz de programación de aplicaciones o API (del inglés _Application Pr
 Como hemos comentado anteriormente, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation para crear Windows NT.
 Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VMS.
 
-Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de un API nativo no documentado públicamente.
+Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de una API nativo no documentado públicamente.
 Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.
 
 La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo _microkernel_ (véase el <<_mach>> un poco más adelante) multiplataforma que corría sobre procesadores {x86}, {decalpha}, {mips} 4000 y https://es.wikipedia.org/wiki/PowerPC[PowerPC].
@@ -350,7 +350,7 @@ Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar platafo
 Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.
 Además Windows NT 4.0 integró en el núcleo más funciones —por ejemplo, parte del subsistema gráfico— para obtener un rendimiento más próximo al de Windows 95 en ese apartado.
 
-Windows 2000 —o Windows NT 5.0— fue lanzado en el 17 de febrero de 2000 y fue el primer sistema operativo de la familia NT al que se le eliminaron las siglas del nombre.
+Windows 2000 —o Windows NT 5.0— fue lanzado el 17 de febrero de 2000 y fue el primer sistema operativo de la familia NT al que se le eliminaron las siglas del nombre.
 Fue por motivos de marketing, para favorecer la unificación de las dos familias de sistemas operativos Microsoft Windows de entonces —Windows 9x y Windows NT— alrededor de la tecnología NT.
 
 Windows XP —o Windows NT 5.1— completó en 2001 el proceso de unificación de las dos familias de sistemas operativos Windows.
@@ -372,12 +372,12 @@ Torvalds y otros desarrolladores rápidamente adaptaron Linux para que funcionar
 
 El núcleo Linux fue licenciado bajo la GNU General Public License (GPL), como el resto del proyecto GNU.
 Pero Linux no es parte de dicho proyecto.
-El proyecto GNU tiene su propio núcleo, denominado {gnuhurd}, que lleva 30 años en desarrollo y parece que aun está muy lejos de estar listo.
+El proyecto GNU tiene su propio núcleo, denominado {gnuhurd}, que lleva 30 años en desarrollo y parece que aún está muy lejos de estar listo.
 
 [NOTE]
 ====
 GNU no es el único sistema operativo que utiliza el núcleo Linux.
-{android}, por ejemplo, es un sistema operativo que usa el núcleo Linux pero no es GNU.
+{android}, por ejemplo, es un sistema operativo que usa el núcleo Linux, pero no es GNU.
 ====
 
 === Mach
@@ -389,7 +389,7 @@ Mach explora el concepto que denominamos *_microkernel_*.
 En los sistemas operativos *_microkernel_* solo se implementa en el núcleo del sistema un conjunto mínimo de servicios básicos.
 El resto de los servicios proporcionados por el sistema operativo se implementan como procesos con menos privilegios.
 
-Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los _microkernel_ dominarían el universo de los sistema operativos.
+Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los _microkernel_ dominarían el universo de los sistemas operativos.
 Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es {gnuhurd}, que lleva varias décadas de retraso.
 Por fortuna, otros sistemas operativos _microkernel_ han tenido algo más éxito, como es el caso de {qnx} o {minix3}.
 Mientras que Google parece que lo va a intentar con {google_fuchsia}, el posible sustituto de Android.
@@ -406,7 +406,7 @@ image::{chapdir}/openstep_42.png[]
 
 [NOTE]
 ====
-Para ser exactos, la base del sistema operativo macOS es un sistema operativo libre denominado {darwin} y desarrollado por Apple .
+Para ser exactos, la base del sistema operativo macOS es un sistema operativo libre denominado {darwin} y desarrollado por Apple.
 Se trata de un sistema {freebsd} adaptado para correr sobre el núcleo Mach.
 ====
 

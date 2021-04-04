@@ -7,12 +7,12 @@ include::../config/attributes.adoc[]
 *Tiempo de lectura:* {s07-reading-time}
 ====
 
-Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, necesitamos estar seguros de que un error en un programa sólo afecte al proceso que lo ejecuta —por ejemplo, que un proceso no puede modificar la memoria de otro proceso o la del núcleo del sistema—.
+Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, necesitamos estar seguros de que un error en un programa solo afecte al proceso que lo ejecuta —por ejemplo, que un proceso no puede modificar la memoria de otro proceso o la del núcleo del sistema—.
 Por eso es necesario establecer mecanismos de protección frente a los errores en los programas que se ejecutan en el sistema.
 
 == Software controlado mediante interrupciones
 
-Antes de entender como funcionan estos mecanismos de protección debemos entender que los sistemas operativos modernos pertenecen a un tipo de software que se dice que está controlado mediante interrupciones.
+Antes de entender cómo funcionan estos mecanismos de protección debemos entender que los sistemas operativos modernos pertenecen a un tipo de software que se dice que está controlado mediante interrupciones.
 
 Los sucesos que requieren la atención del sistema casi siempre se indican mediante una interrupción:
 
@@ -26,15 +26,15 @@ Esta excepción despierta al sistema operativo para que atienda la petición.
 
 Esto funciona así porque el sistema operativo configura la CPU durante el arranque para que si ocurre cualquier interrupción o excepción la ejecución, salte a rutinas en el código del núcleo, con el objeto de darles el tratamiento adecuado.
 
-Si ningún proceso realiza una acción ilegal o pide un servicio, ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo permanece inactivo esperado a que algo ocurra.
+Si ningún proceso realiza una acción ilegal o pide un servicio, ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo permanece inactivo esperando a que algo ocurra.
 
-Teniendo todo esto en cuenta podremos entender mejor como funciona el modo dual.
+Teniendo todo esto en cuenta podremos entender mejor cómo funciona el modo dual.
 
 == Operación en modo dual
 
-Para proteger el sistema de programas con errores es necesario poder distinguir entre la ejecución de código del sistema operativo y del código de los programas de usuario, de tal forma que el código de los programas de usuario esté más limitado en lo que puede hacer que el del sistema operativo.
+Para proteger el sistema de programas con errores es necesario poder distinguir entre la ejecución del código del sistema operativo y del código de los programas de usuario, de tal forma que el código de los programas de usuario esté más limitado en lo que puede hacer que el del sistema operativo.
 
-El método que utilizan la mayor parte de los sistemas operativos consiste en utilizar algún tipo de soporte en la CPU que permita diferenciar entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —llamadas *instrucciones privilegiadas*(((instrucción, privilegiada)))— para que sólo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo.
+El método que utilizan la mayor parte de los sistemas operativos consiste en utilizar algún tipo de soporte en la CPU que permita diferenciar entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —llamadas *instrucciones privilegiadas*(((instrucción, privilegiada)))— para que solo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo.
 
 === Modos de operación
 
@@ -46,7 +46,7 @@ Así que como mínimo son necesarios dos modos de operación diferentes:
 Si se hace un intento de ejecutar una instrucción privilegiada en este modo, el hardware la trata como ilegal y genera una excepción que es interceptada por el sistema operativo, en lugar de ejecutar la instrucción.
 
 * En el *modo privilegiado*(((modo, privilegiado))) —también denominado *modo supervisor*(((modo, supervisor))), *modo del sistema*(((modo, del sistema))) o *modo kernel*(((modo, kernel)))— se ejecuta el código de las tareas del sistema operativo.
-La CPU es la encargada de garantizar que las instrucciones privilegiadas sólo pueden ser ejecutadas en este modo.
+La CPU es la encargada de garantizar que las instrucciones privilegiadas solo pueden ser ejecutadas en este modo.
 ====
 
 El modo actual de operación puede venir indicado por un *bit de modo*(((bit, de modo))) en alguno de los registros de configuración de la CPU, de tal forma que, si por ejemplo, el bit está a 0, la CPU considera que el código en ejecución opera en modo privilegiado, mientras que si el bit está a 1, el código en ejecución opera en modo usuario.
@@ -56,7 +56,7 @@ Comúnmente en el grupo de las *instrucciones privilegiadas* se suelen incluir:
 * La instrucción para conmutar al modo usuario desde el modo privilegiado.
 * Las instrucciones para acceder a dispositivos de E/S.
 * Las instrucciones necesarias para la gestión de las interrupciones.
-Por ejemplo, para desactivarlas —evitando que se lancen—, activarlas y configurarlas. 
+Por ejemplo, para desactivarlas —evitando que se lancen— activarlas y configurarlas. 
 
 .Niveles de privilegio en procesadores x86
 ****
@@ -85,7 +85,7 @@ Por compatibilidad hacia atrás, los procesadores x86 se inician en modo real, d
 En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —ya que los procesadores {intel8086} solo tenían 20 bits para direcciones de memoria—.
 
 Cuando un sistema operativo moderno arranca, lo primero que hace es iniciar el modo protegido, en el que se activan todas las características de la CPU.
-Entra otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.
+Entre otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.
 
 Para más información, véase https://es.wikipedia.org/wiki/Modo_protegido[«Modo protegido -- Wikipedia»].
 
@@ -124,7 +124,7 @@ Sirve para albergar el núcleo del sistema operativo.
 El sistema operativo puede estar localizado tanto en la parte baja como en la parte alta de la memoria.
 El factor determinante en la elección es la localización del vector de interrupciones, que es una tabla en la memoria que define las direcciones a las que saltará la CPU en caso de que ocurra una interrupción o una excepción.
 +
-Puesto que en la mayor parte de las arquitecturas éste reside en la parte baja de la memoria, normalmente el sistema operativo también se aloja en la parte baja.
+Puesto que en la mayor parte de las arquitecturas este reside en la parte baja de la memoria, normalmente el sistema operativo también se aloja en la parte baja.
 
 2. La segunda parte es el *espacio de usuario*(((espacio, usuario))) y alberga los procesos de usuario.
 
@@ -162,7 +162,7 @@ Por ejemplo, si se intenta ejecutar instrucciones en una zona de memoria no marc
 
 El *((temporizador))* se configura por el sistema operativo durante el arranque del sistema para interrumpir a la CPU a intervalos regulares.
 Así, cuando el temporizador interrumpe, el control se transfiere automáticamente al núcleo del sistema.
-Entonces éste puede:
+Entonces este puede:
 
 * Conceder más tiempo al proceso en ejecución.
 * Detenerlo y darle más tiempo de CPU en el futuro 
@@ -175,14 +175,14 @@ Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del qu
 
 Obviamente, las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.
 
-== Maquinas virtuales
+== Máquinas virtuales
 (((máquina virtual)))
 
 Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los comparten.
 Aun así, los procesos saben que hay un sistema operativo que los supervisa, porque le deben solicitar a él los distintos recursos a través de las llamadas al sistema.
 
 Una máquina virtual también es un proceso en un sistema operativo una máquina real —también llamado sistema operativo anfitrión—.
-Se utilizan la mismas técnicas para crear la ilusión de que se ejecuta en su propia máquina.
+Se utilizan las mismas técnicas para crear la ilusión de que se ejecuta en su propia máquina.
 Sin embargo, en lugar de llamadas al sistema, el software que gestiona la máquina virtual ofrece una interfaz de hardware virtual.
 Es decir:
 
@@ -198,8 +198,7 @@ Por ejemplo, los intentos del sistema operativo virtual de acceder a los discos 
 
 // TODO: Esquema del arranque
 
-Desde el momento en que el ordenador se pone en marcha hasta que el sistema operativo inicia
-su ejecución se realizan una serie de operaciones.
+Desde el momento en que el ordenador se pone en marcha hasta que el sistema operativo inicia su ejecución se realizan una serie de operaciones.
 Estos son los pasos más comunes en el arranque de un sistema:
 
 . Llega a la CPU una señal de RESET motivada por el encendido del sistema o por un reinicio.
@@ -208,22 +207,22 @@ Estos son los pasos más comunes en el arranque de un sistema:
 En esa dirección está el _bootstrap_ inicial.
 
 El _((bootstrap))_ es el programa que se encarga en primera instancia del arranque.
-Debe estar almacenado en una memoria no volátil —ROM o Flash— por que la RAM está en un estado indeterminado en el momento del arranque.
+Debe estar almacenado en una memoria no volátil —ROM o Flash— porque la RAM está en un estado indeterminado en el momento del arranque.
 
 En los PC el _bootstrap_ forma parte del _((firmware))_ —sea BIOS o UEFI— de las placas madres.
 
 [NOTE]
 ====
 El término _firmware_ viene de que por sus características se sitúa en algún lugar entre el hardware y el software.
-Concretamente es un componente de software instalado en un dispositivo hardware para encargase de su control a bajo nivel.
+Concretamente es un componente de software instalado en un dispositivo hardware para encargarse de su control a bajo nivel.
 ====
 
 === Tareas del bootstrap
 
 El _bootstrap_ debe realizar diversas tareas:
 
-. **Diagnostico de la máquina** —o _Power-on Self-Test_ (POST)—.
-El _bootstrap_ se detiene en este punto si el sistema no supera el diagnostico.
+. **Diagnóstico de la máquina** —o _Power-on Self-Test_ (POST)—.
+El _bootstrap_ se detiene en este punto si el sistema no supera el diagnóstico.
 
 . **Inicializar el sistema**.
 Por ejemplo, configurar los registros de la CPU, inicializar los dispositivos y contenido de la memoria, etc.
@@ -232,12 +231,12 @@ Por ejemplo, configurar los registros de la CPU, inicializar los dispositivos y 
 
 Al iniciar el sistema operativo hay que considerar que puede estar en diferentes ubicaciones según el tipo de dispositivo:
 
-* En **consolas de videojuegos, móviles y otros dispositivos empotrados** se almacena el sistema operativo en alguna forma de memoria de sólo lectura —ROM o Flash—.
+* En **consolas de videojuegos, móviles y otros dispositivos empotrados** se almacena el sistema operativo en alguna forma de memoria de solo lectura —ROM o Flash—.
 Como la ejecución en esas memorias es más lenta que en la RAM, muchas veces el _bootstrap_ suele copiar el sistema a la RAM durante el arranque, antes de iniciarlo.
 
 * En *sistemas operativos de gran tamaño* —incluidos los de propósito general— el sistema se almacena en disco.
 
-En los sistemas mas antiguos, el _bootstrap_ lee de una posición fija del disco —generalmente el bloque 0— el gestor de arranque, lo copia en la memoria y lo ejecuta.
+En los sistemas más antiguos, el _bootstrap_ lee de una posición fija del disco —generalmente el bloque 0— el gestor de arranque, lo copia en la memoria y lo ejecuta.
 Esto es lo que ocurre en los PC más antiguos que utilizan BIOS y particiones MBR.
 
 [NOTE]
@@ -246,13 +245,13 @@ También se llama ((MBR)) a ese bloque 0 del disco donde está el gestor de arra
 De hecho MBR son las siglas de _Master Boot Record_ o https://es.wikipedia.org/wiki/Registro_de_arranque_principal[registro de arranque principal].
 ====
 
-Aunque en ocasiones el código de ese bloque inicial de arranque sabe cargar e iniciar el sistema operativo completo, es común que sólo sepa donde está el resto del gestor de arranque en el disco, para cargarlo y ejecutarlo.
-No debemos olvidar que el código cargado por el _bootstrap_ debe caber en un sólo bloque del disco, que generalmente tiene solo 512 bytes.
+Aunque en ocasiones el código de ese bloque inicial de arranque sabe cargar e iniciar el sistema operativo completo, es común que solo sepa donde está el resto del gestor de arranque en el disco, para cargarlo y ejecutarlo.
+No debemos olvidar que el código cargado por el _bootstrap_ debe caber en un solo bloque del disco, que generalmente tiene solo 512 bytes.
 
 En los PC más modernos que utilizan UEFI y particiones GPT, la UEFI tiene la capacidad de leer el sistema de archivo en las particiones para buscar directamente los archivos del gestor de arranque completo.
 Una vez el _bootstrap_ los encuentra, los carga y ejecuta.
 
-En ambos casos, el gestor de arranque completo es el programa que sabe como iniciar el sistema operativo así que: explora el sistema de ficheros en busca del núcleo del sistema, lo carga e inicia su ejecución.
+En ambos casos, el gestor de arranque completo es el programa que sabe cómo iniciar el sistema operativo así que: explora el sistema de ficheros en busca del núcleo del sistema, lo carga e inicia su ejecución.
 
 A partir de esto punto cada sistema operativo prosigue de forma diferente.
 A modo de ejemplo, veremos como prosigue el arranque en sistemas UNIX en modo texto.
@@ -266,8 +265,8 @@ Al iniciarse el núcleo del sistema, este realiza una serie de tareas:
 . Crea el proceso *((init))* —que por ser el primero tiene PID 1— a partir de la carga del programa `init` almacenado en el sistema de ficheros raíz.
 En los sistemas GNU/Linux actuales el proceso *init* más común es {cmd_systemd}.
 
-. El planificador de la CPU toma el control de la gestión de la CPU y el núcleo queda dormido.
-Puesto que la función del planificador es asignar procesos a la CPU y solo hay uno, el proceso *init*, éste es escogido y comienza su ejecución.
+. El planificador de la CPU toma el control de la gestión de la CPU y el núcleo se queda dormido.
+Puesto que la función del planificador es asignar procesos a la CPU y solo hay uno, el proceso *init*, este es escogido y comienza su ejecución.
 
 . El proceso *init* lanza los _scripts_ encargados de configurar los servicios —también llamados demonios— del sistema.
 Por ejemplo, para el registro de eventos del sistema, gestión de dispositivos, particiones, impresoras, entre otros.
@@ -278,7 +277,7 @@ Estos procesos *login* son monitorizados por *init* para reiniciarlos en caso de
 
 [NOTA]
 ====
-Aunque, por lo general, un sistema de escritorio tiene una única pareja de teclado y monitor y, por lo tanto, una única terminal real; el sistema suele esta configurado para crear varios terminales virtuales entre los que el usuario puede conmutar usando las combinaciones de teclas adecuadas.
+Aunque, por lo general, un sistema de escritorio tiene una única pareja de teclado y monitor y, por lo tanto, una única terminal real; el sistema suele estar configurado para crear varios terminales virtuales entre los que el usuario puede conmutar usando las combinaciones de teclas adecuadas.
 ====
 
 Los procesos *login* se encargan de autenticar a los usuarios y de iniciar y configurar su sesión:
@@ -289,4 +288,4 @@ Los procesos *login* se encargan de autenticar a los usuarios y de iniciar y con
 
 . Si la autenticación es positiva, el proceso *login* cambia su identidad actual —generalmente de _root_ o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <<procesos_posix_api>>).
 
-El intérprete de comandos completa la configuración del entorno en base a sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.
+El intérprete de comandos completa la configuración del entorno basándose en sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.

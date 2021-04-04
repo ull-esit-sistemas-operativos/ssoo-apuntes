@@ -36,7 +36,7 @@ Como el {intel8086} para el que fue escrito MS-DOS no proporcionaba un modo dual
 
 === UNIX
 
-Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde si había una separación clara entre procesos de usuario y código del sistema, pero juntaba un montón de funcionalidad en el núcleo del sistema.
+Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba un montón de funcionalidad en el núcleo del sistema.
 
 [[estructura_unix]]
 .Esquema de la estructura de UNIX.
@@ -45,7 +45,7 @@ image::{chapdir}/estructura_unix.svg[]
 El núcleo proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
 En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, si no se compartimenta adecuadamente.
 
-Tanto MS_DOS como UNIX eran originalmente sistemas pequeños y simples, limitados por las funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
+Tanto MS-DOS como UNIX eran originalmente sistemas pequeños y simples, limitados por las funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
 Lo cierto es que con mejor soporte del hardware se puede dividir el sistema operativo en piezas más pequeñas y apropiadas que las del MS-DOS y el UNIX original.
 
 == Estructura en capas
@@ -77,7 +77,7 @@ image::{chapdir}/estructura_os2.svg[]
 === Dificultades con el diseño
 
 Es importante tener en cuenta que diseñar un sistema con *estructura en capas* no es tan sencillo como pudiera parecer.
-La definición de las capas y sus funcionalidades debe ser planificada cuidadosamente debido a la restricción, comentada anteriormente, de que un capa sólo puede utilizar los servicios de las capas inferiores.
+La definición de las capas y sus funcionalidades debe ser planificada cuidadosamente debido a la restricción, comentada anteriormente, de que una capa solo puede utilizar los servicios de las capas inferiores.
 
 Por ejemplo, el planificador de la CPU suele tener información de los procesos que están en la memoria.
 Parte de esa información puede ser almacenada en el disco para aumentar la memoria principal disponible.
@@ -101,10 +101,10 @@ Esto limita mucho las ventajas de esta técnica porque no permite compartimentar
 ====
 Los sistemas con *estructura microkernel* se caracterizan por: 
 
-* Eliminar todos los componentes no esenciales del núcleo e implementarlos como procesos a nivel de usuario.
+* Eliminar todos los componentes no esenciales del núcleo e implementarlos como procesos de usuario.
 
 * Un núcleo *microkernel* proporciona funciones mínimas de gestión de procesos y de memoria y algún mecanismo de comunicación entre procesos.
-Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por lo que algunos *microkernel* reales incluyen en el núcleo algunas funcionales adicionales.
+Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por lo que algunos *microkernel* reales incluyen en el núcleo algunas funcionalidades adicionales.
 
 * El mecanismo de comunicación permite a los procesos de los usuarios solicitar servicios a los componentes del sistema.
 También sirve para que los componentes del sistema se comuniquen entre sí y se pidan servicio.
@@ -125,11 +125,11 @@ Entre los beneficios de estos sistemas operativos se incluyen:
 Los nuevos servicios son añadidos como aplicaciones de nivel de usuario, por lo que no es necesario hacer modificaciones en el núcleo.
 Desarrollar en el modo privilegiado siempre es más peligrosos que en el modo usuario porque los errores pueden ser catastróficos: bloqueo o caída del sistema, corrupción de datos, etc.
 
-* *Facilidad a la hora de portar el sistema a otras plataformas*.
+* *Facilidad a la hora de llevar el sistema a otras plataformas*.
 Puesto que el núcleo es muy pequeño, resulta muy sencillo de portar a otras plataformas.
 
 * *Más seguridad y fiabilidad*.
-Puesto que la mayor parte de los servicios se ejecutan a nivel de usuario en procesos separados, un servicio que falla no puede afectar a otros ni puede ser utilizado para ganar acceso a otros servicios o al núcleo.
+Puesto que la mayor parte de los servicios se ejecutan como procesos separados de usuario, un servicio que falla no puede afectar a otros ni puede ser utilizado para ganar acceso a otros servicios o al núcleo.
 Además se pueden implementar estrategias para mejorar la tolerancia a fallos, como reiniciar un servicio que ha fallado, como si fuera un programa cualquiera.
 ====
 
@@ -143,7 +143,7 @@ El sistema operativo podía mostrar diferentes personalidades o _entornos operat
 Las aplicaciones de Microsoft Windows NT se comunicaban con estos subsistemas utilizando un mecanismo de comunicación denominado https://en.wikipedia.org/wiki/Local_Inter-Process_Communication[LPC] (_Local Inter-Process Communication_).
 
 Con esta estructura, la pérdida de rendimiento respecto a Microsoft Windows 95 era tan importante —especialmente en lo relativo a operaciones gráficas— que los diseñadores se vieron obligados a mover más servicios al espacio del núcleo en la versión 4.0.
-El resultado es que los Windows sucesores a Windows NT 4.0 tienen una arquitectura más monolítica que microkernel, ya que aunque muchos servicios siguen siendo proporcionados por procesos de usuario, esto sólo ocurre con aquellos donde el rendimiento no es un factor crítico.
+El resultado es que los Windows sucesores a Windows NT 4.0 tienen una arquitectura más monolítica que microkernel, ya que aunque muchos servicios siguen siendo proporcionados por procesos de usuario, esto solo ocurre con aquellos donde el rendimiento no es un factor crítico.
 
 [NOTE]
 ====
@@ -151,20 +151,20 @@ Microsoft Windows XP tiene 280 llamadas al sistema a las que hay que sumar las m
 Mientras que Microsoft Windows NT 3.51 tenía algo menos de 200 llamadas al sistema. 
 ====
 
-Sin embargo varios sistemas operativos siguen utilizando núcleos *microkernel*, como {qnx} o {minix3}.
+Sin embargo, varios sistemas operativos siguen utilizando núcleos *microkernel*, como {qnx} o {minix3}.
 Ambos son sistemas operativos de tiempo real, que basan en la estructura de *microkernel* su estabilidad como sistema para tareas críticas.
 
 En la <<estructura_minix3>>, por ejemplo, se puede observar un esquema de {minix3}.
 El núcleo es muy pequeño —apenas tiene 5000 líneas de código— por lo que la mayor parte de la funcionalidad reside en los procesos de servicios y de controladores de dispositivo.
 
 {minix3} es un sistema compatible POSIX.
-Así que soporta las llamadas al sistema definidas por este estándar, pero éstas se convierten en mensajes enviados al servidor correspondiente con la petición, y no en llamadas directas al núcleo.
+Así que soporta las llamadas al sistema definidas por este estándar, pero estas se convierten en mensajes enviados al servidor correspondiente con la petición, y no en llamadas directas al núcleo.
 Para que un servidor pueda atender una petición, quizás tenga que enviar peticiones a otros servidores o controladores de dispositivo.
 Incluso pueden tener que hacer llamadas al núcleo, para solicitar alguna operación privilegiada que no se puede implementar en el modo usuario.
 Por ejemplo, operaciones de E/S —fundamentales para los controladores de dispositivo— o el acceso a tablas del núcleo —como la tabla de procesos—.
 
 ====
-Es este trasiego de mensaje con peticiones y respuestas —y la correspondiente conmutación de procesos en la CPU para ejecutar el proceso que atiende cada mensaje— para resolver una petición de un proceso de usuario, lo que teóricamente justica el menor rendimiento de los sistemas *microkernel*. 
+Es este trasiego de mensajes con peticiones y respuestas —y la correspondiente conmutación de procesos en la CPU para ejecutar el proceso que atiende cada mensaje— para resolver una petición de un proceso de usuario, lo que teóricamente justifica el menor rendimiento de los sistemas *microkernel*. 
 ====
 
 == Estructura modular
@@ -188,7 +188,7 @@ Posteriormente pueden cargar módulos adicionales, tanto durante la inicializaci
 .Esquema de la estructura del núcleo Linux.
 image::{chapdir}/estructura_linux.svg[]
 
-En este aspecto se asemejan a los núcleos *microkernel*, ya que el módulo principal sólo tiene funciones básicas.
+En este aspecto se asemejan a los núcleos *microkernel*, ya que el módulo principal solo tiene funciones básicas.
 Sin embargo los núcleos modulares:
 
 * **Son más eficientes** al no necesitar un mecanismo de comunicación, puesto que los componentes se cargan en la memoria destinada al núcleo, por lo que pueden llamarse directamente.

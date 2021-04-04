@@ -18,7 +18,7 @@ Sin embargo, debemos tener en cuenta que en los sistemas operativos multihilo co
 Así que todo lo que comentemos a partir de ahora sobre la planificación de procesos en la CPU, realmente se aplica a los hilos y no a los procesos en los sistemas operativos modernos.
 ====
 
-En cualquier caso, sea cual sea el algoritmo de planificación utilizado, éste debe ser muy rápido, ya que es ejecutado con mucha frecuencia —aproximadamente una vez cada 100 milisegundos—.
+En cualquier caso, sea cual sea el algoritmo de planificación utilizado, este debe ser muy rápido, ya que es ejecutado con mucha frecuencia —aproximadamente una vez cada 100 milisegundos—.
 
 == Planificación expropiativa
 (((planificación, de CPU, expropiativa)))
@@ -34,7 +34,7 @@ Por ejemplo, por solicitar una operación de E/S, esperar a que un hijo termine,
 Cuando el planificador de la CPU es invocado solo en los casos anteriores, decimos que tenemos un sistema operativo con *planificación cooperativa*(((planificación, de CPU, cooperativa))) o *no expropiativa*(((planificación, de CPU, no expropiativa))).
 ====
 
-En la *planificación cooperativa* cuando la CPU es asignada a un proceso, éste la acapara hasta terminar o hasta pasar al estado de *esperando*.
+En la *planificación cooperativa* cuando la CPU es asignada a un proceso, este la acapara hasta terminar o hasta pasar al estado de *esperando*.
 
 La *planificación cooperativa* no requiere de ningún hardware especial, por lo que en algunas plataformas puede ser la única opción.
 Por ello estaba presente en los sistemas operativos más antiguos, como https://es.wikipedia.org/wiki/Windows_3.1x[Windows 3.x] y https://es.wikipedia.org/wiki/Mac_OS[Mac OS] —que no debemos confundir con el actual {macos}—.
@@ -51,14 +51,13 @@ Cuando el planificador es invocado en los cuatro casos decimos que tenemos *plan
 ====
 
 La *planificación expropiativa* sí requiere de un soporte adecuado por parte del hardware, por lo que se utiliza en los sistemas operativos modernos.
-Ejemplos de estos sistemas son Microsoft Windows —desde Windows 95—, Linux, macOS, y todos los UNIX modernos.
+Ejemplos de estos sistemas son Microsoft Windows —desde Windows 95— Linux, macOS, y todos los UNIX modernos.
 
 La utilización de un *planificador expropiativo* introduce algunas dificultades adicionales:
 
 * Puesto que un proceso puede ser expropiado en cualquier momento —sin que pueda hacer nada para evitarlo— el sistema operativo debe proporcionar _mecanismos de sincronización_ (véase el <<_sincronización>>) para coordinar el acceso a datos compartidos que podrían estar siendo modificados por el proceso que abandona la CPU y que puede necesitar el que entra en ella.
 
-* ¿Qué ocurre si un proceso va a ser expropiado en el preciso momento en el que se está ejecutando una llamada al sistema? No debemos olvidar que 
-dentro del núcleo se manipulan datos importantes, compartidos por todo el sistema, que deben permanecer consistentes en todo momento.
+* ¿Qué ocurre si un proceso va a ser expropiado en el preciso momento en el que se está ejecutando una llamada al sistema? No debemos olvidar que dentro del núcleo se manipulan datos importantes, compartidos por todo el sistema, que deben permanecer consistentes en todo momento.
 
 Para resolver esta cuestión la solución más sencilla es impedir la expropiación dentro del núcleo.
 Es decir, el cambio de contexto —que sacaría al proceso actual de la CPU y metería al siguiente— no ocurre inmediatamente, sino que se retrasa hasta que la llamada al sistema se completa o se bloquea poniendo al proceso en el estado de _esperando_.
@@ -82,7 +81,7 @@ Al tiempo que transcurre desde que un proceso es escogido para ser planificado e
 == Criterios de planificación
 
 Los diferentes algoritmos de planificación de la CPU tienen diversas propiedades que pueden favorecer a una clase de procesos respecto a otra.
-Por ello es interesante disponer de algún criterio para poder comparar los algoritmos y determinar cual es el mejor.
+Por ello es interesante disponer de algún criterio para poder comparar los algoritmos y determinar cuál es el mejor.
 
 Se han sugerido muchos criterios para comparar los algoritmos de planificación de CPU.
 La elección de uno u otro puede suponer una diferencia sustancial a la hora de juzgar qué algoritmo es el mejor.
@@ -126,7 +125,7 @@ Tiempo de ejecución(((tiempo, ejecución))):: Es el intervalo de tiempo que tra
 Tiempo de espera(((tiempo, espera))):: Es la suma de tiempos que el proceso permanece a la espera en la *cola de preparados*.
 Esta medida de tiempo no incluye el tiempo de espera debido a las operaciones de E/S.
 
-Tiempo de respuesta(((tiempo, respuesta))):: Es el intervalo de tiempo que transcurre desde que se le lanza un evento —se pulsa una tecla, se hace clic con el ratón o llega un paquete por la interfaz de red— hasta que se produce la primera respuesta del proceso.
+Tiempo de respuesta(((tiempo, respuesta))):: Es el intervalo de tiempo que transcurre desde que se lanza un evento —se pulsa una tecla, se hace clic con el ratón o llega un paquete por la interfaz de red— hasta que se produce la primera respuesta del proceso.
 
 El *tiempo de respuesta* mide el tiempo que se tarda en responder y no el tiempo de E/S.
 Mientras que el *tiempo de ejecución* sí incluye el tiempo que consumen las operaciones de E/S, por lo que suele estar limitado por la velocidad de los dispositivos E/S.
@@ -147,7 +146,7 @@ Por el contrario, se espera que el sistema reaccione lo antes posible a las órd
 
 Generalmente, el *tiempo de respuesta* se reduce  cuando el tiempo que pasan los procesos interactivos en la *cola de preparados* también lo hace —tras haber sido puestos ahí por la ocurrencia de algún evento— por lo que también puede ser una buena idea utilizar como criterio el *tiempo de espera*.
 
-Esta selección de criterios no sólo es adecuada para los sistemas interactivos, ya que existen muchos otros casos donde es interesante seleccionar un planificador de la CPU que minimice el tiempo de respuesta.
+Esta selección de criterios no solo es adecuada para los sistemas interactivos, ya que existen muchos otros casos donde es interesante seleccionar un planificador de la CPU que minimice el tiempo de respuesta.
 Esto, por ejemplo, ocurre con algunos servicios en red, como: sistemas de mensajería instantánea, videoconferencia, servidores de videojuegos, etc.
 
 ==== Sistemas no interactivos
@@ -159,7 +158,7 @@ Por eso en ese tipo de sistemas es aconsejable utilizar criterios tales como el 
 
 Obviamente estos criterios varían de un proceso a otro, por lo que normalmente lo que se busca es optimizar los valores promedios en el sistema.
 
-Sin embargo no debemos olvidar que en muchos casos puede ser más conveniente optimizar el máximo y mínimo de dichos valores antes que el promedio.
+Sin embargo, no debemos olvidar que en muchos casos puede ser más conveniente optimizar el máximo y mínimo de dichos valores antes que el promedio.
 Por ejemplo, en los sistemas interactivos es más importante minimizar la *varianza en el tiempo de respuesta* que el *tiempo de respuesta promedio*, puesto que para los usuarios un sistema con un tiempo de respuesta predecible es más deseable que uno muy rápido en promedio pero con una varianza muy alta.
 
 == Ciclo de ráfagas de CPU y de E/S
@@ -174,10 +173,10 @@ _Finalmente, la última ráfaga de CPU finaliza con una llamada al sistema —ge
 ====
 
 [[ráfagas_de_cpu]]
-.Histograma de los tiempos de las ráfagas de CPU..
+.Histograma de los tiempos de las ráfagas de CPU.
 image::{chapdir}/histogramas_tiempo_de_ráfagas.svg[]
 
-La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiper-exponencial (véase la <<ráfagas_de_cpu>>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
+La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiperexponencial (véase la <<ráfagas_de_cpu>>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
 Esto significa que los procesos se pueden clasificar entre aquellos que presentan un gran número de ráfagas de CPU cortas o aquellos con un pequeño número de ráfagas de CPU largas.
 
 ====
@@ -355,16 +354,15 @@ Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 |10.75 
 |===
 
-Aunque el tiempo total necesario para ejecutar los ráfagas de los 4 procesos, los criterios utilizados reflejan que el algoritmo se comporta mucho mejor en el segundo caso.
+Aunque el tiempo total necesario para ejecutar las ráfagas de los 4 procesos, los criterios utilizados reflejan que el algoritmo se comporta mucho mejor en el segundo caso.
 Por tanto, el algoritmo *FCFS* no garantiza ni *tiempos de espera* ni de *ejecución* mínimos, ya que pueden cambiar variar considerablemente con el orden en el que llegan los procesos.
 
 Además, el algoritmo *FCFS* sufre el llamado *((efecto convoy))*.
 Para entenderlo, analicemos lo que está pasando en el ejemplo de la <<tabla_problema_fcfs>>:
 
-. Al proceso P1 se la asigne la CPU.
+. Al proceso P1 se le asigna la CPU.
 Durante el tiempo que P1 utiliza la CPU todos los otros procesos terminan sus operaciones de E/S y pasan a la *cola de preparados*.
-Por tanto, mientras los procesos esperan para utilizar la CPU, los dispositivos de E/S permanecen
-desocupados.
+Por tanto, mientras los procesos esperan para utilizar la CPU, los dispositivos de E/S permanecen desocupados.
 
 . El proceso P1 termina de usar la CPU y pasa a una cola de dispositivos.
 
@@ -372,12 +370,10 @@ desocupados.
 Por tanto, la CPU permanecerá vacía hasta que algún proceso termine la operación de E/S solicitada.
 
 . El proceso P1 pasa a la *cola de preparados* y se le asigna la CPU.
-Con el tiempo el resto de procesos terminaran sus operaciones y, nuevamente, tienen que esperar en la *cola de preparados* a que el proceso P1 termine de utilizarla.
+Con el tiempo el resto de procesos terminarán sus operaciones y, nuevamente, tienen que esperar en la *cola de preparados* a que el proceso P1 termine de utilizarla.
 
-Esto nos permite llegar a la conclusión de que en cierto orden de llegada la mayor parte
-de los procesos esperan constantemente detrás de uno para poder realizar su trabajo.
-Esto reduce la utilización de la CPU y de los dispositivos de E/S por debajo de lo que sería posible, si los
-procesos mas cortos se ejecutasen primero.
+Esto nos permite llegar a la conclusión de que en cierto orden de llegada la mayor parte de los procesos esperan constantemente detrás de uno para poder realizar su trabajo.
+Esto reduce la utilización de la CPU y de los dispositivos de E/S por debajo de lo que sería posible, si los procesos más cortos se ejecutasen primero.
 
 === Planificación SJF
 (((planificación, de CPU, SJF)))
@@ -503,7 +499,7 @@ Además, así se evita el *efecto convoy*.
 Sin embargo, la pregunta que debemos hacernos es cómo podemos conocer de antemano la longitud de las ráfagas de CPU de un proceso, para usar esa información durante la planificación.
 Sin analizar el código, el sistema operativo no puede conocer el tiempo de una ráfaga hasta que esta no termina de ejecutarse.
 
-Por eso el algoritmo SJF se utiliza frecuente como planificador de la *cola de trabajos*, donde se puede obligar al usuario a especificar un tiempo de ejecución máximo, al enviar el trabajo a dicha cola.
+Por eso el algoritmo SJF se utiliza frecuentemente como planificador de la *cola de trabajos*, donde se puede obligar al usuario a especificar un tiempo de ejecución máximo, al enviar el trabajo a dicha cola.
 En este caso, los usuarios tenderán a ajustar la estimación de tiempo de ejecución, puesto que los que tengan tiempos más cortos serán priorizados para ser ejecutados antes, frente a los de tiempos más largos.
 
 Para evitar que los usuarios hagan trampas indicando un tiempo de ejecución más corto que el real, con el fin de que se planifique antes su trabajo, se puede utilizar un temporizador para abortar los trabajos que excedan el tiempo de ejecución indicado por el usuario.
@@ -526,7 +522,7 @@ donde:
 
 La expresión es recursiva, dado que _{tau}~n~_ se calcula usando la ecuación con _t_~_n_-1~ y _{tau}_~_n_-1~; que a su vez depende de _t_~_n_-2~ y _{tau}_~_n_-2~, y así sucesivamente.
 
-Si desarrollamos la formula sustituyendo los valores, veremos que _t~n~_ se pondera con _{alpha}_, _t_~_n_-1~ con (1 - _{alpha}_)_{alpha}_, _t_~_n_-2~ con(1 - _{alpha}_)^2^_{alpha}_, y así sucesivamente:
+Si desarrollamos la fórmula sustituyendo los valores, veremos que _t~n~_ se pondera con _{alpha}_, _t_~_n_-1~ con (1 - _{alpha}_)_{alpha}_, _t_~_n_-2~ con(1 - _{alpha}_)^2^_{alpha}_, y así sucesivamente:
 
 [latexmath]
 ++++
@@ -544,11 +540,10 @@ El problema es que todos estos cálculos consumen tiempo de CPU, cuando el plani
 El algoritmo *SJF* es *cooperativo*, pero se puede implementar de forma *expropiativa*, en cuyo caso se llama *((SRTF))* (Shortest-Remaing-Time First).
 La diferencia está en lo que ocurre cuando un nuevo proceso llega a la *cola de preparados*.
 
-En *SRTF* se compara el tiempo de la siguiente ráfaga de CPU del nuevo
-proceso, con el tiempo de ráfaga que le queda al proceso en ejecución.
+En *SRTF* se compara el tiempo de la siguiente ráfaga de CPU del nuevo proceso, con el tiempo de ráfaga que le queda al proceso en ejecución.
 Si la primera magnitud es inferior, el proceso que tiene la CPU es expropiado y sustituido por el nuevo proceso.
 Mientras que en *SJF* no se hace nada.
-Se espera a que el proceso que actualmente se está ejecutando termine su ráfaga de CPU voluntariamente.
+Se espera que el proceso que actualmente se está ejecutando termine su ráfaga de CPU voluntariamente.
 
 Ilustremos el algoritmo con un ejemplo:
 
@@ -630,21 +625,19 @@ En caso de igual prioridad, se utiliza *FCFS*.
 Las prioridades se suelen indicar con números enteros en un rango fijo. Por ejemplo [0-7], [0-31],
 [0-139] o [0-4095].
 En algunos sistemas operativos los números más grandes representan mayor prioridad, mientras que en otros son los procesos con números más pequeños los que se planifican primero.
-En éste curso utilizaremos la convención de que a menor valor, mayor prioridad.
+En este curso utilizaremos la convención de que a menor valor, mayor prioridad.
 
-Si las prioridades se asignan en base al tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del *SJF*; por lo que se considera a este último un caso particular de algoritmo de *planificación con prioridades*.
+Si las prioridades se asignan en relación al tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del *SJF*; por lo que se considera a este último un caso particular de algoritmo de *planificación con prioridades*.
 
 El algoritmo de planificación con prioridades puede ser *expropiativo* o *cooperativo*:
 
-* En el caso *expropiativo*, cuando un proceso llega a la *cola de preparados* su prioridad es comparada con la
-del proceso en ejecución.
+* En el caso *expropiativo*, cuando un proceso llega a la *cola de preparados* su prioridad es comparada con la del proceso en ejecución.
 Se expropia la CPU si la prioridad del nuevo proceso es superior a la prioridad del proceso que se ejecuta.
 
 * En el caso *cooperativo*, no se toma ninguna decisión cuando llega un proceso a la *cola de preparados*, solo cuando el que tiene asignada la CPU la abandona.
 
 Supongamos que 5 procesos llegan a la cola de preparados en los tiempos indicados en la <<tabla_problema_prioridad>>.
-Como en los ejemplos anteriores, aunque es difícil tener un conocimiento a priori del tiempo
-de las ráfagas de CPU, vamos a suponer que son conocidos.
+Como en los ejemplos anteriores, aunque es difícil tener un conocimiento a priori del tiempo de las ráfagas de CPU, vamos a suponer que son conocidos.
 Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuando llega a la *cola de preparados*.
 
 // TODO: hacer también versión cooperativa
@@ -746,11 +739,11 @@ Por ejemplo, la importancia del proceso para los usuarios, la cantidad de dinero
 
 Algunas de estas formas de asignar las prioridades pueden ser fijas, mientras que otras pueden ser variables.
 Es decir, un criterio externo como es la importancia del proceso para los usuarios, puede dar lugar a una prioridad que se asigna al crear el proceso y que no cambia durante toda su ejecución.
-Por el contrario, un criterio como el tiempo de ráfaga de CPU pueda dar lugar un una prioridad variable, que se ajusta cada vez que se tiene una estimación mejor.
+Por el contrario, un criterio como el tiempo de ráfaga de CPU puede dar lugar a una prioridad variable, que se ajusta cada vez que se tiene una estimación mejor.
 
 ==== Muerte por inanición
 
-El mayor problema de éste tipo de planificación es el *bloqueo indefinido*(((bloqueo, indefinido))) o *((muerte por inanición))*.
+El mayor problema de este tipo de planificación es el *bloqueo indefinido*(((bloqueo, indefinido))) o *((muerte por inanición))*.
 Si hay un conjunto de procesos de alta prioridad demandando CPU continuamente, el algoritmo puede dejar a algunos procesos de menor prioridad esperando indefinidamente.
 
 Una solución a este problema es aplicar mecanismos de *((envejecimiento))*.
@@ -763,14 +756,13 @@ Una vez se les asigna la CPU, se restablece su prioridad al valor original.
 (((planificación, de CPU, RR)))
 (((planificación, de CPU, Round-Robin)))
 
-El algoritmo *((RR))* (_Round-Robin_) es similar al *FCFS* pero añadiendo la expropiación para conmutar
-entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.
+El algoritmo *((RR))* (_Round-Robin_) es similar al *FCFS*, pero añadiendo la expropiación para conmutar entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.
 
 Este algoritmo requiere los siguientes elementos:
 
 * Definir una *((ventana de tiempo))* o *((cuanto))*, generalmente entre 10 y 100 ms
 
-* Definir la *cola de preparados* como una cola circular, dónde el planificador asigna la CPU a cada proceso en intervalos de tiempo de hasta un *cuanto*, como máximo.
+* Definir la *cola de preparados* como una cola circular, donde el planificador asigna la CPU a cada proceso en intervalos de tiempo de hasta un *cuanto*, como máximo.
 
 Cuando un proceso está en la CPU pueden darse diversos casos:
 
@@ -779,9 +771,9 @@ Entonces el proceso liberará la CPU voluntariamente, al terminar la ráfaga.
 
 * Que la ráfaga de CPU sea mayor que un cuanto.
 El temporizador interrumpirá el proceso al terminar el cuanto e informará al sistema operativo.
-Éste hará el cambio de contexto para asignar la CPU al siguiente proceso y el que abandona la CPU es insertado al final de la *cola de preparados*.
+Este hará el cambio de contexto para asignar la CPU al siguiente proceso y el que abandona la CPU es insertado al final de la *cola de preparados*.
 
-Este algoritmo es *expropiativo* puesto que los procesos son expropiados por la interrupción del temporizador.
+Este algoritmo es *expropiativo*, puesto que los procesos son expropiados por la interrupción del temporizador.
 Como se puede intuir, originalmente fue diseñado para los *sistemas de tiempo compartido*, para repartir la CPU por igual entre los procesos de los usuarios del sistema. 
 
 Ilustremos el algoritmo con un ejemplo con cuanto de 4 ms:
@@ -843,10 +835,10 @@ Y los *tiempos de espera y ejecución promedio* correspondientes serían:
 
 ==== Rendimiento
 
-Cuando se utilizar la planificación *RR* el tamaño del cuanto es un factor clave en la eficiencia del planificador:
+Cuando se utiliza la planificación *RR* el tamaño del cuanto es un factor clave en la eficiencia del planificador:
 
 * Cuando se reduce el *cuanto*, el *tiempo de respuesta* y el *tiempo de espera promedio* tienden a mejorar.
-Sin embargo el número de cambios de contexto será mayor, por lo que la ejecución de los procesos será mas lenta.
+Sin embargo el número de cambios de contexto será mayor, por lo que la ejecución de los procesos será más lenta.
 +
 Es importante tener en cuenta que interesa que el *cuanto* sea mucho mayor que el tiempo del cambio de contexto.
 Si, por ejemplo, el tiempo de cambio de contexto es un 10% del *cuanto*, entonces alrededor del 10% del tiempo de CPU se pierde en cambios de contexto.
@@ -892,10 +884,10 @@ Hasta el momento hemos hablado de planificadores que se centran en cuál es el p
 Sin embargo otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
 Esto es precisamente lo que hace la *planificación equitativa* (_Fair Scheduling_) que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.
 
-Por ejemplo, si 4 procesos compitieran por el uso de la CPU, el planificador asignaría un 25% del tiempo de la misma a cada uno.
-Si a continuación un usuario iniciase un nuevo proceso, el planificador tendría que ajustar el reparto asignando un 20% del tiempo a cada uno, ya que ahora habrían 5 procesos compitiendo por el tiempo de CPU.
+Por ejemplo, si 4 procesos compiten por el uso de la CPU, el planificador asignaría un 25% del tiempo de la misma a cada uno.
+Si a continuación un usuario inicia un nuevo proceso, el planificador tendría que ajustar el reparto asignando un 20% del tiempo a cada uno, ya que ahora habría 5 procesos compitiendo por el tiempo de CPU.
 
-El algoritmo de planificación equitativa es muy similar al algoritmo *RR*. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula de dinámicamente para garantizar el reparto equitativo de la CPU.
+El algoritmo de planificación equitativa es muy similar al algoritmo *RR*. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula dinámicamente para garantizar el reparto equitativo de la CPU.
 
 Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
 Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_es>>.
@@ -919,7 +911,7 @@ t_i = w_i/W T
 
 donde _W_ es la suma de los pesos de todos los procesos en la *cola de preparados* durante _T_. 
 
-// TODO: El problema es que los procesos entran y salen de la cola de preparados, por lo que éste cálculo es dinámico.
+// TODO: El problema es que los procesos entran y salen de la cola de preparados, por lo que este cálculo es dinámico.
 // TODO: Hacer un problema como los que hemos visto en otros planificadores
 // https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler
 // https://www.geeksforgeeks.org/completely-fair-scheduler-cfs-and-brain-fuck-scheduler-bfs/
@@ -930,21 +922,20 @@ donde _W_ es la suma de los pesos de todos los procesos en la *cola de preparado
 Los diseñadores recurren a la *planificación de colas multinivel* cuando quieren combinar las características de varios algoritmos.
 
 En la planificación con colas multinivel se divide la cola de preparados en colas separadas.
-Los procesos son asignados permanentemente a alguna de dichas colas, cada una de las cuales puede
-tener un algoritmo de planificación distinto.
+Los procesos son asignados permanentemente a alguna de dichas colas, cada una de las cuales puede tener un algoritmo de planificación distinto.
 
-La asignación de un proceso a una cola se hace en base a alguna una característica del proceso.
+La asignación de un proceso a una cola se hace en relación a alguna una característica del proceso.
 Por ejemplo, si es interactivo o no, su prioridad o su tamaño en memoria.
 Se hace de esta manera porque se supone que los procesos se pueden clasificar, y que cada clase tiene diferentes requerimientos.
-Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, los primeros puede ir a una cola con planificación *RR* mientras los segundos van a una con *FCFS*.
+Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, los primeros pueden ir a una cola con planificación *RR* mientras los segundos van a una con *FCFS*.
 
 [[esquema_colas_multinivel]]
 .Ejemplo de planificación con colas multinivel.
 image::{chapdir}/planificación_colas_multinivel.svg[]
 
-Una cuestión interesante es como seleccionar la cola que debe escoger al siguiente proceso a ejecutar:
+Una cuestión interesante es cómo seleccionar la cola que debe escoger al siguiente proceso a ejecutar:
 
-* Un opción común en los sistemas actuales es utilizar un *planificador con prioridades*.
+* Una opción común en los sistemas actuales es utilizar un *planificador con prioridades*.
 Es decir, que cada cola tenga una prioridad y así el planificador solo tiene que escoger la cola de prioridad más alta que no esté vacía.
 +
 Por ejemplo, en la <<esquema_colas_multinivel>>, mientras un proceso de prioridad 1 esté preparado, no se escoge ningún otro de prioridad inferior.
@@ -955,7 +946,7 @@ Es decir, que a cada cola se le asigne una porción del tiempo de la CPU que deb
 +
 Por ejemplo, un 80% de CPU para la cola de procesos interactivos, con planificación *RR*, y el 20% de CPU restante para la cola de procesos no interactivos, con planificador *FCFS*.
 
-La *planificación de colas multinivel* con una *planificador con prioridades* para escoger la cola adecuada, es con diferencia la opción más común en lo sistemas operativos modernos.
+La *planificación de colas multinivel* con un *planificador con prioridades* para escoger la cola adecuada, es con diferencia la opción más común en los sistemas operativos modernos.
 Sin embargo, en este tipo de *colas multinivel* la asignación de los procesos a las colas es permanente —si la asignación se hace por prioridad, significa que la prioridad es fija—.
 Mientras que hoy en día es común que los procesos se muevan entre colas según las características del proceso.
 
@@ -963,7 +954,7 @@ Mientras que hoy en día es común que los procesos se muevan entre colas según
 (((planificación, de CPU, multinivel realimentada)))
 
 Para aumentar la flexibilidad de la planificación con colas multinivel se puede permitir a los procesos pasar de una cola a otra.
-Así se pueden clasificar en colas distintas procesos con diferente tiempos de ráfaga de CPU.
+Así se pueden clasificar en colas distintas, procesos con diferentes tiempos de ráfaga de CPU.
 Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las colas de más alta prioridad, lo que ya hemos discutido que mejora los tiempos de espera y de respuesta y evita el *efecto convoy*.
 
 [[esquema_planificación_colas_multinivel_realimentadas]]
@@ -975,12 +966,12 @@ En las colas se usa el algoritmo *RR* para seleccionar el siguiente proceso, sie
 Los procesos que llegan nuevos o desde el estado *esperando* lo hacen con la prioridad más alta —que por convención hemos decidido que sea 0— así que se insertan en la cola correspondiente.
 Mientras que los procesos expropiados por vencimiento del *cuanto* pierde un punto de prioridad, siendo insertados en una cola de prioridad menor.
 
-Con ese algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
+Con este algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
 Por ejemplo, usando los valores del esquema de la <<esquema_planificación_colas_multinivel_realimentadas>>, los procesos de ráfagas de CPU entre 20 y 80 ms acaban cayendo a la cola de prioridad 1 tras 20 ms de ejecución.
 Así dejan paso a los procesos con ráfagas menores de 20 ms, que siempre se ejecutan con prioridad 0.
-Finalmente, los procesos de ráfagas mayores de 80 ms van a la cola FCFS, desde donde sólo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la *cola de preparados*
+Finalmente, los procesos de ráfagas mayores de 80 ms van a la cola FCFS, desde donde solo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la *cola de preparados*
 
-La *planificador de colas multinivel realimentadas* también se puede utilizar para pasar a colas superiores los procesos que han esperado mucho tiempo en colas inferiores, evitando la *muerte por inanición*, que puede afecta a los sistemas de *planificación de colas multinivel* con *prioridad fija*.
+El *planificador de colas multinivel realimentadas* también se puede utilizar para pasar a colas superiores los procesos que han esperado mucho tiempo en colas inferiores, evitando la *muerte por inanición*, que puede afectar a los sistemas de *planificación de colas multinivel* con *prioridad fija*.
 
 Por ejemplo, el algoritmo *RR virtual*(((planificación, de CPU, RR virtual)))(((RR, virtual))) es un caso de *planificador de colas multinivel realimentadas* que resuelve los problemas del *RR*, en cuanto al reparto de la CPU entre procesos limitados por la E/S y limitados por la CPU (véase el <<_reparto_equitativo_del_tiempo_de_cpu>>).
 
@@ -992,7 +983,7 @@ Tal y como se ilustra en la <<esquema_planificación_rr_virtual>>, en el *RR vir
 Sin embargo, aquellos que vuelven al estado *preparado* desde *esperando* después de una operación de E/S, obtienen una bonificación en la propiedad que los lleva a tener prioridad 0.
 Por tanto, los procesos que usan con más frecuencia la E/S, usan más la cola de prioridad más alta, por lo que se les asigna antes la CPU mayor frecuencia.
 
-Esta solución puede llevar a que si hay muchos procesos limitados por la E/S, éstos acaparen la CPU y no den oportunidad de ejecutarse a los procesos en la cola de prioridad 1.
+Esta solución puede llevar a que si hay muchos procesos limitados por la E/S, estos acaparen la CPU y no den oportunidad de ejecutarse a los procesos en la cola de prioridad 1.
 Para evitarlo, el algoritmo *RR* de la cola de prioridad 0 tiene un *cuanto* variable, de tal forma que cada proceso recibe lo que le queda del *cuanto* de la cola de prioridad 1 tras haber consumido parte en la CPU en la ráfaga anterior.
 Esto hace que incluso los procesos con ráfagas de CPU más cortas acaben consumiendo su *cuanto* en la cola de prioridad 0 y terminen cayendo a la cola de prioridad 1, dando oportunidad de ejecutarse a otros procesos.
 
@@ -1005,7 +996,7 @@ Las actuales versiones de sistemas operativos Windows pertenecen a la familia de
 El núcleo de la familia Windows NT es multihilo e internamente implementa un algoritmo de planificación expropiativa con colas multinivel realimentadas basado en prioridades.
 
 En Windows las prioridades de los hilos se pueden ver desde dos perspectivas: la de Windows API y la del núcleo.
-Ambas tienen una organización muy diferente pero, en última instancia, las primeras deben traducirse en las segundas.
+Ambas tienen una organización muy diferente, pero en última instancia, las primeras deben traducirse en las segundas.
 
 [[win32_clases_prioridad]]
 .Clases de prioridad en Windows API.
@@ -1075,8 +1066,7 @@ Con el *Administrador de tareas* de Windows podemos alterar fácilmente la clase
 |====
 
 Al mismo tiempo, cada hilo del sistema tiene alguno de las prioridades de la <<win32_prioridad_hilos>>.
-La prioridad de un hilo recién creado es `THREAD_PRIORITY_NORMAL`, pero se puede cambiar
-usando la función {win32_setthreadpriority}.
+La prioridad de un hilo recién creado es `THREAD_PRIORITY_NORMAL`, pero se puede cambiar usando la función {win32_setthreadpriority}.
 
 El núcleo de Windows tiene 32 prioridades, siendo 31 la prioridad más alta y 0 la más baja.
 Estos valores se dividen en dos rangos.
@@ -1159,15 +1149,15 @@ h|IDLE
 
 |====
 
-Esta prioridad base es la prioridad real del hilo, si éste tiene una prioridad en el rango de tiempo real —es decir, si el proceso al que pertenece está en la clase de prioridad `REALTIME_PRIORITY_CLASS`—.
+Esta prioridad base es la prioridad real del hilo, si este tiene una prioridad en el rango de tiempo real —es decir, si el proceso al que pertenece está en la clase de prioridad `REALTIME_PRIORITY_CLASS`—.
 Mientras que para el resto de hilos, el sistema suma ciertas bonificaciones a la prioridad base para calcular la prioridad dinámica, que es con la que realmente será planificado el hilo.
-Estas bonificaciones se truncan para que nuncan puedan hacer que el hilo se meta en el rango de tiempo real.
+Estas bonificaciones se truncan para que nunca puedan hacer que el hilo se meta en el rango de tiempo real.
 
 La prioridad real la usa el sistema para determinar a qué cola va el hilo cuando va a ser insertado en la *cola de preparados*.
 Para cada nivel de prioridad hay una cola con algoritmo *RR*, de tal forma que el planificador escoge primero a los hilos con prioridad más alta. Dentro de la misma prioridad la CPU se asigna en turno, dándoles un *cuanto* de tiempo de CPU.
 
-Cuando llega un hilo a la cola de preparados, expropia la CPU al hilo que la tiene asignada si éste tiene menor prioridad.
-Esto puede ocurrir incluso si el hilo a expropiar está en medio de una llamada al sistema ya que, como cualquier sistema operativo moderno, el núcleo de Windows es expropiable —lo que veremos en el <<_núcleo_expropiable>> que ofrece latencias de asignación más bajas que si no lo fuera—.
+Cuando llega un hilo a la cola de preparados, expropia la CPU al hilo que la tiene asignada si este tiene menor prioridad.
+Esto puede ocurrir incluso si el hilo a expropiar está en medio de una llamada al sistema, ya que, como cualquier sistema operativo moderno, el núcleo de Windows es expropiable —lo que veremos en el <<_núcleo_expropiable>> que ofrece latencias de asignación más bajas que si no lo fuera—.
 
 Respecto al *cuanto*, desde Windows Vista –NT 6.0– no se usa el temporizador para controlarlo sino el contador de ciclos de reloj de la CPU.
 Así el sistema puede determinar con precisión el tiempo que se ha estado ejecutando un hilo, excluyendo los tiempos dedicados a otras cuestiones, como por ejemplo a manejar interrupciones.
@@ -1179,19 +1169,19 @@ Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca
 Para más información véase https://en.wikipedia.org/wiki/Time_Stamp_Counter[«Time Stamp Counter -- Wikipedia»].
 ====
 
-Una característica curiosa, es que los hilos expropiados se insertan en la cabeza de su cola —no en el final— y conservan lo que les queda de *cuanto*.
+Una característica curiosa es que los hilos expropiados se insertan en la cabeza de su cola —no en el final— y conservan lo que les queda de *cuanto*.
 Mientras que se insertan por el final con el valor de *cuanto* reiniciado cuando abandonan la CPU por haber agotado el cuanto anterior.
 Estos últimos, además, pierden un nivel de prioridad si se ejecutaban con una prioridad superior a su prioridad base, a causa de alguna modificación.
 
-Los bonificaciones a los hilos en el rango de prioridades dinámicas vienen determinadas por distintos criterios, escogidos para mejorar el *tiempo respuesta* y el *tiempo de espera* —priorizando los procesos limitados por E/S—, evitar la *muerte por inanición* y la *inversión de prioridad*.
+Las bonificaciones a los hilos en el rango de prioridades dinámicas vienen determinadas por distintos criterios, escogidos para mejorar el *tiempo respuesta* y el *tiempo de espera* —priorizando los procesos limitados por E/S— evitar la *muerte por inanición* y la *inversión de prioridad*.
 
 Se bonifican los hilos que despiertan tras completar operaciones de E/S con una cantidad que depende del tipo de dispositivo.
 Por ejemplo, la bonificación es mejor para hilos que han esperado por el teclado o el ratón que para los que esperaron por dispositivos del almacenamiento.
-También son bonificados los hilos que despierta de eventos, semáforos y de otros objetos de sincronización.
+También son bonificados los hilos que despiertan de eventos, semáforos y de otros objetos de sincronización.
 En este último caso, incluso se les ofrece más tiempo de *cuanto* si es el hilo asociado a la ventana de primer plano, con el objetivo de mejorar la respuesta de las aplicaciones interactivas.
-También se bonifica cualquier hilo que gestione elementos de la interfaz grafica cuando despierta para responder a eventos del sistema de ventanas.
+También se bonifica cualquier hilo que gestione elementos de la interfaz gráfica cuando despierta para responder a eventos del sistema de ventanas.
 
-Para evitar la *muerte por inanición*, el planificador escoge cada segundo unos pocos hilos que lleven esperando aproximadamente 4 segundos, les triplica el *cuanto* y les aumenta la prioridad a 15.
+Para evitar la *muerte por inanición*, el planificador escoge cada segundo unos pocos hilos que llevan esperando aproximadamente 4 segundos, les triplica el *cuanto* y les aumenta la prioridad a 15.
 Estos hilos recuperan su prioridad base y el cuanto anterior cuando agotan el tiempo de cuanto actual o son expropiados de la CPU
 ****
 
@@ -1207,8 +1197,8 @@ A continuación, describiremos las funcionalidades necesarias para soportar la e
 
 Los sistemas de *tiempo real estricto* son necesarios para realizar tareas críticas que deben ser completadas dentro de unos márgenes de tiempo preestablecidos.
 
-Generalmente las tareas son entregas al sistema operativo junto con una declaración de las restricciones de tiempo —periodicidad y límite de tiempo— y la cantidad de tiempo que necesitan para ejecutarse.
-El planificador sólo admitirá las tareas si puede garantizar el cumplimiento de las restricciones de tiempo, rechazándolas en caso contrario.
+Generalmente las tareas son entregadas al sistema operativo junto con una declaración de las restricciones de tiempo —periodicidad y límite de tiempo— y la cantidad de tiempo que necesitan para ejecutarse.
+El planificador solo admitirá las tareas si puede garantizar el cumplimiento de las restricciones de tiempo, rechazándolas en caso contrario.
 
 El ofrecer estas garantías requiere que el planificador conozca exactamente el tiempo máximo que se tarda en realizar todas y cada una de las funciones del sistema operativo.
 Esto es imposible en sistemas con almacenamiento secundario o memoria virtual, ya que introducen variaciones no controladas en la cantidad de tiempo necesario para ejecutar una tarea.
@@ -1220,10 +1210,10 @@ Por tanto, el *tiempo real estricto* no es compatible con los sistemas operativo
 (((soft real-time)))
 
 La ejecución de procesos de *tiempo real flexible* es menos restrictiva.
-Tan sólo requiere que los procesos críticos reciban mayor prioridad que los que no lo son.
-Esto puede generar excesos en la cantidad de recursos asignados a los procesos de tiempo real, así como inanición y grandes retardos en la ejecución del resto de los procesos, pero es compatible con los sistemas de propósito general.
+Tan solo requiere que los procesos críticos reciban mayor prioridad que los que no lo son.
+Esto puede generar excesos en la cantidad de recursos asignados a los procesos de tiempo real, así como inanición y grandes retrasos en la ejecución del resto de los procesos, pero es compatible con los sistemas de propósito general.
 
-Además nos permite conseguir sistemas de propósito general que soporten multimedia, videojuegos y otras tareas que no funcionarían de manera aceptable en un entorno que no implementara tiempo real flexible.
+Además nos permite conseguir sistemas de propósito general que soporten multimedia, videojuegos y otras tareas que no funcionan de manera aceptable en un entorno que no implementara tiempo real flexible.
 Por ello, la mayor parte de los sistemas operativos modernos soportan este tipo de tiempo real.
 
 === Implementación del soporte de tiempo real
@@ -1243,8 +1233,7 @@ Mientras que el primer requerimiento es bastante sencillo de conseguir, el segun
 
 Muchos sistemas operativos tienen un núcleo no expropiable.
 Estos núcleos no pueden realizar un cambio de contexto mientras se está ejecutando código del núcleo —por ejemplo, debido a una llamada al sistema— por lo que se ven obligados a esperar hasta que la operación que se esté realizando termine, antes de asignar la CPU a otro proceso.
-Esto aumenta la *latencia de asignación*, dado que algunas llamadas al sistema pueden ser muy 
-complejas y requerir mucho tiempo para completarse.
+Esto aumenta la *latencia de asignación*, dado que algunas llamadas al sistema pueden ser muy complejas y requerir mucho tiempo para completarse.
 
 Con el objetivo de resolver este problema se han desarrollado diversas alternativas para que el código del núcleo sea expropiable.
 
@@ -1254,7 +1243,7 @@ Una posibilidad es introduciendo *puntos de expropiación*(((punto, expropiació
 En dichos puntos se comprueba si algún proceso de prioridad más alta está en la cola de preparados.
 En caso de que sea así, se expropia la CPU al proceso actual y se le asigna al proceso de más alta prioridad.
 
-Debido a la función que realizan los puntos de expropiación, sólo pueden ser colocados en lugares seguros del código del núcleo.
+Debido a la función que realizan los puntos de expropiación, solo pueden ser colocados en lugares seguros del código del núcleo.
 Es decir, lugares donde no se interrumpe la modificación de estructuras de datos.
 Sin embargo, esto limita el número de puntos que pueden ser colocados, por lo que la latencia de asignación puede seguir siendo muy alta para algunas operaciones muy complejas del núcleo.
 
@@ -1265,8 +1254,8 @@ Otra posibilidad es diseñar un *núcleo completamente expropiable*.
 Puesto que en este caso la ejecución de cualquier operación en el núcleo puede ser interrumpida en cualquier momento por procesos de mayor prioridad que el que actualmente tiene asignada la CPU, es necesario proteger las estructuras de datos del núcleo con mecanismos de sincronización.
 Esto hace que el diseño de un núcleo de estas características sea mucho más complejo.
 
-Microsoft Windows —desde Windows NT—, Linux —desde la versión 2.6—, {solaris} y {netbsd} son algunos ejemplos de sistemas operativos con núcleos expropiables.
-En el caso concreto de Solaris la latencia de asignación es inferior a 1 ms, mientras que con la expropiación del núcleo desactivada ésta puede superar los 100 ms
+Microsoft Windows —desde Windows NT— Linux —desde la versión 2.6— {solaris} y {netbsd} son algunos ejemplos de sistemas operativos con núcleos expropiables.
+En el caso concreto de Solaris la latencia de asignación es inferior a 1 ms, mientras que con la expropiación del núcleo desactivada esta puede superar los 100 ms
 
 .Expropiación en el núcleo de Linux
 ****
@@ -1293,7 +1282,7 @@ Debido al uso de mecanismos de sincronización, el proceso de alta prioridad se 
 Sin embargo, este último tardará en ser asignado a la CPU mientras haya algún otro proceso de alta prioridad en la cola de preparados.
 
 Al hecho de que un proceso de alta prioridad tenga que esperar por uno de baja se le conoce como *((inversión de la prioridad))*.
-Para resolverlo se utiliza un *((protocolo de herencia de la prioridad))*, dónde un proceso de baja prioridad hereda la prioridad del proceso de más alta prioridad que espera por un recurso al que el primero está accediendo.
+Para resolverlo se utiliza un *((protocolo de herencia de la prioridad))*, donde un proceso de baja prioridad hereda la prioridad del proceso de más alta prioridad que espera por un recurso al que el primero está accediendo.
 En el momento en que el proceso de baja prioridad libere el acceso a dicho recurso, su prioridad retornará a su valor original.
 
 == Planificación en sistemas multiprocesador
@@ -1309,7 +1298,7 @@ Un ejemplo de lo contrario a un sistema homogéneo —un sistema heterogéneo—
 
 Aun así, no debemos olvidar que incluso en el caso de los sistemas homogéneos pueden aparecer limitaciones en la planificación.
 Por ejemplo, los procesadores SMT (_Simultaneous Multithreading_) permiten la ejecución concurrente de varios hilos de ejecución como si de varias CPU se tratara.
-Sin embargo, al no disponer cada hilo de una CPU completa, es posible que algunos deban esperar a que algún otro libere unidades de ejecución de la CPU que le son necesarias.
+Sin embargo, al no disponer cada hilo de una CPU completa, es posible que algunos debán esperar a que algún otro libere unidades de ejecución de la CPU que le son necesarias.
 Eso debe ser tenido en cuenta por el planificador con el fin de optimizar el rendimiento del sistema.
 
 [NOTE]
@@ -1333,7 +1322,7 @@ Este esquema es sencillo, puesto que evita la necesidad de compartir estructuras
 (((sistema, multiprocesamiento, simétrico)))
 (((multiprocesamiento, simétrico)))
 
-Cuando utilizamos *multiprocesamiento simétrico* o *SMP*, cada procesador ejecuta su propia copia del núcleo del sistema operativo y se auto-planifica mediante su propio planificador de CPU.
+Cuando utilizamos *multiprocesamiento simétrico* o *SMP*, cada procesador ejecuta su propia copia del núcleo del sistema operativo y se autoplanifica mediante su propio planificador de CPU.
 En estos sistemas nos podemos encontrar con varias alternativas.
 
 ==== Con una cola de preparados común
