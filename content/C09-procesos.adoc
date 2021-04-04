@@ -968,7 +968,7 @@ Paso de mensajes::
 Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.
 
 En la <<modelos_de_comunicación>> se puede un esquema comparativo entre ambos modelos de comunicación.
-Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_comunicación_mediante_de_paso_de_mensajes>>, respectivamente.
+Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_comunicación_mediante_paso_de_mensajes>>, respectivamente.
 
 [[modelos_de_comunicación]]
 .Modelos de comunicación.
