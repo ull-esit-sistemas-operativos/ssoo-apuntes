@@ -410,5 +410,15 @@ Para ser exactos, la base del sistema operativo macOS es un sistema operativo li
 Se trata de un sistema {freebsd} adaptado para correr sobre el núcleo Mach.
 ====
 
+ifdef::backend-pdf[]
+[.landscape]
+<<<
+endif::[]
+
 .Línea de tiempo de la historia de los sistemas operativos.
 image::{chapdir}/historia_sistemas_operativos.svg[]
+
+ifdef::backend-pdf[]
+[.portrait]
+<<<
+endif::[]
