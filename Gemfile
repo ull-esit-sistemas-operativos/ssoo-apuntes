@@ -10,13 +10,17 @@ group :docstats do
     gem "nokogiri"
 end
 
+group :html5 do
+    gem "asciidoctor-multipage"
+end
+
 group :pdf do
     gem "asciidoctor-mathematical"
     gem "asciidoctor-pdf"
 end
 
 group :epub3 do
-    gem "asciidoctor-epub3", "~> 1.5.0.alpha.18"
+    gem "asciidoctor-epub3"
 end
 
 group :test do

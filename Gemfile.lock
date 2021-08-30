@@ -14,6 +14,8 @@ GEM
       asciidoctor (~> 2.0)
       asciimath (~> 2.0)
       mathematical (~> 1.6.0)
+    asciidoctor-multipage (0.0.12)
+      asciidoctor (>= 2.0.11, < 2.1)
     asciidoctor-pdf (1.6.0)
       asciidoctor (~> 2.0)
       concurrent-ruby (~> 1.1)
@@ -101,8 +103,9 @@ PLATFORMS
 
 DEPENDENCIES
   asciidoctor
-  asciidoctor-epub3 (~> 1.5.0.alpha.18)
+  asciidoctor-epub3
   asciidoctor-mathematical
+  asciidoctor-multipage
   asciidoctor-pdf
   html-proofer
   nokogiri

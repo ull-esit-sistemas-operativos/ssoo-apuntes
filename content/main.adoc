@@ -47,7 +47,7 @@ include::bibliografía.adoc[]
 // Índice de términos
 // NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.
 //       Ver: https://github.com/asciidoctor/asciidoctor/issues/450
-ifeval::["{backend}" != "html5"]
+ifeval::["{backend}" == "pdf"]
 [index]
 == Índice
 endif::[]

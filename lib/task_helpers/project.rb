@@ -28,11 +28,11 @@ module Project
             source_directory = File.dirname pathname
             namespaces = source_directory.sub(source_directory_regex, "").split("/")
             output_directories = {
-                :html => make_output_dirname(source_directory, "html"),
-                :pdf => make_output_dirname(source_directory, "pdf"),
-                :epub => make_output_dirname(source_directory, "epub"),
                 :docbook => make_output_dirname(source_directory, "docbook"),
                 :docx => make_output_dirname(source_directory, "docx"),
+                :epub => make_output_dirname(source_directory, "epub"),
+                :html => make_output_dirname(source_directory, "html"),
+                :pdf => make_output_dirname(source_directory, "pdf"),
             }
 
             {
@@ -48,11 +48,11 @@ module Project
                 ],
                 :media_files => find_media_files(source_directory),
                 :output_pathnames => {
-                    :html => File.join(output_directories[:html], "index.html"), 
-                    :pdf => File.join(output_directories[:pdf], get_output_documment_filename(namespaces, "pdf")),
-                    :epub => File.join(output_directories[:epub], get_output_documment_filename(namespaces, "epub")),
                     :docbook => File.join(output_directories[:docbook], get_output_documment_filename(namespaces, "docbook")),
                     :docx => File.join(output_directories[:docx], get_output_documment_filename(namespaces, "docx")),
+                    :epub => File.join(output_directories[:epub], get_output_documment_filename(namespaces, "epub")),
+                    :html => File.join(output_directories[:html], "index.html"), 
+                    :pdf => File.join(output_directories[:pdf], get_output_documment_filename(namespaces, "pdf")),
                 },
                 :docstats_pathname => File.join(source_directory, DOCUMENT_STATS_FILE),
             }

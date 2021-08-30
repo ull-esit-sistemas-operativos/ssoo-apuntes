@@ -25,5 +25,6 @@ include::locale/attributes.adoc[]
 :toc: left
 // Configuración del backend HTML5
 ifdef::backend-html5[include::html5/attributes.adoc[]]
+ifdef::backend-multipage_html5[include::html5/attributes.adoc[]]
 // Configuración del backend PDF
 ifdef::backend-pdf[include::pdf/attributes.adoc[]]
