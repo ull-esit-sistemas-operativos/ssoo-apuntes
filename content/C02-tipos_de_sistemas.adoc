@@ -227,10 +227,11 @@ Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/
 
 == Sistemas de mano
 (((sistema, de mano)))
+(((sistema, móvil)))
 
-Con el nombre genérico de **sistemas de mano** hacemos referencia a las _tablets_, lectores de libros electrónicos y teléfonos móviles.
+Con el nombre genérico de **sistemas de mano** —del inglés _handheld_— hacemos referencia a las _tablets_, _smartphones_, lectores de libros electrónicos y otro sistemas móviles y portátiles.
 Los desarrolladores de aplicaciones y sistemas de mano deben enfrentarse a diversos desafíos, originados por el tamaño limitado de los dispositivos y la alimentación mediante el uso de baterías.
-Debido a esas limitaciones muchos sistemas de mano tienen poca cantidad de memoria, procesadores lentos —en comparación con sus equivalentes de escritorio— y pantallas más pequeñas.
+Debido a esas limitaciones, muchos sistemas de mano tienen poca cantidad de memoria, procesadores lentos —en comparación con sus equivalentes de escritorio— y pantallas más pequeñas.
 
 En el diseño del sistema operativo suele primar la facilidad de uso y buscar un buen equilibrio entre rendimiento y tiempo de vida de la batería.
 
