@@ -1,5 +1,6 @@
 # Apuntes de "Sistemas Operativos"
-Copyright 2005-2021 Jesús Torres \<jmtorres@ull.es\>
+Excepto donde se indique lo contrario, esta obra está sujeta a la licencia
+[Creative Commons Atribución 4.0 Internacional](https://creativecommons.org/licenses/by/4.0/deed.es).
 
 ## Requisitos
 

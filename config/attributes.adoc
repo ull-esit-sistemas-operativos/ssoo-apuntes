@@ -1,4 +1,5 @@
 :doctype: book
+:nofooter: 
 include::symbols.adoc[]
 // Configuración del idioma.
 :lang: es

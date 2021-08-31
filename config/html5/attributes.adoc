@@ -2,4 +2,4 @@
 //
 // Localización de los archivos docinfo.
 :docinfodir: {basedir}/config/html5
-:docinfo: shared-head
+:docinfo: shared-head,shared-footer
