@@ -212,7 +212,7 @@ El *_copy-on-write_* minimiza de la siguiente manera el número de marcos que de
 
 [[fig-copy-on-write-1]]
 .Copy-on-write antes de que el proceso 1 modifique la página A.
-image::{chapdir}/copy-on-write1.svg[]
+image::{chapdir}/copy_on_write1.svg[]
 
 . Cuando la llamada al sistema {linux_fork} crea el nuevo proceso lo hace de forma que este comparta todas sus páginas con las del padre (véase la <<fig-copy-on-write-1>>).
 +
@@ -231,7 +231,7 @@ Si se ha intentado escribir en una página de solo lectura, el proceso ha cometi
 
 [[fig-copy-on-write-2]]
 .Copy-on-write después de que el proceso 1 modifique la página A.
-image::{chapdir}/copy-on-write2.svg[]
+image::{chapdir}/copy_on_write2.svg[]
 
 . Si el sistema detecta una escritura a una página de *_copy-on-write_* solo tiene que copiarla en un marco libre y mapearlo en el espacio de direcciones del proceso (véase la <<fig-copy-on-write-2>>).
 +
