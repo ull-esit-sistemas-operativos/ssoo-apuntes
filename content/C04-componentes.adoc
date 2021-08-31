@@ -12,7 +12,7 @@ Crear un software tan complejo como un sistema operativo no es sencillo, por ell
 Cada sistema operativo tiene diferentes componentes con distinto nombre.
 Lo que veremos en este capítulo es un esquema de los más comunes a la mayoría de sistemas operativos actuales.
 
-[[componente_gestión_de_procesos]]
+[[sect-componente-gestión-de-procesos]]
 == Gestión de procesos
 (((gestión, procesos)))
 

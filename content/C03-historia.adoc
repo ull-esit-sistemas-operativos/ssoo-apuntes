@@ -9,7 +9,7 @@ include::../config/attributes.adoc[]
 
 La historia de los sistemas operativos se puede dividir en cinco grandes etapas o generaciones, obviamente conectadas con las generaciones de los ordenadores donde funcionaban.
 
-[[_historia_primera_generación]]
+[[sect-historia-primera-generación]]
 == 1ª Generación (1945-55)
 
 En la primera generación de ordenadores no se utilizaban sistemas operativos.
@@ -42,7 +42,7 @@ Utilizaba tubos de vacío y tarjetas perforadas.
 El IBM 7090 —versión transistorizada del 709, que utilizaba válvulas de vacío, como todos los de la serie 700— y el posterior 7094, fueron usados por la NASA para los cálculos de control de las misiones de los programas espaciales Mercury y Gemini y durante la primera etapa del programa Apolo.
 ====
 
-[[_historia_segunda_generación]]
+[[sect-historia-segunda-generación]]
 == 2ª Generación (1955-64)
 
 En la segunda generación de ordenadores los transistores reemplazaron a las válvulas de vacío.
@@ -61,11 +61,11 @@ https://es.wikipedia.org/wiki/GM-NAA_I/O[GM-NAA I/O] (_General Motors and North 
 Fue desarrollado por General Motors Research Laboratory en 1956 para el _mainframe_ https://en.wikipedia.org/wiki/IBM_704[IBM 704] con el fin de automatizar la carga y ejecución de un nuevo trabajo una vez había terminado el anterior.
 Para su desarrollo se basaron en un monitor del sistema creado en 1955 por programadores de General Motors para el IBM 701.
 
-[[instalación_ibm_702]]
+[[fig-instalación-ibm-702]]
 .Instalación de un mainframe IBM 702 -- Fuente: https://commons.wikimedia.org/wiki/File:BRL61-IBM_702.jpg[Wikipedia]
 image::{chapdir}/instalación_ibm_702.jpg[]
 
-[[_historia_tercera_generación]]
+[[sect-historia-tercera-generación]]
 == 3ª Generación (1965-1968)
 
 En la tercera generación se comenzaron a utilizar los circuitos integrados, que fue una invención de finales de la década de 1950.
@@ -79,10 +79,10 @@ En lo que respecta a los sistemas operativos:
 ====
 
 El ejemplo más destacado de esta época es el {ibmos360}
-Fue un sistema operativo desarrollado por IBM para su _mainframe_ https://en.wikipedia.org/wiki/IBM_System/360[IBM System/360] (S/360) (véase la <<instalación_ibm_system_360>>).
+Fue un sistema operativo desarrollado por IBM para su _mainframe_ https://en.wikipedia.org/wiki/IBM_System/360[IBM System/360] (S/360) (véase la <<fig-instalación-ibm-system-360>>).
 Su versión DOS/360 (_Disk Operating System/360_) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.
 
-[[instalación_ibm_system_360]]
+[[fig-instalación-ibm-system-360]]
 .Instalación de un mainframe IBM System/360 -- Fuente: http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/[IBM]
 image::{chapdir}/instalación_ibm_system_360.jpg[]
 
@@ -96,7 +96,7 @@ Algunos autores fechan los inicios de la ingeniería del software en la publicac
 Frederick Brooks se basó en la experiencia adquirida mientras administraba el desarrollo del IBM OS/360, donde era jefe de proyecto.
 ====
 
-[[_historia_cuarta_generación]]
+[[sect-historia-cuarta-generación]]
 == 4ª Generación (1965-1980)
 
 La cuarta generación abarca desde mediados de los años 60 hasta finales de la década de los 70.
@@ -116,7 +116,7 @@ A continuación veremos los ejemplos más representativos de esta época.
 
 https://es.wikipedia.org/wiki/Multics[MULTICS] fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general.
 
-[[multics_mainframe]]
+[[sect-multics-mainframe]]
 .Mainframe GE-6180 con sistema MULTICS, en torno a 1976 en el MIT -- Fuente: http://www.multicians.org/multics-stories.html[Multicians]
 image::{chapdir}/multics_mainframe.jpg[]
 
@@ -138,11 +138,11 @@ Las versiones actuales se denominan IBM z/VM.
 
 === UNIX
 
-{unix} fue desarrollado originalmente por Bell Labs en 1970 para los sistemas https://es.wikipedia.org/wiki/PDP-11[PDP-11/20] (véase la <<dec_pdp11>>).
+{unix} fue desarrollado originalmente por Bell Labs en 1970 para los sistemas https://es.wikipedia.org/wiki/PDP-11[PDP-11/20] (véase la <<fig-dec-pdp11>>).
 La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS, pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
 Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.
 
-[[dec_pdp11]]
+[[fig-dec-pdp11]]
 .Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales https://en.wikipedia.org/wiki/Teletype_Model_33[Teletype 33] -- Fuente: https://www.bell-labs.com/usr/dmr/www/[Dennis Ritchie]
 image::{chapdir}/dec_pdp11_ken_den.jpg[]
 
@@ -184,7 +184,7 @@ Otro ejemplo destacable es https://en.wikipedia.org/wiki/PlayStation_4_system_so
 https://en.wikipedia.org/wiki/OpenVMS[VMS] es un sistema operativo de 32 bits diseñado originalmente por Digital Equipment Corporation (DEC) —ahora propiedad de HP— en 1978 para usarlo en minicomputadoras https://es.wikipedia.org/wiki/VAX[VAX].
 Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.
 
-[[dec_vax11]]
+[[fig-dec-vax11]]
 .Instalación de VAX 11/780 en 1980 -- Fuente: http://www.chilton-computing.org.uk/[Science and Technology Facilities Council]
 image::{chapdir}/dec_vax11.jpg[]
 
@@ -196,7 +196,7 @@ VMS era un sistema multiusuario y multiprocesador que podía distribuir el traba
 
 [NOTE]
 ====
-VMS es en cierta medida un ancestro de Microsoft Windows NT (véase el <<_windows_nt>>).
+VMS es en cierta medida un ancestro de Microsoft Windows NT (véase el <<sect-windows-nt>>).
 Para desarrollar Windows NT, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation.
 Muchos aspectos del diseño de Windows NT reflejan la experiencia de DEC en VMS.
 ====
@@ -261,7 +261,7 @@ Fue anunciado en abril y lanzado en diciembre de 1987 como un sistema operativo 
 En la versión 1.1, lanzada en noviembre de 1988, se le añadió interfaz gráfica.
 
 // Fuente: http://pages.prodigy.net/michaln/history/os211/index.html
-[[os_2_1]]
+[[fig-os-21]]
 .Panel de control de Microsoft-IBM OS/2 1.1 -- Fuente: Michal Necasek
 image::{chapdir}/os_2_1.png[]
 
@@ -286,7 +286,7 @@ Poco después, IBM anunció que OS/2 desaparecería.
 La familia https://es.wikipedia.org/wiki/Windows_3.1x[Windows 3.x] de Microsoft Windows fue desarrollada desde 1990 hasta 1994.
 Windows 3.0 fue la primera versión de éxito de Windows, permitiendo a Microsoft competir con el https://es.wikipedia.org/wiki/Macintosh[Macintosh] de Apple Computer y el https://es.wikipedia.org/wiki/Commodore_Amiga[Commodore Amiga].
 
-[[windows_30]]
+[[fig-windows-30]]
 .Administrador de programas de Microsoft Windows 3.0 -- Fuente: https://guidebookgallery.org/screenshots/win30[Guidebook]
 image::{chapdir}/windows_30.png[]
 
@@ -303,13 +303,13 @@ Por ello puede ser considerado como un sistema operativo.
 
 La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráficos híbridos de 16/32 bits.
 
-[[windows_95]]
+[[fig-windows-95]]
 .Escritorio de Microsoft Windows 95 -- Fuente: http://www.guidebookgallery.org/screenshots/win95[Guidebook]
 image::{chapdir}/windows_95.png[]
 
 Windows 95 fue lanzado en 1995.
 Fue el primer Windows unido a una versión de MS-DOS específica, aunque este hecho se intentaba mantener oculto.
-Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <<windows_95>>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.
+Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <<fig-windows-95>>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.
 
 [NOTE]
 ====
@@ -323,7 +323,7 @@ Windows 98 fue lanzado el 25 de junio de 1998.
 Le siguió Windows Me, el 14 de septiembre de 2000.
 Windows Me fue la última versión de la familia de sistemas operativos híbridos de 16/32 bits que sucedió a la familia Windows 3.x.
 
-[[_windows_nt]]
+[[sect-windows-nt]]
 === Windows NT, 2000, XP, Vista, 7, 8 y 10
 
 Windows NT fue un sistema operativo de 32 bits.
@@ -400,7 +400,7 @@ A mediados de los 90, Apple Computers seleccionó https://es.wikipedia.org/wiki/
 OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema UNIX BSD de la Universidad de Berkeley. 
 Por tanto, la mezcla de Mach con UNIX BSD de OpenStep es la base del sistema operativo {macos} actual de Apple.
 
-[[openstep_42]]
+[[fig-openstep-42]]
 .Entorno gráfico de OpenStep 4.2 -- Fuente: https://guidebookgallery.org/screenshots/openstep42[Guidebook]
 image::{chapdir}/openstep_42.png[]
 

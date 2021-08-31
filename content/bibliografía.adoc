@@ -43,7 +43,7 @@ Silberschatz, A., Galvin, P. y Gagne, G. (2004). _Operating System Concepts with
 Silberschatz, A., Galvin, P. y Gagne, G. (2006). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=345629[_Fundamentos de Sistemas Operativos_]. (7ª ed.) McGraw Hill Interamericana.
 
 * [[[SGI2006]]]
-Silicon Graphics Inc. (2006). _XFS Filesystem Structure_. https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html
+Silicon Graphics Inc. (2006). _XFS Filesystem Structure_. Archivado en https://web.archive.org/web/20210427160429/https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html
 
 * [[[Solomon2005]]]
 Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. Windows Thread. _Windows OS Internals_. https://slideplayer.com/slide/6972581/

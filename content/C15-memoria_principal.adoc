@@ -26,9 +26,9 @@ Excepto por eso, el procedimiento normal de ejecución de un programa es similar
 
 == Etapas de un programa de usuario
 
-En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la <<etapas_programas_de_usuario>>).
+En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la <<fig-etapas-programas-de-usuario>>).
 
-[[etapas_programas_de_usuario]]
+[[fig-etapas-programas-de-usuario]]
 .Etapas de procesamiento de un programa de usuario.
 image::{chapdir}/etapas_de_un_programa_de_usuario.svg[]
 
@@ -158,11 +158,11 @@ De él hablaremos en el <<_espacio_de_direcciones_virtual_frente_a_físico>>.
 En el <<_protección_de_la_memoria>> vimos en los sistemas operativos modernos, como medida de protección, los procesos no tienen acceso libre a la memoria física.
 
 // Esta figura aparece también en el Capítulo 7: Modo dual
-[[espacio_direcciones_virtual_frente_físico]]
+[[fig-espacio-direcciones-virtual-frente-físico]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::{chapdir}/protección_memoria.svg[]
 
-En lugar de eso el sistema operativo —asistido por la *((MMU))* (_Memory-Management Unit_)— proporciona a cada proceso un *espacio de direcciones virtual*(((espacio, de direcciones, virtual))) que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <<espacio_direcciones_virtual_frente_físico>>).
+En lugar de eso el sistema operativo —asistido por la *((MMU))* (_Memory-Management Unit_)— proporciona a cada proceso un *espacio de direcciones virtual*(((espacio, de direcciones, virtual))) que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <<fig-espacio-direcciones-virtual-frente-físico>>).
 Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas *direcciones virtuales*(((dirección, virtual))) son convertidas por la *MMU* en las *direcciones físicas*(((dirección, física))), con las que realmente se accede a la memoria.
 El *espacio de direcciones físico*(((espacio, de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un *espacio de direcciones virtual* dado.
 
@@ -194,7 +194,7 @@ Como hemos comentado anteriormente, fundamentalmente existen dos tipos de enlaza
 * En el *enlazado estático*(((enlazado, estático))), las librerías del sistema y otros módulos son combinados por el enlazador para formar la imagen binaria del programa que es almacenada en disco.
 Algunos sistemas operativos —como MS-DOS— solo soportan este tipo de enlazado.
 
-* En el *enlazado dinámico*(((enlazado, dinámico))), este se pospone hasta la carga o la ejecución_ (véase la <<etapas_programas_de_usuario>>).
+* En el *enlazado dinámico*(((enlazado, dinámico))), este se pospone hasta la carga o la ejecución_ (véase la <<fig-etapas-programas-de-usuario>>).
 
 Generalmente el enlazado dinámico ocurre durante la carga del programa:
 

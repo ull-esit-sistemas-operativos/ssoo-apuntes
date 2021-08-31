@@ -15,11 +15,11 @@ La forma más extendida es la *((paginación))*, que no es sino un esquema de ge
 En la paginación la memoria física se divide en bloques de tamaño fijo denominados *marcos*(((marco))), mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados *páginas*(((página))).
 Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.
 
-[[paginación]]
+[[fig-paginación]]
 .Soporte del hardware para la paginación.
 image::{chapdir}/paginación.svg[]
 
-La paginación es una forma de *reubicación de las direcciones en tiempo de ejecución* donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <<paginación>>):
+La paginación es una forma de *reubicación de las direcciones en tiempo de ejecución* donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <<fig-paginación>>):
 
 . Cada dirección virtual generada por la CPU es divida en dos partes: un *número de página* _p_ y un *desplazamiento* _d_.
 
@@ -28,9 +28,9 @@ La paginación es una forma de *reubicación de las direcciones en tiempo de eje
 . El *número de marco*(((número, marco))) _f_ es combinado con el *desplazamiento* _d_ para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.
 
 El tamaño de las *páginas* —y el de los *marcos*— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
-Es decir, si el espacio de direcciones es de 2^_m_^ y el tamaño de página es de 2^_n_^, los _m_ - _n_ bits de mayor orden de las direcciones virtuales indican el *número de página*, mientras que los _n_ bits de menor orden indican el *desplazamiento* (véase la <<dirección_virtual_paginación>>).
+Es decir, si el espacio de direcciones es de 2^_m_^ y el tamaño de página es de 2^_n_^, los _m_ - _n_ bits de mayor orden de las direcciones virtuales indican el *número de página*, mientras que los _n_ bits de menor orden indican el *desplazamiento* (véase la <<fig-dirección-virtual-paginación>>).
 
-[[dirección_virtual_paginación]]
+[[fig-dirección-virtual-paginación]]
 .Descomposición de las direcciones virtuales en paginación.
 image::{chapdir}/dirección_virtual_paginación.svg[]
 
@@ -262,11 +262,11 @@ Al igual que con los *bits de protección*, los intentos de acceso a una página
 El sistema operativo puede utilizar este bit para permitir o denegar cualquier tipo de acceso a una *página*.
 Generalmente, porque no se le ha asignado un *marco* de memoria física, ya que esa página no está siendo utilizada por el proceso.
 
-[[bit_de_válido_en_la_tabla_de_páginas]]
+[[fig-bit-de-válido-en-la-tabla-de-páginas]]
 .Bit de válido en la tabla de páginas.
 image::{chapdir}/bit_de_válido_en_la_tabla_de_páginas.svg[]
 
-Por ejemplo, en la <<bit_de_válido_en_la_tabla_de_páginas>>, vemos el espacio de direcciones virtual y la *tabla de páginas* de un proceso de 5096 bytes en un sistema con *páginas* de 1 KiB.
+Por ejemplo, en la <<fig-bit-de-válido-en-la-tabla-de-páginas>>, vemos el espacio de direcciones virtual y la *tabla de páginas* de un proceso de 5096 bytes en un sistema con *páginas* de 1 KiB.
 Puesto que el proceso no ocupa todo el espacio de direcciones, solo las direcciones de la 0 a la 5119 son válidas.
 En dicho ejemplo, podemos apreciar varios fenómenos:
 
@@ -288,11 +288,11 @@ Para evitarlo, en algunas CPU existe el registro *((PTLR))* (_Page-Table Length 
 Este valor es comparado por la MMU, durante la traducción de las direcciones virtuales, con el *número de página* de cada dirección virtual, de manera que las *páginas* con entradas más allá de la última almacenada en la tabla son consideradas ilegales.
 
 // Esta figura aparece también en el Capítulo 9: Procesos
-[[proceso_en_memoria_disperso]]
+[[fig-proceso-en-memoria-disperso]]
 .Anatomía de un proceso en memoria.
 image::C09-procesos/proceso_en_memoria.svg[]
 
-En realidad, el registro *PTLR* no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <<_el_proceso>>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <<proceso_en_memoria_disperso>>.
+En realidad, el registro *PTLR* no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <<_el_proceso>>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <<fig-proceso-en-memoria-disperso>>.
 En ella, podemos observar, como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
 Este esquema permite que tanto el *montón* —a través del mecanismo de asignación dinámica de memoria— como la *pila* puedan extenderse —según las necesidades de memoria que tenga el proceso— sobre la región de memoria no ocupada.
 Esa región también puede ser parcialmente ocupada por *librerías de enlace dinámico* o regiones de *memoria compartida*, si son necesarias durante la ejecución del proceso.
@@ -341,14 +341,14 @@ Una forma de resolver este problema es partir la *tabla de páginas*, de manera 
 
 La *paginación jerárquica* se basa en la idea de que un vector de gran tamaño puede ser mapeado en uno más pequeño, que a su vez, puede ser mapeado en un vector de menor tamaño.
 
-[[paginación_jerárquica]]
+[[fig-paginación-jerárquica]]
 .Esquema de paginación jerárquica de dos niveles.
 image::{chapdir}/paginación_jerárquica.svg[]
 
 Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de página de 4 KiB, entonces podemos dividir la tabla de páginas de 1{K}048{K}576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
 
 Estos *marcos*, a su vez, pueden ser mapeados por 1024 entradas con las direcciones físicas de cada *marco*.
-Si organizamos estas 1024 entradas en un vector lineal, obtendremos una *tabla de páginas externa*(((tabla, páginas, externa))) de 4 KiB (véase la <<paginación_jerárquica>>).
+Si organizamos estas 1024 entradas en un vector lineal, obtendremos una *tabla de páginas externa*(((tabla, páginas, externa))) de 4 KiB (véase la <<fig-paginación-jerárquica>>).
 
 Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativos mantienen la *tabla de páginas externa* en la memoria mientras el proceso se está ejecutando.
 Sin embargo, ahora la *tabla de páginas* está dividida en *marcos*, que no tienen por qué ser asignados de forma contigua en la memoria.

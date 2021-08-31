@@ -15,18 +15,18 @@ Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente
 
 Los discos magnéticos son el tipo principal de almacenamiento secundario, generalmente en la forma de lo que se denominan discos duros.
 
-[[disco_duro_físico]]
+[[fig-disco-duro-físico]]
 .Disco duro -- Fuente: https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg[Wikipedia]
 image::{chapdir}/disco_duro_físico.jpg[]
 
-Tal y como se puede apreciar en la <<disco_duro_físico>> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
+Tal y como se puede apreciar en la <<fig-disco-duro-físico>> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
 La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.
 
-[[disco_duro_lógico]]
+[[fig-disco-duro-lógico]]
 .Estructura lógica de un disco magnético.
 image::{chapdir}/disco_duro_lógico.svg[]
 
-Desde el punto de vista lógico (véase la <<disco_duro_lógico>>) la superficie de cada plato está dividida en *pista*(((pista))) circulares, cada una de las cuales se subdivide en *sectores*(((sector))).
+Desde el punto de vista lógico (véase la <<fig-disco-duro-lógico>>) la superficie de cada plato está dividida en *pista*(((pista))) circulares, cada una de las cuales se subdivide en *sectores*(((sector))).
 El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina *((cilindro))*.
 
 En estos dispositivos consume mucho más tiempo mover la cabeza de lectura hasta el sector de interés, que la lectura y transferencia de los datos almacenados a la memoria RAM.

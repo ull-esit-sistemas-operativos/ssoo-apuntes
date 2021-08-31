@@ -33,7 +33,7 @@ En lo que respecta a la gestión de estos procesos en el sistema, no hay ninguna
 
 == El proceso
 
-Como ya hemos comentado con anterioridad, un *((proceso))* es un programa en ejecución (véase el <<componente_gestión_de_procesos>> para una definición más completa).
+Como ya hemos comentado con anterioridad, un *((proceso))* es un programa en ejecución (véase el <<sect-componente-gestión-de-procesos>> para una definición más completa).
 Sin embargo, los procesos no solo están compuestos por el código del programa, sino que también son importantes otros elementos:
 
 ====
@@ -65,14 +65,14 @@ El resto de elementos los crea el sistema operativo al cargar el programa y crea
 
 [NOTE]
 ====
-Como vimos en el <<componente_gestión_de_procesos>> varios procesos pueden estar asociados al mismo programa, pero no por eso dejan de ser distintos procesos.
+Como vimos en el <<sect-componente-gestión-de-procesos>> varios procesos pueden estar asociados al mismo programa, pero no por eso dejan de ser distintos procesos.
 Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demas propiedades.
 ====
 
-En la <<proceso_en_memoria>> se puede observar la disposición de algunos de estos elementos de un proceso en el espacio de usuario en la memoria.
+En la <<fig-proceso-en-memoria>> se puede observar la disposición de algunos de estos elementos de un proceso en el espacio de usuario en la memoria.
 
 // Esta figura aparece también en el Capítulo 16: Paginación
-[[proceso_en_memoria]]
+[[fig-proceso-en-memoria]]
 .Anatomía de un proceso en memoria.
 image::{chapdir}/proceso_en_memoria.svg[]
 
@@ -80,7 +80,7 @@ image::{chapdir}/proceso_en_memoria.svg[]
 
 Cada proceso tiene un *estado* que cambia a lo largo de su ejecución y que está definido, parcialmente, por la actividad que realiza actualmente el propio proceso.
 
-[[diagrama_estado_proceso]]
+[[fig-diagrama-estado-proceso]]
 .Diagrama de estado de un proceso.
 image::{chapdir}/diagrama_estado_proceso.svg[]
 
@@ -108,7 +108,7 @@ Terminado::
 El proceso ha finalizado su ejecución y espera a que el sistema operativo recupere los recursos que le fueron asignados.
 Como en el caso del estado *nuevo*, este estado existe porque terminar un proceso no es algo instantáneo.
 
-El diagrama de estados de los procesos, con las transiciones posibles entre ellos, se muestra en la <<diagrama_estado_proceso>>.
+El diagrama de estados de los procesos, con las transiciones posibles entre ellos, se muestra en la <<fig-diagrama-estado-proceso>>.
 
 == Bloque de control de proceso
 (((bloque, de control, proceso)))
@@ -167,12 +167,12 @@ Colas de dispositivo(((cola, dispositivo)))::
 Son un caso particular de cola de espera.
 Cada dispositivo de E/S tiene asociada una *cola de dispositivo* que contiene los procesos que están *esperando* por ese dispositivo en particular.
 
-Una manera habitual de representar la planificación de procesos es a través de un diagrama de colas como el de la <<colas_de_planificación_procesos>>.
+Una manera habitual de representar la planificación de procesos es a través de un diagrama de colas como el de la <<fig-colas-de-planificación-procesos>>.
 
 // TODO: Buscar una forma de mostrar este diagrama de forma animada.
 // TODO: Marca el nuevo y terminado.
 
-[[colas_de_planificación_procesos]]
+[[fig-colas-de-planificación-procesos]]
 .Diagrama de colas de la planificación de procesos.
 image::{chapdir}/colas_planificación_procesos.svg[]
 
@@ -561,9 +561,9 @@ Como hemos comentado anteriormente, para acceder a todas las funcionalidades ofr
 En Windows la librería del sistema ofrece la función {win32_createprocess}.
 A diferencia de {clang_system}, recibe muchísimos argumentos, ya que permite configurar bastantes aspectos de la creación de un nuevo proceso.
 
-En el <<ejemplo_createprocess>> se puede ver cómo se usa {win32_createprocess} para ejecutar un programa y esperar a que termine, de forma similar a como lo hace {clang_system}.
+En el <<ejemplo-createprocess>> se puede ver cómo se usa {win32_createprocess} para ejecutar un programa y esperar a que termine, de forma similar a como lo hace {clang_system}.
 
-[[ejemplo_createprocess]]
+[[ejemplo-createprocess]]
 .Crear un proceso usando Windows API
 ====
 El código fuente completo de este ejemplo está disponible en {createprocess_c}.
@@ -642,7 +642,7 @@ Así el sistema operativo sabe que las estructuras de datos relacionadas con el 
 
 {win32_createprocess} siempre necesita la ruta a un ejecutable —sea en el primer o en el segundo argumento de la función— porque se utiliza para crear un proceso completamente limpio y ejecutar en él un nuevo programa.
 
-[[procesos_posix_api]]
+[[sect-procesos-posix-api]]
 ==== POSIX API
 
 Por el contrario, en los sistemas POSIX se utiliza una estrategia muy diferente.
@@ -967,9 +967,9 @@ Método de comunicación en el que los procesos utilizan regiones compartidas de
 Paso de mensajes::
 Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.
 
-En la <<modelos_de_comunicación>> se puede un esquema comparativo entre ambos modelos de comunicación.
+En la <<fig-modelos-de-comunicación>> se puede un esquema comparativo entre ambos modelos de comunicación.
 Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_comunicación_mediante_paso_de_mensajes>>, respectivamente.
 
-[[modelos_de_comunicación]]
+[[fig-modelos-de-comunicación]]
 .Modelos de comunicación.
 image::{chapdir}/modelos_comunicación.svg[]

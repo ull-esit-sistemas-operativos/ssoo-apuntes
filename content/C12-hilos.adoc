@@ -26,12 +26,12 @@ Sin embargo, en los *sistemas operativos multihilo*(((sistema operativo, multihi
 // TODO: Hacer un esquema más realista.
 // Más parecido al de la memoria del proceso en el capítulo 9.
 
-[[multihilo]]
+[[fig-multihilo]]
 .Comparación entre procesos monohilo y proceso multihilo.
 image::{chapdir}/procesos_multihilo.svg[]
 
 ====
-Cada hilo tiene una serie de recursos propios dentro del proceso (véase la <<multihilo>>):
+Cada hilo tiene una serie de recursos propios dentro del proceso (véase la <<fig-multihilo>>):
 
 * *El identificador del hilo* es único para cada hilo y sirve para identificarlos, de la misma manera que lo hace el identificador de proceso con cada proceso.
 
@@ -42,7 +42,7 @@ Cada hilo tiene una serie de recursos propios dentro del proceso (véase la <<mu
 * *La pila* contiene datos temporales como argumentos y direcciones de retorno de las funciones y variables locales.
 Al igual que ocurre con los registros de la CPU, cada hilo necesita su pila porque recorre el programa de manera diferente.
 
-Sin embargo hay otros recursos del proceso que se comparten entre todos los hilos del mismo (véase la <<multihilo>>):
+Sin embargo hay otros recursos del proceso que se comparten entre todos los hilos del mismo (véase la <<fig-multihilo>>):
 
 * *El código del programa*.
 El programa es el mismo para todos los hilos.
@@ -54,11 +54,11 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una 
 * *Otros recursos del proceso* como archivos, _sockets_, tuberías y dispositivos abiertos, regiones de memoria compartida, señales, directorio actual de trabajo, entre muchos otros recursos.
 ====
 
-[[proceso_multihilo_en_memoria]]
+[[fig-proceso-multihilo-en-memoria]]
 .Anatomía de un proceso multihilo en memoria.
 image::{chapdir}/proceso_multihilo_en_memoria.svg[]
 
-En la <<proceso_multihilo_en_memoria>> se puede observar como cambia la disposición de los elementos de un proceso en la memoria cuando es multihilo, respecto a lo que vimos en el <<_el_proceso>>.
+En la <<fig-proceso-multihilo-en-memoria>> se puede observar como cambia la disposición de los elementos de un proceso en la memoria cuando es multihilo, respecto a lo que vimos en el <<_el_proceso>>.
 
 == Beneficios
 
@@ -115,7 +115,7 @@ Por ese motivo se los denomina *hilos de núcleo*(((hilo, núcleo))) o *hilos de
 Aparte del *PCB* que vimos en el <<_bloque_de_control_de_proceso>>, cada hilo tiene una estructura llamada *bloque de control del hilo*(((bloque, de control, hilo))) o ((TCB)) (_Thread Control Block_) que representa a cada hilo en el sistema operativo y que guarda información sobre su estado de actividad actual.
 
 En estos sistemas, es el hilo la unidad básica de uso de la CPU.
-Son los hilos los que se mueven por los estados del <<diagrama_estado_proceso>> y las colas de la <<colas_de_planificación_procesos>> y no los procesos.
+Son los hilos los que se mueven por los estados del <<fig-diagrama-estado-proceso>> y las colas de la <<fig-colas-de-planificación-procesos>> y no los procesos.
 El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado *preparado* en el sistema y el *cambio de contexto* asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.
 
 Por tanto, es en *TCB* —y no en el *PCB*— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programa, el estado o la información de planificación de la CPU; además de un puntero al *PCB* al que pertenece el hilo con el resto de la información privada del proceso.
@@ -139,11 +139,11 @@ A continuación veremos los modelos a los que han dado lugar las distintas combi
 En el modelo *muchos a uno* los hilos que ve el proceso se mapean en una única «entidad planificable en la CPU» del núcleo.
 
 Este, por lo general, es el modelo utilizado cuando el núcleo no soporta múltiples hilos de ejecución.
-En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son *hilos de usuario* (véase la <<modelo_muchos_a_uno>>).
+En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son *hilos de usuario* (véase la <<fig-modelo-muchos-a-uno>>).
 
 // TODO: Ajustar el dibujo a la explicación
 
-[[modelo_muchos_a_uno]]
+[[fig-modelo-muchos-a-uno]]
 .Modelo muchos a uno.
 image::{chapdir}/modelo_muchos_a_uno.svg[]
 
@@ -190,7 +190,7 @@ En este caso, la librería de hilos se implementa en el núcleo, por lo que las 
 
 // TODO: Ajustar el dibujo a la explicación
 
-[[modelo_uno_a_uno]]
+[[fig-modelo-uno-a-uno]]
 .Modelo uno a uno.
 image::{chapdir}/modelo_uno_a_uno.svg[]
 
@@ -224,12 +224,12 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los *hilos de n
 
 // TODO: Ajustar el dibujo a la explicación
 
-[[modelo_muchos_a_muchos]]
+[[fig-modelo-muchos-a-muchos]]
 .Modelo muchos a muchos.
 image::{chapdir}/modelo_muchos_a_muchos.svg[]
 
 ====
-En el modelo *muchos a muchos* se mapean los *hilos de usuario* en un menor o igual número de *hilos de núcleo* del proceso (véase la <<modelo_muchos_a_muchos>>).
+En el modelo *muchos a muchos* se mapean los *hilos de usuario* en un menor o igual número de *hilos de núcleo* del proceso (véase la <<fig-modelo-muchos-a-muchos>>).
 
 * Permite paralelismo en sistemas multiprocesador, ya que diferentes *hilos de núcleo* pueden ser planificados en distintos procesadores y en cada uno puede ejecutarse cualquier hilo de usuario.
 
@@ -262,11 +262,11 @@ Con el objetivo de evitar los problemas derivados del coste de dicho modelo, los
 
 Existe una variación del modelo *muchos a muchos* donde, además de funcionar de la forma comentada anteriormente, se permite que un hilo de usuario quede ligado indefinidamente a un único hilo de núcleo, como en el modelo *uno a uno*.
 
-Esta variación se denomina, en ocasiones, modelo de *dos niveles* (véase la <<modelo_de_dos_niveles>>).
+Esta variación se denomina, en ocasiones, modelo de *dos niveles* (véase la <<fig-modelo-de-dos-niveles>>).
 
 // TODO: Ajustar el dibujo a la explicación
 
-[[modelo_de_dos_niveles]]
+[[fig-modelo-de-dos-niveles]]
 .Modelo muchos a uno.
 image::{chapdir}/modelo_de_dos_niveles.svg[]
 
@@ -283,8 +283,9 @@ El *hilo principal* puede crear otros hilos y estos, a su vez, crear los hilos q
 Pero, a diferencia de lo que ocurre con los procesos, no existe una relación de padres a hijos ni se crea un árbol de hilos.
 Excepto por la característica especial del *hilo principal* de que su finalización significa la terminación del proceso, todos los hilos son iguales entre sí.
 
-En el <<ejemplo_pthread>> se puede ver cómo se usa {pthread_create} en sistemas POSIX que implementan {pthreads} para crear varios hilos y esperar a que terminen con {pthread_join}.
-[[ejemplo_pthread]]
+En el <<ejemplo-pthread>> se puede ver cómo se usa {pthread_create} en sistemas POSIX que implementan {pthreads} para crear varios hilos y esperar a que terminen con {pthread_join}.
+
+[[ejemplo-pthread]]
 .Calcular el factorial de un número con {pthreads}.
 ====
 Vamos a calcular el factorial de 122 repartiendo la tarea entre dos hilos con el objeto de paralelizar los cálculos en procesadores multinúcleo.

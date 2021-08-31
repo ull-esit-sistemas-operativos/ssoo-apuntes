@@ -172,11 +172,11 @@ _La ejecución empieza con una ráfaga de CPU, seguida por una ráfaga de E/S, q
 _Finalmente, la última ráfaga de CPU finaliza con una llamada al sistema —generalmente {clang_exit}— para terminar la ejecución del proceso._
 ====
 
-[[ráfagas_de_cpu]]
+[[fig-ráfagas-de-cpu]]
 .Histograma de los tiempos de las ráfagas de CPU.
 image::{chapdir}/histogramas_tiempo_de_ráfagas.svg[]
 
-La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiperexponencial (véase la <<ráfagas_de_cpu>>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
+La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiperexponencial (véase la <<fig-ráfagas-de-cpu>>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
 Esto significa que los procesos se pueden clasificar entre aquellos que presentan un gran número de ráfagas de CPU cortas o aquellos con un pequeño número de ráfagas de CPU largas.
 
 ====
@@ -217,10 +217,10 @@ En la planificación *((FCFS))* (_First Come, First Served_) o *primero que lleg
 * Es un algoritmo *cooperativo*, puesto que un proceso mantiene la CPU hasta que decide liberarla voluntariamente —recordemos que la ráfaga de CPU llega a su fin porque el proceso termina o solicita alguna operación que lo lleva el estado *esperando*—.
 
 Ilustremos el algoritmo con un ejemplo.
-Supongamos que 4 procesos llegan a la *cola de preparados* en los tiempos indicados en la <<tabla_problema_fcfs>>.
+Supongamos que 4 procesos llegan a la *cola de preparados* en los tiempos indicados en la <<tabla-problema-fcfs>>.
 Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráfaga de CPU de cada proceso, vamos a suponer que también son conocidos.
 
-[[tabla_problema_fcfs]]
+[[tabla-problema-fcfs]]
 .Problema de planificación de la CPU mediante algoritmo FCFS.
 [cols="3*^" options=header]
 |===
@@ -358,7 +358,7 @@ Aunque el tiempo total necesario para ejecutar las ráfagas de los 4 procesos, l
 Por tanto, el algoritmo *FCFS* no garantiza ni *tiempos de espera* ni de *ejecución* mínimos, ya que pueden cambiar variar considerablemente con el orden en el que llegan los procesos.
 
 Además, el algoritmo *FCFS* sufre el llamado *((efecto convoy))*.
-Para entenderlo, analicemos lo que está pasando en el ejemplo de la <<tabla_problema_fcfs>>:
+Para entenderlo, analicemos lo que está pasando en el ejemplo de la <<tabla-problema-fcfs>>:
 
 . Al proceso P1 se le asigna la CPU.
 Durante el tiempo que P1 utiliza la CPU todos los otros procesos terminan sus operaciones de E/S y pasan a la *cola de preparados*.
@@ -636,13 +636,13 @@ Se expropia la CPU si la prioridad del nuevo proceso es superior a la prioridad 
 
 * En el caso *cooperativo*, no se toma ninguna decisión cuando llega un proceso a la *cola de preparados*, solo cuando el que tiene asignada la CPU la abandona.
 
-Supongamos que 5 procesos llegan a la cola de preparados en los tiempos indicados en la <<tabla_problema_prioridad>>.
+Supongamos que 5 procesos llegan a la cola de preparados en los tiempos indicados en la <<tabla-problema-prioridad>>.
 Como en los ejemplos anteriores, aunque es difícil tener un conocimiento a priori del tiempo de las ráfagas de CPU, vamos a suponer que son conocidos.
 Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuando llega a la *cola de preparados*.
 
 // TODO: hacer también versión cooperativa
 
-[[tabla_problema_prioridad]]
+[[tabla-problema-prioridad]]
 .Problema de planificación de la CPU mediante algoritmo de planificación con prioridades.
 [cols="4*^" options=header]
 |===
@@ -929,7 +929,7 @@ Por ejemplo, si es interactivo o no, su prioridad o su tamaño en memoria.
 Se hace de esta manera porque se supone que los procesos se pueden clasificar, y que cada clase tiene diferentes requerimientos.
 Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, los primeros pueden ir a una cola con planificación *RR* mientras los segundos van a una con *FCFS*.
 
-[[esquema_colas_multinivel]]
+[[fig-colas-multinivel]]
 .Ejemplo de planificación con colas multinivel.
 image::{chapdir}/planificación_colas_multinivel.svg[]
 
@@ -938,7 +938,7 @@ Una cuestión interesante es cómo seleccionar la cola que debe escoger al sigui
 * Una opción común en los sistemas actuales es utilizar un *planificador con prioridades*.
 Es decir, que cada cola tenga una prioridad y así el planificador solo tiene que escoger la cola de prioridad más alta que no esté vacía.
 +
-Por ejemplo, en la <<esquema_colas_multinivel>>, mientras un proceso de prioridad 1 esté preparado, no se escoge ningún otro de prioridad inferior.
+Por ejemplo, en la <<fig-colas-multinivel>>, mientras un proceso de prioridad 1 esté preparado, no se escoge ningún otro de prioridad inferior.
 Si este planificador se implementa de forma expropiativa, el proceso que tiene asignada la CPU es expulsado si un proceso entra en una de las colas que tiene mayor prioridad que la suya.
 
 * Otra opción es usar cuantos sobre las colas.
@@ -957,17 +957,17 @@ Para aumentar la flexibilidad de la planificación con colas multinivel se puede
 Así se pueden clasificar en colas distintas, procesos con diferentes tiempos de ráfaga de CPU.
 Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las colas de más alta prioridad, lo que ya hemos discutido que mejora los tiempos de espera y de respuesta y evita el *efecto convoy*.
 
-[[esquema_planificación_colas_multinivel_realimentadas]]
+[[fig-planificación-colas-multinivel-realimentadas]]
 .Ejemplo de planificación con colas multinivel realimentadas.
 image::{chapdir}/planificación_colas_multinivel_realimentadas.svg[]
 
 Por ejemplo, supongamos un *planificador de colas multinivel* donde cada cola tiene una prioridad, así que se usa la *planificación con prioridades* para seleccionar la cola.
-En las colas se usa el algoritmo *RR* para seleccionar el siguiente proceso, siendo el *cuanto* de la cola mayor cuanto menos prioritaria es la cola (véase la <<esquema_planificación_colas_multinivel_realimentadas>>).
+En las colas se usa el algoritmo *RR* para seleccionar el siguiente proceso, siendo el *cuanto* de la cola mayor cuanto menos prioritaria es la cola (véase la <<fig-planificación-colas-multinivel-realimentadas>>).
 Los procesos que llegan nuevos o desde el estado *esperando* lo hacen con la prioridad más alta —que por convención hemos decidido que sea 0— así que se insertan en la cola correspondiente.
 Mientras que los procesos expropiados por vencimiento del *cuanto* pierde un punto de prioridad, siendo insertados en una cola de prioridad menor.
 
 Con este algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
-Por ejemplo, usando los valores del esquema de la <<esquema_planificación_colas_multinivel_realimentadas>>, los procesos de ráfagas de CPU entre 20 y 80 ms acaban cayendo a la cola de prioridad 1 tras 20 ms de ejecución.
+Por ejemplo, usando los valores del esquema de la <<fig-planificación-colas-multinivel-realimentadas>>, los procesos de ráfagas de CPU entre 20 y 80 ms acaban cayendo a la cola de prioridad 1 tras 20 ms de ejecución.
 Así dejan paso a los procesos con ráfagas menores de 20 ms, que siempre se ejecutan con prioridad 0.
 Finalmente, los procesos de ráfagas mayores de 80 ms van a la cola FCFS, desde donde solo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la *cola de preparados*
 
@@ -975,11 +975,11 @@ El *planificador de colas multinivel realimentadas* también se puede utilizar p
 
 Por ejemplo, el algoritmo *RR virtual*(((planificación, de CPU, RR virtual)))(((RR, virtual))) es un caso de *planificador de colas multinivel realimentadas* que resuelve los problemas del *RR*, en cuanto al reparto de la CPU entre procesos limitados por la E/S y limitados por la CPU (véase el <<_reparto_equitativo_del_tiempo_de_cpu>>).
 
-[[esquema_planificación_rr_virtual]]
+[[fig-planificación-rr-virtual]]
 .Ejemplo de planificación con RR virtual.
 image::{chapdir}/vrr.svg[]
 
-Tal y como se ilustra en la <<esquema_planificación_rr_virtual>>, en el *RR virtual* los procesos por lo general tienen prioridad 1.
+Tal y como se ilustra en la <<fig-planificación-rr-virtual>>, en el *RR virtual* los procesos por lo general tienen prioridad 1.
 Sin embargo, aquellos que vuelven al estado *preparado* desde *esperando* después de una operación de E/S, obtienen una bonificación en la propiedad que los lleva a tener prioridad 0.
 Por tanto, los procesos que usan con más frecuencia la E/S, usan más la cola de prioridad más alta, por lo que se les asigna antes la CPU mayor frecuencia.
 
@@ -998,7 +998,7 @@ El núcleo de la familia Windows NT es multihilo e internamente implementa un al
 En Windows las prioridades de los hilos se pueden ver desde dos perspectivas: la de Windows API y la del núcleo.
 Ambas tienen una organización muy diferente, pero en última instancia, las primeras deben traducirse en las segundas.
 
-[[win32_clases_prioridad]]
+[[tabla-win32-clases-prioridad]]
 .Clases de prioridad en Windows API.
 [cols="2*^" options=header]
 |===
@@ -1025,17 +1025,17 @@ Ambas tienen una organización muy diferente, pero en última instancia, las pri
 
 |===
 
-Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <<win32_clases_prioridad>>.
+Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <<tabla-win32-clases-prioridad>>.
 La clase de prioridad de un proceso se puede indicar durante la creación del proceso, a través del argumento `dwCreationFlags` de la función {win32_createprocess}, o sea puede obtener y cambiar con las funciones {win32_getpriorityclass} y {win32_setpriorityclass}, respectivamente.
 Por lo general, la clase de prioridad `NORMAL_PRIORITY_CLASS` es la clase por defecto de cualquier proceso nuevo, excepto que se indique otra cosa durante su creación. 
 
-[[windows_task_manager]]
+[[fig-windows-task-manager]]
 .Cambiar la prioridad de un proceso en el *Administrador de tareas*.
 image::{chapdir}/administrador_de_tareas.jpg[]
 
-Con el *Administrador de tareas* de Windows podemos alterar fácilmente la clase de prioridad de un proceso durante su ejecución (véase la <<windows_task_manager>>).
+Con el *Administrador de tareas* de Windows podemos alterar fácilmente la clase de prioridad de un proceso durante su ejecución (véase la <<fig-windows-task-manager>>).
 
-[[win32_prioridad_hilos]]
+[[tabla-win32-prioridad-hilos]]
 .Clases de prioridad en Windows API.
 [cols="2*^" options=header]
 |====
@@ -1065,7 +1065,7 @@ Con el *Administrador de tareas* de Windows podemos alterar fácilmente la clase
 
 |====
 
-Al mismo tiempo, cada hilo del sistema tiene alguno de las prioridades de la <<win32_prioridad_hilos>>.
+Al mismo tiempo, cada hilo del sistema tiene alguno de las prioridades de la <<tabla-win32-prioridad-hilos>>.
 La prioridad de un hilo recién creado es `THREAD_PRIORITY_NORMAL`, pero se puede cambiar usando la función {win32_setthreadpriority}.
 
 El núcleo de Windows tiene 32 prioridades, siendo 31 la prioridad más alta y 0 la más baja.
@@ -1076,7 +1076,7 @@ El nivel 0 está reservado para el sistema y se usa para una rutina especializad
 
 La prioridad base —o prioridad estática— de cada hilo que ve el núcleo se calcula combinando la prioridad del hilo y la clase de prioridad del proceso al que pertenece.
 
-[[win32_prioridad_estática]]
+[[tabla-win32-prioridad-estática]]
 .Clases de prioridad base en Windows API.
 [cols="^h,6*^"]
 |====

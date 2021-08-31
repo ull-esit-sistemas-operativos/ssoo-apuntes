@@ -8,7 +8,7 @@ include::../config/attributes.adoc[]
 ====
 
 Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
-En la <<estructura_sistema_de_archivos>> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
+En la <<fig-estructura-sistema-de-archivos>> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 El papel de cada uno de estos niveles fue descrito en el <<_estructura_de_un_sistema_de_archivos>>.
 Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <<_estructuras_de_metadatos_en_disco>> y en el <<_estructuras_de_metadatos_en_memoria>>.
@@ -205,7 +205,7 @@ La FAT se almacena en una sección al principio del volumen.
 Contiene una entrada por cada *clúster* del disco y en cada una guarda el número del siguiente *clúster* del archivo.
 Es decir, lo que hace la FAT es agrupar en un solo lugar los punteros de la *asignación enlazada*.
 
-[[estructura_fat]]
+[[fig-estructura-fat]]
 .Asignación enlazada en el sistema de archivos FAT.
 image::{chapdir}/estructura_fat.svg[]
 
@@ -224,7 +224,7 @@ Por eso —entre otras cosas— Microsoft introdujo {fat32}, que utiliza 32 bits
 Eso implica poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor *fragmentación interna*.
 Por ejemplo, {fat32} podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.
 
-Como se puede ver en la <<estructura_fat>>, en los sistemas de archivos {fat} cada entrada de directorio contiene, aparte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+Como se puede ver en la <<fig-estructura-fat>>, en los sistemas de archivos {fat} cada entrada de directorio contiene, aparte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
 La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
 Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.
 
@@ -283,7 +283,7 @@ Después podría haber entradas que contienen punteros doblemente indirectos y l
 
 Para mejorar el rendimiento de los mecanismos de asignación indexados, es muy común que el sistema operativo intente mantener los bloques de índices en la memoria.
 
-[[asignación_ext2]]
+[[fig-asignación-ext2]]
 .Asignación indexada combinada en el sistema de archivos ext2.
 image::{chapdir}/asignación_ext2.svg[]
 
@@ -301,7 +301,7 @@ El resto de los bloques se utilizan para almacenar los datos de los archivos rep
 
 * Dentro de cada *inodo* —entre otra información típica en un *FCB*— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.
 
-* Como se puede ver en la <<asignación_ext2>>, los primeros 12 punteros en el *inodo* son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
+* Como se puede ver en la <<fig-asignación-ext2>>, los primeros 12 punteros en el *inodo* son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
 Esto permite almacenar hasta 2^64^ bytes de información en cada archivo.
 ====
 

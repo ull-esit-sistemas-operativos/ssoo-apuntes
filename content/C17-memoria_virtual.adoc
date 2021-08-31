@@ -210,11 +210,11 @@ Para entenderlo, es importante recordar que la llamada al sistema {linux_fork} c
 Indudablemente, esto significa que durante la llamada es necesario asignar suficientes marcos de memoria física como para alojar las páginas del nuevo proceso hijo.
 El *_copy-on-write_* minimiza de la siguiente manera el número de marcos que deben ser asignadas al nuevo proceso:
 
-[[copy_on_write_1]]
+[[fig-copy-on-write-1]]
 .Copy-on-write antes de que el proceso 1 modifique la página A.
 image::{chapdir}/copy-on-write1.svg[]
 
-. Cuando la llamada al sistema {linux_fork} crea el nuevo proceso lo hace de forma que este comparta todas sus páginas con las del padre (véase la <<copy_on_write_1>>).
+. Cuando la llamada al sistema {linux_fork} crea el nuevo proceso lo hace de forma que este comparta todas sus páginas con las del padre (véase la <<fig-copy-on-write-1>>).
 +
 Sin el *_copy-on-write_* el {linux_fork} tendría que asignar marcos de memoria física al hijo, para a continuación copiar las páginas del padre en ellos.
 Sin embargo, con el *_copy-on-write_* padre e hijo mapean sus páginas en los mismos marcos, evitando tener que asignar memoria libre.
@@ -229,11 +229,11 @@ Siguiendo lo indicado en el punto anterior, la excepción se originaría porque 
 Para ello, el sistema solo tiene que mirar la tabla interna almacenada en el PCB.
 Si se ha intentado escribir en una página de solo lectura, el proceso ha cometido un error y generalmente será terminado.
 
-[[copy_on_write_2]]
+[[fig-copy-on-write-2]]
 .Copy-on-write después de que el proceso 1 modifique la página A.
 image::{chapdir}/copy-on-write2.svg[]
 
-. Si el sistema detecta una escritura a una página de *_copy-on-write_* solo tiene que copiarla en un marco libre y mapearlo en el espacio de direcciones del proceso (véase la <<copy_on_write_2>>).
+. Si el sistema detecta una escritura a una página de *_copy-on-write_* solo tiene que copiarla en un marco libre y mapearlo en el espacio de direcciones del proceso (véase la <<fig-copy-on-write-2>>).
 +
 Para esto se sustituye la página compartida por otra que contiene una copia, pero que ya no está compartida.
 Obviamente, la nueva página debe ser marcada como de escritura para que en el futuro pueda ser modificada por el proceso.
@@ -444,15 +444,15 @@ Sin embargo, aunque esto pase, todo seguirá funcionando correctamente, aunque a
 
 * No siempre que aumenta la cantidad de memoria disponible mejora el rendimiento.
 
-[[fallos_de_página_frente_a_marcos]]
+[[fig-fallos-de-página-frente-a-marcos]]
 .Fallos de página frente a número de marcos.
 image::{chapdir}/fallos_de_página_frente_a_marcos.svg[]
 
-Es de esperar que si el número de marcos disponibles aumenta, el número de *fallos de página* disminuya (véase la <<fallos_de_página_frente_a_marcos>>).
+Es de esperar que si el número de marcos disponibles aumenta, el número de *fallos de página* disminuya (véase la <<fig-fallos-de-página-frente-a-marcos>>).
 Sin embargo, con el *algoritmo FIFO* el número de *fallos de página* puede aumentar cuando el número de marcos disponibles se incrementa.
 Es lo que se conoce como la *((anormalidad de Belady))*.
 
-[[anormalidad_de_belady]]
+[[fig-anormalidad-de-belady]]
 .Fallos de página con el algoritmo de reemplazo FIFO.
 image::{chapdir}/anormalidad_de_belady.svg[]
 
@@ -460,7 +460,7 @@ Para ilustrarlo consideraremos la siguiente traza de referencias:
 
   1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5
 
-La <<anormalidad_de_belady>> muestra la curva de *fallos de página* frente el número de marcos.
+La <<fig-anormalidad-de-belady>> muestra la curva de *fallos de página* frente el número de marcos.
 Como se puede apreciar, el número de *fallos de página* con cuatro marcos es superior al número de fallos con tres marcos, aunque era de esperar que el número de fallos de páginas decrementara al aumentar el número de marcos.
 
 ==== Reemplazo óptimo
@@ -949,11 +949,11 @@ Esto podía ocasionar que aumentara la *tasa de fallos de página* del proceso q
 
 . Este mecanismo iteraba hasta reducir considerablemente el rendimiento del sistema.
 
-[[hiperpaginación]]
+[[fig-hiperpaginación]]
 .Hiperpaginación en sistemas multiprogramados.
 image::{chapdir}/hiperpaginación.svg[]
 
-El fenómeno comentado se ilustra en la <<hiperpaginación>>, donde se muestra el uso de la CPU frente al número de procesos cargados en el sistema.
+El fenómeno comentado se ilustra en la <<fig-hiperpaginación>>, donde se muestra el uso de la CPU frente al número de procesos cargados en el sistema.
 Cuando esto último aumenta, el uso de la CPU aumenta hasta alcanzar un máximo.
 Si el *grado de multiprogramación* supera dicho punto, el sistema comienza a *hiperpaginar*, por lo que el uso de la CPU disminuye bruscamente.
 Por lo tanto, si el sistema está *hiperpaginando*, es necesario reducir el *grado de multiprogramación* con el objetivo de liberar memoria.
@@ -1216,9 +1216,9 @@ Para esos casos, utilizar directamente {linux_mmap} o {win32_virtualalloc} no es
 
 === Anatomía del espacio de direcciones virtual del proceso
 
-Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la <<proceso_en_memoria_completo>>):
+Los procesos pueden utilizar diversas ubicaciones dentro de su espacio de direcciones virtual para almacenar los datos que necesitan para su ejecución (véase la <<fig-proceso-en-memoria-completo>>):
 
-[[proceso_en_memoria_completo]]
+[[fig-proceso-en-memoria-completo]]
 .Anatomía de un proceso en memoria.
 image::{chapdir}/proceso_en_memoria_completo.svg[]
 

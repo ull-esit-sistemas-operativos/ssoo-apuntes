@@ -131,7 +131,7 @@ Puesto que en la mayor parte de las arquitecturas este reside en la parte baja d
 Sin embargo, en los sistemas operativos modernos, los procesos no tienen acceso libre a toda memoria física, con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:
 
 ====
-* El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; de tal forma que el *espacio de usuario* que ve cada proceso es similar al que vería cada uno de ellos si se estuviera ejecutando en solitario (véase la <<protección_memoria>>).
+* El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; de tal forma que el *espacio de usuario* que ve cada proceso es similar al que vería cada uno de ellos si se estuviera ejecutando en solitario (véase la <<fig-protección-memoria>>).
 
 * A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina *espacio de direcciones virtual*(((espacio, de direcciones, virtual))) del proceso.
 Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
@@ -144,7 +144,7 @@ Mientras que el *espacio de direcciones físico*(((espacio, de direcciones, fís
 
 // TODO: Señalar el espacio de usuario y de núcleo.
 // Esta figura aparece también en el Capítulo 15: Memoria principal
-[[protección_memoria]]
+[[fig-protección-memoria]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
 image::{chapdir}/protección_memoria.svg[]
 
@@ -286,6 +286,6 @@ Los procesos *login* se encargan de autenticar a los usuarios y de iniciar y con
 
 . Autentican al usuario comprobando las credenciales proporcionadas por el mismo.
 
-. Si la autenticación es positiva, el proceso *login* cambia su identidad actual —generalmente de _root_ o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <<procesos_posix_api>>).
+. Si la autenticación es positiva, el proceso *login* cambia su identidad actual —generalmente de _root_ o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <<sect-procesos-posix-api>>).
 
 El intérprete de comandos completa la configuración del entorno basándose en sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.

@@ -40,7 +40,7 @@ El trabajo era preparado por cada programador —normalmente en tarjetas perfora
 
 No había sistema operativo y el operador debía cargar y ejecutar cada programa de uno en uno.
 
-[[consola_ibm_705]]
+[[fig-consola-ibm-705]]
 .Operadora en la consola de un mainframe IBM 705 -- Fuente: link:++https://www.ibm.com/ibm/history/ibm100/images/icp/Y444110I58591Z46/us__en_us__ibm100__700_series__705__620x350.jpg++[IBM]
 image::{chapdir}/consola_ibm_705.jpg[]
 
@@ -49,14 +49,14 @@ Estos sistemas se convirtieron en *sistemas de procesamiento por lotes* o *siste
 Para preparar los lotes, por lo general, el operador cargaba previamente en cinta magnética el conjunto de programas a partir de las tarjetas perforadas proporcionadas por los programadores.
 Para ello se utilizaba un lector de tarjetas autónomo, independiente del _mainframe_.
 
-[[sistemas_procesamiento_lotes]]
+[[fig-sistemas-procesamiento-lotes]]
 .Organización de la memoria en sistemas de procesamiento por lotes.
 image::{chapdir}/sistemas_procesamiento_lotes.svg[]
 
 ====
 El *((monitor)) del sistema* es un predecesor de los sistemas operativos y tenía las siguientes características:
 
-* Permanecía cargado durante todo el tiempo en la memoria del sistema (véase la <<sistemas_procesamiento_lotes>>).
+* Permanecía cargado durante todo el tiempo en la memoria del sistema (véase la <<fig-sistemas-procesamiento-lotes>>).
 
 * Su única tarea era cargar y transferir automáticamente la ejecución de un programa al siguiente cuando el anterior terminaba.
 
@@ -79,7 +79,7 @@ Además, con la aparición de la tecnología de los discos magnéticos en la dé
 
 A estos sistemas se los llamó *multiprogramados*.
 
-[[sistemas_multiprogramados]]
+[[fig-sistemas-multiprogramados]]
 .Organización de la memoria en sistemas multiprogramados.
 image::{chapdir}/sistemas_multiprogramados.svg[]
 // TODO: Hacer un dibujo más elaborado con cola de entrada
@@ -89,7 +89,7 @@ En los *sistemas multiprogramados* la ejecución de los trabajos funcionaba de l
 
 . En el disco magnético se almacenaba una cola donde se iban colocando todos los trabajos que tenían que ser ejecutados.
 
-. El sistema operativo cargaba varios trabajos en memoria del conjunto de trabajos en la cola en el disco magnético (véase la <<sistemas_multiprogramados>>).
+. El sistema operativo cargaba varios trabajos en memoria del conjunto de trabajos en la cola en el disco magnético (véase la <<fig-sistemas-multiprogramados>>).
 
 . El sistema operativo cede la CPU a uno de los trabajos en memoria.
 
@@ -112,7 +112,7 @@ Para operar de la forma descrita es necesario que el sistema operativo realice t
 
 * La *gestión de la memoria*, cuya responsabilidad es repartir la memoria principal entre los trabajos alojados en la misma.
 
-Un ejemplo de este tipo de sistemas operativos es el IBM OS/360, que fue lanzado en 1966 para utilizarlo en los _mainframes_ IBM System/360 (véase el <<_historia_segunda_generación>>).
+Un ejemplo de este tipo de sistemas operativos es el IBM OS/360, que fue lanzado en 1966 para utilizarlo en los _mainframes_ IBM System/360 (véase el <<sect-historia-segunda-generación>>).
 
 === Sistemas de tiempo compartido
 (((sistema, tiempo compartido)))
@@ -163,7 +163,7 @@ Para que quepan más trabajos de los usuarios en la memoria, el sistema operativ
 
 * Como el sistema debe disponer de un **sistema de archivos** para repartir el espacio en disco y facilitar a los usuarios el acceso y gestión de sus datos, el sistema operativo necesita un componente de *gestión de discos*.
 
-Las primeras versiones de UNIX —lanzado por primera vez en 1970— el sistema operativo VMS —desarrollado en 1978— para los VAX de Digital Equipment Corportation y el IBM OS/400 —introducido en 1988— utilizado en los minicomputadoras AS/400, son algunos ejemplos de sistemas operativos de tiempo compartido (véase el <<_historia_tercera_generación>>).
+Las primeras versiones de UNIX —lanzado por primera vez en 1970— el sistema operativo VMS —desarrollado en 1978— para los VAX de Digital Equipment Corportation y el IBM OS/400 —introducido en 1988— utilizado en los minicomputadoras AS/400, son algunos ejemplos de sistemas operativos de tiempo compartido (véase el <<sect-historia-tercera-generación>>).
 
 [NOTE]
 ====
@@ -188,7 +188,7 @@ Las primeras *((microcomputadora))s* no incluían teclado ni monitor y se progra
 Pero en torno a 1977 apareció la segunda generación de *microcomputadoras*, que sí incluían estos periféricos de E/S, por lo que eran más fáciles de usar que sus predecesoras.
 Entonces comenzaron a recibir el nombre de _ordenadores domésticos_ y de su mano llegaron los primeros *sistemas operativos de escritorio*.
 
-[[ordenadores_domésticos_1977]]
+[[fig-ordenadores-domésticos-1977]]
 .Los tres ordenadores que la revista Byte denominó como la "Trinidad de 1977" de la computación doméstica: el https://es.wikipedia.org/wiki/Commodore_PET[Commodore PET 2001], el https://es.wikipedia.org/wiki/Apple_II[Apple II] y el https://es.wikipedia.org/wiki/TRS-80[TRS-80 Model I] -- Fuente: https://commons.wikimedia.org/wiki/File:Trinity77.jpg[Wikipedia]
 image::{chapdir}/ordenadores_domésticos_1977.jpg[]
 
@@ -223,7 +223,7 @@ En ocasiones este tiempo se minimiza a costa de un uso menos eficiente de los re
 Para más información, véase el <<_criterios_de_planificación>>.
 ====
 
-Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <<_historia_cuarta_generación>>).
+Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <<sect-historia-cuarta-generación>>).
 
 == Sistemas de mano
 (((sistema, de mano)))
@@ -255,12 +255,12 @@ En caso de fallo el sistema no se detendría, pero sí trabajaría más despacio
 
 En la actualidad existen dos tipos de sistemas multiprocesador:
 
-[[smp]]
+[[fig-smp]]
 .Arquitectura de un sistema de multiprocesamiento simétrico.
 image::{chapdir}/multiprocesamiento_simétrico.svg[]
 
 * En los *sistemas de multiprocesamiento simétrico*(((sistema, multiprocesamiento, simétrico)))(((multiprocesamiento, simétrico))) o *SMP* (_Symmetric Multiprocessing_) todos los procesadores son iguales.
-Todos comparten los mismos recursos, pueden acceder a los mismos dispositivos (véase la <<smp>>) y cada uno ejecuta una copia del núcleo del sistema operativo.
+Todos comparten los mismos recursos, pueden acceder a los mismos dispositivos (véase la <<fig-smp>>) y cada uno ejecuta una copia del núcleo del sistema operativo.
 El sistema operativo debe haber sido diseñado para saber repartir el trabajo entre los procesadores y compartir adecuadamente entre tareas y procesadores el resto de recursos del sistema. 
 Casi todos los sistemas multiprocesador modernos son de este tipo.
 

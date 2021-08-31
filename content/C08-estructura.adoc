@@ -28,7 +28,7 @@ Por ejemplo, en el {msdos} los programas de aplicación podían acceder directam
 Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el sistema completo.
 
 // TODO: Programa residente como núcleo
-[[estructura_msdos]]
+[[fig-estructura-msdos]]
 .Esquema de la estructura de MS-DOS.
 image::{chapdir}/estructura_msdos.svg[]
 
@@ -38,7 +38,7 @@ Como el {intel8086} para el que fue escrito MS-DOS no proporcionaba un modo dual
 
 Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba un montón de funcionalidad en el núcleo del sistema.
 
-[[estructura_unix]]
+[[fig-estructura-unix]]
 .Esquema de la estructura de UNIX.
 image::{chapdir}/estructura_unix.svg[]
 
@@ -70,7 +70,7 @@ En cada capa los argumentos son transformados y los datos necesarios deben de se
 
 Un ejemplo de este tipo de sistemas operativos es el {os2}.
 
-[[estructura_os2]]
+[[fig-estructura-os2]]
 .Esquema de la estructura de IBM OS/2.
 image::{chapdir}/estructura_os2.svg[]
 
@@ -112,7 +112,7 @@ También sirve para que los componentes del sistema se comuniquen entre sí y se
 
 Dado que los componentes del sistema están aislados unos de otros —ya que se implementan como procesos de usuario— el mecanismo de comunicación entre procesos es la única forma que tienen los procesos de los usuarios y los componentes, de solicitarles un servicio.
 
-[[estructura_minix3]]
+[[fig-estructura-minix3]]
 .Esquema de la estructura microkernel de MINIX 3.
 image::{chapdir}/estructura_minix3.svg[]
 
@@ -154,7 +154,7 @@ Mientras que Microsoft Windows NT 3.51 tenía algo menos de 200 llamadas al sist
 Sin embargo, varios sistemas operativos siguen utilizando núcleos *microkernel*, como {qnx} o {minix3}.
 Ambos son sistemas operativos de tiempo real, que basan en la estructura de *microkernel* su estabilidad como sistema para tareas críticas.
 
-En la <<estructura_minix3>>, por ejemplo, se puede observar un esquema de {minix3}.
+En la <<fig-estructura-minix3>>, por ejemplo, se puede observar un esquema de {minix3}.
 El núcleo es muy pequeño —apenas tiene 5000 líneas de código— por lo que la mayor parte de la funcionalidad reside en los procesos de servicios y de controladores de dispositivo.
 
 {minix3} es un sistema compatible POSIX.
@@ -184,7 +184,7 @@ Los sistemas con *estructura modular* se caracterizan por:
 Estos núcleos suelen disponer de un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.
 Posteriormente pueden cargar módulos adicionales, tanto durante la inicialización del sistema como en tiempo de ejecución.
 
-[[estructura_linux]]
+[[fig-estructura-linux]]
 .Esquema de la estructura del núcleo Linux.
 image::{chapdir}/estructura_linux.svg[]
 
@@ -196,4 +196,4 @@ Sin embargo los núcleos modulares:
 * **Son menos seguros y fiables**, puesto que gran parte de su funcionalidad se ofrece desde el modo privilegiado.
 Un error en cualquier componente puede comprometer o hacer caer el sistema.
 
-Este tipo de estructura es la utilizada en los UNIX modernos, como https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris], https://es.wikipedia.org/wiki/FreeBSD[FreeBSD], https://es.wikipedia.org/wiki/GNU/Linux[Linux] (véase la <<estructura_linux>>) y https://es.wikipedia.org/wiki/MacOS[macOS].
+Este tipo de estructura es la utilizada en los UNIX modernos, como https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris], https://es.wikipedia.org/wiki/FreeBSD[FreeBSD], https://es.wikipedia.org/wiki/GNU/Linux[Linux] (véase la <<fig-estructura-linux>>) y https://es.wikipedia.org/wiki/MacOS[macOS].

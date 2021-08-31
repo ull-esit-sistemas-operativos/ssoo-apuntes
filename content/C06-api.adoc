@@ -86,7 +86,7 @@ En concreto hay tres métodos para pasar parámetros adicionales al identificado
 Consiste en cargar los parámetros de la llamada al sistema en los registros de la CPU antes de realizar la llamada al sistema.
 Este método es el más eficiente, pero limita el número de parámetros al número de registros disponibles.
 +
-Es utilizado, por ejemplo, en Linux para MIPS (véase el <<linux_mips_syscall>>) y en la mayoría de sistemas operativos para x86-64.
+Es utilizado, por ejemplo, en Linux para MIPS (véase el <<ejemplo-linux-mips-syscall>>) y en la mayoría de sistemas operativos para x86-64.
 
 * *Mediante tabla en memoria*
 Consiste en copiar los parámetros de la llamada al sistema en una tabla en la memoria principal y luego guardar la dirección de dicha tabla en un registro específico de la CPU, antes de la llamada al sistema.
@@ -100,7 +100,7 @@ Al igual que en el caso anterior, tampoco limita el número de parámetros que p
 +
 Es utilizado, por ejemplo, en sistemas UNIX BSD y en Windows XP y posteriores para x86 de 32 bits.
 
-[[linux_mips_syscall]]
+[[ejemplo-linux-mips-syscall]]
 .Llamada al sistema en Linux MIPS.
 ====
 Veamos cómo invocar directamente la llamada al sistema {linux_write} en Linux para MIPS.
@@ -144,7 +144,7 @@ A fin de cuentas, una de las funciones del sistema operativo es el control de di
 (((librería, del sistema)))
 
 Las *llamadas al sistema* proporcionan una interfaz con la que los procesos pueden invocar los servicios que el sistema operativo ofrece.
-El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <<linux_mips_syscall>>) no son demasiado cómodas de utilizar.
+El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <<ejemplo-linux-mips-syscall>>) no son demasiado cómodas de utilizar.
 Así que generalmente los programas no las invocan directamente.
 En su lugar, lo que hacen es llamar a funciones de la *librería del sistema*, que a su vez son las encargadas de hacer las llamadas al sistema necesarias.
 
@@ -220,16 +220,16 @@ Sin embargo, debemos valorar que así perdemos portabilidad, ya que ahora nuestr
 
 == Con todas las piezas juntas
 
-En la <<api_win32>> se ilustra el papel de todos los elementos comentados, con el ejemplo de programas en C y Python, ejecutados en Microsoft Windows, que invocan los métodos {clang_fopen} y `file()` de la librería estándar de estos lenguajes, respectivamente.
+En la <<fig-api-win32>> se ilustra el papel de todos los elementos comentados, con el ejemplo de programas en C y Python, ejecutados en Microsoft Windows, que invocan los métodos {clang_fopen} y `file()` de la librería estándar de estos lenguajes, respectivamente.
 
-[[api_win32]]
+[[fig-api-win32]]
 .Elementos de la interfaz de programación de aplicaciones en Microsoft Windows.
 image::{chapdir}/interfaz_programación_aplicaciones_win32.svg[]
 
 En ambos casos, la librería estándar llama a la función {win32_createfile} de la librería del sistema de Windows, que finalmente realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
 Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<_componentes_del_sistema>>).
 
-El programa en C, puede usar tanto la función {clang_fopen} de su librería estándar como llamar directamente a la función {win32_createfile} de la librería del sistema —marcado en rojo en la <<api_win32>>—.
+El programa en C, puede usar tanto la función {clang_fopen} de su librería estándar como llamar directamente a la función {win32_createfile} de la librería del sistema —marcado en rojo en la <<fig-api-win32>>—.
 Sin embargo, en el programa en Python no tenemos esa facilidad —al menos directamente—.
 
 Usar directamente las funciones de la librería del sistema desde programas en C o {cpp} tiene la ventaja de que permite utilizar todas las características del sistema operativo.
@@ -269,12 +269,12 @@ FILE* fopen(
 
 Sin embargo, debemos tener en cuenta que se pierde portabilidad pues {win32_createfile} solo está disponible en Microsoft Window, mientras que {clang_fopen} viene con la librería estándar de cualquier compilador de C.
 
-En la <<api_posix>> se puede observar un ejemplo similar en {gnulinux} —un sistema compatible {posix}— pero en esta ocasión con programas en C y {cpp}.
+En la <<fig-api-posix>> se puede observar un ejemplo similar en {gnulinux} —un sistema compatible {posix}— pero en esta ocasión con programas en C y {cpp}.
 En este caso la llamada al sistema es {linux_open} y tanto {clang_fopen} en C como {cpp_ofstream_open} en {cpp} la utilizan.
-Además, ambos lenguajes pueden invocar directamente la librería del sistema —marcado en rojo en la <<api_posix>>— si necesitan alguna característica adicional de la función {linux_open}.
+Además, ambos lenguajes pueden invocar directamente la librería del sistema —marcado en rojo en la <<fig-api-posix>>— si necesitan alguna característica adicional de la función {linux_open}.
 
-[[api_posix]]
+[[fig-api-posix]]
 .Elementos de la interfaz de programación de aplicaciones en GNU/Linux.
 image::{chapdir}/interfaz_programación_aplicaciones_posix.svg[]
 
-La única diferencia es que en <<api_posix>> las funciones {clang_fopen} y {linux_open} están realmente en la misma librería, porque en los sistemas POSIX la librería del sistema y la librería estándar de C pueden ser la misma, dado que el estándar POSIX se diseñó como un superconjunto de la librería estándar de C.
+La única diferencia es que en <<fig-api-posix>> las funciones {clang_fopen} y {linux_open} están realmente en la misma librería, porque en los sistemas POSIX la librería del sistema y la librería estándar de C pueden ser la misma, dado que el estándar POSIX se diseñó como un superconjunto de la librería estándar de C.
