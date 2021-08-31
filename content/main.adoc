@@ -7,8 +7,8 @@ include::enlaces.adoc[]
 include::docstats.adoc[]
 
 // Contenidos
-include::releases.adoc[leveloffset=+1]
-include::código.adoc[leveloffset=+1]
+include::releases.adoc[]
+include::código.adoc[]
 
 = Introducción
 include::C01-definición.adoc[leveloffset=+1]
@@ -42,7 +42,7 @@ include::C18-almacenamiento.adoc[leveloffset=+1]
 include::C19-sistema_de_archivos.adoc[leveloffset=+1]
 include::C20-implemantación_sistema_de_archivos.adoc[leveloffset=+1]
 
-include::bibliografía.adoc[leveloffset=+1]
+include::bibliografía.adoc[]
 
 // Índice de términos
 // NOTA: El conversor a HTML5 de Asciidoctor aun no genera índices.
