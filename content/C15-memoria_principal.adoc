@@ -242,6 +242,17 @@ Así los viejos programas se pueden ejecutar con las viejas versiones de las lib
 
 A este sistema se lo conoce como *librerías compartidas*.
 
+Para establecer correctamente la compatibilidad entre librerías y programas, es conveniente y bastante común que los desarrolladores de las *librerías compartidas* utilicen *versionado semántico*.
+El *((versionado semántico))* es un convenio por el cual el número de versión suele venir indicado por tres número separados por puntos —como, por ejemplo: 5.3.4— de tal forma que:
+
+* El primer número es incrementado cuando ocurre un cambio drástico en la librería, de tal forma que seguramente los programas hechos para versiones anteriores no van a ser compatibles con la nueva versión.
+
+* El segundo número es incrementado cuando se añade alguna nueva características o se modifica alguna ya existente, pero el cambio no debe romper los programas hechos para la versión anterior.
+
+* El último número es incrementado al corregir errores, pero no se rompe la compatibilidad con versiones previas.
+
+De esta forma, los desarrolladores pueden enlazar sus programas contra la versión 5 de la librería, por ejemplo, sabiendo que así funcionarán con cualquier versión actualizada o corregida —como la 5.1, 5.2.9 o 5.10.1— pero nunca podrán ejecutarse con versiones que tienen cambios mayores y posiblemente incompatibles —como la versión 6.1 o la 2.10—.
+
 == Asignación contigua de memoria
 
 Como vimos en el <<_protección_de_la_memoria>>, la memoria principal debe acomodar tanto el sistema operativo como a los diferentes procesos de los usuarios.
