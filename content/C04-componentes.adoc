@@ -175,8 +175,11 @@ Para simplificar aún más el acceso al almacenamiento, el sistema operativo pro
 Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir el *archivo*, una unidad de almacenamiento lógico con la que trabajan los procesos para guardar y recuperar datos.
 
 ====
-Un *((archivo))* o *((fichero))* es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como una unidad de información en el almacenamiento secundario —por ejemplo un programa, una imagen o un documento—.
+Un *((archivo))* o *((fichero))* es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como la unidad de información en el almacenamiento secundario.
 ====
+
+Esto quiere decir que, por lo general, para el sistema operativo un archivo no es más que una colección de bytes y lo que ofrece son servicios para leer, escribir, identificar y manipular dicha colección.
+La organización y formato utilizados para guardar la información —como, por ejemplo, el detalle de cómo se codifica en un archivo una imagen al guardarla en formato JPEG— y lo que se hace dicha información, es algo que generalmente solo incumbe a las aplicaciones, no al sistema operativo.
 
 Los archivos normalmente se organizan en directorios para facilitar su uso y organización.
 
