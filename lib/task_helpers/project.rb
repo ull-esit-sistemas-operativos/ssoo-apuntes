@@ -67,6 +67,7 @@ module Project
 
     def find_media_files(source_directory)
         FileList[
+            File.join(source_directory, "**/media/**/*.ico"),
             File.join(source_directory, "**/media/**/*.jpg"),
             File.join(source_directory, "**/media/**/*.mp4"),
             File.join(source_directory, "**/media/**/*.png"),
