@@ -955,5 +955,3 @@ Obviamente los sistemas que implementan este tipo de sistemas de archivo usan la
 
 Los sistemas de archivos ZFS y Btrfs son los principales ejemplos de sistemas de archivos basados en _copy-on-write_.
 Esta solución no solo les permite tener las mismas propiedades que el uso de registro en cuanto a la preservación de la coherencia —con la ventaja de evitar dos escrituras en disco, una en el registro y otra para el cambio propiamente dicho— sino que además facilita que puedan ofrecer características adicionales, como la creación de copias instantáneas del volumen.
-
-// TODO: ZFS BTrfs
