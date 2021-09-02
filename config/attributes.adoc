@@ -11,6 +11,8 @@ include::locale/attributes.adoc[]
 :partnums:
 :sectnums:
 :xrefstyle: short
+// Activar el enlace permanente en los encabezados
+:sectanchors:
 // Usar Font Awesome para los iconos.
 :icons: font
 // Activar el coloreado de sintaxis.
