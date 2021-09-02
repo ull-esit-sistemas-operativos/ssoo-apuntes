@@ -779,7 +779,10 @@ Por eso estas señales se dirigen al hilo que las causa.
 La recomendación es elegir un hilo para el manejo de señales asíncronas, de tal forma que sea el único que no las tenga bloqueadas.
 El resto de hilos deberían bloquear estas señales nada más iniciar su ejecución.
 
-Si el hilo que debe manejar las señales no tiene otras responsabilidades, puede utilizar {linux_sigwait} para bloquearse hasta que llegue una señal.
-Cuando eso ocurra, la función {linux_sigwait} retornará, indicando el número de señal recibida —sin necesitar *manejadores de señal*—.
-Así, por ejemplo, el hilo puede solicitar la cancelación de los otros hilos.
-Esta estrategia facilita el diseño del programa para que manejen las señales adecuadamente.
+Si se destina un hilo para esta tarea en exclusiva, este puede utilizar {linux_sigwait} para bloquearse hasta que llegue una señal.
+Cuando eso ocurre, la función {linux_sigwait} retorna indicando el número de señal recibida —sin necesitar *manejadores de señal*—.
+Entonces el hilo puede solicitar la cancelación de los otros hilos para, por ejemplo, terminar el proceso.
+
+Esta estrategia facilita el desarrollo de programas que manejen las señales adecuadamente.
+Al utilizar un hilo para manejar las señales, tenemos a nuestra disposición cualquier función *segura en hilos* y sabemos cómo proteger las variables y estructuras de datos compartidas mediante el uso de mecanismos de *sincromización* (véase el <<_sincronización>>).
+Mientras que al trabajar con *manejadores de señal* estamos mucho más limitados, porque el código de estos debe ser *reentrante* y solo pueden usar alguna de las pocas funciones de la librería del sistema marcadas como https://man7.org/linux/man-pages/man7/signal-safety.7.html[seguras en señales].

@@ -499,6 +499,13 @@ Sin embargo, cada proceso puede declarar un *manejador de señal*(((manejador, s
 Una función del programa que será invocada por el sistema operativo para tratar una señal determinada, interrumpiendo lo que esté haciendo el proceso en ese momento.
 En ese sentido las señales en POSIX puede interpretarse como una forma de interrupción por software.
 
+[NOTE]
+====
+Como la ejecución del programa se interrumpe para saltar al *manejador de señal* y luego continuar, hay que tener cuidado con el código de los *manejadores de señal*.
+Puede causar problemas que, por ejemplo, modifiquen el valor de una variable en un punto donde el resto del código no espera que puedan ocurrir cambios.
+Por eso es recomendable que el código de los *manejadores de señal* sea *reentrante* (véase el <<_funciones_reentrantes>>) y que solo invoquen otras funciones *reentrantes* o funciones de la librería del sistema marcadas como https://man7.org/linux/man-pages/man7/signal-safety.7.html[seguras en señales].
+====
+
 El *manejador de señal* se puede configurar usando la llamada al sistema {linux_signal}:
 
 [source, c]
@@ -513,7 +520,10 @@ signal(
 Es decir, la del programa que será llamada por el sistema operativo cuando llegue la señal `SIGTERM`.
 
 El problema de {linux_signal} es que el estándar POSIX permite diferencias que hacen que se pueda comportar de forma distinta en diferentes sistemas operativos.
-Para resolverlo, el estándar recomienda usar {linux_sigaction} en su lugar:
+Por ejemplo, qué ocurre al retornar del *manejador de señal* si cuando llegó la señal el proceso estaba ocupado en una llamada al sistema.
+Como el estándar no especifica nada al respecto, los sistemas BSD optaron porque las llamadas al sistema continuaran como si nada, mientras que en otros sistemas POSIX las llamadas al sistema son interrumpidas como si hubiera ocurrido un error.
+
+Para resolverlo, el estándar recomienda usar {linux_sigaction} en su lugar, ya que está descrita de forma más precisa —evitando este tipo de divergencias— y permite que el programador escoja de entre varias opciones el comportamiento que más le convenga:
 
 [source, c]
 ----
@@ -548,7 +558,8 @@ Deben ponerse a 1 aquellas señales que queremos que estén bloqueadas —es dec
 Es especialmente útil si se va a usar el mismo manejador para varias señales.
 
 <7> Opciones de configuración.
-Por ejemplo, `SA_RESTART` indica que si la señal llega durante una llamada al sistema, la llamada debe continuar una vez se haya salido del manejador de señal.
+En el ejemplo se usa `SA_RESTART`, que indica que si la señal llega durante una llamada al sistema, la llamada debe continuar una vez se haya salido del manejador de señal.
+Como comentamos anteriormente, este es el comportamiento de {linux_signal} en los sistemas BSD.
 El comportamiento por defecto, sin esta opción, es que la llamada al sistema interrumpida falle con el error `EINTR` en {linux_errno}.
 
 Las señales fueron diseñadas originalmente como un mecanismo para que el sistema operativo notificase a los programas ciertos errores y sucesos críticos.
@@ -577,9 +588,11 @@ Mientras que la lista completa de señales soportadas en Linux se puede consulta
 
 El ejemplo en {mqueue_server_cpp} y en otros ejemplos de este capítulo, utiliza señales para manejar `SIGINT`, `SIGTERM` y para mostrar la hora periódicamente.
 El código dedicado a eso está en {timeserver_c} y se comparte entre todos los ejemplos.
+En todos los casos se evita usar `SA_RESTART` porque interesa que el proceso interrumpa lo que esté haciendo cuando llegue una señal para terminar.
 
 En {signals_c} hay un programa de ejemplo que muestra cómo manejar las señales del sistema y que sirve para ver cómo funcionan.
 Solo hay que ejecutarlo y luego enviarle señales con el comando `kill` desde otra terminal.
+En este caso si se usa `SA_RESTART`, porque el programa debe estar esperando la pulsación de una tecla con `getc()` y no nos interesa que deje de hacerlo cuando llegue una señal.
 
 === Tuberías
 

@@ -792,6 +792,8 @@ Si lo hiciera solo puede hacerlo mediante operaciones *leer-modificar-escribir* 
 
 * No modifica su propio código y no llama a otras funciones que no sean reentrantes.
 
+Como hemos mencionado anteriormente, los *manejadores de señal* deben ser funciones *reentrantes*.
+
 === Seguridad en hilos
 (((seguridad, en hilos)))
 (((función, segura en hilos)))
