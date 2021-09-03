@@ -108,6 +108,8 @@
 :linux_wait: link:https://man7.org/linux/man-pages/man2/wait.2.html[wait()]
 :linux_waitpid: link:https://man7.org/linux/man-pages/man2/waitpid.2.html[waitpid()]
 
+:ld: link:https://man7.org/linux/man-pages/man8/ld.so.8.html[ld]
+
 :pthreads: link:https://man7.org/linux/man-pages/man7/pthreads.7.html[POSIX Threads]
 :pthread_cancel: link:https://man7.org/linux/man-pages/man3/pthread_cancel.3.html[pthread_cancel()]
 :pthread_cleanup_pop: link:https://man7.org/linux/man-pages/man3/pthread_cleanup_pop.3.html[pthread_cleanup_pop()]
@@ -135,6 +137,8 @@
 :cmd_chkdsk: link:https://es.wikipedia.org/wiki/CHKDSK[CHKDSK]
 :cmd_gcc: link:https://es.wikipedia.org/wiki/GNU_Compiler_Collection[gcc]
 :cmd_ld: link:https://en.wikipedia.org/wiki/Linker_(computing)[ld]
+:cmd_ldd: link:https://man7.org/linux/man-pages/man1/ldd.1.html[ldd]
+:cmd_objdump: link:https://man7.org/linux/man-pages/man1/objdump.1.html[objdump]
 :cmd_pstree: link:https://man7.org/linux/man-pages/man1/pstree.1.html[pstree]
 :cmd_systemd: link:https://es.wikipedia.org/wiki/Systemd[systemd]
 :cmd_fsck: link:https://es.wikipedia.org/wiki/Fsck[fsck]

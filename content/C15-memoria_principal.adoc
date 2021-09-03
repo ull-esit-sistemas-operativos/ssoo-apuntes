@@ -146,6 +146,98 @@ Esta tabla contiene punteros a las ubicaciones en el código del ejecutable de l
 
 Durante la carga, el cargador del sistema operativo, una vez ha copiado a la memoria el contenido del ejecutable y conoce la ubicación definitiva del programa, recorre la *tabla de reubicaciones* para buscar las *direcciones reubicables* y actualizarlas.
 
+.Direcciones en el código objeto en Linux x86-64
+****
+Supongamos que en un sistema Linux x86-64 tenemos el siguiente código en un archivo de nombre `test.c`:
+
+[source,c]
+----
+long i = 10;
+
+int test()
+{
+    i = 12;
+    return 0;
+}
+
+int main()
+{
+    i = 11;
+    return test();
+}
+----
+
+En lugar de compilarlo para generar el ejecutable final, podemos usar la opción `-c` del compilador {cmd_gcc} para que solo genere el archivo de *código objeto* correspondiente.
+Después podemos usar el comando {cmd_objdump} para examinar el *código objeto*:
+
+----
+$ gcc -c test.c
+$ objdump -d test.o
+
+test.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <test>:                                <1>
+   0:   f3 0f 1e fa             endbr64
+   4:   55                      push   %rbp
+   5:   48 89 e5                mov    %rsp,%rbp
+   8:   48 c7 05 00 00 00 00    movq   $0xc,0x0(%rip)   <3>
+   f:   0c 00 00 00
+  13:   b8 00 00 00 00          mov    $0x0,%eax
+  18:   5d                      pop    %rbp
+  19:   c3                      retq
+
+000000000000001a <main>:                                <1>
+  1a:   f3 0f 1e fa             endbr64
+  1e:   55                      push   %rbp
+  1f:   48 89 e5                mov    %rsp,%rbp
+  22:   48 c7 05 00 00 00 00    movq   $0xb,0x0(%rip)   <3>
+  29:   0b 00 00 00
+  2d:   b8 00 00 00 00          mov    $0x0,%eax
+  32:   e8 00 00 00 00          callq  37 <main+0x1d>   <2>
+  37:   5d                      pop    %rbp
+  38:   c3                      retq
+----
+<1> El archivo de *código objeto* se divide en varias secciones o segmentos.
+En el *segmento de código*(((segmento, código))) o *.text*(((segmento, text))) se almacenan las funciones compiladas del código original.
+Cada función tiene una ubicación, que es relativa a su posición dentro del segmento de código en el archivo.
++
+Obviamente, estas no son las direcciones definitivas en las que se ejecutarán estas funciones cuando el ejecutable sea cargado en la memoria, por lo que este *código objeto* generado por el compilador debe ser *código reubicable*.
+
+<2> `callq` es la instrucción encargada de invocar a `test()` desde `main()`, pero si ejecutamos este código en su estado actual, la ejecución saltaría a la instrucción en 0x37, es decir, a la siguiente tras `callq`.
+Esto no es un error del compilador, sino que el compilador no ha puesto la dirección correcta porque aún desconoce cuál será la ubicación definitiva de `test()`.
++
+En x86-64 las instrucciones de salto como `callq` hacen saltos relativos al contador de programa —almacenado en un registro llamando `rip`—.
+Todas estas instrucciones llevan un desplazamiento que se suma al valor actual de `rip`, que contiene la dirección en la memoria de la siguiente instrucción.
+Como el compilador no sabe donde estará `test()`, deja este desplazamiento a 0 —por eso los bytes '00 00 00 00' en la codificación  de la instrucción `callq`— por lo que el salto será a la siguiente instrucción.
+
+<3> En el acceso a la variable `i` para cambiar su valor, ocurre algo parecido.
+La dirección se escribe relativa al contador de programa `rip`, pero como el compilador no sabe la posición definitiva de la variable, deja el desplazamiento a 0.
+Por eso el desensamblado indica lo de `0x0(%rip)`, que quiere decir: dirección desplazada 0 respecto a `rip`.
+
+Durante el enlazado, para generar el ejecutable definitivo, es necesario saber dónde están en el código las direcciones que se deben reubicar.
+Para eso el archivo de *código objeto* lleva una *tabla de reubicación*, que también se puede leer con {cmd_objdump}:
+
+----
+$ objdump -r test.o
+test.o:     file format elf64-x86-64
+
+RELOCATION RECORDS FOR [.text]:
+OFFSET           TYPE              VALUE
+000000000000000b R_X86_64_PC32     i-0x0000000000000008
+0000000000000025 R_X86_64_PC32     i-0x0000000000000008
+0000000000000033 R_X86_64_PLT32    test-0x0000000000000004
+----
+
+En nuestro ejemplo la tabla contiene tres entradas, dos para las dos instrucciones que modifican la variable `i` y una para la instrucción `callq` que sirve para invocar `test()`.
+La primera columna indica la ubicación en *.text* de la dirección que se debe reubicar.
+Mientras la segunda columna especifica el tipo de reubicación y la tercera contiene información adicional que hace falta para realizar la reubicación.
+
+Por ejemplo, la primera entrada del ejemplo indica que debe desplazarse en `0x08` la dirección a reubicar en `0x0b` —el acceso a `i` en `test()` para que apunte a la dirección de la variable `i`.
+****
+
 === Reubicación en tiempo de ejecución
 
 Si un proceso puede ser movido durante su ejecución de un lugar de la memoria a otro, la reubicación de direcciones debe ser retrasada hasta el momento de la ejecución de cada instrucción del programa.
@@ -186,6 +278,62 @@ Por tanto, como veremos en detalle más adelante, estas librerías deben ser reu
 
 El código de un programa suele contener direcciones tanto para los saltos como para el acceso a los datos.
 Al ubicar los programas en las mismas regiones de los espacios de direcciones virtuales de sus procesos, nos estamos asegurando de que el código en memoria de los procesos de un mismo programa es el mismo —pues todos usan las mismas direcciones virtuales absolutas— por lo que se puede compartir la memoria física que ocupan.
+
+.Direcciones en ejecutables en Linux x86-64
+****
+En Linux cada proceso tiene su propio espacio de direcciones virtual, por lo que los ejecutables pueden generarse para ser cargados en una dirección fija, ya que es seguro que no habrá otro ocupando la misma dirección.
+
+Si la dirección donde se va a ejecutar el programa puede fijarse de antemano, los ejecutables pueden contener *código absoluto*.
+Por eso en Linux x86-64 el enlazador coge el *código objeto* que va a formar parte del ejecutable, lo reubica asumiendo que el ejecutable se cargará en cierta dirección de la memoria y genera un ejecutable con *código absoluto*, sin *tablas de reubicación*.
+
+Por ejemplo, si compilamos completamente el `test.c` anterior y preguntamos por la *tabla de reubicación*, veremos que está vacía:
+
+----
+$ gcc -o test test.c
+$ objdump -r test
+
+test.o:     file format elf64-x86-64
+----
+
+Si desensamblamos el código, veremos que han cambiado algunas cosas en `main()` y a `test()` respecto a lo que había en el *código objeto*.
+
+----
+$ objdump -d test
+
+test.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+...
+
+0000000000001129 <test>:                                           <2>
+    1129:       f3 0f 1e fa             endbr64
+    112d:       55                      push   %rbp
+    112e:       48 89 e5                mov    %rsp,%rbp
+    1131:       c7 05 d9 2e 00 00 03    movl   $0x3,0x2ed9(%rip)   <1>
+    1138:       00 00 00
+    113b:       b8 00 00 00 00          mov    $0x0,%eax
+    1140:       5d                      pop    %rbp
+    1141:       c3                      retq
+
+0000000000001142 <main>:
+    1142:       f3 0f 1e fa             endbr64
+    1146:       55                      push   %rbp
+    1147:       48 89 e5                mov    %rsp,%rbp
+    114a:       c7 05 c0 2e 00 00 01    movl   $0x1,0x2ec0(%rip)   <1>
+    1151:       00 00 00
+    1154:       b8 00 00 00 00          mov    $0x0,%eax
+    1159:       e8 cb ff ff ff          callq  1129 <test>         <2>
+    115e:       5d                      pop    %rbp
+    115f:       c3                      retq
+
+...
+----
+<1> Las instrucciones que acceden a la variable `i` ahora tienen el desplazamiento adecuado respecto al contador de programa `rip` para acceder a dicha variable.
+
+<2> La instrucción de salto tiene un desplazamiento que sumado al valor de `rip` lleva directamente al comienzo del código de la función `test()`.
+****
 
 == Enlazado dinámico y librerías compartidas
 
@@ -247,11 +395,55 @@ El *((versionado semántico))* es un convenio por el cual el número de versión
 
 * El primer número es incrementado cuando ocurre un cambio drástico en la librería, de tal forma que seguramente los programas hechos para versiones anteriores no van a ser compatibles con la nueva versión.
 
-* El segundo número es incrementado cuando se añade alguna nueva características o se modifica alguna ya existente, pero el cambio no debe romper los programas hechos para la versión anterior.
+* El segundo número es incrementado cuando se añade alguna nueva característica o se modifica alguna ya existente, pero el cambio no debe romper los programas hechos para la versión anterior.
 
 * El último número es incrementado al corregir errores, pero no se rompe la compatibilidad con versiones previas.
 
 De esta forma, los desarrolladores pueden enlazar sus programas contra la versión 5 de la librería, por ejemplo, sabiendo que así funcionarán con cualquier versión actualizada o corregida —como la 5.1, 5.2.9 o 5.10.1— pero nunca podrán ejecutarse con versiones que tienen cambios mayores y posiblemente incompatibles —como la versión 6.1 o la 2.10—.
+
+.Enlazado dinámico en Linux x86-64
+****
+Volviendo al programa de ejemplo `test.c`, podemos obtener fácilmente las librerías compartidas de las que depende usando el comando {cmd_ldd}:
+
+----
+$ ldd test
+linux-vdso.so.1 (0x00007fffd833e000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f47c20c9000)   <1>
+/lib64/ld-linux-x86-64.so.2 (0x00007f47c22cf000)                    <2>
+----
+<1> El ejecutable tiene que estar enlazado con la librería del sistema —llamada `libc` en los sistemas POSIX— para que pueda acceder a los servicios del sistema.
++
+`libc.so.6` es el nombre por el que se buscará el archivo que contiene la librería compartida de la librería del sistema
+Si se hubiera usado solamente `libc.so`, el ejecutable podría intentar usar cualquier versión de `libc`, pero al incluir el primer número de versión en el nombre, nos aseguramos de que el ejecutable solo usará versiones 6 de la librería del sistema.
+Así se evita ejecutar el programa con versiones que pueden ser incompatibles.
+
+<2> La librería {ld} se encarga de las cuestiones relacionadas con el enlazado y carga dinámica de librerías.
+
+Si estás librerías no estuvieran disponibles al intentar ejecutar el programa, la ejecución fallaría, ya que son un requisito obligatorio.
+Sin embargo, el enlazado dinámico no es algo que solo pueda configurarse durante la compilación para que ocurra automáticamente durante la carga del ejecutable.
+Los sistemas operativo modernos proporcionan funciones para que un proceso pueda cargar cualquier y descargar librería durante la ejecución y acceder a sus variables e invocar sus funciones.
+En los sistemas POSIX estas funciones las proporciona la librería {ld}.
+
+Esto es muy útil cuando se quiere que ciertas librerías sean opcionales.
+Es decir, que no sea necesario tenerlas instaladas en el sistema donde se va a ejecutar el programa, de tal forma que si no están disponibles, el programa funcione con normalidad, pero si están instaladas, el programa aproveche la funcionalidad adicional que proporcionan.
+Así es como navegadores, editores y otros programas implementan extensiones y _plugins_, con los que el usuario puede extender la funcionalidad del programa original sin recompilarlo.
+Estas extensiones generalmente se implementan como librerías compartidas que el programa busca y carga durante su ejecución.
+
+Por lo general, la mayor parte de las librerías que usan los programas son enlazadas dinámicamente, pero el enlazador siempre tiene que incluir en el ejecutable algunas librerías enlazadas estáticamente que son importantes para la ejecución del programa.
+Por eso al ejecutar `objdump -d test` vemos funciones que no estaban ni en `test.c ni en el archivo de *código objeto* `test.o`.
+La librería que vemos incluida en el ejecutable es la *librería de tiempo de ejecución* de C.
+
+Todo lenguaje de programación —excepto ensamblador, obviamente— necesita incluir en sus ejecutables una *librería de tiempo de ejecución*(((librería, de tiempo de ejecución))) o *librería de runtime*(((librería, de runtime))) con rutinas de bajo nivel que sirven de apoyo para implementar algunas características del lenguaje y del entorno de ejecución.
+
+En Linux y otros sistemas POSIX, la posición dónde debe iniciarse la ejecución se marca con la etiqueta `\_start` en el ejecutable.
+Se trata de código de la *librería de tiempo de ejecución* que inicializa el entorno que espera el programa en C, obtiene del sistema operativo los argumentos de la línea de comandos e invoca a la función `main()` de nuestro programa con ellos.
+Otras funcionalidades que típicamente implementa la *librería de tiempo de ejecución* son operaciones básicas de gestión de la memoria, manejo de excepciones, comprobaciones de límites en los _arrays_ o comprobaciones dinámicas de tipos —por ejemplo, para implementar el operador `dynamic_cast` en {cpp}—.
+
+Finalmente, debemos confundir la *librería de tiempo de ejecución* con la *librería estándar*.
+En lenguajes como C o {cpp} se distingue claramente entre el lenguaje y la librería estándar que suele acompañarlos.
+En ese sentido, la *librería de tiempo de ejecución* implementa lo mínimo requerido para la ejecución de programa en esos lenguajes.
+Mientras que si además queremos usar funcionalidades de su *librería estándar*, también tendremos que enlazarla, generalmente de forma dinámica.
+****
 
 == Asignación contigua de memoria
 
