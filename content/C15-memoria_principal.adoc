@@ -291,8 +291,8 @@ Por ejemplo, si compilamos completamente el `test.c` anterior y preguntamos por 
 ----
 $ gcc -o test test.c
 $ objdump -r test
-
 test.o:     file format elf64-x86-64
+
 ----
 
 Si desensamblamos el código, veremos que han cambiado algunas cosas en `main()` y a `test()` respecto a lo que había en el *código objeto*.
