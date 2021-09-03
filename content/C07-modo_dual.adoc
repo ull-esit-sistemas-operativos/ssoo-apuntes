@@ -251,7 +251,7 @@ No debemos olvidar que el código cargado por el _bootstrap_ debe caber en un so
 En los PC más modernos que utilizan UEFI y particiones GPT, la UEFI tiene la capacidad de leer el sistema de archivo en las particiones para buscar directamente los archivos del gestor de arranque completo.
 Una vez el _bootstrap_ los encuentra, los carga y ejecuta.
 
-En ambos casos, el gestor de arranque completo es el programa que sabe cómo iniciar el sistema operativo así que: explora el sistema de ficheros en busca del núcleo del sistema, lo carga e inicia su ejecución.
+En ambos casos, el gestor de arranque completo es el programa que sabe cómo iniciar el sistema operativo así que: explora el sistema de archivos en busca del núcleo del sistema, lo carga e inicia su ejecución.
 
 A partir de esto punto cada sistema operativo prosigue de forma diferente.
 A modo de ejemplo, veremos como prosigue el arranque en sistemas UNIX en modo texto.
@@ -260,9 +260,9 @@ A modo de ejemplo, veremos como prosigue el arranque en sistemas UNIX en modo te
 
 Al iniciarse el núcleo del sistema, este realiza una serie de tareas:
 
-. Configura el sistema para crear un entorno adecuado para la ejecución de los procesos: configuración de interrupciones, configuración de los modos de ejecución —privilegiado y usuario— y de la gestión de la memoria; inicialización de dispositivos y controladores; montaje del sistema de ficheros raíz; creación del proceso inactivo —que se ejecutará cuando no haya nada que hacer— etc.
+. Configura el sistema para crear un entorno adecuado para la ejecución de los procesos: configuración de interrupciones, configuración de los modos de ejecución —privilegiado y usuario— y de la gestión de la memoria; inicialización de dispositivos y controladores; montaje del sistema de archivos raíz; creación del proceso inactivo —que se ejecutará cuando no haya nada que hacer— etc.
 
-. Crea el proceso *((init))* —que por ser el primero tiene PID 1— a partir de la carga del programa `init` almacenado en el sistema de ficheros raíz.
+. Crea el proceso *((init))* —que por ser el primero tiene PID 1— a partir de la carga del programa `init` almacenado en el sistema de archivos raíz.
 En los sistemas GNU/Linux actuales el proceso *init* más común es {cmd_systemd}.
 
 . El planificador de la CPU toma el control de la gestión de la CPU y el núcleo se queda dormido.
@@ -288,4 +288,4 @@ Los procesos *login* se encargan de autenticar a los usuarios y de iniciar y con
 
 . Si la autenticación es positiva, el proceso *login* cambia su identidad actual —generalmente de _root_ o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <<sect-procesos-posix-api>>).
 
-El intérprete de comandos completa la configuración del entorno basándose en sus ficheros de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.
+El intérprete de comandos completa la configuración del entorno basándose en sus archivos de configuración, muestra el https://es.wikipedia.org/wiki/Prompt[prompt] y queda a la espera del primer comando del usuario.
