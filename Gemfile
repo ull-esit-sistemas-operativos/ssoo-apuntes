@@ -11,7 +11,7 @@ group :docstats do
 end
 
 group :html5 do
-    gem "asciidoctor-multipage"
+    gem "asciidoctor-multipage", git: "https://github.com/aplatanado/asciidoctor-multipage"
 end
 
 group :pdf do

@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/aplatanado/asciidoctor-multipage
+  revision: 670f5b7f8d58b93e4e0d9d3ab240b9d2398a1581
+  specs:
+    asciidoctor-multipage (0.0.13.dev)
+      asciidoctor (>= 2.0.11, < 2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -14,9 +21,7 @@ GEM
       asciidoctor (~> 2.0)
       asciimath (~> 2.0)
       mathematical (~> 1.6.0)
-    asciidoctor-multipage (0.0.12)
-      asciidoctor (>= 2.0.11, < 2.1)
-    asciidoctor-pdf (1.6.0)
+    asciidoctor-pdf (1.6.1)
       asciidoctor (~> 2.0)
       concurrent-ruby (~> 1.1)
       prawn (~> 2.4.0)
@@ -32,7 +37,7 @@ GEM
       addressable
     ethon (0.14.0)
       ffi (>= 1.15.0)
-    ffi (1.15.3)
+    ffi (1.15.4)
     gepub (1.0.14)
       nokogiri (>= 1.8.2, < 1.13)
       rubyzip (> 1.1.1, < 2.4)
@@ -52,8 +57,8 @@ GEM
     mercenary (0.4.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.0704)
-    nokogiri (1.12.3-x86_64-linux)
+    mime-types-data (3.2021.0901)
+    nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -105,7 +110,7 @@ DEPENDENCIES
   asciidoctor
   asciidoctor-epub3
   asciidoctor-mathematical
-  asciidoctor-multipage
+  asciidoctor-multipage!
   asciidoctor-pdf
   html-proofer
   nokogiri
@@ -113,4 +118,4 @@ DEPENDENCIES
   rouge
 
 BUNDLED WITH
-   2.2.4
+   2.2.27
