@@ -18,8 +18,9 @@ sudo apt install bison flex libffi-dev libxml2-dev libgdk-pixbuf2.0-dev libcairo
 Después las gemas se pueden instalar fácilmente con *Bundle*:
 
 ~~~~
-bundle config set build.nokogiri --use-system-libraries
-bundle config set without epub3
+bundle config set --local path vendor/bundle
+bundle config set --local build.nokogiri --use-system-libraries
+bundle config set --local without epub3
 bundle install
 ~~~~
 
@@ -29,7 +30,13 @@ Para automatizar la generación de la documentación se utiliza *Rake*.
 Para listar las tareas del proyecto basta con ejecutar:
 
 ~~~
-rake -T
+bundle exec rake -T
+~~~
+
+Luego se puede ejecutar cualquier tarea con:
+
+~~~
+bundle exec rake <tarea>
 ~~~
 
 ## Solución de problemas
@@ -37,6 +44,8 @@ rake -T
 ### Problemas con mathematical
 
 En caso de tener problemas porque `mathematical.so` no encuentra `liblasem.so`, puede deberse a haber instalado los paquetes con `bundle install` de forma global, para todo el sistema.
+Esto no debería ocurrir con los pasos indicados anteriormente porque son para una instalación local al proyecto.
+
 Si *Bundle* no puede escribir en el directorio donde se instalan las gemas, lo hace en un directorio temporal, donde también compila las extensiones, y después pide permiso para ejecutar `sudo` y copiar los archivos a su ubicación definitiva.
 En ese caso, la ruta donde `mathematical.so` espera encontrar `liblasem.so` —indicada en RUNPATH en `mathematical.so`— puede que ya no sirva.
 

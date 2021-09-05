@@ -37,16 +37,17 @@ jobs:
 
     - name: Instalar dependencias (gemas)
       run: |
-        bundle config set build.nokogiri --use-system-libraries
-        bundle config set without epub3
-        bundle config set deployment true
+        bundle config set --local path vendor/bundle
+        bundle config set --local build.nokogiri --use-system-libraries
+        bundle config set --local without epub3
+        bundle config set --local deployment true
         bundle install
 
     - name: Testear
       run: bundle exec rake tests:all
 
     - name: Generar la documentación
-      run: DOCUMENT_NAME=sistemas_operativos bundle exec rake build:html build:pdf
+      run: bundle exec rake build:html build:pdf DOCUMENT_NAME=sistemas_operativos
 
     - name: Publicar web
       uses: JamesIves/github-pages-deploy-action@3.6.2
