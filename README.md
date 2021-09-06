@@ -1,6 +1,5 @@
 # Apuntes de "Sistemas Operativos"
-Excepto donde se indique lo contrario, esta obra está sujeta a la licencia
-[Creative Commons Atribución 4.0 Internacional](https://creativecommons.org/licenses/by/4.0/deed.es).
+Esta obra está sujeta a la licencia [Creative Commons Atribución 4.0 Internacional](https://creativecommons.org/licenses/by/4.0/deed.es), excepto donde se indique lo contrario.
 
 ## Requisitos
 
