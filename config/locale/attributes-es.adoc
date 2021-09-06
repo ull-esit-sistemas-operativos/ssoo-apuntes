@@ -10,6 +10,10 @@
 :last-update-label: Última actualización
 ifdef::listing-caption[:listing-caption: Lista]
 //:manname-title: NOMBRE
+:multipage-nav-home-label: Inicio
+:multipage-nav-next-label: Siguiente
+:multipage-nav-previous-label: Anterior
+:multipage-nav-up-label: Subir
 :note-caption: Nota
 :part-signifier: Parte
 :part-refsig: {part-signifier}
