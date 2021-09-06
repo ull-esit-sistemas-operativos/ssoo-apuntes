@@ -1,6 +1,5 @@
-require 'json'
+require 'html-proofer'
 require 'nokogiri'
-require 'rake'
 require 'tempfile'
 
 require_relative './config.rb'
@@ -9,23 +8,23 @@ module Tests
 
     module HTMLProofer
 
-        def get_typhoeus_config()
-            cookie_file = Tempfile.create()
-            return {
-                :cookiefile => cookie_file.path(),
-                :cookiejar => cookie_file.path(),
-                :headers => {
-                    "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0",
-                },
-                :ssl_verifyhost => 0,
-                :ssl_verifypeer => false,
-            }.to_json
-        end
-        module_function :get_typhoeus_config
-
         def htmlproofer(pathname)
-            htmlproofer_opts = CONFIG[:htmlproofer_opts]
-            Rake::FileUtilsExt.sh "htmlproofer", "--typhoeus_config", get_typhoeus_config(), *htmlproofer_opts, pathname
+            htmlproofer_opts = {
+                disable_external: ENV.key?('HTMLPROOFER_DISABLE_EXTERNAL'),
+                typhoeus: {
+                    headers: {
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0",
+                    },
+                    ssl_verifyhost: 0,
+                    ssl_verifypeer: false
+                }
+            }
+            htmlproofer_opts.merge! CONFIG[:htmlproofer_opts]
+            Tempfile.create do |f|
+                htmlproofer_opts[:typhoeus][:cookiefile] = f.path()
+                htmlproofer_opts[:typhoeus][:cookiejar] = f.path()
+                ::HTMLProofer.check_directory(pathname, htmlproofer_opts).run
+            end
         end
         module_function :htmlproofer
         

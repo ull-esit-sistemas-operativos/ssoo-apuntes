@@ -14,8 +14,8 @@ Struct.new('Config',
             asciidoctor_epub_opts:  [],
             asciidoctor_html_opts: [],
             asciidoctor_pdf_opts: [],
-            pandoc_docx_opts: [],
-            htmlproofer_opts:  ENV.key?('HTMLPROOFER_DISABLE_EXTERNAL') ? ["--disable-external"] : []
+            htmlproofer_opts: {},
+            pandoc_docx_opts: []
         }
         super(default_values)
     end
