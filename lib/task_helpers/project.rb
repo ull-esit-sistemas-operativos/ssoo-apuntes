@@ -10,7 +10,7 @@ module Project
 
     DOCUMENT_MAIN_FILE = "main.adoc"
     DOCUMENT_STATS_FILE = "docstats.adoc"
-    DEFAULT_OUTPUT_NAME = "main"
+    DEFAULT_OUTPUT_NAME = File.basename DOCUMENT_MAIN_FILE, ".*"
 
     CONFIG_FILES = FileList[
         File.join(CONFIG_DIRECTORY, "**/*.adoc"),
@@ -34,7 +34,6 @@ module Project
                 :html => make_output_dirname(source_directory, "html"),
                 :pdf => make_output_dirname(source_directory, "pdf"),
             }
-
             {
                 :pathname => pathname,
                 :namespace => namespaces.join(":"),
@@ -48,11 +47,11 @@ module Project
                 ],
                 :media_files => find_media_files(source_directory),
                 :output_pathnames => {
-                    :docbook => File.join(output_directories[:docbook], get_output_documment_filename(namespaces, "docbook")),
-                    :docx => File.join(output_directories[:docx], get_output_documment_filename(namespaces, "docx")),
-                    :epub => File.join(output_directories[:epub], get_output_documment_filename(namespaces, "epub")),
-                    :html => File.join(output_directories[:html], "index.html"), 
-                    :pdf => File.join(output_directories[:pdf], get_output_documment_filename(namespaces, "pdf")),
+                    :docbook => File.join(output_directories[:docbook], get_output_filename(namespaces, "docbook")),
+                    :docx => File.join(output_directories[:docx], get_output_filename(namespaces, "docx")),
+                    :epub => File.join(output_directories[:epub], get_output_filename(namespaces, "epub")),
+                    :html => File.join(output_directories[:html], "#{DEFAULT_OUTPUT_NAME}.html"), 
+                    :pdf => File.join(output_directories[:pdf], get_output_filename(namespaces, "pdf")),
                 },
                 :docstats_pathname => File.join(source_directory, DOCUMENT_STATS_FILE),
             }
@@ -76,10 +75,10 @@ module Project
     end
     module_function :find_media_files
 
-    def get_output_documment_filename(namespaces, extension)
+    def get_output_filename(namespaces, extension)
         envvar_name = [*namespaces, "DOCUMENT", "NAME"].join("_").upcase
         return "#{ENV[envvar_name] || namespaces.last || DEFAULT_OUTPUT_NAME}.#{extension}"
     end
-    module_function :get_output_documment_filename
+    module_function :get_output_filename
 
 end

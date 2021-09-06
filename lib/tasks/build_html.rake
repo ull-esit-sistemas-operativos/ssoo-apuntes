@@ -20,7 +20,7 @@ Project::documents.each do |document|
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:html]}",
                               *asciidoctor_args,
-                              '--out-file', t.name, t.prerequisites.first()
+                              '--destination-dir', document[:output_directories][:html], t.prerequisites.first()
         end
 
         task :html_media_files do |t|
