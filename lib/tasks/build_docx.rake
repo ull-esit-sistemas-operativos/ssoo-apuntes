@@ -8,7 +8,7 @@ Project::documents.each do |document|
         task :docx => [ document[:output_pathnames][:docx] ]
 
         file document[:output_pathnames][:docx] => [:docbook, document[:output_directories][:docx]] do |t|
-            pandoc_opts = CONFIG[:pandoc_docx_opts]
+            pandoc_opts = CONFIG[:pandoc_docx_args]
             sh "pandoc", '--from', 'docbook',
                          '--to', 'docx',
                          '--resource-path', document[:output_directories][:docbook],
@@ -25,11 +25,11 @@ Project::documents.each do |document|
         end
  
         file document[:output_pathnames][:docbook] => [*document[:dependencies], :config] do |t|
-            asciidoctor_opts = CONFIG[:asciidoctor_opts] + CONFIG[:asciidoctor_docbook_opts]
+            asciidoctor_args = CONFIG[:asciidoctor_args] + CONFIG[:asciidoctor_docbook_args]
             sh "asciidoctor", '--backend', 'docbook',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:docbook]}",
-                              *asciidoctor_opts,
+                              *asciidoctor_args,
                               '--out-file', t.name, t.prerequisites.first()
         end
 

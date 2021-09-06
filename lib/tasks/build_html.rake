@@ -15,12 +15,12 @@ Project::documents.each do |document|
                 ] : [
                 '--backend', 'html5'
                 ]
-                asciidoctor_opts = CONFIG[:asciidoctor_opts] + CONFIG[:asciidoctor_html_opts]
+                asciidoctor_args = CONFIG[:asciidoctor_args] + CONFIG[:asciidoctor_html_args]
             sh "asciidoctor", *backend_opts,
                               '--require', './lib/time-admonition-block.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:html]}",
-                              *asciidoctor_opts,
+                              *asciidoctor_args,
                               '--out-file', t.name, t.prerequisites.first()
         end
 

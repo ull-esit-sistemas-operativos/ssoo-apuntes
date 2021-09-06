@@ -7,13 +7,13 @@ Project::documents.each do |document|
         task :epub => [ document[:output_pathnames][:epub] ]
 
         file document[:output_pathnames][:epub] => [*document[:dependencies], :config] do |t|
-            asciidoctor_opts = CONFIG[:asciidoctor_opts] + CONFIG[:asciidoctor_epub_opts]
+            asciidoctor_args = CONFIG[:asciidoctor_args] + CONFIG[:asciidoctor_epub_args]
             sh "asciidoctor", '--backend', 'epub3',
                               '--require', 'asciidoctor-epub3',
                               '--require', './lib/time-admonition-block.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:epub]}",
-                              *asciidoctor_opts,
+                              *asciidoctor_args,
                               '--out-file', t.name, t.prerequisites.first()
         end
 

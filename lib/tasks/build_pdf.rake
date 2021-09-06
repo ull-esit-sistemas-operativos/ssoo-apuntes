@@ -7,13 +7,13 @@ Project::documents.each do |document|
         task :pdf => [ document[:output_pathnames][:pdf] ]
 
         file document[:output_pathnames][:pdf] => [*document[:dependencies], :config] do |t|
-            asciidoctor_opts = CONFIG[:asciidoctor_opts] + CONFIG[:asciidoctor_pdf_opts]
+            asciidoctor_args = CONFIG[:asciidoctor_args] + CONFIG[:asciidoctor_pdf_args]
             sh "asciidoctor", '--backend', 'pdf',
                               '--require', 'asciidoctor-pdf',
                               '--require', './lib/time-admonition-block.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:pdf]}",
-                              *asciidoctor_opts,
+                              *asciidoctor_args,
                               '--out-file', t.name, t.prerequisites.first()
         end
 
