@@ -30,14 +30,14 @@ module Tests
         
     end
 
-    def find_missing_variables(string_or_io)
-        document = Nokogiri::HTML.parse(string_or_io)
-        # Ignorar bloques stem: <div class='stemblock'> o \$texto\$
-        variables = document.xpath('//body//text()[not(ancestor::div[@class="stemblock"])]').flat_map do |text|
-            text.content.gsub(/\\\$.*?\\\$/, "").scan(/\{[\w-]+\}/)
+    def find_missing_variables(pathname)
+        open(pathname) do |f|
+            document = Nokogiri::HTML.parse(f)
+            # Ignorar bloques stem: <div class='stemblock'> o \$texto\$
+            document.xpath('//body//text()[not(ancestor::div[@class="stemblock"])]').flat_map do |text|
+                text.content.gsub(/\\\$.*?\\\$/, "").scan(/\{[\w-]+\}/)
+            end
         end
-
-        return variables.uniq.sort
     end
     module_function :find_missing_variables
 
