@@ -47,7 +47,7 @@ jobs:
       run: bundle exec rake tests:all
 
     - name: Generar la documentación
-      run: bundle exec rake build:html build:pdf DOCUMENT_NAME=sistemas_operativos
+      run: bundle exec rake build:html build:pdf DOCUMENT_NAME=sistemas_operativos HTML_MULTIPAGE=1
 
     - name: Publicar web
       uses: JamesIves/github-pages-deploy-action@3.6.2
