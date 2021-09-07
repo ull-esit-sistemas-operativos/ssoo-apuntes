@@ -43,14 +43,80 @@ Las funciones POSIX están almacenadas, principalmente, en la librería `libc`.
 Aunque algunas características pueden estar en otras librerías, como `libm` —la librería matemática— o `libpthread` —la librería de hilos—. 
 
 Los desarrolladores del sistema a veces añaden funciones no incluidas en el estándar POSIX, con el objeto de soportar algún tipo de funcionalidad avanzada del sistema.
-Antes de usarlas debemos tener presente que:
+Este es el caso de las diferentes versiones de BSD y la librería del sistema del proyecto GNU —usada generalmente en los sistemas Linux— que incluye sus propias extensiones.
+Además, el estándar POSIX ha tenido varias revisiones desde la primera —publicada en 1988— cada una de las cuales añade características y funcionalidades adicionales.
 
-* Un programa que solo utilice la API POSIX podrá ejecutarse en cualquier sistema operativo compatible POSIX.
+Antes de usar extensiones y características avanzadas debemos tener presente que:
 
-* Mientras que uno que utilice, por ejemplo, alguna funcionalidad adicional no POSIX de Linux o macOS, solo podrá compilarse y ejecutarse en Linux o en macOS, según el caso.
+* Un programa que solo utilice funcionalidades hasta cierta versión de la API POSIX, podrá ejecutarse en cualquier sistema operativo compatible POSIX que implemente al menos hasta esa versión del estándar.
 
-// TODO: Hablar de extensiones BSD (C POSIX) y de los flags en linux
-// Quizas en una subseccion
+* Mientras que uno que utilice, por ejemplo, alguna funcionalidad adicional no POSIX de GNU/Linux o macOS, solo podrá compilarse y ejecutarse en GNU/Linux o en macOS, según el caso.
+
+Como la compatibilidad con diferentes sistemas puede ser algo bastante complejo de gestionar para los desarrolladores, los sistemas POSIX ofrecen macros con las que controlar qué funcionalidades del sistema están disponibles para nuestro programa.
+A estas macros sé las denomina {linux_feature_test_macros}.
+
+Por ejemplo, el siguiente programa en C —disponible en {softstack_c}— realiza una serie de tareas muy sencillas: crea un archivo, muestra una serie de mensajes por la salida estándar, cierra el archivo y termina.
+Sin embargo, si no se define la macro `_POSIX_C_SOURCE` puede que no compile, según la versión de la librería del sistema y las opciones del compilador.
+El motivo es que todas las funciones utilizadas en el programa forman parte del estándar POSIX desde hace tiempo, excepto {linux_mkstemp}, que es una función introducida en el estándar POSIX.1-2008.
+Por lo que si el compilador por defecto compila para una versión anterior del estándar, esta y otras funciones definidas en especificaciones posteriores no están.
+
+[source,c]
+----
+#define _POSIX_C_SOURCE 200809L                      <1>
+
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char filename[] = "/tmp/softstack-fileXXXXXX";
+
+    mkstemp(filename);                               <2>
+
+    puts("Antes de abrir el archivo...");
+    int fd = open(filename, O_RDWR | O_CREAT);
+    puts("Después de abrir el archivo...");
+    close(fd);
+
+    return 0;
+}
+----
+<1> Definir la macro `_POSIX_C_SOURCE` con el valor `200809L` activa que las cabeceras expongan definiciones correspondientes a la especificación POSIX.1-2008.
+
+<2> Genera un nombre de archivo que no exista en el sistema de archivos usando la plantilla indica por `filename`.
+Esta función pertenece al estándar POSIX.1-2008.
+
+Este mecanismo tiene la doble ventaja de que:
+
+. Al tener que incluir las macros sabemos los requisitos mínimos del sistema donde podremos compilar y ejecutar nuestro programa, aunque no estemos preocupados por cumplir con un estándar concreto.
+
+. Si es un requisito del proyecto que se ejecute en sistemas con un estándar particular, solo tenemos que incluir la macro correspondiente y el compilador no nos dejará usar definiciones no incluidas en la especificación indicada.
+
+Los sistemas POSIX pueden soportar muchas otras {linux_feature_test_macros}, según las especificaciones y extensiones soportadas por la librería del sistema.
+Las de uso más común en los sistemas GNU son: 
+
+* `_POSIX_C_SOURCE`.
+Según el valor asignado a esta macro se establece la especificación POSIX que debe activarse para el programa.
+Los valores válidos se indican en la documentación de las {linux_feature_test_macros}.
+
+* `_XOPEN_SOURCE`.
+Definiendo esta macro se indica la especificación de la https://es.wikipedia.org/wiki/X/Open[Guía de portabilidad X/Open] que debe activarse para el programa.
+Según el valor se activarán ciertas especificaciones POSIX junto con algunas extensiones adicionales.
+
+* `_BSD_SOURCE`.
+Activa funcionalidades específicas de los sistemas BSD.
+
+* `_DEFAULT_SOURCE`.
+Activa las especificaciones y extensiones por defecto, por si se diera el caso de que han sido desactivas de alguna manera.
+Las definiciones por defecto incluyen: POSIX.1-2008, ISO C99 y algunas funcionalidades extra de sistemas UNIX BSD y System V.
+
+* `_GNU_SOURCE`.
+Activa `_DEFAULT_SOURCE` y extensiones específicas de los sistemas GNU.
 
 == Llamadas al sistema
 (((llamada al sistema)))
