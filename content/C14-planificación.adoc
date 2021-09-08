@@ -456,7 +456,7 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 
 Sin embargo, si hubiéramos utilizado el algoritmo *FCFS* los tiempos hubieran sido mucho peores:
 
-// TODO: Diagrama de Gantt de FCFS
+// TODO: (A) Diagrama de Gantt de FCFS
 
 [cols="^2,^1,^1,^1,^1,^1" options="header,footer"]
 |===
@@ -640,7 +640,7 @@ Supongamos que 5 procesos llegan a la cola de preparados en los tiempos indicado
 Como en los ejemplos anteriores, aunque es difícil tener un conocimiento a priori del tiempo de las ráfagas de CPU, vamos a suponer que son conocidos.
 Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuando llega a la *cola de preparados*.
 
-// TODO: hacer también versión cooperativa
+// TODO: (A) hacer también versión cooperativa
 
 [[tabla-problema-prioridad]]
 .Problema de planificación de la CPU mediante algoritmo de planificación con prioridades.
@@ -911,8 +911,8 @@ t_i = w_i/W T
 
 donde _W_ es la suma de los pesos de todos los procesos en la *cola de preparados* durante _T_. 
 
-// TODO: El problema es que los procesos entran y salen de la cola de preparados, por lo que este cálculo es dinámico.
-// TODO: Hacer un problema como los que hemos visto en otros planificadores
+// TODO: (A) El problema es que los procesos entran y salen de la cola de preparados, por lo que este cálculo es dinámico.
+// Hacer un problema como los que hemos visto en otros planificadores
 // https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler
 // https://www.geeksforgeeks.org/completely-fair-scheduler-cfs-and-brain-fuck-scheduler-bfs/
 

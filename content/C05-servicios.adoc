@@ -11,7 +11,7 @@ Un sistema operativo proporciona un entorno para la ejecución de programas.
 Ese entorno debe proporcionar ciertos servicios a los programas y a los usuarios de esos programas.
 Estos servicios son proporcionados gracias al funcionamiento coordinado de los diferentes componentes del sistema.
 
-// TODO: Repasar esta imagen para que coincida con los servicios indicados aquí.
+// TODO: (A) Repasar esta imagen para que coincida con los servicios indicados aquí.
 .Diagrama general de organización de los sistemas operativos.
 image::{chapdir}/organización_sistema.svg[]
 

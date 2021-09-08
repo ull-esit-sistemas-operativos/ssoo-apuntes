@@ -96,7 +96,7 @@ Por tanto, los procesos solo necesitan conocer la identidad de los otros para co
 
 * Entre cada par de procesos solo hay un enlace.
 
-// TODO: Figura ilustrativa
+// TODO: (A) Figura ilustrativa
 
 La principal desventaja de este tipo de comunicación es que si cambia el identificador de un proceso hay que actualizar todas las referencias en todos los procesos que se comunican con él.
 En general cualquier técnica que requiera que los identificadores de los procesos sean establecidos explícitamente en el código de los programas no es deseable, puesto que en muchos sistemas los identificadores de los procesos cambian de una ejecución a otra.
@@ -157,7 +157,7 @@ Un *enlace de comunicaciones* según este esquema tiene las siguientes caracter�
 
 * Entre cada par de procesos en comunicación puede haber varios enlaces, cada uno de los cuales corresponde a un puerto.
 
-// TODO: Figura ilustrativa
+// TODO: (A) Figura ilustrativa
 
 .Colas de mensajes en sistemas POSIX
 ****
@@ -228,7 +228,7 @@ Por lo general es el primero en ser escogido por el planificador de la CPU para 
 
 ==== Recepción concurrente
 
-// TODO: Esquema del problema.
+// TODO: (A) Esquema del problema.
 
 Este tipo de comunicación da lugar a algunas situaciones que deben ser resueltas durante el diseño.
 
@@ -478,7 +478,7 @@ En caso afirmativo, podemos enviar un mensaje con {linux_mq_send} sabiendo que n
 
 === Señales en sistemas operativos POSIX
 
-// TODO: Diagrama: A Guide to Linux Signals http://www.linuxvoice.com/core-technology-signals/
+// TODO: (0) Diagrama: A Guide to Linux Signals http://www.linuxvoice.com/core-technology-signals/
 
 En los sistemas POSIX, una forma más sencilla de comunicar dos procesos del mismo sistema es mediante el envío de una *((señal))* de uno al otro.
 
@@ -601,7 +601,7 @@ Las *tuberías*(((tubería))) son un mecanismo de paso de mensajes de *comunicac
 Conceptualmente cada tubería tiene dos extremos en los que se puede leer y escribir mediante las operaciones básicas de lectura y escritura de archivos `read()` y `write()`.
 Un extremo permite a los procesos en ese extremo escribir en la tubería, mientras el otro extremo permite a los procesos leer de la tubería los datos escritos desde el otro extremo.
 
-// TODO: Esquema de una tubería.
+// TODO: (A) Esquema de una tubería.
 
 Existen dos tipos de tuberías:
 

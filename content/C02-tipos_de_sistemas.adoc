@@ -82,7 +82,7 @@ A estos sistemas se los llamó *multiprogramados*.
 [[fig-sistemas-multiprogramados]]
 .Organización de la memoria en sistemas multiprogramados.
 image::{chapdir}/sistemas_multiprogramados.svg[]
-// TODO: Hacer un dibujo más elaborado con cola de entrada
+// TODO: (B) Hacer un dibujo más elaborado con cola de entrada
 
 ====
 En los *sistemas multiprogramados* la ejecución de los trabajos funcionaba de la siguiente manera:

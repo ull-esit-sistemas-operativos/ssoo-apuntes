@@ -148,7 +148,7 @@ Por ello, el número de entradas es bajo, normalmente entre 64 y 1024.
 
 ==== Uso básico de la TLB
 
-// TODO: Diagrama
+// TODO: (B) Diagrama
 
 La *TLB* es utiliza con la *tabla de páginas* de la siguiente manera:
 

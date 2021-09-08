@@ -312,7 +312,7 @@ pid_t parent = getppid();
 Puesto que cada nuevo proceso puede a su vez crear otros procesos, al final se acaba obteniendo un **árbol de procesos**.
 En los sistemas POSIX es muy sencillo de ver ejecutando el comando {cmd_pstree}.
 
-// TODO: Poner una captura de pstree
+// TODO: (0) Poner una captura de pstree
 
 En estos sistemas el proceso *((init))* es el proceso padre raíz de todos los procesos de usuario.
 Su PID siempre es 1, ya que es el primer proceso creado por el sistema operativo al terminar la inicialización del núcleo.
