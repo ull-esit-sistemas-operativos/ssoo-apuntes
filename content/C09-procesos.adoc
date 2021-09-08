@@ -312,11 +312,16 @@ pid_t parent = getppid();
 Puesto que cada nuevo proceso puede a su vez crear otros procesos, al final se acaba obteniendo un **árbol de procesos**.
 En los sistemas POSIX es muy sencillo de ver ejecutando el comando {cmd_pstree}.
 
-// TODO: (0) Poner una captura de pstree
+[[fig-pstree]]
+.Ejemplo de árbol de procesos mostrador por el comando pstree.
+image::{chapdir}/pstree.png[]
 
-En estos sistemas el proceso *((init))* es el proceso padre raíz de todos los procesos de usuario.
+En estos sistemas se conoce como proceso *((init))* al proceso padre raíz de todos los procesos de usuario.
 Su PID siempre es 1, ya que es el primer proceso creado por el sistema operativo al terminar la inicialización del núcleo.
 Por lo tanto, es el responsable de crear todos los otros procesos que son necesarios para el funcionamiento del sistema.
+
+En la <<fig-pstree>> se observa que `systemd` es el proceso *((init))*, como ocurre frecuentemente en muchos sistemas Linux actuales.
+Anteriormente, lo común es que los sistemas Linux emplearan una implementación de *((init))* basada en la de los UNIX System V.
 
 ==== Cómo obtienen los procesos hilos los recursos que necesitan
 
