@@ -57,6 +57,7 @@
 :linux_ftruncate: link:https://linux.die.net/man/2/ftruncate[ftruncate()]
 :linux_getpid: link:https://man7.org/linux/man-pages/man2/getpid.2.html[getpid()]
 :linux_getppid: link:https://man7.org/linux/man-pages/man2/getppid.2.html[getppid()]
+:linux_ioctl: link:https://man7.org/linux/man-pages/man2/ioctl.2.html[ioctl()]
 :linux_kill: link:https://man7.org/linux/man-pages/man2/kill.2.html[kill()]
 :linux_listen: link:https://man7.org/linux/man-pages/man2/listen.2.html[listen()]
 :linux_mkstemp: link:https://man7.org/linux/man-pages/man3/mkstemp.3.html[mkstemp()]

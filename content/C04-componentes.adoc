@@ -102,18 +102,67 @@ Así los programadores pueden acceder a cualquier dispositivo abstrayendo de las
 Por tanto, las peticiones que hacen los procesos a la interfaz de E/S genérica la traslada el sistema a los controladores de dispositivo para que estos las conviertan en acciones concretas sobre el hardware del dispositivo.
 ====
 
-// TODO: Ejemplo de código donde se usa esta interfaz.
-// TODO: Quizás se puede escribir como un sidebar.
-
-[NOTE]
-====
+.Interfaz de acceso a dispositivos en sistemas UNIX
+****
 Una característica de los sistemas UNIX es que todos los dispositivos de E/S se representan como un archivo en el sistema de archivos.
 Esto se puede comprobar rápidamente visitando el directorio `/dev` en cualquier sistema GNU/Linux o UNIX BSD, ya que es allí donde suelen estar.
 
 Así no hace falta diseñar y aprender una interfaz diferente para cada tipo de dispositivo.
-Los procesos que quiere utilizar cualquier dispositivo de E/S solo tienen que usar las mismas funciones y llamadas al sistema que emplean para manipular los archivos normales.
-Por ejemplo, {linux_open}, {linux_read}, {linux_write} o {linux_close}.
-====
+Por ejemplo, no hace falta que el sistema ofrezca funciones para leer y escribir bloques en dispositivos de almacenamiento.
+Ni para leer la geometría del dispositivo, para configurar modos de trasferencia o de ahorro de energía o para eyectarlo, en el caso de los dispositivos removibles.
+Tampoco son necesarias funciones específicas para grabar y reproducir sonidos, para configurar la tarjeta de sonido o para leer y establecer los valores del mezclador.
+Por el contrario, todas las operaciones sobre los dispositivos de E/S se ofrecen a través de una interfaz bien conocida por los desarrolladores, la misma que se utiliza para gestionar archivos convencionales: {linux_open}, {linux_read}, {linux_write}, {linux_close} o {linux_mmap}.
+
+Por ejemplo, `/dev/urandom` es un dispositivo que se utiliza para obtener una secuencia de bytes aleatorios.
+Para usarlo, solo tenemos que abrirlo y leer de él la cantidad de bytes que necesitemos:
+
+[source,c]
+----
+int fd = open( "/dev/urandom", O_RDONLY );
+if (fd >= 0) {
+    char random_data[64];
+    ssize_t bytes_read = read( fd, random_data, sizeof(random_data) );   <1>
+
+    // ...
+
+    close(fd);
+}
+----
+<1> Si {linux_read} tiene éxito, `random_data` contendrá datos aleatorios al volver de la llamada al sistema.
+
+Sin embargo, algunos dispositivos tienen funciones de control que no se trasladan bien a esta interfaz basada en archivos.
+Por ejemplo, si tenemos un lector de DVD o de Blu-ray, las operación {linux_read} nos permite leer el contenido del disco en crudo —es decir, bloque a bloque, ignorando el sistema de archivos— pero ¿cómo lo eyectamos o cómo sabemos si hay un disco en el lector?.
+
+Para resolver este tipo de situaciones, los sistemas UNIX incorporan la llamada al sistema {linux_ioctl}, que permite enviar comandos u obtener parámetros específicos del dispositivo.
+La llamada al sistema {linux_ioctl} acepta los siguientes argumentos:
+
+* El descriptor de archivo obtenido al abrir el dispositivo.
+
+* El código de petición al dispositivo.
+Depende del dispositivo, por lo que para conocer los códigos que se soportan es necesario leer la documentación del controlador.
+
+* Un puntero opcional a un búfer en la memoria, para recibir los parámetros solicitados o para enviar datos al dispositivo.
+
+Por ejemplo, así podríamos eyectar el primer lector de CD/DVD-ROM o Blue-ray en Linux:
+
+[source,c]
+----
+#include <linux/cdrom.h>                              <1>
+
+// ...
+
+int fd = open( "/dev/sr0", O_RDONLY | O_NONBLOCK );   <2>
+if (fd >= 0) { 
+    ioctl ( fd, CDROMEJECT );                         <3>
+    close ( fd );
+}
+----
+<1> Este archivo contiene los códigos IOCTL conocidos por los controladores de dispositivo del tipo lectores de CD-ROM.
+
+<2> Como en el ejemplo anterior con `/dev/uranom`, es necesario abrir el dispositivo para obtener un descriptor de archivo.
+
+<3> En la llamada al sistema {linux_ioctl} se indica el código de la petición para eyectar la bandeja.
+****
 
 === ((Buffering))
 
