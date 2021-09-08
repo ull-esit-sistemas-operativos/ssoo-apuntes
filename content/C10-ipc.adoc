@@ -478,8 +478,6 @@ En caso afirmativo, podemos enviar un mensaje con {linux_mq_send} sabiendo que n
 
 === Señales en sistemas operativos POSIX
 
-// TODO: (0) Diagrama: A Guide to Linux Signals http://www.linuxvoice.com/core-technology-signals/
-
 En los sistemas POSIX, una forma más sencilla de comunicar dos procesos del mismo sistema es mediante el envío de una *((señal))* de uno al otro.
 
 Los procesos pueden mandar señales utilizando la llamada al sistema {linux_kill}, que solo requiere el identificador del proceso de destino y el número que identifica la señal.
@@ -561,6 +559,10 @@ Es especialmente útil si se va a usar el mismo manejador para varias señales.
 En el ejemplo se usa `SA_RESTART`, que indica que si la señal llega durante una llamada al sistema, la llamada debe continuar una vez se haya salido del manejador de señal.
 Como comentamos anteriormente, este es el comportamiento de {linux_signal} en los sistemas BSD.
 El comportamiento por defecto, sin esta opción, es que la llamada al sistema interrumpida falle con el error `EINTR` en {linux_errno}.
+
+[[fig-orígenes-de-las-señales]]
+.Orígenes más comunes de las señales.
+image::{chapdir}/orígenes_de_las_señales.svg[]
 
 Las señales fueron diseñadas originalmente como un mecanismo para que el sistema operativo notificase a los programas ciertos errores y sucesos críticos.
 Por ejemplo:
