@@ -454,9 +454,9 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 |12.25 
 |===
 
-Sin embargo, si hubiéramos utilizado el algoritmo *FCFS* los tiempos hubieran sido mucho peores:
+Sin embargo, si hubiéramos utilizado el algoritmo *FCFS*:
 
-// TODO: (A) Diagrama de Gantt de FCFS
+image::{chapdir}/fcfs-sjf.svg[]
 
 [cols="^2,^1,^1,^1,^1,^1" options="header,footer"]
 |===
@@ -640,8 +640,6 @@ Supongamos que 5 procesos llegan a la cola de preparados en los tiempos indicado
 Como en los ejemplos anteriores, aunque es difícil tener un conocimiento a priori del tiempo de las ráfagas de CPU, vamos a suponer que son conocidos.
 Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuando llega a la *cola de preparados*.
 
-// TODO: (A) hacer también versión cooperativa
-
 [[tabla-problema-prioridad]]
 .Problema de planificación de la CPU mediante algoritmo de planificación con prioridades.
 [cols="4*^" options=header]
@@ -721,6 +719,52 @@ Con los *tiempos de espera y ejecución promedio* correspondientes:
 |7.80
 |
 |12.20 
+|===
+
+Mientras que si utilizamos el algoritmo de planificación por prioridades cooperativo, obtendremos el diagrama de Gantt de la siguiente figura:
+
+image::{chapdir}/prioridad_cooperativo.svg[]
+
+Con los *tiempos de espera y ejecución promedio* correspondientes:
+
+[cols="^2,^1,^1,^1,^1,^1" options="header,footer"]
+|===
+|Proceso
+|Instante de finalización (ms)
+2+|Tiempo de espera (ms)
+2+|Tiempo de ejecución (ms)
+
+|P1
+|10
+>|[.lightcell]#(0-0)=#|0
+>|[.lightcell]#(10-0)=#|10
+
+|P2
+|12
+>|[.lightcell]#(10-1)=#|9
+>|[.lightcell]#(12-1)=#|11
+
+|P3
+|20
+>|[.lightcell]#(17-2)=#|15
+>|[.lightcell]#(20-2)=#|18
+
+|P4
+|22
+>|[.lightcell]#(20-3)=#|17
+>|[.lightcell]#(22-3)=#|19
+
+|P5
+|17
+>|[.lightcell]#(12-4)=#|8
+>|[.lightcell]#(17-4)=#|13
+
+|Tiempos promedio (ms)
+|
+|
+|9.80
+|
+|14.20 
 |===
 
 Que estos algoritmos ofrezcan mejores o peores resultados que otros, obviamente depende de los criterios utilizados para asignar las prioridades.
