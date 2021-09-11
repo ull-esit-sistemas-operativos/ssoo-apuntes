@@ -27,7 +27,6 @@ Los componentes no están bien separados y las interfaces entre ellos no están 
 Por ejemplo, en el {msdos} los programas de aplicación podían acceder directamente a toda la memoria y a cualquier dispositivo.
 Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el sistema completo.
 
-// TODO: (A) Programa residente como núcleo
 [[fig-estructura-msdos]]
 .Esquema de la estructura de MS-DOS.
 image::{chapdir}/estructura_msdos.svg[]

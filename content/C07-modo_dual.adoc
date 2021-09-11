@@ -142,7 +142,6 @@ Por tanto las *direcciones físicas*(((dirección, física))) son las direccione
 Mientras que el *espacio de direcciones físico*(((espacio, de direcciones, físico))) es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un espacio de direcciones virtual dado.
 ====
 
-// TODO: (A) Señalar el espacio de usuario y de núcleo.
 // Esta figura aparece también en el Capítulo 15: Memoria principal
 [[fig-protección-memoria]]
 .Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.
