@@ -245,6 +245,7 @@
 :msdos: link:https://es.wikipedia.org/wiki/MS-DOS[MS-DOS]
 :os2: link:https://es.wikipedia.org/wiki/OS/2[OS/2]
 :qnx: link:https://es.wikipedia.org/wiki/QNX[QNX]
+:zircon: link:https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)[Zircon]
 
 // Ordenadores y arquitecturas
 :ibmpc: link:https://es.wikipedia.org/wiki/IBM_PC[IBM PC]

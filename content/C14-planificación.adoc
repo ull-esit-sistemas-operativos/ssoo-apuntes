@@ -933,32 +933,93 @@ Si a continuación un usuario inicia un nuevo proceso, el planificador tendría 
 
 El algoritmo de planificación equitativa es muy similar al algoritmo *RR*. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula dinámicamente para garantizar el reparto equitativo de la CPU.
 
+==== Planificación equitativa podenrada
+(((planificación, de CPU, equitativa ponderada)))
+
 Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
 Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_es>>.
+
 La *planificación equitativa* resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo proporcionalmente más tiempo de CPU a los procesos con mayor peso.
 A esta generalización del planificador equitativo se la conoce como *planificador equitativo ponderado*.
 
-[NOTE]
-====
-Desde la versión 2.6.23 de Linux se utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo))).
-Otro ejemplo es Zircon, el _microkernel_ de {google_fuchsia}, que está inmerso en migrar a una implementación de  *planificador equitativo ponderado*.
+Linux, desde la versión 2.6.23, utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo))) (véase https://developer.ibm.com/tutorials/l-completely-fair-scheduler/[«Inside the Linux 2.6 Completely Fair Schedule -- IBM Developer»]).
+Otro ejemplo es {zircon} —el _microkernel_ de {google_fuchsia}— que está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del *planificador equitativo ponderado* (véase https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler[«Zircon Fair Scheduler -- Fuchsia Project»]).
 
-Para más información véase https://developer.ibm.com/technologies/linux/tutorials/l-completely-fair-scheduler/[«Inside the Linux 2.6 Completely Fair Schedule -- IBM Developer»] y https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler[«Zircon Fair Scheduler -- Fuchsia Project»].
-====
+==== Implementación
 
-Si durante un periodo de tiempo _T_, un proceso _P~i~_ tiene peso _w~i~_, a ese proceso le corresponde un tiempo de CPU _t~i~_:
+Para ilustrar como funciona este tipo de planificadores, vamos a describir brevemente una posible implementación basada en la de {zircon}.
+
+{zircon} es un _microkernel_ multihilo con modelo uno a uno, por lo que su planificador trabaja con hilos.
+Es decir, las propiedades que necesita el planificador para hacer su trabajo están vinculadas a los hilos y son estos hilos los que el planificador ordena y selecciona para ser ejecutados en la CPU.
+Por el contrario, en la versión que vamos a describir los hilos no existen.
+En su lugar hablaremos de planificar procesos en la CPU, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.
+
+Este planificador tiene una serie de parámetros ajustables:
+
+* La granularidad mínima _M_, es la porción mínima de tiempo de CPU que se puede asignar a cualquier proceso.
+
+* La latencia de planificación _L_, es el periodo de tiempo en el que todos los procesos deben haber sido planificados aproximadamente una vez en la CPU.
++
+Lo que hace el planificador es repartir periodos de tiempo _L_ entre todos los procesos que compiten por la CPU, para que todos tengan una oportunidad de ejecutarse en intervalos de al menos _L_ segundos.
+
+Como en otros planificadores, los procesos listos para ejecutarse en un instante dado se almacenan en la cola de preparados.
+La suma _N_ de procesos en estado *preparado* y *ejecutando* en un instante dado es el número total de procesos que compiten por la CPU.
+
+Cada proceso _i_ tiene una serie de propiedades:
+
+* Peso _w~i~_, que indica el peso relativo del proceso en el reparto del tiempo de CPU.
+Se trata de un número real en el intervalo (0.0, 1.0].
+
+* Instante inicial _T~si~_ de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+
+* Instante final _T~fi~_ de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+
+* Cuanto del tiempo de CPU _T~i~_ en el periodo actual.
+Como ocurre con el cuanto en la planificación *RR*, se trata del tiempo máximo que el proceso puede estar de forma continua en la CPU.
+
+El concepto de _tiempo virtual_ es muy común en este tipo de planificadores.
+Es como si cada proceso tuviera su propia dimensión temporal, de forma que el tiempo fluyera más despacio para los procesos con mayor peso _w~i~_.
+Así, una unidad de tiempo virtual para un proceso muy pesado implica más tiempo real, que la misma unidad para un proceso muy ligero.
+
+Sea _t_ es el instante de tiempo en el que un proceso _i_ entra en la cola de preparados, en relación al tiempo virtual el proceso comienza a ejecutarse en la CPU desde ese mismo instante y necesitará más tiempo para terminar cuanto mayor sea su peso.
+Por lo tanto, podemos calcular el instante inicial _T~si~_ y el instante final _T~fi~_ de la siguiente manera:
 
 [stem]
 ++++
-t_i = w_i/W T
+T_si = t
+T_fi = T_si + L/w_i
 ++++
 
-donde _W_ es la suma de los pesos de todos los procesos en la *cola de preparados* durante _T_. 
+El tiempo virtual no es el tiempo real en la CPU.
+Por lo tanto, el proceso _i_ no entrará en la CPU nada más llegar en _t_, pero si se colocará en la cola de preparados en orden ascendente en relación al instante final _T~fi~_.
+Es decir, los procesos con mayor peso _w~i~_ se colocarán antes en la cola de preparados, con bastante probabilidad.
 
-// TODO: (A) El problema es que los procesos entran y salen de la cola de preparados, por lo que este cálculo es dinámico.
-// Hacer un problema como los que hemos visto en otros planificadores
-// https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler
-// https://www.geeksforgeeks.org/completely-fair-scheduler-cfs-and-brain-fuck-scheduler-bfs/
+Cuando un proceso _i_ es seleccionado para pasar al estado *ejecutando*, se calcula su cuanto de tiempo.
+Como el tiempo se asigna en múltiplos de _M_, primero es necesario saber cuantas unidades de tiempo _M_ tiene el periodo de latencia de planificación _L_, que es el tiempo máximo que se le podría asignar si el proceso estuviera solo:
+
+[stem]
+++++
+g_i = "floor"(L/M)
+++++
+
+A cada proceso le corresponde más tiempo de CPU según su peso en relación al resto de procesos en competición, lo que lleva a calcular el peso relativo _r~i~_ como:
+
+[stem]
+++++
+r_i = w_i / W
+++++
+
+donde _W_ es la suma de los pesos de todos los procesos en competición por la CPU.
+Cuando un proceso entra en la cola de preparados su peso se suma a _W_, mientras que cuando pasa al estado *esperando* su peso se resta.
+
+Finalmente, podemos calcular el cuanto del proceso _i_: 
+
+[stem]
+++++
+T_i = "ceil"(g_i * r_i) * M
+++++
+
+Esta definición asegura que _T~i~_ sea un entero múltiplo de la granularidad mínima _M_, mientras es aproximadamente proporcional al peso del proceso respecto al resto de procesos con los que compite.
 
 === Planificación con colas multinivel
 (((planificación, de CPU, multinivel)))
