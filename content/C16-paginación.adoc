@@ -148,19 +148,21 @@ Por ello, el número de entradas es bajo, normalmente entre 64 y 1024.
 
 ==== Uso básico de la TLB
 
-// TODO: (B) Diagrama
-
 La *TLB* es utiliza con la *tabla de páginas* de la siguiente manera:
+
+[[fig-paginación-tlb]]
+.Soporte del hardware para la paginación con TLB.
+image::{chapdir}/tlb.svg[]
 
 . La *TLB* contiene unas pocas entradas de la *tabla de páginas*.
 
 . Cuando la CPU genera una dirección virtual, el *número de página* es entregado a la *TLB*.
 La *TLB* utiliza los números de páginas como *clave*, por lo que si hay alguna coincidencia, devolverá la entrada correspondiente de la *tabla de páginas*.
 
-. Si hay coincidencia, el *número de marco* es extraído de la entrada devuelta por la *TLB* y es utilizado para generar la dirección física.
+. Si hay coincidencia —o *acierto de TLB*— el *número de marco* es extraído de la entrada devuelta por la *TLB* y es utilizado para generar la dirección física.
 Todo este proceso puede requerir un 10% más de tiempo que si no se hiciera la traducción de las direcciones.
 
-. Si no hay coincidencia, es necesario acceder a la *tabla de páginas* para obtener la entrada correspondiente directamente de ella.
+. Si no hay coincidencia —o *fallo de TLB*— es necesario acceder a la *tabla de páginas* para obtener la entrada correspondiente directamente de ella.
 Indudablemente, este acceso puede beneficiarse de la existencia de diferentes niveles de caché en el acceso a la memoria principal.
 
 . En este último caso, la entrada recuperada debe ser añadida a la *TLB*, por lo que sí está llena, se debe seleccionar una para ser sustituida.
