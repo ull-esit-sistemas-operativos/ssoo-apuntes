@@ -933,7 +933,7 @@ Si a continuación un usuario inicia un nuevo proceso, el planificador tendría 
 
 El algoritmo de planificación equitativa es muy similar al algoritmo *RR*. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula dinámicamente para garantizar el reparto equitativo de la CPU.
 
-==== Planificación equitativa podenrada
+==== Planificación equitativa ponderada
 (((planificación, de CPU, equitativa ponderada)))
 
 Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
@@ -956,45 +956,45 @@ En su lugar hablaremos de planificar procesos en la CPU, por coherencia con cóm
 
 Este planificador tiene una serie de parámetros ajustables:
 
-* La granularidad mínima _M_, es la porción mínima de tiempo de CPU que se puede asignar a cualquier proceso.
+* La *granularidad mínima _M_*, es la porción mínima de tiempo de CPU que se puede asignar a cualquier proceso.
 
-* La latencia de planificación _L_, es el periodo de tiempo en el que todos los procesos deben haber sido planificados aproximadamente una vez en la CPU.
+* La *latencia de planificación _L_*, es el periodo de tiempo en el que todos los procesos deben haber sido planificados aproximadamente una vez en la CPU.
 +
 Lo que hace el planificador es repartir periodos de tiempo _L_ entre todos los procesos que compiten por la CPU, para que todos tengan una oportunidad de ejecutarse en intervalos de al menos _L_ segundos.
 
 Como en otros planificadores, los procesos listos para ejecutarse en un instante dado se almacenan en la cola de preparados.
-La suma _N_ de procesos en estado *preparado* y *ejecutando* en un instante dado es el número total de procesos que compiten por la CPU.
+Cada proceso _P~i~_ tiene una serie de propiedades:
 
-Cada proceso _i_ tiene una serie de propiedades:
-
-* Peso _w~i~_, que indica el peso relativo del proceso en el reparto del tiempo de CPU.
+* *Peso _w~i~_*, que indica el peso relativo del proceso en el reparto del tiempo de CPU.
 Se trata de un número real en el intervalo (0.0, 1.0].
 
-* Instante inicial _T~si~_ de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+* *Instante inicial _T~si~_* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
 
-* Instante final _T~fi~_ de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+* *Instante final _T~fi~_* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
 
-* Cuanto del tiempo de CPU _T~i~_ en el periodo actual.
-Como ocurre con el cuanto en la planificación *RR*, se trata del tiempo máximo que el proceso puede estar de forma continua en la CPU.
+* *Cuanto del tiempo de CPU _T~i~_* en el periodo actual.
+Como ocurre con el cuanto en la planificación RR, se trata del tiempo máximo que el proceso puede estar de forma continua en la CPU.
 
 El concepto de _tiempo virtual_ es muy común en este tipo de planificadores.
 Es como si cada proceso tuviera su propia dimensión temporal, de forma que el tiempo fluyera más despacio para los procesos con mayor peso _w~i~_.
 Así, una unidad de tiempo virtual para un proceso muy pesado implica más tiempo real, que la misma unidad para un proceso muy ligero.
 
-Sea _t_ es el instante de tiempo en el que un proceso _i_ entra en la cola de preparados, en relación al tiempo virtual el proceso comienza a ejecutarse en la CPU desde ese mismo instante y necesitará más tiempo para terminar cuanto mayor sea su peso.
+Sea _t_ es el instante de tiempo en el que un proceso _P~i~_ entra en la cola de preparados, en relación al tiempo virtual el proceso comienza a ejecutarse en la CPU desde ese mismo instante y necesitará más tiempo para terminar cuanto mayor sea su peso.
 Por lo tanto, podemos calcular el instante inicial _T~si~_ y el instante final _T~fi~_ de la siguiente manera:
 
-[stem]
+[latexmath]
 ++++
-T_si = t
-T_fi = T_si + L/w_i
+\begin{split}
+T_{si} &= t \\
+T_{fi} &= T_{si} + L/w_i
+\end{split}
 ++++
 
 El tiempo virtual no es el tiempo real en la CPU.
-Por lo tanto, el proceso _i_ no entrará en la CPU nada más llegar en _t_, pero si se colocará en la cola de preparados en orden ascendente en relación al instante final _T~fi~_.
+Por lo tanto, el proceso _P~i~_ no entrará en la CPU nada más llegar en _t_, pero si se colocará en la cola de preparados en orden ascendente en relación al instante final _T~fi~_.
 Es decir, los procesos con mayor peso _w~i~_ se colocarán antes en la cola de preparados, con bastante probabilidad.
 
-Cuando un proceso _i_ es seleccionado para pasar al estado *ejecutando*, se calcula su cuanto de tiempo.
+Cuando un proceso _P~i~_ es seleccionado para pasar al estado *ejecutando*, se calcula su cuanto de tiempo.
 Como el tiempo se asigna en múltiplos de _M_, primero es necesario saber cuantas unidades de tiempo _M_ tiene el periodo de latencia de planificación _L_, que es el tiempo máximo que se le podría asignar si el proceso estuviera solo:
 
 [stem]
@@ -1009,10 +1009,16 @@ A cada proceso le corresponde más tiempo de CPU según su peso en relación al 
 r_i = w_i / W
 ++++
 
-donde _W_ es la suma de los pesos de todos los procesos en competición por la CPU.
-Cuando un proceso entra en la cola de preparados su peso se suma a _W_, mientras que cuando pasa al estado *esperando* su peso se resta.
+donde _W_ es la suma de los pesos de todos los procesos en competición por la CPU —en la cola de preparados— más el peso del que se está ejecutando.
 
-Finalmente, podemos calcular el cuanto del proceso _i_: 
+[stem]
+++++
+W = sum_i w_i : P_i["estado"] in {"PREPARADO", "EJECUTANDO"}
+++++
+
+Cuando un proceso entra en la cola de preparados su peso se suma a _W_, mientras que cuando pasa al estado *esperando* o termina, su peso se resta.
+
+Finalmente, podemos calcular el cuanto del proceso _P~i~_: 
 
 [stem]
 ++++
