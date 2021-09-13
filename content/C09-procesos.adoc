@@ -112,7 +112,6 @@ El diagrama de estados de los procesos, con las transiciones posibles entre ello
 
 == Bloque de control de proceso
 (((bloque, de control, proceso)))
-
 El *bloque de control de proceso* o *((PCB))* (_Process Control Block_) es una estructura de datos que representa a cada proceso en el sistema operativo y que guarda información sobre su estado de actividad actual.
 
 En el sistema hay un PCB por proceso y sirve de almacén para cualquier información que puede variar de un proceso a otro:
@@ -146,7 +145,6 @@ Incluye la lista de dispositivos de E/S reservados por el proceso, la lista de a
 
 == Colas de planificación
 (((cola, planificación)))
-
 En los sistemas operativos hay diferentes *colas de planificación* para los procesos en distintos *estados*.
 
 Cola de trabajo(((cola, trabajo)))::

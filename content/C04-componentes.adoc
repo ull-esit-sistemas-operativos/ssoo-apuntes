@@ -15,7 +15,6 @@ Lo que veremos en este capítulo es un esquema de los más comunes a la mayoría
 [[sect-componente-gestión-de-procesos]]
 == Gestión de procesos
 (((gestión, procesos)))
-
 La gestión de los procesos es un elemento central de todo sistema operativo:
 
 ====
@@ -62,7 +61,6 @@ El componente de gestión de procesos es el responsable de las siguientes activi
 
 == Gestión de la memoria principal
 (((gestión, memoria)))
-
 La memoria principal es un recurso fundamental para las operaciones de cualquier sistema operativo moderno.
 Esto es así porque generalmente es el único almacenamiento al que la CPU tiene acceso directo.
 Para que un programa pueda ser ejecutado debe ser copiado a la memoria principal.
@@ -83,7 +81,6 @@ El componente de gestión de la memoria debe asumir las siguientes responsabilid
 
 == Gestión del sistema de E/S
 (((gestión, sistema de E/S)))
-
 El *sistema de E/S*(((sistema, de E/S))) hace de interfaz con el hardware, oculta las peculiaridades del hardware al resto del sistema.
 
 ====
@@ -196,7 +193,6 @@ Así no hay acceso simultáneo al dispositivo por parte de varios procesos, mien
 
 == Gestión del almacenamiento secundario
 (((gestión, almacenamiento secundario)))
-
 Dentro de los dispositivos de E/S, los dedicados al almacenamiento secundario —como discos duros, memorias USB o lectores de DVD-ROM— merecen un tratamiento especial.
 
 Los programas que se desean ejecutar deben estar en la memoria principal —o almacenamiento primario— pero esta es demasiado pequeña para alojar todos los datos y todos los programas del sistema.
@@ -215,7 +211,6 @@ El gestor del almacenamiento secundario es el responsable de:
 
 == Gestión del sistema de archivos
 (((gestión, sistema de archivos)))
-
 Los ordenadores pueden almacenar información en diferentes tipos de medios físicos —por ejemplo en discos duros magnéticos, CD/DVD-ROM, memorias USB o SSD— cada uno de los cuales tiene características propias.
 El acceso a cada tipo de medio es controlado por un dispositivo —por ejemplo el controlador de disco o la unidad de DVD-ROM— que también tiene características propias.
 El sistema de E/S y la gestión del almacenamiento secundario simplifican el acceso a estos dispositivos, pero no lo suficiente como para que sea cómodo usarlos constantemente en cualquier programa. 
@@ -248,7 +243,6 @@ El sistema de archivos utiliza al gestor del almacenamiento secundario y al sist
 
 == Gestión de red
 (((gestión, red)))
-
 El componente de red se responsabiliza de la comunicación con otros sistemas interconectados mediante una red de ordenadores —por ejemplo, en Internet o en la red de área local de una oficina—.
 
 == Protección y seguridad

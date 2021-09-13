@@ -12,7 +12,6 @@ En esta sección comentaremos cómo se clasifican los distintos sistemas operati
 
 == Estructura sencilla
 (((estructura, sencilla)))
-
 ====
 Los sistemas con *estructura sencilla* se caracterizan por: 
 
@@ -49,7 +48,6 @@ Lo cierto es que con mejor soporte del hardware se puede dividir el sistema oper
 
 == Estructura en capas
 (((estructura, en capas)))
-
 ====
 Los sistemas con *estructura en capas* se caracterizan por: 
 
@@ -94,9 +92,7 @@ Esto limita mucho las ventajas de esta técnica porque no permite compartimentar
 ====
 
 == Microkernel
-(((estructura, microkernel)))
-(((microkernel)))
-
+(((estructura, microkernel)))(((microkernel)))
 ====
 Los sistemas con *estructura microkernel* se caracterizan por: 
 

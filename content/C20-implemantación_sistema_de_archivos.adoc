@@ -108,7 +108,6 @@ Como la unidad mínima de asignación de espacio a un archivo es el bloque, la f
 
 === Asignación contigua
 (((asignación, contigua, disco)))
-
 La *asignación contigua* requiere que cada archivo ocupe un conjunto contiguo de bloques en el disco.
 Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requiere un movimiento mínimo del cabezal del disco.
 
@@ -153,10 +152,9 @@ En {ext4} el espacio se asigna a los archivos en *extensiones* de hasta 128 MiB,
 
 === Asignación enlazada
 (((asignación, enlazada)))
+En la *asignación enlazada* cada archivo es una lista enlazada de bloques de disco, pudiendo estos bloques estar dispersos por todo el disco:
 
 // TODO: Diagrama
-
-En la *asignación enlazada* cada archivo es una lista enlazada de bloques de disco, pudiendo estos bloques estar dispersos por todo el disco:
 
 ====
 * Cada entrada de directorio contiene un puntero al primer bloque.
@@ -242,7 +240,6 @@ Una de las ventajas de este esquema es que mejora el tiempo de los accesos aleat
 
 === Asignación indexada
 (((asignación, indexada)))
-
 El mecanismo de *asignación indexada* agrupa todos los punteros de la asignación enlazada en una única ubicación: el *bloque de índices*(((bloque, índices))).
 Así se resuelve la falta de eficiencia de la asignación enlazada convencional —en ausencia de FAT— cuando se realizan accesos aleatorios.
 
@@ -375,7 +372,6 @@ La implementación de un sistema de archivos está compuesta de tres niveles fun
 
 === Interfaz del sistema de archivos
 (((interfaz, sistema de archivos)))
-
 El primer nivel es la *interfaz del sistema de archivos*, a la que acceden los desarrolladores a través de las llamadas al sistema.
 En sistemas POSIX, estamos hablando de las llamadas {linux_open}, {linux_read}, {linux_write} y {linux_close}, entre otras.
 Y de los descriptores de archivos con los que se identifican los archivos abiertos.
@@ -384,7 +380,6 @@ Esta interfaz es la misma sea cual sea el sistema de archivos al que se esté in
 
 === Sistema de archivos virtual
 (((sistema de archivos, virtual)))
-
 El segundo nivel es la interfaz del *sistema de archivos virtual* o *((VFS))* (_Virtual File System_).
 Este nivel es utilizado por el anterior para atender las peticiones realizadas.
 
@@ -446,7 +441,6 @@ En los dispositivos de almacenamiento basados en memorias de estado sólido (vé
 
 === Cola de E/S al disco
 (((cola, E/S al disco)))
-
 Cuando se solicita una operación de E/S sobre el almacenamiento, si la controladora y la unidad de disco están desocupadas, el sistema operativo puede atender la petición sobre la marcha.
 Pero si están ocupadas, el sistema operativo almacena la solicitud en una cola de peticiones pendientes.
 Cuando se resuelve una solicitud, el sistema operativo escoge otra de la cola y se comunica con el hardware para programar la siguiente petición.
@@ -456,7 +450,6 @@ La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S d
 
 === Planificación FCFS
 (((planificación, de disco, FCFS)))
-
 En la planificación *((FCFS))* (_First Come, First Served_) o *primero que llega, primero servido* la cola de E/S al disco es FIFO.
 Es decir, que las solicitudes se atienden en orden de llegada.
 
@@ -471,16 +464,13 @@ Se suele utilizar en los discos basados en memorias de estado sólido, donde reo
 
 === Planificación SSTF
 (((planificación, de disco, SSTF)))
-
 En la planificación *((SSTF))* (_Sortest_ _Seek Time First_) o algoritmo de *tiempo de búsqueda más corto*, de toda cola se selecciona la solicitud con el menor *tiempo de búsqueda* desde la posición actual de la cabeza.
 Este algoritmo de planificación primero da servicio a las solicitudes cercanas a la posición actual de la cabeza, antes de alejarse para dar servicio a otras solicitudes, dado que el *tiempo de búsqueda* se incrementa a medida que lo hace el número de cilindros que es necesario recorrer para llegar a una posición dada.
 
 Aun así, la solución no es óptima, dado que puede provocar inanición de algunas solicitudes, si van llegando constantemente nuevas solicitudes sobre regiones cercanas a donde está actualmente la cabeza del disco.
 
 === Planificación SCAN y C-SCAN
-(((planificación, de disco, SCAN)))
-(((planificación, de disco, C-SCAN)))
-
+(((planificación, de disco, SCAN)))(((planificación, de disco, C-SCAN)))
 En la planificación *((SCAN))*, algoritmo de *exploración* o del *ascensor*, el brazo del disco comienza en un extremo del disco y se mueve hacia el otro, atendiendo solicitudes a medida que pasa por cada cilindro, hasta llegar al otro extremo del disco.
 En el otro extremo, la dirección de movimiento de la cabeza se invierte para recorrer el disco en sentido inverso, repitiendo el proceso.
 
@@ -491,9 +481,7 @@ A la variante del *SCAN* que cuando llega a un extremo vuelve al inicio, para vo
 Con esta variante el tiempo que tiene que esperar una solicitud para ser atendida es más uniforme que con el algoritmo *SCAN* original.
 
 === Planificación LOOK y C-LOOK
-(((planificación, de disco, LOOK)))
-(((planificación, de disco, C-LOOK)))
-
+(((planificación, de disco, LOOK)))(((planificación, de disco, C-LOOK)))
 En teoría los algoritmos *SCAN* y *C-SCAN* hacen que el brazo recorra los cilindros del primero al último, pero normalmente no se suelen implementar así.
 
 Por lo general, cuando en el recorrido del brazo, tras atender una solicitud, se descubre que ya no hay más solicitudes siguiendo la misma dirección, el brazo invierte la dirección sin llegar hasta el extremo del disco.
@@ -506,10 +494,7 @@ Linux utilizó *C-LOOK*, bajo el nombre de *_elevator_*, como planificador de E/
 ====
 
 === Planificación N-Step-SCAN, N-Step-LOOK y F-SCAN
-(((planificación, de disco, N-Step-SCAN)))
-(((planificación, de disco, N-Step-LOOK)))
-(((planificación, de disco, F-SCAN)))
-
+(((planificación, de disco, N-Step-SCAN)))(((planificación, de disco, N-Step-LOOK)))(((planificación, de disco, F-SCAN)))
 Los algoritmos *((N-Step-SCAN))* y *((N-Step-LOOK))* son variantes de los algoritmos *SCAN* y *LOOK*, respectivamente; donde se limita a _N_ el número de solicitudes que se atenderán en cada barrido del brazo del disco.
 Estos algoritmos funcionan de la siguiente manera:
 
@@ -527,7 +512,6 @@ Como *F-SCAN*, *N-Step-SCAN* y *N-Step-LOOK* separan las solicitudes en dos cola
 
 === Planificación CFQ
 (((planificación, de disco, CFQ)))
-
 El planificador *((CFQ))* (_Completely Fair Queuing_) se diseñó para compartir de forma equitativa el *ancho de banda* entre todos los procesos que solicitan acceso al disco.
 Fue utilizado por defecto en muchas distribuciones de Linux hasta la versión 5.0 del núcleo y funciona de la siguiente manera:
 

@@ -229,7 +229,6 @@ Normalmente, estos bits son almacenados en cada una de las entradas de la *tabla
 
 === Bits de protección
 (((bit, protección)))
-
 Los *bits de protección* pueden ser:
 
 * *Solo lectura*.
@@ -248,7 +247,6 @@ Normalmente, el sistema operativo responde a dicha excepción terminando el proc
 
 === Bit de válido
 (((bit, válido)))
-
 Además de los *bits de protección* comentados, se suele añadir a cada entrada un *bit de válido*:
 
 * Cuando una *página es válida*, la página existe en el espacio de direcciones virtual del proceso.
@@ -304,7 +302,6 @@ La falta de *marco* es indicada por el sistema operativo utilizando el *bit de v
 
 == Páginas compartidas
 (((página, compartida)))
-
 Una de las ventajas importantes de la paginación, es la posibilidad de compartir *páginas* entre procesos.
 Para conseguir esto, basta con que las *páginas compartidas* de los distintos procesos tengan asignadas un mismo *marco*.
 Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las *páginas* de código o los datos de solo lectura con el fin de ahorrar memoria.
@@ -314,7 +311,6 @@ Compartir *páginas* no solo permite ahorrar memoria, pues en los sistemas opera
 
 == Paginación jerárquica
 (((paginación, jerárquica)))
-
 Al método básico de paginación, se lo conoce como *tabla de páginas lineal*(((tabla, páginas, lineal))).
 Sin embargo, las CPU comúnmente, utilizan otras técnicas a la hora de estructurar la *tabla de páginas*.
 Una de las más comunes es la *paginación jerárquica*, utilizada en los procesadores de la familia x86 y en ARM, entre otros.

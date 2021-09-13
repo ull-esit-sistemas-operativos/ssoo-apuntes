@@ -22,7 +22,6 @@ En cualquier caso, sea cual sea el algoritmo de planificación utilizado, este d
 
 == Planificación expropiativa
 (((planificación, de CPU, expropiativa)))
-
 El planificador deben ser invocado necesariamente en los siguientes casos, dado que en ellos la CPU queda libre y es conveniente aprovecharla planificando otro proceso, en lugar de dejarla desocupada:
 
 ====
@@ -94,7 +93,6 @@ Los algoritmos de planificación son mejores cuanto mayor es su valor para los s
 
 ==== Uso de CPU
 (((uso de CPU)))
-
 Un buen planificador debería mantener la CPU lo más ocupada posible.
 El *uso de CPU* es la proporción de tiempo que se usa la CPU en un periodo de tiempo determinado.
 Se suele indicar en tanto por ciento.
@@ -106,7 +104,6 @@ Se suele indicar en tanto por ciento.
 
 ==== Tasa de procesamiento
 (((tasa, procesamiento)))
-
 Cuando la CPU está ocupada es porque el trabajo se está haciendo.
 Por tanto, una buena medida del volumen de trabajo realizado puede ser el número de tareas o procesos terminados por unidad de tiempo.
 A dicha magnitud es a la que denominamos como *tasa de procesamiento*.
@@ -207,7 +204,6 @@ Sin embargo, no debemos olvidar que para ser precisos necesitaríamos utilizar m
 
 === Planificación FCFS
 (((planificación, de CPU, FCFS)))
-
 En la planificación *((FCFS))* (_First Come, First Served_) o *primero que llega, primero servido* la cola es FIFO:
 
 * Los procesos que llegan se colocan al final de la cola que les corresponde.
@@ -377,7 +373,6 @@ Esto reduce la utilización de la CPU y de los dispositivos de E/S por debajo de
 
 === Planificación SJF
 (((planificación, de CPU, SJF)))
-
 La planificación *((SJF))* (_Shortest-Job First_) o *primero el más corto*, consiste en:
 
 . Se asocia con cada proceso la longitud de tiempo de su siguiente ráfaga de CPU.
@@ -536,7 +531,6 @@ El problema es que todos estos cálculos consumen tiempo de CPU, cuando el plani
 
 === Planificación SRTF
 (((planificación, de CPU, SRTF)))
-
 El algoritmo *SJF* es *cooperativo*, pero se puede implementar de forma *expropiativa*, en cuyo caso se llama *((SRTF))* (Shortest-Remaing-Time First).
 La diferencia está en lo que ocurre cuando un nuevo proceso llega a la *cola de preparados*.
 
@@ -618,7 +612,6 @@ Los algoritmos expropiativos también suelen ofrecer mejores tiempos de respuest
 
 === Planificación con prioridades
 (((planificación, de CPU, prioridades)))
-
 En la *planificación con prioridades* se asocia una prioridad a cada proceso, de tal forma que el de prioridad más alta es asignado a la CPU.
 En caso de igual prioridad, se utiliza *FCFS*.
 
@@ -797,9 +790,7 @@ De esta manera los proceso de baja prioridad tarde o temprano tendrán una oport
 Una vez se les asigna la CPU, se restablece su prioridad al valor original.
 
 === Planificación RR
-(((planificación, de CPU, RR)))
-(((planificación, de CPU, Round-Robin)))
-
+(((planificación, de CPU, RR)))(((planificación, de CPU, Round-Robin)))
 El algoritmo *((RR))* (_Round-Robin_) es similar al *FCFS*, pero añadiendo la expropiación para conmutar entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.
 
 Este algoritmo requiere los siguientes elementos:
@@ -923,7 +914,6 @@ Para evitarlo se puede optar por un *planificador de colas multinivel* —para r
 
 === Planificación equitativa
 (((planificación, de CPU, equitativa)))
-
 Hasta el momento hemos hablado de planificadores que se centran en cuál es el proceso más importante para ejecutarlo a continuación.
 Sin embargo otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
 Esto es precisamente lo que hace la *planificación equitativa* (_Fair Scheduling_) que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.
@@ -935,7 +925,6 @@ El algoritmo de planificación equitativa es muy similar al algoritmo *RR*. Pero
 
 ==== Planificación equitativa ponderada
 (((planificación, de CPU, equitativa ponderada)))
-
 Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
 Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_es>>.
 
@@ -1029,7 +1018,6 @@ Esta definición asegura que _T~i~_ sea un entero múltiplo de la granularidad m
 
 === Planificación con colas multinivel
 (((planificación, de CPU, multinivel)))
-
 Los diseñadores recurren a la *planificación de colas multinivel* cuando quieren combinar las características de varios algoritmos.
 
 En la planificación con colas multinivel se divide la cola de preparados en colas separadas.
@@ -1063,7 +1051,6 @@ Mientras que hoy en día es común que los procesos se muevan entre colas según
 
 === Planificación con colas multinivel realimentadas
 (((planificación, de CPU, multinivel realimentada)))
-
 Para aumentar la flexibilidad de la planificación con colas multinivel se puede permitir a los procesos pasar de una cola a otra.
 Así se pueden clasificar en colas distintas, procesos con diferentes tiempos de ráfaga de CPU.
 Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las colas de más alta prioridad, lo que ya hemos discutido que mejora los tiempos de espera y de respuesta y evita el *efecto convoy*.
@@ -1302,10 +1289,7 @@ En el <<_sistemas_de_tiempo_real>> discutimos la importancia de los sistemas de 
 A continuación, describiremos las funcionalidades necesarias para soportar la ejecución de procesos en tiempo real dentro de un sistema operativo de propósito general.
 
 === Tiempo real estricto
-(((sistema, tiempo real, estricto)))
-(((tiempo real, estricto)))
-(((hard real-time)))
-
+(((sistema, tiempo real, estricto)))(((tiempo real, estricto)))(((hard real-time)))
 Los sistemas de *tiempo real estricto* son necesarios para realizar tareas críticas que deben ser completadas dentro de unos márgenes de tiempo preestablecidos.
 
 Generalmente las tareas son entregadas al sistema operativo junto con una declaración de las restricciones de tiempo —periodicidad y límite de tiempo— y la cantidad de tiempo que necesitan para ejecutarse.
@@ -1316,10 +1300,7 @@ Esto es imposible en sistemas con almacenamiento secundario o memoria virtual, y
 Por tanto, el *tiempo real estricto* no es compatible con los sistemas operativos de propósito general, como los sistemas operativos de escritorio modernos.
 
 === Tiempo real flexible
-(((sistema, tiempo real, flexible)))
-(((tiempo real, flexible)))
-(((soft real-time)))
-
+(((sistema, tiempo real, flexible)))(((tiempo real, flexible)))(((soft real-time)))
 La ejecución de procesos de *tiempo real flexible* es menos restrictiva.
 Tan solo requiere que los procesos críticos reciban mayor prioridad que los que no lo son.
 Esto puede generar excesos en la cantidad de recursos asignados a los procesos de tiempo real, así como inanición y grandes retrasos en la ejecución del resto de los procesos, pero es compatible con los sistemas de propósito general.
@@ -1421,18 +1402,14 @@ Permite que cada núcleo de procesador que está presente físicamente, el siste
 Al margen de estas cuestiones, según el tipo de procesamiento, existen diversas posibilidades a la hora de enfrentar el problema de la planificación en un sistema multiprocesador (véase el <<_sistemas_multiprocesador>>).
 
 === Multiprocesamiento asimétrico
-(((sistema, multiprocesamiento, asimétrico)))
-(((multiprocesamiento, asimétrico)))
-
+(((sistema, multiprocesamiento, asimétrico)))(((multiprocesamiento, asimétrico)))
 Cuando utilizamos *multiprocesamiento asimétrico* todas las decisiones de planificación, procesamiento de E/S y otras actividades son gestionadas por el núcleo del sistema ejecutándose en un único procesador: el *servidor* o *maestro*.
 El resto de procesadores se limitan a ejecutar código de usuario, que les es asignado por ese procesador *maestro*.
 
 Este esquema es sencillo, puesto que evita la necesidad de compartir estructuras de datos entre el código que se ejecuta en los diferentes procesadores.
 
 === Multiprocesamiento simétrico
-(((sistema, multiprocesamiento, simétrico)))
-(((multiprocesamiento, simétrico)))
-
+(((sistema, multiprocesamiento, simétrico)))(((multiprocesamiento, simétrico)))
 Cuando utilizamos *multiprocesamiento simétrico* o *SMP*, cada procesador ejecuta su propia copia del núcleo del sistema operativo y se autoplanifica mediante su propio planificador de CPU.
 En estos sistemas nos podemos encontrar con varias alternativas.
 

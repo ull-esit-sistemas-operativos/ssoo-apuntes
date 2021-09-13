@@ -50,7 +50,6 @@ Por ejemplo, puede haber errores del hardware —como fallos de energía o error
 
 == Interfaz de usuario
 (((interfaz, de usuario)))
-
 La *interfaz de usuario* es un servicio fundamental para todos los sistemas diseñados para que los usuarios interactúen con ellos directamente, por lo que nos vamos a detener un poco más en él.
 
 Las interfaces de usuario pueden ser de diferentes tipos:

@@ -176,7 +176,6 @@ Obviamente, las instrucciones que pueden modificar el contenido del temporizador
 
 == Máquinas virtuales
 (((máquina virtual)))
-
 Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los comparten.
 Aun así, los procesos saben que hay un sistema operativo que los supervisa, porque le deben solicitar a él los distintos recursos a través de las llamadas al sistema.
 

@@ -246,7 +246,6 @@ La elección puede ser aleatoria, mediante algún algoritmo, por ejemplo, por tu
 
 == Buffering
 (((buffering)))
-
 Los mensajes intercambiados por enlace de comunicación se almacenan en una cola temporal, a la espera de ser enviados o, tras recibirlos, a la espera de que los reclame el proceso.
 
 Básicamente hay tres formas de implementar dicha cola:

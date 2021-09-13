@@ -133,9 +133,7 @@ Las distintas formas de implementar los hilos comentadas anteriormente —en esp
 A continuación veremos los modelos a los que han dado lugar las distintas combinaciones.
 
 === Muchos a uno
-(((muchos a uno)))
-(((modelo, muchos a uno)))
-
+(((muchos a uno)))(((modelo, muchos a uno)))
 En el modelo *muchos a uno* los hilos que ve el proceso se mapean en una única «entidad planificable en la CPU» del núcleo.
 
 Este, por lo general, es el modelo utilizado cuando el núcleo no soporta múltiples hilos de ejecución.
@@ -180,8 +178,7 @@ Estas implementaciones son muy útiles en los sistemas monohilo, de cara a poder
 Pero también lo son en los sistemas multihilo, ya que debido a su bajo coste en recursos y a su alta eficiencia son ideales cuando la cantidad de hilos a crear —el nivel de concurrencia— va a ser previsiblemente muy alta.
 
 === Uno a uno
-(((uno a uno)))
-(((modelo, uno a uno)))
+(((uno a uno)))(((modelo, uno a uno)))
 
 En el modelo *uno a uno* cada hilo que ve el proceso se mapea en una «entidad planificable en la CPU» diferente del núcleo.
 
@@ -213,9 +210,7 @@ Este modelo se utiliza en la mayor parte de los sistemas operativos multihilo mo
 Linux, Microsoft Windows —desde Windows 95— {solaris} 9 y superiores, macOS y la familia de UNIX BSD; son ejemplos de sistemas operativos que utiliza el modelo *uno a uno*.
 
 === Muchos a muchos
-(((muchos a muchos)))
-(((modelo, muchos a muchos)))
-
+(((muchos a muchos)))(((modelo, muchos a muchos)))
 En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una librería de hilos en el núcleo, para crear *hilos de núcleo*, y otra en el espacio de usuario, para crear *hilos de usuario*.
 Así los desarrolladores pueden utilizar la librería de hilos en el espacio de usuario para crear tantos hilos como quieran y que se ejecuten sobre los *hilos de núcleo*.
 
@@ -471,7 +466,6 @@ Se pueden cambiar entre estado y tipo de cancelación en cualquier momento, seg�
 
 ==== Cancelación asíncrona
 (((cancelación, asíncrona)))
-
 Por los motivos comentados anteriormente, no es recomendable la *cancelación asíncrona*, a menos que estemos muy seguros de que no puede causar problemas.
 Uno de los pocos casos con los que es compatible es en bucles 100% dedicados a ejecutar cálculos en la CPU, como el siguiente: 
 
@@ -495,7 +489,6 @@ En general, no se puede llamar a otras funciones de la librería del sistema de 
 
 ==== Cancelación en diferido
 (((cancelación, en diferido)))
-
 Por tanto, la *cancelación en diferido* es la mejor alternativa.
 Con este tipo de cancelación, la terminación del hilo ocurre en puntos concretos del código.
 

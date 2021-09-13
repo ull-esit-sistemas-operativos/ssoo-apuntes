@@ -26,9 +26,7 @@ Para más información sobre los _mainframes_, véase http://es.wikipedia.org/wi
 Los _mainframes_ aparecieron a finales de la década de los 50 del siglo pasado y han seguido evolucionando hasta la actualidad, por lo que dentro de este tipo de sistemas nos encontramos con varias categorías.
 
 === Sistemas de procesamiento por lotes
-(((sistema, procesamiento por lotes)))
-(((sistema, batch)))
-
+(((sistema, procesamiento por lotes)))(((sistema, batch)))
 Los primeros _mainframes_ eran enormes máquinas operadas desde una consola y conectados a lectores de tarjetas perforadas, dispositivos de cinta e impresoras.
 
 [NOTE]
@@ -71,7 +69,6 @@ Este desaprovechamiento de la CPU es peor cuanto más rápida es la CPU respecto
 
 === Sistemas multiprogramados
 (((sistema, multiprogramado)))
-
 La solución al inconveniente de los sistemas de procesamiento por lotes con la E/S fue que los programas no accedieran directamente al dispositivo de E/S, sino que, en su lugar, solicitaran la operación al *monitor del sistema* para que este la solicitara al hardware.
 Así el sistema operativo —como podemos comenzar a llamarlo— tiene la oportunidad de sustituir el programa en la CPU por otro, mientras la operación de E/S se completa.
 
@@ -116,7 +113,6 @@ Un ejemplo de este tipo de sistemas operativos es el IBM OS/360, que fue lanzado
 
 === Sistemas de tiempo compartido
 (((sistema, tiempo compartido)))
-
 Los sistemas multiprogramados ofrecían un uso más eficiente de la CPU, pero no eran capaces de proporcionar interacción directa con los usuarios.
 Los programadores seguían teniendo que entregar los trabajos al operador y espera a que este les devolviera los resultados.
 
@@ -182,7 +178,6 @@ Al igual que lo son los _mainframes_ modernos y muchos sistemas operativos actua
 
 == Sistemas de escritorio
 (((sistema, escritorio)))
-
 En la década de los 70 del siglo pasado también aparecieron las primeras CPU en microprocesadores y con estas llegaron las *microcomputadoras* o *microordenadores*.
 Las primeras *((microcomputadora))s* no incluían teclado ni monitor y se programaban usando interruptores y ledes ubicados en el frontal de la unidad.
 Pero en torno a 1977 apareció la segunda generación de *microcomputadoras*, que sí incluían estos periféricos de E/S, por lo que eran más fáciles de usar que sus predecesoras.
@@ -226,9 +221,7 @@ Para más información, véase el <<_criterios_de_planificación>>.
 Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <<sect-historia-cuarta-generación>>).
 
 == Sistemas de mano
-(((sistema, de mano)))
-(((sistema, móvil)))
-
+(((sistema, de mano)))(((sistema, móvil)))
 Con el nombre genérico de **sistemas de mano** —del inglés _handheld_— hacemos referencia a las _tablets_, _smartphones_, lectores de libros electrónicos y otro sistemas móviles y portátiles.
 Los desarrolladores de aplicaciones y sistemas de mano deben enfrentarse a diversos desafíos, originados por el tamaño limitado de los dispositivos y la alimentación mediante el uso de baterías.
 Debido a esas limitaciones, muchos sistemas de mano tienen poca cantidad de memoria, procesadores lentos —en comparación con sus equivalentes de escritorio— y pantallas más pequeñas.
@@ -237,7 +230,6 @@ En el diseño del sistema operativo suele primar la facilidad de uso y buscar un
 
 == Sistemas multiprocesador
 (((sistema, multiprocesador)))
-
 Un *sistema multiprocesador* es aquel ordenador hay procesadores interconectados que comparten el bus del sistema, el reloj y, en ocasiones la memoria, y los periféricos.
 
 Hace años esto solo se daba en sistemas con varias CPU, lo que era relativamente común en servidores y sistemas de alto rendimiento para trabajos técnicos o científicos.
@@ -281,7 +273,6 @@ Por lo que, aunque sobre el papel esta arquitectura ofrecía gran rendimiento, a
 
 == Sistemas distribuidos
 (((sistema, distribuido)))
-
 En la actualidad es común el uso de redes para interconectar ordenadores individuales —por ejemplo Internet o la red de área local de una oficina— cada uno equipado con su procesador, su memoria, sus dispositivos de almacenamiento, su fuente de alimentación, etc.
 En las redes de ordenadores los procesadores de dichos ordenadores se comunican con otros procesadores a través de líneas de comunicación, como: redes Ethernet, líneas telefónicas o wifi.
 Estos sistemas son comúnmente denominados *sistemas distribuidos*.
@@ -342,7 +333,6 @@ Para más información, véase el http://www.cs.vu.nl/pub/amoeba/[sitio web de A
 
 == Sistemas en clúster
 (((sistema, clúster)))
-
 Como los sistemas distribuidos, los *sistemas en clúster* interconectar ordenadores individuales.
 Sin embargo, generalmente se acepta que los *sistemas en clúster* comparten el almacenamiento y estén conectados por medio de una red local, condiciones que no tienen por qué darse en los sistemas distribuidos.
 
@@ -365,7 +355,6 @@ En estos casos el balanceador de carga realiza su trabajo repartiendo las conexi
 
 == Sistemas de tiempo real
 (((sistema, tiempo real)))
-
 Los **sistemas de ((tiempo real))** se utilizan cuando existen requerimientos estrictos de tiempo en la ejecución de ciertas tareas o en el procesamiento de flujos de datos.
 
 En general se usan frecuentemente en dispositivos de control donde, dentro de unos márgenes estrictos de tiempo, se deben tomar datos de uno o varios sensores, para analizarlos posteriormente y realizar, en consecuencia, alguna acción con algún mecanismo de control.
