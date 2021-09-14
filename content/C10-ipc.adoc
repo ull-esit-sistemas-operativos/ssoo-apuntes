@@ -96,7 +96,8 @@ Por tanto, los procesos solo necesitan conocer la identidad de los otros para co
 
 * Entre cada par de procesos solo hay un enlace.
 
-// TODO: (A) Figura ilustrativa
+.Comunicación directa.
+image::{chapdir}/enlace_comunicación_directa.svg[]
 
 La principal desventaja de este tipo de comunicación es que si cambia el identificador de un proceso hay que actualizar todas las referencias en todos los procesos que se comunican con él.
 En general cualquier técnica que requiera que los identificadores de los procesos sean establecidos explícitamente en el código de los programas no es deseable, puesto que en muchos sistemas los identificadores de los procesos cambian de una ejecución a otra.
@@ -157,7 +158,8 @@ Un *enlace de comunicaciones* según este esquema tiene las siguientes caracter�
 
 * Entre cada par de procesos en comunicación puede haber varios enlaces, cada uno de los cuales corresponde a un puerto.
 
-// TODO: (A) Figura ilustrativa
+.Comunicación indirecta.
+image::{chapdir}/enlace_comunicación_indirecta.svg[]
 
 .Colas de mensajes en sistemas POSIX
 ****
@@ -228,11 +230,12 @@ Por lo general es el primero en ser escogido por el planificador de la CPU para 
 
 ==== Recepción concurrente
 
-// TODO: (A) Esquema del problema.
-
 Este tipo de comunicación da lugar a algunas situaciones que deben ser resueltas durante el diseño.
+Por ejemplo, ¿qué ocurre, por ejemplo, si los procesos A, B y C comparten el puerto P1; A manda un mensaje y B y C invocan `receive()` en el puerto P al mismo tiempo?.
 
-¿Qué ocurre, por ejemplo, si los procesos A, B y C comparten el puerto P; A manda un mensaje y B y C invocan `receive()` en el puerto P al mismo tiempo?.
+.Problema de la recepción concurrente.
+image::{chapdir}/recepción_concurrente.svg[]
+
 La respuesta correcta dependerá de la elección de los diseñadores del sistema:
 
 * No permitir que cada enlace de comunicación —y por tanto cada puerto— esté asociado a más de dos procesos.
@@ -599,10 +602,15 @@ En este caso si se usa `SA_RESTART`, porque el programa debe estar esperando la 
 
 Las *tuberías*(((tubería))) son un mecanismo de paso de mensajes de *comunicación indirecta*, *orientada a flujos*, *capacidad limitada* y, generalmente, *comunicación síncrona* —aunque en algunos sistemas operativos también puede soportar asíncrona—.
 
-Conceptualmente cada tubería tiene dos extremos en los que se puede leer y escribir mediante las operaciones básicas de lectura y escritura de archivos `read()` y `write()`.
+Conceptualmente, cada tubería tiene dos extremos en los que opera utilizando la misma interfaz que generalmente empleamos para manipular archivos.
+Es decir, usando funciones como `read()`, `write()` y `close()`, entre otras.
 Un extremo permite a los procesos en ese extremo escribir en la tubería, mientras el otro extremo permite a los procesos leer de la tubería los datos escritos desde el otro extremo.
 
-// TODO: (A) Esquema de una tubería.
+.Esquema del concepto de tubería.
+image::{chapdir}/tuberías.svg[]
+
+El que cada extremo imite ser un archivo, facilita que se puedan usar en muchas de las llamadas al sistema que aceptan un archivo como argumento.
+Los procesos pueden leer o escribir en un archivo sin saber realmente si están accediendo a una archivo real o se están comunicando con otro proceso mediante una tubería.
 
 Existen dos tipos de tuberías:
 
