@@ -47,7 +47,7 @@ jobs:
       run: bundle exec rake tests:all
 
     - name: Generar la documentación
-      run: bundle exec rake build:html build:pdf DOCUMENT_NAME=sistemas_operativos HTML_MULTIPAGE=1
+      run: bundle exec rake build:site build:pdf DOCUMENT_NAME=sistemas_operativos
 
     - name: Publicar web
       uses: JamesIves/github-pages-deploy-action@3.6.2
@@ -58,7 +58,7 @@ jobs:
         TARGET_FOLDER: ${{ steps.branch_name.outputs.SOURCE_NAME }}
         CLEAN: true
 
-    - name: Publicar en 'Releases'
+    - name: Publicar el PDF en 'Releases'
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
