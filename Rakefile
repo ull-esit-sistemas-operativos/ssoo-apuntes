@@ -6,7 +6,7 @@ task :config do |t|
     ]
     CONFIG[:htmlproofer_opts] = {
         url_ignore: [
-            '/github\.(io|com).*\/ssoo-apuntes/'
+            /github\.(io|com).*\/ssoo-apuntes/
         ]
     }
 end
