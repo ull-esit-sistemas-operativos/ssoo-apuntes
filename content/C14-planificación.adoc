@@ -1016,6 +1016,92 @@ T_i = "ceil"(g_i * r_i) * M
 
 Esta definición asegura que _T~i~_ sea un entero múltiplo de la granularidad mínima _M_, mientras es aproximadamente proporcional al peso del proceso respecto al resto de procesos con los que compite.
 
+Ilustremos el algoritmo con un ejemplo con _L_ = 5 y _M_ = 1:
+
+[cols="4*^" options=header]
+|===
+|Proceso
+|Tiempo de llegada (ms)
+|Tiempo de ráfaga de CPU (ms)
+|Peso
+
+|P1
+|0
+|10
+|0.3
+
+|P2 
+|1
+|2
+|0.1
+
+|P3
+|2
+|3
+|0.4
+
+|P4 
+|3
+|2
+|0.5
+
+|P5
+|4
+|5
+|0.2
+|===
+
+El resultado es el que se muestra en el siguiente diagrama de Gantt:
+
+image::{chapdir}/equitativo.svg[]
+
+Como el primer proceso está solo cuando se le asigna la CPU, puede consumir toda la latencia de planificación _L_ en el primer periodo.
+Sin embargo, ya han llegado el resto de procesos del problema cuando es expulsado de la CPU, por lo que a partir de ese momento tiene que competir con ellos.
+Entonces, el orden para asignar la CPU viene determinado por el peso y el tiempo de cuanto por la expresión para _T~i~_ que vimos anteriormente.
+
+Una vez resuelto el problema, los *tiempos de espera y ejecución promedio* correspondientes serían:
+
+[cols="^2,^1,^1,^1,^1,^1" options="header,footer"]
+|===
+|Proceso
+|Instante de finalización (ms)
+2+|Tiempo de espera (ms)
+2+|Tiempo de ejecución (ms)
+
+|P1
+|17
+>|[.lightcell]#(0-0) + (9-5) + (14-11)=#|7
+>|[.lightcell]#(17-0)=#|17
+
+|P2
+|22
+>|[.lightcell]#(12-1) + (21-13)=#|19
+>|[.lightcell]#(22-1)=#|21
+
+|P3
+|14
+>|[.lightcell]#(13-2)=#|11
+>|[.lightcell]#(14-2)=#|12
+
+|P4
+|7
+>|[.lightcell]#(5-4)=#|1
+>|[.lightcell]#(7-3)=#|4
+
+|P5
+|21
+>|[.lightcell]#(11-5) + (17-12)=#|11
+>|[.lightcell]#(21-4)=#|17
+
+|Tiempos promedio (ms)
+|
+|
+|9.80
+|
+|14.20 
+|===
+
+
 === Planificación con colas multinivel
 (((planificación, de CPU, multinivel)))
 Los diseñadores recurren a la *planificación de colas multinivel* cuando quieren combinar las características de varios algoritmos.
