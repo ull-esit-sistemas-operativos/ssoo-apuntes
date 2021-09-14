@@ -461,7 +461,8 @@ Esto se puede hacer mediante *particionado fijo* o *particionado dinámico*
 El *particionado fijo* la memoria se divide en varias secciones de tamaño fijo, cada una de las cuales contiene un proceso.
 Cuando un proceso termina, se carga uno nuevo de la cola de entrada en la partición libre.
 
-// TODO: (A) imagen de este particionado
+.Particionado fijo de la memoria en el IBM OS/360.
+image::{chapdir}/particionado_fijo.svg[]
 
 Este método fue utilizado originalmente por el {ibmos360}, pero ya no se utiliza
 
