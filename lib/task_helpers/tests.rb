@@ -13,7 +13,7 @@ module Tests
                 disable_external: ENV.key?('HTMLPROOFER_DISABLE_EXTERNAL'),
                 typhoeus: {
                     headers: {
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0",
+                        :user_agent => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36",
                     },
                     ssl_verifyhost: 0,
                     ssl_verifypeer: false

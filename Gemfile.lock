@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/aplatanado/asciidoctor-multipage
-  revision: 670f5b7f8d58b93e4e0d9d3ab240b9d2398a1581
+  revision: 513f375150b9727bd3983b1feb388d64bb41dcc1
   specs:
-    asciidoctor-multipage (0.0.13.dev)
+    asciidoctor-multipage (0.0.14.dev)
       asciidoctor (>= 2.0.11, < 2.1)
 
 GEM
@@ -62,7 +62,7 @@ GEM
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
-    parallel (1.20.1)
+    parallel (1.21.0)
     pdf-core (0.9.0)
     pdf-reader (2.5.0)
       Ascii85 (~> 1.0)
@@ -90,7 +90,7 @@ GEM
     rainbow (3.0.0)
     rake (13.0.6)
     rexml (3.2.5)
-    rouge (3.26.0)
+    rouge (3.26.1)
     ruby-enum (0.9.0)
       i18n
     ruby-rc4 (0.1.5)
