@@ -1,3 +1,4 @@
+[[comunicación_mediante_paso_de_mensajes]]
 = Comunicación mediante paso de mensajes
 include::../config/attributes.adoc[]
 :chapdir: C10-ipc

@@ -1,3 +1,4 @@
+[[almacenamiento_secundario]]
 = Almacenamiento secundario
 include::../config/attributes.adoc[]
 :chapdir: C18-almacenamiento

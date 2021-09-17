@@ -1,4 +1,4 @@
-[ejemplos]
+[[código_de_los_ejemplos]]
 = Código de los ejemplos
 
 En algunos capítulos se enlazan programas de ejemplo para ilustrar en mayor detalle los conceptos tratados.

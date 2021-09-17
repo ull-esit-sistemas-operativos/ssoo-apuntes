@@ -1,3 +1,4 @@
+[[operación_del_sistema_operativo]]
 = Operación del sistema operativo
 include::../config/attributes.adoc[]
 :chapdir: C07-modo_dual

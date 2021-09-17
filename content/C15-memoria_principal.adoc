@@ -1,3 +1,4 @@
+[[memoria_principal]]
 = Memoria principal
 include::../config/attributes.adoc[]
 :chapdir: C15-memoria_principal
@@ -526,7 +527,7 @@ Sin embargo, esto puede ser muy caro en términos de tiempo y solo puede ser rea
 * La otra solución es permitir que el *espacio de direcciones físico* de un proceso no sea contiguo.
 Es decir, que la memoria puede ser asignada a un proceso independientemente de donde esté disponible.
 Existen dos técnicas complementarias que utilizan esta solución: la paginación
-(véase el <<_paginación>>) y la https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria[segmentación].
+(véase el <<paginación>>) y la https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria[segmentación].
 
 === Fragmentación interna
 (((fragmentación, interna)))
@@ -592,4 +593,4 @@ Debido fundamentalmente a que el tiempo de intercambio es muy alto, no se utiliz
 Lo que sí podemos encontrar en muchos sistemas son versiones modificadas de este mecanismo.
 
 Por ejemplo, en muchas versiones antiguas de UNIX y en los sistemas modernos, el intercambio permanece desactivado y solo se activa cuando la cantidad de memoria usada supera cierto límite.
-Además, en los sistemas actuales no se intercambian procesos completos si no las porciones menos usadas de cada proceso, como veremos en el <<_memoria_virtual>>.
+Además, en los sistemas actuales no se intercambian procesos completos si no las porciones menos usadas de cada proceso, como veremos en el <<memoria_virtual>>.

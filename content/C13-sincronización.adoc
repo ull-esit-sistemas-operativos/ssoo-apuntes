@@ -1,3 +1,4 @@
+[[sincronización]]
 = Sincronización
 include::../config/attributes.adoc[]
 :chapdir: C13-sincronización
@@ -7,8 +8,8 @@ include::../config/attributes.adoc[]
 *Tiempo de lectura:* {s13-reading-time}
 ====
 
-En el <<_memoria_compartida>> vimos que varios procesos pueden compartir regiones de la memoria con el objeto de cooperar en las tareas que deben desempeñar.
-Además, en el <<_hilos>> vimos que en los procesos multihilo todos los hilos comparten el espacio de direcciones del proceso al que pertenecen, lo que significa que pueden acceder al mismo tiempo a las variables globales y a la memoria reservada dinámicamente.
+En el <<memoria_compartida>> vimos que varios procesos pueden compartir regiones de la memoria con el objeto de cooperar en las tareas que deben desempeñar.
+Además, en el <<hilos>> vimos que en los procesos multihilo todos los hilos comparten el espacio de direcciones del proceso al que pertenecen, lo que significa que pueden acceder al mismo tiempo a las variables globales y a la memoria reservada dinámicamente.
 
 Ambas posibilidades introducen algunos riesgos, puesto que el acceso simultáneo a los datos compartidos puede ocasionar inconsistencias.
 Así que ha llegado el momento de discutir cómo se puede asegurar la ejecución ordenada de hilos o procesos cooperativos que comparten regiones de la memoria, con el fin de mantener la consistencia de los datos.

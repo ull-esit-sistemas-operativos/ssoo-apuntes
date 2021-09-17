@@ -1,3 +1,4 @@
+[[memoria_compartida]]
 = Memoria compartida
 include::../config/attributes.adoc[]
 :chapdir: C11-memoria_compartida
@@ -15,7 +16,7 @@ Sin embargo debemos tener en cuenta que:
 
 * La estructura de los datos y su localización dentro de la región compartida la determinan los procesos en comunicación y no el sistema operativo, a diferencia de lo que ocurre en los sistemas de paso de mensajes.
 
-* Los procesos son responsables de sincronizarse para no escribir y leer en el mismo sitio de la memoria al mismo tiempo, pues esto puede generar inconsistencias (véase el <<_sincronización>>) .
+* Los procesos son responsables de sincronizarse para no escribir y leer en el mismo sitio de la memoria al mismo tiempo, pues esto puede generar inconsistencias (véase el <<sincronización>>) .
 
 Las principales ventajas de la memoria compartida frente a otros mecanismos de comunicación son:
 

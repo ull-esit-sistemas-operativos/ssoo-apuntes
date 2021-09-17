@@ -1,3 +1,4 @@
+[[componentes_del_sistema]]
 = Componentes del sistema
 include::../config/attributes.adoc[]
 :chapdir: C04-componentes

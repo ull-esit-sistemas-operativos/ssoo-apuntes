@@ -1,3 +1,4 @@
+[[memoria_virtual]]
 = Memoria virtual
 include::../config/attributes.adoc[]
 :chapdir: C17-memoria_virtual
@@ -266,7 +267,7 @@ Es decir, los datos no se escriben inmediatamente en disco cuando se modifica la
 * Los marcos utilizados en el mapeo pueden ser compartidos, lo que permite compartir los datos de los archivos.
 Además, se puede incluir soporte de *_copy-on-write_*, lo que permite a los procesos compartir buena parte de un archivo en modo de solo lectura, pero disponiendo de sus propias copias de aquellas páginas que modifiquen.
 +
-Indudablemente, para que los procesos puedan compartir datos es necesario que exista algún tipo de coordinación (véase el <<_sincronización>>).
+Indudablemente, para que los procesos puedan compartir datos es necesario que exista algún tipo de coordinación (véase el <<sincronización>>).
 
 === Ejemplo de mapeo de archivos
 
@@ -1054,7 +1055,7 @@ La mayor parte de las aplicaciones siempre funcionan mejor utilizando los servic
 
 === Tamaño de las páginas
 
-Como ya comentamos al estudiar el método básico de paginación (véase el <<_paginación>>), una decisión de diseño importante es escoger el tamaño adecuado para las páginas:
+Como ya comentamos al estudiar el método básico de paginación (véase el <<paginación>>), una decisión de diseño importante es escoger el tamaño adecuado para las páginas:
 
 * *Con páginas grandes*:
 

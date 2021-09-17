@@ -1,4 +1,4 @@
-[releases]
+[[ediciones_y_licencia]]
 = Ediciones y licencia
 
 Este documento está disponible actualmente en ediciones en formatos HTML y PDF.

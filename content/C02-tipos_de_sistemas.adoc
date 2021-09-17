@@ -1,3 +1,4 @@
+[[tipos_de_sistemas_operativos]]
 = Tipos de sistemas operativos
 include::../config/attributes.adoc[]
 :chapdir: C02-tipos_de_sistemas

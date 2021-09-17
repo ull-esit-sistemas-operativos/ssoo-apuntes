@@ -1,3 +1,4 @@
+[[paginación]]
 = Paginación
 include::../config/attributes.adoc[]
 :chapdir: C16-paginación
@@ -307,7 +308,7 @@ Para conseguir esto, basta con que las *páginas compartidas* de los distintos p
 Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las *páginas* de código o los datos de solo lectura con el fin de ahorrar memoria.
 También permite compartir las *páginas* de código de una librería compartida enlazada en diferentes procesos.
 
-Compartir *páginas* no solo permite ahorrar memoria, pues en los sistemas operativos modernos, la comunicación entre procesos mediante memoria compartida (véase el <<_memoria_compartida>>), se implementa mediante *páginas compartidas*.
+Compartir *páginas* no solo permite ahorrar memoria, pues en los sistemas operativos modernos, la comunicación entre procesos mediante memoria compartida (véase el <<memoria_compartida>>), se implementa mediante *páginas compartidas*.
 
 == Paginación jerárquica
 (((paginación, jerárquica)))

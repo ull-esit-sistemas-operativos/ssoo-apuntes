@@ -1,3 +1,4 @@
+[[procesos]]
 = Procesos
 include::../config/attributes.adoc[]
 :chapdir: C09-procesos
@@ -135,7 +136,7 @@ Por ejemplo la prioridad del proceso, punteros a las colas de planificación don
 
 * *Información de gestión de la memoria*.
 Incluye la información requerida para la gestión de la memoria.
-Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación contigua de memoria (véase el <<_asignación_contigua_de_memoria>> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <<_paginación>>)—.
+Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación contigua de memoria (véase el <<_asignación_contigua_de_memoria>> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <<paginación>>)—.
 
 * *Información de registro*.
 Aquí se incluye la cantidad de CPU usada, límites de tiempo en el uso de la CPU, estadísticas de la cuenta del usuario a la que pertenece el proceso, estadísticas de la ejecución del proceso, etc.
@@ -219,7 +220,7 @@ Así que si faltaba memoria, se podía suspender un proceso completo, preservar 
 
 [NOTE]
 ====
-En los sistemas de propósito general modernos no se utiliza *planificador de medio plazo* porque utilizan técnicas de *memoria virtual* (véase el <<_memoria_virtual>>), que permite mover parte de la memoria de los procesos al disco para liberar memoria, sin tener que suspender su ejecución. 
+En los sistemas de propósito general modernos no se utiliza *planificador de medio plazo* porque utilizan técnicas de *memoria virtual* (véase el <<memoria_virtual>>), que permite mover parte de la memoria de los procesos al disco para liberar memoria, sin tener que suspender su ejecución. 
 ====
 
 == Cambio de contexto
@@ -958,7 +959,7 @@ Podemos querer crear nuestro software de forma modular, dividiendo las funciones
 Incluso un usuario individual puede querer hacer varias tareas al mismo tiempo.
 Por ejemplo, editar, imprimir y compilar al mismo tiempo.
 
-La ejecución simultánea de procesos cooperativos requiere mecanismos tanto para comunicar unos con otros como para sincronizar sus acciones (véase el <<_sincronización>>).
+La ejecución simultánea de procesos cooperativos requiere mecanismos tanto para comunicar unos con otros como para sincronizar sus acciones (véase el <<sincronización>>).
 
 === Comunicación entre procesos
 
@@ -971,7 +972,7 @@ Paso de mensajes::
 Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.
 
 En la <<fig-modelos-de-comunicación>> se puede un esquema comparativo entre ambos modelos de comunicación.
-Veremos cada uno en detalle en el <<_memoria_compartida>> y el <<_comunicación_mediante_paso_de_mensajes>>, respectivamente.
+Veremos cada uno en detalle en el <<memoria_compartida>> y el <<comunicación_mediante_paso_de_mensajes>>, respectivamente.
 
 [[fig-modelos-de-comunicación]]
 .Modelos de comunicación.

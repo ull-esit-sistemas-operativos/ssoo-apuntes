@@ -1,3 +1,4 @@
+[[historia_de_los_sistemas_operativos]]
 = Historia de los sistemas operativos
 include::../config/attributes.adoc[]
 :chapdir: C03-historia

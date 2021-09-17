@@ -1,3 +1,4 @@
+[[planificación_de_la_cpu]]
 = Planificación de la CPU
 include::../config/attributes.adoc[]
 :chapdir: C14-planificación
@@ -54,7 +55,7 @@ Ejemplos de estos sistemas son Microsoft Windows —desde Windows 95— Linux, m
 
 La utilización de un *planificador expropiativo* introduce algunas dificultades adicionales:
 
-* Puesto que un proceso puede ser expropiado en cualquier momento —sin que pueda hacer nada para evitarlo— el sistema operativo debe proporcionar _mecanismos de sincronización_ (véase el <<_sincronización>>) para coordinar el acceso a datos compartidos que podrían estar siendo modificados por el proceso que abandona la CPU y que puede necesitar el que entra en ella.
+* Puesto que un proceso puede ser expropiado en cualquier momento —sin que pueda hacer nada para evitarlo— el sistema operativo debe proporcionar _mecanismos de sincronización_ (véase el <<sincronización>>) para coordinar el acceso a datos compartidos que podrían estar siendo modificados por el proceso que abandona la CPU y que puede necesitar el que entra en ella.
 
 * ¿Qué ocurre si un proceso va a ser expropiado en el preciso momento en el que se está ejecutando una llamada al sistema? No debemos olvidar que dentro del núcleo se manipulan datos importantes, compartidos por todo el sistema, que deben permanecer consistentes en todo momento.
 

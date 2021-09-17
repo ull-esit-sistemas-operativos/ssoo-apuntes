@@ -1,3 +1,4 @@
+[[sistemas_operativos_por_su_estructura]]
 = Sistemas operativos por su estructura
 include::../config/attributes.adoc[]
 :chapdir: C08-estructura
@@ -7,7 +8,7 @@ include::../config/attributes.adoc[]
 *Tiempo de lectura:* {s08-reading-time}
 ====
 
-Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <<_componentes_del_sistema>>).
+Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <<componentes_del_sistema>>).
 En esta sección comentaremos cómo se clasifican los distintos sistemas operativos según la organización e interconexión de sus componentes.
 
 == Estructura sencilla

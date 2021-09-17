@@ -1,3 +1,4 @@
+[[interfaz_de_programación_de_aplicaciones]]
 = Interfaz de programación de aplicaciones
 include::../config/attributes.adoc[]
 :chapdir: C06-api
@@ -289,7 +290,7 @@ En la <<fig-api-win32>> se ilustra el papel de todos los elementos comentados, c
 image::{chapdir}/interfaz_programación_aplicaciones_win32.svg[]
 
 En ambos casos, la librería estándar llama a la función {win32_createfile} de la librería del sistema de Windows, que finalmente realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
-Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<_componentes_del_sistema>>).
+Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <<componentes_del_sistema>>).
 
 El programa en C, puede usar tanto la función {clang_fopen} de su librería estándar como llamar directamente a la función {win32_createfile} de la librería del sistema —marcado en rojo en la <<fig-api-win32>>—.
 Sin embargo, en el programa en Python no tenemos esa facilidad —al menos directamente—.
