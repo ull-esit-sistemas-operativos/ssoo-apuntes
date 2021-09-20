@@ -1410,6 +1410,8 @@ Mientras que el primer requerimiento es bastante sencillo de conseguir, el segun
 
 === Reducir la latencia de asignación
 
+// TODO:  Dibujo para explicar el problema
+
 Muchos sistemas operativos tienen un núcleo no expropiable.
 Estos núcleos no pueden realizar un cambio de contexto mientras se está ejecutando código del núcleo —por ejemplo, debido a una llamada al sistema— por lo que se ven obligados a esperar hasta que la operación que se esté realizando termine, antes de asignar la CPU a otro proceso.
 Esto aumenta la *latencia de asignación*, dado que algunas llamadas al sistema pueden ser muy complejas y requerir mucho tiempo para completarse.
