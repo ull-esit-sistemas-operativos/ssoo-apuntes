@@ -6,17 +6,19 @@ include::../config/attributes.adoc[]
 include::enlaces.adoc[]
 include::docstats.adoc[]
 
-:sectnums!:
+include::preámbulo.adoc[]
 
+:sectnums!:
 include::releases.adoc[leveloffset=+1]
 include::código.adoc[leveloffset=+1]
-
 :sectnums:
 
 // Contenidos
 
 [[introducción]]
 = Introducción
+include::P01-preámbulo.adoc[]
+
 include::C01-definición.adoc[leveloffset=+1]
 include::C02-tipos_de_sistemas.adoc[leveloffset=+1]
 include::C03-historia.adoc[leveloffset=+1]
@@ -33,6 +35,8 @@ include::C08-estructura.adoc[leveloffset=+1]
 
 [[gestión_de_procesos]]
 = Gestión de procesos
+include::P03-preámbulo.adoc[]
+
 include::C09-procesos.adoc[leveloffset=+1]
 include::C10-ipc.adoc[leveloffset=+1]
 include::C11-memoria_compartida.adoc[leveloffset=+1]
@@ -42,12 +46,16 @@ include::C14-planificación.adoc[leveloffset=+1]
 
 [[gestión_de_la_memoria]]
 = Gestión de la memoria
+include::P04-preámbulo.adoc[]
+
 include::C15-memoria_principal.adoc[leveloffset=+1]
 include::C16-paginación.adoc[leveloffset=+1]
 include::C17-memoria_virtual.adoc[leveloffset=+1]
 
 [[gestión_del_almacenamiento]]
 = Gestión del almacenamiento
+include::P05-preámbulo.adoc[]
+
 include::C18-almacenamiento.adoc[leveloffset=+1]
 include::C19-sistema_de_archivos.adoc[leveloffset=+1]
 include::C20-implemantación_sistema_de_archivos.adoc[leveloffset=+1]

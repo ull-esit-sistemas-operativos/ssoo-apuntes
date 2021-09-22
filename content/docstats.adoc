@@ -1,84 +1,84 @@
-:document-characters: 512124
-:document-words: 101310
-:document-paragraphs: 1692
-:document-reading-time: 8 horas y 27 minutos
-:s01-characters: 7529
-:s01-words: 1371
+:document-characters: 539311
+:document-words: 106663
+:document-paragraphs: 1659
+:document-reading-time: 8 horas y 53 minutos
+:s01-characters: 7526
+:s01-words: 1370
 :s01-paragraphs: 26
 :s01-reading-time: 7 minutos
-:s02-characters: 24098
-:s02-words: 4498
-:s02-paragraphs: 86
-:s02-reading-time: 22 minutos
+:s02-characters: 24144
+:s02-words: 4505
+:s02-paragraphs: 77
+:s02-reading-time: 23 minutos
 :s03-characters: 19628
 :s03-words: 3838
 :s03-paragraphs: 80
 :s03-reading-time: 19 minutos
-:s04-characters: 11695
-:s04-words: 2243
-:s04-paragraphs: 44
-:s04-reading-time: 11 minutos
-:s05-characters: 5320
+:s04-characters: 14195
+:s04-words: 2728
+:s04-paragraphs: 43
+:s04-reading-time: 14 minutos
+:s05-characters: 5313
 :s05-words: 985
-:s05-paragraphs: 11
+:s05-paragraphs: 10
 :s05-reading-time: 5 minutos
-:s06-characters: 15230
-:s06-words: 3004
-:s06-paragraphs: 55
-:s06-reading-time: 15 minutos
+:s06-characters: 18448
+:s06-words: 3591
+:s06-paragraphs: 56
+:s06-reading-time: 18 minutos
 :s07-characters: 16572
 :s07-words: 3302
-:s07-paragraphs: 54
+:s07-paragraphs: 53
 :s07-reading-time: 17 minutos
 :s08-characters: 9933
 :s08-words: 1901
 :s08-paragraphs: 35
 :s08-reading-time: 10 minutos
-:s09-characters: 39062
-:s09-words: 7809
-:s09-paragraphs: 96
+:s09-characters: 39299
+:s09-words: 7859
+:s09-paragraphs: 95
 :s09-reading-time: 39 minutos
-:s10-characters: 32522
-:s10-words: 6463
-:s10-paragraphs: 88
-:s10-reading-time: 32 minutos
+:s10-characters: 34294
+:s10-words: 6814
+:s10-paragraphs: 90
+:s10-reading-time: 34 minutos
 :s11-characters: 5367
 :s11-words: 1040
 :s11-paragraphs: 17
 :s11-reading-time: 5 minutos
-:s12-characters: 35131
-:s12-words: 7011
-:s12-paragraphs: 111
+:s12-characters: 35548
+:s12-words: 7091
+:s12-paragraphs: 108
 :s12-reading-time: 35 minutos
-:s13-characters: 31068
-:s13-words: 5986
-:s13-paragraphs: 88
+:s13-characters: 31151
+:s13-words: 5998
+:s13-paragraphs: 84
 :s13-reading-time: 30 minutos
-:s14-characters: 50066
-:s14-words: 10157
-:s14-paragraphs: 195
-:s14-reading-time: 51 minutos
-:s15-characters: 22794
-:s15-words: 4411
-:s15-paragraphs: 72
-:s15-reading-time: 22 minutos
-:s16-characters: 21092
-:s16-words: 4453
-:s16-paragraphs: 75
+:s14-characters: 54577
+:s14-words: 11141
+:s14-paragraphs: 198
+:s14-reading-time: 56 minutos
+:s15-characters: 32171
+:s15-words: 6294
+:s15-paragraphs: 86
+:s15-reading-time: 31 minutos
+:s16-characters: 21168
+:s16-words: 4471
+:s16-paragraphs: 71
 :s16-reading-time: 22 minutos
 :s17-characters: 61620
 :s17-words: 12900
-:s17-paragraphs: 194
+:s17-paragraphs: 179
 :s17-reading-time: 1 hora y 5 minutos
-:s18-characters: 10504
+:s18-characters: 10503
 :s18-words: 2015
 :s18-paragraphs: 25
 :s18-reading-time: 10 minutos
-:s19-characters: 56389
-:s19-words: 10888
-:s19-paragraphs: 208
-:s19-reading-time: 54 minutos
+:s19-characters: 56477
+:s19-words: 10907
+:s19-paragraphs: 195
+:s19-reading-time: 55 minutos
 :s20-characters: 31511
 :s20-words: 6234
-:s20-paragraphs: 122
+:s20-paragraphs: 110
 :s20-reading-time: 31 minutos

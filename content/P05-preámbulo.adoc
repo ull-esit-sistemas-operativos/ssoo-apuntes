@@ -1,0 +1,8 @@
+Los *dispositivos de almacenamiento secundario* —como discos duros o memorias de estado sólido— organizan su espacio de almacenamiento en bloques.
+Es decir, a diferencia de la memoria principal, donde se pueden leer y modificar bytes individualmente, en estos dispositivos el acceso es en *bloques de bytes* —por ejemplo, en bloques de 512 bytes—.
+
+Sin embargo, no resultaría muy ergonómico que los usuarios y los programas tuvieran que usar este espacio direccionando bloques directamente.
+Por eso el acceso y gestión del espacio de almacenamiento secundario se abstrae tras el concepto de *archivo*.
+Obviamente, para organizar un espacio diáfano de 0 a _N_ bloques en archivos —con sus directorios y el resto de características a las que estamos acostumbrados— hacen falta ciertas estructuras de datos que se almacenan de forma persistente en el mismo espacio de almacenamiento.
+Es a esto a lo que denominamos *sistema de archivos*.
+Dedicaremos a ellos los siguientes apartados.

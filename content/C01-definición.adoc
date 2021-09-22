@@ -34,7 +34,7 @@ Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados U
 Para más información, véase https://es.wikipedia.org/wiki/Caso_Estados_Unidos_contra_Microsoft[«Caso Estados Unidos contra Microsoft -- Wikipedia»].
 ====
 
-* Una definición mucho más común es que el sistema operativo es «aquel programa que se ejecuta continuamente en el ordenador» —lo que denominamos comúnmente como _**((kernel))**_ o *((núcleo))* del sistema— siendo todo lo demas programas del sistema y aplicaciones.
+* Una definición mucho más común es que el sistema operativo es «aquel programa que se ejecuta continuamente en el ordenador» —lo que denominamos comúnmente como _**((kernel))**_ o *((núcleo))* del sistema— siendo el resto: programas del sistema y aplicaciones.
 +
 Sin embargo, en algunos casos esta definición excluye como parte del sistema operativo algunos servicios que intuitivamente solemos considerar dentro del mismo.
 Por ejemplo, si aplicamos esta definición a los sistemas operativos de estructura microkernel, no podríamos decir que servicios básicos como la comunicación en red, los sistemas de archivos y la gestión de la memoria son parte del sistema operativo.

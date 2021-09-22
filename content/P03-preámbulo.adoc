@@ -1,0 +1,10 @@
+La gestión de procesos es un elemento central de cualquier sistema operativo.
+Los programas se cargan en la memoria y se convierten en procesos, porque son los procesos los que reciben del sistema operativo los recursos que necesitan para ejecutarse, como: tiempo de CPU, memoria RAM, acceso a archivos o dispositivos; entre otros.
+Resulta fundamental conocer la *anatomía de los procesos* donde van a ejecutarse nuestros programas y como el sistema operativo hace para asignarles recursos de la mejor forma posible.
+
+Por otro lado, muchas aplicaciones complejas están formadas por diferentes programas y procesos que cooperan entre sí.
+La *cooperación entre procesos* es la base de cualquier servicio de Internet —como la web o la mensajería instantánea— pero también es muy frecuente entre los procesos de un mismo equipo. 
+Por ejemplo, las distintas aplicaciones de cualquier suite ofimática se tienen que coordinar para compartir datos y contenidos y permitirnos incrustar unos documentos en otros.
+En los sistemas modernos es común que haya un gestor de impresión, que recibe del resto de procesos los trabajos, los encola y los entrega de forma ordenada a las impresoras conectadas al equipo.
+E incluso el sencillo editor de texto que usamos para programar nuestros propios programas tiene que cooperar con el compilador, el depurador y la _shell_ para ofrecernos buena parte de sus funcionalidades.
+Cómo pueden comunicarse y coordinarse los procesos, los problemas que surgen y como solucionarlos, son temas que también estudiaremos en esta parte.

@@ -1,0 +1,6 @@
+Antes de profundizar en el funcionamiento de los sistemas operativos modernos, es conveniente definir cuáles son las responsabilidades de un sistema operativo en términos generales.
+Sin embargo, veremos que esta cuestión no tiene una respuesta sencilla.
+Las responsabilidades de cualquier sistema operativo dependen del tipo de sistema informático para el que se ha diseñado; por lo que también estudiaremos los diferentes tipos de sistemas informáticos, sus características y cómo estas afectan a los sistemas operativos que se utilizan con ellos.
+
+Finalmente, haremos un breve resumen de la historia de los sistemas operativos.
+Muchas de las características de los sistemas operativos actuales están condicionadas por decisiones de diseño tomadas al desarrollar sistemas predecesores.

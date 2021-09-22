@@ -6,4 +6,4 @@ El estudio de la organización interna de los sistemas operativos requiere del a
 
 * La interfaz de programación que el sistema operativo ofrece a usuarios y programadores como forma de acceso a dichos servicios.
 
-También veremos cómo se categorizan los sistemas operativos según la forma en la que se interconectan sus componentes.
+Finalmente, veremos cómo se categorizan los sistemas operativos según la forma en la que se interconectan sus componentes.
