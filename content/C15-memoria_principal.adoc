@@ -417,12 +417,12 @@ libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f47c20c9000)   <1>
 Si se hubiera usado solamente `libc.so`, el ejecutable podría intentar usar cualquier versión de `libc`, pero al incluir el primer número de versión en el nombre, nos aseguramos de que el ejecutable solo usará versiones 6 de la librería del sistema.
 Así se evita ejecutar el programa con versiones que pueden ser incompatibles.
 
-<2> La librería {ld} se encarga de las cuestiones relacionadas con el enlazado y carga dinámica de librerías.
+<2> La librería {linux_ldso} se encarga de las cuestiones relacionadas con el enlazado y carga dinámica de librerías.
 
 Si estás librerías no estuvieran disponibles al intentar ejecutar el programa, la ejecución fallaría, ya que son un requisito obligatorio.
 Sin embargo, el enlazado dinámico no es algo que solo pueda configurarse durante la compilación para que ocurra automáticamente durante la carga del ejecutable.
 Los sistemas operativo modernos proporcionan funciones para que un proceso pueda cargar cualquier y descargar librería durante la ejecución y acceder a sus variables e invocar sus funciones.
-En los sistemas POSIX estas funciones las proporciona la librería {ld}.
+En los sistemas POSIX estas funciones las proporciona la librería {linux_ldso}.
 
 Esto es muy útil cuando se quiere que ciertas librerías sean opcionales.
 Es decir, que no sea necesario tenerlas instaladas en el sistema donde se va a ejecutar el programa, de tal forma que si no están disponibles, el programa funcione con normalidad, pero si están instaladas, el programa aproveche la funcionalidad adicional que proporcionan.

@@ -1,7 +1,7 @@
 // Versiones
 :website: link:https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/{release}[sitio web]
 :github_release: link:https://github.com/ull-esit-sistemas-operativos/ssoo-apuntes/releases/tag/{release}[ull-esit-sistemas-operativos/ssoo-apuntes]
-
+//
 // C STD
 :clang_stdatomic: link:https://en.cppreference.com/w/c/atomic[<stdatomic.h>]
 :clang_stdio: link:https://en.cppreference.com/w/c/io[<stdio.h>]
@@ -15,7 +15,7 @@
 :clang_environ: link:https://man7.org/linux/man-pages/man7/environ.7.html[environ]
 :clang_printf: link:https://en.cppreference.com/w/c/io/fprintf[printf()]
 :clang_system: link:https://en.cppreference.com/w/c/program/system[system()]
-
+//
 // C++ STD
 :cpp_atomic: link:https://en.cppreference.com/w/cpp/atomic/atomic[std::atomic]
 :cpp_atomic_h: link:https://en.cppreference.com/w/cpp/header/atomic[<atomic>]
@@ -34,7 +34,7 @@
 :cpp_ofstream_open: link:https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]
 :cpp_jthread: link:https://en.cppreference.com/w/cpp/thread/jthread[std::jthread]
 :cpp_thread: link:https://en.cppreference.com/w/cpp/thread/thread[std::thread]
-
+//
 // llamadas al sistema POSIX & Linux
 :linux_access: link:https://man7.org/linux/man-pages/man2/access.2.html[access()]
 :linux_accept: link:https://man7.org/linux/man-pages/man2/accept.2.html[accept()]
@@ -68,6 +68,7 @@
 :linux_mq_open: link:https://man7.org/linux/man-pages/man3/mq_open.3.html[mq_open()]
 :linux_mq_receive: link:https://man7.org/linux/man-pages/man3/mq_receive.3.html[mq_receive()]
 :linux_mq_send: link:https://man7.org/linux/man-pages/man3/mq_send.3.html[mq_send()]
+:linux_ldso: link:https://man7.org/linux/man-pages/man8/ld.so.8.html[ld]
 :linux_link: link:https://man7.org/linux/man-pages/man2/link.2.html[link()]
 :linux_lockf: link:https://man7.org/linux/man-pages/man3/lockf.3.html[lockf()]
 :linux_lseek: link:https://www.man7.org/linux/man-pages/man2/lseek.2.html[lseek()]
@@ -110,9 +111,7 @@
 :linux_write: link:https://man7.org/linux/man-pages/man2/write.2.html[write()]
 :linux_wait: link:https://man7.org/linux/man-pages/man2/wait.2.html[wait()]
 :linux_waitpid: link:https://man7.org/linux/man-pages/man2/waitpid.2.html[waitpid()]
-
-:ld: link:https://man7.org/linux/man-pages/man8/ld.so.8.html[ld]
-
+//
 :pthreads: link:https://man7.org/linux/man-pages/man7/pthreads.7.html[POSIX Threads]
 :pthread_cancel: link:https://man7.org/linux/man-pages/man3/pthread_cancel.3.html[pthread_cancel()]
 :pthread_cleanup_pop: link:https://man7.org/linux/man-pages/man3/pthread_cleanup_pop.3.html[pthread_cleanup_pop()]
@@ -135,7 +134,7 @@
 :pthread_setcanceltype: link:https://www.man7.org/linux/man-pages/man3/pthread_setcanceltype.3.html[pthread_setcanceltype()]
 :pthread_sigmask: link:https://man7.org/linux/man-pages/man3/pthread_sigmask.3.html[pthread_sigmask()]
 :pthread_testcancel: link:https://man7.org/linux/man-pages/man3/pthread_testcancel.3.html[pthread_testcancel()]
-
+//
 // Comandos en sistemas POSIX
 :cmd_chkdsk: link:https://es.wikipedia.org/wiki/CHKDSK[CHKDSK]
 :cmd_gcc: link:https://es.wikipedia.org/wiki/GNU_Compiler_Collection[gcc]
@@ -147,12 +146,12 @@
 :cmd_fsck: link:https://es.wikipedia.org/wiki/Fsck[fsck]
 :cmd_getfacl: link:https://man7.org/linux/man-pages/man1/getfacl.1.html[getfacl]
 :cmd_setfacl: link:https://man7.org/linux/man-pages/man1/setfacl.1.html[setfacl]
-
+//
 // Windows
 :windowsnt: link:https://es.wikipedia.org/wiki/Windows_NT[Microsoft Windows NT]
 :windows_api: link:https://es.wikipedia.org/wiki/Win32_API[Windows API]
 :dll: link:https://es.wikipedia.org/wiki/Biblioteca_de_enlace_din%C3%A1mico[DLL]
-
+//
 :win32_closehandle: link:https://docs.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle[CloseHandle()]
 :win32_copyfile: link:https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfilea[CopyFile()]
 :win32_createhardlink: link:https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createhardlinka[CreateHardLink()]
@@ -217,12 +216,12 @@
 :win32_wakeconditionvariable: link:https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-wakeconditionvariable[WakeConditionVariable()]
 :win32_virtualalloc: link:https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc[VirtualAlloc()]
 :win32_virtualfree: link:https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualfree[VirtualFree()]
-
+//
 // UNIX
 :unix: link:https://es.wikipedia.org/wiki/Unix[UNIX]
 :posix: link:https://es.wikipedia.org/wiki/POSIX[POSIX]
 :ieee: link:https://es.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers[IEEE]
-
+//
 :bsd: link:https://es.wikipedia.org/wiki/Berkeley_Software_Distribution[BSD]
 :freebsd: link:https://es.wikipedia.org/wiki/FreeBSD[FreeBSD]
 :darwin: link:https://en.wikipedia.org/wiki/Darwin_(operating_system)[Darwin]
@@ -236,7 +235,7 @@
 :netbsd: link:https://es.wikipedia.org/wiki/NetBSD[NetBSD]
 :solaris: link:https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Solaris]
 :tru64: link:https://es.wikipedia.org/wiki/Tru64[Tru64 UNIX]
-
+//
 // Otros sistemas operativos
 :android: link:https://es.wikipedia.org/wiki/Android[Android]
 :ibmos360: link:https://en.wikipedia.org/wiki/OS/360_and_successors[IBM OS/360]
@@ -246,7 +245,7 @@
 :os2: link:https://es.wikipedia.org/wiki/OS/2[OS/2]
 :qnx: link:https://es.wikipedia.org/wiki/QNX[QNX]
 :zircon: link:https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)[Zircon]
-
+//
 // Ordenadores y arquitecturas
 :ibmpc: link:https://es.wikipedia.org/wiki/IBM_PC[IBM PC]
 :intel8086: link:https://es.wikipedia.org/wiki/Intel_8086_y_8088[Intel 8086]
@@ -256,7 +255,7 @@
 :itanium: link:https://es.wikipedia.org/wiki/Intel_Itanium[Intel Itanium]
 :decalpha: link:https://es.wikipedia.org/wiki/DEC_Alpha[DEC Alpha]
 :mips: link:https://es.wikipedia.org/wiki/MIPS_(procesador)[MIPS]
-
+//
 // Sistemas de archivos
 :btrfs: link:https://es.wikipedia.org/wiki/Btrfs[Btrfs]
 :ext2: link:https://es.wikipedia.org/wiki/Ext2[ext2]
@@ -272,7 +271,7 @@
 :udf: link:https://es.wikipedia.org/wiki/Universal_Disk_Format[UDF]
 :ufs: link:https://es.wikipedia.org/wiki/Unix_File_System[UFS]
 :xfs: link:https://es.wikipedia.org/wiki/XFS[XFS]
-
+//
 // Ejemplos
 :ejemplos_repo: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/tree/{release}[ull-esit-sistemas-operativos/ssoo-ejemplos]
 :anom_shared_memory_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap11/anom-shared-memory.cpp[anom-shared-memory.cpp]
