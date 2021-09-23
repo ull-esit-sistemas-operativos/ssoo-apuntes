@@ -1,3 +1,5 @@
+require 'webrick'
+
 Rake.add_rakelib 'lib/tasks'
 
 task :config do |t|
@@ -33,4 +35,15 @@ namespace :build do
             EOF
         end
     end
+end
+
+desc 'Iniciar el servidor web de desarrollo'
+task :server, [:port] => 'build:site' do |t, args|
+    args.with_defaults(:port => 8080)
+
+    website_root = File.dirname(Rake::Task['build:html'].prerequisites.first)
+    server = WEBrick::HTTPServer.new :Port => args.port, :DocumentRoot => website_root
+
+    trap 'INT' do server.shutdown end
+    server.start
 end
