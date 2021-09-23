@@ -78,16 +78,15 @@ Además, con la aparición de la tecnología de los discos magnéticos en la dé
 A estos sistemas se los llamó *multiprogramados*.
 
 [[fig-sistemas-multiprogramados]]
-.Organización de la memoria en sistemas multiprogramados.
+.Gestión de trabajos en sistemas multiprogramados.
 image::{chapdir}/sistemas_multiprogramados.svg[]
-// TODO: (B) Hacer un dibujo más elaborado con cola de entrada
 
 ====
-En los *sistemas multiprogramados* la ejecución de los trabajos funcionaba de la siguiente manera:
+En los *sistemas multiprogramados* la ejecución de los trabajos funcionaba de la siguiente manera (véase la <<fig-sistemas-multiprogramados>>):
 
 . En el disco magnético se almacenaba una cola donde se iban colocando todos los trabajos que tenían que ser ejecutados.
 
-. El sistema operativo cargaba varios trabajos en memoria del conjunto de trabajos en la cola en el disco magnético (véase la <<fig-sistemas-multiprogramados>>).
+. El sistema operativo cargaba varios trabajos en memoria del conjunto de trabajos en la cola en el disco magnético.
 
 . El sistema operativo cede la CPU a uno de los trabajos en memoria.
 
