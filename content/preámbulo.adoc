@@ -1,7 +1,7 @@
 [.normal]
 Los sistemas operativos son un componente esencial de cualquier sistema informático.
 Se ejecutan continuamente desde que el sistema se inicia, gestionan los recursos del hardware y ofrecen un entorno para la ejecución de los programas.
-Por ejemplo, aunque un sistema solo tenga una CPU y una cantidad limitada de memoria —como era común hasta hace unos años— los sistemas operativos modernos son capaces de crear la ilusión de que es capaz de ejecutar múltiples tareas en paralelo y los programadores, por lo general, no tenemos que preocuparnos por la cantidad de memoria realmente disponible.
+Por ejemplo, aunque un sistema solo tenga una CPU y una cantidad limitada de memoria —como era común hasta hace unos años— los sistemas operativos modernos son capaces de crear la ilusión de que es capaz de ejecutar múltiples tareas en paralelo y los programadores, por lo general, no tienen que preocuparse por la cantidad de memoria realmente disponible.
 
-Excepto en sistemas muy pequeños —donde no se suelen utilizar sistemas operativos— los programadores desarrollamos para el entorno que un sistema operativo ofrece y, para hacer cualquier programa medianamente útil, necesitamos solicitarle servicios constantemente.
-Por eso es importante conocer lo que hacen los sistemas operativos, los servicios que nos ofrecen y cómo utilizarlos.
+Excepto en sistemas muy pequeños —donde no se suelen utilizar sistemas operativos— los programadores desarrollan para el entorno que el sistema operativo ofrece y necesitan solicitarle servicios constantemente, para hacer cualquier programa medianamente útil.
+Por eso es importante conocer lo que hacen los sistemas operativos, los servicios que ofrecen y cómo utilizarlos.
