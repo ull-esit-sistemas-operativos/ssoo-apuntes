@@ -44,6 +44,12 @@ task :server, [:port] => 'build:site' do |t, args|
     website_root = File.dirname(Rake::Task['build:html'].prerequisites.first)
     server = WEBrick::HTTPServer.new :Port => args.port, :DocumentRoot => website_root
 
-    trap 'INT' do server.shutdown end
+    # Interceptar señales para detener el servidor.
+    ['TERM', 'INT'].each do |signal|
+        trap signal do
+            server.shutdown
+        end
+    end
+
     server.start
 end
