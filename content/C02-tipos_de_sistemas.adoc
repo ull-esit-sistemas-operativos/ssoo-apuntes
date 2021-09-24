@@ -119,11 +119,15 @@ Los programadores seguían teniendo que entregar los trabajos al operador y espe
 Los *sistemas de tiempo compartido* se desarrollaron tras observar que al dar acceso a un grupo de usuarios se podía conseguir un uso más eficiente del sistema, en comparación a cuando solo podía ser utilizado por un usuario a la vez.
 Esto es debido a que, generalmente, un usuario introduce información de forma continua para luego detenerse durante largos periodos de tiempo, mientras que en un grupo de usuarios, las pausas de uno de ellos se pueden llenar con la actividad de los otros.
 
+[[fig-sistemas-tiempo-compartido]]
+.Gestión de trabajos en sistemas de tiempo compartido.
+image::{chapdir}/sistemas_de_tiempo_compartido.svg[]
+
 ====
 Los *sistemas de tiempo compartido* se caracterizaban por:
 
 * Tener *terminales*, es decir, hardware especializado en hacer de interfaz directa entre los usuarios y el sistema.
-A través de estas terminales los usuarios podían dar órdenes al sistema e interactuar con sus trabajos.
+A través de estas terminales los usuarios podían enviar comandos al sistema e interactuar con sus trabajos.
 Podía haber múltiples usuarios al mismo tiempo, pero cada uno solo podía tener un trabajo en ejecución a la vez.
 
 * Usar la *multiprogramación* para tener varios trabajos en la memoria principal al mismo tiempo e intercambiar el trabajo en la CPU cuando este solicitaba una operación de E/S, como ya se venía haciendo en los *sistemas multiprogramados* para hacer un uso más eficiente de la CPU.
