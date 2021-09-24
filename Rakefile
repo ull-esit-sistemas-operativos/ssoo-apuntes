@@ -18,6 +18,7 @@ namespace :build do
     desc 'Generar el sitio web donde se alojan los apuntes'
     task :site do
         ENV['HTML_MULTIPAGE'] = '1'
+        ENV['HTML_COMMENTS_ENABLED'] = '1'
         Rake::Task['build:html'].invoke
        
         output_directory = File.dirname(Rake::Task['build:html'].prerequisites.first)

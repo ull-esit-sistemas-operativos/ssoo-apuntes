@@ -41,4 +41,22 @@ module Utils
     end
     module_function :is_command_available
 
+    class EnvVar
+        TRUTHY_VALUES = %w(t true yes y 1).freeze
+        FALSEY_VALUES = %w(f false n no 0).freeze
+      
+        attr_reader :value
+      
+        def initialize(name)
+          @value = ENV[name].to_s.downcase
+        end
+      
+        def to_boolean
+          return true if TRUTHY_VALUES.include?(value.to_s)
+          return false if FALSEY_VALUES.include?(value.to_s)
+
+          raise "Invalid value '#{value}' for boolean casting"
+        end
+    end
+
 end

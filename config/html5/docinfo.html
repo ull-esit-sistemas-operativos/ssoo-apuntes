@@ -52,4 +52,17 @@
         color: hsla(0,0%,100%,.8);
     }
 </style>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() { 
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery(document).ready(function() {
+                    jQuery("img, p, .colist td, .stemblock").inlineDisqussions();
+                });
+            }, 500);
+        }
+    }
+</script>
