@@ -52,8 +52,8 @@ module Utils
         end
       
         def to_boolean
-          return true if TRUTHY_VALUES.include?(value.to_s)
-          return false if FALSEY_VALUES.include?(value.to_s)
+            return false if value.to_s.empty? || FALSEY_VALUES.include?(value.to_s)
+            return true if TRUTHY_VALUES.include?(value.to_s)
 
           raise "Invalid value '#{value}' for boolean casting"
         end
