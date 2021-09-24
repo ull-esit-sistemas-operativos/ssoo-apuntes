@@ -62,6 +62,6 @@ jobs:
         file: output/pdf/*.pdf
         tag: ${{ github.ref }}
         file_glob: true
-        release_name: "Curso 20XX-20XY"
-        body: "Apuntes de sistemas operativos del curso 20XX-20XY."
+        release_name: "Curso 2021-2022"
+        body: "Apuntes de sistemas operativos del curso 2021-2022."
         overwrite: true
