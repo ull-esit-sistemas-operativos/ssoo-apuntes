@@ -43,9 +43,6 @@ jobs:
         bundle config set --local deployment true
         bundle install
 
-    - name: Testear
-      run: bundle exec rake tests:all
-
     - name: Generar la documentación
       run: bundle exec rake build:site build:pdf DOCUMENT_NAME=sistemas_operativos
 
