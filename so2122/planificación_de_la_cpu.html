@@ -1,0 +1,3052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('true' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery(document).ready(function() {
+                    jQuery("img, p, .colist td, .stemblock").inlineDisqussions();
+                });
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="planificación_de_la_cpu" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2021-2022</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+<ul class="sectlevel1">
+<li><a href="procesos.html">9. Procesos</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html">10. Comunicación mediante paso de mensajes</a>
+</li>
+<li><a href="memoria_compartida.html">11. Memoria compartida</a>
+</li>
+<li><a href="hilos.html">12. Hilos</a>
+</li>
+<li><a href="sincronización.html">13. Sincronización</a>
+</li>
+<li><a href="planificación_de_la_cpu.html"><span class="toc-current">14. Planificación de la CPU</span></a>
+<ul class="sectlevel2">
+<li><a href="planificación_de_la_cpu.html#_planificación_expropiativa">14.1. Planificación expropiativa</a>
+</li>
+<li><a href="planificación_de_la_cpu.html#_el_asignador">14.2. El asignador</a>
+</li>
+<li><a href="planificación_de_la_cpu.html#_criterios_de_planificación">14.3. Criterios de planificación</a>
+</li>
+<li><a href="planificación_de_la_cpu.html#_ciclo_de_ráfagas_de_cpu_y_de_es">14.4. Ciclo de ráfagas de CPU y de E/S</a>
+</li>
+<li><a href="planificación_de_la_cpu.html#_algoritmos_de_planificación_de_la_cpu">14.5. Algoritmos de planificación de la CPU</a>
+</li>
+<li><a href="planificación_de_la_cpu.html#_planificación_de_tiempo_real">14.6. Planificación de tiempo real</a>
+</li>
+<li><a href="planificación_de_la_cpu.html#_planificación_en_sistemas_multiprocesador">14.7. Planificación en sistemas multiprocesador</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="planificación_de_la_cpu"><a class="anchor" href="#planificación_de_la_cpu"></a>14. Planificación de la CPU</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 56 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El <strong>planificador de la CPU</strong> o <strong>planificador de corto plazo</strong> tiene la misión de seleccionar de la <strong>cola de preparados</strong> el siguiente proceso o hilo de núcleo a ejecutar.
+En dicha cola suelen estar los PCB —o TCB— de todos los procesos —o hilos de núcleo— que esperan una oportunidad para usar la CPU.
+Aunque se suele pensar en la <strong>cola de preparados</strong> como una cola FIFO, no tiene por qué ser así, como veremos más adelante, ya que existen mejores estrategias para seleccionar la próxima tarea a ejecutar.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En este capítulo hablaremos de procesos y de cómo son seleccionados por el planificador de la CPU.
+Sin embargo, debemos tener en cuenta que en los sistemas operativos multihilo con la librería de hilos implementada en el núcleo —categoría a la que pertenecen todos los sistemas modernos— la unidad de trabajo de la CPU es el hilo.
+Así que todo lo que comentemos a partir de ahora sobre la planificación de procesos en la CPU, realmente se aplica a los hilos y no a los procesos en los sistemas operativos modernos.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En cualquier caso, sea cual sea el algoritmo de planificación utilizado, este debe ser muy rápido, ya que es ejecutado con mucha frecuencia —aproximadamente una vez cada 100 milisegundos—.</p>
+</div>
+<div class="sect2">
+<h3 id="_planificación_expropiativa"><a class="anchor" href="#_planificación_expropiativa"></a>14.1. Planificación expropiativa</h3>
+<div class="paragraph">
+<p>
+El planificador deben ser invocado necesariamente en los siguientes casos, dado que en ellos la CPU queda libre y es conveniente aprovecharla planificando otro proceso, en lugar de dejarla desocupada:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Cuando un proceso pasa de <strong>ejecutando</strong> a <strong>esperando</strong>.
+Por ejemplo, por solicitar una operación de E/S, esperar a que un hijo termine, esperar en un semáforo, etc.</p>
+</li>
+<li>
+<p>Cuando un proceso termina.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Cuando el planificador de la CPU es invocado solo en los casos anteriores, decimos que tenemos un sistema operativo con <strong>planificación cooperativa</strong> o <strong>no expropiativa</strong>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>En la <strong>planificación cooperativa</strong> cuando la CPU es asignada a un proceso, este la acapara hasta terminar o hasta pasar al estado de <strong>esperando</strong>.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>planificación cooperativa</strong> no requiere de ningún hardware especial, por lo que en algunas plataformas puede ser la única opción.
+Por ello estaba presente en los sistemas operativos más antiguos, como <a href="https://es.wikipedia.org/wiki/Windows_3.1x">Windows 3.x</a> y <a href="https://es.wikipedia.org/wiki/Mac_OS">Mac OS</a> —que no debemos confundir con el actual <a href="https://es.wikipedia.org/wiki/MacOS">macOS</a>—.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, las decisiones de planificación también pueden ser tomadas en otros dos casos:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Cuando ocurre una interrupción del temporizador, lo que permite detectar si un proceso lleva demasiado tiempo ejecutándose.</p>
+</li>
+<li>
+<p>Cuando un proceso pasa de <strong>esperando</strong> a <strong>preparado</strong>.
+Por ejemplo, porque para un proceso ha terminado la operación de E/S por la que estaba esperando.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Cuando el planificador es invocado en los cuatro casos decimos que tenemos <strong>planificación expropiativa</strong> o <strong>apropiativa</strong>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La <strong>planificación expropiativa</strong> sí requiere de un soporte adecuado por parte del hardware, por lo que se utiliza en los sistemas operativos modernos.
+Ejemplos de estos sistemas son Microsoft Windows —desde Windows 95— Linux, macOS, y todos los UNIX modernos.</p>
+</div>
+<div class="paragraph">
+<p>La utilización de un <strong>planificador expropiativo</strong> introduce algunas dificultades adicionales:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Puesto que un proceso puede ser expropiado en cualquier momento —sin que pueda hacer nada para evitarlo— el sistema operativo debe proporcionar <em>mecanismos de sincronización</em> (véase el <a href="sincronización.html">Capítulo 13</a>) para coordinar el acceso a datos compartidos que podrían estar siendo modificados por el proceso que abandona la CPU y que puede necesitar el que entra en ella.</p>
+</li>
+<li>
+<p>¿Qué ocurre si un proceso va a ser expropiado en el preciso momento en el que se está ejecutando una llamada al sistema? No debemos olvidar que dentro del núcleo se manipulan datos importantes, compartidos por todo el sistema, que deben permanecer consistentes en todo momento.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para resolver esta cuestión la solución más sencilla es impedir la expropiación dentro del núcleo.
+Es decir, el cambio de contexto —que sacaría al proceso actual de la CPU y metería al siguiente— no ocurre inmediatamente, sino que se retrasa hasta que la llamada al sistema se completa o se bloquea poniendo al proceso en el estado de <em>esperando</em>.
+Esto permite núcleos simples y garantiza que las estructuras del mismo permanezcan consistentes, pero es una estrategia muy pobre para sistemas de tiempo real o multiprocesador.
+Exploraremos otras soluciones más adelante (véase el <a href="planificación_de_la_cpu.html#_planificación_de_tiempo_real">Apartado 14.6</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_el_asignador"><a class="anchor" href="#_el_asignador"></a>14.2. El asignador</h3>
+<div class="paragraph">
+<p>El <strong>asignador</strong> es el componente que da el control de la CPU al proceso seleccionado por el planificador de corto plazo.
+Esta tarea implica realizar las siguientes funciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cambiar el contexto.</p>
+</li>
+<li>
+<p>Cambiar al modo usuario.</p>
+</li>
+<li>
+<p>Saltar al punto adecuado del programa para continuar la ejecución del proceso.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Puesto que el <strong>asignador</strong> es invocado para cada intercambio de procesos en la CPU, es necesario que el tiempo que tarda en detener un proceso e iniciar otro sea lo más corto posible.
+Al tiempo que transcurre desde que un proceso es escogido para ser planificado en la CPU hasta que es asignado a la misma se lo denomina <strong>latencia de asignación</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criterios_de_planificación"><a class="anchor" href="#_criterios_de_planificación"></a>14.3. Criterios de planificación</h3>
+<div class="paragraph">
+<p>Los diferentes algoritmos de planificación de la CPU tienen diversas propiedades que pueden favorecer a una clase de procesos respecto a otra.
+Por ello es interesante disponer de algún criterio para poder comparar los algoritmos y determinar cuál es el mejor.</p>
+</div>
+<div class="paragraph">
+<p>Se han sugerido muchos criterios para comparar los algoritmos de planificación de CPU.
+La elección de uno u otro puede suponer una diferencia sustancial a la hora de juzgar qué algoritmo es el mejor.</p>
+</div>
+<div class="paragraph">
+<p>A continuación presentamos los criterios más comunes.</p>
+</div>
+<div class="sect3">
+<h4 id="_criterios_a_maximizar"><a class="anchor" href="#_criterios_a_maximizar"></a>14.3.1. Criterios a maximizar</h4>
+<div class="paragraph">
+<p>Los algoritmos de planificación son mejores cuanto mayor es su valor para los siguientes criterios.</p>
+</div>
+<div class="sect4">
+<h5 id="_uso_de_cpu"><a class="anchor" href="#_uso_de_cpu"></a>Uso de CPU</h5>
+<div class="paragraph">
+<p>
+Un buen planificador debería mantener la CPU lo más ocupada posible.
+El <strong>uso de CPU</strong> es la proporción de tiempo que se usa la CPU en un periodo de tiempo determinado.
+Se suele indicar en tanto por ciento.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$"Uso de CPU" = 100 "Tiempo que la CPU permanece ocupada" / "Tiempo durante el que se toma la medida" "%"\$
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tasa_de_procesamiento"><a class="anchor" href="#_tasa_de_procesamiento"></a>Tasa de procesamiento</h5>
+<div class="paragraph">
+<p>
+Cuando la CPU está ocupada es porque el trabajo se está haciendo.
+Por tanto, una buena medida del volumen de trabajo realizado puede ser el número de tareas o procesos terminados por unidad de tiempo.
+A dicha magnitud es a la que denominamos como <strong>tasa de procesamiento</strong>.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$"Tasa de procesamiento" = "Numero de procesos terminados" / "Tiempo durante el que se toma la medida" "procesos/s"\$
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_criterios_a_minimizar"><a class="anchor" href="#_criterios_a_minimizar"></a>14.3.2. Criterios a minimizar</h4>
+<div class="paragraph">
+<p>Los algoritmos de planificación son mejores cuanto menor es su valor para los siguientes criterios.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Tiempo de ejecución</dt>
+<dd>
+<p>Es el intervalo de tiempo que transcurre desde que el proceso es cargado hasta que termina.</p>
+</dd>
+<dt class="hdlist1">Tiempo de espera</dt>
+<dd>
+<p>Es la suma de tiempos que el proceso permanece a la espera en la <strong>cola de preparados</strong>.
+Esta medida de tiempo no incluye el tiempo de espera debido a las operaciones de E/S.</p>
+</dd>
+<dt class="hdlist1">Tiempo de respuesta</dt>
+<dd>
+<p>Es el intervalo de tiempo que transcurre desde que se lanza un evento —se pulsa una tecla, se hace clic con el ratón o llega un paquete por la interfaz de red— hasta que se produce la primera respuesta del proceso.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>El <strong>tiempo de respuesta</strong> mide el tiempo que se tarda en responder y no el tiempo de E/S.
+Mientras que el <strong>tiempo de ejecución</strong> sí incluye el tiempo que consumen las operaciones de E/S, por lo que suele estar limitado por la velocidad de los dispositivos E/S.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_elección_del_criterio_adecuado"><a class="anchor" href="#_elección_del_criterio_adecuado"></a>14.3.3. Elección del criterio adecuado</h4>
+<div class="paragraph">
+<p>En función del tipo de sistema o de la clase de trabajos que se van a ejecutar puede ser conveniente medir la eficiencia del sistema usando un criterio u otro.
+Esto a su vez beneficiará a unos algoritmos de planificación frente a otros, indicándonos cuáles son los más eficientes para nuestra clase de trabajos en particular.</p>
+</div>
+<div class="paragraph">
+<p>En general podemos encontrar dos clases de trabajos para los que puede ser necesario evaluar la eficiencia del sistema de manera diferente: los trabajos interactivos y los que no lo son.</p>
+</div>
+<div class="sect4">
+<h5 id="_sistemas_interactivos"><a class="anchor" href="#_sistemas_interactivos"></a>Sistemas interactivos</h5>
+<div class="paragraph">
+<p>En los sistemas interactivos —ya sean sistemas de escritorio o <em>mainframes</em> de tiempo compartido— los procesos pasan la mayor parte del tiempo esperando algún tipo de entrada por parte de los usuarios.</p>
+</div>
+<div class="paragraph">
+<p>En este tipo de sistemas, el <strong>tiempo de ejecución</strong> no suele ser el mejor criterio para determinar la bondad de un algoritmo de planificación, ya que viene determinado en gran medida por la velocidad de la entrada de los usuarios.
+Por el contrario, se espera que el sistema reaccione lo antes posible a las órdenes recibidas, lo que hace que el <strong>tiempo de respuesta</strong> sea un criterio más adecuado para evaluar al planificador de la CPU.</p>
+</div>
+<div class="paragraph">
+<p>Generalmente, el <strong>tiempo de respuesta</strong> se reduce  cuando el tiempo que pasan los procesos interactivos en la <strong>cola de preparados</strong> también lo hace —tras haber sido puestos ahí por la ocurrencia de algún evento— por lo que también puede ser una buena idea utilizar como criterio el <strong>tiempo de espera</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Esta selección de criterios no solo es adecuada para los sistemas interactivos, ya que existen muchos otros casos donde es interesante seleccionar un planificador de la CPU que minimice el tiempo de respuesta.
+Esto, por ejemplo, ocurre con algunos servicios en red, como: sistemas de mensajería instantánea, videoconferencia, servidores de videojuegos, etc.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sistemas_no_interactivos"><a class="anchor" href="#_sistemas_no_interactivos"></a>Sistemas no interactivos</h5>
+<div class="paragraph">
+<p>Por el contrario, en los antiguos <em>mainframes</em> de procesamiento por lotes y multiprogramados, en los superordenadores que realizan complejas simulaciones físicas y en los grandes centros de datos de proveedores de Internet como Google, lo de menos es el tiempo de respuesta y lo realmente importante es completar cada tarea en el menor tiempo posible.
+Por eso en ese tipo de sistemas es aconsejable utilizar criterios tales como el <strong>tiempo de ejecución</strong> o la <strong>tasa de procesamiento</strong>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_promedio_o_varianza_del_criterio"><a class="anchor" href="#_promedio_o_varianza_del_criterio"></a>Promedio o varianza del criterio</h5>
+<div class="paragraph">
+<p>Obviamente estos criterios varían de un proceso a otro, por lo que normalmente lo que se busca es optimizar los valores promedios en el sistema.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, no debemos olvidar que en muchos casos puede ser más conveniente optimizar el máximo y mínimo de dichos valores antes que el promedio.
+Por ejemplo, en los sistemas interactivos es más importante minimizar la <strong>varianza en el tiempo de respuesta</strong> que el <strong>tiempo de respuesta promedio</strong>, puesto que para los usuarios un sistema con un tiempo de respuesta predecible es más deseable que uno muy rápido en promedio pero con una varianza muy alta.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ciclo_de_ráfagas_de_cpu_y_de_es"><a class="anchor" href="#_ciclo_de_ráfagas_de_cpu_y_de_es"></a>14.4. Ciclo de ráfagas de CPU y de E/S</h3>
+<div class="paragraph">
+<p>El éxito de la planificación de CPU depende en gran medida de la siguiente propiedad que podemos observar en hilos o procesos:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><em>La ejecución de un hilo o proceso consiste en ciclos de CPU y esperas de E/S, de forma que alternan entre estos dos estados.</em></p>
+</div>
+<div class="paragraph">
+<p><em>La ejecución empieza con una ráfaga de CPU, seguida por una ráfaga de E/S, que a su vez es seguida por otra de CPU y así sucesivamente.</em>
+<em>Finalmente, la última ráfaga de CPU finaliza con una llamada al sistema —generalmente <a href="https://www.man7.org/linux/man-pages/man3/exit.3.html">exit()</a>— para terminar la ejecución del proceso.</em></p>
+</div>
+</div>
+</div>
+<div id="fig-ráfagas-de-cpu" class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/histogramas_tiempo_de_ráfagas.svg" alt="histogramas tiempo de ráfagas">
+</div>
+<div class="title">Figura 43. Histograma de los tiempos de las ráfagas de CPU.</div>
+</div>
+<div class="paragraph">
+<p>La curva que relaciona la frecuencia de las ráfagas de CPU con la duración de las mismas tiende a ser exponencial o hiperexponencial (véase la <a href="planificación_de_la_cpu.html#fig-ráfagas-de-cpu">Figura 43</a>) aunque varía enormemente entre tipos de tareas y sistemas informáticos distintos.
+Esto significa que los procesos se pueden clasificar entre aquellos que presentan un gran número de ráfagas de CPU cortas o aquellos con un pequeño número de ráfagas de CPU largas.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Concretamente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Decimos que un proceso es <strong>limitado por la E/S</strong> cuando presenta muchas ráfagas de CPU cortas, debido a que si es así, es porque pasa la mayor parte del tiempo esperando por la E/S.</p>
+</li>
+<li>
+<p>Decimos que un proceso está <strong>limitado por la CPU</strong> cuando presenta pocas ráfagas de CPU largas, debido a que si es así, es porque hace un uso intensivo de la misma y a penas pasa tiempo esperando por la E/S.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Esta distinción entre tipos de procesos puede ser importante en la selección de un algoritmo de planificación de CPU adecuado, puesto que, por lo general el algoritmo escogido debe planificar antes a los procesos limitados por la E/S, evitando así que los procesos limitados por la CPU —que son los que tienden a usarla más tiempo— la acaparen.</p>
+</div>
+<div class="paragraph">
+<p>Si esto último ocurriera, los procesos limitados por la E/S se acumularían en la <strong>cola de preparados</strong>, dejando vacías las colas de dispositivos.
+Este fenómeno, que provoca una infrautilización de los dispositivos de E/S, se denomina <strong>efecto convoy</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Planificar primero a los procesos limitados por la E/S tiene además dos efectos muy positivos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los procesos interactivos son generalmente procesos limitados por la E/S, por lo que planificarlos primero hace que mejore el tiempo de respuesta.</p>
+</li>
+<li>
+<p>Generalmente el tiempo de espera promedio se reduce cuando se planifican primero los procesos con ráfagas de CPU cortas.
+Según las definiciones anteriores, estos procesos son precisamente los limitados por la E/S.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_algoritmos_de_planificación_de_la_cpu"><a class="anchor" href="#_algoritmos_de_planificación_de_la_cpu"></a>14.5. Algoritmos de planificación de la CPU</h3>
+<div class="paragraph">
+<p>A continuación ilustraremos algunos de los algoritmos de planificación de CPU más comunes.
+Lo haremos considerando que cada proceso tiene una única ráfaga de CPU.
+Sin embargo, no debemos olvidar que para ser precisos necesitaríamos utilizar muchos más procesos, donde cada uno estuviera compuesto de una secuencia de miles de ráfagas alternativas de CPU y de E/S.</p>
+</div>
+<div class="sect3">
+<h4 id="_planificación_fcfs"><a class="anchor" href="#_planificación_fcfs"></a>14.5.1. Planificación FCFS</h4>
+<div class="paragraph">
+<p>
+En la planificación <strong>FCFS</strong> (<em>First Come, First Served</em>) o <strong>primero que llega, primero servido</strong> la cola es FIFO:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los procesos que llegan se colocan al final de la cola que les corresponde.</p>
+</li>
+<li>
+<p>El proceso asignado a la CPU se coge siempre del principio de la cola seleccionada.</p>
+</li>
+<li>
+<p>Es un algoritmo <strong>cooperativo</strong>, puesto que un proceso mantiene la CPU hasta que decide liberarla voluntariamente —recordemos que la ráfaga de CPU llega a su fin porque el proceso termina o solicita alguna operación que lo lleva el estado <strong>esperando</strong>—.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ilustremos el algoritmo con un ejemplo.
+Supongamos que 4 procesos llegan a la <strong>cola de preparados</strong> en los tiempos indicados en la <a href="planificación_de_la_cpu.html#tabla-problema-fcfs">Tabla 8</a>.
+Además, aunque es difícil tener un conocimiento a priori del tiempo de la ráfaga de CPU de cada proceso, vamos a suponer que también son conocidos.</p>
+</div>
+<table id="tabla-problema-fcfs" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 8. Problema de planificación de la CPU mediante algoritmo FCFS.</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>En la siguiente figura podemos ver el <a href="https://es.wikipedia.org/wiki/Diagrama_de_Gantt">diagrama de Gantt</a> de la planificación considerando que se utiliza el algoritmo <strong>FCFS</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/fcfs1.svg" alt="fcfs1">
+</div>
+</div>
+<div class="paragraph">
+<p>Utilizando el diagrama anterior, podemos calcular fácilmente los <strong>tiempos de espera y de ejecución promedio</strong>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(24-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">27</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(24-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">23</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(27-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">26</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">30</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(27-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">25</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(30-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">28</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">32</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(30-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">27</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(32-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">29</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">18.75</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">26.75</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Lo interesante es que el resultado cambia si los procesos llegan en otro orden.
+Por ejemplo, P1 podría llegar el último:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Entonces el resultado de la planificación sería el que se muestra en la siguiente figura:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/fcfs2.svg" alt="fcfs2">
+</div>
+</div>
+<div class="paragraph">
+<p>Y los <strong>tiempos de espera y ejecución promedio</strong> correspondientes serían:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(3-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(3-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(8-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">32</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(8-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(32-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">29</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2.75</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10.75</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Aunque el tiempo total necesario para ejecutar las ráfagas de los 4 procesos, los criterios utilizados reflejan que el algoritmo se comporta mucho mejor en el segundo caso.
+Por tanto, el algoritmo <strong>FCFS</strong> no garantiza ni <strong>tiempos de espera</strong> ni de <strong>ejecución</strong> mínimos, ya que pueden cambiar variar considerablemente con el orden en el que llegan los procesos.</p>
+</div>
+<div class="paragraph">
+<p>Además, el algoritmo <strong>FCFS</strong> sufre el llamado <strong>efecto convoy</strong>.
+Para entenderlo, analicemos lo que está pasando en el ejemplo de la <a href="planificación_de_la_cpu.html#tabla-problema-fcfs">Tabla 8</a>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Al proceso P1 se le asigna la CPU.
+Durante el tiempo que P1 utiliza la CPU todos los otros procesos terminan sus operaciones de E/S y pasan a la <strong>cola de preparados</strong>.
+Por tanto, mientras los procesos esperan para utilizar la CPU, los dispositivos de E/S permanecen desocupados.</p>
+</li>
+<li>
+<p>El proceso P1 termina de usar la CPU y pasa a una cola de dispositivos.</p>
+</li>
+<li>
+<p>El resto de procesos P, que tienen ráfagas de CPU cortas, se ejecutan rápidamente y pasan a las colas de dispositivos.
+Por tanto, la CPU permanecerá vacía hasta que algún proceso termine la operación de E/S solicitada.</p>
+</li>
+<li>
+<p>El proceso P1 pasa a la <strong>cola de preparados</strong> y se le asigna la CPU.
+Con el tiempo el resto de procesos terminarán sus operaciones y, nuevamente, tienen que esperar en la <strong>cola de preparados</strong> a que el proceso P1 termine de utilizarla.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Esto nos permite llegar a la conclusión de que en cierto orden de llegada la mayor parte de los procesos esperan constantemente detrás de uno para poder realizar su trabajo.
+Esto reduce la utilización de la CPU y de los dispositivos de E/S por debajo de lo que sería posible, si los procesos más cortos se ejecutasen primero.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_sjf"><a class="anchor" href="#_planificación_sjf"></a>14.5.2. Planificación SJF</h4>
+<div class="paragraph">
+<p>
+La planificación <strong>SJF</strong> (<em>Shortest-Job First</em>) o <strong>primero el más corto</strong>, consiste en:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Se asocia con cada proceso la longitud de tiempo de su siguiente ráfaga de CPU.</p>
+</li>
+<li>
+<p>Cuando la CPU está disponible, se pone <strong>ejecutando</strong> el proceso de menor ráfaga de CPU.</p>
+</li>
+<li>
+<p>Si dos procesos tienen ráfagas de una misma longitud, se utiliza el algoritmo <strong>FCFS</strong> —entre ellos, el que lleva más tiempo en la <strong>cola de preparados</strong>—.</p>
+</li>
+<li>
+<p>Es un algoritmo <strong>cooperativo</strong>, puesto que un proceso mantiene la CPU hasta que decide liberarla voluntariamente.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Ilustremos el algoritmo con un ejemplo:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Considerando que se utiliza el algoritmo <strong>SJF</strong> obtendremos el siguiente diagrama de Gantt:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/sjf.svg" alt="sjf">
+</div>
+</div>
+<div class="paragraph">
+<p>Con los <strong>tiempos de espera y ejecución promedio</strong> correspondientes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(16-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(24-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">23</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(9-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(16-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(9-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6.25</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12.25</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Sin embargo, si hubiéramos utilizado el algoritmo <strong>FCFS</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/fcfs-sjf.svg" alt="fcfs sjf">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(6-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(14-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(14-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(21-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(21-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">18</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(24-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8.75</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14.75</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>El algoritmo <strong>SJF</strong> es óptimo en el sentido de que el <strong>tiempo de espera promedio</strong> es mínimo, porque reduce más el tiempo de espera de los procesos cortos y aumenta el de los procesos largos.
+Además, así se evita el <strong>efecto convoy</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, la pregunta que debemos hacernos es cómo podemos conocer de antemano la longitud de las ráfagas de CPU de un proceso, para usar esa información durante la planificación.
+Sin analizar el código, el sistema operativo no puede conocer el tiempo de una ráfaga hasta que esta no termina de ejecutarse.</p>
+</div>
+<div class="paragraph">
+<p>Por eso el algoritmo SJF se utiliza frecuentemente como planificador de la <strong>cola de trabajos</strong>, donde se puede obligar al usuario a especificar un tiempo de ejecución máximo, al enviar el trabajo a dicha cola.
+En este caso, los usuarios tenderán a ajustar la estimación de tiempo de ejecución, puesto que los que tengan tiempos más cortos serán priorizados para ser ejecutados antes, frente a los de tiempos más largos.</p>
+</div>
+<div class="paragraph">
+<p>Para evitar que los usuarios hagan trampas indicando un tiempo de ejecución más corto que el real, con el fin de que se planifique antes su trabajo, se puede utilizar un temporizador para abortar los trabajos que excedan el tiempo de ejecución indicado por el usuario.
+El error puede ser notificado al usuario para que vuelva a enviar el trabajo con una estimación más realista.</p>
+</div>
+<div class="paragraph">
+<p>Para utilizar el algoritmo <strong>SJF</strong> en el planificador de la CPU, lo único que se puede hacer es intentar predecir el tiempo de la siguiente ráfaga de CPU.
+Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos de las de ráfagas de CPU pasadas:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\tau_{n+1} = \alpha{}t_n + (1 - \alpha)\tau_n,\; 0 \leq \alpha \leq 1\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>&#964;</em><sub><em>n</em>+1</sub> es la estimación de tiempo de la siguiente ráfaga de CPU</p>
+</li>
+<li>
+<p><em>t<sub>n</sub></em> es el tiempo real de la última ráfaga</p>
+</li>
+<li>
+<p><em>&#945;</em> es el peso relativo del tiempo real de la última ráfaga.</p>
+</li>
+<li>
+<p><em>&#964;<sub>n</sub></em> es la estimación de tiempo de la última ráfaga.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La expresión es recursiva, dado que <em>&#964;<sub>n</sub></em> se calcula usando la ecuación con <em>t</em><sub><em>n</em>-1</sub> y <em>&#964;</em><sub><em>n</em>-1</sub>; que a su vez depende de <em>t</em><sub><em>n</em>-2</sub> y <em>&#964;</em><sub><em>n</em>-2</sub>, y así sucesivamente.</p>
+</div>
+<div class="paragraph">
+<p>Si desarrollamos la fórmula sustituyendo los valores, veremos que <em>t<sub>n</sub></em> se pondera con <em>&#945;</em>, <em>t</em><sub><em>n</em>-1</sub> con (1 - <em>&#945;</em>)<em>&#945;</em>, <em>t</em><sub><em>n</em>-2</sub> con(1 - <em>&#945;</em>)<sup>2</sup><em>&#945;</em>, y así sucesivamente:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\tau_{n+1}=\alpha{}t_n + (1 - \alpha)\alpha{}t_{n-1} + (1 - \alpha)^2\alpha{}t_{n-2} + \ldots\]
+</div>
+</div>
+<div class="paragraph">
+<p>Si <em>&#945;</em> = 1, <em>&#964;</em><sub><em>n</em>+1</sub> = <em>&#945;t<sub>n</sub></em>, ignorando el resto del histórico.
+En otro caso, dado que tanto <em>&#945;</em> como 1 - <em>&#945;</em> son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los <em>t<sub>n</sub></em> contribuyan menos cuanto más alejados del tiempo actual.</p>
+</div>
+<div class="paragraph">
+<p>El problema es que todos estos cálculos consumen tiempo de CPU, cuando el planificador debe ser lo más rápido posible, dado que se ejecuta con mucha frecuencia.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_srtf"><a class="anchor" href="#_planificación_srtf"></a>14.5.3. Planificación SRTF</h4>
+<div class="paragraph">
+<p>
+El algoritmo <strong>SJF</strong> es <strong>cooperativo</strong>, pero se puede implementar de forma <strong>expropiativa</strong>, en cuyo caso se llama <strong>SRTF</strong> (Shortest-Remaing-Time First).
+La diferencia está en lo que ocurre cuando un nuevo proceso llega a la <strong>cola de preparados</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En <strong>SRTF</strong> se compara el tiempo de la siguiente ráfaga de CPU del nuevo proceso, con el tiempo de ráfaga que le queda al proceso en ejecución.
+Si la primera magnitud es inferior, el proceso que tiene la CPU es expropiado y sustituido por el nuevo proceso.
+Mientras que en <strong>SJF</strong> no se hace nada.
+Se espera que el proceso que actualmente se está ejecutando termine su ráfaga de CPU voluntariamente.</p>
+</div>
+<div class="paragraph">
+<p>Ilustremos el algoritmo con un ejemplo:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>El resultado es el que se muestra en el siguiente diagrama de Gantt:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/srtf.svg" alt="srtf">
+</div>
+</div>
+<div class="paragraph">
+<p>Y los tiempos de espera y ejecución promedio correspondientes serían:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (10-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(1-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(5-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">26</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(26-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(5-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(10-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6.50</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13.00</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Es muy complicado predecir cuál de los dos algoritmos será mejor para un conjunto concreto de procesos.
+Sin embargo, debemos tener en cuenta que —aunque no lo estemos considerando en estos problemas— un algoritmo expropitativo, por lo general, provocará más cambios de contexto en los que se perderá tiempo de CPU.</p>
+</div>
+<div class="paragraph">
+<p>Los algoritmos expropiativos también suelen ofrecer mejores tiempos de respuesta, puesto que un proceso que llega a la <strong>cola de preparados</strong> puede ser asignado a la CPU sin esperar a que el proceso que se ejecuta en ella actualmente termine su ráfaga de CPU.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_con_prioridades"><a class="anchor" href="#_planificación_con_prioridades"></a>14.5.4. Planificación con prioridades</h4>
+<div class="paragraph">
+<p>
+En la <strong>planificación con prioridades</strong> se asocia una prioridad a cada proceso, de tal forma que el de prioridad más alta es asignado a la CPU.
+En caso de igual prioridad, se utiliza <strong>FCFS</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Las prioridades se suelen indicar con números enteros en un rango fijo. Por ejemplo [0-7], [0-31],
+[0-139] o [0-4095].
+En algunos sistemas operativos los números más grandes representan mayor prioridad, mientras que en otros son los procesos con números más pequeños los que se planifican primero.
+En este curso utilizaremos la convención de que a menor valor, mayor prioridad.</p>
+</div>
+<div class="paragraph">
+<p>Si las prioridades se asignan en relación al tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del <strong>SJF</strong>; por lo que se considera a este último un caso particular de algoritmo de <strong>planificación con prioridades</strong>.</p>
+</div>
+<div class="paragraph">
+<p>El algoritmo de planificación con prioridades puede ser <strong>expropiativo</strong> o <strong>cooperativo</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el caso <strong>expropiativo</strong>, cuando un proceso llega a la <strong>cola de preparados</strong> su prioridad es comparada con la del proceso en ejecución.
+Se expropia la CPU si la prioridad del nuevo proceso es superior a la prioridad del proceso que se ejecuta.</p>
+</li>
+<li>
+<p>En el caso <strong>cooperativo</strong>, no se toma ninguna decisión cuando llega un proceso a la <strong>cola de preparados</strong>, solo cuando el que tiene asignada la CPU la abandona.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Supongamos que 5 procesos llegan a la cola de preparados en los tiempos indicados en la <a href="planificación_de_la_cpu.html#tabla-problema-prioridad">Tabla 9</a>.
+Como en los ejemplos anteriores, aunque es difícil tener un conocimiento a priori del tiempo de las ráfagas de CPU, vamos a suponer que son conocidos.
+Y también que a cada proceso se le asigna, de alguna forma, una prioridad cuando llega a la <strong>cola de preparados</strong>.</p>
+</div>
+<table id="tabla-problema-prioridad" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 9. Problema de planificación de la CPU mediante algoritmo de planificación con prioridades.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+<th class="tableblock halign-center valign-top">Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>En las condiciones anteriores, si utilizamos el algoritmo de planificación por prioridades expropiativo, obtendremos el diagrama de Gantt de la siguiente figura:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/prioridad.svg" alt="prioridad">
+</div>
+</div>
+<div class="paragraph">
+<p>Con los <strong>tiempos de espera y ejecución promedio</strong> correspondientes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (3-1) + (9-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(1-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(3-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">20</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(20-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">18</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(20-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(22-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(4-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(9-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7.80</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12.20</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Mientras que si utilizamos el algoritmo de planificación por prioridades cooperativo, obtendremos el diagrama de Gantt de la siguiente figura:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/prioridad_cooperativo.svg" alt="prioridad cooperativo">
+</div>
+</div>
+<div class="paragraph">
+<p>Con los <strong>tiempos de espera y ejecución promedio</strong> correspondientes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(10-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(10-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(12-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">20</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(20-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">18</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(20-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(22-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(12-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9.80</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14.20</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Que estos algoritmos ofrezcan mejores o peores resultados que otros, obviamente depende de los criterios utilizados para asignar las prioridades.</p>
+</div>
+<div class="sect4">
+<h5 id="_prioridades_definidas_internamente_o_externamente"><a class="anchor" href="#_prioridades_definidas_internamente_o_externamente"></a>Prioridades definidas internamente o externamente</h5>
+<div class="paragraph">
+<p>Hay dos maneras de asignar las prioridades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Internamente</strong>.
+Se utiliza una cualidad medible del proceso para calcular su prioridad.
+Por ejemplo, límites de tiempo, necesidades de memoria, número de archivos abiertos, tiempo estimado de ráfaga de CPU —como en <strong>SJF</strong>— o la proporción entre esta y el tiempo estimado de ráfaga de E/S.</p>
+</li>
+<li>
+<p><strong>Externamente</strong>.
+Las prioridades son fijadas por criterios externos al sistema operativo.
+Por ejemplo, la importancia del proceso para los usuarios, la cantidad de dinero pagada para el uso del sistema u otros factores políticos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Algunas de estas formas de asignar las prioridades pueden ser fijas, mientras que otras pueden ser variables.
+Es decir, un criterio externo como es la importancia del proceso para los usuarios, puede dar lugar a una prioridad que se asigna al crear el proceso y que no cambia durante toda su ejecución.
+Por el contrario, un criterio como el tiempo de ráfaga de CPU puede dar lugar a una prioridad variable, que se ajusta cada vez que se tiene una estimación mejor.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_muerte_por_inanición"><a class="anchor" href="#_muerte_por_inanición"></a>Muerte por inanición</h5>
+<div class="paragraph">
+<p>El mayor problema de este tipo de planificación es el <strong>bloqueo indefinido</strong> o <strong>muerte por inanición</strong>.
+Si hay un conjunto de procesos de alta prioridad demandando CPU continuamente, el algoritmo puede dejar a algunos procesos de menor prioridad esperando indefinidamente.</p>
+</div>
+<div class="paragraph">
+<p>Una solución a este problema es aplicar mecanismos de <strong>envejecimiento</strong>.
+Consisten en aumentar gradualmente la prioridad de los procesos que esperan —por ejemplo, 1 unidad cada 15
+minutos—.
+De esta manera los proceso de baja prioridad tarde o temprano tendrán una oportunidad para ejecutarse.
+Una vez se les asigna la CPU, se restablece su prioridad al valor original.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_rr"><a class="anchor" href="#_planificación_rr"></a>14.5.5. Planificación RR</h4>
+<div class="paragraph">
+<p>
+El algoritmo <strong>RR</strong> (<em>Round-Robin</em>) es similar al <strong>FCFS</strong>, pero añadiendo la expropiación para conmutar entre procesos cuando llevan cierta cantidad de tiempo ejecutándose en la CPU.</p>
+</div>
+<div class="paragraph">
+<p>Este algoritmo requiere los siguientes elementos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Definir una <strong>ventana de tiempo</strong> o <strong>cuanto</strong>, generalmente entre 10 y 100 ms</p>
+</li>
+<li>
+<p>Definir la <strong>cola de preparados</strong> como una cola circular, donde el planificador asigna la CPU a cada proceso en intervalos de tiempo de hasta un <strong>cuanto</strong>, como máximo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cuando un proceso está en la CPU pueden darse diversos casos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Que la ráfaga de CPU sea menor que un cuanto.
+Entonces el proceso liberará la CPU voluntariamente, al terminar la ráfaga.</p>
+</li>
+<li>
+<p>Que la ráfaga de CPU sea mayor que un cuanto.
+El temporizador interrumpirá el proceso al terminar el cuanto e informará al sistema operativo.
+Este hará el cambio de contexto para asignar la CPU al siguiente proceso y el que abandona la CPU es insertado al final de la <strong>cola de preparados</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Este algoritmo es <strong>expropiativo</strong>, puesto que los procesos son expropiados por la interrupción del temporizador.
+Como se puede intuir, originalmente fue diseñado para los <strong>sistemas de tiempo compartido</strong>, para repartir la CPU por igual entre los procesos de los usuarios del sistema.</p>
+</div>
+<div class="paragraph">
+<p>Ilustremos el algoritmo con un ejemplo con cuanto de 4 ms:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>El resultado es el que se muestra en el siguiente diagrama de Gantt:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/rr.svg" alt="rr">
+</div>
+</div>
+<div class="paragraph">
+<p>Y los <strong>tiempos de espera y ejecución promedio</strong> correspondientes serían:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">30</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (10-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(30-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(4-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(10-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4.67</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12.67</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="sect4">
+<h5 id="_rendimiento_2"><a class="anchor" href="#_rendimiento_2"></a>Rendimiento</h5>
+<div class="paragraph">
+<p>Cuando se utiliza la planificación <strong>RR</strong> el tamaño del cuanto es un factor clave en la eficiencia del planificador:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cuando se reduce el <strong>cuanto</strong>, el <strong>tiempo de respuesta</strong> y el <strong>tiempo de espera promedio</strong> tienden a mejorar.
+Sin embargo el número de cambios de contexto será mayor, por lo que la ejecución de los procesos será más lenta.</p>
+<div class="paragraph">
+<p>Es importante tener en cuenta que interesa que el <strong>cuanto</strong> sea mucho mayor que el tiempo del cambio de contexto.
+Si, por ejemplo, el tiempo de cambio de contexto es un 10% del <strong>cuanto</strong>, entonces alrededor del 10% del tiempo de CPU se pierde en cambios de contexto.</p>
+</div>
+</li>
+<li>
+<p>Cuando se incrementa el <strong>cuanto</strong>, el <strong>tiempo de espera promedio</strong> también se incrementa.
+En el caso extremo en el que el <strong>cuanto</strong> es tan grande que ningún proceso lo agota, el <strong>RR</strong> se convierte en <strong>FCFS</strong>, que suele tener grandes <strong>tiempos de espera promedio</strong>.</p>
+<div class="paragraph">
+<p>Por otro lado, puede observarse experimentalmente que el <strong>tiempo de ejecución promedio</strong> generalmente mejora cuantos más procesos terminan su próxima ráfaga de CPU dentro de su <strong>cuanto</strong>.
+Por lo tanto, nos interesa un cuanto grande para que más procesos terminen su siguiente ráfaga dentro del mismo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dados tres procesos con una duración cada uno de ellos de 10 unidades de tiempo y cuanto igual a 1, el tiempo de ejecución promedio será de 29 unidades.
+Sin embargo, si el cuanto de tiempo fuera 10, el tiempo de ejecución promedio caería a 20 unidades de tiempo.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La regla general que siguen los diseñadores es intentar que el 80% de las ráfagas de CPU sean menores que el tiempo de <strong>cuanto</strong>.
+Se busca así equilibrar los criterios anteriores, evitando que el tiempo de cuanto sea demasiado grande o demasiado corto.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Actualmente se utilizan tiempos de cuanto de entre 10 y 100 ms
+Estos tiempos son mucho mayores que los tiempos de cambios de contexto, que generalmente son inferiores a 10 µs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_reparto_equitativo_del_tiempo_de_cpu"><a class="anchor" href="#_reparto_equitativo_del_tiempo_de_cpu"></a>Reparto equitativo del tiempo de CPU</h5>
+<div class="paragraph">
+<p>Uno de los inconvenientes del algoritmo <strong>RR</strong> es que no garantiza el reparto equitativo del tiempo de
+CPU entre los procesos limitados por la E/S y los limitados por la CPU —aunque es mejor que <strong>FCFS</strong>—.</p>
+</div>
+<div class="paragraph">
+<p>Esto es debido a que los primeros utilizan el procesador durante periodos cortos de tiempo, para bloquearse posteriormente a la espera de que se realice la operación de E/S que han solicitado.
+Cuando la espera termina, vuelven a la <strong>cola de preparados</strong> donde aguardan a que se les asigne la CPU.
+Sin embargo, eso no va a ocurrir rápidamente si en el sistema hay procesos limitados por la CPU, pues estos generalmente agotan el <strong>cuanto</strong> antes de ser forzados a volver a la <strong>cola de preparados</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Así, los procesos limitados por la CPU hacen un mayor uso de la misma, mientras que los limitados por la E/S pueden tener que esperar durante bastante tiempo —aunque menos que si el algoritmo fuera <strong>FCFS</strong>, donde no hay <strong>cuanto</strong>— en la <strong>cola de preparados</strong> antes entrar en la CPU para solicitar una nueva operación de E/S.
+Esto hace que se desaprovechen los dispositivos de E/S y genera un incremento de la varianza del tiempo de respuesta.
+Para evitarlo se puede optar por un <strong>planificador de colas multinivel</strong> —para resolver el problema combinando el algoritmo <strong>RR</strong> con otro que priorice adecuadamente los procesos limitados por la E/S (véase el <a href="planificación_de_la_cpu.html#_planificación_con_colas_multinivel">Apartado 14.5.7</a>)— o por la <strong>planificación equitativa</strong> que veremos a continuación.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_equitativa"><a class="anchor" href="#_planificación_equitativa"></a>14.5.6. Planificación equitativa</h4>
+<div class="paragraph">
+<p>
+Hasta el momento hemos hablado de planificadores que se centran en cuál es el proceso más importante para ejecutarlo a continuación.
+Sin embargo otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
+Esto es precisamente lo que hace la <strong>planificación equitativa</strong> (<em>Fair Scheduling</em>) que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si 4 procesos compiten por el uso de la CPU, el planificador asignaría un 25% del tiempo de la misma a cada uno.
+Si a continuación un usuario inicia un nuevo proceso, el planificador tendría que ajustar el reparto asignando un 20% del tiempo a cada uno, ya que ahora habría 5 procesos compitiendo por el tiempo de CPU.</p>
+</div>
+<div class="paragraph">
+<p>El algoritmo de planificación equitativa es muy similar al algoritmo <strong>RR</strong>. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula dinámicamente para garantizar el reparto equitativo de la CPU.</p>
+</div>
+<div class="sect4">
+<h5 id="_planificación_equitativa_ponderada"><a class="anchor" href="#_planificación_equitativa_ponderada"></a>Planificación equitativa ponderada</h5>
+<div class="paragraph">
+<p>
+Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
+Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <a href="planificación_de_la_cpu.html#_ciclo_de_ráfagas_de_cpu_y_de_es">Apartado 14.4</a>.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>planificación equitativa</strong> resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo proporcionalmente más tiempo de CPU a los procesos con mayor peso.
+A esta generalización del planificador equitativo se la conoce como <strong>planificador equitativo ponderado</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Linux, desde la versión 2.6.23, utiliza un tipo de <strong>planificador equitativo ponderado</strong> denominado <strong>CFS</strong> (<em>Completely Fair Scheduler</em>) o <strong>planificador completamente equitativo</strong> (véase <a href="https://developer.ibm.com/tutorials/l-completely-fair-scheduler/">«Inside the Linux 2.6 Completely Fair Schedule&#8201;&#8212;&#8201;IBM Developer»</a>).
+Otro ejemplo es <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> —el <em>microkernel</em> de <a href="https://es.wikipedia.org/wiki/Google_Fuchsia">Google Fuchsia</a>— que está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del <strong>planificador equitativo ponderado</strong> (véase <a href="https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler">«Zircon Fair Scheduler&#8201;&#8212;&#8201;Fuchsia Project»</a>).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_implementación"><a class="anchor" href="#_implementación"></a>Implementación</h5>
+<div class="paragraph">
+<p>Para ilustrar como funciona este tipo de planificadores, vamos a describir brevemente una posible implementación basada en la de <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> es un <em>microkernel</em> multihilo con modelo uno a uno, por lo que su planificador trabaja con hilos.
+Es decir, las propiedades que necesita el planificador para hacer su trabajo están vinculadas a los hilos y son estos hilos los que el planificador ordena y selecciona para ser ejecutados en la CPU.
+Por el contrario, en la versión que vamos a describir los hilos no existen.
+En su lugar hablaremos de planificar procesos en la CPU, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.</p>
+</div>
+<div class="paragraph">
+<p>Este planificador tiene una serie de parámetros ajustables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La <strong>granularidad mínima <em>M</em></strong>, es la porción mínima de tiempo de CPU que se puede asignar a cualquier proceso.</p>
+</li>
+<li>
+<p>La <strong>latencia de planificación <em>L</em></strong>, es el periodo de tiempo en el que todos los procesos deben haber sido planificados aproximadamente una vez en la CPU.</p>
+<div class="paragraph">
+<p>Lo que hace el planificador es repartir periodos de tiempo <em>L</em> entre todos los procesos que compiten por la CPU, para que todos tengan una oportunidad de ejecutarse en intervalos de al menos <em>L</em> segundos.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Como en otros planificadores, los procesos listos para ejecutarse en un instante dado se almacenan en la cola de preparados.
+Cada proceso <em>P<sub>i</sub></em> tiene una serie de propiedades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Peso <em>w<sub>i</sub></em></strong>, que indica el peso relativo del proceso en el reparto del tiempo de CPU.
+Se trata de un número real en el intervalo (0.0, 1.0].</p>
+</li>
+<li>
+<p><strong>Instante inicial <em>T<sub>si</sub></em></strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
+</li>
+<li>
+<p><strong>Instante final <em>T<sub>fi</sub></em></strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
+</li>
+<li>
+<p><strong>Cuanto del tiempo de CPU <em>T<sub>i</sub></em></strong> en el periodo actual.
+Como ocurre con el cuanto en la planificación RR, se trata del tiempo máximo que el proceso puede estar de forma continua en la CPU.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El concepto de <em>tiempo virtual</em> es muy común en este tipo de planificadores.
+Es como si cada proceso tuviera su propia dimensión temporal, de forma que el tiempo fluyera más despacio para los procesos con mayor peso <em>w<sub>i</sub></em>.
+Así, una unidad de tiempo virtual para un proceso muy pesado implica más tiempo real, que la misma unidad para un proceso muy ligero.</p>
+</div>
+<div class="paragraph">
+<p>Sea <em>t</em> es el instante de tiempo en el que un proceso <em>P<sub>i</sub></em> entra en la cola de preparados, en relación al tiempo virtual el proceso comienza a ejecutarse en la CPU desde ese mismo instante y necesitará más tiempo para terminar cuanto mayor sea su peso.
+Por lo tanto, podemos calcular el instante inicial <em>T<sub>si</sub></em> y el instante final <em>T<sub>fi</sub></em> de la siguiente manera:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{split}
+T_{si} &amp;= t \\
+T_{fi} &amp;= T_{si} + L/w_i
+\end{split}\]
+</div>
+</div>
+<div class="paragraph">
+<p>El tiempo virtual no es el tiempo real en la CPU.
+Por lo tanto, el proceso <em>P<sub>i</sub></em> no entrará en la CPU nada más llegar en <em>t</em>, pero si se colocará en la cola de preparados en orden ascendente en relación al instante final <em>T<sub>fi</sub></em>.
+Es decir, los procesos con mayor peso <em>w<sub>i</sub></em> se colocarán antes en la cola de preparados, con bastante probabilidad.</p>
+</div>
+<div class="paragraph">
+<p>Cuando un proceso <em>P<sub>i</sub></em> es seleccionado para pasar al estado <strong>ejecutando</strong>, se calcula su cuanto de tiempo.
+Como el tiempo se asigna en múltiplos de <em>M</em>, primero es necesario saber cuantas unidades de tiempo <em>M</em> tiene el periodo de latencia de planificación <em>L</em>, que es el tiempo máximo que se le podría asignar si el proceso estuviera solo:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$g_i = "floor"(L/M)\$
+</div>
+</div>
+<div class="paragraph">
+<p>A cada proceso le corresponde más tiempo de CPU según su peso en relación al resto de procesos en competición, lo que lleva a calcular el peso relativo <em>r<sub>i</sub></em> como:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$r_i = w_i / W\$
+</div>
+</div>
+<div class="paragraph">
+<p>donde <em>W</em> es la suma de los pesos de todos los procesos en competición por la CPU —en la cola de preparados— más el peso del que se está ejecutando.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$W = sum_i w_i : P_i["estado"] in {"PREPARADO", "EJECUTANDO"}\$
+</div>
+</div>
+<div class="paragraph">
+<p>Cuando un proceso entra en la cola de preparados su peso se suma a <em>W</em>, mientras que cuando pasa al estado <strong>esperando</strong> o termina, su peso se resta.</p>
+</div>
+<div class="paragraph">
+<p>Finalmente, podemos calcular el cuanto del proceso <em>P<sub>i</sub></em>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_i = "ceil"(g_i * r_i) * M\$
+</div>
+</div>
+<div class="paragraph">
+<p>Esta definición asegura que <em>T<sub>i</sub></em> sea un entero múltiplo de la granularidad mínima <em>M</em>, mientras es aproximadamente proporcional al peso del proceso respecto al resto de procesos con los que compite.</p>
+</div>
+<div class="paragraph">
+<p>Ilustremos el algoritmo con un ejemplo con <em>L</em> = 5 y <em>M</em> = 1:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de llegada (ms)</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+<th class="tableblock halign-center valign-top">Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0.4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0.2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>El resultado es el que se muestra en el siguiente diagrama de Gantt:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/equitativo.svg" alt="equitativo">
+</div>
+</div>
+<div class="paragraph">
+<p>Como el primer proceso está solo cuando se le asigna la CPU, puede consumir toda la latencia de planificación <em>L</em> en el primer periodo.
+Sin embargo, ya han llegado el resto de procesos del problema cuando es expulsado de la CPU, por lo que a partir de ese momento tiene que competir con ellos.
+Entonces, el orden para asignar la CPU viene determinado por el peso y el tiempo de cuanto por la expresión para <em>T<sub>i</sub></em> que vimos anteriormente.</p>
+</div>
+<div class="paragraph">
+<p>Una vez resuelto el problema, los <strong>tiempos de espera y ejecución promedio</strong> correspondientes serían:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Instante de finalización (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de espera (ms)</th>
+<th class="tableblock halign-center valign-top" colspan="2">Tiempo de ejecución (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (9-5) + (14-11)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(12-1) + (21-13)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(22-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(13-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(14-2)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(5-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-3)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(11-5) + (17-12)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(21-4)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9.80</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14.20</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_con_colas_multinivel"><a class="anchor" href="#_planificación_con_colas_multinivel"></a>14.5.7. Planificación con colas multinivel</h4>
+<div class="paragraph">
+<p>
+Los diseñadores recurren a la <strong>planificación de colas multinivel</strong> cuando quieren combinar las características de varios algoritmos.</p>
+</div>
+<div class="paragraph">
+<p>En la planificación con colas multinivel se divide la cola de preparados en colas separadas.
+Los procesos son asignados permanentemente a alguna de dichas colas, cada una de las cuales puede tener un algoritmo de planificación distinto.</p>
+</div>
+<div class="paragraph">
+<p>La asignación de un proceso a una cola se hace en relación a alguna una característica del proceso.
+Por ejemplo, si es interactivo o no, su prioridad o su tamaño en memoria.
+Se hace de esta manera porque se supone que los procesos se pueden clasificar, y que cada clase tiene diferentes requerimientos.
+Por ejemplo, si los procesos se clasifican en interactivos o no interactivos, los primeros pueden ir a una cola con planificación <strong>RR</strong> mientras los segundos van a una con <strong>FCFS</strong>.</p>
+</div>
+<div id="fig-colas-multinivel" class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/planificación_colas_multinivel.svg" alt="planificación colas multinivel">
+</div>
+<div class="title">Figura 44. Ejemplo de planificación con colas multinivel.</div>
+</div>
+<div class="paragraph">
+<p>Una cuestión interesante es cómo seleccionar la cola que debe escoger al siguiente proceso a ejecutar:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Una opción común en los sistemas actuales es utilizar un <strong>planificador con prioridades</strong>.
+Es decir, que cada cola tenga una prioridad y así el planificador solo tiene que escoger la cola de prioridad más alta que no esté vacía.</p>
+<div class="paragraph">
+<p>Por ejemplo, en la <a href="planificación_de_la_cpu.html#fig-colas-multinivel">Figura 44</a>, mientras un proceso de prioridad 1 esté preparado, no se escoge ningún otro de prioridad inferior.
+Si este planificador se implementa de forma expropiativa, el proceso que tiene asignada la CPU es expulsado si un proceso entra en una de las colas que tiene mayor prioridad que la suya.</p>
+</div>
+</li>
+<li>
+<p>Otra opción es usar cuantos sobre las colas.
+Es decir, que a cada cola se le asigne una porción del tiempo de la CPU que debe repartirse entre los distintos procesos en la misma.</p>
+<div class="paragraph">
+<p>Por ejemplo, un 80% de CPU para la cola de procesos interactivos, con planificación <strong>RR</strong>, y el 20% de CPU restante para la cola de procesos no interactivos, con planificador <strong>FCFS</strong>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La <strong>planificación de colas multinivel</strong> con un <strong>planificador con prioridades</strong> para escoger la cola adecuada, es con diferencia la opción más común en los sistemas operativos modernos.
+Sin embargo, en este tipo de <strong>colas multinivel</strong> la asignación de los procesos a las colas es permanente —si la asignación se hace por prioridad, significa que la prioridad es fija—.
+Mientras que hoy en día es común que los procesos se muevan entre colas según las características del proceso.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_con_colas_multinivel_realimentadas"><a class="anchor" href="#_planificación_con_colas_multinivel_realimentadas"></a>14.5.8. Planificación con colas multinivel realimentadas</h4>
+<div class="paragraph">
+<p>
+Para aumentar la flexibilidad de la planificación con colas multinivel se puede permitir a los procesos pasar de una cola a otra.
+Así se pueden clasificar en colas distintas, procesos con diferentes tiempos de ráfaga de CPU.
+Por ejemplo, para situar los procesos interactivos o limitados por la E/S en las colas de más alta prioridad, lo que ya hemos discutido que mejora los tiempos de espera y de respuesta y evita el <strong>efecto convoy</strong>.</p>
+</div>
+<div id="fig-planificación-colas-multinivel-realimentadas" class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/planificación_colas_multinivel_realimentadas.svg" alt="planificación colas multinivel realimentadas">
+</div>
+<div class="title">Figura 45. Ejemplo de planificación con colas multinivel realimentadas.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, supongamos un <strong>planificador de colas multinivel</strong> donde cada cola tiene una prioridad, así que se usa la <strong>planificación con prioridades</strong> para seleccionar la cola.
+En las colas se usa el algoritmo <strong>RR</strong> para seleccionar el siguiente proceso, siendo el <strong>cuanto</strong> de la cola mayor cuanto menos prioritaria es la cola (véase la <a href="planificación_de_la_cpu.html#fig-planificación-colas-multinivel-realimentadas">Figura 45</a>).
+Los procesos que llegan nuevos o desde el estado <strong>esperando</strong> lo hacen con la prioridad más alta —que por convención hemos decidido que sea 0— así que se insertan en la cola correspondiente.
+Mientras que los procesos expropiados por vencimiento del <strong>cuanto</strong> pierde un punto de prioridad, siendo insertados en una cola de prioridad menor.</p>
+</div>
+<div class="paragraph">
+<p>Con este algoritmo los procesos limitados por E/S suelen ejecutarse la mayor parte del tiempo con prioridades más altas que los limitados por CPU.
+Por ejemplo, usando los valores del esquema de la <a href="planificación_de_la_cpu.html#fig-planificación-colas-multinivel-realimentadas">Figura 45</a>, los procesos de ráfagas de CPU entre 20 y 80 ms acaban cayendo a la cola de prioridad 1 tras 20 ms de ejecución.
+Así dejan paso a los procesos con ráfagas menores de 20 ms, que siempre se ejecutan con prioridad 0.
+Finalmente, los procesos de ráfagas mayores de 80 ms van a la cola FCFS, desde donde solo tendrán acceso a la CPU cuando no haya ningún proceso de los otros tipos en la <strong>cola de preparados</strong></p>
+</div>
+<div class="paragraph">
+<p>El <strong>planificador de colas multinivel realimentadas</strong> también se puede utilizar para pasar a colas superiores los procesos que han esperado mucho tiempo en colas inferiores, evitando la <strong>muerte por inanición</strong>, que puede afectar a los sistemas de <strong>planificación de colas multinivel</strong> con <strong>prioridad fija</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el algoritmo <strong>RR virtual</strong> es un caso de <strong>planificador de colas multinivel realimentadas</strong> que resuelve los problemas del <strong>RR</strong>, en cuanto al reparto de la CPU entre procesos limitados por la E/S y limitados por la CPU (véase el <a href="planificación_de_la_cpu.html#_reparto_equitativo_del_tiempo_de_cpu">Apartado 14.5.5.2</a>).</p>
+</div>
+<div id="fig-planificación-rr-virtual" class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/vrr.svg" alt="vrr">
+</div>
+<div class="title">Figura 46. Ejemplo de planificación con RR virtual.</div>
+</div>
+<div class="paragraph">
+<p>Tal y como se ilustra en la <a href="planificación_de_la_cpu.html#fig-planificación-rr-virtual">Figura 46</a>, en el <strong>RR virtual</strong> los procesos por lo general tienen prioridad 1.
+Sin embargo, aquellos que vuelven al estado <strong>preparado</strong> desde <strong>esperando</strong> después de una operación de E/S, obtienen una bonificación en la propiedad que los lleva a tener prioridad 0.
+Por tanto, los procesos que usan con más frecuencia la E/S, usan más la cola de prioridad más alta, por lo que se les asigna antes la CPU mayor frecuencia.</p>
+</div>
+<div class="paragraph">
+<p>Esta solución puede llevar a que si hay muchos procesos limitados por la E/S, estos acaparen la CPU y no den oportunidad de ejecutarse a los procesos en la cola de prioridad 1.
+Para evitarlo, el algoritmo <strong>RR</strong> de la cola de prioridad 0 tiene un <strong>cuanto</strong> variable, de tal forma que cada proceso recibe lo que le queda del <strong>cuanto</strong> de la cola de prioridad 1 tras haber consumido parte en la CPU en la ráfaga anterior.
+Esto hace que incluso los procesos con ráfagas de CPU más cortas acaben consumiendo su <strong>cuanto</strong> en la cola de prioridad 0 y terminen cayendo a la cola de prioridad 1, dando oportunidad de ejecutarse a otros procesos.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Planificación en Microsoft Windows</div>
+<div class="paragraph">
+<p>Para ilustrar los visto hasta el momento sobre la planificación de la CPU en sistemas operativos modernos, vamos a comentar las principales características de las últimas versiones de Microsoft Windows a este respecto.</p>
+</div>
+<div class="paragraph">
+<p>Las actuales versiones de sistemas operativos Windows pertenecen a la familia de Microsoft Windows NT; que nació con el sistema operativo Windows NT 3.1 en 1993 y que llega hasta hoy en día con Microsoft Windows 10 y Windows Server 2019 —que se corresponden con la versión 10.0 de dicha familia Windows NT—</p>
+</div>
+<div class="paragraph">
+<p>El núcleo de la familia Windows NT es multihilo e internamente implementa un algoritmo de planificación expropiativa con colas multinivel realimentadas basado en prioridades.</p>
+</div>
+<div class="paragraph">
+<p>En Windows las prioridades de los hilos se pueden ver desde dos perspectivas: la de Windows API y la del núcleo.
+Ambas tienen una organización muy diferente, pero en última instancia, las primeras deben traducirse en las segundas.</p>
+</div>
+<table id="tabla-win32-clases-prioridad" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 10. Clases de prioridad en Windows API.</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Clase</th>
+<th class="tableblock halign-center valign-top">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">REALTIME_PRIORITY_CLASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0x00000100</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">HIGH_PRIORITY_CLASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0x00000080</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ABOVE_NORMAL_PRIORITY_CLASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0x00008000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NORMAL_PRIORITY_CLASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0x00000020</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">BELOW_NORMAL_PRIORITY_CLASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0x00004000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">IDLE_PRIORITY_CLASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0x00000040</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <a href="planificación_de_la_cpu.html#tabla-win32-clases-prioridad">Tabla 10</a>.
+La clase de prioridad de un proceso se puede indicar durante la creación del proceso, a través del argumento <code>dwCreationFlags</code> de la función <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a>, o sea puede obtener y cambiar con las funciones <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getpriorityclass">GetPriorityClass()</a> y <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass">SetPriorityClass()</a>, respectivamente.
+Por lo general, la clase de prioridad <code>NORMAL_PRIORITY_CLASS</code> es la clase por defecto de cualquier proceso nuevo, excepto que se indique otra cosa durante su creación.</p>
+</div>
+<div id="fig-windows-task-manager" class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/administrador_de_tareas.jpg" alt="administrador de tareas">
+</div>
+<div class="title">Figura 47. Cambiar la prioridad de un proceso en el <strong>Administrador de tareas</strong>.</div>
+</div>
+<div class="paragraph">
+<p>Con el <strong>Administrador de tareas</strong> de Windows podemos alterar fácilmente la clase de prioridad de un proceso durante su ejecución (véase la <a href="planificación_de_la_cpu.html#fig-windows-task-manager">Figura 47</a>).</p>
+</div>
+<table id="tabla-win32-prioridad-hilos" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 11. Clases de prioridad en Windows API.</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Prioridad</th>
+<th class="tableblock halign-center valign-top">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_TIME_CRITICAL</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_HIGHEST</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_ABOVE_NORMAL</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_NORMAL</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_BELOW_NORMAL</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_LOWEST</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">-2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">THREAD_PRIORITY_IDLE</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Al mismo tiempo, cada hilo del sistema tiene alguno de las prioridades de la <a href="planificación_de_la_cpu.html#tabla-win32-prioridad-hilos">Tabla 11</a>.
+La prioridad de un hilo recién creado es <code>THREAD_PRIORITY_NORMAL</code>, pero se puede cambiar usando la función <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setthreadpriority">SetThreadPriority()</a>.</p>
+</div>
+<div class="paragraph">
+<p>El núcleo de Windows tiene 32 prioridades, siendo 31 la prioridad más alta y 0 la más baja.
+Estos valores se dividen en dos rangos.
+El rango de prioridades de tiempo real va de 16 a 31 y solo está disponible para hilos en procesos en la clase de prioridad <code>REALTIME_PRIORITY_CLASS</code>.
+Mientras que el rango de prioridades dinámicas va de 1 a 15.
+El nivel 0 está reservado para el sistema y se usa para una rutina especializada en limpiar zonas de memoria liberada por los procesos, poniéndolas a 0.</p>
+</div>
+<div class="paragraph">
+<p>La prioridad base —o prioridad estática— de cada hilo que ve el núcleo se calcula combinando la prioridad del hilo y la clase de prioridad del proceso al que pertenece.</p>
+</div>
+<table id="tabla-win32-prioridad-estática" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 12. Clases de prioridad base en Windows API.</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top" colspan="6"><p class="tableblock">Clase de prioridad del proceso</p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">REALTIME</p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">HIGH</p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">ABOVE NORMAL</p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">NORMAL</p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">BELOW NORMAL</p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock">IDLE</p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">TIME CRITICAL</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">31</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">HIGHEST</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">26</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">ABOVE NORMAL</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">25</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">NORMAL</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">24</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">BELOW NORMAL</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">23</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">LOWEST</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock">IDLE</p></th>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Esta prioridad base es la prioridad real del hilo, si este tiene una prioridad en el rango de tiempo real —es decir, si el proceso al que pertenece está en la clase de prioridad <code>REALTIME_PRIORITY_CLASS</code>—.
+Mientras que para el resto de hilos, el sistema suma ciertas bonificaciones a la prioridad base para calcular la prioridad dinámica, que es con la que realmente será planificado el hilo.
+Estas bonificaciones se truncan para que nunca puedan hacer que el hilo se meta en el rango de tiempo real.</p>
+</div>
+<div class="paragraph">
+<p>La prioridad real la usa el sistema para determinar a qué cola va el hilo cuando va a ser insertado en la <strong>cola de preparados</strong>.
+Para cada nivel de prioridad hay una cola con algoritmo <strong>RR</strong>, de tal forma que el planificador escoge primero a los hilos con prioridad más alta. Dentro de la misma prioridad la CPU se asigna en turno, dándoles un <strong>cuanto</strong> de tiempo de CPU.</p>
+</div>
+<div class="paragraph">
+<p>Cuando llega un hilo a la cola de preparados, expropia la CPU al hilo que la tiene asignada si este tiene menor prioridad.
+Esto puede ocurrir incluso si el hilo a expropiar está en medio de una llamada al sistema, ya que, como cualquier sistema operativo moderno, el núcleo de Windows es expropiable —lo que veremos en el <a href="planificación_de_la_cpu.html#_núcleo_expropiable">Apartado 14.6.4.2</a> que ofrece latencias de asignación más bajas que si no lo fuera—.</p>
+</div>
+<div class="paragraph">
+<p>Respecto al <strong>cuanto</strong>, desde Windows Vista –NT 6.0– no se usa el temporizador para controlarlo sino el contador de ciclos de reloj de la CPU.
+Así el sistema puede determinar con precisión el tiempo que se ha estado ejecutando un hilo, excluyendo los tiempos dedicados a otras cuestiones, como por ejemplo a manejar interrupciones.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (<em>Time Stamp Counter</em> o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.</p>
+</div>
+<div class="paragraph">
+<p>Para más información véase <a href="https://en.wikipedia.org/wiki/Time_Stamp_Counter">«Time Stamp Counter&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Una característica curiosa es que los hilos expropiados se insertan en la cabeza de su cola —no en el final— y conservan lo que les queda de <strong>cuanto</strong>.
+Mientras que se insertan por el final con el valor de <strong>cuanto</strong> reiniciado cuando abandonan la CPU por haber agotado el cuanto anterior.
+Estos últimos, además, pierden un nivel de prioridad si se ejecutaban con una prioridad superior a su prioridad base, a causa de alguna modificación.</p>
+</div>
+<div class="paragraph">
+<p>Las bonificaciones a los hilos en el rango de prioridades dinámicas vienen determinadas por distintos criterios, escogidos para mejorar el <strong>tiempo respuesta</strong> y el <strong>tiempo de espera</strong> —priorizando los procesos limitados por E/S— evitar la <strong>muerte por inanición</strong> y la <strong>inversión de prioridad</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Se bonifican los hilos que despiertan tras completar operaciones de E/S con una cantidad que depende del tipo de dispositivo.
+Por ejemplo, la bonificación es mejor para hilos que han esperado por el teclado o el ratón que para los que esperaron por dispositivos del almacenamiento.
+También son bonificados los hilos que despiertan de eventos, semáforos y de otros objetos de sincronización.
+En este último caso, incluso se les ofrece más tiempo de <strong>cuanto</strong> si es el hilo asociado a la ventana de primer plano, con el objetivo de mejorar la respuesta de las aplicaciones interactivas.
+También se bonifica cualquier hilo que gestione elementos de la interfaz gráfica cuando despierta para responder a eventos del sistema de ventanas.</p>
+</div>
+<div class="paragraph">
+<p>Para evitar la <strong>muerte por inanición</strong>, el planificador escoge cada segundo unos pocos hilos que llevan esperando aproximadamente 4 segundos, les triplica el <strong>cuanto</strong> y les aumenta la prioridad a 15.
+Estos hilos recuperan su prioridad base y el cuanto anterior cuando agotan el tiempo de cuanto actual o son expropiados de la CPU</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_planificación_de_tiempo_real"><a class="anchor" href="#_planificación_de_tiempo_real"></a>14.6. Planificación de tiempo real</h3>
+<div class="paragraph">
+<p>En el <a href="tipos_de_sistemas_operativos.html#_sistemas_de_tiempo_real">Apartado 2.7</a> discutimos la importancia de los sistemas de tiempo real.
+A continuación, describiremos las funcionalidades necesarias para soportar la ejecución de procesos en tiempo real dentro de un sistema operativo de propósito general.</p>
+</div>
+<div class="sect3">
+<h4 id="_tiempo_real_estricto"><a class="anchor" href="#_tiempo_real_estricto"></a>14.6.1. Tiempo real estricto</h4>
+<div class="paragraph">
+<p>
+Los sistemas de <strong>tiempo real estricto</strong> son necesarios para realizar tareas críticas que deben ser completadas dentro de unos márgenes de tiempo preestablecidos.</p>
+</div>
+<div class="paragraph">
+<p>Generalmente las tareas son entregadas al sistema operativo junto con una declaración de las restricciones de tiempo —periodicidad y límite de tiempo— y la cantidad de tiempo que necesitan para ejecutarse.
+El planificador solo admitirá las tareas si puede garantizar el cumplimiento de las restricciones de tiempo, rechazándolas en caso contrario.</p>
+</div>
+<div class="paragraph">
+<p>El ofrecer estas garantías requiere que el planificador conozca exactamente el tiempo máximo que se tarda en realizar todas y cada una de las funciones del sistema operativo.
+Esto es imposible en sistemas con almacenamiento secundario o memoria virtual, ya que introducen variaciones no controladas en la cantidad de tiempo necesario para ejecutar una tarea.
+Por tanto, el <strong>tiempo real estricto</strong> no es compatible con los sistemas operativos de propósito general, como los sistemas operativos de escritorio modernos.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tiempo_real_flexible"><a class="anchor" href="#_tiempo_real_flexible"></a>14.6.2. Tiempo real flexible</h4>
+<div class="paragraph">
+<p>
+La ejecución de procesos de <strong>tiempo real flexible</strong> es menos restrictiva.
+Tan solo requiere que los procesos críticos reciban mayor prioridad que los que no lo son.
+Esto puede generar excesos en la cantidad de recursos asignados a los procesos de tiempo real, así como inanición y grandes retrasos en la ejecución del resto de los procesos, pero es compatible con los sistemas de propósito general.</p>
+</div>
+<div class="paragraph">
+<p>Además nos permite conseguir sistemas de propósito general que soporten multimedia, videojuegos y otras tareas que no funcionan de manera aceptable en un entorno que no implementara tiempo real flexible.
+Por ello, la mayor parte de los sistemas operativos modernos soportan este tipo de tiempo real.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementación_del_soporte_de_tiempo_real"><a class="anchor" href="#_implementación_del_soporte_de_tiempo_real"></a>14.6.3. Implementación del soporte de tiempo real</h4>
+<div class="paragraph">
+<p>Implementar el soporte de tiempo real flexible en un sistema operativo de propósito general requiere:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sistema operativo con planificación con prioridades</strong>.
+Los procesos de tiempo real deben tener la mayor prioridad y ser fija.
+Es decir, no deben ser afectados por ningún mecanismo de envejecimiento o bonificación, que pueda usarse con los procesos de tiempo no real.</p>
+</li>
+<li>
+<p><strong>Baja latencia de asignación</strong>.
+Cuanto menor es la latencia, más rápido comenzará a ejecutarse el proceso de tiempo real después de ser seleccionado por el planificador de la CPU.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Mientras que el primer requerimiento es bastante sencillo de conseguir, el segundo es mucho más complejo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reducir_la_latencia_de_asignación"><a class="anchor" href="#_reducir_la_latencia_de_asignación"></a>14.6.4. Reducir la latencia de asignación</h4>
+<div class="paragraph">
+<p>Muchos sistemas operativos tienen un núcleo no expropiable.
+Estos núcleos no pueden realizar un cambio de contexto mientras se está ejecutando código del núcleo —por ejemplo, debido a una llamada al sistema— por lo que se ven obligados a esperar hasta que la operación que se esté realizando termine, antes de asignar la CPU a otro proceso.
+Esto aumenta la <strong>latencia de asignación</strong>, dado que algunas llamadas al sistema pueden ser muy complejas y requerir mucho tiempo para completarse.</p>
+</div>
+<div class="paragraph">
+<p>Con el objetivo de resolver este problema se han desarrollado diversas alternativas para que el código del núcleo sea expropiable.</p>
+</div>
+<div class="sect4">
+<h5 id="_puntos_de_expropiación"><a class="anchor" href="#_puntos_de_expropiación"></a>Puntos de expropiación</h5>
+<div class="paragraph">
+<p>Una posibilidad es introduciendo <strong>puntos de expropiación</strong> en diversos lugares «seguros» dentro del código.
+En dichos puntos se comprueba si algún proceso de prioridad más alta está en la cola de preparados.
+En caso de que sea así, se expropia la CPU al proceso actual y se le asigna al proceso de más alta prioridad.</p>
+</div>
+<div class="paragraph">
+<p>Debido a la función que realizan los puntos de expropiación, solo pueden ser colocados en lugares seguros del código del núcleo.
+Es decir, lugares donde no se interrumpe la modificación de estructuras de datos.
+Sin embargo, esto limita el número de puntos que pueden ser colocados, por lo que la latencia de asignación puede seguir siendo muy alta para algunas operaciones muy complejas del núcleo.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_núcleo_expropiable"><a class="anchor" href="#_núcleo_expropiable"></a>Núcleo expropiable</h5>
+<div class="paragraph">
+<p>Otra posibilidad es diseñar un <strong>núcleo completamente expropiable</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Puesto que en este caso la ejecución de cualquier operación en el núcleo puede ser interrumpida en cualquier momento por procesos de mayor prioridad que el que actualmente tiene asignada la CPU, es necesario proteger las estructuras de datos del núcleo con mecanismos de sincronización.
+Esto hace que el diseño de un núcleo de estas características sea mucho más complejo.</p>
+</div>
+<div class="paragraph">
+<p>Microsoft Windows —desde Windows NT— Linux —desde la versión 2.6— <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> y <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a> son algunos ejemplos de sistemas operativos con núcleos expropiables.
+En el caso concreto de Solaris la latencia de asignación es inferior a 1 ms, mientras que con la expropiación del núcleo desactivada esta puede superar los 100 ms</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Expropiación en el núcleo de Linux</div>
+<div class="paragraph">
+<p>Lamentablemente, conseguir baja latencia de asignación no tiene coste cero.
+El hecho de que el núcleo sea expropiable aumenta el número de cambios de contexto, lo que reduce el rendimiento del sistema a cambio de un menor tiempo de respuesta.
+Esto resulta muy interesante para aplicaciones de tiempo real, multimedia y sistemas de escritorio, pero es poco adecuado para servidores y computación de altas prestaciones.</p>
+</div>
+<div class="paragraph">
+<p>Por eso desde Linux 2.6 se puede compilar el núcleo con diferentes niveles, de lo expropiable que es el núcleo.</p>
+</div>
+<div class="paragraph">
+<p>En la configuración por defecto <code>PREEMPT_NONE</code>, el núcleo tiene algunos <strong>puntos de expropiación</strong>, de tal forma que es ideal para servidores y sistemas cómputo de altas prestaciones.
+Con <code>PREEMPT_VOLUNTARY</code> —el siguiente nivel— se añaden muchos más <strong>puntos de expropiación</strong> con el objeto de reducir la latencia, mejorando el tiempo de respuesta en sistemas de escritorio.</p>
+</div>
+<div class="paragraph">
+<p>Finalmente, activando <code>PREEMPT</code> el núcleo se vuelve <strong>completamente expropiable</strong> —excepto en algunas secciones críticas—.
+Esto es ideal para sistemas de escritorio o sistemas empotrados con requisitos de latencia en el rango de los milisegundos.</p>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_inversión_de_prioridad"><a class="anchor" href="#_inversión_de_prioridad"></a>Inversión de prioridad</h6>
+<div class="paragraph">
+<p>Supongamos que en un núcleo completamente expropiable, un proceso de baja prioridad es interrumpido porque hay un proceso de alta prioridad en la cola de preparados.
+Y que esto ocurre mientras el primero accede a una importante estructura de datos del núcleo.</p>
+</div>
+<div class="paragraph">
+<p>Durante su ejecución, el proceso de alta prioridad podría intentar acceder a la misma estructura que trataba de manipular el proceso de baja prioridad cuando fue interrumpido.
+Debido al uso de mecanismos de sincronización, el proceso de alta prioridad se quedaría bloqueado y tendría que abandonar la CPU a la espera de que el de baja, libere el acceso al recurso.
+Sin embargo, este último tardará en ser asignado a la CPU mientras haya algún otro proceso de alta prioridad en la cola de preparados.</p>
+</div>
+<div class="paragraph">
+<p>Al hecho de que un proceso de alta prioridad tenga que esperar por uno de baja se le conoce como <strong>inversión de la prioridad</strong>.
+Para resolverlo se utiliza un <strong>protocolo de herencia de la prioridad</strong>, donde un proceso de baja prioridad hereda la prioridad del proceso de más alta prioridad que espera por un recurso al que el primero está accediendo.
+En el momento en que el proceso de baja prioridad libere el acceso a dicho recurso, su prioridad retornará a su valor original.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_planificación_en_sistemas_multiprocesador"><a class="anchor" href="#_planificación_en_sistemas_multiprocesador"></a>14.7. Planificación en sistemas multiprocesador</h3>
+<div class="paragraph">
+<p>Para tratar el problema de la planificación en los sistemas multiprocesador nos limitaremos al caso de los <strong>sistemas homogéneos</strong>.
+En dichos sistemas los procesadores son idénticos, por lo que, en cualquiera de ellos, puede ejecutar cualquier proceso.
+Esto es bastante común y simplifica el problema de la planificación.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Un ejemplo de lo contrario a un sistema homogéneo —un sistema heterogéneo— se puede observar en los PC modernos, donde muchos disponen tanto de una CPU como de una GPU, especializada en el procesamiento de gráficos y en las operaciones vectoriales con números enteros y de coma flotante.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Aun así, no debemos olvidar que incluso en el caso de los sistemas homogéneos pueden aparecer limitaciones en la planificación.
+Por ejemplo, los procesadores SMT (<em>Simultaneous Multithreading</em>) permiten la ejecución concurrente de varios hilos de ejecución como si de varias CPU se tratara.
+Sin embargo, al no disponer cada hilo de una CPU completa, es posible que algunos debán esperar a que algún otro libere unidades de ejecución de la CPU que le son necesarias.
+Eso debe ser tenido en cuenta por el planificador con el fin de optimizar el rendimiento del sistema.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La tecnología <em>Hyper-threading</em> disponible en algunos procesadores de Intel es una implementación de la tecnología <em>Simultaneous Multithreading</em>.
+Permite que cada núcleo de procesador que está presente físicamente, el sistema operativo lo gestione como dos núcleos virtuales —o lógicos— y repartir entre ellos las tareas cuando es posible.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al margen de estas cuestiones, según el tipo de procesamiento, existen diversas posibilidades a la hora de enfrentar el problema de la planificación en un sistema multiprocesador (véase el <a href="tipos_de_sistemas_operativos.html#_sistemas_multiprocesador">Apartado 2.4</a>).</p>
+</div>
+<div class="sect3">
+<h4 id="_multiprocesamiento_asimétrico"><a class="anchor" href="#_multiprocesamiento_asimétrico"></a>14.7.1. Multiprocesamiento asimétrico</h4>
+<div class="paragraph">
+<p>
+Cuando utilizamos <strong>multiprocesamiento asimétrico</strong> todas las decisiones de planificación, procesamiento de E/S y otras actividades son gestionadas por el núcleo del sistema ejecutándose en un único procesador: el <strong>servidor</strong> o <strong>maestro</strong>.
+El resto de procesadores se limitan a ejecutar código de usuario, que les es asignado por ese procesador <strong>maestro</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Este esquema es sencillo, puesto que evita la necesidad de compartir estructuras de datos entre el código que se ejecuta en los diferentes procesadores.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multiprocesamiento_simétrico"><a class="anchor" href="#_multiprocesamiento_simétrico"></a>14.7.2. Multiprocesamiento simétrico</h4>
+<div class="paragraph">
+<p>
+Cuando utilizamos <strong>multiprocesamiento simétrico</strong> o <strong>SMP</strong>, cada procesador ejecuta su propia copia del núcleo del sistema operativo y se autoplanifica mediante su propio planificador de CPU.
+En estos sistemas nos podemos encontrar con varias alternativas.</p>
+</div>
+<div class="sect4">
+<h5 id="_con_una_cola_de_preparados_común"><a class="anchor" href="#_con_una_cola_de_preparados_común"></a>Con una cola de preparados común</h5>
+<div class="paragraph">
+<p>Algunos sistemas disponen de una cola de preparados común para todos los procesadores.
+Puesto que se mira en una única cola, todos los procesos pueden ser planificados en cualquier procesador.</p>
+</div>
+<div class="paragraph">
+<p>Este esquema requiere el uso mecanismos de sincronización para controlar el acceso concurrente de los núcleos a las colas.
+En caso contrario, varios procesadores podrían escoger y ejecutar el mismo proceso a la vez.</p>
+</div>
+<div class="paragraph">
+<p>Muchos sistemas operativos modernos implementan el esquema SMP con una cola de preparados común.
+Esto incluye Microsoft Windows NT/2000/XP, Solaris, macOS y versiones anteriores a Linux 2.6.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Es importante recordar que en esos sistemas operativos, lo que se planifica en las distintas CPU usando alguna de estas estrategias, son los hilos y no los procesos.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sin embargo, esta solución presenta algunos inconvenientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La posibilidad de que un proceso se pueda ejecutar en cualquier CPU —aunque parezca beneficiosa— es negativa desde el punto de vista de que dejan de ser útiles las cachés de los procesadores, penalizando notablemente el rendimiento del sistema.
+Por eso, la mayoría de los sistemas operativos de este tipo evitan, en lo posible, la migración de procesos de un procesador a otro.
+A esto se lo conoce como asignar al proceso <strong>afinidad al procesador</strong>.</p>
+</li>
+<li>
+<p>Los mecanismos de sincronización requeridos para controlar el acceso a la cola de preparados pueden mantener a los procesadores mucho tiempo desocupados —mientras esperan— en sistemas con un gran número de procesadores y con muchos procesos en la cola de preparados.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_con_una_cola_para_cada_procesador"><a class="anchor" href="#_con_una_cola_para_cada_procesador"></a>Con una cola para cada procesador</h5>
+<div class="paragraph">
+<p>Cada vez más sistemas modernos están optando por utilizar el esquema SMP con una cola de preparados por procesador.
+De esta manera, al no utilizar mecanismos de sincronización, se eliminan los tiempos de espera para acceder a la cola de preparados y escoger un nuevo proceso.</p>
+</div>
+<div class="paragraph">
+<p>El mayor inconveniente de esta solución es que puede generar desequilibrios entre los procesadores, ya que un procesador puede acabar desocupado —con su cola de preparados vacía— mientras otro está muy ocupado.
+Con el fin de que esto no suceda, es necesario que el sistema disponga de algunos mecanismos de <strong>balanceo de carga</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En la <strong>migración comandada</strong> o <em>push migration</em>, una tarea específica —que se ejecuta con menor frecuencia que el planificador de la CPU— estima la carga de trabajo de cada CPU y en caso de encontrar algún desequilibrio mueve algunos procesos de la cola de preparados de unos procesadores a la de los otros.</p>
+</li>
+<li>
+<p>En la <strong>migración solicitada</strong> o <em>pull migration</em>, un procesador inactivo extrae de la cola de preparados de un procesador ocupado alguna tarea que esté esperando.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Tanto el planificador de Linux 2.6 y posteriores, como el planificador ULE de FreeBSD, implementan ambas técnicas.
+Mientras que en Microsoft Windows, a partir de Windows Vista también se utiliza una cola de preparados por procesador, pero solo implementa la <strong>migración solicitada</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="sincronización.html">Sincronización</a> | ↑ Subir: <a href="gestión_de_procesos.html">Gestión de procesos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="gestión_de_la_memoria.html">Gestión de la memoria</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

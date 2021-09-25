@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('true' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery(document).ready(function() {
+                    jQuery("img, p, .colist td, .stemblock").inlineDisqussions();
+                });
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="tipos_de_sistemas_operativos" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2021-2022</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+<ul class="sectlevel1">
+<li><a href="qué_es_un_sistema_operativo.html">1. ¿Qué es un sistema operativo?</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html"><span class="toc-current">2. Tipos de sistemas operativos</span></a>
+<ul class="sectlevel2">
+<li><a href="tipos_de_sistemas_operativos.html#_mainframe">2.1. Mainframe</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html#_sistemas_de_escritorio">2.2. Sistemas de escritorio</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html#_sistemas_de_mano">2.3. Sistemas de mano</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html#_sistemas_multiprocesador">2.4. Sistemas multiprocesador</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html#_sistemas_distribuidos">2.5. Sistemas distribuidos</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html#_sistemas_en_clúster">2.6. Sistemas en clúster</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html#_sistemas_de_tiempo_real">2.7. Sistemas de tiempo real</a>
+</li>
+</ul>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html">3. Historia de los sistemas operativos</a>
+</li>
+</ul>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="tipos_de_sistemas_operativos"><a class="anchor" href="#tipos_de_sistemas_operativos"></a>2. Tipos de sistemas operativos</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 23 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ahora que sabemos que todos los sistemas operativos hacen lo mismo, pero que el «cómo» lo hacen difiere de un tipo de sistema informático a otro, vamos a ver los tipos de sistemas informáticos, las características de los sistemas operativos que los gestionan y cómo han evolucionado a lo largo de la historia.</p>
+</div>
+<div class="sect2">
+<h3 id="_mainframe"><a class="anchor" href="#_mainframe"></a>2.1. Mainframe</h3>
+<div class="paragraph">
+<p>Los <strong>ordenadores centrales</strong> o <em><strong>mainframes</strong></em> fueron los primeros computadores utilizados en muchas aplicaciones comerciales y científicas.
+Se caracterizan no tanto por la potencia de su CPU como por su: gran capacidad de memoria, gran capacidad de almacenamiento secundario, gran cantidad de dispositivos de E/S y rapidez de estos y alta fiabilidad.</p>
+</div>
+<div class="paragraph">
+<p>Los <em>mainframes</em> pueden funcionar durante años sin problemas ni interrupciones y las reparaciones se realizan sin detener su funcionamiento.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La mayor diferencia entre los superordenadores y los <em>mainframes</em> está en que los primeros se centran en resolver problemas limitados por la velocidad de cálculo —lo cual requiere miles de CPU de alto rendimiento— mientras que los segundos se centran en la fiabilidad y en problemas limitados por la E/S —por lo que los <em>mainframes</em> suelen tener «solo» entre una y varias docenas de CPU—.</p>
+</div>
+<div class="paragraph">
+<p>Para más información sobre los <em>mainframes</em>, véase <a href="http://es.wikipedia.org/wiki/Ordenador_central">«Ordenador central&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Los <em>mainframes</em> aparecieron a finales de la década de los 50 del siglo pasado y han seguido evolucionando hasta la actualidad, por lo que dentro de este tipo de sistemas nos encontramos con varias categorías.</p>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_de_procesamiento_por_lotes"><a class="anchor" href="#_sistemas_de_procesamiento_por_lotes"></a>2.1.1. Sistemas de procesamiento por lotes</h4>
+<div class="paragraph">
+<p>
+Los primeros <em>mainframes</em> eran enormes máquinas operadas desde una consola y conectados a lectores de tarjetas perforadas, dispositivos de cinta e impresoras.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Para imágenes y más información sobre las tarjetas perforadas, véase <a href="https://en.wikipedia.org/wiki/Computer_programming_in_the_punched_card_era">«Computer programming in the punched card era&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El trabajo era preparado por cada programador —normalmente en tarjetas perforadas— y entregado al operador del sistema, que era quién tenía acceso al sistema y la responsabilidad de ejecutar los programas y devolver los resultados al programador correspondiente.</p>
+</div>
+<div class="paragraph">
+<p>No había sistema operativo y el operador debía cargar y ejecutar cada programa de uno en uno.</p>
+</div>
+<div id="fig-consola-ibm-705" class="imageblock">
+<div class="content">
+<img src="media/C02-tipos_de_sistemas/consola_ibm_705.jpg" alt="consola ibm 705">
+</div>
+<div class="title">Figura 2. Operadora en la consola de un mainframe IBM 705&#8201;&#8212;&#8201;Fuente: <a href="https://www.ibm.com/ibm/history/ibm100/images/icp/Y444110I58591Z46/us__en_us__ibm100__700_series__705__620x350.jpg">IBM</a></div>
+</div>
+<div class="paragraph">
+<p>Estos sistemas se convirtieron en <strong>sistemas de procesamiento por lotes</strong> o <strong>sistemas en <em>batch</em></strong> cuando se comenzó a utilizar un pequeño programa —llamado <strong>monitor del sistema</strong>— cuya función era cargar y ejecutar sin interrupción un conjunto —o lote— de programas.</p>
+</div>
+<div class="paragraph">
+<p>Para preparar los lotes, por lo general, el operador cargaba previamente en cinta magnética el conjunto de programas a partir de las tarjetas perforadas proporcionadas por los programadores.
+Para ello se utilizaba un lector de tarjetas autónomo, independiente del <em>mainframe</em>.</p>
+</div>
+<div id="fig-sistemas-procesamiento-lotes" class="imageblock">
+<div class="content">
+<img src="media/C02-tipos_de_sistemas/sistemas_procesamiento_lotes.svg" alt="sistemas procesamiento lotes">
+</div>
+<div class="title">Figura 3. Organización de la memoria en sistemas de procesamiento por lotes.</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>El <strong>monitor del sistema</strong> es un predecesor de los sistemas operativos y tenía las siguientes características:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Permanecía cargado durante todo el tiempo en la memoria del sistema (véase la <a href="tipos_de_sistemas_operativos.html#fig-sistemas-procesamiento-lotes">Figura 3</a>).</p>
+</li>
+<li>
+<p>Su única tarea era cargar y transferir automáticamente la ejecución de un programa al siguiente cuando el anterior terminaba.</p>
+</li>
+<li>
+<p>El mayor inconveniente de este tipo de sistemas era que la CPU permanecía mucho tiempo desocupada porque era —y sigue siendo— varios órdenes de magnitud más rápida que los dispositivos de E/S.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Cualquier programa necesita realizar operaciones de E/S para obtener los datos requeridos para sus cálculos —guardados en tarjetas perforadas y unidades de cinta o, si hablamos de hoy en día, en discos duros y memorias USB—.
+También necesita hacer operaciones de E/S para guardar o imprimir los resultados de esos cálculos.</p>
+</div>
+<div class="paragraph">
+<p>Si solo se puede ejecutar un programa la vez, cuando el programa solicita una operación de E/S, la CPU queda a la espera de que esta termine para continuar con la ejecución del programa, por lo que se pierde tiempo de CPU en no hacer nada.
+Este desaprovechamiento de la CPU es peor cuanto más rápida es la CPU respecto a los dispositivos de E/S.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_multiprogramados"><a class="anchor" href="#_sistemas_multiprogramados"></a>2.1.2. Sistemas multiprogramados</h4>
+<div class="paragraph">
+<p>
+La solución al inconveniente de los sistemas de procesamiento por lotes con la E/S fue que los programas no accedieran directamente al dispositivo de E/S, sino que, en su lugar, solicitaran la operación al <strong>monitor del sistema</strong> para que este la solicitara al hardware.
+Así el sistema operativo —como podemos comenzar a llamarlo— tiene la oportunidad de sustituir el programa en la CPU por otro, mientras la operación de E/S se completa.</p>
+</div>
+<div class="paragraph">
+<p>Además, con la aparición de la tecnología de los discos magnéticos en la década de los 60 del siglo pasado, los trabajos de los programadores comenzaron a ser almacenados en discos, desde donde eran escogidos por el sistema operativo para su ejecución.</p>
+</div>
+<div class="paragraph">
+<p>A estos sistemas se los llamó <strong>multiprogramados</strong>.</p>
+</div>
+<div id="fig-sistemas-multiprogramados" class="imageblock">
+<div class="content">
+<img src="media/C02-tipos_de_sistemas/sistemas_multiprogramados.svg" alt="sistemas multiprogramados">
+</div>
+<div class="title">Figura 4. Gestión de trabajos en sistemas multiprogramados.</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En los <strong>sistemas multiprogramados</strong> la ejecución de los trabajos funcionaba de la siguiente manera (véase la <a href="tipos_de_sistemas_operativos.html#fig-sistemas-multiprogramados">Figura 4</a>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>En el disco magnético se almacenaba una cola donde se iban colocando todos los trabajos que tenían que ser ejecutados.</p>
+</li>
+<li>
+<p>El sistema operativo cargaba varios trabajos en memoria del conjunto de trabajos en la cola en el disco magnético.</p>
+</li>
+<li>
+<p>El sistema operativo cede la CPU a uno de los trabajos en memoria.</p>
+</li>
+<li>
+<p>Cuando el trabajo en la CPU requería usar la E/S se lo pedía al sistema operativo.
+En lugar de mantener a la CPU ocupada inútilmente, el sistema operativo programaba la operación de E/S, pero escogía otro trabajo de entre los que estaban en memoria y lo ejecutaba en la CPU.</p>
+<div class="paragraph">
+<p>Cuando la operación de E/S del anterior trabajo terminaba, el programa que ocupaba la CPU no era interrumpido, sino que debía esperar a una nueva oportunidad de ser escogido para ejecutarse en la CPU.</p>
+</div>
+</li>
+<li>
+<p>Cuando un programa en la CPU terminaba, sus recursos se liberaban, dejando memoria libre.
+Por lo tanto, el sistema operativo escogía un nuevo trabajo de la cola de trabajos en el disco magnético y lo cargaba en la memoria.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Todo este proceso se repetía mientras hubiera trabajos que ejecutar en la cola de trabajos en el disco.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Para operar de la forma descrita es necesario que el sistema operativo realice tres tareas esenciales:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La <strong>planificación de trabajos</strong>, cuya responsabilidad es seleccionar el siguiente trabajo que será cargado en la memoria principal para mantenerla llena.</p>
+</li>
+<li>
+<p>La <strong>planificación de la CPU</strong>, cuya responsabilidad es elegir el siguiente trabajo que será ejecutado en la CPU, de entre los disponibles en la memoria principal.</p>
+</li>
+<li>
+<p>La <strong>gestión de la memoria</strong>, cuya responsabilidad es repartir la memoria principal entre los trabajos alojados en la misma.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Un ejemplo de este tipo de sistemas operativos es el IBM OS/360, que fue lanzado en 1966 para utilizarlo en los <em>mainframes</em> IBM System/360 (véase el <a href="historia_de_los_sistemas_operativos.html#sect-historia-segunda-generación">Apartado 3.2</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_de_tiempo_compartido"><a class="anchor" href="#_sistemas_de_tiempo_compartido"></a>2.1.3. Sistemas de tiempo compartido</h4>
+<div class="paragraph">
+<p>
+Los sistemas multiprogramados ofrecían un uso más eficiente de la CPU, pero no eran capaces de proporcionar interacción directa con los usuarios.
+Los programadores seguían teniendo que entregar los trabajos al operador y espera a que este les devolviera los resultados.</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>sistemas de tiempo compartido</strong> se desarrollaron tras observar que al dar acceso a un grupo de usuarios se podía conseguir un uso más eficiente del sistema, en comparación a cuando solo podía ser utilizado por un usuario a la vez.
+Esto es debido a que, generalmente, un usuario introduce información de forma continua para luego detenerse durante largos periodos de tiempo, mientras que en un grupo de usuarios, las pausas de uno de ellos se pueden llenar con la actividad de los otros.</p>
+</div>
+<div id="fig-sistemas-tiempo-compartido" class="imageblock">
+<div class="content">
+<img src="media/C02-tipos_de_sistemas/sistemas_de_tiempo_compartido.svg" alt="sistemas de tiempo compartido">
+</div>
+<div class="title">Figura 5. Gestión de trabajos en sistemas de tiempo compartido.</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Los <strong>sistemas de tiempo compartido</strong> se caracterizaban por:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tener <strong>terminales</strong>, es decir, hardware especializado en hacer de interfaz directa entre los usuarios y el sistema.
+A través de estas terminales los usuarios podían enviar comandos al sistema e interactuar con sus trabajos.
+Podía haber múltiples usuarios al mismo tiempo, pero cada uno solo podía tener un trabajo en ejecución a la vez.</p>
+</li>
+<li>
+<p>Usar la <strong>multiprogramación</strong> para tener varios trabajos en la memoria principal al mismo tiempo e intercambiar el trabajo en la CPU cuando este solicitaba una operación de E/S, como ya se venía haciendo en los <strong>sistemas multiprogramados</strong> para hacer un uso más eficiente de la CPU.</p>
+</li>
+<li>
+<p>Repartir el tiempo de CPU entre usuarios.
+El sistema operativo asignaba un tiempo de CPU a cada usuario —denominado <strong>ventana de tiempo</strong> o <strong>cuanto</strong> de CPU—.
+Cuando este tiempo se agotaba, el sistema intercambiaba el trabajo en la CPU por el de otro usuario en el sistema.
+La ventana de tiempo era extremadamente pequeña, dando a cada usuario la impresión de que su trabajo nunca se detenía, como si dispusiera de la CPU en exclusiva.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los sistemas que, como los de tiempo compartido, pueden ser utilizados por varios usuarios simultáneamente se denominan sistemas <strong>multiusuario</strong> .</p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En los primeros sistemas se usaban <strong>terminales</strong> electromecánicos con un teclado y una impresora, como el <a href="https://en.wikipedia.org/wiki/Teletype_Model_33">Teletype Model 3</a> (1963).
+Posteriormente llegaron los terminales electrónicos, que usaban un monitor en lugar de una impresora, como el <a href="https://es.wikipedia.org/wiki/IBM_3270">IBM 3270</a>.
+En cualquier caso solo disponían del hardware necesario para realizar la tarea de conectar a los usuarios con el ordenador central.</p>
+</div>
+<div class="paragraph">
+<p>Estos terminales no deben confundirse con las terminales por software que traen algunos sistemas operativos modernos.
+Las terminales por software o <em>terminales virtuales</em> se programan para emular las especificaciones de alguna versión de esas terminales físicas antiguas que hemos comentado.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Los sistemas de tiempo compartido significaron un salto importante en complejidad por diversas razones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Como varios trabajos están en la memoria principal al mismo tiempo, el sistema operativo requiere mecanismos de <strong>gestión de la memoria</strong> y <strong>protección</strong>.</p>
+</li>
+<li>
+<p>Para tener un tiempo de respuesta razonable, los trabajos deben estar cargados en la memoria principal.
+Para que quepan más trabajos de los usuarios en la memoria, el sistema operativo debe utilizar técnicas de <strong>memoria virtual</strong> para ejecutar trabajos que no están completamente cargados en la memoria principal.</p>
+</li>
+<li>
+<p>Como la CPU debe ser compartida entre todos los trabajos, el sistema operativo necesita mecanismos de <strong>planificación de la CPU</strong>.</p>
+</li>
+<li>
+<p>Como varios trabajos pueden tener la necesidad de cooperar y que su ejecución siga cierto orden, el sistema operativo debe proporcionar mecanismos de <strong>sincronización</strong> y <strong>comunicación</strong>.</p>
+</li>
+<li>
+<p>Como el sistema debe disponer de un <strong>sistema de archivos</strong> para repartir el espacio en disco y facilitar a los usuarios el acceso y gestión de sus datos, el sistema operativo necesita un componente de <strong>gestión de discos</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Las primeras versiones de UNIX —lanzado por primera vez en 1970— el sistema operativo VMS —desarrollado en 1978— para los VAX de Digital Equipment Corportation y el IBM OS/400 —introducido en 1988— utilizado en los minicomputadoras AS/400, son algunos ejemplos de sistemas operativos de tiempo compartido (véase el <a href="historia_de_los_sistemas_operativos.html#sect-historia-tercera-generación">Apartado 3.3</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Estrictamente hablando, el término <strong>sistemas de tiempo compartido</strong> hace referencia a estos <em>mainframes</em> desarrollados a partir de principios de la década de 1970.
+Así que no es común utilizarlo con <em>mainframes</em> modernos.</p>
+</div>
+<div class="paragraph">
+<p>Los <em>mainframes</em> modernos permiten a un mismo usuario ejecutar varios trabajos al mismo tiempo, repartiendo el tiempo de CPU entre todos los trabajo en el sistema y no solo entre los usuarios.
+Y lo mismo ocurre en la mayor parte de los sistemas operativos de propósito general actuales —utilizados en ordenadores de escritorio, servidores, portátiles y dispositivos móviles— que con el tiempo han copiado muchas características de los <strong>sistemas de tiempo compartido</strong>.
+Por eso el término actual es <strong>sistema multitarea</strong>, que es mucho más general.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>multitarea</strong>  es un método para tener varios procesos en memoria y ejecutarlos «al mismo tiempo».
+Generalmente requiere de técnicas de multiprogramación, como las empleadas por los antiguos <strong>sistemas multiprogramados</strong>, y de reparto del tiempo de CPU, como ocurre en los antiguos <strong>sistemas de tiempo compartido</strong>.
+Por eso se puede decir que ambos tipos de sistemas <em>mainframe</em> eran <strong>sistemas multitarea</strong>.
+Al igual que lo son los <em>mainframes</em> modernos y muchos sistemas operativos actuales de escritorio y de dispositivos móviles.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_de_escritorio"><a class="anchor" href="#_sistemas_de_escritorio"></a>2.2. Sistemas de escritorio</h3>
+<div class="paragraph">
+<p>
+En la década de los 70 del siglo pasado también aparecieron las primeras CPU en microprocesadores y con estas llegaron las <strong>microcomputadoras</strong> o <strong>microordenadores</strong>.
+Las primeras <strong>microcomputadoras</strong> no incluían teclado ni monitor y se programaban usando interruptores y ledes ubicados en el frontal de la unidad.
+Pero en torno a 1977 apareció la segunda generación de <strong>microcomputadoras</strong>, que sí incluían estos periféricos de E/S, por lo que eran más fáciles de usar que sus predecesoras.
+Entonces comenzaron a recibir el nombre de <em>ordenadores domésticos</em> y de su mano llegaron los primeros <strong>sistemas operativos de escritorio</strong>.</p>
+</div>
+<div id="fig-ordenadores-domésticos-1977" class="imageblock">
+<div class="content">
+<img src="media/C02-tipos_de_sistemas/ordenadores_domésticos_1977.jpg" alt="ordenadores domésticos 1977">
+</div>
+<div class="title">Figura 6. Los tres ordenadores que la revista Byte denominó como la "Trinidad de 1977" de la computación doméstica: el <a href="https://es.wikipedia.org/wiki/Commodore_PET">Commodore PET 2001</a>, el <a href="https://es.wikipedia.org/wiki/Apple_II">Apple II</a> y el <a href="https://es.wikipedia.org/wiki/TRS-80">TRS-80 Model I</a>&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Trinity77.jpg">Wikipedia</a></div>
+</div>
+<div class="paragraph">
+<p>Los <em>mainframes</em> y las minicomputadoras de la época siguieron siendo los ordenadores corporativos por excelencia, ya que eran mucho más grandes y potentes, y también costosos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El término en desuso <strong>minicomputadora</strong> o <strong>miniordenador</strong> hace referencia a máquinas multiusuario de rango medio, entre los <em>mainframes</em> y los ordenadores domésticos.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Los primeros <strong>sistemas operativos de escritorio</strong> eran muy básicos.
+Por ejemplo, en un sistema diseñado para ser utilizado por un único usuario no tiene sentido implementar un sistema de archivos con permisos.
+Así que, los primeros sistemas operativos de escritorio carecían de esta característica que, sin embargo, ya existía en los sistemas de tiempo compartido de la época.
+De la misma manera, carecían de otros mecanismos de protección y no eran ni multiusuario ni multitarea.</p>
+</div>
+<div class="paragraph">
+<p>Pese a estas diferencias, los <strong>sistemas operativos de escritorio</strong> se han beneficiado del desarrollo de los sistemas operativos para <em>mainframes</em>.
+Los sistemas de escritorio actuales son <strong>multiusuario</strong> y <strong>multitarea</strong>; incluyen sistemas de archivos con permisos, autenticación y mecanismos de protección de la memoria —como medidas para proteger los datos de los usuarios— y han incorporado muchas otras características de los sistemas operativos para <em>mainframe</em>.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Aunque con el tiempo los sistemas de escritorio han ido adquiriendo características desarrolladas en los <em>mainframes</em>, no debemos olvidar que ambos tipos de sistemas se siguen diseñando con objetivos diferentes.
+Mientras que en los <em>mainframes</em> se persigue maximizar la fiabilidad y utilización eficiente de los recursos, en los sistemas de escritorio se maximiza la facilidad de uso y el tiempo de respuesta al usuario, poniendo algo de atención al rendimiento.</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>sistemas operativos de escritorio</strong> modernos ya nos son «solo de escritorio» ni se ejecutan únicamente en ordenadores domésticos.
+Se utilizan en un altísimo porcentaje en servidores, superordenadores y hasta en dispositivos móviles.
+Por eso, en la actualidad, el término <strong>sistema operativo de propósito general</strong>  es mucho más adecuado.</p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El <strong>tiempo de respuesta</strong> al usuario se puede considerar como el intervalo de tiempo entre un comando de un usuario —por ejemplo un clic— y la respuesta del sistema a dicho comando.
+En ocasiones este tiempo se minimiza a costa de un uso menos eficiente de los recursos del sistema, por lo que no es un objetivo deseable para diseñar un <em>mainframe</em>.
+Para más información, véase el <a href="planificación_de_la_cpu.html#_criterios_de_planificación">Apartado 14.3</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Son muchos los ejemplos de sistemas operativos en esta categoría. Van desde CP/M —lanzado en 1977— hasta los actuales GNU/Linux, Microsoft Windows y Apple macOS, pasando por MS-DOS, IBM OS/2 y todas las versiones anteriores de Microsoft Windows (véase el <a href="historia_de_los_sistemas_operativos.html#sect-historia-cuarta-generación">Apartado 3.4</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_de_mano"><a class="anchor" href="#_sistemas_de_mano"></a>2.3. Sistemas de mano</h3>
+<div class="paragraph">
+<p>
+Con el nombre genérico de <strong>sistemas de mano</strong> —del inglés <em>handheld</em>— hacemos referencia a las <em>tablets</em>, <em>smartphones</em>, lectores de libros electrónicos y otro sistemas móviles y portátiles.
+Los desarrolladores de aplicaciones y sistemas de mano deben enfrentarse a diversos desafíos, originados por el tamaño limitado de los dispositivos y la alimentación mediante el uso de baterías.
+Debido a esas limitaciones, muchos sistemas de mano tienen poca cantidad de memoria, procesadores lentos —en comparación con sus equivalentes de escritorio— y pantallas más pequeñas.</p>
+</div>
+<div class="paragraph">
+<p>En el diseño del sistema operativo suele primar la facilidad de uso y buscar un buen equilibrio entre rendimiento y tiempo de vida de la batería.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_multiprocesador"><a class="anchor" href="#_sistemas_multiprocesador"></a>2.4. Sistemas multiprocesador</h3>
+<div class="paragraph">
+<p>
+Un <strong>sistema multiprocesador</strong> es aquel ordenador hay procesadores interconectados que comparten el bus del sistema, el reloj y, en ocasiones la memoria, y los periféricos.</p>
+</div>
+<div class="paragraph">
+<p>Hace años esto solo se daba en sistemas con varias CPU, lo que era relativamente común en servidores y sistemas de alto rendimiento para trabajos técnicos o científicos.
+Sin embargo, en la actualidad cualquier dispositivo digital u ordenador doméstico puede tener una CPU con múltiples núcleos, lo que los convierte en sistemas multiprocesador.</p>
+</div>
+<div class="paragraph">
+<p>Las principales desventajas de estos sistemas son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Aumentan la cantidad de trabajo realizado</strong>. A mayor número de procesadores, mayor cantidad de trabajo puede realizar el sistema.
+Sin embargo debemos de tener en cuenta que un sistema con <em>N</em> CPU no es un sistema <em>N</em> veces más rápido.
+Cuando varios procesadores cooperan para realizar una tarea, existe cierta pérdida de rendimiento debida a los mecanismos de sincronización requeridos para controlar el acceso a los recursos compartidos por los procesadores.</p>
+</li>
+<li>
+<p><strong>Economía de escala</strong>. Un sistema multiprocesador puede costar menos que múltiples sistemas monoprocesadores conectados para hacer un trabajo equivalente, porque comparten periféricos, almacenamiento, alimentación, etc.</p>
+</li>
+<li>
+<p><strong>Alta disponibilidad</strong>. Con el hardware adecuado el sistema puede ser tolerante al fallo de uno de los procesadores.
+En caso de fallo el sistema no se detendría, pero sí trabajaría más despacio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la actualidad existen dos tipos de sistemas multiprocesador:</p>
+</div>
+<div id="fig-smp" class="imageblock">
+<div class="content">
+<img src="media/C02-tipos_de_sistemas/multiprocesamiento_simétrico.svg" alt="multiprocesamiento simétrico">
+</div>
+<div class="title">Figura 7. Arquitectura de un sistema de multiprocesamiento simétrico.</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En los <strong>sistemas de multiprocesamiento simétrico</strong> o <strong>SMP</strong> (<em>Symmetric Multiprocessing</em>) todos los procesadores son iguales.
+Todos comparten los mismos recursos, pueden acceder a los mismos dispositivos (véase la <a href="tipos_de_sistemas_operativos.html#fig-smp">Figura 7</a>) y cada uno ejecuta una copia del núcleo del sistema operativo.
+El sistema operativo debe haber sido diseñado para saber repartir el trabajo entre los procesadores y compartir adecuadamente entre tareas y procesadores el resto de recursos del sistema.
+Casi todos los sistemas multiprocesador modernos son de este tipo.</p>
+</li>
+<li>
+<p>En los <strong>sistemas de multiprocesamiento asimétrico</strong> o <strong>AMP</strong> (<em>Asymmetric Multiprocessing</em>) hay un procesador principal y varios secundarios a quienes el principal planifica y entrega las tareas que deben ejecutar.
+En ocasiones los procesadores secundarios se distinguen del principal por haber sido diseñados para realizar algún tipo concreto de tareas de forma muy eficiente o por estar conectadas a hardware especial.
+Ejemplos de esto son las <a href="https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico">GPU</a>, que no son sino procesadores diseñados específicamente para el procesamiento de gráficos, o las CPU de E/S conectadas a discos duros para gestionarlos de forma más eficiente.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Un ejemplo bastante ilustrativo es el de <a href="https://es.wikipedia.org/wiki/Cell_(microprocesador)">Cell</a>, la CPU de PlayStation 3.
+Tenía un núcleo principal de propósito general y 8 núcleos optimizados para ejecutar, de forma muy eficiente, operaciones vectoriales.
+Con la ayuda del sistema operativo, los programas debían envíar tareas matemáticamente intensivas a los procesadores secundarios, si querían extraer el máximo provecho de la arquitectura.</p>
+</div>
+<div class="paragraph">
+<p>Desarrollar para un sistema así es más complejo.
+Por lo que, aunque sobre el papel esta arquitectura ofrecía gran rendimiento, aprovecharlo era un verdadero reto para los desarrolladores.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_distribuidos"><a class="anchor" href="#_sistemas_distribuidos"></a>2.5. Sistemas distribuidos</h3>
+<div class="paragraph">
+<p>
+En la actualidad es común el uso de redes para interconectar ordenadores individuales —por ejemplo Internet o la red de área local de una oficina— cada uno equipado con su procesador, su memoria, sus dispositivos de almacenamiento, su fuente de alimentación, etc.
+En las redes de ordenadores los procesadores de dichos ordenadores se comunican con otros procesadores a través de líneas de comunicación, como: redes Ethernet, líneas telefónicas o wifi.
+Estos sistemas son comúnmente denominados <strong>sistemas distribuidos</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Sin entrar en detalles, los sistemas distribuidos pueden ser clasificados en <strong>sistemas cliente-servidor</strong> y <strong>sistemas de redes entre iguales</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_cliente_servidor"><a class="anchor" href="#_sistemas_cliente_servidor"></a>2.5.1. Sistemas cliente-servidor</h4>
+<div class="paragraph">
+<p>En los <strong>sistemas cliente-servidor</strong>  existen ordenadores que actúan como <strong>servidores</strong> encargados de satisfacer las peticiones generadas por otros ordenadores que actúan como <strong>clientes</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Este tipo de sistemas han sustituido, en un gran número de casos, a los terminales conectados a <em>mainframes</em>, debido a que los sistemas de escritorio son cada vez más potentes y baratos.
+Concretamente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los terminales han sido sustituidos por sistemas de escritorio que, al disponer de más recursos, son capaces de realizar muchas de las funcionalidades que anteriormente eran manejadas directamente por los <em>mainframes</em>.</p>
+</li>
+<li>
+<p>Al mismo tiempo estos <em>mainframes</em> se han reemplazado por servidores, no muy diferentes a los sistemas de escritorios, pero preparados para atender las peticiones de sus clientes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ejemplos de este tipo de sistemas son los servidores de base de datos, que responden a las consultas SQL de los clientes, o los servidores de archivos, que proporcionan una interfaz de sistema de archivos con la que los clientes pueden crear, leer, escribir y borrar archivos en el servidor; de forma similar a como si estuvieran almacenados localmente en el propio cliente.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_de_redes_entre_iguales"><a class="anchor" href="#_sistemas_de_redes_entre_iguales"></a>2.5.2. Sistemas de redes entre iguales</h4>
+<div class="paragraph">
+<p>En los <strong>sistemas de redes entre iguales</strong>   o <strong>P2P</strong> (<em>peer-to-peer</em>) clientes y servidores no se distinguen los unos de los otros.
+Todos los nodos del sistema son iguales y cada uno puede actuar como cliente o servidor, dependiendo de cuándo piden o proporcionan un servicio.</p>
+</div>
+<div class="paragraph">
+<p>La ventaja fundamental de este tipo de sistemas es que en los sistemas cliente-servidor el servidor puede ser el cuello de botella del rendimiento, pero en los sistemas de redes entre iguales la carga se distribuye entre todos los nodos de la red.
+Ejemplos de este tipo de sistemas son las redes <a href="https://es.wikipedia.org/wiki/BitTorrent">BitTorrent</a> y <a href="https://es.wikipedia.org/wiki/Bitcoin">Bitcoin</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Un servidor puede ser el cuello de botella no solo por su potencia sino también por el ancho de banda de su conexión a la red.
+La potencia del servidor es lo de menos cuando se intenta distribuir en Internet archivos de gran tamaño —por ejemplo imágenes de CD o DVD— pues el problema es que varias descargas simultáneas pueden consumir todo el ancho de banda del servidor durante largos periodos de tiempo.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_operativos_para_sistemas_distribuidos"><a class="anchor" href="#_sistemas_operativos_para_sistemas_distribuidos"></a>2.5.3. Sistemas operativos para sistemas distribuidos</h4>
+<div class="paragraph">
+<p>Desde el punto de vista de los sistemas operativos para sistemas distribuidos es posible hacer la siguiente distinción:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los <strong>sistemas operativos de red</strong>  ofrecen a las aplicaciones que corren sobre ellos servicios de acceso a redes de ordenadores.
+Por ejemplo, implementan algún mecanismo que permita a diferentes procesos en diferentes ordenadores enviar y recibir mensajes.
+Además suelen incorporar la opción de proporcionar algunos servicios de red, como la compartición de archivos y dispositivos con otros equipos de la misma red.</p>
+<div class="paragraph">
+<p>Los ordenadores con sistemas operativos de red son autónomos.
+Simplemente es que gracias al sistema operativo de red, conocen la existencia de la red y saben usarla para comunicarse con otros ordenadores de la misma.</p>
+</div>
+<div class="paragraph">
+<p>Este tipo de sistemas operativos son los más utilizados en los tipos de sistemas distribuidos comentados anteriormente.
+En la actualidad, la inmensa mayoría de sistemas de escritorio y dispositivos de mano utilizan sistemas operativos de red.</p>
+</div>
+</li>
+<li>
+<p>Los <strong>sistemas operativos distribuidos</strong>  crean en el usuario la ilusión de que está en un único ordenador, aunque en realidad el sistema operativo controla todos los ordenadores de la red, dando al usuario acceso transparente a los recursos en todos los equipos de la misma.</p>
+<div class="paragraph">
+<p>Con este tipo de sistemas operativos el usuario no sabe en qué ordenador se ejecutan sus procesos, donde se almacenan sus archivos, ni qué equipo tiene conectado los distintos periféricos a los que tiene acceso.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Un ejemplo de sistema operativo distribuido es <a href="https://en.wikipedia.org/wiki/Amoeba_(operating_system)">Amoeba</a>, un sistema operativo distribuido de investigación escrito por Andrew S. Tanenbaum en Vrije Universiteit.
+Para más información, véase el <a href="http://www.cs.vu.nl/pub/amoeba/">sitio web de Amoeba</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_en_clúster"><a class="anchor" href="#_sistemas_en_clúster"></a>2.6. Sistemas en clúster</h3>
+<div class="paragraph">
+<p>
+Como los sistemas distribuidos, los <strong>sistemas en clúster</strong> interconectar ordenadores individuales.
+Sin embargo, generalmente se acepta que los <strong>sistemas en clúster</strong> comparten el almacenamiento y estén conectados por medio de una red local, condiciones que no tienen por qué darse en los sistemas distribuidos.</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>sistemas en clúster</strong> se utilizan para:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Obtener servicios con alta disponibilidad</strong>.
+Para ello un nodo del clúster puede estar ejecutando un servicio mientras otro nodo lo monitoriza.
+En caso de fallo en el nodo que da el servicio, el que lo monitoriza lo sustituye.</p>
+<div class="paragraph">
+<p>Si es necesario proporcionar varios servicios, el mecanismo anterior se puede extender repartiendo los servicios entre dos o más nodos y haciendo que se monitoricen entre ellos.</p>
+</div>
+</li>
+<li>
+<p><strong>Computación de alto rendimiento</strong> o <strong>HPC</strong>.
+En este caso todos los nodos se utilizan para dar un mismo servicio.
+Un nodo especial, denominado balanceador de carga, tiene la responsabilidad de repartir el trabajo entre los nodos.</p>
+<div class="paragraph">
+<p>Este tipo de <strong>sistemas en clúster</strong> se utiliza para realizar trabajos de cálculo muy pesados, como simulaciones —por ejemplo simulación meteorológica, nuclear o de gestión hospitalaria— o romper sistemas de cifrado.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>También es muy utilizado en servidores de Internet —como servidores web, correo electrónico o de mensajería instantánea— o servidores de base de datos que deben dar servicio a una gran cantidad de clientes simultáneamente.
+En estos casos el balanceador de carga realiza su trabajo repartiendo las conexiones de los usuarios entre los servidores del clúster.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_de_tiempo_real"><a class="anchor" href="#_sistemas_de_tiempo_real"></a>2.7. Sistemas de tiempo real</h3>
+<div class="paragraph">
+<p>
+Los <strong>sistemas de tiempo real</strong> se utilizan cuando existen requerimientos estrictos de tiempo en la ejecución de ciertas tareas o en el procesamiento de flujos de datos.</p>
+</div>
+<div class="paragraph">
+<p>En general se usan frecuentemente en dispositivos de control donde, dentro de unos márgenes estrictos de tiempo, se deben tomar datos de uno o varios sensores, para analizarlos posteriormente y realizar, en consecuencia, alguna acción con algún mecanismo de control.
+Por ejemplo, se suelen utilizar en sistemas de control industrial, domótica, armamento, automoción —en la inyección electrónica de combustible, sistemas de frenado y de control de tracción— o en dispositivos médicos.</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>sistemas de tiempo real</strong> están muy relacionados con los <strong>sistemas empotrados</strong>.
+Estos últimos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se diseñan para realizar tareas muy específicas. No son sistemas de propósito general sino de propósito específico.</p>
+</li>
+<li>
+<p>Sus sistemas operativos tienen características muy limitadas y no tienen que tener necesariamente una interfaz de usuario.</p>
+</li>
+<li>
+<p>Estos sistemas están tanto en el motor de los automóviles y los robots que los fabrican, como en reproductores de DVD, microondas o dispositivos de red.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los <strong>sistemas de tiempo real</strong> pueden ser clasificados en <strong>sistemas de tiempo real estricto</strong> y <strong>sistemas de tiempo real flexible</strong>:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Los <strong>sistemas de tiempo real estricto</strong>  o <strong>hard real-time</strong> garantizan que las tareas serán realizadas dentro de unos márgenes estrictos de tiempo.</p>
+<div class="paragraph">
+<p>Para ello, todas las situaciones imprevistas que puedan ocasionar retrasos en el funcionamiento del sistema operativo deben estar perfectamente delimitadas en tiempo.
+Por lo tanto, suelen carecer de memoria virtual y de otras abstracciones que aíslen al desarrollador del funcionamiento real del hardware, ya que introducen impredecibilidad.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de tiempo real estricto no son compatibles con los sistemas de tiempo compartido.</p>
+</div>
+</li>
+<li>
+<p>Los <strong>sistemas de tiempo real flexible</strong>   o <strong>soft real-time</strong> son útiles cuando en un sistema operativo convencional hay tareas que tienen mayor importancia que el resto, por lo que deben ser realizadas con mayor prioridad.</p>
+<div class="paragraph">
+<p>El tiempo real flexible no sirve cuando se tienen tareas con limitaciones precisas de tiempo, porque no hay manera de garantizar que dichas restricciones se van a cumplir.
+Sin embargo sí es útil para tareas relacionadas con la multimedia, la realidad virtual, los videojuegos, etc. y es compatible con la memoria virtual y otras características presentes en los sistemas de escritorio.
+Por eso la mayor parte de los sistemas de escritorio actuales soportan tareas de tiempo real flexible.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="qué_es_un_sistema_operativo.html">¿Qué es un sistema operativo?</a> | ↑ Subir: <a href="introducción.html">Introducción</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="historia_de_los_sistemas_operativos.html">Historia de los sistemas operativos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

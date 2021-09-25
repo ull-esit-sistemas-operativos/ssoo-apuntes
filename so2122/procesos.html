@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('true' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery(document).ready(function() {
+                    jQuery("img, p, .colist td, .stemblock").inlineDisqussions();
+                });
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="procesos" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2021-2022</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+<ul class="sectlevel1">
+<li><a href="procesos.html"><span class="toc-current">9. Procesos</span></a>
+<ul class="sectlevel2">
+<li><a href="procesos.html#_el_proceso">9.1. El proceso</a>
+</li>
+<li><a href="procesos.html#_estados_de_los_procesos">9.2. Estados de los procesos</a>
+</li>
+<li><a href="procesos.html#_bloque_de_control_de_proceso">9.3. Bloque de control de proceso</a>
+</li>
+<li><a href="procesos.html#_colas_de_planificación">9.4. Colas de planificación</a>
+</li>
+<li><a href="procesos.html#_planificación_de_procesos">9.5. Planificación de procesos</a>
+</li>
+<li><a href="procesos.html#_cambio_de_contexto">9.6. Cambio de contexto</a>
+</li>
+<li><a href="procesos.html#_operaciones_sobre_los_procesos">9.7. Operaciones sobre los procesos</a>
+</li>
+<li><a href="procesos.html#_procesos_cooperativos">9.8. Procesos cooperativos</a>
+</li>
+</ul>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html">10. Comunicación mediante paso de mensajes</a>
+</li>
+<li><a href="memoria_compartida.html">11. Memoria compartida</a>
+</li>
+<li><a href="hilos.html">12. Hilos</a>
+</li>
+<li><a href="sincronización.html">13. Sincronización</a>
+</li>
+<li><a href="planificación_de_la_cpu.html">14. Planificación de la CPU</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="procesos"><a class="anchor" href="#procesos"></a>9. Procesos</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 39 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Los primeros sistemas informáticos solo permitían que un programa se ejecutase cada vez.
+Dicho programa tenía control completo sobre el sistema y acceso a todos los recursos del mismo.
+Por el contrario, los sistemas <strong>multitarea</strong> actuales permiten que múltiples programas sean cargados y ejecutados concurrentemente.</p>
+</div>
+<div class="paragraph">
+<p>Obviamente esta evolución implica un control más fino y la compartimentación de los diversos programas, para que no interfieran unos con otros.
+Esto, a su vez, conduce a la aparición de la noción de <strong>proceso</strong>, que no es sino la unidad de trabajo en un sistema operativo moderno de tiempo compartido.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Por simplicidad, en este capítulo utilizaremos los términos <strong>trabajo</strong> y <strong>proceso</strong> de forma indistinta.
+A fin de cuentas tanto los <strong>trabajos</strong> en los antiguos <em>mainframes</em> como los <strong>procesos</strong> en los sistemas modernos son la unidad de trabajo en sus respectivos sistemas y el origen de toda actividad en la CPU.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Por último, antes de continuar, es importante señalar que en un sistema operativo hay varios tipos de procesos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Procesos del sistema</strong>.
+Ejecutan el código del sistema operativo contenido en los <strong>programas del sistema</strong>, que generalmente sirven para hacer tareas del sistema operativo que es mejor mantener fuera del núcleo.</p>
+</li>
+<li>
+<p><strong>Procesos de usuario</strong>.
+Ejecutan el código contenido en los <em>programas de aplicación</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sin embargo, en lo que resta de capítulo, no estableceremos ninguna distinción entre ellos.
+En lo que respecta a la gestión de estos procesos en el sistema, no hay ninguna diferencia.</p>
+</div>
+<div class="sect2">
+<h3 id="_el_proceso"><a class="anchor" href="#_el_proceso"></a>9.1. El proceso</h3>
+<div class="paragraph">
+<p>Como ya hemos comentado con anterioridad, un <strong>proceso</strong> es un programa en ejecución (véase el <a href="componentes_del_sistema.html#sect-componente-gestión-de-procesos">Apartado 4.1</a> para una definición más completa).
+Sin embargo, los procesos no solo están compuestos por el código del programa, sino que también son importantes otros elementos:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Segmento de código</dt>
+<dd>
+<p>Contiene las instrucciones ejecutables del programa.
+También es conocido como segmento <strong>text</strong> o <strong>.text</strong>.</p>
+</dd>
+<dt class="hdlist1">Segmento de datos</dt>
+<dd>
+<p>Contiene las variables globales y estáticas del programa que se inicializan con un valor predefinido.
+También es conocido como segmento <strong>.data</strong>.</p>
+</dd>
+<dt class="hdlist1">Segmento BSS</dt>
+<dd>
+<p>Contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita.
+También es conocido como segmento <strong>.bss</strong>.</p>
+</dd>
+<dt class="hdlist1">Pila</dt>
+<dd>
+<p>Contiene datos temporales, como los parámetros y direcciones de retorno de las funciones y las variables locales.</p>
+</dd>
+<dt class="hdlist1">Montón</dt>
+<dd>
+<p>Contiene el espacio de la memoria que se asigna dinámicamente durante la ejecución del proceso.
+También es conocido como <strong>heap</strong>.</p>
+</dd>
+<dt class="hdlist1">Información sobre el estado actual de ejecución</dt>
+<dd>
+<p>Como el <strong>contador de programa</strong>, los valores de los <strong>registros de la CPU</strong>, el <strong>estado</strong> del proceso y más (véase el <a href="procesos.html#_bloque_de_control_de_proceso">Apartado 9.3</a>).</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Los <strong>segmentos de código</strong>, <strong>datos</strong> y <strong>BSS</strong> por lo general son secciones dentro del archivo ejecutable que contiene el programa.
+El resto de elementos los crea el sistema operativo al cargar el programa y crear el proceso.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Como vimos en el <a href="componentes_del_sistema.html#sect-componente-gestión-de-procesos">Apartado 4.1</a> varios procesos pueden estar asociados al mismo programa, pero no por eso dejan de ser distintos procesos.
+Todos tendrán una copia del mismo segmento de código, pero diferente: contador de programa, valores en los registros de la CPU, pila, segmento de datos, montón y demas propiedades.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En la <a href="procesos.html#fig-proceso-en-memoria">Figura 27</a> se puede observar la disposición de algunos de estos elementos de un proceso en el espacio de usuario en la memoria.</p>
+</div>
+<div id="fig-proceso-en-memoria" class="imageblock">
+<div class="content">
+<img src="media/C09-procesos/proceso_en_memoria.svg" alt="proceso en memoria">
+</div>
+<div class="title">Figura 27. Anatomía de un proceso en memoria.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_estados_de_los_procesos"><a class="anchor" href="#_estados_de_los_procesos"></a>9.2. Estados de los procesos</h3>
+<div class="paragraph">
+<p>Cada proceso tiene un <strong>estado</strong> que cambia a lo largo de su ejecución y que está definido, parcialmente, por la actividad que realiza actualmente el propio proceso.</p>
+</div>
+<div id="fig-diagrama-estado-proceso" class="imageblock">
+<div class="content">
+<img src="media/C09-procesos/diagrama_estado_proceso.svg" alt="diagrama estado proceso">
+</div>
+<div class="title">Figura 28. Diagrama de estado de un proceso.</div>
+</div>
+<div class="paragraph">
+<p>Los estados por los que puede pasar un proceso varían de un sistema operativo a otro, aunque los siguientes son comunes a todos ellos:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Nuevo</dt>
+<dd>
+<p>El proceso está en proceso de creación.
+Este estado existe porque la creación de un proceso no es algo instantáneo.
+Necesita de varias operaciones que pueden tardar tiempo en realizarse, como: reservar memoria libre, cargar el programa en la memoria, inicializar estructuras de datos y configurar el entorno de ejecución.</p>
+</dd>
+<dt class="hdlist1">Ejecutando</dt>
+<dd>
+<p>El proceso está siendo ejecutado en la CPU.
+Para eso tiene que haber sido escogido por el planificador de la CPU de entre todos los procesos en estado <strong>preparado</strong>.
+Solo puede haber un proceso en este estado por CPU en el sistema.</p>
+</dd>
+<dt class="hdlist1">Esperando</dt>
+<dd>
+<p>El proceso está esperando por algún <strong>evento</strong> como, por ejemplo, que termine una operación de E/S solicitada previamente o que otro proceso termine su ejecución.
+Múltiples procesos pueden estar en este estado de espera.</p>
+</dd>
+<dt class="hdlist1">Preparado</dt>
+<dd>
+<p>El proceso está esperando a poder usar la CPU.
+Múltiples procesos pueden estar en este estado.</p>
+</dd>
+<dt class="hdlist1">Terminado</dt>
+<dd>
+<p>El proceso ha finalizado su ejecución y espera a que el sistema operativo recupere los recursos que le fueron asignados.
+Como en el caso del estado <strong>nuevo</strong>, este estado existe porque terminar un proceso no es algo instantáneo.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>El diagrama de estados de los procesos, con las transiciones posibles entre ellos, se muestra en la <a href="procesos.html#fig-diagrama-estado-proceso">Figura 28</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bloque_de_control_de_proceso"><a class="anchor" href="#_bloque_de_control_de_proceso"></a>9.3. Bloque de control de proceso</h3>
+<div class="paragraph">
+<p>
+El <strong>bloque de control de proceso</strong> o <strong>PCB</strong> (<em>Process Control Block</em>) es una estructura de datos que representa a cada proceso en el sistema operativo y que guarda información sobre su estado de actividad actual.</p>
+</div>
+<div class="paragraph">
+<p>En el sistema hay un PCB por proceso y sirve de almacén para cualquier información que puede variar de un proceso a otro:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Estado del proceso</strong>.
+El estado actual del proceso de la lista que hemos visto anteriormente.
+Por ejemplo: nuevo, preparado, esperando, etc.</p>
+</li>
+<li>
+<p><strong>Contador de programa</strong>.
+Indica la dirección de la próxima instrucción del proceso que debe ser ejecutada por la CPU.
+Obviamente, durante el estado <strong>ejecutando</strong> el contador de programa está en el registro correspondiente de la CPU.
+Su valor se guarda en el PCB al salir el proceso de la CPU para que comience ejecutarse en ella otro proceso.</p>
+</li>
+<li>
+<p><strong>Registros de la CPU</strong>.
+El valor de los registros de la CPU también forman parte del estado de actividad del proceso.
+Como en el caso del <strong>contador de programa</strong>, durante el estado <strong>ejecutando</strong> los valores están en los registros de la CPU, pero se guardan en el PCB cuando el proceso sale de la CPU para que se ejecute otro proceso.</p>
+</li>
+<li>
+<p><strong>Información de planificación de la CPU</strong>.
+Incluye la información requerida por el planificador de la CPU.
+Por ejemplo la prioridad del proceso, punteros a las colas de planificación donde está el proceso, punteros al PCB del proceso padre y de los procesos hijos, etc.</p>
+</li>
+<li>
+<p><strong>Información de gestión de la memoria</strong>.
+Incluye la información requerida para la gestión de la memoria.
+Por ejemplo los valores de los registros base y límite que definen el área de la memoria física que ocupa el proceso —en el caso de se use asignación contigua de memoria (véase el <a href="memoria_principal.html#_asignación_contigua_de_memoria">Apartado 15.5</a> o la dirección a la tabla de páginas —en el caso de que se use paginación (véase el <a href="paginación.html">Capítulo 16</a>)—.</p>
+</li>
+<li>
+<p><strong>Información de registro</strong>.
+Aquí se incluye la cantidad de CPU usada, límites de tiempo en el uso de la CPU, estadísticas de la cuenta del usuario a la que pertenece el proceso, estadísticas de la ejecución del proceso, etc.</p>
+</li>
+<li>
+<p><strong>Información de estado de la E/S</strong>.
+Incluye la lista de dispositivos de E/S reservados por el proceso, la lista de archivos abiertos, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_colas_de_planificación"><a class="anchor" href="#_colas_de_planificación"></a>9.4. Colas de planificación</h3>
+<div class="paragraph">
+<p>
+En los sistemas operativos hay diferentes <strong>colas de planificación</strong> para los procesos en distintos <strong>estados</strong>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cola de trabajo</dt>
+<dd>
+<p>Contiene todos los trabajos en el sistema, de manera que cuando entran en el sistema van a esta cola, a la espera de ser escogidos para ser cargados en la memoria y ejecutados.
+Esta cola existía en los <strong>sistemas multiprogramados</strong>, pero no existe en los sistemas operativos modernos.</p>
+</dd>
+<dt class="hdlist1">Cola de preparados</dt>
+<dd>
+<p>Contiene a los procesos que están en estado <strong>preparado</strong>.
+Es decir, procesos cargados en la memoria principal que esperan para usar la CPU.
+La cola de preparados es generalmente una lista enlazada de PCB, donde cada uno incluye un puntero al PCB del siguiente proceso en la cola.</p>
+</dd>
+<dt class="hdlist1">Colas de espera</dt>
+<dd>
+<p>Contienen a los procesos que están en estado <strong>esperando</strong>.
+Es decir, que esperan por un evento concreto, como por ejemplo la finalización de una petición de E/S.
+Estas colas también suelen ser implementadas como listas enlazadas de PCB y suele haber una por evento, de manera que cuando ocurre algún evento todos los procesos en la cola asociada pasan automáticamente al estado <strong>preparado</strong> y a la <strong>cola de preparados</strong>.</p>
+</dd>
+<dt class="hdlist1">Colas de dispositivo</dt>
+<dd>
+<p>Son un caso particular de cola de espera.
+Cada dispositivo de E/S tiene asociada una <strong>cola de dispositivo</strong> que contiene los procesos que están <strong>esperando</strong> por ese dispositivo en particular.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Una manera habitual de representar la planificación de procesos es a través de un diagrama de colas como el de la <a href="procesos.html#fig-colas-de-planificación-procesos">Figura 29</a>.</p>
+</div>
+<div id="fig-colas-de-planificación-procesos" class="imageblock">
+<div class="content">
+<img src="media/C09-procesos/colas_planificación_procesos.svg" alt="colas planificación procesos">
+</div>
+<div class="title">Figura 29. Diagrama de colas de la planificación de procesos.</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Analizándolo podemos tener una idea clara del flujo típico de los procesos dentro del sistema:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Un nuevo proceso llega al sistema</strong>.
+Una vez pasa del estado <strong>nuevo</strong> a <strong>preparado</strong> es colocado en la <strong>cola de preparados</strong>.
+Allí espera hasta que es seleccionado por el <strong>planificado de la CPU</strong> para su ejecución y se le asigna la CPU.
+Mientras se ejecuta pueden ocurrir varias cosas:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>El proceso solicita una operación de E/S</strong> por lo que abandona la CPU y es colocado en la <em>cola de dispositivo</em> correspondiente en estado <strong>esperando</strong>.
+No debemos olvidar que aunque en nuestro diagrama no exista más que una de estas colas, en un sistema operativo real suele haber una para cada dispositivo.</p>
+</li>
+<li>
+<p><strong>El proceso puede querer esperar por un evento</strong>.
+Por ejemplo, puede crear otro proceso y esperar a que termine.
+En ese caso el proceso hijo es creado, mientras el proceso padre abandona la CPU y es colocado en una <strong>cola de espera</strong> en estado <strong>esperando</strong> hasta que el proceso hijo termine.
+La terminación del proceso hijo es el evento que espera el proceso padre para salir de la <strong>cola de espera</strong> y entrar en la <strong>cola de preparados</strong> para continuar su ejecución en la CPU cuando sea posible.</p>
+</li>
+<li>
+<p><strong>El proceso puede ser sacado forzosamente de la CPU</strong>, como resultado de la interrupción del temporizador, que permite determinar cuando un proceso lleva demasiado tiempo ejecutándose, así que es colocado en la <strong>cola de preparados</strong> en estado <strong>preparado</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Cuando las esperas concluyen, los procesos vuelven a la cola de preparado</strong>, pasando del estado de espera al de preparado.</p>
+</li>
+<li>
+<p><strong>Los procesos repiten este ciclo hasta que terminan</strong>.
+En ese momento son eliminados de todas las colas mientras el PCB y los recursos asignados son recuperados por parte del sistema operativo para poder usarlos con otros procesos.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_planificación_de_procesos"><a class="anchor" href="#_planificación_de_procesos"></a>9.5. Planificación de procesos</h3>
+<div class="paragraph">
+<p>Durante su ejecución, los procesos se mueven entre las diversas colas de planificación a criterio del sistema operativo.
+Este proceso de selección debe ser realizado por el <strong>planificador</strong> adecuado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El <strong>planificador de largo plazo</strong> o <strong>planificador de trabajos</strong>— selecciona los trabajos desde la cola de trabajos en el almacenamiento secundario —dónde están todos almacenados— y los carga en memoria.</p>
+<div class="paragraph">
+<p>Este planificador se usaba en los sistemas multiprogramados, donde había cola de trabajos.
+Los sistemas de tiempo compartido posteriores y los sistemas modernos, carecen de planificador de trabajos, porque los programas se cargan directamente en memoria para ser ejecutados, cuando el usuario lo solicita.</p>
+</div>
+</li>
+<li>
+<p>El <strong>planificador de corto plazo</strong> o <strong>planificador de CPU</strong> selecciona uno de los procesos en la cola de preparados y lo asigna a la CPU.
+Obviamente este planificador es invocado cuando un proceso en ejecución abandona la CPU, dejándola disponible para otro proceso.</p>
+</li>
+<li>
+<p>El <strong>planificador de medio plazo</strong>  era utilizado en algunos sistemas para sacar procesos de la memoria cuando escasea y reintroducirlos posteriormente cuando vuelve a haber suficiente memoria libre.
+A este esquema se le denomina <strong>intercambio</strong> —o <strong><em>swapping</em></strong>.</p>
+<div class="paragraph">
+<p>Esto era útil en sistemas antiguos donde un proceso tenía que estar cargado completamente en la memoria para poder ejecutarse.
+Así que si faltaba memoria, se podía suspender un proceso completo, preservar el contenido de su memoria en disco y liberar la memoria ocupada para usarla con otros procesos.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En los sistemas de propósito general modernos no se utiliza <strong>planificador de medio plazo</strong> porque utilizan técnicas de <strong>memoria virtual</strong> (véase el <a href="memoria_virtual.html">Capítulo 17</a>), que permite mover parte de la memoria de los procesos al disco para liberar memoria, sin tener que suspender su ejecución.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cambio_de_contexto"><a class="anchor" href="#_cambio_de_contexto"></a>9.6. Cambio de contexto</h3>
+<div class="paragraph">
+<p>El <strong>cambio de contexto</strong> es la tarea de asignar la CPU a un proceso distinto al que la tiene asignada en el momento actual.
+Esto implica salvar el estado del viejo proceso en su PCB y cargar en la CPU el estado del nuevo.
+Entre la información que debe ser preservada en el PCB se incluyen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El <strong>contador de programa</strong>.</p>
+</li>
+<li>
+<p>Los <strong>registros de la CPU</strong>.</p>
+</li>
+<li>
+<p>El <strong>estado del proceso</strong>.</p>
+</li>
+<li>
+<p>La <strong>información de gestión de la memoria</strong>.
+Por ejemplo, la información necesaria para configurar el espacio de direcciones del proceso.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El cambio de contexto es sobrecarga pura, puesto que no hace ningún trabajo útil mientras se conmuta.
+Su velocidad depende de aspectos tales como: el número de registros, la velocidad de la memoria y la existencia de instrucciones especiales.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Algunas CPU disponen de instrucciones especiales para salvar y cargar todos los registros de manera eficiente.
+Esto reduce el tiempo que la CPU está ocupada en los cambios de contexto.</p>
+</div>
+<div class="paragraph">
+<p>Otra opción es el uso de <a href="https://en.wikipedia.org/wiki/Register_file">juegos de registros</a>, como es el caso de los procesadores <a href="https://es.wikipedia.org/wiki/UltraSPARC">Sun UltraSPARC</a> e <a href="https://es.wikipedia.org/wiki/Intel_Itanium">Intel Itanium</a>.
+Con ellos el juego de registros actual de la CPU se mapea sobre un banco de registros mucho más extenso.
+Al hacer cambio de contexto, se mapea el juego de registros a otros registros diferentes del banco.
+Esto permite a la CPU almacenar de forma eficiente el valor de los registros de más de un proceso, sin que en cada cambio de contexto sea necesario copiarlos al PCB del proceso en la memoria principal.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operaciones_sobre_los_procesos"><a class="anchor" href="#_operaciones_sobre_los_procesos"></a>9.7. Operaciones sobre los procesos</h3>
+<div class="paragraph">
+<p>En general es necesario que los procesos pueden ser creados y eliminados dinámicamente, por lo que los sistemas operativos deben proporcionar servicios para la creación y terminación de los mismos.</p>
+</div>
+<div class="sect3">
+<h4 id="_creación_de_procesos"><a class="anchor" href="#_creación_de_procesos"></a>9.7.1. Creación de procesos</h4>
+<div class="paragraph">
+<p>Un proceso —denominado <strong>padre</strong>— puede crear múltiples procesos —los <strong>hijos</strong>— utilizando una llamada al sistema específica para la creación de procesos.
+Cada proceso creado se identifica de manera unívoca mediante un <strong>identificador de proceso</strong> o <strong>PID</strong> (<em>Process Identifier</em>), que normalmente es un número entero.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo en sistemas POSIX un programa puede crear otro proceso así:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">pid_t</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mientras que en Windows API es así:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">PROCESS_INFORMATION</span> <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">CreateProcess</span><span class="p">(</span> <span class="s">"C:</span><span class="se">\\</span><span class="s">Windows</span><span class="se">\\</span><span class="s">System32</span><span class="se">\\</span><span class="s">charmap.exe"</span><span class="p">,</span> <span class="cm">/* ... */</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pi</span> <span class="p">))</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">{</span>
+    <span class="n">DWORD</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pi</span><span class="p">.</span><span class="n">dwhProcessId</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">HANDLE</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">pi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> devuelve <code>TRUE</code> si el proceso se creó con éxito.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information">PROCESS_INFORMATION</a> contiene el <strong>identificador de proceso</strong> del nuevo proceso, si <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> ha tenido éxito.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information">PROCESS_INFORMATION</a> también contiene el manejador del proceso —o <em>handle</em> en inglés— que sirve para obtener y manipular el nuevo proceso.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En ambos casos <code>pid</code> identifica al nuevo proceso en el sistema.
+Sin embargo, mientras que los sistemas POSIX ese identificador se puede usar en otras llamadas al sistema para indicar futuras operaciones sobre el proceso, en Windows lo que se utiliza es el manejador <code>hProcess</code> devuelto en <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information">PROCESS_INFORMATION</a>.</p>
+</div>
+<div class="paragraph">
+<p>Obviamente, cada proceso puede obtener del sistema su propio identificador de procesos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="cm">/* POSIX API */</span>
+<span class="n">pid_t</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">getpid</span><span class="p">();</span>
+
+<span class="cm">/* Windows API */</span>
+<span class="n">HANDE</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">GetCurrentProcess</span><span class="p">();</span>
+<span class="n">DWORD</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">GetProcessId</span><span class="p">(</span> <span class="n">handle</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>o el de su padre:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="cm">/* POSIX API */</span>
+<span class="n">pid_t</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">getppid</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_árbol_de_procesos"><a class="anchor" href="#_árbol_de_procesos"></a>Árbol de procesos</h5>
+<div class="paragraph">
+<p>Puesto que cada nuevo proceso puede a su vez crear otros procesos, al final se acaba obteniendo un <strong>árbol de procesos</strong>.
+En los sistemas POSIX es muy sencillo de ver ejecutando el comando <a href="https://man7.org/linux/man-pages/man1/pstree.1.html">pstree</a>.</p>
+</div>
+<div id="fig-pstree" class="imageblock">
+<div class="content">
+<img src="media/C09-procesos/pstree.png" alt="pstree">
+</div>
+<div class="title">Figura 30. Ejemplo de árbol de procesos mostrador por el comando pstree.</div>
+</div>
+<div class="paragraph">
+<p>En estos sistemas se conoce como proceso <strong>init</strong> al proceso padre raíz de todos los procesos de usuario.
+Su PID siempre es 1, ya que es el primer proceso creado por el sistema operativo al terminar la inicialización del núcleo.
+Por lo tanto, es el responsable de crear todos los otros procesos que son necesarios para el funcionamiento del sistema.</p>
+</div>
+<div class="paragraph">
+<p>En la <a href="procesos.html#fig-pstree">Figura 30</a> se observa que <code>systemd</code> es el proceso <strong>init</strong>, como ocurre frecuentemente en muchos sistemas Linux actuales.
+Anteriormente, lo común es que los sistemas Linux emplearan una implementación de <strong>init</strong> basada en la de los UNIX System V.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cómo_obtienen_los_procesos_hilos_los_recursos_que_necesitan"><a class="anchor" href="#_cómo_obtienen_los_procesos_hilos_los_recursos_que_necesitan"></a>Cómo obtienen los procesos hilos los recursos que necesitan</h5>
+<div class="paragraph">
+<p>Hay varios aspectos en la creación de los procesos que pueden variar de un sistema operativo a otro.
+Uno de ellos es cómo obtienen los procesos hilos los recursos que necesitan para hacer su trabajo.</p>
+</div>
+<div class="paragraph">
+<p>Fundamentalmente existen dos alternativas:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Que cada proceso hijo pueda solicitar y obtener los recursos directamente del sistema operativo, compitiendo por los recursos del sistema en las mismas condiciones que el resto de procesos en ejecución.
+Esta es la opción más común en los sistemas de propósito general actuales, como Microsoft Windows, Android, Linux, macOS, UNIX BSD y muchos otros.</p>
+</li>
+<li>
+<p>Que los procesos hijo solo puedan aspirar a obtener un subconjunto de los recursos de su padre.
+Esto es interesante en sistemas diseñados para ser muy robustos, ya que evita que un proceso pueda sobrecargar el sistema creando múltiples procesos que consuman demasiada memoria o tiempo de CPU.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>En este último caso, el proceso padre puede estar obligado a repartir sus recursos entre los procesos hijo. O puede que el sistema les permita compartir algunos de esos recursos —como memoria o archivos— con algunos de sus hijos.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cómo_pasar_parámetros_de_inicialización_a_los_procesos_hijo"><a class="anchor" href="#_cómo_pasar_parámetros_de_inicialización_a_los_procesos_hijo"></a>Cómo pasar parámetros de inicialización a los procesos hijo</h5>
+<div class="paragraph">
+<p>Generalmente, el proceso padre suele disponer de algún mecanismo para pasar parámetros de inicialización a sus procesos hijo.</p>
+</div>
+<div class="sect5">
+<h6 id="_argumentos_de_línea_de_comandos"><a class="anchor" href="#_argumentos_de_línea_de_comandos"></a>Argumentos de línea de comandos</h6>
+<div class="paragraph">
+<p>Por ejemplo, en Windows API un proceso puede usar el segundo argumento de <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> para indicar al proceso hijo opciones y argumentos de línea de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">HANDLE</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">CreateProcess</span><span class="p">(</span><span class="s">"C:</span><span class="se">\\</span><span class="s">holamundo.exe"</span><span class="p">,</span> <span class="s">"/v /s foo.txt bar.png"</span><span class="p">,</span> <span class="cm">/* ... */</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si el proceso hijo está programado en C o C&#43;&#43;, podrá acceder a los argumentos <code>/v</code>, <code>/s</code>, <code>foo.txt</code> y <code>bar.png</code> a través de los argumentos <code>argc</code> y <code>argv</code> de la función <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> del programa:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="cm">/* . . . */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>de forma que <code>argv[0]</code> contendrá <code>/v</code>, <code>argv[2]</code> contendrá <code>/s</code> y así sucesivamente.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Obviamente, en otros lenguajes de programación se accede de manera diferente a estos argumentos de línea de comandos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_variables_de_entorno"><a class="anchor" href="#_variables_de_entorno"></a>Variables de entorno</h6>
+<div class="paragraph">
+<p>Otra forma de pasar parámetros a un proceso hijo es usando las <strong>variables de entorno</strong>, que no son sino variables dinámicas que se pueden crear, leer y modificar durante la ejecución del proceso.</p>
+</div>
+<div class="paragraph">
+<p>Las <strong>variables de entorno</strong> se gestionan con funciones específicas ofrecidas por la API del sistema operativo:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 1. Funciones de la API para gestionar variables de entorno.</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">POSIX API</th>
+<th class="tableblock halign-left valign-top">Windows API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Leer</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man3/getenv.3.html">getenv()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getenvironmentvariable">GetEnvironmentVariable()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Leer todos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man7/environ.7.html">environ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/processenv/nf-processenv-getenvironmentstrings">GetEnvironmentStrings()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Crear / modificar</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man3/setenv.3.html">setenv()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setenvironmentvariable">SetEnvironmentVariable()</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>por ejemplo, en sistemas POSIX un programa leer la variable de entorno <code>PATH</code> así:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">char</span><span class="o">*</span> <span class="n">path</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s">"PATH"</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mientras que en Windows API es así:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">DWORD</span> <span class="n">buffSize</span> <span class="o">=</span> <span class="mi">4096</span><span class="p">;</span>
+<span class="n">TCHAR</span> <span class="n">path</span><span class="p">[</span><span class="n">buffSize</span><span class="p">];</span>
+<span class="n">GetEnvironmentVariable</span><span class="p">(</span><span class="s">"PATH"</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">buffSize</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>El valor de la variable de entorno <code>PATH</code> se copia en <code>path</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Usando <a href="https://man7.org/linux/man-pages/man3/setenv.3.html">setenv()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setenvironmentvariable">SetEnvironmentVariable()</a> de forma similar, cualquier proceso puede crear variables de entorno que serán accesibles a sus procesos hijos, porque por defecto los nuevos procesos heredan un duplicado de las variables de entorno de su proceso padre.
+Así se pueden pasar parámetros de configuración para alterar el comportamiento de los procesos hijo.</p>
+</div>
+<div class="paragraph">
+<p>Todas las variantes de sistemas UNIX, así como MS-DOS y todas las versiones de Microsoft Windows soportan variables de entorno.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_herencia_de_recursos"><a class="anchor" href="#_herencia_de_recursos"></a>Herencia de recursos</h6>
+<div class="paragraph">
+<p>En algunos sistemas operativos los procesos hijos pueden heredar cierto tipo de recursos del proceso padre, lo que también puede servir para inicializar y alterar el comportamiento del proceso hijo.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en los sistemas POSIX todos los archivos abiertos por un proceso son heredados en el mismo estado por sus hijos.
+Lo interesante es que en estos sistemas muchos recursos se gestionan como archivos.
+Algunos ejemplos podrían ser: dispositivos de E/S, memoria compartida, tuberías, <em>sockets</em> y otros mecanismos de comunicación.</p>
+</div>
+<div class="paragraph">
+<p>En POSIX todo proceso tiene, por defecto, tres archivos abiertos que corresponden a tres dispositivos de E/S especiales:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Entrada estándar</strong>, de donde los procesos leen la entrada del teclado de la terminal.</p>
+</li>
+<li>
+<p><strong>Salida estándar</strong>, donde el proceso escribe para mostrar texto en la pantalla de la terminal.</p>
+</li>
+<li>
+<p><strong>Salida de error</strong>, usada para mostrar errores en la pantalla de la terminal.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Debido a la herencia de los archivos abiertos del proceso padre, todo proceso hijo tiene acceso a estos tres mismos dispositivos.
+Y a su vez también la tendrán sus hijos y los hijos de estos.
+De esta manera, todo proceso tiene acceso a los dispositivos de E/S de la terminal donde se ejecuta.
+Pero también permite a un proceso controlar el destino de la E/S de un proceso hijo —y de los hijos de este—.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si antes de crear el proceso hijo sustituye el dispositivo de salida estándar por un archivo real, todo lo que el hijo intente mostrar por pantalla se guardará en dicho archivo, en lugar de mostrarse.
+Mientras que si lo hace con el dispositivo de entrada estándar, todo lo que pretenda leer de teclado realmente lo leerá de un archivo que el padre puede haber preparado, como si de algún tipo de control remoto se tratara.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Esta misma idea se puede extender a procesos que ofrecen servicios, ya sea a otros procesos del mismo sistema o a redes de ordenadores, como Internet.</p>
+</div>
+<div class="paragraph">
+<p>Cada conexión con un cliente es como archivo abierto, por lo que los hijos del proceso heredan las conexiones.
+Así que es común la estrategia de crear un hijo por conexión para que la atienda en nombre del padre, mientras este se encarga de recibir nuevas conexiones.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En Microsoft Windows existe un mecanismo similar pero no por defecto.
+La función <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> de Windows API permite indicar si se quiere que el nuevo proceso herede los recursos abiertos.
+Y también tiene ajustes específicos para la entrada y salida estándar y la salida de error del nuevo proceso.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_qué_ocurre_con_la_ejecución_del_padre"><a class="anchor" href="#_qué_ocurre_con_la_ejecución_del_padre"></a>Qué ocurre con la ejecución del padre</h5>
+<div class="paragraph">
+<p>Se suelen contemplar dos posibilidades en términos de la ejecución del padre:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Que el padre continúe ejecutándose al mismo tiempo que el hijo.
+Es lo más común en los sistemas multitarea actuales.</p>
+</li>
+<li>
+<p>Que el padre quede detenido a la espera de que algunos o todos sus hijos terminen.
+Era lo más frecuente en sistemas monotarea, como <a href="https://es.wikipedia.org/wiki/MS-DOS">MS-DOS</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cómo_se_construye_el_espacio_de_direcciones_de_los_procesos_hijo"><a class="anchor" href="#_cómo_se_construye_el_espacio_de_direcciones_de_los_procesos_hijo"></a>Cómo se construye el espacio de direcciones de los procesos hijo</h5>
+<div class="paragraph">
+<p>En general hay dos posibilidades:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Que el espacio de direcciones del proceso hijo sea un duplicado del que tiene el padre.
+Es decir, que inicialmente el hijo tenga el mismo código y datos que el padre.
+Es lo que hace <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> en los sistemas POSIX.</p>
+</li>
+<li>
+<p>Que el espacio de direcciones del proceso hijo se cree desde cero y se cargue en él un nuevo programa.
+Es lo que hace <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> en Windows.
+Por eso siempre hay que indicarle el nombre del programa que se quiere ejecutar en el nuevo proceso.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Esto lo veremos con más detalle en el <a href="procesos.html#_ejemplos_de_operaciones_con_procesos">Apartado 9.7.3</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_terminación_de_procesos"><a class="anchor" href="#_terminación_de_procesos"></a>9.7.2. Terminación de procesos</h4>
+<div class="paragraph">
+<p>Un proceso termina cuando se lo indica al sistema operativo con la llamada al sistema <strong>exit</strong>.
+En ese momento puede devolver un valor de estado a su padre.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Esto ocurre en C y C&#43;&#43; incluso si el programa termina usando la sentencia <code>return</code> en <a href="https://en.cppreference.com/w/c/language/main_function">main()</a>.
+Lo que ocurre es que es el código, introducido por el compilador, que llamó a <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> es el que llama a <strong>exit</strong> usando el valor devuelto por <a href="https://en.cppreference.com/w/c/language/main_function">main()</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El proceso padre puede esperar a que el hijo termine y recuperar ese valor a través de la llamada al sistema <strong>wait</strong>.
+Cuando un proceso termina, todos los recursos son liberados, incluyendo: la memoria física y virtual, archivos y dispositivos abiertos, búferes de E/S, etc.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 2. Funciones de la API para salir, esperar y terminar procesos.</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">POSIX API</th>
+<th class="tableblock halign-left valign-top">Windows API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Salir</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.man7.org/linux/man-pages/man3/exit.3.html">exit()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess">ExitProcess()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Esperar (un hijo concreto)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/waitpid.2.html">waitpid()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject">WaitForSingleObject()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Esperar (múltiples hijos)</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitformultipleobjects">WaitForMultipleObject()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Terminar otro proceso</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/kill.2.html">kill()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess">TerminateProcess()</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>En todo caso un proceso puede provocar la terminación de otro proceso a través de una llamada al sistema.
+Por ejemplo, en sistemas POSIX se usa un mecanismo llamado <strong>señales</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">kill</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">SIGTERM</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>mientras que en Windows API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">TerminateProcess</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Habitualmente el proceso que invoca estas funciones es el proceso padre, ya que puede que sea el único con permisos para hacerlo.</p>
+</div>
+<div class="paragraph">
+<p>Los motivos para terminar un proceso hijo pueden ser:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>El hijo ha excedido el uso de algunos de los recursos reservados</strong>.
+Obviamente esto tiene sentido cuando los hijos utilizan un subconjunto de los recursos asignados al padre.</p>
+</li>
+<li>
+<p><strong>La tarea asignada al hijo ya no es necesaria</strong>.
+Por ejemplo, se creó para comprimir un archivo, pero el usuario ha pedido cancelar la operación.</p>
+</li>
+<li>
+<p><strong>El padre termina y el sistema operativo está diseñado para no permitir que el hijo pueda seguir ejecutándose si no tiene un padre</strong>.
+En esos sistemas, la terminación de un proceso provoca que el sistema operativo inicie lo que se denomina una <strong>terminación en cascada</strong>, en la que termina todos los procesos que cuelgan de dicho proceso.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En sistemas UNIX y estilo UNIX, si un proceso muere a sus hijos no terminan sino que se les reasigna como padre el proceso <strong>init</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ejemplos_de_operaciones_con_procesos"><a class="anchor" href="#_ejemplos_de_operaciones_con_procesos"></a>9.7.3. Ejemplos de operaciones con procesos</h4>
+<div class="paragraph">
+<p>En C estándar la función <a href="https://en.cppreference.com/w/c/program/system">system()</a> de la librería estándar permite ejecutar otro proceso, con sus argumentos, esperar a que termine y obtener el valor de estado con el que finalizó el proceso.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">status</span> <span class="o">=</span> <span class="n">system</span><span class="p">(</span><span class="s">"holamundo -v foo.txt"</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esta función es portable.
+Está disponible en cualquier sistema donde haya un compilador de C estándar, pero sus funcionalidades son bastante limitadas.
+Por ejemplo, no permite que el programa padre continúe su ejecución mientras se ejecuta el hijo, aunque el sistema sea multitarea y ese sea el comportamiento por defecto.
+Tampoco facilita el control de los recursos que son heredados por el proceso hijo o hacer redirecciones de los dispositivos de E/S estándar.</p>
+</div>
+<div class="paragraph">
+<p>Como hemos comentado anteriormente, para acceder a todas las funcionalidades ofrecidas por los sistemas operativos, muchas veces es necesario utilizar directamente la librería del sistema.</p>
+</div>
+<div class="sect4">
+<h5 id="_windows_api_2"><a class="anchor" href="#_windows_api_2"></a>Windows API</h5>
+<div class="paragraph">
+<p>En Windows la librería del sistema ofrece la función <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a>.
+A diferencia de <a href="https://en.cppreference.com/w/c/program/system">system()</a>, recibe muchísimos argumentos, ya que permite configurar bastantes aspectos de la creación de un nuevo proceso.</p>
+</div>
+<div class="paragraph">
+<p>En el <a href="procesos.html#ejemplo-createprocess">Ejemplo 2</a> se puede ver cómo se usa <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> para ejecutar un programa y esperar a que termine, de forma similar a como lo hace <a href="https://en.cppreference.com/w/c/program/system">system()</a>.</p>
+</div>
+<div id="ejemplo-createprocess" class="exampleblock">
+<div class="title">Ejemplo 2. Crear un proceso usando Windows API</div>
+<div class="content">
+<div class="paragraph">
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap09/createprocess.c">createprocess.c</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">STARTUPINFO</span> <span class="n">si</span> <span class="o">=</span> <span class="p">{</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">STARTUPINFO</span><span class="p">)</span> <span class="p">};</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">PROCESS_INFORMATION</span> <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="c1">// Crear procesos hijo y comprobar si no se creó con éxito.</span>
+<span class="k">if</span><span class="p">(</span> <span class="o">!</span> <span class="n">CreateProcess</span><span class="p">(</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="nb">NULL</span><span class="p">,</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="s">"C:</span><span class="se">\\</span><span class="s">Windows</span><span class="se">\\</span><span class="s">System32</span><span class="se">\\</span><span class="s">charmap.exe"</span><span class="p">,</span>  <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">FALSE</span><span class="p">,</span> <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>  <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="nb">NULL</span><span class="p">,</span>  <i class="conum" data-value="8"></i><b>(8)</b>
+    <span class="o">&amp;</span><span class="n">si</span><span class="p">,</span>
+    <span class="o">&amp;</span><span class="n">pi</span> <span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al crear el proceso.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">()</span> <span class="p">);</span> <i class="conum" data-value="9"></i><b>(9)</b>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El PID del nuevo proceso hijo es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pi</span><span class="p">.</span><span class="n">dwProcessId</span> <span class="p">);</span>
+
+<span class="c1">// Esperar hasta que el hijo termine.</span>
+<span class="n">WaitForSingleObject</span><span class="p">(</span> <span class="n">pi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">INFINITE</span> <span class="p">);</span> <i class="conum" data-value="10"></i><b>(10)</b>
+
+<span class="n">DWORD</span> <span class="n">dwExitCode</span><span class="p">;</span>
+<span class="n">GetExitCodeProcess</span><span class="p">(</span> <span class="n">pi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dwExitCode</span> <span class="p">);</span> <i class="conum" data-value="11"></i><b>(11)</b>
+<span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de salida del proceso hijo es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">dwExitCode</span> <span class="p">);</span>
+
+<span class="c1">// Cerrar los manejadores del proceso y del hilo principal del proceso.</span>
+<span class="n">CloseHandle</span><span class="p">(</span> <span class="n">pi</span><span class="p">.</span><span class="n">hProcess</span> <span class="p">);</span> <i class="conum" data-value="12"></i><b>(12)</b>
+<span class="n">CloseHandle</span><span class="p">(</span> <span class="n">pi</span><span class="p">.</span><span class="n">hThread</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa">STARTUPINFO</a> sirve para pasar a <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> parámetros adicionales sobre el inicio de la aplicación, como configurar la redirección de la E/S estándar o características de la primera ventana creada por la aplicación —en aplicaciones con interfaz gráfica—.
+Si no se va a usar, debe inicializarse a 0, excepto el primer campo que debe contener el tamaño de la estructura.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information">PROCESS_INFORMATION</a> sirve para devolver el manejador y el <strong>identificador de proceso</strong> del nuevo proceso.
+Es común inicializar la estructura a 0.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> devuelve <code>TRUE</code> o <code>FALSE</code>, en función de si ha tenido éxito o no, respectivamente.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>El primer argumento —<code>lpApplicationName</code>— se usa para pasar la ruta del ejecutable, mientras que los argumentos de línea de comando generalmente se pasan por el segundo —<code>lpCommandLine</code>—.
+Si en <code>lpApplicationName</code> se indica NULL, se puede pasar todo junto por <code>lpCommandLine</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>En <code>lpCommandLine</code> indicamos la ruta al ejecutable y los argumentos de la línea de comandos, si hicieran falta.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Con <code>bInheritHandles</code> a <code>FALSE</code> señalamos que no queremos que el proceso hijo herede ningún manejador abierto del proceso padre.
+Estos manejadores son recursos a los que el padre tiene acceso y, si fuera necesario, el hijo también podría tenerlo.
+Los manejadores pueden representar, por ejemplo, archivos abiertos, tuberías, <em>sockets</em> u otros mecanismos de comunicación, procesos o archivos mapeados en memoria, entre muchos otros tipos de recursos.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Con <code>NULL</code> en <code>lpEnvironment</code> indicamos que el hijo herede el conjunto de variables de entorno directamente del padre.
+La otra opción es indicar un nuevo conjunto de variables de entorno.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><code>lpCurrentDirectory</code> sirve para indicar el directorio del trabajo del proceso hijo.
+Es decir, el directorio respecto al que se resolverán las rutas de archivo relativas.
+Con <code>NULL</code> indicamos que utilice la misma ruta que el proceso padre.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Si <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> falla, devuelve <code>FALSE</code>.
+Llamando a <a href="https://docs.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError()</a> obtiene el código que identifica el motivo del error de la última función utilizada de Windows API.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject">WaitForSingleObject()</a> hacemos que el proceso padre se quede en estado <strong>esperando</strong> —sin que pueda seguir ejecutándose— hasta que el proceso hijo termine.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Cuando el proceso ha terminado, el padre puede conocer su valor de salida.
+Es decir, el valor usado para terminar en la sentencia <code>return</code> de <a href="https://en.cppreference.com/w/c/language/main_function">main()</a> o al llamar a  <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess">ExitProcess()</a> en el programa del proceso hijo.
+Como convención, el hijo indica con un 0 que terminó con éxito, mientras que con un valor distinto indica que tuvo algún tipo de problema.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>Cuando ya no hace falta obtener información del proceso hijo o manipularlo, es necesario cerrar los manejadores devueltos por <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a>.
+Así el sistema operativo sabe que las estructuras de datos relacionadas con el proceso hijo ya no son necesarias, por lo que pueden liberarse.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a> siempre necesita la ruta a un ejecutable —sea en el primer o en el segundo argumento de la función— porque se utiliza para crear un proceso completamente limpio y ejecutar en él un nuevo programa.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="sect-procesos-posix-api"><a class="anchor" href="#sect-procesos-posix-api"></a>POSIX API</h5>
+<div class="paragraph">
+<p>Por el contrario, en los sistemas POSIX se utiliza una estrategia muy diferente.
+Los nuevos procesos se crean con la llamada <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>, que se encarga de crearlo como una copia del proceso padre.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Ejemplo 3. Crear un proceso en sistemas POSIX</div>
+<div class="content">
+<div class="paragraph">
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap09/fork.c">fork.c</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">pid_t</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">getpid</span><span class="p">();</span> <i class="conum" data-value="7"></i><b>(7)</b>
+
+<span class="c1">// Crear un proceso hijo</span>
+<span class="n">pid_t</span> <span class="n">child</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span> <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">{</span>
+    <span class="c1">// Aquí solo entra el proceso hijo</span>
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[HIJO] ¡Soy el proceso hijo!"</span> <span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[HIJO] El valor de mi variable 'child' es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">child</span> <span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[HIJO] Este es mi PID: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getpid</span><span class="p">()</span> <span class="p">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[HIJO] El valor de mi variable 'pid' es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pid</span> <span class="p">);</span> <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[HIJO] El PID de mi padre es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getppid</span><span class="p">()</span> <span class="p">);</span> <i class="conum" data-value="7"></i><b>(7)</b>
+
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[HIJO] Durmiendo 10 segundos..."</span> <span class="p">);</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">status</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[HIJO] Salgo con %d ¡Adios!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">status</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">status</span><span class="p">;</span> <i class="conum" data-value="9"></i><b>(9)</b>
+<span class="p">}</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="p">{</span>
+    <span class="c1">// Aquí solo entra el proceso padre</span>
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] ¡Soy el proceso padre!"</span> <span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de mi variable 'child' es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">child</span> <span class="p">);</span>  <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] Este es mi PID: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getpid</span><span class="p">()</span> <span class="p">);</span> <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de mi variable 'pid' es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pid</span> <span class="p">);</span> <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El PID de mi padre es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getppid</span><span class="p">()</span> <span class="p">);</span>
+
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] Voy a esperar a que mi hijo termine..."</span> <span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">status</span><span class="p">;</span>
+    <span class="n">wait</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">status</span> <span class="p">);</span>  <i class="conum" data-value="8"></i><b>(8)</b> <i class="conum" data-value="9"></i><b>(9)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de salida de mi hijo fue: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">WEXITSTATUS</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">);</span> <i class="conum" data-value="9"></i><b>(9)</b>
+
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] ¡Adios!"</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="c1">// Aquí solo entra el padre si no pudo crear el hijo</span>
+    <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al crear el proceso: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span> <span class="p">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>El proceso llama a <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> pero al retornar de la llamada vuelven dos procesos: el proceso padre, que es el que llamó originalmente a <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>, y el proceso hijo.
+Como el proceso hijo es una copia del padre, tiene el mismo código, las mismas variables y los mismos recursos que tenía el padre en el momento de llamar a <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>.
+La única diferencia es el valor devuelto por <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>, que guardamos en <code>child</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Los dos procesos ejecutan el mismo programa, así que ambos llegan a la línea detrás del <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>.
+Como queremos que cada proceso haga cosas diferentes, necesitamos que cada uno vaya a ramas distintas del código.
+Eso se hace comprobando el valor de <code>child</code>, porque si vale 0 es que el proceso que actualmente ejecuta el programa es el hijo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Si, por el contrario, el valor de <code>child</code> es mayor de 0, el proceso que ejecuta el programa es el padre y el valor de <code>child</code> es el PID del proceso hijo creado.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Así que el valor de <code>child</code> en el padre coincide con el devuelto por <a href="https://man7.org/linux/man-pages/man2/getpid.2.html">getpid()</a> en el hijo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Finalmente, si el valor devuelto por <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> es negativo, es que ocurrió un error y el proceso hijo no llegó a crearse.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>En los sistemas POSIX es común que las llamadas al sistema devuelvan un valor negativo para indicar un error.
+El motivo del error se puede conocer a través de la variable global <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>, que siempre guarda el código de identificación del error en la última función invocada de la API POSIX.
+La función <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">strerror()</a> permite obtener un texto descriptivo de cualquier valor de <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>, lo que siempre resulta útil para crear mensajes de error que ayuden a determinar dónde estuvo el problema.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>A modo de ejemplo hemos guardado el PID del proceso en la variable <code>pid</code>, antes de la llamada a <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>.
+Como el proceso hijo es una copia del proceso padre, la variable existe en ambos, pero en el proceso hijo su valor coincide con lo devuelto por <a href="https://man7.org/linux/man-pages/man2/getppid.2.html">getppid()</a> mientras que en el proceso padre con lo devuelto por <a href="https://man7.org/linux/man-pages/man2/getpid.2.html">getpid()</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a> hace que el proceso padre interrumpa su ejecución hasta que algún hijo termine y devuelve el estado de salida en <code>status</code>.
+<div class="paragraph">
+<p>Debemos asegurarnos de llamar a <a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a> o <a href="https://man7.org/linux/man-pages/man2/waitpid.2.html">waitpid()</a> una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, donde se guarda el estado de salida.
+No hacerlo genera <strong>procesos zombi</strong> o <em>defunct</em>.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>El valor de salida del proceso hijo lo obtiene el proceso a través del estado de salida devuelto por <a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a>.
+Pero ese estado contiene más información sobre la causa por la que el proceso terminó.
+Para recuperar el valor de salida se usa la macro <code>WEXITSTATUS</code> sobre el estado de salida.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Lo siguiente es un posible resultado de ejecutar el programa anterior en una terminal de Linux, numerado con las anotaciones realizadas al código:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./fork
+[PADRE] ¡Soy el proceso padre!
+[PADRE] El valor de mi variable 'child' es: 2360 <i class="conum" data-value="4"></i><b>(4)</b>
+[PADRE] Este es mi PID: 2359 <i class="conum" data-value="7"></i><b>(7)</b>
+[PADRE] El valor de mi variable 'pid' es: 2359 <i class="conum" data-value="7"></i><b>(7)</b>
+[HIJO] ¡Soy el proceso hijo!
+[PADRE] El PID de mi padre es: 1857
+[PADRE] Voy a esperar a que mi hijo termine...
+[HIJO] El valor de mi variable 'child' es: 0 <i class="conum" data-value="2"></i><b>(2)</b>
+[HIJO] Este es mi PID: 2360
+[HIJO] El valor de mi variable 'pid' es: 2359 <i class="conum" data-value="7"></i><b>(7)</b>
+[HIJO] El PID de mi padre es: 2359 <i class="conum" data-value="7"></i><b>(7)</b>
+[HIJO] Durmiendo 10 segundos...
+[HIJO] Salgo con 42 ¡Adios! <i class="conum" data-value="9"></i><b>(9)</b>
+[PADRE] El valor de salida de mi hijo fue: 42 <i class="conum" data-value="9"></i><b>(9)</b>
+[PADRE] ¡Adios!</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Aunque pueda parecer algo complejo, esta estrategia facilita la comunicación entre procesos.
+Es muy sencillo lanzar otro proceso para hacer una tarea en paralelo que tendrá automáticamente una copia de los datos del proceso original.</p>
+</div>
+<div class="paragraph">
+<p>Como se trata de una copia, las nuevas variables o la modificación de variables existentes que realice cualquiera de los procesos, no serán visibles para el otro.
+Es decir, después del <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> ambos procesos son completamente independientes.
+Pero como el proceso hijo hereda el acceso a todo tipo de recursos abiertos por el proceso padre, como: archivos, tuberías, <em>sockets</em> o regiones de memoria compartida, entre muchos otros recursos; es muy sencillo crear un canal de comunicación entre ambos procesos, si fuera necesario.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> no proporciona una funcionalidad similar a la de <a href="https://en.cppreference.com/w/c/program/system">system()</a>.
+No sirve para crear otro proceso con un programa diferente.
+Para eso necesitamos <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a>, una familia de funciones cuyo propósito es cargar un nuevo programa en el proceso que la invoca.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Ejemplo 4. Ejecutar otro programa en un proceso nuevo en sistemas POSIX</div>
+<div class="content">
+<div class="paragraph">
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap09/fork-exec.c">fork-exec.c</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="c1">// Crear un proceso hijo</span>
+<span class="n">pid_t</span> <span class="n">child</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span> <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Aquí solo entra el proceso hijo</span>
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[HIJO] ¡Soy el proceso hijo!"</span> <span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[HIJO] Voy a ejecutar el comando 'ls'"</span> <span class="p">);</span>
+
+    <span class="cm">/* Hacer otras cosas necesarias antes de ejecutar el programa... */</span> <i class="conum" data-value="4"></i><b>(4)</b>
+
+    <span class="n">execl</span><span class="p">(</span> <span class="s">"/bin/ls"</span><span class="p">,</span> <span class="s">"ls"</span><span class="p">,</span> <span class="s">"-l"</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">);</span>   <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="5"></i><b>(5)</b>
+
+    <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al ejecutar el programa: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span> <span class="p">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <i class="conum" data-value="7"></i><b>(7)</b>
+<span class="p">}</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Aquí solo entra el proceso padre</span>
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] ¡Soy el proceso padre!"</span> <span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] Voy a esperar a que mi hijo termine..."</span> <span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">status</span><span class="p">;</span>
+    <span class="n">wait</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">status</span> <span class="p">);</span> <i class="conum" data-value="8"></i><b>(8)</b>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de salida de mi hijo fue: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">WEXITSTATUS</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">);</span>
+
+    <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] ¡Adios!"</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Aquí solo entra el padre si no pudo crear el hijo</span>
+    <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al crear el proceso: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Primero creamos un proceso hijo, donde ejecutaremos el nuevo programa.
+Si nos diera por llamar directamente a una función de la familia <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a>, nuestro programa sería sustituido y no tendríamos ningún control sobre lo que pase después.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>En la rama de código que se va a ejecutar en el hijo —gracias a la comprobación del valor devuelto por <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>— ejecutamos la función de la familia <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> que más nos interese.
+Esta función no crea otro proceso, sino que carga el programa indicado en el proceso hijo, sustituyendo así a nuestro programa.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Todas las funciones de la familia <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> reciben como primer argumento la ruta al ejecutable, pero en <code>execlp()</code> en particular, a continuación se indican los argumentos de línea de comandos, tal y como queremos que los reciba el programa en el argumento <code>argv</code> de su <a href="https://en.cppreference.com/w/c/language/main_function">main()</a>.
+Es decir, que el programa del comando <code>/bin/ls</code> recibirá <code>ls</code> y <code>-l</code> en <code>argv[0]</code> y <code>argv[1]</code>, respectivamente.
+El <code>NULL</code> del final indica cuando no hay más argumentos de línea de comandos para pasar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Antes de ejecutar la función <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> se pueden hacer cosas para configurar adecuadamente el proceso donde se ejecutará el nuevo programa.
+Por ejemplo, cambiar las variables de entorno, redirigir la E/S estándar, cambiar el usuario al que pertenece el proceso —si originalmente se ejecuta con un usuario con ese privilegio— o cerrar archivos abiertos del proceso padre que ha heredado el proceso hijo y que, obviamente, no queremos que se queden abiertos para programas diferentes al nuestro.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Las funciones <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> no retornan si tienen éxito, porque el programa actual es sustituido por el indicado, que comenzará a ejecutarse de su <a href="https://en.cppreference.com/w/c/language/main_function">main()</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Si la función <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> retorna es porque falló y, como es común, el motivo del error está disponible en <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>.
+Un motivo de fallo muy típico es que el ejecutable indicado no exista.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Si la función <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> retorna, la ejecución del programa en el proceso hijo continúa hasta salir de <a href="https://en.cppreference.com/w/c/language/main_function">main()</a>.
+Generalmente, el proceso hijo no es útil si no puede ejecutar el programa que le hemos indicado.
+Por eso es importante asegurarnos de que el proceso hijo termina, si <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> falla.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Mientras todo lo anterior ocurre en el proceso hijo, el proceso padre espera.
+Cuando el proceso hijo termine, el padre podrá obtener su estado de salir para saber si tuvo éxito o no.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Lo siguiente es un posible resultado de ejecutar el programa anterior en una terminal de Linux, numerado con las anotaciones realizadas al código:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./fork-exec
+[PADRE] ¡Soy el proceso padre!
+[PADRE] Voy a esperar a que mi hijo termine...
+[HIJO] ¡Soy el proceso hijo!
+[HIJO] Voy a ejecutar el comando 'ls'
+total 628 <i class="conum" data-value="2"></i><b>(2)</b>
+-rwxr--r-- 1 jesus jesus 72640 Sep 16 13:41 fifo-client
+-rwxr--r-- 1 jesus jesus 72784 Sep 16 13:41 fifo-server
+-rwxr--r-- 1 jesus jesus 20056 Sep 16 13:41 fork
+-rwxr-xr-x 1 jesus jesus 19896 Sep 18 13:24 fork-exec
+-rwxr--r-- 1 jesus jesus 80744 Sep 16 13:41 mmap
+-rwxr--r-- 1 jesus jesus 45712 Sep 16 13:41 pipe
+-rwxr--r-- 1 jesus jesus 87024 Sep 16 13:41 shared-memory
+-rwxr--r-- 1 jesus jesus 77696 Sep 16 13:41 shared-memory-sync
+-rwxr--r-- 1 jesus jesus 19608 Sep 16 13:41 softstack-c
+-rwxr--r-- 1 jesus jesus 39328 Sep 16 13:41 softstack-cpp
+-rwxr--r-- 1 jesus jesus  9920 Sep 16 13:41 syscall
+-rwxr--r-- 1 jesus jesus 40712 Sep 16 13:41 threads-mutex-pthread
+-rwxr--r-- 1 jesus jesus 39944 Sep 16 13:41 threads-pthread
+[PADRE] El valor de salida de mi hijo fue: 0 <i class="conum" data-value="8"></i><b>(8)</b>
+[PADRE] ¡Adios!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Veamos qué ocurre si la línea de la función <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> fuera:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">execl</span><span class="p">(</span> <span class="s">"/bin/ls"</span><span class="p">,</span> <span class="s">"ls"</span><span class="p">,</span> <span class="s">"-l"</span><span class="p">,</span> <span class="s">"/foo"</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>para intentar ver el contenido del directorio <code>/foo</code>, que no existe:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./fork-exec
+[PADRE] ¡Soy el proceso padre!
+[PADRE] Voy a esperar a que mi hijo termine...
+[HIJO] ¡Soy el proceso hijo!
+[HIJO] Voy a ejecutar el comando 'ls'
+ls: cannot access '/foo': No such file or directory <i class="conum" data-value="1"></i><b>(1)</b>
+[PADRE] El valor de salida de mi hijo fue: 2 <i class="conum" data-value="2"></i><b>(2)</b>
+[PADRE] ¡Adios!</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>El comando <code>ls</code> se ejecuta, pero falla porque el directorio indicado no existe.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Por eso el programa, al terminar el proceso, no devuelve 0 si no 2 y es ese el valor que recibe el proceso padre.
+Esto le permite saber al proceso padre que el comando <code>ls</code> no tuvo éxito.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Y finalmente cambiemos la línea de la función <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> así:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">execl</span><span class="p">(</span> <span class="s">"/noexists"</span><span class="p">,</span> <span class="s">"ls"</span><span class="p">,</span> <span class="s">"-l"</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>para que intente ejecutar un programa que no existe:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ./fork-exec
+[PADRE] ¡Soy el proceso padre!
+[PADRE] Voy a esperar a que mi hijo termine...
+[HIJO] ¡Soy el proceso hijo!
+[HIJO] Voy a ejecutar el comando 'ls'
+Error (2) al ejecutar el programa: No such file or directory <i class="conum" data-value="1"></i><b>(1)</b>
+[PADRE] El valor de salida de mi hijo fue: 255 <i class="conum" data-value="2"></i><b>(2)</b>
+[PADRE] ¡Adios!</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> falla y se muestra el mensaje de error con el motivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>El proceso hijo termina con -1 y así llega ese valor al proceso padre.
+Al utilizar un valor de salida diferente a los que usa el programa que intenta ejecutar, el padre distingue las terminaciones causadas por errores al llamar a <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> de los errores del propio programa.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Todas las funciones <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> hacen lo mismo.
+Primero liberan la memoria reservada en el proceso, después cargan el nuevo programa y finalmente inicia la ejecución del programa desde su punto de entrada.
+La diferencia entre las distintas funciones está en los argumentos que aceptan.
+Esa diferencia se puede conocer fijándonos en las letras al final del nombre de cada función:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sin 'p'</strong>, como <code>execl()</code> o <code>execv()</code>, el primer argumento de la función es la ruta hasta el ejecutable del programa que se quiere ejecutar.</p>
+</li>
+<li>
+<p><strong>Con 'p'</strong>, como <code>execlp()</code> o <code>execvp()</code>, la función busca el ejecutable como lo hace la <em>shell</em>.
+Es decir, si el primer argumento no contiene ninguna '/' se toma como el nombre del ejecutable y se busca en los directorios listados en la variable de entorno <code>PATH</code>.
+Si el primer argumento contiene alguna '/', se considera una ruta y se busca directamente el ejecutable en ella.</p>
+</li>
+<li>
+<p><strong>Con 'l'</strong>, como <code>execl()</code> o <code>execlp()</code>, los argumentos de línea de comandos para pasar al programa se indican directamente como argumentos diferentes de la función —por ejemplo <code>execl("/bin/ls", "ls", "-l", "-a" NULL)</code>— lo que es ideal cuando el número de argumentos es fijo.
+La lista de argumentos debe terminar en <code>NULL</code>.</p>
+</li>
+<li>
+<p><strong>Con 'v'</strong>, como <code>execv()</code> o <code>execvp()</code>, los argumentos de la línea de comandos para pasar al programa se indican en un <em>array</em> de punteros a cadenas terminadas en '\0', lo que resulta muy práctico si el número de argumentos es desconocido en el momento de compilar.
+El último elemento del <em>array</em> debe apuntar a <code>NULL</code>.
+Por ejemplo:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="s">"ls"</span><span class="p">,</span> <span class="s">"-l"</span><span class="p">,</span> <span class="s">"-a"</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">};</span>
+<span class="n">execv</span><span class="p">(</span><span class="s">"/bin/ls"</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Con 'e'</strong>, como <code>execvpe()</code> o <code>execle()</code>, la función admite un argumento adicional para indicar el conjunto de variables de entorno con el que se ejecutará el nuevo programa.
+Con las otras funciones <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> se conservan las variables de entorno actuales en el proceso que llama a la función.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_procesos_cooperativos"><a class="anchor" href="#_procesos_cooperativos"></a>9.8. Procesos cooperativos</h3>
+<div class="paragraph">
+<p>Desde el punto de vista de la cooperación podemos clasificar los procesos en dos grupos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los <strong>procesos independientes</strong>, que no afectan o pueden ser afectados por otros procesos del sistema. Cualquier proceso que no comparte datos —temporales o persistentes— con otros procesos es independiente.</p>
+</li>
+<li>
+<p>Los <strong>procesos cooperativos</strong>, que pueden afectar o ser afectados por otros procesos ejecutados en el sistema.
+Los procesos que comparten datos, sea cual sea la forma en la que lo hacen, siempre son cooperativos.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_motivaciones_para_la_colaboración_entre_procesos"><a class="anchor" href="#_motivaciones_para_la_colaboración_entre_procesos"></a>9.8.1. Motivaciones para la colaboración entre procesos</h4>
+<div class="paragraph">
+<p>Hay diversos motivos para proporcionar un entorno que permita la cooperación de los procesos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Compartición de información</strong>.
+Dado que varios usuarios pueden estar interesados en los mismos bloques de información —por ejemplo, en un archivo compartido— el sistema operativo debe proporcionar un entorno que permita el acceso concurrente a este tipo de recursos.</p>
+</li>
+<li>
+<p><strong>Velocidad de cómputo</strong>.
+Para que una tarea se ejecute más rápido se puede partir en subtareas que se ejecuten en paralelo.
+Es importante destacar que la mejora en la velocidad solo es posible si el sistema tiene varios componentes de procesamiento como procesadores —si se quiere acelerar la ejecución en la CPU— o canales E/S —si se quieren acelerar las operaciones de E/S —.</p>
+</li>
+<li>
+<p><strong>Modularidad</strong>.
+Podemos querer crear nuestro software de forma modular, dividiendo las funciones del programa en procesos separados que se comunican entre sí.</p>
+</li>
+<li>
+<p><strong>Conveniencia</strong>.
+Incluso un usuario individual puede querer hacer varias tareas al mismo tiempo.
+Por ejemplo, editar, imprimir y compilar al mismo tiempo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La ejecución simultánea de procesos cooperativos requiere mecanismos tanto para comunicar unos con otros como para sincronizar sus acciones (véase el <a href="sincronización.html">Capítulo 13</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_comunicación_entre_procesos"><a class="anchor" href="#_comunicación_entre_procesos"></a>9.8.2. Comunicación entre procesos</h4>
+<div class="paragraph">
+<p>Para comunicar procesos cooperativos existen diversas aproximaciones, que en general se pueden encajar en alguna de las siguientes estrategias:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Memoria compartida</dt>
+<dd>
+<p>Método de comunicación en el que los procesos utilizan regiones compartidas de la memoria principal para compartir información.</p>
+</dd>
+<dt class="hdlist1">Paso de mensajes</dt>
+<dd>
+<p>Método en el que los procesos utilizan funciones del sistema operativo para enviarse mensajes entre ellos, compartiendo información y sincronizando acciones, sin necesidad de compartir memoria.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>En la <a href="procesos.html#fig-modelos-de-comunicación">Figura 31</a> se puede un esquema comparativo entre ambos modelos de comunicación.
+Veremos cada uno en detalle en el <a href="memoria_compartida.html">Capítulo 11</a> y el <a href="comunicación_mediante_paso_de_mensajes.html">Capítulo 10</a>, respectivamente.</p>
+</div>
+<div id="fig-modelos-de-comunicación" class="imageblock">
+<div class="content">
+<img src="media/C09-procesos/modelos_comunicación.svg" alt="modelos comunicación">
+</div>
+<div class="title">Figura 31. Modelos de comunicación.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Subir: <a href="gestión_de_procesos.html">Gestión de procesos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="comunicación_mediante_paso_de_mensajes.html">Comunicación mediante paso de mensajes</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>
