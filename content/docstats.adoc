@@ -1,16 +1,16 @@
-:document-characters: 539311
-:document-words: 106663
+:document-characters: 539354
+:document-words: 106671
 :document-paragraphs: 1659
 :document-reading-time: 8 horas y 53 minutos
 :s01-characters: 7526
 :s01-words: 1370
 :s01-paragraphs: 26
 :s01-reading-time: 7 minutos
-:s02-characters: 24144
-:s02-words: 4505
+:s02-characters: 24196
+:s02-words: 4514
 :s02-paragraphs: 77
 :s02-reading-time: 23 minutos
-:s03-characters: 19628
+:s03-characters: 19629
 :s03-words: 3838
 :s03-paragraphs: 80
 :s03-reading-time: 19 minutos
