@@ -503,7 +503,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
             setTimeout(function() {
                 disqus_shortname = 'ull-esit-sistemas-operativos';
                 jQuery(document).ready(function() {
-                    jQuery("img, p, .colist td, .stemblock").inlineDisqussions();
+                    jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
                 });
             }, 500);
         }

@@ -718,7 +718,7 @@ pre.rouge {
             setTimeout(function() {
                 disqus_shortname = 'ull-esit-sistemas-operativos';
                 jQuery(document).ready(function() {
-                    jQuery("img, p, .colist td, .stemblock").inlineDisqussions();
+                    jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
                 });
             }, 500);
         }
