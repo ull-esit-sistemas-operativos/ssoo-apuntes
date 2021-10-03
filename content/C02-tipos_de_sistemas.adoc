@@ -239,7 +239,7 @@ Un *sistema multiprocesador* es aquel ordenador hay procesadores interconectados
 Hace años esto solo se daba en sistemas con varias CPU, lo que era relativamente común en servidores y sistemas de alto rendimiento para trabajos técnicos o científicos.
 Sin embargo, en la actualidad cualquier dispositivo digital u ordenador doméstico puede tener una CPU con múltiples núcleos, lo que los convierte en sistemas multiprocesador.
 
-Las principales desventajas de estos sistemas son:
+Las principales ventajas de estos sistemas son:
 
 * *Aumentan la cantidad de trabajo realizado*. A mayor número de procesadores, mayor cantidad de trabajo puede realizar el sistema.
 Sin embargo debemos de tener en cuenta que un sistema con _N_ CPU no es un sistema _N_ veces más rápido.
