@@ -717,9 +717,15 @@ pre.rouge {
         if ('true' === 'true') {
             setTimeout(function() {
                 disqus_shortname = 'ull-esit-sistemas-operativos';
-                jQuery(document).ready(function() {
-                    jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
-                });
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + '.disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
             }, 500);
         }
     }

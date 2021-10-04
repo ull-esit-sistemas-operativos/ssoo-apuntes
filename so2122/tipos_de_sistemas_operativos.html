@@ -502,9 +502,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
         if ('true' === 'true') {
             setTimeout(function() {
                 disqus_shortname = 'ull-esit-sistemas-operativos';
-                jQuery(document).ready(function() {
-                    jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
-                });
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + '.disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
             }, 500);
         }
     }
@@ -985,7 +991,7 @@ Un <strong>sistema multiprocesador</strong> es aquel ordenador hay procesadores 
 Sin embargo, en la actualidad cualquier dispositivo digital u ordenador doméstico puede tener una CPU con múltiples núcleos, lo que los convierte en sistemas multiprocesador.</p>
 </div>
 <div class="paragraph">
-<p>Las principales desventajas de estos sistemas son:</p>
+<p>Las principales ventajas de estos sistemas son:</p>
 </div>
 <div class="ulist">
 <ul>
