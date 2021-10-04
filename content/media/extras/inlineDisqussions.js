@@ -87,10 +87,10 @@ var disqus_url;
       identifier = node.attr('data-disqus-identifier');
     }
     else {
-      while ($('[data-disqus-identifier="' + settings.path + '.' + settings.identifier + '-' + i + '"]').length > 0) {
+      while ($('[data-disqus-identifier="' + settings.path + settings.identifier + '-' + i + '"]').length > 0) {
         i++;
       }
-      identifier = settings.path + '.' + settings.identifier + '-' + i;
+      identifier = settings.path + settings.identifier + '-' + i;
     }
 
     // Create the discussion note.
