@@ -37,7 +37,7 @@ var disqus_url;
         minWidth: 300,
         maxWidth: 9999,
         path: window.location.pathname,
-        permalink: window.location.href
+        permalink: [location.protocol, '//', location.host, location.pathname].join('')
       };
 
       // Overwrite default options with user provided ones.
@@ -87,18 +87,18 @@ var disqus_url;
       identifier = node.attr('data-disqus-identifier');
     }
     else {
-      while ($('[data-disqus-identifier="' + settings.path + settings.identifier + '-' + i + '"]').length > 0) {
+      while ($('[data-disqus-identifier="' + settings.path + '.' + settings.identifier + '-' + i + '"]').length > 0) {
         i++;
       }
-      identifier = settings.path + settings.identifier + '-' + i;
+      identifier = settings.path + '.' + settings.identifier + '-' + i;
     }
 
     // Create the discussion note.
     var cls = settings.highlighted ? 'disqussion-link disqussion-highlight' : 'disqussion-link';
     var a = $('<a class="' + cls + '" />')
-      .attr('href', settings.permalink + settings.identifier + '-'  + i + '#disqus_thread')
+      .attr('href', settings.permalink + '?' + settings.identifier + '='  + i + '#disqus_thread')
       .attr('data-disqus-identifier', identifier)
-      .attr('data-disqus-url', settings.permalink + settings.identifier + '-' + i)
+      .attr('data-disqus-url', settings.permalink + '?' +  settings.identifier + '=' + i)
       .attr('data-disqus-position', settings.position)
       .text('+')
       .wrap('<div class="disqussion" />')
