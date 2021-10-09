@@ -141,7 +141,7 @@ Como se puede observar, no se indica de qué hilo o proceso se quiere recibir el
 De hecho, si se quiere conocer la identidad del remitente, este tendría que poner su identificador en alguno de los parámetros del mensaje.
 
 El sistema de colas de mensajes de Windows API es una pieza fundamental del entorno gráfico de Microsoft Windows.
-Sin embargo, podemos definir nuestros propios mensajes privados para comunicar unos hilos o procesos con otros.
+Con ese fin, el sistema trae un conjunto de mensajes predefinidos, pero podemos definir nuestros propios mensajes para comunicar unos hilos o procesos con otros.
 ****
 
 === Comunicación indirecta

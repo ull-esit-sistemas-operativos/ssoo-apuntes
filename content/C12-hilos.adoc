@@ -308,7 +308,7 @@ void* factorial_thread (void* arg) <7> <8> <9>
     return &args->result; <12>
 }
 
-int main
+int main()
 {
     int return_code;
     pthread_t thread1, thread2; <1> <2>

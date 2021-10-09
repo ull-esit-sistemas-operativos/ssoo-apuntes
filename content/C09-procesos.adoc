@@ -393,7 +393,7 @@ Las *variables de entorno* se gestionan con funciones específicas ofrecidas por
 |{win32_setenvironmentvariable}
 |====
 
-por ejemplo, en sistemas POSIX un programa leer la variable de entorno `PATH` así:
+por ejemplo, en sistemas POSIX un programa puede leer la variable de entorno `PATH` así:
 
 [source, c]
 ----
