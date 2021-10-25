@@ -1949,15 +1949,31 @@ Mientras que los <em>sockets</em> <code>SOCK_STREAM</code> son orientados a cone
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+Los <strong>sockets de dominio UNIX</strong> solo entregan los mensajes dentro del mismo sistema, así que siempre son confiables, independientemente de si son <code>SOCK_DGRAM</code> o <code>SOCK_STREAM</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Un <em>socket</em> recién creado no tiene un nombre que otro proceso pueda usar para identificarlo y comunicarse con él.
-Para asignar ese nombre o dirección se utiliza <a href="https://man7.org/linux/man-pages/man2/bind.2.html">bind()</a>.
+Si se va a usar este <em>socket</em> solo para enviar mensajes a otro <em>socket</em>, esto es no es un problema.
+Pero para recibir mensajes, el remitente tiene que poder identificar al destinatario.</p>
+</div>
+<div class="paragraph">
+<p>Para asignar un nombre o dirección a un <em>socket</em> se utiliza <a href="https://man7.org/linux/man-pages/man2/bind.2.html">bind()</a>.
 La dificultad es que cada familia de protocolos tiene un formato de direcciones diferente, así que hay que tener cuidado de usar el adecuado:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c"><span class="k">struct</span> <span class="n">sockaddr_un</span> <span class="n">addr</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">,</span>        <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_UNIX</span><span class="p">,</span>        <i class="conum" data-value="5"></i><b>(5)</b>
     <span class="p">.</span><span class="n">sun_path</span> <span class="o">=</span> <span class="s">"/tmp/foo-socket"</span> <i class="conum" data-value="6"></i><b>(6)</b>
 <span class="p">};</span>
 
