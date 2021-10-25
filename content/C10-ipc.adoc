@@ -704,16 +704,21 @@ Otras familias muy comunes son `AF_INET`, que corresponde a la familia de protoc
 <3> En el segundo argumento se especifica el tipo del _socket_.
 Cada tipo suele corresponde con un protocolo concreto de la familia elegida.
 Por ejemplo, los _sockets_ `SOCK_DGRAM` son «no orientados a conexión», no fiables y de longitud máxima fija, así que en la familia `AF_INET` estos _sockets_ utilizan UDP.
-Mientras que los _sockets_ `SOCK_STREAM` son orientados a conexión, fiables, bidireccionales y orientados a flujo, por lo que en la familia `AF_INET` utilizan TCP. 
+Mientras que los _sockets_ `SOCK_STREAM` son orientados a conexión, fiables, bidireccionales y orientados a flujo, por lo que en la familia `AF_INET` utilizan TCP.
+
+NOTE: Los *sockets de dominio UNIX* solo entregan los mensajes dentro del mismo sistema, así que siempre son confiables, independientemente de si son `SOCK_DGRAM` o `SOCK_STREAM`.
 
 Un _socket_ recién creado no tiene un nombre que otro proceso pueda usar para identificarlo y comunicarse con él.
-Para asignar ese nombre o dirección se utiliza {linux_bind}.
+Si se va a usar este _socket_ solo para enviar mensajes a otro _socket_, esto es no es un problema.
+Pero para recibir mensajes, el remitente tiene que poder identificar al destinatario.
+
+Para asignar un nombre o dirección a un _socket_ se utiliza {linux_bind}.
 La dificultad es que cada familia de protocolos tiene un formato de direcciones diferente, así que hay que tener cuidado de usar el adecuado:
 
 [source,c]
 ----
 struct sockaddr_un addr = {
-    .sun_family = AF_INET,        <5>
+    .sun_family = AF_UNIX,        <5>
     .sun_path = "/tmp/foo-socket" <6>
 };
 
