@@ -742,7 +742,7 @@ La API de _sockets_ incluye muchas otras funciones:
 
 * {linux_listen}, para poner _sockets_ tipo `SOCK_STREAM` a la espera de conexiones.
 * {linux_connect}, para conectar un _socket_ tipo `SOCK_STREAM` con otro que esté a la espera de conexiones.
-* {linux_accept} para que un _socket_ tipo `SOCK_STEAM` a la espera de conexiones acepte una solicitud de conexión.
+* {linux_accept} para que un _socket_ tipo `SOCK_STREAM` a la espera de conexiones acepte una solicitud de conexión.
 * {linux_shutdown} para cerrar uno de los sentidos de una conexión.
 * {linux_close} para destruir un _socket_.
 * {linux_send}, {linux_sendto} y {linux_sendmsg} para enviar mensajes.
