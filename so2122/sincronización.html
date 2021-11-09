@@ -1593,7 +1593,7 @@ Mientras que los <strong><em>mutex</em></strong> de Windows API son objetos más
 <div class="sect3">
 <h4 id="_ejemplos_del_uso_de_mutex"><a class="anchor" href="#_ejemplos_del_uso_de_mutex"></a>13.4.1. Ejemplos del uso de mutex</h4>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap13/pthreads-sync.cpp">pthreads-sync.cpp</a> se puede estudiar el código completo de un ejemplo similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap12/pthreads.cpp">pthreads.cpp</a>, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando la API de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap13/pthreads-sync-factorial.cpp">pthreads-sync-factorial.cpp</a> se puede estudiar el código completo de un ejemplo similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap12/pthreads.cpp">pthreads.cpp</a>, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando la API de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
 La diferencia es que ahora los hilos no retornan el resultado, sino que cada uno lo mete en un vector compartido.
 Al terminar, el hilo principal recorre el vector multiplicando los resultados parciales.</p>
 </div>
@@ -1631,7 +1631,20 @@ Es importante no olvidarnos de liberar el <strong><em>mutex</em></strong> al ter
 </table>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap13/threads-sync.cpp">threads-sync.cpp</a> se puede ver un ejemplo equivalente pero usando <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> y <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a>, de la librería estándar de C&#43;&#43;.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap13/pthreads-sync-counter.cpp">pthreads-sync-counter.cpp</a> se puede observar un ejemplo más simple donde dos hilos intentan incrementar un contador.
+El resultado es correcto siempre que cada hilo adquiera el mismo <strong><em>mutex</em></strong> antes del incremento:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="c1">// Bloquear el mutex antes de incrementar el contador.</span>
+<span class="n">pthread_mutex_lock</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">args</span><span class="o">-&gt;</span><span class="n">mutex</span> <span class="p">);</span>
+<span class="n">args</span><span class="o">-&gt;</span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="c1">// Desbloquear el mutex tras incrementar el contador.</span>
+<span class="n">pthread_mutex_unlock</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">args</span><span class="o">-&gt;</span><span class="n">mutex</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap13/threads-sync-counter.cpp">threads-sync-counter.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2122/src/cap13/threads-sync-factorial.cpp">threads-sync-factorial.cpp</a> se puede ver ejemplos equivalentes pero usando <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> y <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a>, de la librería estándar de C&#43;&#43;.</p>
 </div>
 </div>
 </div>
