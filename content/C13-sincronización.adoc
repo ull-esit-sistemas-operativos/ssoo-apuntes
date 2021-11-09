@@ -523,7 +523,7 @@ Mientras que los *_mutex_* de Windows API son objetos más costosos, pero se pue
 
 === Ejemplos del uso de mutex
 
-En {pthreads_sync_cpp} se puede estudiar el código completo de un ejemplo similar a {pthreads_cpp}, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando la API de {pthreads}.
+En {pthreads_sync_factorial_cpp} se puede estudiar el código completo de un ejemplo similar a {pthreads_cpp}, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando la API de {pthreads}.
 La diferencia es que ahora los hilos no retornan el resultado, sino que cada uno lo mete en un vector compartido.
 Al terminar, el hilo principal recorre el vector multiplicando los resultados parciales.
 
@@ -548,7 +548,19 @@ pthread_mutex_unlock( mutex ); <2>
 <2> Liberar `mutex` para salir de la *sección crítica*.
 Es importante no olvidarnos de liberar el *_mutex_* al terminar o de lo contrario uno de los hilos quedará dormido indefinidamente, al no poder entrar en la *sección crítica*.
 
-En {threads_sync_cpp} se puede ver un ejemplo equivalente pero usando {cpp_thread} y {cpp_mutex}, de la librería estándar de {cpp}.
+En {pthreads_sync_counter_cpp} se puede observar un ejemplo más simple donde dos hilos intentan incrementar un contador.
+El resultado es correcto siempre que cada hilo adquiera el mismo *_mutex_* antes del incremento:
+
+[source,cpp]
+----
+// Bloquear el mutex antes de incrementar el contador.
+pthread_mutex_lock( &args->mutex );
+args->counter++;
+// Desbloquear el mutex tras incrementar el contador.
+pthread_mutex_unlock( &args->mutex );
+----
+
+En {threads_sync_counter_cpp} y {threads_sync_factorial_cpp} se puede ver ejemplos equivalentes pero usando {cpp_thread} y {cpp_mutex}, de la librería estándar de {cpp}.
 
 == Variables de condición
 (((variable de condición)))

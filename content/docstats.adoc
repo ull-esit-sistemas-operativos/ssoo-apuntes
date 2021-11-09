@@ -1,12 +1,12 @@
-:document-characters: 539354
-:document-words: 106671
-:document-paragraphs: 1659
-:document-reading-time: 8 horas y 53 minutos
+:document-characters: 540103
+:document-words: 106804
+:document-paragraphs: 1661
+:document-reading-time: 8 horas y 54 minutos
 :s01-characters: 7526
 :s01-words: 1370
 :s01-paragraphs: 26
 :s01-reading-time: 7 minutos
-:s02-characters: 24196
+:s02-characters: 24193
 :s02-words: 4514
 :s02-paragraphs: 77
 :s02-reading-time: 23 minutos
@@ -34,25 +34,25 @@
 :s08-words: 1901
 :s08-paragraphs: 35
 :s08-reading-time: 10 minutos
-:s09-characters: 39299
-:s09-words: 7859
+:s09-characters: 39304
+:s09-words: 7860
 :s09-paragraphs: 95
 :s09-reading-time: 39 minutos
-:s10-characters: 34294
-:s10-words: 6814
-:s10-paragraphs: 90
+:s10-characters: 34637
+:s10-words: 6885
+:s10-paragraphs: 91
 :s10-reading-time: 34 minutos
 :s11-characters: 5367
 :s11-words: 1040
 :s11-paragraphs: 17
 :s11-reading-time: 5 minutos
-:s12-characters: 35548
+:s12-characters: 35550
 :s12-words: 7091
 :s12-paragraphs: 108
 :s12-reading-time: 35 minutos
-:s13-characters: 31151
-:s13-words: 5998
-:s13-paragraphs: 84
+:s13-characters: 31553
+:s13-words: 6059
+:s13-paragraphs: 85
 :s13-reading-time: 30 minutos
 :s14-characters: 54577
 :s14-words: 11141
