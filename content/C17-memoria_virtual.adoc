@@ -981,7 +981,7 @@ Por ejemplo, dada la siguiente lista de referencias a páginas en la memoria:
 image::{chapdir}/modelo_de_conjunto_de_trabajo.svg[]
 
 si _{Delta}_ = 10 referencias a la memoria, entonces el conjunto de trabajo en _t_~1~ es {1, 2, 5, 6, 7}.
-Mientras que en _t_~2~ el conjunto de trabajo es {3, 4}.
+Mientras que en _t_~2~ el conjunto de trabajo es {1, 2, 3, 4}.
 
 Obviamente, la precisión del *conjunto de trabajo* como aproximación de la *localidad* del programa depende del parámetro _{Delta}_.
 Por ejemplo:
