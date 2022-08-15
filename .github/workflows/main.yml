@@ -8,11 +8,11 @@ on:
 
 jobs:
   build-and-publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
 
     - name: Obtener el proyecto
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
           persist-credentials: false
 
@@ -26,14 +26,14 @@ jobs:
     - name: Configurar Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7
+        ruby-version: 3.0
 
     - name: Instalar dependencias (nativas)
       run: |
         sudo apt-get update -y -qq
-        sudo apt-get install pkg-config libxml2-dev libxslt-dev
+        sudo apt-get install libxml2-dev libxslt-dev pkg-config
         # asciidoctor-mathematical
-        sudo apt-get install bison flex libffi-dev libxml2-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev fonts-lyx cmake
+        sudo apt-get install bison flex libffi-dev libxml2-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev libwebp-dev libzstd-dev fonts-lyx cmake
 
     - name: Instalar dependencias (gemas)
       run: |
@@ -47,13 +47,12 @@ jobs:
       run: bundle exec rake build:site build:pdf DOCUMENT_NAME=sistemas_operativos
 
     - name: Publicar web
-      uses: JamesIves/github-pages-deploy-action@3.6.2
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: output/html
-        TARGET_FOLDER: ${{ steps.branch_name.outputs.SOURCE_NAME }}
-        CLEAN: true
+        branch: gh-pages
+        folder: output/html
+        target-folder: ${{ steps.branch_name.outputs.SOURCE_NAME }}
+        clean: true
 
     - name: Publicar el PDF en 'Releases'
       uses: svenstaro/upload-release-action@v2
