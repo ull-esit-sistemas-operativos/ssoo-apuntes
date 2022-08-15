@@ -52,5 +52,6 @@ task :server, [:port] => 'build:site' do |t, args|
         end
     end
 
+    puts "=> Server starting on http://0.0.0.0:#{args.port}"
     server.start
 end
