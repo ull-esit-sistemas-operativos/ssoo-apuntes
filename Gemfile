@@ -12,6 +12,7 @@ end
 
 group :html5 do
     gem "asciidoctor-multipage"
+    gem "webrick"
 end
 
 group :pdf do

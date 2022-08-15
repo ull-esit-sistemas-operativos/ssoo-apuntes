@@ -8,10 +8,10 @@ Algunas de estas gemas son nativas o dependen de librerías o programas externos
 En distribuciones derivadas de Debian GNU/Linux y Ubuntu se pueden instalar así:
 
 ~~~
-sudo apt install ruby-dev libxml2-dev libxslt-dev pkg-config
+sudo apt install ruby-bundler ruby-dev libxml2-dev libxslt-dev pkg-config
 
 # asciidoctor-mathematical
-sudo apt install bison flex libffi-dev libxml2-dev libgdk-pixbuf2.0-dev libcairo2-dev libpango1.0-dev fonts-lyx cmake
+sudo apt install bison flex libffi-dev libxml2-dev libgdk-pixbuf-2.0-dev libcairo2-dev libpango1.0-dev libwebp-dev libzstd-dev fonts-lyx cmake
 ~~~
 
 Después las gemas se pueden instalar fácilmente con *Bundle*:
