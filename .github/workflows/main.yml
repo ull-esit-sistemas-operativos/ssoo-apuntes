@@ -61,6 +61,6 @@ jobs:
         file: output/pdf/*.pdf
         tag: ${{ github.ref }}
         file_glob: true
-        release_name: "Curso 20XX-20XY"
-        body: "Apuntes de sistemas operativos del curso 20XX-20XY."
+        release_name: "Edición OCW"
+        body: "Apuntes de sistemas operativos para la edición OCW."
         overwrite: true

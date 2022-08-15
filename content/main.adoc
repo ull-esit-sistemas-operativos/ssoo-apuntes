@@ -1,7 +1,7 @@
 = Sistemas Operativos
 Jesús Torres <jmtorres@ull.es>
 include::version.adoc[]
-Curso {academic-year}
+{edition}
 include::../config/attributes.adoc[]
 include::enlaces.adoc[]
 include::docstats.adoc[]
