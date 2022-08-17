@@ -837,6 +837,6 @@ Pero hasta hace unos años Microsoft ofrecía varias versiones de la librería, 
 La API POSIX es un superconjunto de la API de la librería estándar de C.
 Por lo que en esos sistemas el estándar POSIX es el que marca qué funciones de la librería estándar de C y del resto de la API POSIX son *seguras en hilos*.
 
-En los sistemas POSIX, el estándar establece que todas las funciones son seguras excepto algunas muy concretas, que se pueden consultar en el apartado https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_09_01_[«2.9.1 Thread-Safety»] de la especificación.
+En los sistemas POSIX, el estándar establece que todas las funciones son seguras excepto algunas muy concretas, que se pueden consultar en el apartado https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_09_01[«2.9.1 Thread-Safety»] de la especificación.
 Muchas de esas funciones no se especifican como *seguras en hilos* porque existe alguna alternativa que sí lo es.
 Por ejemplo, {linux_strerror} no es *segura en hilos*, pero {linux_strerror_r} tiene una funcionalidad equivalente y sí lo es.

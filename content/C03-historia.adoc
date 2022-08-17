@@ -208,6 +208,7 @@ El https://es.wikipedia.org/wiki/OS/400[IBM OS/400] es un sistema utilizado en l
 Fueron introducidos en el mercado en 1988, pero aún es posible verlos en algunas organizaciones.
 En 2008 el sistema operativo IBM OS/400 pasó a llamarse IBM i y siguen publicándose nuevas versiones en la actualidad.
 
+[[sect-historia-quinta-generación]]
 == 5ª Generación (desde 1980):
 
 Esta última generación abarca desde la década de 1980 hasta la actualidad.

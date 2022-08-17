@@ -588,7 +588,7 @@ Entre todas, el estándar POSIX incluye dos señales —`USR1` y `USR2`— espec
 [NOTE]
 ====
 Se puede consultar una lista de las señales del estándar POSIX en https://es.wikipedia.org/wiki/Se%C3%B1al_(inform%C3%A1tica)[«Señales (informática) -- Wikipedia»].
-Mientras que la lista completa de señales soportadas en Linux se puede consultar en https://man7.org/linux/man-pages/man7/signal.7.html#:~:text=Standard%20signals[«signal(7) -- Linux Manual»].
+Mientras que la lista completa de señales soportadas en Linux se puede consultar en https://man7.org/linux/man-pages/man7/signal.7.html[«signal(7) -- Linux Manual»].
 ====
 
 El ejemplo en {mqueue_server_cpp} y en otros ejemplos de este capítulo, utiliza señales para manejar `SIGINT`, `SIGTERM` y para mostrar la hora periódicamente.

@@ -11,6 +11,8 @@ module Tests
         def htmlproofer(pathname)
             htmlproofer_opts = {
                 disable_external: ENV.key?('HTMLPROOFER_DISABLE_EXTERNAL'),
+                enforce_https: false,
+                allow_missing_href: true,
                 typhoeus: {
                     headers: {
                         :user_agent => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36",
