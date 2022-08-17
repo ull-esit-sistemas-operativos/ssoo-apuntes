@@ -439,8 +439,8 @@ En Linux y otros sistemas POSIX, la posición dónde debe iniciarse la ejecució
 Se trata de código de la *librería de tiempo de ejecución* que inicializa el entorno que espera el programa en C, obtiene del sistema operativo los argumentos de la línea de comandos e invoca a la función `main()` de nuestro programa con ellos.
 Otras funcionalidades que típicamente implementa la *librería de tiempo de ejecución* son operaciones básicas de gestión de la memoria, manejo de excepciones, comprobaciones de límites en los _arrays_ o comprobaciones dinámicas de tipos —por ejemplo, para implementar el operador `dynamic_cast` en {cpp}—.
 
-Finalmente, debemos confundir la *librería de tiempo de ejecución* con la *librería estándar*.
-En lenguajes como C o {cpp} se distingue claramente entre el lenguaje y la librería estándar que suele acompañarlos.
+Finalmente, no debemos confundir la *librería de tiempo de ejecución* con la *librería estándar*.
+En lenguajes como C o {cpp} se distingue claramente entre lo que es el lenguaje de programación y la librería estándar que suele acompañarlos.
 En ese sentido, la *librería de tiempo de ejecución* implementa lo mínimo requerido para la ejecución de programa en esos lenguajes.
 Mientras que si además queremos usar funcionalidades de su *librería estándar*, también tendremos que enlazarla, generalmente de forma dinámica.
 ****
