@@ -591,7 +591,7 @@ if( ! CreateProcess( <3>
     &pi ))
 {
     fprintf( stderr, "Error (%d) al crear el proceso.\n", GetLastError() ); <9>
-    return 1;
+    return EXIT_FAILURE;
 }
 
 printf( "[PADRE] El PID del nuevo proceso hijo es: %d\n", pi.dwProcessId );
@@ -695,12 +695,12 @@ else if (child > 0) <3> <4>
     printf( "[PADRE] El valor de salida de mi hijo fue: %d\n", WEXITSTATUS(status) ); <9>
     
     puts( "[PADRE] ¡Adios!" );
-    return 0;
+    return EXIT_SUCCESS;
 }
 else { <5>
     // Aquí solo entra el padre si no pudo crear el hijo
     fprintf( stderr, "Error (%d) al crear el proceso: %s\n", errno, strerror(errno) ); <6>
-    return 1;
+    return EXIT_FAILURE;
 }
 ----
 <1> El proceso llama a {linux_fork} pero al retornar de la llamada vuelven dos procesos: el proceso padre, que es el que llamó originalmente a {linux_fork}, y el proceso hijo.
@@ -729,7 +729,7 @@ Como el proceso hijo es una copia del proceso padre, la variable existe en ambos
 Debemos asegurarnos de llamar a {linux_wait} o {linux_waitpid} una vez por cada proceso hijo, en algún momento, porque así es como el sistema sabe que el padre ya no tiene más interés en el proceso y puede liberar su PCB, donde se guarda el estado de salida.
 No hacerlo genera *procesos zombi*(((proceso, zombi))) o _defunct_.
 
-<9> El valor de salida del proceso hijo lo obtiene el proceso a través del estado de salida devuelto por {linux_wait}.
+<9> El valor de salida del proceso hijo lo obtiene el proceso padre a través del estado de salida devuelto por {linux_wait}.
 Pero ese estado contiene más información sobre la causa por la que el proceso terminó.
 Para recuperar el valor de salida se usa la macro `WEXITSTATUS` sobre el estado de salida.
 
@@ -786,7 +786,7 @@ if (child == 0)
     execl( "/bin/ls", "ls", "-l", NULL ); <2> <3> <5>
     
     fprintf( stderr, "Error (%d) al ejecutar el programa: %s\n", errno, strerror(errno) ); <6>
-    return -1; <7>
+    return EXIT_FAILURE; <7>
 }
 else if (child > 0)
 {   
@@ -799,12 +799,12 @@ else if (child > 0)
     printf( "[PADRE] El valor de salida de mi hijo fue: %d\n", WEXITSTATUS(status) );
     
     puts( "[PADRE] ¡Adios!" );
-    return 0;
+    return EXIT_SUCCESS;
 }
 else {
     // Aquí solo entra el padre si no pudo crear el hijo
     fprintf( stderr, "Error (%d) al crear el proceso: %s\n", errno, strerror(errno) );
-    return 3;
+    return EXIT_FAILURE;
 }
 ----
 <1> Primero creamos un proceso hijo, donde ejecutaremos el nuevo programa.

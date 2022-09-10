@@ -83,7 +83,7 @@ int main()
     puts("Después de abrir el archivo...");
     close(fd);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 ----
 <1> Definir la macro `_POSIX_C_SOURCE` con el valor `200809L` activa que las cabeceras expongan definiciones correspondientes a la especificación POSIX.1-2008.

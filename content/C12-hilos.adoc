@@ -335,7 +335,7 @@ int main()
     {
         std::cerr << fmt::format( "Error ({}) al crear el hilo: {}\n", 
             return_code, strerror(return_code) ); <5>
-        return 1;
+        return EXIT_FAILURE;
     }
 
     return_code = pthread_create( &thread2, /* ... */ );
@@ -356,7 +356,7 @@ int main()
     std::cout << fmt::format( "El factorial de {} es {}\n",
         number.to_string(), result.to_string() );
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 ----
 <1> En {pthreads} se usa {pthread_create} para crear hilos.
