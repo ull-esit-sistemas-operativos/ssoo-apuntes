@@ -1,6 +1,6 @@
-:document-characters: 540244
-:document-words: 106823
-:document-paragraphs: 1661
+:document-characters: 540579
+:document-words: 106891
+:document-paragraphs: 1662
 :document-reading-time: 8 horas y 54 minutos
 :s01-characters: 7526
 :s01-words: 1370
@@ -58,17 +58,17 @@
 :s14-words: 11141
 :s14-paragraphs: 198
 :s14-reading-time: 56 minutos
-:s15-characters: 32205
-:s15-words: 6301
+:s15-characters: 32194
+:s15-words: 6300
 :s15-paragraphs: 86
 :s15-reading-time: 32 minutos
 :s16-characters: 21168
 :s16-words: 4471
 :s16-paragraphs: 71
 :s16-reading-time: 22 minutos
-:s17-characters: 61624
-:s17-words: 12902
-:s17-paragraphs: 179
+:s17-characters: 61970
+:s17-words: 12971
+:s17-paragraphs: 180
 :s17-reading-time: 1 hora y 5 minutos
 :s18-characters: 10503
 :s18-words: 2015

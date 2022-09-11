@@ -290,6 +290,7 @@
 :shared_memory_client_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap11/shared-memory-client.cpp[shared-memory-client.cpp]
 :shared_memory_server_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap11/shared-memory-server.c[shared-memory-server.c]
 :memory_map_hpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap17/memory_map.hpp[memory_map.hpp]
+:mapped_files_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap17/mapped-files.c[mapped-files.c]
 :mapped_files_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap17/mapped-files.cpp[mapped-files.cpp]
 :message_queue_hpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/message_queue.hpp[message_queue.hpp]
 :mqueue_client_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/mqueue-client.cpp[mqueue-client.cpp]
