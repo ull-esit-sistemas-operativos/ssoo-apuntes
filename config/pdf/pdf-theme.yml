@@ -27,6 +27,8 @@ image:
   align: center
   caption:
     align: inherit
+example:
+  background_color: fffef7
 admonition:
   icon:
     time:
