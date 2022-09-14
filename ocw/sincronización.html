@@ -2052,7 +2052,7 @@ Pero hasta hace unos años Microsoft ofrecía varias versiones de la librería, 
 Por lo que en esos sistemas el estándar POSIX es el que marca qué funciones de la librería estándar de C y del resto de la API POSIX son <strong>seguras en hilos</strong>.</p>
 </div>
 <div class="paragraph">
-<p>En los sistemas POSIX, el estándar establece que todas las funciones son seguras excepto algunas muy concretas, que se pueden consultar en el apartado <a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_09_01_">«2.9.1 Thread-Safety»</a> de la especificación.
+<p>En los sistemas POSIX, el estándar establece que todas las funciones son seguras excepto algunas muy concretas, que se pueden consultar en el apartado <a href="https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_09_01">«2.9.1 Thread-Safety»</a> de la especificación.
 Muchas de esas funciones no se especifican como <strong>seguras en hilos</strong> porque existe alguna alternativa que sí lo es.
 Por ejemplo, <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">strerror()</a> no es <strong>segura en hilos</strong>, pero <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">strerror_r()</a> tiene una funcionalidad equivalente y sí lo es.</p>
 </div>

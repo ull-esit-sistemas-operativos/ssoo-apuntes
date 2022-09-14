@@ -1709,7 +1709,7 @@ A diferencia de <a href="https://en.cppreference.com/w/c/program/system">system(
     <span class="o">&amp;</span><span class="n">pi</span> <span class="p">))</span>
 <span class="p">{</span>
     <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al crear el proceso.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">()</span> <span class="p">);</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El PID del nuevo proceso hijo es: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pi</span><span class="p">.</span><span class="n">dwProcessId</span> <span class="p">);</span>
@@ -1847,12 +1847,12 @@ Los nuevos procesos se crean con la llamada <a href="https://man7.org/linux/man-
     <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de salida de mi hijo fue: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">WEXITSTATUS</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">);</span> <i class="conum" data-value="9"></i><b>(9)</b>
 
     <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] ¡Adios!"</span> <span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">else</span> <span class="p">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
     <span class="c1">// Aquí solo entra el padre si no pudo crear el hijo</span>
     <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al crear el proceso: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span> <span class="p">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1903,7 +1903,7 @@ No hacerlo genera <strong>procesos zombi</strong> o <em>defunct</em>.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>El valor de salida del proceso hijo lo obtiene el proceso a través del estado de salida devuelto por <a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a>.
+<td>El valor de salida del proceso hijo lo obtiene el proceso padre a través del estado de salida devuelto por <a href="https://man7.org/linux/man-pages/man2/wait.2.html">wait()</a>.
 Pero ese estado contiene más información sobre la causa por la que el proceso terminó.
 Para recuperar el valor de salida se usa la macro <code>WEXITSTATUS</code> sobre el estado de salida.</td>
 </tr>
@@ -1970,7 +1970,7 @@ Para eso necesitamos <a href="https://man7.org/linux/man-pages/man3/exec.3.html"
     <span class="n">execl</span><span class="p">(</span> <span class="s">"/bin/ls"</span><span class="p">,</span> <span class="s">"ls"</span><span class="p">,</span> <span class="s">"-l"</span><span class="p">,</span> <span class="nb">NULL</span> <span class="p">);</span>   <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="5"></i><b>(5)</b>
 
     <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al ejecutar el programa: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span> <span class="p">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span> <i class="conum" data-value="7"></i><b>(7)</b>
 <span class="p">}</span>
 <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1983,12 +1983,12 @@ Para eso necesitamos <a href="https://man7.org/linux/man-pages/man3/exec.3.html"
     <span class="n">printf</span><span class="p">(</span> <span class="s">"[PADRE] El valor de salida de mi hijo fue: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">WEXITSTATUS</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">);</span>
 
     <span class="n">puts</span><span class="p">(</span> <span class="s">"[PADRE] ¡Adios!"</span> <span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">else</span> <span class="p">{</span>
     <span class="c1">// Aquí solo entra el padre si no pudo crear el hijo</span>
     <span class="n">fprintf</span><span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">"Error (%d) al crear el proceso: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span> <span class="p">);</span>
-    <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
