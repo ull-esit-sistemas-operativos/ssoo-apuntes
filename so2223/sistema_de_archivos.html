@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('true' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="sistema_de_archivos" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2022-2023</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+<ul class="sectlevel1">
+<li><a href="almacenamiento_secundario.html">18. Almacenamiento secundario</a>
+</li>
+<li><a href="sistema_de_archivos.html"><span class="toc-current">19. Sistemas de archivos</span></a>
+<ul class="sectlevel2">
+<li><a href="sistema_de_archivos.html#_estructura_de_un_sistema_de_archivos">19.1. Estructura de un sistema de archivos</a>
+</li>
+<li><a href="sistema_de_archivos.html#_estructuras_de_metadatos_en_disco">19.2. Estructuras de metadatos en disco</a>
+</li>
+<li><a href="sistema_de_archivos.html#_estructuras_de_metadatos_en_memoria">19.3. Estructuras de metadatos en memoria</a>
+</li>
+<li><a href="sistema_de_archivos.html#_montaje_de_sistemas_de_archivos">19.4. Montaje de sistemas de archivos</a>
+</li>
+<li><a href="sistema_de_archivos.html#_archivos">19.5. Archivos</a>
+</li>
+<li><a href="sistema_de_archivos.html#_estructura_de_directorios_2">19.6. Estructura de directorios</a>
+</li>
+<li><a href="sistema_de_archivos.html#_compartición_de_archivos">19.7. Compartición de archivos</a>
+</li>
+<li><a href="sistema_de_archivos.html#_coherencia">19.8. Coherencia</a>
+</li>
+</ul>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html">20. Implementación de sistemas de archivos</a>
+</li>
+</ul>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="sistema_de_archivos"><a class="anchor" href="#sistema_de_archivos"></a>19. Sistemas de archivos</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 55 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como hemos comentado, cada volumen puede albergar un sistema de archivos.
+A continuación estudiaremos los elementos más comunes a la mayor parte de los sistemas de archivos actuales.</p>
+</div>
+<div class="sect2">
+<h3 id="_estructura_de_un_sistema_de_archivos"><a class="anchor" href="#_estructura_de_un_sistema_de_archivos"></a>19.1. Estructura de un sistema de archivos</h3>
+<div id="fig-estructura-sistema-de-archivos" class="imageblock">
+<div class="content">
+<img src="media/C19-sistema_de_archivos/estructura_sistema_de_archivos.svg" alt="estructura sistema de archivos">
+</div>
+<div class="title">Figura 65. Estructura de un sistema de archivos.</div>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
+En la <a href="sistema_de_archivos.html#fig-estructura-sistema-de-archivos">Figura 65</a> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.
+Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.</p>
+</div>
+<div class="sect3">
+<h4 id="_control_de_es"><a class="anchor" href="#_control_de_es"></a>19.1.1. Control de E/S</h4>
+<div class="paragraph">
+<p>
+En el nivel más bajo, accediendo directamente a los dispositivos de almacenamiento, se encuentra el <strong>control de E/S</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Contiene los controladores de dispositivo encargados de transferir la información entre la memoria principal y el disco.
+Estos controladores, que generalmente son compartidos entre los distintos sistemas de archivos, transfieren los datos en unidades de <strong>bloques</strong> —en lugar de transferir un byte cada vez— para mejorar la eficiencia.
+Cada _*bloque* está formado por uno o más sectores.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dependiendo de la unidad de disco, los sectores pueden tener tamaños de entre 32 bytes y 4096 bytes.
+Lo más común es que su tamaño sea de 512 bytes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistema_básico_de_archivos"><a class="anchor" href="#_sistema_básico_de_archivos"></a>19.1.2. Sistema básico de archivos</h4>
+<div class="paragraph">
+<p>
+El <strong>sistema básico de archivos</strong> se encarga de enviar comandos genéricos al controlador de dispositivo apropiado, con el fin de leer y escribir bloques físicos en el disco.
+Cada bloque físico se identifica mediante su dirección de disco numérica.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en dispositivos que usan direccionamiento de tipo cabeza-cilindro-sector (CHS), la dirección de un sector podría ser: unidad 1, cilindro 73, cabeza 2, sector 10.
+Mientras que en dispositivos que admiten direccionamiento LBA (<em>Logical Block Addressing</em>), la dirección de un sector podría ser: unidad 1, sector 4691123.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El <strong>LBA</strong> es un método común para especificar la localización de los sectores de un disco.
+Usa un esquema de direccionamiento lineal, donde cada sector es identificado con un número entero único.
+Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía la desventaja de hacer públicos los detalles físicos del dispositivo de almacenamiento.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_módulo_de_organización_de_archivos"><a class="anchor" href="#_módulo_de_organización_de_archivos"></a>19.1.3. Módulo de organización de archivos</h4>
+<div class="paragraph">
+<p>
+El <strong>módulo de organización de archivos</strong> tiene conocimiento de los archivos y se encarga de traducir las direcciones lógicas de los bloques en los archivos —es decir, posición del bloque dentro del archivo, siendo 0 la dirección del primer bloque— en las direcciones físicas de bloque —por ejemplo, cilindro, cabeza y sector del bloque correspondiente en el dispositivo de almacenamiento— que serán enviadas al <strong>sistema básico de archivos</strong> para que realice las transferencias solicitadas.</p>
+</div>
+<div class="paragraph">
+<p>Los bloques lógicos de cada archivo son numerados de 0 a <em>N</em>, pero los bloques físicos asignados a estos bloques lógicos no tienen por qué coincidir en los números de bloque.
+Por eso, el <strong>módulo de organización de archivos</strong> debe utilizar la ubicación del contenido del archivo en el disco y la información sobre los bloques físicos asignados, para traducir las direcciones lógicas en direcciones físicas.</p>
+</div>
+<div class="paragraph">
+<p>Además, el módulo de organización, incluye el gestor de espacio libre, que controla los bloques no asignados y proporciona dichos bloques cuando el <strong>módulo de organización de archivos</strong> lo necesita, ya sea para crear un archivo nuevo o para extender uno existente.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistema_lógico_de_archivos"><a class="anchor" href="#_sistema_lógico_de_archivos"></a>19.1.4. Sistema lógico de archivos</h4>
+<div class="paragraph">
+<p>El <strong>sistema lógico de archivos</strong> gestiona los <strong>metadatos</strong>.
+En los <strong>metadatos</strong> se incluye toda la estructura del sistema de archivos, excepto los propios datos de los archivos.</p>
+</div>
+<div class="paragraph">
+<p>Entre dichos <strong>metadatos</strong> está la <strong>estructura de directorios</strong> y los <strong>bloques de control de archivo</strong>.
+Un <strong>bloque de control de archivo</strong> o <strong>FCB</strong> (<em>File Control Block</em>) contiene información acerca del archivo, incluyendo su propietario, los permisos y la ubicación del contenido del mismo.</p>
+</div>
+<div class="paragraph">
+<p>Además, el <strong>sistema lógico de archivos</strong> también es responsable de las tareas de protección y seguridad.</p>
+</div>
+<div class="paragraph">
+<p>Cada sistema operativo puede soportar uno o más sistemas de archivos para dispositivos de disco.
+Por ejemplo, en los sistemas UNIX se utiliza el  «sistema de archivos UNIX» o <a href="https://es.wikipedia.org/wiki/Unix_File_System">UFS</a> (<em>UNIX File System</em>), que está basado en el sistema <a href="https://es.wikipedia.org/wiki/Berkeley_Fast_File_System">FFS</a> (<em>Fast File System</em>) de la Universidad de Berkeley.
+Microsoft Windows soporta los sistemas de archivo <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> (<em>File Allocation Table</em>), <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> y <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> (<em>NT File System</em>).
+En Linux se soportan más de cuarenta sistemas de archivo, entre los que cabe destacar: la familia <em>extended filesystem</em> —
+<a href="https://es.wikipedia.org/wiki/Ext2">ext2</a>, <a href="https://es.wikipedia.org/wiki/Ext3">ext3</a> y <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a>— <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> y <a href="https://es.wikipedia.org/wiki/Btrfs">Btrfs</a>.</p>
+</div>
+<div class="paragraph">
+<p>Además, la mayoría de los sistemas operativos modernos soportan otros sistemas de archivo, como los utilizados en los soportes removibles.
+Por ejemplo el <a href="https://es.wikipedia.org/wiki/ISO_9660">ISO 9660</a>, utilizado por la mayor parte de los CD-ROM, o el <a href="https://es.wikipedia.org/wiki/Universal_Disk_Format">UDF</a> (<em>Universal Disk Format</em>), utilizado por los DVD-ROM y Blu-ray.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_estructuras_de_metadatos_en_disco"><a class="anchor" href="#_estructuras_de_metadatos_en_disco"></a>19.2. Estructuras de metadatos en disco</h3>
+<div class="paragraph">
+<p>Para implementar un sistema de archivos se utilizan diversas estructuras de <strong>metadatos</strong> alojadas tanto en el disco como en la memoria.
+Estas estructuras varían dependiendo del sistema operativo y del sistema de archivos.
+Sin embargo, a continuación intentaremos describir brevemente las estructuras en disco más comunes.</p>
+</div>
+<div class="sect3">
+<h4 id="_bloque_de_control_de_arranque"><a class="anchor" href="#_bloque_de_control_de_arranque"></a>19.2.1. Bloque de control de arranque</h4>
+<div class="paragraph">
+<p>
+En todo sistema de archivos suele haber un <strong>bloque de control de arranque</strong> —también llamado <strong>bloque de inicio</strong> o <strong>sector de arranque</strong>— que suele ocupar el primer bloque de cada volumen y que contiene la información necesaria para iniciar un sistema operativo a partir de dicho volumen.</p>
+</div>
+<div class="paragraph">
+<p>Este bloque puede estar vacío, si el volumen no contiene un sistema operativo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bloque_de_control_de_volumen"><a class="anchor" href="#_bloque_de_control_de_volumen"></a>19.2.2. Bloque de control de volumen</h4>
+<div class="paragraph">
+<p>
+El <strong>bloque de control de volumen</strong> contiene todos los detalles acerca del volumen.
+Por ejemplo, el número máximo de bloques, el tamaño de los bloques, el número de bloques libres y punteros a los mismos; así como un contador de bloques de información <strong>FCB</strong> ocupados y punteros a estos.</p>
+</div>
+<div class="paragraph">
+<p>A esta estructura se la denomina <strong>superbloque</strong>, en los sistemas de archivos de sistemas UNIX y Linux.
+Mientras que en <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> esta información se almacena en la <strong>tabla maestra de archivos</strong> o <strong>MFT</strong> (<em>Master File Table</em>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bloque_de_control_de_archivo"><a class="anchor" href="#_bloque_de_control_de_archivo"></a>19.2.3. Bloque de control de archivo</h4>
+<div class="paragraph">
+<p>
+Todo sistema de archivos tiene un <strong>bloque de control de archivo</strong> o <strong>FCB</strong> (<em>File Control Block</em>) por archivo, en que se almacenan numerosos detalles sobre cada uno de los archivos
+Por ejemplo, los permisos, el propietario, el tamaño y la ubicación de los bloques de datos, entre otros.</p>
+</div>
+<div class="paragraph">
+<p>En términos generales, todos los <strong>FCB</strong> del sistema de archivos se almacenan en una tabla denominada <strong>directorio de dispositivo</strong> o <strong>tabla de contenidos del volumen</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas de archivos de sistemas UNIX y Linux cada FCB se denomina <strong>inodo</strong> y se almacenan a continuación del <strong>superbloque</strong>.
+En <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> esta información se almacena en la <strong>MFT</strong>, ya que cada entrada de dicha tabla es un <strong>FCB</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_estructura_de_directorios"><a class="anchor" href="#_estructura_de_directorios"></a>19.2.4. Estructura de directorios</h4>
+<div class="paragraph">
+<p>Finalmente, por lo general los sistemas de archivos tienen una estructura de directorios, para organizar los archivos.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas de archivos de sistemas UNIX y Linux, cada directorio es como un archivo especial que almacena los nombres de los archivos que contiene y los índices de los <strong>inodos</strong> de cada uno de ellos.
+En <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> es similar, aunque la estructura de directorios completa se almacena en la propia <strong>MFT</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_estructuras_de_metadatos_en_memoria"><a class="anchor" href="#_estructuras_de_metadatos_en_memoria"></a>19.3. Estructuras de metadatos en memoria</h3>
+<div class="paragraph">
+<p>La información almacenada en memoria se utiliza tanto para la gestión del sistema de archivos como para mejorar el rendimiento del mismo mediante mecanismos de caché.</p>
+</div>
+<div class="paragraph">
+<p>Los datos se cargan en el momento de comenzar a utilizar el sistema de archivos —proceso denominado montaje— y se descartan cuando se va a dejar de hacer uso del mismo —es decir, en el desmontaje—.</p>
+</div>
+<div class="paragraph">
+<p>Las estructuras existentes en la memoria pueden incluir las que a continuación se describen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Una <strong>tabla de montaje</strong> en memoria que contiene información acerca de cada volumen montado en el sistema.</p>
+</li>
+<li>
+<p>Una caché en memoria de la <strong>estructura de directorios</strong> que almacena la información relativa a los directorios a los que se ha accedido recientemente.
+Los directorios que actúan como puntos de montaje pueden contener un puntero a la entrada, en la tabla de montaje, del volumen montado en el directorio.</p>
+</li>
+<li>
+<p>La <strong>tabla global de archivos abiertos</strong> que contiene una copia del <strong>FCB</strong> de cada archivo abierto en el sistema, además de otras informaciones.</p>
+</li>
+<li>
+<p>La <strong>tabla de archivos abiertos</strong> de cada proceso.
+El <strong>PCB</strong> de cada proceso contiene una tabla donde se listan los archivos abiertos por el proceso.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La <strong>tabla de archivos abiertos</strong> contiene, para cada archivo, un puntero a la entrada correspondiente del mismo archivo en la tabla global de archivos abiertos, pero también guarda otras informaciones adicionales que son particulares de cada proceso.
+Por ejemplo, si el proceso lo ha abierto para lectura o escritura o la posición del puntero que indica la siguiente posición a leer o escribir.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_montaje_de_sistemas_de_archivos"><a class="anchor" href="#_montaje_de_sistemas_de_archivos"></a>19.4. Montaje de sistemas de archivos</h3>
+<div class="paragraph">
+<p>
+Un sistema de archivos debe <strong>montarse</strong> para que sus archivos sean accesibles a los procesos del sistema.
+El proceso de montaje incluye los siguientes pasos:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Al sistema operativo se le debe proporcionar el nombre o identificador del dispositivo y el punto de montaje.
+El <strong>punto de montaje</strong> es la ubicación dentro de la estructura de directorios —la ruta al directorio concreto— a la que queremos conectar el sistema de archivos.
+Después de que el proceso de montaje se haya completado, los archivos y directorios del sistema de archivos montado serán accesibles como descendientes del directorio del <strong>punto de montaje</strong>.</p>
+</li>
+<li>
+<p>A continuación el sistema operativo verifica que el dispositivo contiene un sistema de archivos válido.
+Para ello lee el <strong>bloque de control de volumen</strong> y comprueba que tiene un formato válido.</p>
+</li>
+<li>
+<p>Finalmente el sistema operativo registra en la <strong>tabla de montaje</strong> el tipo de sistema de archivos y el identificador del dispositivo montado.
+Después, almacena el índice de la entrada correspondiente en la <strong>tabla de montaje</strong> en la copia en memoria del <strong>FCB</strong> del directorio que hace de <strong>punto de montaje</strong>.</p>
+<div class="paragraph">
+<p>Esto permite que pueda ser recorrida la estructura de directorios de distintos sistemas de archivos, pasando de uno a otro de forma transparente, según sea necesario.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>En muchos sistemas operativos modernos, el montaje se ejecuta automáticamente cuando los dispositivos son detectados durante el arranque del sistema o cuando se conectan durante el funcionamiento del mismo —por ejemplo, cuando se inserta un medio en la unidad CD-ROM o se pincha una memoria flash en un puerto USB—.
+En algunos se permite, además, que el administrador del equipo ejecute operaciones de montaje manuales.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_archivos"><a class="anchor" href="#_archivos"></a>19.5. Archivos</h3>
+<div class="paragraph">
+<p>Cada sistema de archivos almacena en disco una tabla donde cada entrada guarda un <strong>bloque de control de archivo</strong> o <strong>FCB</strong> (<em>File Control Block</em>) por archivo.
+Concretamente, en cada <strong>FCB</strong> se almacena diversa información acerca del archivo al que representa.</p>
+</div>
+<div class="sect3">
+<h4 id="_atributos_de_archivos"><a class="anchor" href="#_atributos_de_archivos"></a>19.5.1. Atributos de archivos</h4>
+<div class="paragraph">
+<p>La colección de atributos asociada a un archivo varía de un sistema operativo a otro, pero típicamente son los siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nombre</strong>.
+Nombre simbólico del archivo, que se mantiene en un formato legible por la conveniencia de los usuarios.</p>
+</li>
+<li>
+<p><strong>Identificador</strong>.
+Identifica de forma unívoca el archivo dentro del sistema de archivos.
+Generalmente es el índice del <strong>FCB</strong> en la <strong>tabla de contenidos del volumen</strong>, donde se almacenan los <strong>FCB</strong>.</p>
+</li>
+<li>
+<p><strong>Tipo</strong>.
+Es un atributo necesario en los sistemas que soportan diferentes tipos de archivos.</p>
+</li>
+<li>
+<p><strong>Ubicación</strong>.
+Es un puntero a un dispositivo y a la ubicación de los bloques con los datos del archivo dentro del mismo.</p>
+</li>
+<li>
+<p><strong>Tamaño</strong>.
+Indica el tamaño actual de archivo —en bytes, palabras o bloques— y, posiblemente, el tamaño máximo permitido.</p>
+</li>
+<li>
+<p><strong>Protección</strong>.
+Información de control de acceso que determina quién puede leerlo, escribirlo, ejecutarlo, etc.</p>
+</li>
+<li>
+<p><strong>Fecha, hora e identificación del usuario</strong>.
+Esta información puede mantenerse para los sucesos de creación, de última modificación y último uso del archivo.
+Puede resultar útil para la protección, seguridad y monitorización del uso del archivo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los atributos de los archivos se almacenan en las estructuras de <strong>metadatos</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Normalmente el nombre se almacena en la estructura de directorios, de tal manera que una entrada de directorio está compuesta del nombre de un archivo y del identificador de su <strong>FCB</strong>.
+Dicho identificador permite localizar el <strong>FCB</strong> en la <strong>tabla de contenidos del volumen</strong>, que contiene el resto de los atributos del archivo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operaciones_con_los_archivos"><a class="anchor" href="#_operaciones_con_los_archivos"></a>19.5.2. Operaciones con los archivos</h4>
+<div class="paragraph">
+<p>Un archivo es un tipo abstracto de datos sobre el que pueden realizarse diversas operaciones.
+Concretamente el sistema operativo proporciona llamadas al sistema para: crear, abrir, escribir, leer, reposicionar el puntero de lectura/escritura, borrar y truncar o redimensionar archivos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Generalmente el sistema mantiene un puntero de lectura/escritura que hace referencia a la ubicación dentro del archivo en la que debe tener lugar la siguiente operación.
+Este puntero se actualiza, avanzando cada vez que se realiza una nueva lectura/escritura.</p>
+</div>
+<div class="paragraph">
+<p>Para desplazarse aleatoriamente por el archivo, el sistema operativo debe ofrecer una llamada al sistema que permita reposicionar el puntero allí donde interese.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Muchos sistemas también disponen de operaciones para consultar y modificar diversos atributos de un archivo, como la longitud o el propietario del mismo.
+Además, se suelen incluir llamadas para otras operaciones comunes, como añadir datos al final de un archivo o el renombrado de un archivo existente.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 14. Funciones de la API para manipular archivos.</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">POSIX API</th>
+<th class="tableblock halign-left valign-top">Windows API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Crear archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> / <a href="https://man7.org/linux/man-pages/man2/openat.2.html">openat()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Abrir archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> / <a href="https://man7.org/linux/man-pages/man2/openat.2.html">openat()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-openfile">OpenFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Cerrar archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle">CloseHandle()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Borrar archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/unlink.2.html">unlink()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-deletefilea">DeleteFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Leer contenidos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile">ReadFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Escribir contenido</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-writefile">WriteFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Reposicionar puntero de lectura/escritura</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.man7.org/linux/man-pages/man2/lseek.2.html">lseek()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setfilepointer">SetFilePointer()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Redimensionar archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://linux.die.net/man/2/ftruncate">ftruncate()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setendoffile">SetEndOfFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Consultar atributos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/stat.2.html">stat()</a> / <a href="https://man7.org/linux/man-pages/man2/fstat.2.html">fstat()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getfileattributesa">GetFileAttributes()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Renombrar archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefilea">MoveFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Copiar archivos</p></th>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefilea">MoveFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Mover archivos</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/rename.2.html">rename()</a> <span class="lightcell">solo en el mismo sistema de archivos</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfilea">CopyFile()</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Estas operaciones primitivas pueden combinarse, a su vez, para realizar otras operaciones más complejas —por ejemplo, crear una copia de un archivo o moverlo a otro lugar de la estructura de directorios—.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_abrir_archivos"><a class="anchor" href="#_abrir_archivos"></a>19.5.3. Abrir archivos</h4>
+<div class="paragraph">
+<p>La mayor parte de las operaciones comentadas implican realizar una búsqueda en el directorio para encontrar la entrada asociada con el archivo cuyo nombre se ha indicado.
+Para evitar realizar esta búsqueda una y otra vez, muchos sistemas requieren que el proceso haga una llamada al sistema <strong>open</strong>, antes de realizar cualquiera de estas operaciones por primera vez sobre un archivo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En unos pocos sistemas, los archivos se abren automáticamente cuando un proceso solicita su primera operación sobre los mismos y se cierran cuando el proceso termina.
+Sin embargo, lo más común es que los procesos tengan que abrir los archivos explícitamente.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En concreto la operación <strong>open</strong>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Busca en el directorio el nombre del archivo, hasta encontrar la entrada asociada y recupera el identificador del mismo.</p>
+</li>
+<li>
+<p>Utiliza el identificador del archivo para recuperar el <strong>FCB</strong> correspondiente.</p>
+</li>
+<li>
+<p>Crea una entrada para el archivo en la <strong>tabla de archivos abiertos</strong> donde se almacena la información del FCB.</p>
+</li>
+<li>
+<p>Retorna al proceso devolviendo un identificador —en forma de puntero o de índice— a la nueva entrada en la tabla de archivos abiertos.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El nombre con el que se designa a esas entradas en la tabla de archivos abiertos varía de unos sistemas operativos a otros.
+En los sistemas POSIX se utiliza el término <strong>descriptor de archivo</strong> —o <em>file descriptor</em>— mientras que en los sistemas Microsoft Windows se prefiere el término <strong>manejador de archivo</strong> —o <em>file handler</em>—.</p>
+</div>
+<div class="paragraph">
+<p>Después de utilizar la llamada al sistema <strong>open</strong>, cuando se desea solicitar una operación sobre un archivo, solo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Una <strong>tabla para cada proceso</strong> —almacenada en el <strong>PCB</strong>— donde se indican todos los archivos que el proceso tiene abiertos.</p>
+<div class="paragraph">
+<p>En dicha tabla se almacena toda la información referente al uso de cada archivo por parte de un proceso.
+Por ejemplo, se puede almacenar la posición actual utilizada por las operaciones de lectura y escritura o los derechos de acceso.</p>
+</div>
+</li>
+<li>
+<p>Una <strong>tabla global para todo el sistema</strong> donde se almacena toda la información independiente de los procesos, como la ubicación del archivo en el disco, las fechas de acceso y el tamaño del archivo.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Cuando un proceso invoca la llamada <strong>open</strong>, se añade una entrada en la <strong>tabla de archivos abiertos del proceso</strong>, que a su vez apunta a la entrada correspondiente dentro de la <strong>tabla global del sistema</strong>.
+Si el archivo no existe en esta última, también hay que crear una entrada en la tabla global del sistema haciendo uso de la información contenida en disco en el <strong>FCB</strong> correspondiente.</p>
+</div>
+<div class="paragraph">
+<p>Es muy común, que la <strong>tabla global</strong> almacene un <strong>contador de aperturas</strong> para cada archivo, con el objetivo de indicar cuántos procesos lo mantienen abierto.</p>
+</div>
+<div class="paragraph">
+<p>Cuando el archivo deja de ser utilizado activamente por el proceso, puede ser cerrado utilizando la llamada al sistema <strong>close</strong>.
+Entonces el <strong>contador de aperturas</strong> se decrementa, de forma que cuando alcance cero querrá decir que la entrada puede ser eliminada de la <strong>tabla global de archivos abiertos</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tipos_de_archivo"><a class="anchor" href="#_tipos_de_archivo"></a>19.5.4. Tipos de archivo</h4>
+<div class="paragraph">
+<p>Cuando se diseña un sistema operativo es necesario considerar si debe reconocer y soportar el concepto de <strong>tipo de archivo</strong>.
+Si el sistema operativo reconoce el <strong>tipo de un archivo</strong> puede operar con el mismo de formas razonables.
+Por ejemplo, el sistema puede impedir que un usuario intente imprimir los archivos que contienen programas en formato binario, pues el documento impreso sería ininteligible.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas operativos más comunes las técnicas utilizadas para implementar los tipos de archivo son las siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En MS-DOS y Microsoft Windows el tipo de archivo se incluye como parte del nombre del archivo.
+Es decir, el nombre se divide en dos partes: un nombre y una extensión, separadas por un punto.</p>
+<div class="paragraph">
+<p>El sistema puede utilizar la extensión para conocer el tipo de archivo y el tipo de operaciones que se pueden realizar con el mismo.</p>
+</div>
+</li>
+<li>
+<p>En macOS cada archivo tiene un atributo que almacena el tipo —por ejemplo, TEXT para los archivos de texto o APPL para las aplicaciones— y otro que contiene el nombre del programa que lo creó.
+Cuando el usuario hace clic con el ratón sobre el icono de un archivo, el programa que lo creó se ejecuta automáticamente y este abre el archivo.</p>
+</li>
+<li>
+<p>En los sistemas estilo UNIX se utiliza un <strong>número mágico</strong>, almacenado al principio de algunos archivos, para indicar el tipo del mismo.
+No todos los archivos tienen números mágicos, por lo que se permite hacer sugerencias en forma de extensiones del nombre del archivo.</p>
+<div class="paragraph">
+<p>Sin embargo, en estos sistemas estas extensiones no son obligatorias ni el sistema depende de ellas.
+Su objetivo, fundamentalmente, es ayudar a los usuarios a determinar el tipo de contenido de un archivo, por lo que pueden ser utilizadas o ignoradas por cada aplicación concreta, en función de las preferencias de sus desarrolladores.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_estructura_de_directorios_2"><a class="anchor" href="#_estructura_de_directorios_2"></a>19.6. Estructura de directorios</h3>
+<div class="paragraph">
+<p>Algunos sistemas de archivos pueden almacenar millones de archivos en terabytes de disco.
+Para gestionar todos esos datos necesitamos organizarlos de alguna manera, lo que generalmente implica el uso de directorios.</p>
+</div>
+<div class="paragraph">
+<p>Un <strong>directorio</strong> puede considerarse una tabla de símbolos que traduce los nombre de los archivos en los identificadores que permiten recuperar sus correspondientes entradas en la <strong>tabla de contenidos del volumen</strong>, donde se almacenan los <strong>FCB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>A continuación vamos a estudiar los diversos esquemas para definir la estructura lógica del sistema de directorios.</p>
+</div>
+<div class="sect3">
+<h4 id="_directorios_de_un_nivel"><a class="anchor" href="#_directorios_de_un_nivel"></a>19.6.1. Directorios de un nivel</h4>
+<div class="paragraph">
+<p>En la estructura de directorios de un nivel todos los archivos están contenidos en un único directorio.</p>
+</div>
+<div class="paragraph">
+<p>Esto presenta algunas limitaciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cuando el número de usuarios del sistema aumenta se hace más difícil que cada uno escoja nombres diferentes para sus archivos.
+Esto es necesario, puesto que todos los archivos se encuentran en el mismo directorio.</p>
+</li>
+<li>
+<p>Incluso en los sistemas operativos monousuario, puede ser difícil para un usuario mantener organizados sus datos a medida que se incrementa el número de archivos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Este esquema fue utilizado por la primera versión del sistema operativo MS-DOS.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directorio_de_dos_niveles"><a class="anchor" href="#_directorio_de_dos_niveles"></a>19.6.2. Directorio de dos niveles</h4>
+<div class="paragraph">
+<p>En la estructura de directorios de dos niveles cada usuario tiene su propio <strong>directorio de archivos de usuario</strong> o <strong>UFD</strong> (<em>User File Directory</em>) que cuelga del <strong>directorio maestro de archivos</strong> o <strong>MFD</strong> (<em>Master File Directory</em>).</p>
+</div>
+<div class="paragraph">
+<p>Cuando un usuario se conecta al sistema o inicia un trabajo, se explora el <strong>MFD</strong>.
+Esta es una tabla indexada por el nombre de los usuarios o por los números de cuenta, donde cada una de sus entradas apunta al <strong>UFD</strong> de dicho usuario.
+Puesto que cada <strong>UFD</strong> incluye solo los archivos del usuario al que pertenece, el sistema operativo puede confinar todas las operaciones que puede realizar un usuario sobre los archivos a su <strong>UFD</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Aunque esto resuelve el problema de la colisión de nombres entre diferentes usuarios, también presenta algunas desventajas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La estructura descrita aísla a los usuarios, lo cual puede ser un problema cuando estos quieren compartir datos para cooperar en alguna tarea.</p>
+<div class="paragraph">
+<p>La solución pasa por utilizar <strong>nombres de ruta</strong> para designar a un archivo de forma unívoca.
+Por ejemplo, si el usuario <code>usera</code> quiere acceder a su archivo <code>test</code>, simplemente debe referirse a él como <code>test</code>.
+Mientras que si quiere acceder al archivo <code>test</code> del usuario <code>userb</code>, debe utilizar un <strong>nombre de ruta</strong> como <code>/userb/test</code>, donde se indica el nombre del usuario y el nombre del archivo.</p>
+</div>
+<div class="paragraph">
+<p>En general, cada sistema operativo utiliza su propia sintaxis para nombrar los archivos contenidos en los directorios de otros usuarios.</p>
+</div>
+</li>
+<li>
+<p>Puede ser difícil para un usuario mantener organizados sus datos a medida que se incrementa el número de archivos personales, incluso aunque tenga un directorio para él solo.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directorios_con_estructura_de_árbol"><a class="anchor" href="#_directorios_con_estructura_de_árbol"></a>19.6.3. Directorios con estructura de árbol</h4>
+<div class="paragraph">
+<p>La estructura de directorio de dos niveles puede generalizarse en la <strong>estructura de directorios en árbol</strong> de altura arbitraria.
+Esto permite que los usuarios puedan crear sus propios subdirectorios para organizar sus archivos de la forma más conveniente.</p>
+</div>
+<div class="paragraph">
+<p>Cada sistema de archivos tiene un <strong>directorio raíz</strong> que puede contener tanto archivos como otros directorios.
+A su vez, cada directorio puede contener un conjunto de archivos y subdirectorios.</p>
+</div>
+<div class="paragraph">
+<p>Normalmente, cada entrada de directorio incluye un bit donde se indica si dicha entrada apunta a un archivo o a un subdirectorio.
+Esto se hace así porque, generalmente, los directorios no son más que archivos con un formato interno especial; por lo que el sistema debe saber si la entrada apunta a un directorio para interpretar correctamente los datos del directorio.</p>
+</div>
+<div class="sect4">
+<h5 id="_directorio_de_trabajo_actual"><a class="anchor" href="#_directorio_de_trabajo_actual"></a>Directorio de trabajo actual</h5>
+<div class="paragraph">
+<p>
+Comúnmente, en el <strong>PCB</strong> de cada proceso se guarda cuál es su <strong>directorio de trabajo</strong> actual.
+De esta forma, cuando se hace referencia a un archivo en una llamada al sistema usando solo su nombre, se le busca en el <strong>directorio de trabajo</strong> del proceso.</p>
+</div>
+<div class="paragraph">
+<p>Si se necesita un archivo que no se encuentra en el <strong>directorio de trabajo</strong> actual, entonces el usuario debe especificar un <strong>nombre de ruta</strong> desde el <strong>directorio de trabajo</strong>, o primero cambiar con una llamada al sistema el directorio de trabajo del proceso al directorio donde está almacenado el archivo.</p>
+</div>
+<div class="paragraph">
+<p>Windows API permite indicar el <strong>directorio de trabajo</strong> de un nuevo proceso al crearlo, a través del argumento <code>lpCurrentDirectory</code> de <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a>.
+Si este argumento vale NULL, el proceso hereda el <strong>directorio de trabajo</strong> del padre.
+En todo caso, cualquier proceso puede cambiar su <strong>directorio de trabajo</strong> actual llamando a <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setcurrentdirectory">SetCurrentDirectory()</a>.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas POSIX, el proceso hijo creado con <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> hereda automáticamente el <strong>directorio de trabajo</strong> actual del proceso padre.
+Por lo que si necesitamos cambiar su <strong>directorio de trabajo</strong> —por ejemplo, antes de llamar a <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> para cambiar el <strong>directorio de trabajo</strong> para el nuevo programa— el proceso puede usar <a href="https://man7.org/linux/man-pages/man2/chdir.2.html">chdir()</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Gracias a la herencia del <strong>directorio de trabajo</strong> es como los <strong>intérpretes de comandos</strong> indican a los comandos que ejecutan en qué directorio deben ejecutarse.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en los sistemas POSIX el intérprete de comandos <strong>Bash</strong> se inicia usando el directorio personal del usuario como <strong>directorio de trabajo</strong>.
+El usuario puede cambiar el <strong>directorio de trabajo</strong> del proceso de la <strong>Bash</strong> usando el comando interno <code>cd</code>.
+Cuando se pide a la <strong>Bash</strong> que ejecute cualquier otro comando, esta crea un nuevo proceso hijo donde ejecutar el programa de dicho comando.
+Ese proceso hereda el <strong>directorio de trabajo</strong> actual de <strong>Bash</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nombre_de_ruta"><a class="anchor" href="#_nombre_de_ruta"></a>Nombre de ruta</h5>
+<div class="paragraph">
+<p>
+Los <strong>nombres de ruta</strong> es la forma en la que se indica la ubicación de un archivo o directorio en el árbol de directorios.</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>nombres de ruta</strong> pueden ser de dos tipos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un <strong>nombre de ruta absoluto</strong> comienza en la raíz y va indicando los directorios que componen la ruta de forma descendente hasta llegar al archivo especificado.</p>
+<div class="paragraph">
+<p>Por ejemplo, <code>/usr/share/doc</code>, <code>C:\Program Files\WindowsApps</code> o <code>\Windows\System32</code></p>
+</div>
+</li>
+<li>
+<p>Un <strong>nombre de ruta relativo</strong> define una ruta a partir del <strong>directorio de trabajo actual</strong>.</p>
+<div class="paragraph">
+<p>Por ejemplo, <code>Imágenes/Enero/000001.jpg</code>, <code>Downloads\horario.zip</code> o <code>C:Desktop\Proyectos</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Con una <strong>estructura de directorios en árbol</strong>, unos usuarios pueden acceder a los archivos de otros.
+Para eso, solo es necesario que se utilicen <strong>nombres de ruta</strong> para designar los archivos del otro usuario, o que se cambie el <strong>directorio de trabajo actual</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Este tipo de estructura de directorios es la utilizada por MS-DOS y por las distintas versiones de Microsoft Windows.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directorios_en_grafo_acíclico"><a class="anchor" href="#_directorios_en_grafo_acíclico"></a>19.6.4. Directorios en grafo acíclico</h4>
+<div class="paragraph">
+<p>La <strong>estructura de directorio en grafo acíclico</strong> es una generalización natural del esquema con <strong>estructura en árbol</strong>.</p>
+</div>
+<div class="paragraph">
+<p>A diferencia de este último, la <strong>estructura en grafo acíclico</strong> permite que los mismos archivos y subdirectorios existan simultáneamente en distintos lugares de la estructura de directorios.
+Eso significa que para acceder a un archivo o directorio pueden existir diversos <strong>nombres de ruta</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Esto, por ejemplo, permite que los usuarios puedan compartir archivos de tal forma que los mismos archivos y directorios estén disponibles directamente desde el directorio personal de los diferentes usuarios.</p>
+</div>
+<div class="sect4">
+<h5 id="_enlaces"><a class="anchor" href="#_enlaces"></a>Enlaces</h5>
+<div class="paragraph">
+<p>Los archivos y subdirectorios compartidos pueden implementarse de diversas formas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se puede crear una entrada de directorio especial denominada <strong>enlace</strong>.
+Un <strong>enlace</strong> es, generalmente, un archivo que contiene la ruta relativa o absoluta de otro archivo o subdirectorio.
+En los sistemas POSIX a estos se los conoce como <strong>enlaces simbólicos</strong>.</p>
+</li>
+<li>
+<p>También se puede duplicar toda la información de la entrada de directorio del archivo compartido en todos los directorios que también contienen dicho archivo.</p>
+<div class="paragraph">
+<p>Así, mientras que los <strong>enlaces simbólicos</strong> son claramente diferentes de la entrada original de directorio, las entradas de directorio duplicadas hacen que la entrada original y la copia sean indistinguibles.
+En los sistemas POSIX, a este tipo de entradas duplicadas se las conoce como <strong>enlaces duros</strong>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Como <strong>enlaces simbólicos</strong> almacenan una ruta, pueden apuntar a archivos o directorios en otros sistemas de archivos.
+Mientras que los <strong>enlaces duros</strong> solo pueden apuntar a archivos en el mismo sistema de archivos.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas POSIX los <strong>enlaces duros</strong> se crean llamando a <a href="https://man7.org/linux/man-pages/man2/link.2.html">link()</a> y los <strong>enlaces simbólicos</strong> con <a href="https://man7.org/linux/man-pages/man2/symlink.2.html">symlink()</a>.</p>
+</div>
+<div class="paragraph">
+<p>En Microsoft Windows se soportan ambos tipos de enlaces desde la primera versión —Microsoft Windows NT 3.1— pero únicamente en el sistema de archivos <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> y solo por compatibilidad con las aplicaciones POSIX.
+Windows API no tuvo funciones para crear <strong>enlaces</strong> hasta mucho después.
+Por eso su uso en Microsoft Windows no es tan común.</p>
+</div>
+<div class="paragraph">
+<p>En Windows API los <strong>enlaces duros</strong> se crean con <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createhardlinka">CreateHardLink()</a> desde Windows 2000.
+Mientras que los <strong>enlaces simbólicos</strong> se crean con <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createsymboliclinka">CreateSymbolicLink()</a> desde Windows Vista.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_inconvenientes"><a class="anchor" href="#_inconvenientes"></a>Inconvenientes</h5>
+<div class="paragraph">
+<p>Una estructura en grafo acíclico es más flexible que una estructura en árbol, pero no por eso está exenta de inconvenientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si estamos intentando recorrer el sistema de archivos completo —por ejemplo, para buscar un archivo o para copiarlos en un dispositivo para hacer copias de seguridad— debemos evitar acceder más de una vez a los archivos y subdirectorios enlazados.
+No olvidemos que en los sistemas con estructura en grafo acíclico, cada archivo puede tener múltiples nombres de ruta absoluta.</p>
+<div class="paragraph">
+<p>Esto es más sencillo de resolver en el caso de los <strong>enlaces simbólicos</strong>, puesto que podemos evitar recorrerlos al ser claramente distinguibles de los archivos normales.</p>
+</div>
+</li>
+<li>
+<p>Los diseñadores deben enfrentarse a la cuestión de cuándo liberar el espacio asignado a un archivo enlazado.
+Si lo hacemos cuando un usuario lo borra podríamos dejar <strong>enlaces</strong> que referencian a archivos que no existen.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sobre esta última cuestión:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El caso más sencillo de resolver es el de los <strong>enlaces simbólicos</strong>, ya que pueden ser borrados sin que el archivo original se vea afectado, puesto que lo que se elimina es el <strong>enlace</strong> y no el archivo original.</p>
+</li>
+<li>
+<p>Si lo que se pretende borrar es la entrada de un archivo original que es apuntado desde un <strong>enlace simbólico</strong>, tampoco hay problema en hacerlo y liberar el espacio asignado al mismo, dejando que el enlace apunte a un archivo que no existe.
+Cuando se produzca un intento de acceder a los archivos a través del <strong>enlace</strong>, el sistema determinará que el archivo referenciado fue borrado y tratará el acceso al enlace de forma similar a cualquier otro acceso ilegal a un archivo que no existe.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ciertamente, podríamos plantearnos la posibilidad de buscar todos los <strong>enlaces</strong> al archivo borrado y eliminarlos.
+Pero, a menos que el FCB de cada archivo guarde las rutas a los <strong>enlaces</strong> que le señalan, esta búsqueda podría ser muy costosa.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Otra opción es almacenar en la entrada del archivo original un contador con el número de referencias al archivo.
+Cada vez que se elimina una referencia se decrementa el contador.
+Cuando el contador sea 0, sabremos que ha llegado el momento de liberar el espacio asignado.</p>
+<div class="paragraph">
+<p>En los sistemas UNIX se utiliza esta técnica para saber cuándo liberar el contenido de archivos con <strong>enlaces duros</strong>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Por último, no debemos olvidar que la estructura de directorios en grafo se conserva acíclica si se prohíbe que haya múltiples referencias a un mismo directorio.
+Ese es el motivo por el que en muchos sistemas POSIX no se permite, por defecto, que los <strong>enlaces duros</strong> hagan referencia a directorios.
+Sin embargo si se pueden utilizar <strong>enlaces simbólicos</strong> para este fin, puesto que al ser distinguibles del directorio original podemos evitar los ciclos, si mientras se explora se ignoran dichos enlaces.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directorios_en_forma_de_grafo_general"><a class="anchor" href="#_directorios_en_forma_de_grafo_general"></a>19.6.5. Directorios en forma de grafo general</h4>
+<div class="paragraph">
+<p>Uno de los principales problemas de la <strong>estructura de directorios en grafo acíclico</strong> es garantizar que no exista ningún ciclo.
+Esto es interesante, puesto que mientras sea así los algoritmos diseñados para recorrer el grafo y para determinar cuándo no existen más referencias a un archivo, son relativamente simples.</p>
+</div>
+<div class="paragraph">
+<p>No olvidemos que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Es importante evitar encontrar cualquier archivo dos o más veces, tanto por razones de corrección como de rendimiento.</p>
+</li>
+<li>
+<p>En una <strong>estructura de directorios en forma de grafo general</strong> que use contadores de referencia para borrar archivos cuando no hay más referencias, puede que dicho contador no sea 0, aunque no haya más referencias al archivo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esto significa que generalmente se necesita algún mecanismo de recolección de basura para determinar con seguridad cuándo se ha borrado la última referencia.
+La recolección de basura implica recorrer todo el sistema de archivos y marcar todos aquellos elementos que sean accesibles.
+Después, en una segunda pasada, se elimina todo lo que no esté marcado.
+Por tanto, es evidente que la recolección de basura para un sistema de archivos basado en disco consume mucho tiempo, por lo que se utiliza en muy pocas ocasiones.</p>
+</div>
+<div class="paragraph">
+<p>Es mucho más sencillo trabajar con <strong>estructuras de directorio en grafo acíclico</strong>.
+Para evitar que en un grafo aparezca un ciclo al añadir un nuevo <strong>enlace</strong>, se pueden utilizar diversos algoritmos.
+Sin embargo, puesto que también suelen ser muy costosos, lo más simple es ignorar todos los <strong>enlaces simbólicos</strong> en los casos en los que se recorre el árbol de directorios para realizar una tarea en la que es importante no entrar en un bucle —por ejemplo, al hacer una búsqueda—.</p>
+</div>
+<div class="paragraph">
+<p>En el caso de los <strong>enlaces duros</strong> —donde se duplica entradas de directorio que no se pueden distinguir de la del archivo original y, por tanto, no se pueden ignorar— lo más sencillo es que el sistema operativo no permite crear múltiples referencias a un mismo directorio.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compartición_de_archivos"><a class="anchor" href="#_compartición_de_archivos"></a>19.7. Compartición de archivos</h3>
+<div class="paragraph">
+<p>Como ya hemos comentado, el que los usuarios puedan compartir archivos es algo muy deseable, pues permite que estos puedan colaborar en la realización de una tarea determinada.
+Sin embargo, al añadir esta característica, hay que tener en cuenta algunos aspectos que deben ser resueltos en el diseño del sistema operativo.</p>
+</div>
+<div class="sect3">
+<h4 id="_múltiples_usuarios_y_protección"><a class="anchor" href="#_múltiples_usuarios_y_protección"></a>19.7.1. Múltiples usuarios y protección</h4>
+<div class="paragraph">
+<p>Cuando un sistema operativo admite múltiples usuarios y utiliza una estructura de directorio que permite que estos compartan archivos, cobra gran importancia la protección de los datos.
+En este sentido, el sistema operativo debe adoptar un papel de mediador en lo que respecta a la compartición de los archivos.</p>
+</div>
+<div class="paragraph">
+<p>Para implementar la compartición y los mecanismos de protección, el sistema debe soportar más atributos para cada archivo y directorio que los que necesita en un sistema monousuario.
+Aunque a lo largo de la historia se han adoptado diversos enfoques, la mayoría han evolucionado hasta utilizar los conceptos de <strong>propietario</strong> —o <strong>usuario</strong>— y <strong>grupo</strong> de un archivo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El propietario de un archivo es el usuario que puede cambiar los atributos y conceder el acceso.
+Se trata del usuario que dispone del mayor grado de control sobre el archivo.</p>
+</li>
+<li>
+<p>El grupo es un conjunto de usuarios que pueden compartir el acceso al archivo.
+El propietario del archivo es quien define qué operaciones pueden ser ejecutadas por los miembros del grupo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los identificadores del propietario y el grupo de un archivo se almacenan junto con los otros atributos en el FCB.</p>
+</div>
+<div class="paragraph">
+<p>Cuando un usuario solicita realizar una operación sobre un archivo, se compara el identificador del usuario con el atributo del propietario para determinar si el solicitante es el propietario.
+Exactamente de la misma manera se puede proceder con los identificadores de grupo.
+El resultado de la comparación indica que permisos son aplicables.
+A continuación, el sistema aplica dichos permisos a la operación solicitada y la autoriza o deniega según sea el caso.</p>
+</div>
+<div class="paragraph">
+<p>Existen diversas implementaciones del esquema utilizado para determinar los permisos aplicables a un usuario que pretende operar sobre un archivo concreto.</p>
+</div>
+<div class="sect4">
+<h5 id="_lista_de_control_de_acceso"><a class="anchor" href="#_lista_de_control_de_acceso"></a>Lista de control de acceso</h5>
+<div class="paragraph">
+<p>El esquema más general consiste en asociar a cada archivo o directorio una <strong>lista de control de acceso</strong> o <strong>ACL</strong> (<em>Access-control list</em>) que especifique los nombres de usuario o grupos y los tipos de acceso para cada uno.</p>
+</div>
+<div class="paragraph">
+<p>Cuando un usuario solicita acceder a un archivo concreto, el sistema operativo comprueba la <strong>ACL</strong> asociada a dicho archivo.
+Si el usuario, o alguno de sus grupos, está incluido en la lista para el tipo de acceso solicitado, se permite el acceso.</p>
+</div>
+<div class="paragraph">
+<p>Esta técnica presenta diversas ventajas e inconvenientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se trata de la técnica más general, permitiendo la implementación de políticas de acceso muy complejas.</p>
+</li>
+<li>
+<p>Construir la lista puede ser una tarea tediosa.
+Por ejemplo, si queremos que varios usuarios puedan leer unos archivos determinados, es necesario enumerar todos los usuarios que disponen de ese acceso en las <strong>ACL</strong> de dichos archivos.</p>
+</li>
+<li>
+<p>El <strong>FCB</strong>, que hasta el momento tenía un tamaño fijo, ahora tendrá que ser de tamaño variable para almacenar la <strong>ACL</strong>, lo que requiere mecanismos más complejos de gestión del espacio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La familia de sistemas operativos Microsoft Windows utiliza este tipo de <strong>ACL</strong>.
+Al crear un archivo nuevo, se puede indicar la <strong>ACL</strong> deseada a través del argumento <code>lpSecurityAttributes</code> de <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>También se puede consultar la <strong>ACL</strong> de cualquier objeto con permisos —incluidos los archivos— usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getsecurityinfo">GetSecurityInfo()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-getnamedsecurityinfoa">GetNamedSecurityInfo()</a> y modificarla usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setsecurityinfo">SetSecurityInfo()</a> o <a href="https://docs.microsoft.com/en-us/windows/win32/api/aclapi/nf-aclapi-setnamedsecurityinfoa">SetNamedSecurityInfo()</a>.</p>
+</div>
+<div class="paragraph">
+<p>Las <strong>ACL</strong> y los <strong>descriptores de seguridad</strong> de Windows API son un tema complejo.
+Antes de manipularlos, es conveniente consultar <a href="https://docs.microsoft.com/en-us/windows/win32/secauthz/security-descriptors">«Security Descriptors»</a> en Microsoft Docs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_lista_de_control_de_acceso_condensada"><a class="anchor" href="#_lista_de_control_de_acceso_condensada"></a>Lista de control de acceso condensada</h5>
+<div class="paragraph">
+<p>Para solucionar algunos de los problemas de las <strong>ACL</strong> muchos sistemas utilizan <strong>listas de control de acceso condensadas</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Para condensar la longitud de la lista de control de acceso, generalmente los sistemas clasifican a los usuarios en tres grupos: <strong>propietario</strong>, <strong>grupo</strong> y <strong>otros</strong>.
+Así solo es necesario un campo para cada clase de usuario, siendo cada campo una colección de bits, donde cada uno permite o deniega el tipo de acceso asociado al mismo.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en los sistemas POSIX se definen 3 campos —<strong>propietario</strong>, <strong>grupo</strong> y <strong>otros</strong>) de 3 bits cada uno: <code>rwx</code>, donde <code>r</code> controla el acceso de lectura, <code>w</code> controla el acceso de escritura y <code>x</code> controla la ejecución.</p>
+</div>
+<div class="paragraph">
+<p>Las ACL condensadas son más sencillas de construir.
+Al mismo tiempo, por tener una longitud fija, es mucho más simple gestionar el espacio para el <strong>FCB</strong> donde se almacenan.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Permisos de archivo en sistemas POSIX</div>
+<div class="paragraph">
+<p>Los sistemas POSIX usan, por defecto, <strong>listas de control de acceso condensadas</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Al crear un archivo nuevo, se pueden indicar los permisos de forma numérica a través del argumento <code>mode</code> de <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span>
+    <span class="s">"foo.txt"</span><span class="p">,</span>
+    <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_RDWR</span><span class="p">,</span>
+    <span class="mo">0666</span>  <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Indica los permisos del archivo en caso de crearlo.
+Se ignora si el archivo ya existe.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Los bits a 1 del número especificado indican los permisos autorizados.
+Es muy común hacerlo en base octal, como en el ejemplo.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Otra llamada al sistema que permite indicar permisos es <a href="https://man7.org/linux/man-pages/man2/mkdir.2.html">mkdir()</a>, que se utiliza para crear directorios</p>
+</div>
+<div class="paragraph">
+<p>En ambos casos, los permisos finalmente usados vienen determinados por la <strong><em>umask</em></strong> del proceso.
+Esta es una propiedad numérica de los procesos —heredada de padres a hijos— que indica qué permisos del argumento <code>mode</code> de <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> y <a href="https://man7.org/linux/man-pages/man2/mkdir.2.html">mkdir()</a> se desactivan al crear un archivo o directorio.
+Por ejemplo, si el argumento <code>mode</code> es 0666 y <strong><em>umask</em></strong> es 0022, los permisos efectivos al crear el archivo serán 0644.</p>
+</div>
+<div class="paragraph">
+<p>Un proceso puede cambiar su <strong><em>umask</em></strong> mediante la función <a href="https://man7.org/linux/man-pages/man2/umask.2.html">umask()</a> y los usuarios de <strong>Bash</strong>, las de su <em>shell</em> usando el comando del mismo nombre.</p>
+</div>
+<div class="paragraph">
+<p>Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando <a href="https://man7.org/linux/man-pages/man2/access.2.html">access()</a>.
+Y pueden cambiar su propietario y el grupo llamando a la función <a href="https://man7.org/linux/man-pages/man2/chown.2.html">chown()</a>.
+Si necesitan leer los permisos, el propietario y el resto de <strong>metadatos</strong> del archivo, pueden usar <a href="https://man7.org/linux/man-pages/man2/stat.2.html">stat()</a> o <a href="https://man7.org/linux/man-pages/man2/fstat.2.html">fstat()</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_combinar_ambos_tipos_de_listas_de_control_de_acceso"><a class="anchor" href="#_combinar_ambos_tipos_de_listas_de_control_de_acceso"></a>Combinar ambos tipos de listas de control de acceso</h5>
+<div class="paragraph">
+<p>Muchos sistemas POSIX también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las <strong>ACL</strong> más genéricas.
+Sistemas operativos como Linux, macOS o FreeBSD implementan ambos tipos de ACL.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Para más información sobre las listas de control de acceso POSIX, véase <a href="https://www.man7.org/linux/man-pages/man5/acl.5.html">«acl(5)&#8201;&#8212;&#8201;Linux Manual»</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Combinar ambos tipos de <strong>ACL</strong> ofrece lo mejor de ambos mundos, pero no es una solución que esté exenta de dificultades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Uno de los problemas es que los usuarios deben poder determinar cuando están activados los permisos <strong>ACL</strong> más generales.
+En Linux, por ejemplo, se utiliza el símbolo <code>+</code> al listar los permisos de la ACL condensada para indicar dicha circunstancia.
+Esos permisos pueden ser gestionados utilizando los comandos <a href="https://man7.org/linux/man-pages/man1/setfacl.1.html">setfacl</a> y <a href="https://man7.org/linux/man-pages/man1/getfacl.1.html">getfacl</a>.</p>
+</li>
+<li>
+<p>Otra dificultad es la relativa a la asignación de precedencias cuando ambas <strong>ACL</strong> entran en conflicto.
+En general, se suele asignar a la <strong>ACL</strong> más prioridad que a la <strong>ACL condensada</strong>, pues la primera tiene una granularidad más fina y no se crea de forma predeterminada.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_semántica_de_coherencia"><a class="anchor" href="#_semántica_de_coherencia"></a>19.7.2. Semántica de coherencia</h4>
+<div class="paragraph">
+<p>
+La <strong>semántica de coherencia</strong> especifica cuándo las modificaciones que un proceso realiza en los archivos serán observables por los otros procesos.
+Por tanto, es importante tenerla en cuenta cuando esperamos que varios procesos utilicen los mismos archivos al mismo tiempo.</p>
+</div>
+<div class="paragraph">
+<p>A continuación vamos a comentar algunos ejemplos de tipos <strong>semántica de coherencia</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_semántica_posix"><a class="anchor" href="#_semántica_posix"></a>Semántica POSIX</h5>
+<div class="paragraph">
+<p>
+Los sistemas de archivos de los sistemas operativos POSIX utilizan la siguiente <strong>semántica de coherencia</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las escrituras en un archivo abierto por parte de un proceso son visibles inmediatamente para los procesos que tengan abierto el mismo archivo.</p>
+</li>
+<li>
+<p>Existe un modo de compartición que permite a los procesos compartir el puntero de ubicación actual dentro del archivo.
+Así, el incremento de ese puntero por parte de un proceso afecta a todos los procesos que estén compartiendo el archivo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la semántica POSIX, cada archivo está asociado con una única imagen física con el contenido del archivo, a la que se accede en forma de recurso en <strong>exclusión mutua</strong>.
+Por ejemplo, un proceso que haga <strong>read</strong> sobre un archivo podría quedar en espera si al mismo tiempo otro proceso está ejecutando un <strong>write</strong>, hasta que este último termine.</p>
+</div>
+<div class="paragraph">
+<p>La competición por acceder a esta imagen única provoca retrasos en los procesos debido a estos bloqueos.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_semántica_de_sesión"><a class="anchor" href="#_semántica_de_sesión"></a>Semántica de sesión</h5>
+<div class="paragraph">
+<p>
+El <a href="https://es.wikipedia.org/wiki/Andrew_File_System">sistema de archivos Andrew</a> (AFS) es un sistema de archivos en red —o sistema de archivos distribuido— es decir, sirve para compartir archivos en una red de ordenadores y usarlos como si estuvieran almacenados localmente.</p>
+</div>
+<div class="paragraph">
+<p>AFS es altamente escalable, existiendo despliegues con más de 25000 clientes.
+Para conseguirlo, cada equipo mantiene una copia local de los archivos abiertos.
+Las operaciones de lectura y escritura se realizan en esa copia.
+Cuando se cierra el archivo modificado, los cambios son enviados al servidor de archivos, para actualizar el archivo original.</p>
+</div>
+<div class="paragraph">
+<p>Aunque es posible implementar la <strong>semántica POSIX</strong> —como hacen otros sistemas de archivos en red— esta no escala adecuadamente, porque implica mantener sincronizadas las copias locales de cada archivo.
+Es decir, asegurar que los nodos no pueden modificar sus copias locales simultáneamente y que los cambios se propaguen adecuadamente entre las copias, antes de responder a cualquier operación de lectura solicitada por un proceso.
+Por eso el sistema de archivo AFS usa una semántica de coherencia diferente, denominada <strong>semántica de sesión</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Suponiendo que una <strong>sesión de archivo</strong> es el conjunto de operaciones entre las llamadas <strong>open</strong> y <strong>close</strong>, la <strong>semántica de sesión</strong> consisten en que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las escrituras en un archivo abierto por parte de un proceso no son visibles inmediatamente para los otros usuarios que hayan abierto ese mismo archivo.</p>
+</li>
+<li>
+<p>Una vez que se cierra un archivo, los cambios realizados en él son visibles únicamente en las sesiones que comiencen posteriormente.
+Las sesiones ya abiertas sobre el archivo no reflejarán dichos cambios.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esto significa que un archivo puede permanecer temporalmente asociado a distintas imágenes físicas de su contenido al mismo tiempo.
+Esto ocurre en el sistema de archivos AFS porque un mismo archivo tiene distintas copias locales temporales  en los nodos que lo tienen abierto.
+Así se permite que múltiples nodos realicen accesos concurrentes, tanto de lectura como de escritura, en sus propias imágenes del archivo, evitando los retrasos.</p>
+</div>
+<div class="paragraph">
+<p>A cambio hay que tener cuidado con el hecho de que un proceso puede estar leyendo datos obsoletos, sin saberlo.
+Si un proceso necesita acceder a los datos que escribe otro proceso, ambos deben sincronizarse explícitamente abriendo y cerrando el archivo.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_semántica_de_archivos_compartidos_inmutables"><a class="anchor" href="#_semántica_de_archivos_compartidos_inmutables"></a>Semántica de archivos compartidos inmutables</h5>
+<div class="paragraph">
+<p>
+En esta semántica, cuando un archivo es declarado como compartido por su creador, ya no puede ser modificado.</p>
+</div>
+<div class="paragraph">
+<p>Estos archivos inmutables cumplen dos propiedades clave: su nombre no puede reutilizarse y su contenido no puede ser modificado.
+Así podemos estar seguros de que el contenido de un archivo inmutable es fijo.
+Para escribir algo en uno de estos archivos, es necesario crear una copia con un nuevo nombre y hacer en ella los cambios.</p>
+</div>
+<div class="paragraph">
+<p>Para optimizar la implementación de esta semántica se suele usar una técnica similar al <strong>copy-on-write</strong>.
+Con esta técnica, cuando se va a modificar un archivo inmutable, se genera una copia que tiene la misma asignación de bloques que el archivo original.
+Cada vez que se va a modificar la información de un bloque, se crea una copia de ese bloque, se aplican los cambios y se sustituye el identificador del bloque anterior por el del nuevo bloque en la asignación de bloques del archivo en el <strong>FCB</strong>.
+Así, las copias de archivos inmutables se hacen más rápido y se ahorra espacio, dado que de cada archivo solo se guardan los bloques modificados.</p>
+</div>
+<div class="paragraph">
+<p>Además, cuando los sistemas operativos usan esta semántica, suelen tener una forma de crear automáticamente los nombres de las nuevas versiones de un archivo —por ejemplo, añadiendo un entero al nombre e incrementándolo en cada versión—.</p>
+</div>
+<div class="paragraph">
+<p>La implementación de esta semántica en un sistema de archivos distribuido es muy simple, puesto que es muy sencillo hacer copias locales de los archivos.
+Al ser inmutables, no hace falta disponer de un mecanismo para sincronizar los cambios entre los nodos.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bloqueos_de_archivo"><a class="anchor" href="#_bloqueos_de_archivo"></a>19.7.3. Bloqueos de archivo</h4>
+<div class="paragraph">
+<p>Algunos sistemas operativos proporcionan funciones para bloquear un archivo abierto —o partes del mismo—.
+Esto permite que un proceso impida que otros procesos puedan acceder al archivo bloqueado.</p>
+</div>
+<div class="paragraph">
+<p>Los bloqueos de archivo resultan útiles para encadenar varias operaciones de E/S sobre un archivo, teniendo la seguridad de que otros procesos no podrán hacer modificaciones en el mismo mientras tanto.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas operativos pueden proporcionar diferentes tipos de bloqueos de archivo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un <strong>bloqueo compartido</strong> es un tipo de bloqueo que puede ser adquirido —es decir, bloquear el archivo— al mismo tiempo por varios procesos.</p>
+</li>
+<li>
+<p>Un <strong>bloqueo exclusivo</strong> solo puede ser adquirido por un proceso cada vez.
+Si otro proceso intenta adquirir un <strong>bloqueo exclusivo</strong> sobre un archivo ya bloqueado, por cualquiera de los dos tipos de bloqueos, se suspende a la espera de que el bloqueo anterior sea liberado.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Algunos sistemas operativos solo proporcionan el <strong>bloqueo exclusivo</strong>.
+Sin embargo, en los que implementan ambos tipos de bloqueo, lo normal es que los procesos que pretenden acceder a un archivo compartido para solo lectura utilicen el <strong>bloqueo compartido</strong>, mientras que los que acceden para modificar el contenido utilicen el <strong>bloqueo exclusivo</strong>.
+Así, varios procesos pueden leer el archivo al mismo tiempo, pero si un proceso accede para escribir, ningún otro podrá acceder ni para leer ni para escribir.</p>
+</div>
+<div class="sect4">
+<h5 id="_bloqueo_obligatorio_o_sugerido"><a class="anchor" href="#_bloqueo_obligatorio_o_sugerido"></a>Bloqueo obligatorio o sugerido</h5>
+<div class="paragraph">
+<p>Además, los sistemas operativos pueden proporcionar dos tipos de mecanismos de bloqueo de archivos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si el <strong>bloqueo es obligatorio</strong>, después de que un proceso adquiera un bloqueo exclusivo, el sistema operativo impedirá a todos los demás procesos que hagan cualquier operación sobre el archivo bloqueado.</p>
+<div class="paragraph">
+<p>Esto ocurrirá incluso si los otros procesos no han sido programados para intentar adquirir el bloqueo.
+Por tanto, el sistema operativo es el encargado de garantizar que los bloqueos se cumplen, haciendo las comprobaciones pertinentes en las llamadas al sistema.</p>
+</div>
+</li>
+<li>
+<p>Si el <strong>bloqueo es sugerido</strong>, el sistema operativo solo impedirá que accedan al archivo bloqueado aquellos procesos programados para adquirir el bloqueo explícitamente.</p>
+<div class="paragraph">
+<p>Para eso los programas deben invocar ciertas llamadas al sistema para adquirir el bloqueo y liberarlo,
+Pero el sistema operativo no impedirá el acceso al archivo a un proceso que lo abre y lo lee o escribe sin más.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los sistemas operativos Microsoft Windows implementan un mecanismo de <strong>bloqueo obligatorio</strong>.
+En Windows API se puede indicar el modo de bloqueo al abrir el archivo con <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a> o se puede usar <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfile">LockFile()</a> para adquirir un bloqueo sobre una parte del contenido</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas UNIX y estilo UNIX, como regla general, no se bloquea un archivo al abrirlo.
+Existen diferentes mecanismos de bloqueo, algunos de los cuales pueden ser <strong>bloqueos obligatorios</strong>, pero por defecto son <strong>bloqueos sugeridos</strong>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Bloqueo de archivos en sistemas POSIX</div>
+<div class="paragraph">
+<p>En los sistemas POSIX el mecanismo más usado es <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a>, que permite bloquear porciones del contenido de un archivo, tanto con <strong>bloqueo exclusivo</strong> como con <strong>bloqueo compartido</strong>.
+El bloqueo se asocia al <strong>inodo</strong> y al <strong>PID</strong> del proceso, por lo que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si el archivo tiene varios nombres —por el uso de <strong>enlaces duros</strong>— el bloqueo sobre el archivo tiene efecto sin importar el nombre usado para abrirlo.</p>
+</li>
+<li>
+<p>Diferentes descriptores sobre el mismo archivo obtenidos llamando a <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> varias veces en el mismo proceso, comparten los bloqueos adquiridos.
+Así que, usando este tipo de bloqueos es posible sincronizar distintos procesos pero no distintos hilos, ya que todos los hilos de un mismo proceso comparten la adquisición del bloqueo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El estándar POSIX también soporta <a href="https://man7.org/linux/man-pages/man3/lockf.3.html">lockf()</a>, que es como una versión simplificada de <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a>.
+Aunque el estándar deja sin especificar cómo deben interactuar ambas llamadas, lo cierto es que es común que <a href="https://man7.org/linux/man-pages/man3/lockf.3.html">lockf()</a> se implemente usando <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a>.
+Esta función también crea bloqueos de porciones del contenido, asociados al <strong>inodo</strong> del archivo y el <strong>PID</strong>, pero solo soporta crear y liberar <strong>bloqueos exclusivos</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Finalmente, muchos sistemas UNIX y estilo UNIX soportan <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock()</a>.
+Esta función fue introducida en 4.2BSD, pero nunca fue incorporada al estándar POSIX.
+Admite tanto <strong>bloqueos exclusivos</strong> como <strong>bloqueos compartidos</strong> pero, a diferencia de las llamadas anteriores, el bloqueo afecta siempre al archivo completo y se asocia al descriptor de archivo.</p>
+</div>
+<div class="paragraph">
+<p>Esto último significa que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Diferentes descriptores sobre el mismo archivo obtenidos llamando a <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> varias veces, no comparten los bloqueos adquiridos.
+Así que pueden usarse para sincronizar incluso hilos de un mismo proceso.</p>
+</li>
+<li>
+<p>Diferentes descriptores de archivo obtenidos llamando a <a href="https://man7.org/linux/man-pages/man2/dup.2.html">dup2()</a> o a <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>, comparten los bloqueos adquiridos.
+Por lo que no pueden usarse para sincronizar hilos de un mismo proceso, pero permite que un proceso padre transfiera la adquisición del bloqueo a sus hijos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aparte de estos mecanismos, cada sistema operativo puede implementar algunas funcionalidades adicionales, no incluidas en el estándar POSIX.
+Por ejemplo, la llamada <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a> de Linux permite un tipo de bloqueo con las ventajas de los bloqueos originales de <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">fcntl()</a> pero asociados a descriptores de archivo.
+Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como ocurre con los bloqueos BSD de <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock()</a>.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2223/src/cap19/filelock-server.c">filelock-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2223/src/cap19/filelock-client.cpp">filelock-client.cpp</a> se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
+El servidor <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2223/src/cap19/filelock-server.c">filelock-server.c</a> es un programa que muestra periódicamente la hora del sistema.
+Mientras que el cliente <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2223/src/cap19/filelock-client.cpp">filelock-client.cpp</a>, simplemente envía una señal <code>SIGTERM</code> al servidor cuando queremos que termine.
+Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en una ubicación conocida por ambos.</p>
+</div>
+<div class="paragraph">
+<p>Como el cliente lee el archivo con una única operación <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> y el servidor lo escribe con una única operación <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, no hace falta el uso de bloqueo de archivos para sincronizarlos.
+Gracias a la semántica de coherencia POSIX, el cliente no puede leer el archivo en medio de la escritura.
+Es decir, o ve el PID completo escrito por el servidor o no ve ninguno.</p>
+</div>
+<div class="paragraph">
+<p>Pero si puede darse el caso de que se ejecuten varios servidores al mismo tiempo.
+Cada uno debe comprobar si archivo existe y, si es así, leer el PID que contiene y comprobar si hay un proceso con ese mismo PID.
+Si el archivo no existe o no encuentra un proceso con ese PID, debe entender que es el nuevo servidor y escribir su PID en el archivo, para que lo encuentre el cliente.
+En caso contrario, debe terminar.</p>
+</div>
+<div class="paragraph">
+<p>Para evitar que varios servidores den todos esos pasos al mismo tiempo, acaben creyendo que son los únicos y sobrescriban el archivo varias veces, el acceso al archivo debe hacerse en <strong>exclusión mutua</strong>.
+Así lo van bloqueando de uno en uno y mientras no hace sus comprobaciones los demás esperan.
+Por eso <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2223/src/cap19/filelock-server.c">filelock-server.c</a> utiliza <a href="https://man7.org/linux/man-pages/man3/lockf.3.html">lockf()</a> para bloquear el archivo, sincronizando el acceso de los servidores.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_coherencia"><a class="anchor" href="#_coherencia"></a>19.8. Coherencia</h3>
+<div class="paragraph">
+<p>Como hemos comentado anteriormente, parte de los <strong>metadatos</strong> se almacena en la memoria principal para acelerar el acceso.
+Dicha información generalmente está más actualizada que la correspondiente en el disco, puesto que la información almacenada en la memoria no tiene por qué ser escrita inmediatamente después de una actualización.</p>
+</div>
+<div class="paragraph">
+<p>Entonces ¿qué ocurriría si fallase el sistema? Pues que el contenido de la caché y de los búferes se perdería, y con ellos los cambios realizados en los directorios y archivos abiertos.
+Esto puede dejar el sistema de archivos en un estado incoherente, pues el estado real de algunos archivos no sería el que se describe en la estructura de <strong>metadatos</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_comprobación_de_coherencia"><a class="anchor" href="#_comprobación_de_coherencia"></a>19.8.1. Comprobación de coherencia</h4>
+<div class="paragraph">
+<p>El <strong>comprobador de coherencia</strong> comprueba la estructura de <strong>metadatos</strong> y tratar de corregir todas las incoherencias que detecte.</p>
+</div>
+<div class="paragraph">
+<p>Los algoritmos de asignación y de gestión del espacio de almacenamiento dictan los tipos de problemas que el comprobador puede tratar de detectar y también el grado de éxito que puede tener en esa tarea.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, la pérdida de un <strong>FCB</strong>, cuando es este el que almacena la lista de bloques que contienen los datos del archivo, es desastrosa porque no hay forma de saber qué datos le pertenecen de entre todos los que hay en el disco.
+Por esta razón, UNIX almacena en caché las entradas de directorio para acelerar las lecturas, pero todas las escrituras de datos que provoquen algún cambio en la asignación de espacio o en algún otro tipo de metadato, se realizan síncronamente —antes de continuar ejecutando el proceso desde la llamada al sistema—.</p>
+</div>
+<div class="paragraph">
+<p>Es decir, si se hace una escritura de datos que extiende el tamaño de un archivo; el cambio del <strong>FCB</strong> correspondiente, con el nuevo tamaño de archivo y la lista actualizada de las direcciones de los bloques que contienen —o van a contener— los datos del archivo, se escribe en disco antes de terminar la llamada al sistema y devolver el control al proceso que la invocó.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, no ocurre lo mismo con los datos que el proceso quería escribir en el archivo.
+El sistema operativo suele copiarlos a búferes internos en la memoria para escribirlos en disco más adelante, evitando interrumpir el proceso durante demasiado tiempo.
+Esto significa que en caso de fallo del sistema, el sistema de archivos puede estar en estado consistente pero haberse perdido los nuevos datos del archivo, porque no dio tiempo de escribirlos en el disco.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En Microsoft Windows el programa <strong>comprobador de coherencia</strong> se llama <a href="https://es.wikipedia.org/wiki/CHKDSK">CHKDSK</a>.
+Mientras que en sistemas POSIX se llama <a href="https://es.wikipedia.org/wiki/Fsck">fsck</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_soft_updates"><a class="anchor" href="#_soft_updates"></a>19.8.2. Soft Updates</h4>
+<div class="paragraph">
+<p>Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada <strong>soft updates</strong> en su implementación del sistema de archivos <a href="https://es.wikipedia.org/wiki/Unix_File_System">UFS</a>.</p>
+</div>
+<div class="paragraph">
+<p>Cuando se monta un sistema de archivos con la opción <strong>soft updates</strong>, el sistema operativo desactiva la escritura síncrona de los <strong>metadatos</strong>, que comentamos anteriormente, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, cuando se van a escribir en el disco las modificaciones debidas a la creación de un nuevo archivo, el sistema se asegura de que primero se escribe el nuevo <strong>FCB</strong> —un <em>inodo</em>, en los sistemas UNIX BSD— y posteriormente se escribe el directorio con la nueva entrada de archivo con el identificador a dicho <strong>FCB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Es sencillo darse cuenta de que haciéndolo al revés, si el sistema fallase antes de crear el <strong>FCB</strong>, acabaríamos con una entrada de directorio que apuntaría a un <strong>FCB</strong> inválido.
+Mientras que de esta manera el sistema de archivos permanecerá consistente aunque el sistema falle entre ambas operaciones.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_de_archivos_basados_en_registro"><a class="anchor" href="#_sistemas_de_archivos_basados_en_registro"></a>19.8.3. Sistemas de archivos basados en registro</h4>
+<div class="paragraph">
+<p>Otra solución al problema de la coherencia del sistema de archivos, consiste en aplicar técnicas de recuperación basadas en <strong>registro</strong>  —o <strong>journaling</strong>— durante las actualizaciones de los <strong>metadatos</strong> del sistema de archivos.</p>
+</div>
+<div class="paragraph">
+<p>Fundamentalmente, en los <strong>sistemas de archivos basados en registro</strong> cada conjunto de operaciones sobre los <strong>metadatos</strong>, necesario para realizar una tarea específica sobre el sistema de archivos, es una <strong>transacción</strong>.
+Por ejemplo, crear un archivo nuevo es una <strong>transacción</strong>, formada por el conjunto de operaciones sobre los <strong>metadatos</strong> necesarias para crearlo.
+También lo es añadir datos al final de un archivo existente, aunque en este caso la <strong>transacción</strong> está formada por las operaciones sobre los <strong>metadatos</strong> necesarias para extender el tamaño del archivo.</p>
+</div>
+<div class="paragraph">
+<p>Las operaciones sobre los <strong>metadatos</strong> de una <strong>transacción</strong> se escriben secuencialmente en un <strong>registro</strong> de operaciones que se usa de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Durante la llamada al sistema, la lista de operaciones sobre los <strong>metadatos</strong> necesarias para completar una <strong>transacción</strong> se escribe secuencial y síncronamente en el <strong>registro</strong>, antes de terminar la llamada al sistema.
+Cuando la lista de operaciones pendientes termina de ser escrita en el registro, se considera que las operaciones han sido <strong>confirmadas</strong> y la llamada al sistema puede volver al proceso, permitiendo que continúe con su ejecución.</p>
+</li>
+<li>
+<p>Mientras tanto, el sistema operativo va ejecutando las operaciones indicadas en el <strong>registro</strong> sobre las estructuras reales del sistema de archivos.
+A medida que se realizan los cambios, se actualiza el <strong>registro</strong> para indicar las operaciones completadas.</p>
+</li>
+<li>
+<p>Cuando todas las operaciones de una <strong>transacción</strong> se han ejecutado con éxito, dicha <strong>transacción</strong> se considera completada y se elimina del <strong>registro</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>En el supuesto de que el sistema falle:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se comprueba el <strong>registro</strong> durante el montaje del sistema de archivos, antes de que pueda ser utilizado de nuevo.</p>
+</li>
+<li>
+<p>Todas las <strong>transacciones confirmadas</strong> que contenga el <strong>registro</strong> estarán a medias, por lo que se terminan de aplicar las <strong>operaciones pendientes</strong> antes de finalizar el proceso de montaje.</p>
+</li>
+<li>
+<p>Todos los cambios correspondientes a las <strong>transacciones no confirmadas</strong> que hubieran sido aplicados al sistema de archivos, son deshechos para preservar la coherencia.
+Las <strong>transacciones no confirmadas</strong> son aquellas no terminaron de ser escritas en el <strong>registro</strong> antes del fallo y, por tanto, cuya lista de operaciones no está completa.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esta técnica es muy común en muchos sistemas operativos modernos.
+Por ejemplo, es utilizada en sistemas de archivos tales como: <a href="https://es.wikipedia.org/wiki/Ext3">ext3</a>, <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a>, <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a>, <a href="https://es.wikipedia.org/wiki/XFS">XFS</a>, <a href="https://es.wikipedia.org/wiki/HFS%2B">HFS+</a>, etc.</p>
+</div>
+<div class="sect4">
+<h5 id="_operaciones_sobre_datos"><a class="anchor" href="#_operaciones_sobre_datos"></a>Operaciones sobre datos</h5>
+<div class="paragraph">
+<p>Es importante recordar que lo se guarda en el <strong>registro</strong> son las operaciones sobre los <strong>metadatos</strong>, porque se trata de preservar la coherencia del sistema de archivos en caso de fallo del sistema.
+Sin embargo, esto quiere decir que se pueden perder lo que no son operaciones sobre los <strong>metadatos</strong>, como por ejemplo, las operaciones que modifican los datos de los archivos, con lo que lo estos pueden acabar almacenando datos corruptos o antiguos.</p>
+</div>
+<div class="paragraph">
+<p>Para evitar en parte este problema, algunos sistemas de archivos fuerzan la escritura de los datos en el disco antes de <strong>confirmar</strong> la transacción en el <strong>registro</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, al añadir datos al final de un archivo existente, se guardan en el registro las operaciones sobre los <strong>metadatos</strong> necesarias para extender el archivo sobre bloques nuevos.
+Pero esta <strong>transacción</strong> no se marca <strong>confirmada</strong>, hasta que los nuevos datos no se escriban en los nuevos bloques del archivo.
+Así, si el sistema falla antes de que se escriban los datos, como la operación no está <strong>confirmada</strong>, la extensión del archivo se deshace, quedando en su estado anterior, en lugar de extenderse sobre bloques que no se han terminado de escribir.
+Si el sistema falla después, como la operación está <strong>confirmada</strong>, el archivo termina de extenderse sobre los bloques actualizados con los datos.</p>
+</div>
+<div class="paragraph">
+<p>El sistema de archivos <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> tiene por defecto este comportamiento.
+Sin embargo, si la fiabilidad de los datos es muy importante, se le puede indicar que considere las operaciones sobre los datos dentro de la <strong>transacción</strong>.
+De esta forma, las incluye en la lista de operaciones guardadas en el <strong>registro</strong>, las aplica posteriormente junto al resto de operaciones sobre los <strong>metadatos</strong> de la <strong>transacción</strong> y, en caso de fallo del sistema, puede decidir si deshacerlas o terminar de aplicarlas, para asegurar la consistencia de los datos en los archivos.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_rendimiento_en_el_acceso_a_disco"><a class="anchor" href="#_rendimiento_en_el_acceso_a_disco"></a>Rendimiento en el acceso a disco</h5>
+<div class="paragraph">
+<p>Un efecto colateral de la utilización de un <strong>registro</strong> es la mejora del rendimiento en el acceso al sistema de archivo.</p>
+</div>
+<div class="paragraph">
+<p>La razón de esta mejora, es que las costosas escrituras síncronas —es decir, antes de devolver el control al proceso— de los <strong>metadatos</strong> en lugares aleatorios del volumen se transforman en escrituras síncronas secuenciales —que son mucho más eficientes— en el <strong>registro</strong>.
+Mientras que todas las operaciones indicadas en el <strong>registro</strong> se aplican asíncronamente mediante escrituras aleatorias en las estructuras apropiadas, por lo que pueden ser ordenadas a conveniencia para maximizar el rendimiento.</p>
+</div>
+<div class="paragraph">
+<p>Recordemos que en el registro puede haber operaciones de distintos procesos que afecten a regiones próximas del disco.
+Por lo que el resultado global es una significativa ganancia en la velocidad de las operaciones relativas a los <strong>metadatos</strong>, como por ejemplo la creación y borrado de archivos.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Journaling en XFS</div>
+<div class="paragraph">
+<p>El sistema de archivos <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> modifica ligeramente esta técnica, sustituyendo las escrituras síncronas necesarias para actualizar el <strong>registro</strong> por escrituras asíncronas.
+Es decir, el control se devuelve al proceso antes de terminar de escribir las operaciones en el <strong>registro</strong> y confirmar la transacción, por lo que el proceso puede seguir ejecutándose antes que en otros sistemas de archivos.</p>
+</div>
+<div class="paragraph">
+<p>El uso de escrituras asíncronas en el <strong>registro</strong> es peligroso.
+Cualquier caída del sistema podría provocar la corrupción del <strong>registro</strong>, porque las escrituras asíncronas pueden ocurrir en cualquier orden.
+Esto, aparentemente, elimina cualquier ventaja de utilizar un <strong>registro</strong> de operaciones.
+Sin embargo, XFS impone cierto orden en las operaciones de escritura sobre el registro —de forma similar a como se hace con los <strong>soft updates</strong>— de tal manera que la coherencia del registro está asegurada.</p>
+</div>
+<div class="paragraph">
+<p>El utilizar escrituras asíncronas en el <strong>registro</strong> —aunque sea preservando cierto orden— ofrece alguna mejora en el rendimiento, porque el <strong>registro</strong> deja de ser un cuello de botella para las operaciones que modifica los <strong>metadatos</strong> del sistema de archivos.</p>
+</div>
+<div class="paragraph">
+<p>Como hemos comentado, en otros <strong>sistemas de archivos basados en registro</strong>, el registro es un recurso al que se accede en <strong>exclusión mutua</strong>.
+Es decir, las operaciones de una <strong>transacción</strong> se deben escribir antes de devolver el control al proceso y de permitir que otro proceso a la espera escriba las operaciones de su <strong>transacción</strong>.
+Estas esperas en el acceso al <strong>registro</strong> son las que <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> evita, permitiendo su modificación de manera asíncrona.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistemas_de_archivos_basados_en_copia_durante_la_escritura"><a class="anchor" href="#_sistemas_de_archivos_basados_en_copia_durante_la_escritura"></a>19.8.4. Sistemas de archivos basados en copia durante la escritura</h4>
+<div class="paragraph">
+<p><em>Las técnicas anteriores son necesarias para preservar la coherencia porque la modificación de los metadatos se hace sobrescribiendo los datos que ya existen</em>.
+Es decir, cuando se crea un nuevo archivo, el sistema busca un FCB libre, sobrescribe el bloque del dispositivo donde lo encuentra para almacenar el nuevo FCB, busca una entrada libre en el directorio y, nuevamente, sobrescribe el bloque del disco donde se almacena el directorio para incorporar la nueva entrada.
+Si algunos de estos cambios tienen lugar, pero otros no, el disco puede quedar en estado inconsistente.</p>
+</div>
+<div class="paragraph">
+<p><em>Los <strong>sistemas de archivos basados en copia durante la escritura</strong></em> —o <em>copy-on-write</em>— <em>evitan cambiar los metadatos sobrescribiendo en el sitio</em>.
+En su lugar buscan un hueco libre, hacen en él una copia del bloque completo con los cambios y después modifican los metadatos del sistema de archivos que sirven para localizar el bloque modificado en su nueva ubicación.
+Estos cambios, a su vez, tampoco se hacen sobrescribiendo, sino que disparan la creación de copias modificadas de los bloques afectados, lo que nuevamente va seguido de cambios en los metadatos que ayudan a localizarlos.
+El proceso se repite hasta que se alcanza el <em>bloque de control de volumen</em> y se cambia, momento en el que toda la secuencia de cambios se consolida.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivos basados en copy-on-write suelen hacer uso intensivo de estructuras de datos basadas en árbol porque es muy sencillo mover un nodo de bloque, con un efecto mínimo en el resto de la estructura.
+Por ejemplo, al crear un archivo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Se busca un FCB libre, se lee el bloque que lo contiene en la memoria principal, se modifica y se escribe en un bloque libre</em>.
+El sistema de archivos debe tener alguna estructura de datos que permita encontrar el bloque que contiene un FCB a partir de su identificador.
+Por lo general, esta estructura es algún tipo de árbol.
+Así que se modifica el nodo del árbol que señala al bloque con el nuevo FCB para que conozca la nueva ubicación.
+Este cambio implica crear una copia del bloque de dicho nodo con el cambio, lo que a su vez significa modificar el nodo que señala a este.
+Y así sucesivamente hasta llegar a la raíz del árbol de FCB.</p>
+</li>
+<li>
+<p><em>Se busca una entrada libre en el directorio que va a contener al archivo y se modifica para añadir el nombre del archivo, el identificador de su FCB y otras propiedades</em>.
+Nuevamente, este cambio significa crear una copia, con los cambios descritos, del bloque que contiene la entrada y modificar el FCB del directorio para que contenga la nueva ubicación del bloque con el contenido del directorio.
+Como antes, este cambio en el FCB dispara copias y modificaciones por todo el árbol de FCB, hasta la raíz</p>
+</li>
+<li>
+<p>Una vez la raíz del árbol ha sido copiada a una nueva ubicación con los cambios, se actualiza su nueva posición en el <em>bloque de control de volumen.</em></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Si el sistema falla antes de la modificación del <em>bloque de control de volumen</em>, durante el montaje del sistema de archivos no quedará ni rastro de ninguno de los cambios porque dicho bloque aún hace referencia a la antigua raíz del árbol de FCB y, a partir de ellas, a todos los nodos, bloques y FCB originales.
+Obviamente los sistemas que implementan este tipo de sistemas de archivo usan la memoria principal como caché con el objeto de combinar varias modificaciones sobre un mismo bloque antes de proceder a su escritura en disco, evitando desencadenar múltiples veces los cambios posteriores.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivos ZFS y Btrfs son los principales ejemplos de sistemas de archivos basados en <em>copy-on-write</em>.
+Esta solución no solo les permite tener las mismas propiedades que el uso de registro en cuanto a la preservación de la coherencia —con la ventaja de evitar dos escrituras en disco, una en el registro y otra para el cambio propiamente dicho— sino que además facilita que puedan ofrecer características adicionales, como integrar en el propio sistema de archivos la gestión de volúmenes dinámicos (véase el <a href="almacenamiento_secundario.html#_volúmenes_dinámicos">Apartado 18.3.3</a>) o la creación de copias instantáneas del volumen.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="almacenamiento_secundario.html">Almacenamiento secundario</a> | ↑ Subir: <a href="gestión_del_almacenamiento.html">Gestión del almacenamiento</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="implementación_de_sistemas_de_archivos.html">Implementación de sistemas de archivos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('true' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="historia_de_los_sistemas_operativos" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2022-2023</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+<ul class="sectlevel1">
+<li><a href="qué_es_un_sistema_operativo.html">1. ¿Qué es un sistema operativo?</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html">2. Tipos de sistemas operativos</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html"><span class="toc-current">3. Historia de los sistemas operativos</span></a>
+<ul class="sectlevel2">
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-primera-generación">3.1. 1ª Generación (1945-55)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-segunda-generación">3.2. 2ª Generación (1955-64)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-tercera-generación">3.3. 3ª Generación (1965-1968)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-cuarta-generación">3.4. 4ª Generación (1965-1980)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-quinta-generación">3.5. 5ª Generación (desde 1980):</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="historia_de_los_sistemas_operativos"><a class="anchor" href="#historia_de_los_sistemas_operativos"></a>3. Historia de los sistemas operativos</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 19 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La historia de los sistemas operativos se puede dividir en cinco grandes etapas o generaciones, obviamente conectadas con las generaciones de los ordenadores donde funcionaban.</p>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-primera-generación"><a class="anchor" href="#sect-historia-primera-generación"></a>3.1. 1ª Generación (1945-55)</h3>
+<div class="paragraph">
+<p>En la primera generación de ordenadores no se utilizaban sistemas operativos.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Sus principales características son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Computadoras construidas con electrónica de <a href="https://es.wikipedia.org/wiki/V%C3%A1lvula_termoi%C3%B3nica">válvulas de vacío</a>.</p>
+</li>
+<li>
+<p>Sin sistema operativo.</p>
+</li>
+<li>
+<p>Sin lenguajes de programación.
+Se programaban directamente en lenguaje máquina.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Algunos ejemplos de ordenadores destacables fueron:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://es.wikipedia.org/wiki/ENIAC">ENIAC</a> (1945)</dt>
+<dd>
+<p>Se le considera el primer ordenador electrónico digital de propósito general, aunque existe cierta polémica sobre este punto.
+Lo cierto es que se construyeron otros ordenadores antes que este, pero o no eran de propósito general —como las famosas computadoras <a href="https://es.wikipedia.org/wiki/Colossus">Colossus</a> (1944), que fueron diseñadas para ayudar en <a href="https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis">criptoanálisis</a>— o no eran electrónicos sino electromecánicos —como la computadora <a href="https://es.wikipedia.org/wiki/Z3">Z3</a> (1941), que usaba <a href="https://es.wikipedia.org/wiki/Rel%C3%A9">relés</a>—.</p>
+<div class="paragraph">
+<p>No era un producto comercial sino un proyecto experimental de defensa que principalmente se diseñó y utilizó para calcular tablas de tiro de artillería destinadas al Laboratorio de Investigación Balística del Ejército de los Estados Unidos.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Z4">Z4</a> (1945) fue el primer ordenador digital comercial, pero era electro-mecánico.</p>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://es.wikipedia.org/wiki/IBM_701">IBM 701</a> (1953)</dt>
+<dd>
+<p>Fue el primer <em>mainframe</em> de la serie IBM 700, que a la larga se convertiría en un éxito de ventas.
+Utilizaba tubos de vacío y tarjetas perforadas.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El IBM 7090 —versión transistorizada del 709, que utilizaba válvulas de vacío, como todos los de la serie 700— y el posterior 7094, fueron usados por la NASA para los cálculos de control de las misiones de los programas espaciales Mercury y Gemini y durante la primera etapa del programa Apolo.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-segunda-generación"><a class="anchor" href="#sect-historia-segunda-generación"></a>3.2. 2ª Generación (1955-64)</h3>
+<div class="paragraph">
+<p>En la segunda generación de ordenadores los transistores reemplazaron a las válvulas de vacío.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En lo que respecta a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Aparecen los monitores del sistema, que se pueden considerar un predecesor de los sistemas operativos.</p>
+</li>
+<li>
+<p>Sistema de procesamiento por lotes.</p>
+</li>
+<li>
+<p>Se comienzan a utilizar lenguajes de programación, como: ensamblador, FORTRAN y COBOL.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/GM-NAA_I/O">GM-NAA I/O</a> (<em>General Motors and North American Aviation Input/Output system</em>) fue el primer sistema operativo.
+Fue desarrollado por General Motors Research Laboratory en 1956 para el <em>mainframe</em> <a href="https://en.wikipedia.org/wiki/IBM_704">IBM 704</a> con el fin de automatizar la carga y ejecución de un nuevo trabajo una vez había terminado el anterior.
+Para su desarrollo se basaron en un monitor del sistema creado en 1955 por programadores de General Motors para el IBM 701.</p>
+</div>
+<div id="fig-instalación-ibm-702" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/instalación_ibm_702.jpg" alt="instalación ibm 702">
+</div>
+<div class="title">Figura 8. Instalación de un mainframe IBM 702&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:BRL61-IBM_702.jpg">Wikipedia</a></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-tercera-generación"><a class="anchor" href="#sect-historia-tercera-generación"></a>3.3. 3ª Generación (1965-1968)</h3>
+<div class="paragraph">
+<p>En la tercera generación se comenzaron a utilizar los circuitos integrados, que fue una invención de finales de la década de 1950.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En lo que respecta a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Aparecen los sistemas operativos multiprogramados.</p>
+</li>
+<li>
+<p>Aparecen más lenguajes de programación.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>El ejemplo más destacado de esta época es el <a href="https://en.wikipedia.org/wiki/OS/360_and_successors">IBM OS/360</a>
+Fue un sistema operativo desarrollado por IBM para su <em>mainframe</em> <a href="https://en.wikipedia.org/wiki/IBM_System/360">IBM System/360</a> (S/360) (véase la <a href="historia_de_los_sistemas_operativos.html#fig-instalación-ibm-system-360">Figura 9</a>).
+Su versión DOS/360 (<em>Disk Operating System/360</em>) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.</p>
+</div>
+<div id="fig-instalación-ibm-system-360" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/instalación_ibm_system_360.jpg" alt="instalación ibm system 360">
+</div>
+<div class="title">Figura 9. Instalación de un mainframe IBM System/360&#8201;&#8212;&#8201;Fuente: <a href="http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/">IBM</a></div>
+</div>
+<div class="paragraph">
+<p>Se anunció en 1964, pero fue lanzado en 1966, con un año de retraso respecto a la fecha prevista originalmente.
+Los motivos fundamentales fueron ciertos problemas de organización interna de la compañía y la falta de experiencia en proyectos de esa envergadura.
+Las previsiones iniciales eran de 1 millón de líneas de código y miles de componentes de software.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Algunos autores fechan los inicios de la ingeniería del software en la publicación del libro «The Mythical Man-Month: Essays on Software Engineering», escrito por Frederick Brooks y publicado en 1975.
+Frederick Brooks se basó en la experiencia adquirida mientras administraba el desarrollo del IBM OS/360, donde era jefe de proyecto.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-cuarta-generación"><a class="anchor" href="#sect-historia-cuarta-generación"></a>3.4. 4ª Generación (1965-1980)</h3>
+<div class="paragraph">
+<p>La cuarta generación abarca desde mediados de los años 60 hasta finales de la década de los 70.
+Respecto a los ordenadores, es el resultado del desarrollo de los microprocesadores.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En lo que respecta a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Aparecen los sistemas operativos de tiempo compartido.</p>
+</li>
+<li>
+<p>Aparecen los terminales, los programas interactivos y las máquinas virtuales.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación veremos los ejemplos más representativos de esta época.</p>
+</div>
+<div class="sect3">
+<h4 id="_multics"><a class="anchor" href="#_multics"></a>3.4.1. MULTICS</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Multics">MULTICS</a> fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general.</p>
+</div>
+<div id="sect-multics-mainframe" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/multics_mainframe.jpg" alt="multics mainframe">
+</div>
+<div class="title">Figura 10. Mainframe GE-6180 con sistema MULTICS, en torno a 1976 en el MIT&#8201;&#8212;&#8201;Fuente: <a href="http://www.multicians.org/multics-stories.html">Multicians</a></div>
+</div>
+<div class="paragraph">
+<p>Fue el primer sistema operativo en proporcionar un sistema de archivos jerárquico, intérprete de comandos implementado como programa de usuario, listas de control de acceso individuales para cada archivo y enlazado dinámico, entre otras características novedosas.</p>
+</div>
+<div class="paragraph">
+<p>Además experimentó con eliminar la separación entre el espacio de direcciones de los procesos y los archivos.
+Es decir, como si todos los archivos estuvieran mapeados en memoria, permitiendo a los procesos acceder al contenido de los archivos directamente (véase el <a href="memoria_virtual.html#_archivos_mapeados_en_memoria">Apartado 17.3</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vmcms"><a class="anchor" href="#_vmcms"></a>3.4.2. VM/CMS</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/VM_(sistema_operativo)">VM/CMS</a> es un sistema de IBM utilizado en los <em>mainframes</em> <a href="https://en.wikipedia.org/wiki/IBM_System/360">IBM System/360</a>, System/370, System/390 y zSeries.
+VM es un <a href="https://es.wikipedia.org/wiki/Hipervisor">hipervisor</a> que se encarga de virtualizar el hardware para crear múltiples máquinas virtuales, dando la sensación de que cada una es un <em>mainframe</em> independiente.</p>
+</div>
+<div class="paragraph">
+<p>Como sistema operativo de las máquinas virtuales, una opción común es CMS, un sistema interactivo y monousuario muy ligero, diseñado para operar fundamentalmente en una máquina virtual de VM.
+Gracias a VM/CMS, cada usuario tiene la sensación de trabajar en un sistema completamente independiente y seguro.</p>
+</div>
+<div class="paragraph">
+<p>El desarrollo de VM/CMS comenzó en 1965 y la primera versión estuvo disponible a primeros de 1966.
+Las versiones actuales se denominan IBM z/VM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_unix"><a class="anchor" href="#_unix"></a>3.4.3. UNIX</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Unix">UNIX</a> fue desarrollado originalmente por Bell Labs en 1970 para los sistemas <a href="https://es.wikipedia.org/wiki/PDP-11">PDP-11/20</a> (véase la <a href="historia_de_los_sistemas_operativos.html#fig-dec-pdp11">Figura 11</a>).
+La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS, pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
+Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.</p>
+</div>
+<div id="fig-dec-pdp11" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/dec_pdp11_ken_den.jpg" alt="dec pdp11 ken den">
+</div>
+<div class="title">Figura 11. Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales <a href="https://en.wikipedia.org/wiki/Teletype_Model_33">Teletype 33</a>&#8201;&#8212;&#8201;Fuente: <a href="https://www.bell-labs.com/usr/dmr/www/">Dennis Ritchie</a></div>
+</div>
+<div class="paragraph">
+<p>La primera versión de UNIX fue implementada en ensamblador, como era común en la época.
+Posteriormente, Dennis Ritchie y Brian Kernighan diseñaron un nuevo lenguaje de programación llamado «C», especialmente pensado para que UNIX fuera escrito con él.
+Eso facilitó que UNIX pudiera ser portado a ordenadores diferentes.
+Además, gracias al lenguaje C, el código era más conciso y compacto, lo que se tradujo en que se pudieron desarrollar nuevas funcionalidades más rápidamente.</p>
+</div>
+<div class="paragraph">
+<p>AT&amp;T, la compañía matriz de Bell Labs, no podía competir en la industria de los ordenadores, por lo que puso el código fuente de UNIX a disposición de universidades, compañías privadas y del gobierno de los Estados Unidos.
+Eso aumentó su difusión y dio resultados inesperados.
+Por ejemplo, una de las variantes más importantes de UNIX fue <a href="https://es.wikipedia.org/wiki/Berkeley_Software_Distribution">BSD</a>, desarrollada por la Universidad de California en Berkeley.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La versión 4.2BSD (<em>Berkeley Software Distribution</em>) de esta variante de UNIX fue la primera que incluyó la interfaz de <em>sockets</em> para facilitar la comunicación entre procesos a través de Internet y otras redes.
+Esta interfaz se ha convertido en estándar en prácticamente cualquier sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>También implementó y ayudó a difundir el estándar de comunicaciones TCP/IP, base de la actual Internet.
+Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de UNIX BSD en sus implementaciones de los protocolos TCP/IP y de diversas utilidades de red.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En la actualidad se considera que hay dos grandes familias de UNIX y las distintas variantes pertenecen a una u otra en función del UNIX del que derivaron originalmente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La familia derivada de <strong>AT&amp;T UNIX System V</strong>, en la que se incluyen sistemas operativos no libres, tales como: <a href="https://es.wikipedia.org/wiki/SCO_OpenServer">SCO OpenServer</a>, <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Oracle/Sun Microsystems Solaris Operating Environment</a> y <a href="https://es.wikipedia.org/wiki/UnixWare">SCO UnixWare</a>.</p>
+</li>
+<li>
+<p>La familia derivada de <strong>UNIX BSD</strong>, en la que se incluyen sistemas libres como: <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a>, <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a>, <a href="https://es.wikipedia.org/wiki/OpenBSD">OpenBSD</a>, <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Darwin</a> y <a href="https://es.wikipedia.org/wiki/DragonFly_BSD">DragonFly BSD</a>, entre muchos otros.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> es el sistema base de algunos sistemas no libres.
+Por ejemplo, <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Darwin</a> es el sistema operativo en el que se basan los sistemas operativos de Apple: macOS, IOS, watchOS, tvOS e iPadOS.
+A su vez Darwin utiliza múltiples elementos de FreeBSD (véase el <a href="historia_de_los_sistemas_operativos.html#_mach">Apartado 3.5.8</a>).</p>
+</div>
+<div class="paragraph">
+<p>Otro ejemplo destacable es <a href="https://en.wikipedia.org/wiki/PlayStation_4_system_software">Orbis OS</a> —el sistema operativo de PlayStation 4— que también está basado en FreeBSD.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vms"><a class="anchor" href="#_vms"></a>3.4.4. VMS</h4>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/OpenVMS">VMS</a> es un sistema operativo de 32 bits diseñado originalmente por Digital Equipment Corporation (DEC) —ahora propiedad de HP— en 1978 para usarlo en minicomputadoras <a href="https://es.wikipedia.org/wiki/VAX">VAX</a>.
+Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.</p>
+</div>
+<div id="fig-dec-vax11" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/dec_vax11.jpg" alt="dec vax11">
+</div>
+<div class="title">Figura 12. Instalación de VAX 11/780 en 1980&#8201;&#8212;&#8201;Fuente: <a href="http://www.chilton-computing.org.uk/">Science and Technology Facilities Council</a></div>
+</div>
+<div class="paragraph">
+<p>Las siglas VMS vienen de <em>Virtual Memory System</em>, ya que una de sus principales características era explotar el concepto de <strong>memoria virtual</strong>.
+Este concepto también es muy utilizado en los sistemas operativos modernos.
+Permite que los procesos se ejecuten aislados, unos de otros, en la memoria principal y sin tener que ser cargados completamente, lo que permite que cada uno consuma menos memoria.</p>
+</div>
+<div class="paragraph">
+<p>VMS era un sistema multiusuario y multiprocesador que podía distribuir el trabajo entre varias máquinas, lo que le permitía ser tolerante a fallos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>VMS es en cierta medida un ancestro de Microsoft Windows NT (véase el <a href="historia_de_los_sistemas_operativos.html#sect-windows-nt">Apartado 3.5.6</a>).
+Para desarrollar Windows NT, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation.
+Muchos aspectos del diseño de Windows NT reflejan la experiencia de DEC en VMS.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ibm_os400"><a class="anchor" href="#_ibm_os400"></a>3.4.5. IBM OS/400</h4>
+<div class="paragraph">
+<p>El <a href="https://es.wikipedia.org/wiki/OS/400">IBM OS/400</a> es un sistema utilizado en la familia de minicomputadoras <a href="https://es.wikipedia.org/wiki/AS/400">IBM AS/400</a> —llamada iSeries desde 2006—.
+Fueron introducidos en el mercado en 1988, pero aún es posible verlos en algunas organizaciones.
+En 2008 el sistema operativo IBM OS/400 pasó a llamarse IBM i y siguen publicándose nuevas versiones en la actualidad.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-quinta-generación"><a class="anchor" href="#sect-historia-quinta-generación"></a>3.5. 5ª Generación (desde 1980):</h3>
+<div class="paragraph">
+<p>Esta última generación abarca desde la década de 1980 hasta la actualidad.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Respecto a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Incluye a los sistemas operativos de escritorio y ordenadores personales (PC).</p>
+</li>
+<li>
+<p>Aparecen múltiples conceptos nuevos: monousuario, multitarea, distribuidos, paralelos, tiempo real, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Se puede observar una muestra de la interfaz gráfica de usuario de algunos de estos sistemas en el artículo <a href="https://www.webdesignerdepot.com/2009/03/operating-system-interface-design-between-1981-2009/">«Operating System Interface Design Between 1981-2009»</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_cpm"><a class="anchor" href="#_cpm"></a>3.5.1. CP/M</h4>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/CP/M">CP/M</a> (1974) fue el sistema operativo estándar en la primera generación de microcomputadoras. Fue creado por Digital Research, Inc. —fundada por Gary Kildall— para ser el sistema operativo de los microordenadores basados en <a href="https://es.wikipedia.org/wiki/Intel_8080">Intel 8080/85</a> y <a href="https://es.wikipedia.org/wiki/Zilog_Z80">Zilog Z80</a>.</p>
+</div>
+<div class="paragraph">
+<p>Con la elección de MS-DOS por parte de IBM para su <a href="https://es.wikipedia.org/wiki/IBM_PC">IBM PC</a>, CP/M fue perdiendo mercado paulatinamente hasta desaparecer.
+Sin embargo, la influencia de CP/M en MS-DOS es indudable, en tanto en cuanto 86-DOS, el predecesor de MS-DOS, estaba basado en las ideas de CP/M.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ms_dos"><a class="anchor" href="#_ms_dos"></a>3.5.2. MS-DOS</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/MS-DOS">MS-DOS</a> fue el sistema operativo estándar en la segunda generación de microcomputadoras.
+No era ni multitarea ni multiusuario.
+Fue el primer sistema operativo del <a href="https://es.wikipedia.org/wiki/IBM_PC">IBM PC</a> —lanzado en 1981— y durante mucho tiempo fue ampliamente utilizado en toda la plataforma «PC compatible».</p>
+</div>
+<div class="paragraph">
+<p>MS-DOS fue creado por Seattle Computer Products (SCP) con el nombre de <a href="https://es.wikipedia.org/wiki/QDOS">86-DOS</a> en 1979.
+Se basaron en ideas de CP/M, pues pretendían ofrecer una versión de CP/M para procesadores <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a>.
+Inicialmente era conocido como QDOS (<em>Quick and Dirty Operating System</em>) pero SCP le cambió el nombre en 1980, cuando comenzaron a licenciarlo.
+Posteriormente Microsoft adquirió el sistema y lo vendió a IBM en 1981 con el nombre de MS-DOS.</p>
+</div>
+<div class="paragraph">
+<p>Tanto IBM como Microsoft lanzaron versiones de DOS, aunque originalmente IBM solamente validaba y empaquetaba el software de Microsoft.
+Microsoft lanzaba sus versiones bajo el nombre de MS-DOS, mientras IBM las lanzaba bajo el nombre de <a href="https://es.wikipedia.org/wiki/IBM_PC_DOS">IBM PC-DOS</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En <a href="https://www.pcjs.org/">PCjs</a> se pueden probar de forma sencilla sistemas operativos y aplicaciones antiguas del IBM PC.
+Solo hace falta acceder con el navegador y elegir la experiencia que más nos llame la atención.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_os2"><a class="anchor" href="#_os2"></a>3.5.3. OS/2</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/OS/2">OS/2</a> fue un sistema operativo creado por Microsoft e IBM para aprovechar las nuevas características de la segunda generación de ordenadores personales de IBM, equipados con procesador <a href="https://es.wikipedia.org/wiki/Intel_80286">Intel 80286</a>.
+Pero al final terminó siendo desarrollado en exclusiva por IBM.</p>
+</div>
+<div class="paragraph">
+<p>OS/2 fue pensado como un sucesor con <strong>operación en modo dual</strong> de MS-DOS y de Microsoft Windows 2.0.
+Fue anunciado en abril y lanzado en diciembre de 1987 como un sistema operativo en modo texto.
+En la versión 1.1, lanzada en noviembre de 1988, se le añadió interfaz gráfica.</p>
+</div>
+<div id="fig-os-21" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/os_2_1.png" alt="os 2 1">
+</div>
+<div class="title">Figura 13. Panel de control de Microsoft-IBM OS/2 1.1&#8201;&#8212;&#8201;Fuente: Michal Necasek</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En los sistemas con <strong>operación en modo dual</strong> se distingue entre dos modos de ejecución, de tal forma que solo en el modo en el que se ejecuta el código del sistema operativo se pueden realizar operaciones peligrosas.
+En el otro modo y con menos privilegios, se ejecutan las aplicaciones de usuario.
+Para más información, véase el <a href="operación_del_sistema_operativo.html#_operación_en_modo_dual">Apartado 7.2</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La colaboración entre IBM y Microsoft terminó en 1990, entre el lanzamiento de Windows 3.0 y la de OS/2 1.3.
+El aumento de popularidad de Windows llevó a Microsoft a dejar de centrarse en el desarrollo de OS/2, lo que hizo que IBM se preocupara por los continuos retrasos en el desarrollo de OS/2 2.0.
+Inicialmente ambas compañías acordaron que IBM tomaría el mantenimiento de OS/2 1.0 y el desarrollo de OS/2 2.0, mientras Microsoft continuaría desarrollando OS/2 3.0, que entonces era conocido como «NT OS/2».
+Sin embargo, Microsoft finalmente decidió renombrar NT OS/2 como Windows NT, dejando el futuro desarrollo de OS/2 en manos de IBM.</p>
+</div>
+<div class="paragraph">
+<p>OS/2 Warp 3 fue un sistema completo de 32 bits lanzado en 1994.
+Le seguiría OS/2 Warp 4, en 1996.
+Poco después, IBM anunció que OS/2 desaparecería.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows_3_x"><a class="anchor" href="#_windows_3_x"></a>3.5.4. Windows 3.x</h4>
+<div class="paragraph">
+<p>La familia <a href="https://es.wikipedia.org/wiki/Windows_3.1x">Windows 3.x</a> de Microsoft Windows fue desarrollada desde 1990 hasta 1994.
+Windows 3.0 fue la primera versión de éxito de Windows, permitiendo a Microsoft competir con el <a href="https://es.wikipedia.org/wiki/Macintosh">Macintosh</a> de Apple Computer y el <a href="https://es.wikipedia.org/wiki/Commodore_Amiga">Commodore Amiga</a>.</p>
+</div>
+<div id="fig-windows-30" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/windows_30.png" alt="windows 30">
+</div>
+<div class="title">Figura 14. Administrador de programas de Microsoft Windows 3.0&#8201;&#8212;&#8201;Fuente: <a href="https://guidebookgallery.org/screenshots/win30">Guidebook</a></div>
+</div>
+<div class="paragraph">
+<p>En 1983, Microsoft anunció el desarrollo de Windows, una interfaz gráfica de usuario para su sistema MS-DOS, que se usaba en los IBM PC y compatibles desde 1981.
+Windows requería una instalación previa de MS-DOS y era iniciado como un programa más, que podía ser terminado en cualquier momento, devolviendo al usuario a la línea de comandos de MS-DOS.</p>
+</div>
+<div class="paragraph">
+<p>MS-DOS le proporcionaba a Windows controladores de dispositivo para ciertas tareas, como el acceso al CD-ROM o a la interfaz de red.
+Sin embargo Windows ejecutaba aplicaciones específicas de Windows, almacenadas en un formato ejecutable mucho más complejo que el de los programas de MS-DOS.
+Además, debido a que MS-DOS no aislaba a las aplicaciones del hardware y no se protegía así mismo de los errores en dichas aplicaciones, Windows disponía de controladores de dispositivo propios, así como sus propios sistemas de gestión de procesos y de memoria.
+En realidad Windows no se ejecutaba sobre MS-DOS, si no que hacía uso de él.
+Por ello puede ser considerado como un sistema operativo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows_95_98_me"><a class="anchor" href="#_windows_95_98_me"></a>3.5.5. Windows 95, 98, Me</h4>
+<div class="paragraph">
+<p>La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráficos híbridos de 16/32 bits.</p>
+</div>
+<div id="fig-windows-95" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/windows_95.png" alt="windows 95">
+</div>
+<div class="title">Figura 15. Escritorio de Microsoft Windows 95&#8201;&#8212;&#8201;Fuente: <a href="http://www.guidebookgallery.org/screenshots/win95">Guidebook</a></div>
+</div>
+<div class="paragraph">
+<p>Windows 95 fue lanzado en 1995.
+Fue el primer Windows unido a una versión de MS-DOS específica, aunque este hecho se intentaba mantener oculto.
+Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <a href="historia_de_los_sistemas_operativos.html#fig-windows-95">Figura 15</a>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Como veremos en el <a href="planificación_de_la_cpu.html#_planificación_expropiativa">Apartado 14.1</a>, la planificación expropiativa es una técnica que permite al sistema operativo expulsar de la CPU a los procesos en ciertas circunstancias; como, por ejemplo, que llevan demasiado tiempo utilizando la CPU de forma ininterrumpida.</p>
+</div>
+<div class="paragraph">
+<p>En la familia Windows 3.x la planificación era cooperativa, es decir, los procesos abandonaban la CPU voluntariamente.
+Esto ocasionaba problemas con programas que no devolvía la CPU al sistema con la suficiente frecuencia, ya que así el resto de procesos no tenía ocasión de ejecutarse para hacer su trabajo o responder al usuario.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Windows 98 fue lanzado el 25 de junio de 1998.
+Le siguió Windows Me, el 14 de septiembre de 2000.
+Windows Me fue la última versión de la familia de sistemas operativos híbridos de 16/32 bits que sucedió a la familia Windows 3.x.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sect-windows-nt"><a class="anchor" href="#sect-windows-nt"></a>3.5.6. Windows NT, 2000, XP, Vista, 7, 8 y 10</h4>
+<div class="paragraph">
+<p>Windows NT fue un sistema operativo de 32 bits.
+El primero de la familia de sistemas operativos Microsoft Windows actuales.</p>
+</div>
+<div class="paragraph">
+<p>Su desarrollo empezó en 1988 con el nombre de OS/2 3.0.
+Cuando Windows 3.0 fue lanzado en mayo de 1990, tuvo tanto éxito que Microsoft decidió cambiar la API del aún en desarrollo NT OS/2 —que era como Microsoft lo llamaba entonces— pasando de ser una versión extendida de la API de OS/2 a una versión extendida de la API de Windows 3.0.
+Esta decisión causó tensión entre Microsoft e IBM y provocó que finalmente terminara la colaboración.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Una interfaz de programación de aplicaciones o API (del inglés <em>Application Programming Interface</em>) es el conjunto de funciones, procedimientos o métodos que ofrece el sistema operativo para ser utilizado por las aplicaciones.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como hemos comentado anteriormente, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation para crear Windows NT.
+Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VMS.</p>
+</div>
+<div class="paragraph">
+<p>Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de una API nativo no documentado públicamente.
+Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.</p>
+</div>
+<div class="paragraph">
+<p>La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo <em>microkernel</em> (véase el <a href="historia_de_los_sistemas_operativos.html#_mach">Apartado 3.5.8</a> un poco más adelante) multiplataforma que corría sobre procesadores <a href="https://es.wikipedia.org/wiki/IA-32">x86</a>, <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a> 4000 y <a href="https://es.wikipedia.org/wiki/PowerPC">PowerPC</a>.</p>
+</div>
+<div class="paragraph">
+<p>Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
+Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.
+Además Windows NT 4.0 integró en el núcleo más funciones —por ejemplo, parte del subsistema gráfico— para obtener un rendimiento más próximo al de Windows 95 en ese apartado.</p>
+</div>
+<div class="paragraph">
+<p>Windows 2000 —o Windows NT 5.0— fue lanzado el 17 de febrero de 2000 y fue el primer sistema operativo de la familia NT al que se le eliminaron las siglas del nombre.
+Fue por motivos de marketing, para favorecer la unificación de las dos familias de sistemas operativos Microsoft Windows de entonces —Windows 9x y Windows NT— alrededor de la tecnología NT.</p>
+</div>
+<div class="paragraph">
+<p>Windows XP —o Windows NT 5.1— completó en 2001 el proceso de unificación de las dos familias de sistemas operativos Windows.
+Con su aparición forzó la extinción de la familia Windows 9x, al sustituirla con una versión de Windows XP denominada Windows XP Home Edition, específica para la informática doméstica.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gnulinux"><a class="anchor" href="#_gnulinux"></a>3.5.7. GNU/Linux</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/GNU/Linux">GNU/Linux</a> es un sistema operativo libre y, tal vez, el más famoso proyecto de <a href="https://es.wikipedia.org/wiki/Software_libre">software libre</a>.</p>
+</div>
+<div class="paragraph">
+<p>El proyecto GNU se inició en 1983, con el fin de desarrollar un sistema operativo estilo UNIX enteramente libre.
+El proyecto incluía la creación de herramientas de desarrollo de software y aplicaciones de usuario.</p>
+</div>
+<div class="paragraph">
+<p>Mucho tiempo después, el estudiante universitario finés Linus Torvalds comenzó a desarrollar el núcleo Linux como hobby, mientras estudiaba en la Universidad de Helsinki.
+Torvalds originalmente usaba <a href="https://es.wikipedia.org/wiki/MINIX">Minix</a>, un sistema operativo simplificado escrito por Andrew Tanenbaum para enseñar diseño de sistemas operativos.
+Sin embargo, el hecho de que Tanenbaum no diera soporte a las mejoras del sistema operativo que eran propuestas por otros desarrolladores, llevó a Torvalds a escribir un sustituto de MINIX.</p>
+</div>
+<div class="paragraph">
+<p>En 1991, cuando se liberó la primera versión del núcleo Linux, el proyecto GNU había desarrollado todos los componentes necesarios del sistema operativo excepto el núcleo.
+Torvalds y otros desarrolladores rápidamente adaptaron Linux para que funcionara con los componentes de GNU, creando un sistema operativo completamente funcional que se denomina GNU/Linux.</p>
+</div>
+<div class="paragraph">
+<p>El núcleo Linux fue licenciado bajo la GNU General Public License (GPL), como el resto del proyecto GNU.
+Pero Linux no es parte de dicho proyecto.
+El proyecto GNU tiene su propio núcleo, denominado <a href="https://es.wikipedia.org/wiki/GNU_Hurd">GNU/Hurd</a>, que lleva 30 años en desarrollo y parece que aún está muy lejos de estar listo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>GNU no es el único sistema operativo que utiliza el núcleo Linux.
+<a href="https://es.wikipedia.org/wiki/Android">Android</a>, por ejemplo, es un sistema operativo que usa el núcleo Linux, pero no es GNU.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mach"><a class="anchor" href="#_mach"></a>3.5.8. Mach</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Mach_(n%C3%BAcleo)">Mach</a> es un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
+El proyecto en la CMU se desarrolló desde 1985 hasta 1994.</p>
+</div>
+<div class="paragraph">
+<p>Mach explora el concepto que denominamos <strong><em>microkernel</em></strong>.
+En los sistemas operativos <strong><em>microkernel</em></strong> solo se implementa en el núcleo del sistema un conjunto mínimo de servicios básicos.
+El resto de los servicios proporcionados por el sistema operativo se implementan como procesos con menos privilegios.</p>
+</div>
+<div class="paragraph">
+<p>Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los <em>microkernel</em> dominarían el universo de los sistemas operativos.
+Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es <a href="https://es.wikipedia.org/wiki/GNU_Hurd">GNU/Hurd</a>, que lleva varias décadas de retraso.
+Por fortuna, otros sistemas operativos <em>microkernel</em> han tenido algo más éxito, como es el caso de <a href="https://es.wikipedia.org/wiki/QNX">QNX</a> o <a href="https://en.wikipedia.org/wiki/MINIX_3">MINIX 3</a>.
+Mientras que Google parece que lo va a intentar con <a href="https://es.wikipedia.org/wiki/Google_Fuchsia">Google Fuchsia</a>, el posible sustituto de Android.</p>
+</div>
+<div class="paragraph">
+<p>A mediados de los 90, Apple Computers seleccionó <a href="https://es.wikipedia.org/wiki/NEXTSTEP">OpenStep</a> como base para el sucesor de su clásico <a href="https://es.wikipedia.org/wiki/Mac_OS_Classic">Mac OS</a>.
+OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema UNIX BSD de la Universidad de Berkeley.
+Por tanto, la mezcla de Mach con UNIX BSD de OpenStep es la base del sistema operativo <a href="https://es.wikipedia.org/wiki/MacOS">macOS</a> actual de Apple.</p>
+</div>
+<div id="fig-openstep-42" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/openstep_42.png" alt="openstep 42">
+</div>
+<div class="title">Figura 16. Entorno gráfico de OpenStep 4.2&#8201;&#8212;&#8201;Fuente: <a href="https://guidebookgallery.org/screenshots/openstep42">Guidebook</a></div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Para ser exactos, la base del sistema operativo macOS es un sistema operativo libre denominado <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Darwin</a> y desarrollado por Apple.
+Se trata de un sistema <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> adaptado para correr sobre el núcleo Mach.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C03-historia/historia_sistemas_operativos.svg" alt="historia sistemas operativos">
+</div>
+<div class="title">Figura 17. Línea de tiempo de la historia de los sistemas operativos.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="tipos_de_sistemas_operativos.html">Tipos de sistemas operativos</a> | ↑ Subir: <a href="introducción.html">Introducción</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

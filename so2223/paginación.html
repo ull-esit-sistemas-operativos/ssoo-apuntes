@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('true' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="paginación" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2022-2023</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+<ul class="sectlevel1">
+<li><a href="memoria_principal.html">15. Memoria principal</a>
+</li>
+<li><a href="paginación.html"><span class="toc-current">16. Paginación</span></a>
+<ul class="sectlevel2">
+<li><a href="paginación.html#_método_básico">16.1. Método básico</a>
+</li>
+<li><a href="paginación.html#_soporte_hardware_de_la_tabla_de_páginas">16.2. Soporte hardware de la tabla de páginas</a>
+</li>
+<li><a href="paginación.html#_protección_de_la_memoria_2">16.3. Protección de la memoria</a>
+</li>
+<li><a href="paginación.html#_páginas_compartidas">16.4. Páginas compartidas</a>
+</li>
+<li><a href="paginación.html#_paginación_jerárquica">16.5. Paginación jerárquica</a>
+</li>
+</ul>
+</li>
+<li><a href="memoria_virtual.html">17. Memoria virtual</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="paginación"><a class="anchor" href="#paginación"></a>16. Paginación</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 22 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La traducción entre direcciones virtuales y físicas puede realizarse de diversas maneras.
+La forma más extendida es la <strong>paginación</strong>, que no es sino un esquema de gestión de la memoria que permite que el espacio de direcciones físico de un proceso no sea continuo, evitando el problema de la <strong>fragmentación externa</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="_método_básico"><a class="anchor" href="#_método_básico"></a>16.1. Método básico</h3>
+<div class="paragraph">
+<p>En la paginación la memoria física se divide en bloques de tamaño fijo denominados <strong>marcos</strong>, mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados <strong>páginas</strong>.
+Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.</p>
+</div>
+<div id="fig-paginación" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/paginación.svg" alt="paginación">
+</div>
+<div class="title">Figura 51. Soporte del hardware para la paginación.</div>
+</div>
+<div class="paragraph">
+<p>La paginación es una forma de <strong>reubicación de las direcciones en tiempo de ejecución</strong> donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <a href="paginación.html#fig-paginación">Figura 51</a>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Cada dirección virtual generada por la CPU es divida en dos partes: un <strong>número de página</strong> <em>p</em> y un <strong>desplazamiento</strong> <em>d</em>.</p>
+</li>
+<li>
+<p>El <strong>número de página</strong> es utilizado por la MMU para indexar la <strong>tabla de páginas</strong>, que contiene el <strong>número de marco</strong> <em>f</em> de cada <strong>página</strong> en la memoria física.</p>
+</li>
+<li>
+<p>El <strong>número de marco</strong> <em>f</em> es combinado con el <strong>desplazamiento</strong> <em>d</em> para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El tamaño de las <strong>páginas</strong> —y el de los <strong>marcos</strong>— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
+Es decir, si el espacio de direcciones es de 2<sup><em>m</em></sup> y el tamaño de página es de 2<sup><em>n</em></sup>, los <em>m</em> - <em>n</em> bits de mayor orden de las direcciones virtuales indican el <strong>número de página</strong>, mientras que los <em>n</em> bits de menor orden indican el <strong>desplazamiento</strong> (véase la <a href="paginación.html#fig-dirección-virtual-paginación">Figura 52</a>).</p>
+</div>
+<div id="fig-dirección-virtual-paginación" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/dirección_virtual_paginación.svg" alt="dirección virtual paginación">
+</div>
+<div class="title">Figura 52. Descomposición de las direcciones virtuales en paginación.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento <em>n</em> necesita:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$n = log_2 4096 = 12\ "bits"\$
+</div>
+</div>
+<div class="paragraph">
+<p>Si las direcciones virtuales son de 32 bits, eso deja para el número de página <em>p</em>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$p = 32 - 12 = 20\ "bits"\$
+</div>
+</div>
+<div class="paragraph">
+<p>por lo que el espacio de direcciones virtual tiene 2<sup>20</sup> páginas —es decir, 1&#x2009;048&#x2009;576 páginas—.</p>
+</div>
+<div class="sect3">
+<h4 id="_desde_el_punto_de_vista_de_los_procesos"><a class="anchor" href="#_desde_el_punto_de_vista_de_los_procesos"></a>16.1.1. Desde el punto de vista de los procesos</h4>
+<div class="paragraph">
+<p>Cada <strong>página</strong> de un proceso requiere un <strong>marco</strong>.
+Por tanto, cuando un proceso llega al sistema:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Si el proceso requiere <em>n</em> <strong>páginas</strong>, el sistema operativo debe escoger <em>n</em> <strong>marcos</strong>.
+Estos <strong>marcos</strong> son tomados de la <strong>lista de marcos libres</strong> que debe mantener el sistema.
+Puesto que son escogidos de allí donde los haya libres, el <strong>espacio de direcciones físico</strong> puede no ser contiguo, aunque los procesos vean un <strong>espacio de direcciones virtual</strong> contiguo.</p>
+</li>
+<li>
+<p>Los <strong>marcos</strong> seleccionados son asignados al proceso y cada <strong>página</strong> del proceso es cargada en uno de dichos <strong>marcos</strong>.</p>
+</li>
+<li>
+<p>La <strong>tabla de páginas</strong> es actualizada de manera que en la entrada de cada <strong>página</strong> del proceso se pone el número de <strong>marco</strong> correspondiente.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Un aspecto importante de la paginación es la diferencia entre cómo ven los procesos la memoria y como es realmente la memoria física.
+Cada proceso ve la memoria como un espacio único que lo contiene solo a él.
+Sin embargo, la realidad es que el programa está disperso por la memoria física, que además puede almacenar a otros programas.
+Esto es posible porque en cada momento la <strong>tabla de páginas</strong> solo contiene las <strong>páginas</strong> del proceso en ejecución en la CPU.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_desde_el_punto_de_vista_del_sistema_operativo"><a class="anchor" href="#_desde_el_punto_de_vista_del_sistema_operativo"></a>16.1.2. Desde el punto de vista del sistema operativo</h4>
+<div class="paragraph">
+<p>Puesto que el sistema operativo es quién gestiona la memoria física, este debe saber:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Que <strong>marcos</strong> están asignados y a que <strong>página</strong> de qué proceso o procesos.</p>
+</li>
+<li>
+<p>Que <strong>marcos</strong> están disponibles.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Toda esta información generalmente se guarda en una estructura denominada la <strong>tabla de marcos</strong>, que tiene una entrada por cada <strong>marco</strong> de la memoria física.</p>
+</div>
+<div class="paragraph">
+<p>Además, el sistema operativo debe mantener una copia de la <strong>tabla de páginas</strong> para cada proceso en el <strong>PCB</strong>, igual que mantiene una copia del contador de programa y del contenido de los registros de la CPU.
+Esta copia es utilizada:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Por el <strong>asignador</strong> para sustituir la <strong>tabla de páginas</strong> usada por la CPU cuando realiza un <strong>cambio de contexto</strong>.
+Por lo tanto, el uso de la paginación incrementa el tiempo del cambio de contexto.</p>
+</li>
+<li>
+<p>Para la traducción manual de direcciones virtuales en físicas.
+Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una operación de E/S y proporciona una dirección como parámetro, dicha dirección debe ser traducida manualmente para producir la dirección física correspondiente, que será comunicada al hardware para realizar la operación.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tamaño_de_las_páginas"><a class="anchor" href="#_tamaño_de_las_páginas"></a>16.1.3. Tamaño de las páginas</h4>
+<div class="paragraph">
+<p>Una decisión de diseño importante es escoger el tamaño de las <strong>páginas</strong> adecuado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Con <strong>páginas</strong> más pequeñas esperamos tener menos <strong>fragmentación interna</strong>.</p>
+</li>
+<li>
+<p>Con páginas más grandes se pierde menos espacio en la <strong>tabla de páginas</strong>.
+No olvidemos que cuanto más pequeñas son las <strong>páginas</strong>, más <strong>páginas</strong> son necesarias y, por tanto, más entradas en la <strong>tabla de páginas</strong> se necesitan.
+Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los tamaños de <strong>páginas</strong> típicos son 4 y 8 KiB.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1&#x2009;048&#x2009;576 páginas.
+Si se utilizan 4 bytes para cada entrada de la <strong>tabla de páginas</strong> —aunque esto también puede variar— eso significa que cada <strong>tabla de páginas</strong> ocupa 4 MiB de espacio.
+Mientras que con <strong>páginas</strong> de 8 KiB, la <strong>tabla de páginas</strong> ocuparía 2 MiB de espacios.</p>
+</div>
+<div class="paragraph">
+<p>También significa que si los 4 bytes de la <strong>tabla de páginas</strong> se utilizan para guardar únicamente el <strong>número de marco</strong>, cada entrada puede direccionar a uno de 2<sup>32</sup> —o 4 GiB— <strong>marcos</strong> de la memoria física.
+Si el tamaño de cada <strong>marco</strong> es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar 2<sup>44</sup> bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_soporte_hardware_de_la_tabla_de_páginas"><a class="anchor" href="#_soporte_hardware_de_la_tabla_de_páginas"></a>16.2. Soporte hardware de la tabla de páginas</h3>
+<div class="paragraph">
+<p>La implementación en hardware de la <strong>tabla de páginas</strong> puede realizarse de diversas maneras.</p>
+</div>
+<div class="sect3">
+<h4 id="_almacenada_en_registros_de_la_cpu"><a class="anchor" href="#_almacenada_en_registros_de_la_cpu"></a>16.2.1. Almacenada en registros de la CPU</h4>
+<div class="paragraph">
+<p>La <strong>tabla de páginas</strong> del proceso actual en la CPU puede alojarse dentro de la propia CPU, en unos registros destinados a tal fin.</p>
+</div>
+<div class="paragraph">
+<p>Debido a la velocidad de los registros de la CPU, la implementación en registros es la más eficiente.
+Sin embargo, solo puede ser utilizado para <strong>tablas de páginas</strong> razonablemente pequeñas, ya que alojar tablas de más de 256 entradas en registros es muy costoso.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el DEC <a href="https://es.wikipedia.org/wiki/PDP-11">PDP-11</a> —para el que se diseñó el primer UNIX— es un ejemplo de sistema con esta implementación.
+Utilizaba un espacio de direcciones de 16 bits y un tamaño de <strong>páginas</strong> de 8 KiB, por lo que solo necesitaba 8 registros dedicados para alojar toda la <strong>tabla de páginas</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_almacenada_en_memoria"><a class="anchor" href="#_almacenada_en_memoria"></a>16.2.2. Almacenada en memoria</h4>
+<div class="paragraph">
+<p>La otra opción es alojar la <strong>tabla de páginas</strong> del proceso actual en la memoria, normalmente en un formato definido por la CPU.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas modernos se utilizan <strong>tablas de páginas</strong> de un millón de entradas o más, que difícilmente pueden alojarse en registros dentro de la CPU.
+Por eso, los sistemas actuales almacenan la <strong>tabla de páginas</strong> del proceso actualmente en ejecución, en la memoria.
+Eso permite disponer de <strong>tablas de páginas</strong> de gran tamaño, aunque a costa de necesitar dos accesos a la memoria física por cada acceso a una dirección virtual.</p>
+</div>
+<div class="paragraph">
+<p>Para que la MMU pueda conocer la ubicación de la <strong>tabla de páginas</strong> durante la traducción de las direcciones, la CPU debe disponer de un registro —el <strong>PTBR</strong> (<em>Page-Table Base Register</em>)— donde se guarda la dirección de la <strong>tabla de páginas</strong> actual.</p>
+</div>
+<div class="paragraph">
+<p>Además, esto tiene la ventaja de que el <strong>cambio de contexto</strong> es más rápido —respecto al uso de registros para almacenar la tabla de páginas— puesto que solo es necesario cargar un único registro más —el <strong>PTBR</strong>— durante el mismo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tlb"><a class="anchor" href="#_tlb"></a>16.2.3. TLB</h4>
+<div class="paragraph">
+<p>La solución al retraso originado por el acceso a la tabla de páginas, cuando esta está en la memoria, pasa porque el sistema disponga de una pequeña caché de traducciones en hardware llamada <strong>TLB</strong> (<em>Translation Look-aside Buffer</em>).</p>
+</div>
+<div class="paragraph">
+<p>La <strong>TLB</strong> es una memoria asociativa de alta velocidad.
+Cada entrada de la <strong>TLB</strong> tiene dos partes: la <strong>clave</strong> —o etiqueta— y el valor.
+Cuando a la <strong>TLB</strong> se le entrega un elemento, este es comparado simultáneamente con todas las claves.
+Si se produce alguna coincidencia, la memoria devuelve el valor de la entrada correspondiente.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Debido a la forma que tienen de operar, son rápidas pero muy caras de fabricar.
+Por ello, el número de entradas es bajo, normalmente entre 64 y 1024.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_uso_básico_de_la_tlb"><a class="anchor" href="#_uso_básico_de_la_tlb"></a>Uso básico de la TLB</h5>
+<div class="paragraph">
+<p>La <strong>TLB</strong> es utiliza con la <strong>tabla de páginas</strong> de la siguiente manera:</p>
+</div>
+<div id="fig-paginación-tlb" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/tlb.svg" alt="tlb">
+</div>
+<div class="title">Figura 53. Soporte del hardware para la paginación con TLB.</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La <strong>TLB</strong> contiene unas pocas entradas de la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Cuando la CPU genera una dirección virtual, el <strong>número de página</strong> es entregado a la <strong>TLB</strong>.
+La <strong>TLB</strong> utiliza los números de páginas como <strong>clave</strong>, por lo que si hay alguna coincidencia, devolverá la entrada correspondiente de la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Si hay coincidencia —o <strong>acierto de TLB</strong>— el <strong>número de marco</strong> es extraído de la entrada devuelta por la <strong>TLB</strong> y es utilizado para generar la dirección física.
+Todo este proceso puede requerir un 10% más de tiempo que si no se hiciera la traducción de las direcciones.</p>
+</li>
+<li>
+<p>Si no hay coincidencia —o <strong>fallo de TLB</strong>— es necesario acceder a la <strong>tabla de páginas</strong> para obtener la entrada correspondiente directamente de ella.
+Indudablemente, este acceso puede beneficiarse de la existencia de diferentes niveles de caché en el acceso a la memoria principal.</p>
+</li>
+<li>
+<p>En este último caso, la entrada recuperada debe ser añadida a la <strong>TLB</strong>, por lo que sí está llena, se debe seleccionar una para ser sustituida.
+Los algoritmos de reemplazo utilizados van, desde elegir una aleatoriamente, hasta el <strong>LRU</strong> (<em>Least Recently Used</em>).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_borrado_de_la_tlb_en_el_cambio_de_contexto"><a class="anchor" href="#_borrado_de_la_tlb_en_el_cambio_de_contexto"></a>Borrado de la TLB en el cambio de contexto</h5>
+<div class="paragraph">
+<p>Una cuestión importante es qué ocurre con las <strong>TLB</strong> cuando el sistema operativo realiza un <strong>cambio de contexto</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En general, es necesario que el asignador realice un borrado de la <strong>TLB</strong>.
+De lo contrario, el nuevo proceso podría utilizar las entradas de la <strong>tabla de páginas</strong> del viejo proceso, que estuvieran almacenadas en la <strong>TLB</strong>.
+Sin embargo, un proceso no tiene por qué utilizar todas las entradas de la <strong>TLB</strong>, por lo que sería más interesante, no tener que borrar las entradas de procesos anteriores, mientras no sean necesarias, por si estos vuelven a ser ejecutados en la CPU.</p>
+</div>
+<div class="paragraph">
+<p>El borrado se puede evitar si cada entrada de la <strong>TLB</strong> tiene un <strong>ASID</strong> (<em>Address-Space Identification</em>), que no es más que un identificador único para cada proceso.
+En este tipo de <strong>TLB</strong>, en la <strong>clave</strong> se buscan pares <strong>(número de página, ASID)</strong>, donde el primero proviene de la dirección virtual y el segundo es el <strong>ASID</strong> del proceso actual.
+De esta forma, si el <strong>número de página</strong> coincide, pero no el <strong>ASID</strong>, se produce un fallo de la <strong>TLB</strong>.
+Esto obliga a acceder a la <strong>tabla de páginas</strong> en memoria para recuperar la entrada, evitando que se lea por error la entrada de un proceso anterior.</p>
+</div>
+<div class="paragraph">
+<p>Esta característica está presente en los procesadores <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a>  y <a href="https://es.wikipedia.org/wiki/UltraSPARC">Sun UltraSPARC</a>.
+Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la familia x86, a través de las extensiones de virtualización Intel VT y AMD Pacifica.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tiempos_de_acceso_a_la_memoria"><a class="anchor" href="#_tiempos_de_acceso_a_la_memoria"></a>Tiempos de acceso a la memoria</h5>
+<div class="paragraph">
+<p>El rendimiento de un sistema con paginación, está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria <em>T<sub>em</sub></em>, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de <strong>TLB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En muchos sistemas informáticos, el <strong>tiempo de acceso</strong> a la memoria física <em>T<sub>m</sub></em> es de unos pocos nanosegundos.
+Por lo tanto, en el método de básico de paginación el <strong>tiempo de acceso efectivo</strong> es el doble del <strong>tiempo de acceso</strong> a la memoria:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_(em)=2T_m\$
+</div>
+</div>
+<div class="paragraph">
+<p>Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el <strong>número de marco</strong>, el <strong>tiempo de acceso efectivo</strong> será mayor.</p>
+</div>
+<div class="paragraph">
+<p>Supongamos que tenemos un sistema con <strong>TLB</strong> y que conocemos la probabilidad <em>p</em> de que la entrada que consultamos esté en la <strong>TLB</strong>.
+Entonces, el <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad (1 - <em>p</em>) de que la entrada no esté en la <strong>TLB</strong>, por el <strong>tiempo de acceso</strong> necesario, en ese caso 2<em>T<sub>m</sub></em>, más la probabilidad de que la entrada sí esté en la <strong>TLB</strong> <em>p</em>, por el <strong>tiempo de acceso</strong> <em>T<sub>m</sub></em>, porque solo hace falta acceder una vez a la memoria:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_(em)=(1-p) 2T_m+pT_m=(2-p) T_m\$
+</div>
+</div>
+<div class="paragraph">
+<p>Como se puede observar, cuanto más se aproxima a 1 la probabilidad <em>p</em> de que la entrada esté en la <strong>TLB</strong>, más cerca está <em>T<sub>em</sub></em> de <em>T<sub>m</sub></em>.</p>
+</div>
+<div class="paragraph">
+<p>Para mejorar esta probabilidad:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las <strong>TLB</strong> permiten marcar algunas entradas como insustituibles.
+Esto normalmente se hace con las entradas de las <strong>páginas</strong> del código y los datos del núcleo, ya que son páginas que se utilizan con muchísima frecuencia.</p>
+</li>
+<li>
+<p>Si la MMU soporta páginas de mayor tamaño que el estándar, se utilizan para alojar el código y los datos del núcleo.
+De esta forma se minimiza el número de entradas de la <strong>TLB</strong> que utilizan, con el fin de disponer de más entradas libres para los procesos en ejecución.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En la familia x86 el tamaño de página estándar es de 4 KiB, pero también se puede disponer de páginas de 4 MiB.
+En x86-64 las páginas de gran tamaño son de 2 MiB, aunque algunos modelos también soportan páginas de 1 GiB.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_protección_de_la_memoria_2"><a class="anchor" href="#_protección_de_la_memoria_2"></a>16.3. Protección de la memoria</h3>
+<div class="paragraph">
+<p>La protección de las páginas se consigue mediante unos bits que indican las operaciones que se pueden realizar sobre ellas.
+Normalmente, estos bits son almacenados en cada una de las entradas de la <strong>tabla de páginas</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_bits_de_protección"><a class="anchor" href="#_bits_de_protección"></a>16.3.1. Bits de protección</h4>
+<div class="paragraph">
+<p>
+Los <strong>bits de protección</strong> pueden ser:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Solo lectura</strong>.</p>
+</li>
+<li>
+<p><strong>Lectura&#8201;&#8212;&#8201;Escritura</strong>.
+En algunos sistemas hay un bit específico para este permiso, mientras que en otros se utilizan bits separados, como: <strong>lectura</strong>, <strong>escritura</strong> y <strong>ejecución</strong>; que se pueden combinar libremente.</p>
+</li>
+<li>
+<p><strong>Solo ejecución</strong>.
+Que no existen en todas las plataformas.
+Por ejemplo, la familia x86 careció de esta característica hasta que AMD la incluyó en su arquitectura x86-64, lo que obligó a Intel a incluirla en las versiones más modernas de Pentium IV.
+El bit —que para ser exacto indica <strong>no ejecución</strong>— fue introducido para evitar cierto tipo de ataques de seguridad.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Durante la traducción de las direcciones, la MMU comprueba que el tipo de acceso sea válido.
+Si no lo es, se genera una excepción de violación de protección de memoria, dado que el acceso en un modo no autorizado se considera una instrucción privilegiada.
+Normalmente, el sistema operativo responde a dicha excepción terminando el proceso que la generó.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bit_de_válido"><a class="anchor" href="#_bit_de_válido"></a>16.3.2. Bit de válido</h4>
+<div class="paragraph">
+<p>
+Además de los <strong>bits de protección</strong> comentados, se suele añadir a cada entrada un <strong>bit de válido</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cuando una <strong>página es válida</strong>, la página existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página se puede utilizar.
+Otro término comúnmente utilizado, es que la página es <strong>legal</strong>.</p>
+</li>
+<li>
+<p>Cuando la <strong>página es inválida</strong>, la página no existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página no se puede utilizar.
+El término alternativo utilizado es que la página es <strong>ilegal</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Al igual que con los <strong>bits de protección</strong>, los intentos de acceso a una página ilegal generan una excepción.</p>
+</div>
+<div class="paragraph">
+<p>El sistema operativo puede utilizar este bit para permitir o denegar cualquier tipo de acceso a una <strong>página</strong>.
+Generalmente, porque no se le ha asignado un <strong>marco</strong> de memoria física, ya que esa página no está siendo utilizada por el proceso.</p>
+</div>
+<div id="fig-bit-de-válido-en-la-tabla-de-páginas" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/bit_de_válido_en_la_tabla_de_páginas.svg" alt="bit de válido en la tabla de páginas">
+</div>
+<div class="title">Figura 54. Bit de válido en la tabla de páginas.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en la <a href="paginación.html#fig-bit-de-válido-en-la-tabla-de-páginas">Figura 54</a>, vemos el espacio de direcciones virtual y la <strong>tabla de páginas</strong> de un proceso de 5096 bytes en un sistema con <strong>páginas</strong> de 1 KiB.
+Puesto que el proceso no ocupa todo el espacio de direcciones, solo las direcciones de la 0 a la 5119 son válidas.
+En dicho ejemplo, podemos apreciar varios fenómenos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Debido a la <strong>fragmentación interna</strong>, las direcciones de la 5097 a la 5119 son válidas, aunque el proceso solo ocupe hasta la 5096.
+Es decir, se está asignando al proceso una porción de memoria que no necesita.</p>
+</li>
+<li>
+<p>Solo las <strong>páginas</strong> con datos y código del proceso son válidas.
+Mientras que todas las <strong>páginas</strong> con direcciones por encima de la 5119 están marcadas como ilegales.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En general, los procesos solo necesitan una porción muy pequeña de su espacio de direcciones virtual.
+Por ejemplo, en un sistema de 32 bits, muy pocos procesos necesitan los 3 GiB disponibles como máximo para cada proceso —el 1 GiB restante suele estar ocupado por el núcleo del sistema—.
+Utilizando el <strong>bit de válido</strong>, el sistema operativo no tiene que asignar <strong>marcos</strong> a <strong>páginas</strong> no utilizadas por el proceso, ahorrando mucha memoria.</p>
+</div>
+<div class="paragraph">
+<p>En el <a href="paginación.html#_tamaño_de_las_páginas">Apartado 16.1.3</a>, vimos que el tamaño de la <strong>tabla de páginas</strong> se puede calcular como el número máximo de páginas del espacio de direcciones virtual multiplicado por el tamaño de cada entrada de la tabla.
+Así, en un sistema de 32 bits con páginas de 4 KiB y 4 bytes por entrada, se necesitan 4 MiB de memoria para almacenar la <strong>tabla de páginas</strong>.
+Como un proceso suele ocupar muy poco de su espacio de direcciones virtual, suele ser un desperdicio de memoria crear y almacenar una <strong>tabla de páginas</strong> completa, con una entrada para cada <strong>página</strong> del espacio de direcciones.</p>
+</div>
+<div class="paragraph">
+<p>Para evitarlo, en algunas CPU existe el registro <strong>PTLR</strong> (<em>Page-Table Length Register</em>) que se utiliza para indicar el tamaño actual de la <strong>tabla de páginas</strong>.
+Este valor es comparado por la MMU, durante la traducción de las direcciones virtuales, con el <strong>número de página</strong> de cada dirección virtual, de manera que las <strong>páginas</strong> con entradas más allá de la última almacenada en la tabla son consideradas ilegales.</p>
+</div>
+<div id="fig-proceso-en-memoria-disperso" class="imageblock">
+<div class="content">
+<img src="media/C09-procesos/proceso_en_memoria.svg" alt="proceso en memoria">
+</div>
+<div class="title">Figura 55. Anatomía de un proceso en memoria.</div>
+</div>
+<div class="paragraph">
+<p>En realidad, el registro <strong>PTLR</strong> no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <a href="procesos.html#_el_proceso">Apartado 9.1</a>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <a href="paginación.html#fig-proceso-en-memoria-disperso">Figura 55</a>.
+En ella, podemos observar, como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
+Este esquema permite que tanto el <strong>montón</strong> —a través del mecanismo de asignación dinámica de memoria— como la <strong>pila</strong> puedan extenderse —según las necesidades de memoria que tenga el proceso— sobre la región de memoria no ocupada.
+Esa región también puede ser parcialmente ocupada por <strong>librerías de enlace dinámico</strong> o regiones de <strong>memoria compartida</strong>, si son necesarias durante la ejecución del proceso.</p>
+</div>
+<div class="paragraph">
+<p>En cualquier caso, las <strong>páginas</strong> de la región no ocupada, forman parte del espacio de direcciones virtual, pero no necesitan tener asignado ningún <strong>marco</strong> de memoria física, en tanto en cuanto el proceso no las vaya a utilizar.
+La falta de <strong>marco</strong> es indicada por el sistema operativo utilizando el <strong>bit de válido</strong> para denegar el acceso.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_páginas_compartidas"><a class="anchor" href="#_páginas_compartidas"></a>16.4. Páginas compartidas</h3>
+<div class="paragraph">
+<p>
+Una de las ventajas importantes de la paginación, es la posibilidad de compartir <strong>páginas</strong> entre procesos.
+Para conseguir esto, basta con que las <strong>páginas compartidas</strong> de los distintos procesos tengan asignadas un mismo <strong>marco</strong>.
+Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las <strong>páginas</strong> de código o los datos de solo lectura con el fin de ahorrar memoria.
+También permite compartir las <strong>páginas</strong> de código de una librería compartida enlazada en diferentes procesos.</p>
+</div>
+<div class="paragraph">
+<p>Compartir <strong>páginas</strong> no solo permite ahorrar memoria, pues en los sistemas operativos modernos, la comunicación entre procesos mediante memoria compartida (véase el <a href="memoria_compartida.html">Capítulo 11</a>), se implementa mediante <strong>páginas compartidas</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_paginación_jerárquica"><a class="anchor" href="#_paginación_jerárquica"></a>16.5. Paginación jerárquica</h3>
+<div class="paragraph">
+<p>
+Al método básico de paginación, se lo conoce como <strong>tabla de páginas lineal</strong>.
+Sin embargo, las CPU comúnmente, utilizan otras técnicas a la hora de estructurar la <strong>tabla de páginas</strong>.
+Una de las más comunes es la <strong>paginación jerárquica</strong>, utilizada en los procesadores de la familia x86 y en ARM, entre otros.</p>
+</div>
+<div class="paragraph">
+<p>La mayor parte de los sistemas modernos soportan el uso de espacios de direcciones de gran tamaño.
+Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 bits:</p>
+</div>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño del espacio de direcciones</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>32</sup> = 4 GiB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño de página</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>12</sup> = 4 KiB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>número de páginas</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>32</sup> / 2<sup>12</sup> = 2<sup>32-12</sup> = 2<sup>20</sup> = 1&#x2009;048&#x2009;576 entradas</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Es decir, que si el tamaño de cada entrada fuera de 4 bytes, la <strong>tabla de páginas</strong> de un proceso podría ocupar hasta 4 MiB; que debe ser alojada en una región continúa del espacio de direcciones físico, por lo que podría darse el caso de que en algún momento no hubiera un hueco contiguo lo suficientemente grande.
+Una forma de resolver este problema es partir la <strong>tabla de páginas</strong>, de manera que no sea necesario asignarle memoria de forma contigua.</p>
+</div>
+<div class="sect3">
+<h4 id="_paginación_jerárquica_de_dos_niveles"><a class="anchor" href="#_paginación_jerárquica_de_dos_niveles"></a>16.5.1. Paginación jerárquica de dos niveles</h4>
+<div class="paragraph">
+<p>La <strong>paginación jerárquica</strong> se basa en la idea de que un vector de gran tamaño puede ser mapeado en uno más pequeño, que a su vez, puede ser mapeado en un vector de menor tamaño.</p>
+</div>
+<div id="fig-paginación-jerárquica" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/paginación_jerárquica.svg" alt="paginación jerárquica">
+</div>
+<div class="title">Figura 56. Esquema de paginación jerárquica de dos niveles.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de página de 4 KiB, entonces podemos dividir la tabla de páginas de 1&#x2009;048&#x2009;576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un <strong>marco</strong> de 4 KiB.</p>
+</div>
+<div class="paragraph">
+<p>Estos <strong>marcos</strong>, a su vez, pueden ser mapeados por 1024 entradas con las direcciones físicas de cada <strong>marco</strong>.
+Si organizamos estas 1024 entradas en un vector lineal, obtendremos una <strong>tabla de páginas externa</strong> de 4 KiB (véase la <a href="paginación.html#fig-paginación-jerárquica">Figura 56</a>).</p>
+</div>
+<div class="paragraph">
+<p>Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativos mantienen la <strong>tabla de páginas externa</strong> en la memoria mientras el proceso se está ejecutando.
+Sin embargo, ahora la <strong>tabla de páginas</strong> está dividida en <strong>marcos</strong>, que no tienen por qué ser asignados de forma contigua en la memoria.
+Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.</p>
+</div>
+<div class="paragraph">
+<p>Para tener dos niveles de 1024 entradas, solo es necesario dividir el <strong>número de página</strong> <em>p</em> de la dirección virtual —que tenía 2<sup>20</sup> bits— en dos <strong>números de página</strong> de 2<sup>10</sup> bits cada uno:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/dirección_virtual_paginación_jerárquica.svg" alt="dirección virtual paginación jerárquica">
+</div>
+</div>
+<div class="paragraph">
+<p>Este es el método utilizado por la familia de procesadores x86.</p>
+</div>
+<div class="paragraph">
+<p>Otra variación de la <strong>paginación jerárquica de dos niveles</strong> es la utilizada por VAX.
+Estos sistemas utilizaban una arquitectura de 32 bits con un tamaño de página de 512 bytes.
+Las direcciones virtuales eran divididas de la siguiente manera:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/dirección_virtual_vax.svg" alt="dirección virtual vax">
+</div>
+</div>
+<div class="paragraph">
+<p>El espacio de direcciones de un proceso estaba dividido en 3 secciones.
+Los 2 bits de orden más alto <em>s</em> de las direcciones virtuales se utilizaban para indicar la <strong>sección</strong>.
+Cada <strong>sección</strong> estaba dividida en <strong>páginas</strong> de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales <em>p</em> eran utilizadas para seleccionar la <strong>página</strong> concreta.</p>
+</div>
+<div class="paragraph">
+<p>Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
+Esto era importante, puesto que la <strong>tabla de páginas</strong> de una
+<strong>sección</strong> tenía un tamaño de 8 MiB.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_paginación_jerárquica_de_n_niveles"><a class="anchor" href="#_paginación_jerárquica_de_n_niveles"></a>16.5.2. Paginación jerárquica de N niveles</h4>
+<div class="paragraph">
+<p>En general, en la <strong>paginación jerárquica</strong> de <em>n</em> niveles el <strong>número de página</strong> <em>p</em> de cada dirección virtual es dividido en <em>n</em> números: { <em>p</em><sub>1</sub>, <em>p</em><sub>2</sub>, <em>p</em><sub>3</sub>, &#8230;, <em>p<sub>N</sub></em>}, donde:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>p</em><sub>1</sub> se utiliza para indexar la <strong>tabla de páginas externa</strong> —también llamada <strong>directorio de páginas</strong> o <strong>tabla de páginas de nivel 0</strong>— cuya dirección conoce la CPU mediante el <strong>PTBR</strong>.
+La entrada obtenida de esta manera, contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 1—.</p>
+</li>
+<li>
+<p><em>p</em><sub>2</sub> se utiliza para indexar la <strong>tabla de páginas de nivel 1</strong>.
+E, igualmente, la entrada así obtenida contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 2—.</p>
+</li>
+<li>
+<p>El proceso continúa hasta que <em>p<sub>N</sub></em>, se utiliza para indexar la <strong>tabla de páginas de nivel N-1</strong>, con la que se obtiene el <strong>número de marco</strong> que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento <em>d</em> de la dirección virtual.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Como se puede ver, resolver una dirección virtual necesita tantos accesos a la memoria como niveles hay en la jerarquía.</p>
+</div>
+<div class="paragraph">
+<p>Debido a que la traducción funciona desde las <strong>tablas de páginas</strong> de nivel superior —nivel 0— hacia las de nivel inferior —nivel <em>N</em> - 1— a esta estructura también se la conoce como <strong>tabla de páginas directa</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los procesadores <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a> y <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a> utilizan una variante denominada <strong>tabla de páginas virtualizada</strong>.
+En este esquema, el último nivel de la <strong>paginación jerárquica</strong>, aunque esté en marcos separados en el espacio de direcciones físico, se mapea de manera continua en el espacio de direcciones virtual del proceso.</p>
+</div>
+<div class="paragraph">
+<p>Así, si la consulta a la <strong>TLB</strong> falla, se indexa la <strong>tabla de páginas</strong> directamente con direcciones virtuales usando el <strong>número de página</strong> completo.
+Esta consulta conlleva la traducción de la dirección virtual de la entrada indexada, que puede estar en la <strong>TLB</strong>.
+Si no es así, se pasa a recorrer la <strong>tabla de páginas</strong> desde el nivel 0 y usando direcciones físicas.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Existen algunos procesadores que utilizan más de dos niveles.
+Por ejemplo, los procesadores x86-64 utilizan un esquema de 4 niveles de paginación.
+Cada <strong>página</strong> es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la <strong>tabla de páginas</strong> es de 8 bytes —con el fin de poder almacenar direcciones de 64 bits— en cada una caben 512 entradas, por lo que los <strong>números de página</strong> de cada nivel necesitan 9 bits.
+Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits —resultado de multiplicar 4 niveles por 9 bits cada uno más 12 bits de desplazamiento— aunque el límite de la arquitectura para las direcciones virtuales sea de 64 bits.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="memoria_principal.html">Memoria principal</a> | ↑ Subir: <a href="gestión_de_la_memoria.html">Gestión de la memoria</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="memoria_virtual.html">Memoria virtual</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>
