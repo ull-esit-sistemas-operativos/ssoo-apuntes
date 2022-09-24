@@ -1,2 +1,2 @@
-:academic-year: 20XX-20XY
-:release: master
+:academic-year: 2022-2023
+:release: so2223
