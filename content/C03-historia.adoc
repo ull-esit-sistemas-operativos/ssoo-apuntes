@@ -124,7 +124,7 @@ image::{chapdir}/multics_mainframe.jpg[]
 Fue el primer sistema operativo en proporcionar un sistema de archivos jerárquico, intérprete de comandos implementado como programa de usuario, listas de control de acceso individuales para cada archivo y enlazado dinámico, entre otras características novedosas.
 
 Además experimentó con eliminar la separación entre el espacio de direcciones de los procesos y los archivos.
-Es decir, como si todos los archivos estuvieran mapeados en memoria, permitiendo a los procesos acceder al contenido de los archivos directamente (véase el <<_archivos_mapeados_en_memoria>>).
+Es decir, como si los archivos estuvieran mapeados en memoria, permitiendo a los procesos acceder al contenido de los archivos directamente, sin tener que ordenar manualmente operaciones de lectura desde el disco a la memoria (véase el <<_archivos_mapeados_en_memoria>>).
 
 === VM/CMS
 
@@ -140,12 +140,14 @@ Las versiones actuales se denominan IBM z/VM.
 === UNIX
 
 {unix} fue desarrollado originalmente por Bell Labs en 1970 para los sistemas https://es.wikipedia.org/wiki/PDP-11[PDP-11/20] (véase la <<fig-dec-pdp11>>).
-La autoría del mismo se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS, pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
-Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7.
+La autoría de este se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS, pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
+Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7 —una minicomputadora de la serie PDP de Digital Equipment Corporation (DEC)—.
 
 [[fig-dec-pdp11]]
 .Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales https://en.wikipedia.org/wiki/Teletype_Model_33[Teletype 33] -- Fuente: https://www.bell-labs.com/usr/dmr/www/[Dennis Ritchie]
 image::{chapdir}/dec_pdp11_ken_den.jpg[]
+
+Los sistemas UNIX se caracterizan por ofrecer un gran número de pequeñas herramientas especializadas diseñadas para trabajar unidas —a través de la línea de comandos usando tuberías— y por usar la E/S salida de archivos como modelo universal de E/S. Es decir, que los dispositivos, ciertos mecanismos de comunicación entre procesos y hasta algunos aspectos de la configuración e información del sistema son gestionados como archivos.
 
 La primera versión de UNIX fue implementada en ensamblador, como era común en la época.
 Posteriormente, Dennis Ritchie y Brian Kernighan diseñaron un nuevo lenguaje de programación llamado «C», especialmente pensado para que UNIX fuera escrito con él.
@@ -165,6 +167,9 @@ También implementó y ayudó a difundir el estándar de comunicaciones TCP/IP, 
 Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de UNIX BSD en sus implementaciones de los protocolos TCP/IP y de diversas utilidades de red.
 ====
 
+==== Familias
+
+Los sistemas UNIX siguieron evolucionando hasta adaptarse a la 5ª generación de sistemas, la de los sistemas de escritorio y los ordenadores personales.
 En la actualidad se considera que hay dos grandes familias de UNIX y las distintas variantes pertenecen a una u otra en función del UNIX del que derivaron originalmente:
 
 * La familia derivada de *AT&T UNIX System V*, en la que se incluyen sistemas operativos no libres, tales como: https://es.wikipedia.org/wiki/SCO_OpenServer[SCO OpenServer], https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris Operating Environment] y https://es.wikipedia.org/wiki/UnixWare[SCO UnixWare].
@@ -179,6 +184,44 @@ A su vez Darwin utiliza múltiples elementos de FreeBSD (véase el <<_mach>>).
 
 Otro ejemplo destacable es https://en.wikipedia.org/wiki/PlayStation_4_system_software[Orbis OS] —el sistema operativo de PlayStation 4— que también está basado en FreeBSD.
 ====
+
+==== Estandarización
+
+En 1988 el {ieee} publicó el primer estándar {posix}, un intento de crear un estandarizar mínimo de las características que debería soportar cualquier sistema operativo.
+Este estándar se basó en las características de las principales variantes de UNIX en el momento.
+
+A principios de los 90, como las distintas variantes de UNIX estaban divergiendo —haciendo muy difícil desarrollar programas compatibles con todas ellas— se inició un esfuerzo para desarrollar una especificación común; de tal forma que solo aquellas variantes que la cumplieran pudieran denominarse como «UNIX».
+En 1994 se publicó la https://es.wikipedia.org/wiki/Single_Unix_Specification[Single UNIX Specification (SUR)], gestionada por https://es.wikipedia.org/wiki/The_Open_Group[The Open Group].
+
+En 1998, las organizaciones IEEE, The Open Group y la https://en.wikipedia.org/wiki/International_Organization_for_Standardization[International Organization for Standardization (ISO)] comenzaron a trabajar en una nueva especificación que integrara POSIX y SUR.
+En 2002 se publicó como la «Single UNIX Specification, Version 3», cuya base es idéntica al estándar POSIX.1-2001 IEEE.
+Los sistemas operativos certificados por su cumplimiento reciben la marca «UNIX 03», como es el caso de macOS.
+Pero hay que tener en cuenta que la mayoría de los sistemas basados en UNIX BSD y Linux no han pasado nunca por el proceso de certificación, por lo que no pueden usar la marca UNIX, aunque cumplan con el estándar POSIX, que es la base de la especificación SUR.
+
+Desde 2002 se han publicado otras versiones de SUR, siempre sobre la base de nuevas versiones de la especificación POSIX.
+
+==== Sucesores
+
+Sistemas UNIX y estilo UNIX hay muchos, pero {plan9} —también de Bell Labs— fue desarrollado para llevar los conceptos de UNIX un poco más lejos, sustituyendo a UNIX en Bell Labs como plataforma principal de investigación en sistemas operativos.
+
+Plan 9 es un sistema operativo distribuido, diseñado para que una red heterogénea de ordenadores separados geográficamente funcionara como un único sistema informático.
+En Plan 9, cada proceso tiene su propia vista del sistema de archivos, a través de la cual los procesos pueden acceder a distintos recursos o comunicarse con otros procesos.
+Es decir, Plan 9 generalizó el modelo universal de E/S de UNIX —basado en la E/S de archivos— porque todo a lo que puede tener acceso un proceso —incluidos los canales de comunicación con otras aplicaciones y servicios— son archivos en la vista privada que del sistema de archivos tiene cada proceso.
+
+Los procesos en equipos diferentes pueden comunicarse de forma transparente.
+Solo hace falta que un proceso exponga parte de su sistema de archivos en la vista de los procesos que quieren comunicarse con él.
+Esto ocurre de forma transparente, gracias al protocolo de comunicación 9P de Plan 9.
+Este protocolo es el que usan actualmente Windows Subsystem for Linux (WSL), QEMU y otras herramientas de virtualización, para ofrecer acceso a los archivos de una máquina virtual desde el sistema operativo anfitrión. 
+
+[NOTE]
+====
+El desarrollo de Plan 9 dejo otras aportaciones.
+Por ejemplo, el estándar de codificación Unicode https://es.wikipedia.org/wiki/UTF-8[UTF-8] nació para ser usado en Plan 9 como formato de cadenas nativo.
+====
+
+En 1996, el desarrollo de Plan 9 pasó a un segundo plano para dar prioridad a {inferno}, con el que Bell Labs intentó usar su experiencia con Plan 9 para desarrollar un sistema operativo distribuido que al mismo tiempo fuera una plataforma con la que competir con Java.
+Las aplicaciones se desarrollaban en un lenguaje llamado Limbo y se ejecutaban en una máquina virtual —similar a la de Java— que venía incluida con Inferno.
+De esta manera las aplicaciones podían ejecutarse independientemente de la arquitectura del hardware.
 
 === VMS
 

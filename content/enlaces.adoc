@@ -228,11 +228,13 @@
 :gnuhurd: link:https://es.wikipedia.org/wiki/GNU_Hurd[GNU/Hurd]
 :gnulinux: link:https://es.wikipedia.org/wiki/GNU/Linux[GNU/Linux]
 :hpux: link:https://es.wikipedia.org/wiki/HP-UX[HP-UX]
+:inferno: link:https://es.wikipedia.org/wiki/Inferno_(sistema_operativo)[Inferno]
 :irix: link:https://es.wikipedia.org/wiki/IRIX[IRIX]
 :minix: link:https://es.wikipedia.org/wiki/MINIX[Minix]
 :minix3: link:https://en.wikipedia.org/wiki/MINIX_3[MINIX 3]
 :macos: link:https://es.wikipedia.org/wiki/MacOS[macOS]
 :netbsd: link:https://es.wikipedia.org/wiki/NetBSD[NetBSD]
+:plan9: link:https://es.wikipedia.org/wiki/Plan_9[Plan 9]
 :solaris: link:https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Solaris]
 :tru64: link:https://es.wikipedia.org/wiki/Tru64[Tru64 UNIX]
 //
