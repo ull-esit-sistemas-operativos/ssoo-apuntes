@@ -11,8 +11,8 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends libxml2-dev libxslt-dev \
-        bison flex libffi-dev libxml2-dev libgdk-pixbuf-2.0-dev libcairo2-dev libpango1.0-dev libwebp-dev \
-        libzstd-dev fonts-lyx cmake
+        bison flex libffi-dev libxml2-dev libgdk-pixbuf-2.0-dev libcairo2-dev libpango1.0-dev libwebp-dev libzstd-dev fonts-lyx cmake \
+        pandoc
 
 # [Optional] Uncomment this line to install additional gems.
 # RUN gem install <your-gem-names-here>
