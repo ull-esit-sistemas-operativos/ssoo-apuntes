@@ -27,6 +27,16 @@ example:
   border-color: cccccc
 sidebar:
   border-color: cccccc
+table:
+  head:
+    background-color: f0f0f0
+    font-style: bold
+  header-cell:
+    background-color: f0f0f0
+    font-style: bold
+  foot:
+    background-color: f0f0f0
+    font-style: bold
 admonition:
   icon:
     time:
