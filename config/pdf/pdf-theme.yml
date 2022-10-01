@@ -1,22 +1,17 @@
 extends: default
 font:
   catalog:
+    merge: true
     Ink Free:
       normal: InkFree-normal.ttf
       bold: InkFree-bold.ttf
-    ## Default theme fonts
-    # Noto Serif supports Latin, Latin-1 Supplement, Latin Extended-A, Greek, Cyrillic, Vietnamese & an assortment of symbols
-    Noto Serif:
-      normal: GEM_FONTS_DIR/notoserif-regular-subset.ttf
-      bold: GEM_FONTS_DIR/notoserif-bold-subset.ttf
-      italic: GEM_FONTS_DIR/notoserif-italic-subset.ttf
-      bold_italic: GEM_FONTS_DIR/notoserif-bold_italic-subset.ttf
-    # M+ 1mn supports ASCII and the circled numbers used for conums
-    M+ 1mn:
-      normal: GEM_FONTS_DIR/mplus1mn-regular-subset.ttf
-      bold: GEM_FONTS_DIR/mplus1mn-bold-subset.ttf
-      italic: GEM_FONTS_DIR/mplus1mn-italic-subset.ttf
-      bold_italic: GEM_FONTS_DIR/mplus1mn-bold_italic-subset.ttf
+      italic: InkFree-normal.ttf
+      bold_italic: InkFree-bold.ttf
+    # M+ 1p supports Latin, Latin-1 Supplement, Latin Extended, Greek, Cyrillic, Vietnamese, Japanese & an assortment of symbols
+    # It also provides arrows for ->, <-, => and <= replacements in case these glyphs are missing from font
+    M+ 1p Fallback: mplus1p-regular-fallback.ttf
+    Noto Emoji: notoemoji-subset.ttf
+  fallbacks: [M+ 1p Fallback, Noto Emoji]
 title-page:
   authors:
     content:
