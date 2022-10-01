@@ -24,6 +24,9 @@ image:
     align: inherit
 example:
   background_color: fffef7
+  border-color: cccccc
+sidebar:
+  border-color: cccccc
 admonition:
   icon:
     time:
