@@ -1,7 +1,7 @@
-:document-characters: 545140
-:document-words: 107782
-:document-paragraphs: 1673
-:document-reading-time: 8 horas y 59 minutos
+:document-characters: 547555
+:document-words: 108202
+:document-paragraphs: 1678
+:document-reading-time: 9 horas y 1 minuto
 :s01-characters: 7526
 :s01-words: 1370
 :s01-paragraphs: 26
@@ -26,10 +26,10 @@
 :s06-words: 3592
 :s06-paragraphs: 56
 :s06-reading-time: 18 minutos
-:s07-characters: 16572
-:s07-words: 3302
-:s07-paragraphs: 53
-:s07-reading-time: 17 minutos
+:s07-characters: 18983
+:s07-words: 3722
+:s07-paragraphs: 58
+:s07-reading-time: 19 minutos
 :s08-characters: 9933
 :s08-words: 1901
 :s08-paragraphs: 35
@@ -66,7 +66,7 @@
 :s16-words: 4471
 :s16-paragraphs: 71
 :s16-reading-time: 22 minutos
-:s17-characters: 61970
+:s17-characters: 61974
 :s17-words: 12971
 :s17-paragraphs: 180
 :s17-reading-time: 1 hora y 5 minutos
