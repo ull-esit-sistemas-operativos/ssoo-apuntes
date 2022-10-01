@@ -1066,8 +1066,12 @@ Vamos a ilustrarlo con el siguiente ejemplo de un programa que inicializa a 0 un
 char data[][] = new char[128][128];
 
 for (int j = 0; j < 128; ++j)
+{
   for (int i = 0; i < 128; ++i)
+  {
     data[i][j] = 0;
+  }
+}
 ----
 
 Un _array_ como el indicado es almacenado en filas:
