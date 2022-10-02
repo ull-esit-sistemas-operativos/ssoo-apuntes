@@ -63,10 +63,7 @@ Viene incluida con Windows 10 y Office, pero también se puede descargar en dist
 Para usarla con [diagrams.net](http://diagrams.net) para crear los diagramas primero debe añadirse como *Web Fonts* con nombre "Ink Free" y URL `https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/fonts/InkFree.woff`.
 
 Para que los diagramas se vean correctamente en sistemas que no incluyen la fuente "Ink Free" por defecto —como ocurre en Linux— en las opciones de exportación a SVG se debe indicar *Text Settings > Convert labels to SVG*.
-
-### SVG: _Viewer does not support full SVG 1.1_
-
-En el estilo de los textos de los diagramas creados con [diagrams.net](http://diagrams.net) deben estar desmarcados *Word Wrap* y *Formatted Text*, para que los SVG incrustados en el PDF no se muestren con el mensaje _Viewer does not support full SVG 1.1_.
+Esto también evita que los SVG incrustados en el PDF muestren el mensaje _Viewer does not support full SVG 1.1_.
 
 ## Ejemplos
 

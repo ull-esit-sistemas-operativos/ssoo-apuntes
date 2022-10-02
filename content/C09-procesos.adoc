@@ -47,8 +47,11 @@ Contiene las variables globales y estáticas del programa que se inicializan con
 También es conocido como segmento *.data*.
 
 Segmento BSS(((segmento, BSS)))::
-Contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita.
+El segmento BSS —siglas de _block started by symbol_— contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita.
+Como contiene variables globales sin valor inicial, en el ejecutable, generalmente, solo se guarda la longitud que debe tener este segmento en la memoria.
 También es conocido como segmento *.bss*.
++
+En el esquema de la <<fig-proceso-en-memoria>>, este segmento suele ir junto al de datos.
 
 Pila(((pila))):: 
 Contiene datos temporales, como los parámetros y direcciones de retorno de las funciones y las variables locales.
