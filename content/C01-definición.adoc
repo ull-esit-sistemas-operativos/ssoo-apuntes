@@ -14,7 +14,7 @@ Aunque, cómo veremos, no son preguntas sencillas de responder.
 
 == Definición de sistema operativo
 
-En general no existe una definición universal de lo qué es un *((sistema operativo))*, aunque si muchas propuestas de diferentes autores:
+En general no existe una definición universal de lo que es un *((sistema operativo))*, aunque si muchas propuestas de diferentes autores:
 
 * Hay quien considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un sistema operativo».
 +
@@ -53,7 +53,7 @@ Es decir, describiendo sus funciones dentro de un sistema informático cualquier
 
 [[fig-componentes-sistema-informático]]
 .Vista abstracta de los componentes de un sistema informático.
-image::{chapdir}/componentes_sistema_informático.svg[]
+image::{chapdir}/componentes_sistema_informático.svg[pdfwidth="60iw"]
 
 Un *sistema informático*(((sistema, informático))) puede ser dividido, _grosso modo_, en cuatro componentes: el hardware, los usuarios, los programas de aplicación y el sistema operativo (véase la <<fig-componentes-sistema-informático>>):
 

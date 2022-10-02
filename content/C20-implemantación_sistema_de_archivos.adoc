@@ -204,10 +204,6 @@ La FAT se almacena en una sección al principio del volumen.
 Contiene una entrada por cada *clúster* del disco y en cada una guarda el número del siguiente *clúster* del archivo.
 Es decir, lo que hace la FAT es agrupar en un solo lugar los punteros de la *asignación enlazada*.
 
-[[fig-estructura-fat]]
-.Asignación enlazada en el sistema de archivos FAT.
-image::{chapdir}/estructura_fat.svg[]
-
 Eso significa que la FAT es una estructura crítica.
 Si se corrompe, puede provocar la pérdida de todo el sistema de archivos.
 Por eso, realmente se almacenan dos copias de la FAT al principio del volumen.
@@ -235,6 +231,10 @@ Mientras que los bloques no utilizados se indican con un valor igual a 0 en su e
 
 El uso de la FAT puede provocar un número importante de reposicionamientos del cabezal de disco, debido a que siempre es necesario volver al principio del volumen para leer dicha tabla.
 Por eso, es muy habitual que el sistema operativo intente mantener una copia de la FAT en la memoria, a modo de caché.
+
+[[fig-estructura-fat]]
+.Asignación enlazada en el sistema de archivos FAT.
+image::{chapdir}/estructura_fat.svg[]
 
 Una de las ventajas de este esquema es que mejora el tiempo de los accesos aleatorios a los archivos —respecto a la asignación enlazada convencional— porque se puede conocer la ubicación de cualquier bloque a partir de la información en la FAT, sin tener que leer todos los bloques del archivo uno a uno.
 ****

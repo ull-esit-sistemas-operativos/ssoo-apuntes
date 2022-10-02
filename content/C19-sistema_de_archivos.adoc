@@ -15,7 +15,7 @@ A continuación estudiaremos los elementos más comunes a la mayor parte de los 
 
 [[fig-estructura-sistema-de-archivos]]
 .Estructura de un sistema de archivos.
-image::{chapdir}/estructura_sistema_de_archivos.svg[]
+image::{chapdir}/estructura_sistema_de_archivos.svg[pdfwidth="60iw"]
 
 Los sistemas de archivos son un componente complejo, por lo que suelen estar compuesto de varios niveles diferentes.
 En la <<fig-estructura-sistema-de-archivos>> se muestra un ejemplo típico de la estructura de un sistema de archivos diseñado en niveles.

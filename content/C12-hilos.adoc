@@ -29,7 +29,7 @@ Sin embargo, en los *sistemas operativos multihilo*(((sistema operativo, multihi
 
 [[fig-multihilo]]
 .Comparación entre procesos monohilo y proceso multihilo.
-image::{chapdir}/procesos_multihilo.svg[]
+image::{chapdir}/procesos_multihilo.svg[pdfwidth="60iw"]
 
 ====
 Cada hilo tiene una serie de recursos propios dentro del proceso (véase la <<fig-multihilo>>):

@@ -39,7 +39,7 @@ Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde s
 
 [[fig-estructura-unix]]
 .Esquema de la estructura de UNIX.
-image::{chapdir}/estructura_unix.svg[]
+image::{chapdir}/estructura_unix.svg[pdfwidth="60iw"]
 
 El núcleo proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
 En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, si no se compartimenta adecuadamente.
@@ -182,7 +182,7 @@ Posteriormente pueden cargar módulos adicionales, tanto durante la inicializaci
 
 [[fig-estructura-linux]]
 .Esquema de la estructura del núcleo Linux.
-image::{chapdir}/estructura_linux.svg[]
+image::{chapdir}/estructura_linux.svg[pdfwidth="60iw"]
 
 En este aspecto se asemejan a los núcleos *microkernel*, ya que el módulo principal solo tiene funciones básicas.
 Sin embargo los núcleos modulares:

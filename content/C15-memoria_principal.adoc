@@ -31,7 +31,7 @@ En la mayor parte de los casos, un programa de usuario debe pasar por diferentes
 
 [[fig-etapas-programas-de-usuario]]
 .Etapas de procesamiento de un programa de usuario.
-image::{chapdir}/etapas_de_un_programa_de_usuario.svg[]
+image::{chapdir}/etapas_de_un_programa_de_usuario.svg[pdfwidth="60iw"]
 
 Los archivos de *código fuente*(((código, fuente))) del programa son compilados por el compilador, generando un archivo de https://es.wikipedia.org/wiki/C%C3%B3digo_objeto[*código objeto*] —con extensiones `.o` u `.obj`— para cada uno.
 

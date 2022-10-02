@@ -25,7 +25,7 @@ La información se almacena grabándola magnéticamente sobre los platos, para l
 
 [[fig-disco-duro-lógico]]
 .Estructura lógica de un disco magnético.
-image::{chapdir}/disco_duro_lógico.svg[]
+image::{chapdir}/disco_duro_lógico.svg[pdfwidth="60iw"]
 
 Desde el punto de vista lógico (véase la <<fig-disco-duro-lógico>>) la superficie de cada plato está dividida en *pista*(((pista))) circulares, cada una de las cuales se subdivide en *sectores*(((sector))).
 El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina *((cilindro))*.

@@ -86,7 +86,7 @@ Cada proceso tiene un *estado* que cambia a lo largo de su ejecución y que est�
 
 [[fig-diagrama-estado-proceso]]
 .Diagrama de estado de un proceso.
-image::{chapdir}/diagrama_estado_proceso.svg[]
+image::{chapdir}/diagrama_estado_proceso.svg[pdfwidth="60iw"]
 
 Los estados por los que puede pasar un proceso varían de un sistema operativo a otro, aunque los siguientes son comunes a todos ellos:
 
@@ -176,7 +176,7 @@ Una manera habitual de representar la planificación de procesos es a través de
 
 [[fig-colas-de-planificación-procesos]]
 .Diagrama de colas de la planificación de procesos.
-image::{chapdir}/colas_planificación_procesos.svg[]
+image::{chapdir}/colas_planificación_procesos.svg[pdfwidth="77.6iw"]
 
 ====
 Analizándolo podemos tener una idea clara del flujo típico de los procesos dentro del sistema:
@@ -979,4 +979,4 @@ Veremos cada uno en detalle en el <<memoria_compartida>> y el <<comunicación_me
 
 [[fig-modelos-de-comunicación]]
 .Modelos de comunicación.
-image::{chapdir}/modelos_comunicación.svg[]
+image::{chapdir}/modelos_comunicación.svg[pdfwidth="77.6iw"]

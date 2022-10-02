@@ -33,7 +33,7 @@ Es decir, si el espacio de direcciones es de 2^_m_^ y el tamaño de página es d
 
 [[fig-dirección-virtual-paginación]]
 .Descomposición de las direcciones virtuales en paginación.
-image::{chapdir}/dirección_virtual_paginación.svg[]
+image::{chapdir}/dirección_virtual_paginación.svg[pdfwidth="60iw"]
 
 Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento _n_ necesita: 
 
@@ -265,7 +265,7 @@ Generalmente, porque no se le ha asignado un *marco* de memoria física, ya que 
 
 [[fig-bit-de-válido-en-la-tabla-de-páginas]]
 .Bit de válido en la tabla de páginas.
-image::{chapdir}/bit_de_válido_en_la_tabla_de_páginas.svg[]
+image::{chapdir}/bit_de_válido_en_la_tabla_de_páginas.svg[pdfwidth="60iw"]
 
 Por ejemplo, en la <<fig-bit-de-válido-en-la-tabla-de-páginas>>, vemos el espacio de direcciones virtual y la *tabla de páginas* de un proceso de 5096 bytes en un sistema con *páginas* de 1 KiB.
 Puesto que el proceso no ocupa todo el espacio de direcciones, solo las direcciones de la 0 a la 5119 son válidas.
@@ -291,7 +291,7 @@ Este valor es comparado por la MMU, durante la traducción de las direcciones vi
 // Esta figura aparece también en el Capítulo 9: Procesos
 [[fig-proceso-en-memoria-disperso]]
 .Anatomía de un proceso en memoria.
-image::C09-procesos/proceso_en_memoria.svg[]
+image::{chapdir}/proceso_en_memoria.svg[]
 
 En realidad, el registro *PTLR* no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <<_el_proceso>>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <<fig-proceso-en-memoria-disperso>>.
 En ella, podemos observar, como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
@@ -342,7 +342,7 @@ La *paginación jerárquica* se basa en la idea de que un vector de gran tamaño
 
 [[fig-paginación-jerárquica]]
 .Esquema de paginación jerárquica de dos niveles.
-image::{chapdir}/paginación_jerárquica.svg[]
+image::{chapdir}/paginación_jerárquica.svg[pdfwidth="77.6iw"]
 
 Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de página de 4 KiB, entonces podemos dividir la tabla de páginas de 1{K}048{K}576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un *marco* de 4 KiB.
 
@@ -355,7 +355,7 @@ Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre
 
 Para tener dos niveles de 1024 entradas, solo es necesario dividir el *número de página* _p_ de la dirección virtual —que tenía 2^20^ bits— en dos *números de página* de 2^10^ bits cada uno:
 
-image::{chapdir}/dirección_virtual_paginación_jerárquica.svg[]
+image::{chapdir}/dirección_virtual_paginación_jerárquica.svg[pdfwidth="77.6iw"]
 
 Este es el método utilizado por la familia de procesadores x86.
 
@@ -363,7 +363,7 @@ Otra variación de la *paginación jerárquica de dos niveles* es la utilizada p
 Estos sistemas utilizaban una arquitectura de 32 bits con un tamaño de página de 512 bytes.
 Las direcciones virtuales eran divididas de la siguiente manera:
 
-image::{chapdir}/dirección_virtual_vax.svg[]
+image::{chapdir}/dirección_virtual_vax.svg[pdfwidth="77.6iw"]
 
 El espacio de direcciones de un proceso estaba dividido en 3 secciones.
 Los 2 bits de orden más alto _s_ de las direcciones virtuales se utilizaban para indicar la *sección*.

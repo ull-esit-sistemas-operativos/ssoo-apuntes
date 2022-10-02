@@ -441,7 +441,7 @@ Sin embargo, aunque esto pase, todo seguirá funcionando correctamente, aunque a
 
 [[fig-fallos-de-página-frente-a-marcos]]
 .Fallos de página frente a número de marcos.
-image::{chapdir}/fallos_de_página_frente_a_marcos.svg[]
+image::{chapdir}/fallos_de_página_frente_a_marcos.svg[pdfwidth="77.6iw"]
 
 Es de esperar que si el número de marcos disponibles aumenta, el número de *fallos de página* disminuya (véase la <<fig-fallos-de-página-frente-a-marcos>>).
 Sin embargo, con el *algoritmo FIFO* el número de *fallos de página* puede aumentar cuando el número de marcos disponibles se incrementa.
@@ -449,7 +449,7 @@ Es lo que se conoce como la *((anormalidad de Belady))*.
 
 [[fig-anormalidad-de-belady]]
 .Fallos de página con el algoritmo de reemplazo FIFO.
-image::{chapdir}/anormalidad_de_belady.svg[]
+image::{chapdir}/anormalidad_de_belady.svg[pdfwidth="77.6iw"]
 
 Para ilustrarlo consideraremos la siguiente traza de referencias:
 
