@@ -807,7 +807,7 @@ pre.rouge {
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 35 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 36 minutos</p>
 </div>
 </td>
 </tr>
@@ -860,7 +860,7 @@ Al igual que ocurre con los registros de la CPU, cada hilo necesita su pila porq
 </ul>
 </div>
 <div class="paragraph">
-<p>Sin embargo hay otros recursos del proceso que se comparten entre todos los hilos del mismo (véase la <a href="hilos.html#fig-multihilo">Figura 37</a>):</p>
+<p>Sin embargo hay otros recursos que se asignan al proceso, por lo que se comparten entre todos los hilos del mismo (véase la <a href="hilos.html#fig-multihilo">Figura 37</a>):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -879,6 +879,26 @@ Eso quiere decir, por ejemplo, que cualquier hilo puede acceder y modificar una 
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Esto significa que cada instante, en cada CPU del sistema se puede estar ejecutando un hilo, del mismo o de distintos procesos en el sistema; pero la memoria, los archivos y otros recursos pertenecen al proceso del que cada uno forma parte.
+Si un hilo reserva memoria o abre un archivo o un dispositivo y no lo libera antes de terminar, el recurso permanecerá reservado, no siendo liberado hasta que lo haga otro hilo o el proceso completo termine.
+Si un hilo ejecuta una instrucción privilegiada o intenta acceder a una zona de memoria para la que no tiene permiso, la condición de error se propaga a todo el proceso.
+Por tanto, por lo general, el sistema operativo detendrá el proceso completo del que formaba parte.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+Si se quiere ejecutar varias tareas al mismo tiempo de forma que la fiabilidad sea máxima, haciendo que los errores en unas no puedan afectar a las otras, tendremos que olvidarnos de los hilos.
+Debemos utilizar diferentes procesos para cada tarea.
+Así cada tarea tiene sus propios recursos y su propio espacio de direcciones virtual, lo que aísla a unas tareas de las otras.
+</td>
+</tr>
+</table>
 </div>
 <div id="fig-proceso-multihilo-en-memoria" class="imageblock">
 <div class="content">

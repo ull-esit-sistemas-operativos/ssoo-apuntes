@@ -882,8 +882,12 @@ También es conocido como segmento <strong>.data</strong>.</p>
 </dd>
 <dt class="hdlist1">Segmento BSS</dt>
 <dd>
-<p>Contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita.
+<p>El segmento BSS —siglas de <em>block started by symbol</em>— contiene las variables globales y estáticas del programa inicializadas a 0 o sin inicialización explícita.
+Como contiene variables globales sin valor inicial, en el ejecutable, generalmente, solo se guarda la longitud que debe tener este segmento en la memoria.
 También es conocido como segmento <strong>.bss</strong>.</p>
+<div class="paragraph">
+<p>En el esquema de la <a href="procesos.html#fig-proceso-en-memoria">Figura 27</a>, este segmento suele ir junto al de datos.</p>
+</div>
 </dd>
 <dt class="hdlist1">Pila</dt>
 <dd>

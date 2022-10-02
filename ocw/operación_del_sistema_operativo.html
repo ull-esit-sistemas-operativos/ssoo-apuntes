@@ -590,7 +590,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 17 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 19 minutos</p>
 </div>
 </td>
 </tr>
@@ -879,30 +879,45 @@ Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del qu
 <h3 id="_máquinas_virtuales"><a class="anchor" href="#_máquinas_virtuales"></a>7.5. Máquinas virtuales</h3>
 <div class="paragraph">
 <p>
-Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los comparten.
-Aun así, los procesos saben que hay un sistema operativo que los supervisa, porque le deben solicitar a él los distintos recursos a través de las llamadas al sistema.</p>
+Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los estén compartiendo con otros procesos.
+Obviamente, los procesos saben que hay un sistema operativo que los supervisa, porque no pueden acceder directamente al hardware, sino que deben solicitar los distintos recursos a través de las llamadas al sistema.</p>
 </div>
 <div class="paragraph">
-<p>Una máquina virtual también es un proceso en un sistema operativo una máquina real —también llamado sistema operativo anfitrión—.
-Se utilizan las mismas técnicas para crear la ilusión de que se ejecuta en su propia máquina.
-Sin embargo, en lugar de llamadas al sistema, el software que gestiona la máquina virtual ofrece una interfaz de hardware virtual.
-Es decir:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>El sistema operativo de la máquina virtual intenta acceder al hardware, ya que presupone que se ejecuta en una máquina real.</p>
-</li>
-<li>
-<p>El sistema operativo anfitrión intercepta estos intentos —ya que son instrucciones privilegiadas, prohibidas para los procesos en el modo usuario— y, en lugar de detener el proceso, comunica el suceso al software de gestión de la máquina virtual.</p>
-</li>
-<li>
-<p>El software de gestión de la máquina virtual identifica a qué dispositivo y que intenta hacer el sistema operativo de la máquina virtual en él —para lo que generalmente se utilizan máquinas de estado que simulan el comportamiento del hardware real— y lo transforma en peticiones al sistema operativo anfitrión.</p>
-</li>
-</ol>
+<p>Sin embargo, en algunos casos puede interesar que los procesos accedan a los recursos a través de una interfaz de hardware virtual.
+Por ejemplo, que un proceso, en lugar de hacer llamadas al sistema para pedir al sistema operativo que lea cierto bloque de datos del disco duro, pueda ejecutar directamente las instrucciones de E/S necesarias para pedir a la controladora de disco que lea el bloque que le interesa y lo deposite en la memoria, como si no estuviera siendo supervisado por el sistema operativo.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, los intentos del sistema operativo virtual de acceder a los discos duros del hardware virtual, son convertidos en operaciones sobre un archivo, en un sistema de archivos real que contiene la imagen en disco de la máquina virtual.</p>
+<p>Obviamente, no se trata de que el proceso tengo acceso a la controladora real, sino que en el sistema hay un componente de software que ejecuta una simulación de algún modelo de controladora de disco al que llegan las peticiones del proceso.
+Como las instrucciones de E/S necesarias para acceder al hardware son instrucciones privilegiadas, el sistema operativo las intercepta —gracias al apoyo del modo dual— pero no interpreta la situación como debida a un programa defectuoso, sino que traslada la operación solicitada a los componentes de hardware virtual, para luego continuar la ejecución del proceso en la siguiente instrucción.
+El resultado es que el proceso tiene la ilusión de que se ejecuta solo en una máquina vacía, con cierto hardware al que puede acceder directamente, aunque este hardware realmente está siendo simulado.</p>
+</div>
+<div class="paragraph">
+<p>Los componentes de hardware virtual simulan el comportamiento de modelos concretos de dispositivos hardware reales, implementando la funcionalidad del hardware simulado con ayuda de otros componentes del sistema operativo.
+Por ejemplo, una tarjeta de sonido virtualizada, en última instancia usará los servicios del sistema operativo para reproducir o grabar sonido usando el dispositivo real, mientras que el controlador de disco virtualizado probablemente simulará las operaciones de lectura y escritura trasladándolas a un archivo del sistema de archivos real que hará de imagen del disco duro virtual.</p>
+</div>
+<div class="paragraph">
+<p>Estos procesos que no se solicitan servicios al sistema operativo mediante llamadas al sistema, si no haciendo uso de una interfaz de hardware virtual, es lo que se conoce como máquinas virtuales.
+El software de gestión de las máquinas virtuales es el responsable de implementar los componentes de hardware virtual y de recibir del sistema operativo los intentos de ejecutar instrucciones privilegiadas por parte del código que se ejecuta dentro de las máquinas virtuales.
+Por tanto, la operación en modo dual y las técnicas comentadas anteriormente en este tema son fundamentales para implementar el soporte de máquinas virtuales en los sistemas operativos modernos.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Paravirtualización</div>
+<div class="paragraph">
+<p>Una interfaz de hardware virtual es, por lo general, menos eficiente que una basada en llamadas al sistema.
+A fin de cuentas, necesita que se simule el hardware virtual mediante software, para luego traducir las peticiones realizadas mediante esa interfaz en peticiones al sistema operativo del sistema anfitrión.
+Una solución frecuente a este inconveniente es la <strong>paravirtualización</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Por lo general, en la máquina virtual se ejecuta un sistema operativo, que debe tener controladores de dispositivos para gestionar el acceso al hardware virtual de la máquina.
+Es decir, los procesos que se ejecutan en la máquina virtual solicitan servicios al sistema mediante llamadas al sistema.
+El sistema operativo atiende esas peticiones usando los recursos del hardware virtual, a los que accede mediante los controladores de dispositivo correspondientes.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>paravirtualización</strong> consiste en instalar en el sistema operativo de las máquinas virtuales controladores de dispositivo desarrollados bajo la premisa de que se van a usar en una máquina virtual.
+La particularidad es que estos controladores saben usar una interfaz que provee el software de gestión de máquinas virtuales —mediante un mecanismo similar a las llamadas al sistema— para trasladar las peticiones que llegan del sistema operativo en la máquina virtual directamente al sistema operativo anfitrión, sin necesidad de utilizar el hardware simulado.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1009,7 +1024,7 @@ Una vez el <em>bootstrap</em> los encuentra, los carga y ejecuta.</p>
 <p>En ambos casos, el gestor de arranque completo es el programa que sabe cómo iniciar el sistema operativo así que: explora el sistema de archivos en busca del núcleo del sistema, lo carga e inicia su ejecución.</p>
 </div>
 <div class="paragraph">
-<p>A partir de esto punto cada sistema operativo prosigue de forma diferente.
+<p>A partir de este punto, cada sistema operativo prosigue de forma diferente.
 A modo de ejemplo, veremos como prosigue el arranque en sistemas UNIX en modo texto.</p>
 </div>
 </div>
