@@ -882,12 +882,6 @@ Sin embargo, esto también incrementa el grado de <strong>fragmentación interna
 Contiene una entrada por cada <strong>clúster</strong> del disco y en cada una guarda el número del siguiente <strong>clúster</strong> del archivo.
 Es decir, lo que hace la FAT es agrupar en un solo lugar los punteros de la <strong>asignación enlazada</strong>.</p>
 </div>
-<div id="fig-estructura-fat" class="imageblock">
-<div class="content">
-<img src="media/C20-implemantación_sistema_de_archivos/estructura_fat.svg" alt="estructura fat">
-</div>
-<div class="title">Figura 66. Asignación enlazada en el sistema de archivos FAT.</div>
-</div>
 <div class="paragraph">
 <p>Eso significa que la FAT es una estructura crítica.
 Si se corrompe, puede provocar la pérdida de todo el sistema de archivos.
@@ -930,6 +924,12 @@ Mientras que los bloques no utilizados se indican con un valor igual a 0 en su e
 <div class="paragraph">
 <p>El uso de la FAT puede provocar un número importante de reposicionamientos del cabezal de disco, debido a que siempre es necesario volver al principio del volumen para leer dicha tabla.
 Por eso, es muy habitual que el sistema operativo intente mantener una copia de la FAT en la memoria, a modo de caché.</p>
+</div>
+<div id="fig-estructura-fat" class="imageblock">
+<div class="content">
+<img src="media/C20-implemantación_sistema_de_archivos/estructura_fat.svg" alt="estructura fat">
+</div>
+<div class="title">Figura 66. Asignación enlazada en el sistema de archivos FAT.</div>
 </div>
 <div class="paragraph">
 <p>Una de las ventajas de este esquema es que mejora el tiempo de los accesos aleatorios a los archivos —respecto a la asignación enlazada convencional— porque se puede conocer la ubicación de cualquier bloque a partir de la información en la FAT, sin tener que leer todos los bloques del archivo uno a uno.</p>
