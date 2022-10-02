@@ -1,6 +1,6 @@
-:document-characters: 547555
-:document-words: 108202
-:document-paragraphs: 1678
+:document-characters: 547787
+:document-words: 108250
+:document-paragraphs: 1679
 :document-reading-time: 9 horas y 1 minuto
 :s01-characters: 7526
 :s01-words: 1370
@@ -34,10 +34,10 @@
 :s08-words: 1901
 :s08-paragraphs: 35
 :s08-reading-time: 10 minutos
-:s09-characters: 39374
-:s09-words: 7867
-:s09-paragraphs: 95
-:s09-reading-time: 39 minutos
+:s09-characters: 39606
+:s09-words: 7915
+:s09-paragraphs: 96
+:s09-reading-time: 40 minutos
 :s10-characters: 34637
 :s10-words: 6885
 :s10-paragraphs: 91
