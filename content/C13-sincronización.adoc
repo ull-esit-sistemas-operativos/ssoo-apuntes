@@ -464,7 +464,7 @@ Cuando el que haya pasado termine, debe usar {linux_sem_post} sobre `mutex` para
 
 == Mutex
 
-Los semáforos inicializados a 1 se denominan *_((mutex))_* o *semáforos binarios*(((semáforo, binario))).
+Los semáforos inicializados a 1 se denominan *_((mutex))_* —término que tiene su origen en _mutual exclusion_— o *semáforos binarios*(((semáforo, binario))).
 Por tanto, aunque un sistema o lenguaje solo soporte *semáforos*, es directo implementar *_mutex_*.
 A la inversa ocurre igual.
 Si un sistema o lenguaje soporta *_mutex_*, es muy sencillo hacer una implementación *semáforos*, si nos hiciera falta.
