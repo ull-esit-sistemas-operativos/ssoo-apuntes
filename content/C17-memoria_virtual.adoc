@@ -250,6 +250,11 @@ Por eso se trata de una técnica común en múltiples sistemas operativos, como 
 
 El *_copy-on-write_* es especialmente interesante si a continuación se va a utilizar la llamada al sistema {linux_exec} puesto que si es así, copiar el espacio de direcciones completo es una pérdida de tiempo.
 
+El *_copy-on-write_* también permite a los sistemas modernos ahorrar memoria durante la reserva de grandes cantidades de memoria.
+Cuando un proceso pide reservar páginas de memoria, el sistema debe proporcionar páginas con marcos sobreescritos con ceros, para evitar exponer los datos del proceso que los utilizó anteriormente.
+En previsión de esto, el sistema mantiene un marco completamente a 0 y durante las reservas de memoria proporciona páginas en *_copy-on-write_* sobre dicho marco a 0.
+De esta forma, se ahorra memoria física y tiempo de CPU, puesto que realmente no se asigna un marco de memoria física y se pone a 0 su contenido hasta el momento en el que el proceso intenta escribir en una página de memoria previamente reservada.
+
 == Archivos mapeados en memoria
 (((archivo, mapeado en memoria)))
 Los *archivos mapeados en memoria* permiten acceder a un archivo como parte del espacio de direcciones virtuales de un proceso.
