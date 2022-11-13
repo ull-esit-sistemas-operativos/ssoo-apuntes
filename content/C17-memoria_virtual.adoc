@@ -251,7 +251,7 @@ Por eso se trata de una técnica común en múltiples sistemas operativos, como 
 El *_copy-on-write_* es especialmente interesante si a continuación se va a utilizar la llamada al sistema {linux_exec} puesto que si es así, copiar el espacio de direcciones completo es una pérdida de tiempo.
 
 El *_copy-on-write_* también permite a los sistemas modernos ahorrar memoria durante la reserva de grandes cantidades de memoria.
-Cuando un proceso pide reservar páginas de memoria, el sistema debe proporcionar páginas con marcos sobreescritos con ceros, para evitar exponer los datos del proceso que los utilizó anteriormente.
+Cuando un proceso pide reservar páginas de memoria, generalmente los sistemas deben proporcionar páginas con marcos sobreescritos con ceros, para evitar exponer los datos del proceso que los utilizó anteriormente.
 En previsión de esto, el sistema mantiene un marco completamente a 0 y durante las reservas de memoria proporciona páginas en *_copy-on-write_* sobre dicho marco a 0.
 De esta forma, se ahorra memoria física y tiempo de CPU, puesto que realmente no se asigna un marco de memoria física y se pone a 0 su contenido hasta el momento en el que el proceso intenta escribir en una página de memoria previamente reservada.
 
@@ -1236,6 +1236,10 @@ Este es el caso de la implementación estándar de {clang_malloc} en GNU/Linux.
 La llamada al sistema {linux_brk} ha sido eliminada del estándar POSIX, pero algunos sistemas la mantienen por compatibilidad hacia atrás, dado que era la forma en la que tradicionalmente se ampliaba la memoria del *montón* en los primeros UNIX.
 En macOS esta llamada se emula con una región de 4 MiB reservada con *mmap* la primera vez que se utiliza.
 ====
+
+La función {clang_calloc} permite obtener memoria del *montón* inicializada a 0, por lo que sigue las mismas reglas que {clang_malloc}.
+Cuando la petición es pequeña, obtiene la memoria del *montón* —extendiéndolo si fuera necesario— para luego ponerla manualmente a 0 antes de retornar de la función.
+Si la cantidad es grande —mayor de 128 KiB en sistemas GNU/Linux, como hemos comentado— obtiene la memoria llamando directamente a {linux_mmap}, que ya la devuelve inicializada a 0 y que usa técnicas como el *_copy-on-write_* para ahorrar memoria física, retrasando la asignación de marcos hasta el momento en el que el proceso comienza a escribir realmente en la memoria reservada.
 
 === Fragmentación
 
