@@ -1175,6 +1175,12 @@ Por eso se trata de una técnica común en múltiples sistemas operativos, como 
 <div class="paragraph">
 <p>El <strong><em>copy-on-write</em></strong> es especialmente interesante si a continuación se va a utilizar la llamada al sistema <a href="https://man7.org/linux/man-pages/man3/exec.3.html">exec()</a> puesto que si es así, copiar el espacio de direcciones completo es una pérdida de tiempo.</p>
 </div>
+<div class="paragraph">
+<p>El <strong><em>copy-on-write</em></strong> también permite a los sistemas modernos ahorrar memoria durante la reserva de grandes cantidades de memoria.
+Cuando un proceso pide reservar páginas de memoria, generalmente los sistemas deben proporcionar páginas con marcos sobreescritos con ceros, para evitar exponer los datos del proceso que los utilizó anteriormente.
+En previsión de esto, el sistema mantiene un marco completamente a 0 y durante las reservas de memoria proporciona páginas en <strong><em>copy-on-write</em></strong> sobre dicho marco a 0.
+De esta forma, se ahorra memoria física y tiempo de CPU, puesto que realmente no se asigna un marco de memoria física y se pone a 0 su contenido hasta el momento en el que el proceso intenta escribir en una página de memoria previamente reservada.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_archivos_mapeados_en_memoria"><a class="anchor" href="#_archivos_mapeados_en_memoria"></a>17.3. Archivos mapeados en memoria</h3>
@@ -3994,6 +4000,11 @@ En macOS esta llamada se emula con una región de 4 MiB reservada con <strong>mm
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>La función <a href="https://en.cppreference.com/w/c/memory/calloc">calloc()</a> permite obtener memoria del <strong>montón</strong> inicializada a 0, por lo que sigue las mismas reglas que <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a>.
+Cuando la petición es pequeña, obtiene la memoria del <strong>montón</strong> —extendiéndolo si fuera necesario— para luego ponerla manualmente a 0 antes de retornar de la función.
+Si la cantidad es grande —mayor de 128 KiB en sistemas GNU/Linux, como hemos comentado— obtiene la memoria llamando directamente a <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>, que ya la devuelve inicializada a 0 y que usa técnicas como el <strong><em>copy-on-write</em></strong> para ahorrar memoria física, retrasando la asignación de marcos hasta el momento en el que el proceso comienza a escribir realmente en la memoria reservada.</p>
 </div>
 </div>
 <div class="sect3">
