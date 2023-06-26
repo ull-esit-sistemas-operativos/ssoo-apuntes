@@ -185,29 +185,63 @@ Esto obliga a acceder a la *tabla de páginas* en memoria para recuperar la entr
 Esta característica está presente en los procesadores {decalpha}, {mips}  y {ultrasparc}.
 Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la familia x86, a través de las extensiones de virtualización Intel VT y AMD Pacifica.
 
-==== Tiempos de acceso a la memoria
+== Tiempos de acceso a la memoria
 
-El rendimiento de un sistema con paginación, está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria _T~em~_, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de *TLB*.
+El rendimiento de un sistema con paginación, está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria stem:[T_text(em)], que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de *TLB*.
 
-En muchos sistemas informáticos, el *tiempo de acceso*(((tiempo, acceso))) a la memoria física _T~m~_ es de unos pocos nanosegundos.
-Por lo tanto, en el método de básico de paginación el *tiempo de acceso efectivo* es el doble del *tiempo de acceso* a la memoria:
+En muchos sistemas informáticos, el *tiempo de acceso*(((tiempo, acceso))) a la memoria física stem:[T_text(m)] es de unos pocos nanosegundos.
+Por tanto, en el método de básico de paginación —con una *tabla de páginas lineal*(((tabla, páginas, lineal)))— y sin *TLB*, el *tiempo de acceso efectivo* stem:[T_text(em)] es el doble del *tiempo de acceso* stem:[T_text(m)] a la memoria:
 
 [stem]
 ++++
-T_(em)=2T_m
+T_text(em)=2T_text(m)
 ++++
+
+porque es necesario acceder a la memoria en dos ocasiones:
+
+. Primero, para consultar la *tabla de páginas*, con el objetivo de traducir la dirección virtual en una dirección física.
+. Después, para realizar la operación solicitada sobre la memoria física.
 
 Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el *número de marco*, el *tiempo de acceso efectivo* será mayor.
 
-Supongamos que tenemos un sistema con *TLB* y que conocemos la probabilidad _p_ de que la entrada que consultamos esté en la *TLB*.
-Entonces, el *tiempo de acceso efectivo* se podría calcular como la probabilidad (1 - _p_) de que la entrada no esté en la *TLB*, por el *tiempo de acceso* necesario, en ese caso 2__T~m~__, más la probabilidad de que la entrada sí esté en la *TLB* _p_, por el *tiempo de acceso* _T~m~_, porque solo hace falta acceder una vez a la memoria:
+En el caso anterior, el segundo acceso a la memoria es inevitable, porque corresponde a la operación solicitada por el proceso.
+Mientras que el primero puede evitarse, en ciertas ocasiones, consultado la *TLB* antes de acceder a la *tabla de páginas*.
+Es decir, en un sistema con *TLB*:
 
-[stem]
+* Cuando la dirección virtual *NO* está en la *TLB*: stem:[T_text(em)=2T_text(m) + T_text(TLB)], porque primero se accede a la *TLB* y después —como no se encuentra allí la direcció virtual— se consulta la *tabla de páginas*. 
+* Cuando la dirección virtual está en la *TLB*: stem:[T_text(em)=T_text(m) + T_text(TLB)], porque la *TLB* proporciona la información necesaria para traducir la dirección, evitando la consulta posterior a la *tabla de páginas*.
+
+[NOTE]
+====
+El cálculo de stem:[T_text(em)] puede complicarse aun más si tenemos en cuenta que los sistemas suelen tener varios niveles de memoria caché.
+En ese caso stem:[T_text(m)] no tiene un valor determinado, sino que se estima un promedio considernado tanto el tiempo de acceso a la memoria física como a cada uno de los niveles de caché del sistema, así como la probabilidad de que la dirección de memoria a la que se quiere acceder esté disponible en alguno de dichos niveles.
+====
+
+El stem:[T_text(em)] del primer caso suele ser mucho mayor que el segundo porque, por lo general, latexmath:[T_\mathrm{TLB} \ll T_\mathrm{m}].
+Esto hace que en muchos sistemas se pueda considerar que stem:[T_text(em) ~~ T_text(m)] cuando la dirección virtual está en la *TLB*.
+
+Como el *tiempo de acceso efectivo* stem:[T_text(em)] ahora depende de la probabilidad stem:[p_text(TLB)] de que las direcciones virtuales consultadas estén en la *TLB*, ya no podemos hacer el cálculo de forma determinista, sino estimar un stem:[T_text(em)] promedio para el sistema.
+Para ello, solo es necesario sumar el stem:[T_text(em)] para ambos casos, ponderando por la probabilidad stem:[p_text(TLB)] de que la dirección esté en la *TLB* o stem:[(1 - p_text(TLB))] de que no esté en la *TLB*, respectivamente:
+
+[latexmath]
 ++++
-T_(em)=(1-p) 2T_m+pT_m=(2-p) T_m
+\begin{aligned}
+T_\mathrm{em} &= (1-p_\mathrm{TLB})(2T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
+       &= (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}
+\end{aligned}
 ++++
 
-Como se puede observar, cuanto más se aproxima a 1 la probabilidad _p_ de que la entrada esté en la *TLB*, más cerca está _T~em~_ de _T~m~_.
+Como comentamos anteriormente, esta expresión se puede simplificar si consideramos que latexmath:[T_\mathrm{TLB} \ll T_\mathrm{m}]:
+
+[latexmath]
+++++
+\begin{aligned}
+T_\mathrm{em} &= 2(1-p_\mathrm{TLB})T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
+       &= (2-p_\mathrm{TLB}) T_\mathrm{m}
+\end{aligned}
+++++
+
+Obviamente, cuanto más se aproxima a 1 la probabilidad stem:[p_text(TLB)] de que la entrada esté en la *TLB*, más cerca está stem:[T_text(em)] de stem:[T_text(m)].
 
 Para mejorar esta probabilidad:
 
@@ -403,3 +437,39 @@ Existen algunos procesadores que utilizan más de dos niveles.
 Por ejemplo, los procesadores x86-64 utilizan un esquema de 4 niveles de paginación.
 Cada *página* es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la *tabla de páginas* es de 8 bytes —con el fin de poder almacenar direcciones de 64 bits— en cada una caben 512 entradas, por lo que los *números de página* de cada nivel necesitan 9 bits.
 Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits —resultado de multiplicar 4 niveles por 9 bits cada uno más 12 bits de desplazamiento— aunque el límite de la arquitectura para las direcciones virtuales sea de 64 bits.
+
+=== Tiempos de acceso a la memoria
+
+La *paginación jerárquica* aumenta el número de accesos necesarios para consultar la *tabla de páginas*.
+Es decir, mientras que para consultar una *tabla de páginas lineal* solo necesitamos un acceso a la memoria, para obtener una dirección fisica en la *paginación jerárquica* de _n_ niveles necesitamos _n_ accesos a la memoria.
+Por tanto, el *tiempo de acceso efectivo* stem:[T_text(em)] en un sistema sin *TLB* es:
+
+[latexmath]
+++++
+T_\mathrm{em} = (n+1)T_\mathrm{m}
+++++
+
+porque, además de los _n_ accesos para consultar la *tabla de páginas* y obtener la dirección física, es necesario ejecutar la operación solicitada en la memoria física.
+
+Como en el <<_tiempos_de_acceso_a_la_memoria>>, cuando el sistema dispone de *TLB*, el *tiempo de acceso efectivo* stem:[T_text(em)] anterior corresponde al caso en el que la dirección virtual no está en la *TLB*.
+Mientras que, en caso contrario, el *tiempo de acceso efectivo* es stem:[T_text(em)=T_text(m) + T_text(TLB)].
+
+Siguiendo los mismos pasos que en el <<_tiempos_de_acceso_a_la_memoria>>, para obtener una estimación de stem:[T_text(em)] en base a la probabilidad stem:[p_text(TLB)] de que las direcciones virtuales consultadas estén en la *TLB*, obtenemos el siguiente resultado:
+
+[latexmath]
+++++
+\begin{aligned}
+T_\mathrm{em} &= (1-p_\mathrm{TLB}) ((n+1)T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
+       &= ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB} 
+\end{aligned}
+++++
+
+Esta expresión se puede simplificar si consideramos que latexmath:[T_\mathrm{TLB} \ll T_\mathrm{m}]:
+
+[latexmath]
+++++
+\begin{aligned}
+T_\mathrm{em} &= (1-p_\mathrm{TLB})(n+1)T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
+       &= (1-p_\mathrm{TLB})n+1)T_\mathrm{m} 
+\end{aligned}
+++++
