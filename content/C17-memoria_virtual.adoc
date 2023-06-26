@@ -175,7 +175,7 @@ Por lo que sustituyéndolo en la expresión anterior:
 
 [latexmath]
 ++++
-T_{em} \approx (2-p_{tlb}) T_m + tau_{fp}
+T_{em} \approx (2-p_{tlb}) T_m + \tau_{fp}
 ++++
 
 donde _p~tlb~_ es la probabilidad de que una entrada esté en la TLB y _T~m~_ ahora sí es el *tiempo de acceso* a la memoria física.
