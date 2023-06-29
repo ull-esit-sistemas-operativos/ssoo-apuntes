@@ -35,6 +35,8 @@
 :cpp_ofstream_open: link:https://en.cppreference.com/w/cpp/io/basic_ofstream/open[std::ofstream::open()]
 :cpp_jthread: link:https://en.cppreference.com/w/cpp/thread/jthread[std::jthread]
 :cpp_thread: link:https://en.cppreference.com/w/cpp/thread/thread[std::thread]
+:cpp_thread_join: link:https://en.cppreference.com/w/cpp/thread/thread/join[std::thread::join()]
+:cpp_thread_native_handle: link:https://en.cppreference.com/w/cpp/thread/thread/native_handle[std::thread::native_handle()]
 //
 // llamadas al sistema POSIX & Linux
 :linux_access: link:https://man7.org/linux/man-pages/man2/access.2.html[access()]
@@ -298,7 +300,8 @@
 :message_queue_hpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/message_queue.hpp[message_queue.hpp]
 :mqueue_client_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/mqueue-client.cpp[mqueue-client.cpp]
 :mqueue_server_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/mqueue-server.cpp[mqueue-server.cpp]
-:pthreads_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/pthreads.cpp[pthreads.cpp] 
+:pthreads_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/pthreads.cpp[pthreads.cpp]
+:pthreads_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/pthreads-factorial.cpp[pthreads-factorial.cpp]
 :pthreads_sync_counter_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/pthreads-sync-counter.cpp[pthreads-sync-counter.cpp]
 :pthreads_sync_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/pthreads-sync-factorial.cpp[pthreads-sync-factorial.cpp] 
 :signals_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/signals.c[signals.c]
@@ -307,6 +310,7 @@
 :socket_server_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/socket-server.cpp[socket-server.cpp]
 :softstack_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap06/softstack.c[softstack.c]
 :threads_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/threads.cpp[threads.cpp]
+:threads_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/threads-factorial.cpp[threads-factorial.cpp]
 :threads_sync_counter_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/threads-sync-counter.cpp[threads-sync-counter.cpp]
 :threads_sync_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/threads-sync-factorial.cpp[threads-sync-factorial.cpp]
 :timeserver_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/common/timeserver.c[timeserver.c]

@@ -288,62 +288,118 @@ El *hilo principal* puede crear otros hilos y estos, a su vez, crear los hilos q
 Pero, a diferencia de lo que ocurre con los procesos, no existe una relación de padres a hijos ni se crea un árbol de hilos.
 Excepto por la característica especial del *hilo principal* de que su finalización significa la terminación del proceso, todos los hilos son iguales entre sí.
 
-En el <<ejemplo-pthread>> se puede ver cómo se usa {pthread_create} en sistemas POSIX que implementan {pthreads} para crear varios hilos y esperar a que terminen con {pthread_join}.
+En el <<ejemplo-thread>> se puede ver cómo se usa {cpp_thread} de la librería estándar de {cpp} para crear hilos.
 
-[[ejemplo-pthread]]
-.Calcular el factorial de un número con {pthreads}.
+[[ejemplo-thread]]
+.Creación de hilos con {cpp_thread} en {cpp}.
 ====
-Vamos a calcular el factorial de 122 repartiendo la tarea entre dos hilos con el objeto de paralelizar los cálculos en procesadores multinúcleo.
-
-El código fuente completo de este ejemplo está disponible en {pthreads_cpp} y, además, permite indicar el número que queramos para calcular el factorial.
-En {threads_cpp} se puede estudiar un ejemplo equivalente, pero usando {cpp_thread} de la librería estándar de {cpp}, por lo que también compila en sistemas no POSIX, como Microsoft Windows.
+El código fuente completo de este ejemplo está disponible en {threads_cpp}.
+En {pthreads_cpp} se puede ver un ejemplo equivalente, pero usando {pthreads} de la librería de sistema POSIX.
+En {threads_factorial_cpp} se puede examinar un ejemplo más interesante donde los hilos se utilizan para dividir el cálculo del factorial de un número, con el objetivo de calcularlo en menos tiempo.
 
 [source,cpp]
 ----
-struct factorial_thread_args <9>
+void thread_function(int thread_id) <2> <3>
 {
-    BigInt number;
-    BigInt lower_bound;
-    BigInt result;
+    fmt::print( "[Hilo {}] Creado\n", thread_id );
+    for(int i = 0; i < 10; ++i)
+    {
+        // Dormir el hilo para simular que hace trabajo
+        // ...
+    }
+}
+
+int main()
+{
+    // Crear 3 hilos dentro del proceso
+    std::thread thread1( thread_function, 1 ); <1> <2> <3>
+    std::thread thread2( thread_function, 2 );
+    std::thread thread3( thread_function, 3 );
+
+    fmt::print( "[Main] Hilo 1 - Id: {}, Manejador del sistema: 0x{:x}\n",
+        thread1.get_id(),           <4>
+        thread1.native_handle() );  <5>
+
+    // ...
+
+    thread1.join(); <6>
+    thread2.join();
+    thread3.join(); 
+
+    return EXIT_SUCCESS;
+}
+----
+<1> En C++ se usa la clase {cpp_thread} para crear hilos.
+Los objetos {cpp_thread} no son los hilos sino objetos que sirven para gestionar hilos creados en el sistema.
+
+<2> Todo hilo tiene una función principal que será donde comience la ejecución del hilo y que se debe indicar como primer argumento al crear el objeto {cpp_thread}.
+Cuando esa función termine, el hilo finalizará.
+
+<3> Los hilos pueden recibir varios argumentos.
+Se indican como argumentos adicionales al crear el objeto {cpp_thread}, tras el argumento de la función principal del hilo.
+Se pueden usar argumentos pasados por referencia o punteros, cuando se quiere usar dichos argumentos para devolver resultados.
+
+<4> Cada objeto {cpp_thread} tiene un identificador que sirve para identificar el hilo.
+Este identificado no tiene que tener ninguna relación con los identificadores o manejadores utilizados por el sistema operativo para identificar los hilos.
+
+<5> El método {cpp_thread_native_handle} permite obtener el manejador del sistema operativo del hilo gestionado por ese objeto {cpp_thread} en concreto.
+
+<6> El hilo que invoca {cpp_thread_join} se queda dormido —en este caso, el hilo principal— hasta que el hilo indicado en el primer argumento termine.
+Si el hilo principal sale de {clang_main} sin esperar a que todos los hilos del proceso terminen, C++ lanza una excepción y el programa termina inesperadamente.
+====
+
+En los sistemas POSIX, {cpp_thread} se implementa usando la librería del sistema {pthreads}, mientras que en los sistemas Microsoft Windows utiliza la API Win32.
+En el <<ejemplo-pthread>> se puede ver código equivalente al del <<ejemplo-thread>> pero usando directamente la API de {pthreads}.
+
+[[ejemplo-pthread]]
+.Creación de hilos con {pthreads}.
+====
+El código fuente completo de este ejemplo está disponible en {pthreads_cpp}.
+En {pthreads_factorial_cpp} se puede estudiar un ejemplo similar, pero dónde se usan los hilos para dividir el cálculo del factorial de un número.
+
+[source,cpp]
+----
+struct thread_args <9>
+{
+    int id;
+    int result;
 };
 
-void* factorial_thread (void* arg) <7> <8> <9>
+void* thread_function(void* arg) <7> <8> <9>
 {
-    std::cout << fmt::format( "Hilo creado: 0x{:x}\n", pthread_self() );    <10>
+    thread_args* args = static_cast<thread_args*>(arg); <9>
 
-    factorial_thread_args* args = static_cast<factorial_thread_args*>(arg); <9>
-    args->result = calculate_factorial( args->number, args->lower_bound );
+    fmt::print( "[Hilo {}] Creado. Manejador del sistema: 0x{:x}\n", args->id, pthread_self() ); <10>
 
+    for(int i = 0; i < 5; ++i)
+    {
+        // Dormir el hilo para simular que hace trabajo
+        // ...
+    }
+
+    args->result = args->id;
     return &args->result; <12>
 }
 
 int main()
 {
-    int return_code;
-    pthread_t thread1, thread2; <1> <2>
+    int return_code = 0;
+    pthread_t thread1, thread2, thread3; <1> <2>
 
-    factorial_thread_args thread1_args {
-        122,    // El primer hilo calcula el factorial multiplicando
-        61,     // desde 122 a 61.
-        0
-    };
-
-    factorial_thread_args thread2_args {
-        60,     // El segundo hilo calcula el factorial multiplicando
-        2,      // desde 60 a 2
-        0
-    };
+    thread_args thread1_args { .id = 1 };
+    thread_args thread2_args { .id = 2 };
+    thread_args thread3_args { .id = 3 };
 
     int return_code = pthread_create( <1>
         &thread1,           <3>
         nullptr,            <6>
-        factoria_thread,    <7>
-        &thread_args );     <8> <9>
+        thread_function,    <7>
+        &thread1_args );   <8> <9>
 
     if (return_code) <4>
     {
-        std::cerr << fmt::format( "Error ({}) al crear el hilo: {}\n", 
-            return_code, strerror(return_code) ); <5>
+        fmt::print( stderr, "Error ({}) al crear el hilo: {}\n",
+            return_code, std::strerror(return_code) ); <5>
         return EXIT_FAILURE;
     }
 
@@ -353,17 +409,15 @@ int main()
         // ...
     }
 
-    BigInt* thread1_result, *thread2_result;
+    int* thread1_result, *thread2_result, *thread3_result;
+
     pthread_join( <11>
         thread1,
         reinterpret_cast<void**>(&thread1_result) ); <13>
     pthread_join( thread2, reinterpret_cast<void**>(&thread2_result) );
+    pthread_join( thread3, reinterpret_cast<void**>(&thread3_result) );
 
-    // Multiplicar ambos resultados para obtener el factorial
-    auto result = *thread1_result * *thread2_result;
-
-    std::cout << fmt::format( "El factorial de {} es {}\n",
-        number.to_string(), result.to_string() );
+    // ...
 
     return EXIT_SUCCESS;
 }
@@ -374,7 +428,7 @@ Devuelve un manejador de tipo `pthread_t` que podemos usar con otras funciones d
 <2> `pthread_t` no es el equivalente al PID de los hilos.
 Si el sistema implementa la librería de hilos en el núcleo, por lo general, cada hilo tiene un identificador único; pero {pthreads} no ofrece una forma de obtenerlo.
 
-<3> La variable `pthread_t` se pasa a {pthread_create} como puntero para que al retornar, si todo ha ido bien, contenga el manejador del hilo.
+<3> La variable `pthread_t` se pasa a {pthread_create} como puntero para que al retornar contenga el manejador del hilo, si todo ha ido bien.
 
 <4> Si el hilo se puede crear, {pthread_create} devuelve 0.
 En caso contrario devuelve un código de error.
@@ -383,19 +437,20 @@ En caso contrario devuelve un código de error.
 Así que podemos llamar a {linux_strerror} pasando el valor retornado, para obtener un texto descriptivo del error.
 
 <6> Es opcional pasar a {pthread_create} una estructura con atributos tales como: tamaño y posición de la pila, política y parámetros de planificación, entre otros.
+En este caso, como no estamos interesados, pasamos `nullptr`
 
 <7> Todo hilo tiene una función principal que será donde comience la ejecución del hilo.
 Cuando esa función termine, el hilo finalizará.
 
 <8> Los hilos pueden recibir un argumento en la forma de un puntero a `void*`.
-Si queremos pasar varios, lo más sencillo es crear una estructura.
+Si queremos pasar varios argumentos, lo más sencillo es crear una estructura y pasar un puntero a esta.
 
-<9> En este ejemplo definimos `factorial_thread_args` para pasar los argumentos a los hilos y lo pasamos como `void *` a la función principal.
-Allí hacemos un _typecast_ para recuperar el puntero a la estructura `factorial_thread_args` y poder acceder a sus campos.
+<9> En este ejemplo definimos `thread_args` para pasar los argumentos a los hilos y lo pasamos como `void*` a la función principal.
+Allí hacemos un _typecast_ para recuperar el puntero a la estructura `thread_args` y poder acceder a sus campos.
 
 <10> En cualquier momento se puede llamar a {pthread_self} para obtener el manejador `pthread_t` del hilo actual.
 
-<11> El hilo que invoca {pthread_join} se queda dormido hasta que el hilo indicado en el primer argumento termine.
+<11> El hilo que invoca {pthread_join} se queda dormido —en este caso, el hilo principal— hasta que el hilo indicado en el primer argumento termine.
 Si el hilo principal sale de {clang_main} sin esperar a que todos los hilos del proceso terminen, estos mueren inmediatamente, junto con el proceso.
 
 <12> El hilo puede retornar un resultado mediante un puntero 'void*'.
@@ -406,7 +461,7 @@ Esto se indica en la sentencia `return` de la función principal del hilo o invo
 Como los hilos de {pthreads} devuelven punteros, es importante no intentar devolver variables locales, ya que se destruirán cuando el hilo termine y el punto devuelto no será válido.
 
 Una alternativa es devolver los resultados a través de la estructura pasada como argumento.
-Por ejemplo, el campo `result` de la estructura `factorial_thread_args` ofrece una manera más cómoda de obtener el resultado del cálculo de cada hilo.
+Por ejemplo, el campo `result` de la estructura `thread_args` ofrece una manera más cómoda de obtener el resultado del trabajo de cada hilo.
 ====
 
 === Cancelación de hilos
