@@ -35,9 +35,9 @@ module Tests
     def find_missing_variables(pathname)
         open(pathname) do |f|
             document = Nokogiri::HTML.parse(f)
-            # Ignorar bloques stem: <div class='stemblock'> o \$texto\$
+            # Ignorar bloques stem: <div class='stemblock'>, \$texto\$, \{texto\) o \[texto\]
             document.xpath('//body//text()[not(ancestor::div[@class="stemblock"])]').flat_map do |text|
-                text.content.gsub(/\\\$.*?\\\$/, "").scan(/\{[\w-]+\}/)
+                text.content.gsub(/\\\$.*?\\\$|\\\(.*?\\\)|\\\[.*?\\\]/, "").scan(/\{[\w-]+\}/)
             end
         end
     end
