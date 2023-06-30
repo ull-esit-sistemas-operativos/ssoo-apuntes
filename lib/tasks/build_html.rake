@@ -22,6 +22,7 @@ Project::documents.each do |document|
             
             sh "asciidoctor", *backend_args,
                               '--require', './lib/time-admonition-block.rb',
+                              '--require', './lib/autoxref-treeprocessor.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:html]}",
                               *asciidoctor_args,

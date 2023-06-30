@@ -11,6 +11,7 @@ Project::documents.each do |document|
             sh "asciidoctor", '--backend', 'pdf',
                               '--require', 'asciidoctor-pdf',
                               '--require', './lib/time-admonition-block.rb',
+                              '--require', './lib/autoxref-treeprocessor.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:pdf]}",
                               *asciidoctor_args,

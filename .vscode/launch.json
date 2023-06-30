@@ -14,7 +14,7 @@
             "useBundler": true,
         },
         {
-            "name": "asciidoctor html",
+            "name": "asciidoctor -b html",
             "type": "Ruby",
             "request": "launch",
             "cwd": "${workspaceRoot}",

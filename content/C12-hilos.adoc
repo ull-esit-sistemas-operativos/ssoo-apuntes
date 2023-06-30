@@ -339,8 +339,8 @@ Cuando esa función termine, el hilo finalizará.
 Se indican como argumentos adicionales al crear el objeto {cpp_thread}, tras el argumento de la función principal del hilo.
 Se pueden usar argumentos pasados por referencia o punteros, cuando se quiere usar dichos argumentos para devolver resultados.
 
-<4> Cada objeto {cpp_thread} tiene un identificador que sirve para identificar el hilo.
-Este identificado no tiene que tener ninguna relación con los identificadores o manejadores utilizados por el sistema operativo para identificar los hilos.
+<4> Cada objeto {cpp_thread} guarda un identificador del hilo.
+Este identificador no tiene que tener ninguna relación con los identificadores o manejadores utilizados por el sistema operativo para gestionar los hilos.
 
 <5> El método {cpp_thread_native_handle} permite obtener el manejador del sistema operativo del hilo gestionado por ese objeto {cpp_thread} en concreto.
 
