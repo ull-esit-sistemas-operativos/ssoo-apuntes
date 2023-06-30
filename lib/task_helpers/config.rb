@@ -1,4 +1,5 @@
 Struct.new('Config',
+            :html_multipage,
             :asciidoctor_args,
             :asciidoctor_docbook_args,
             :asciidoctor_epub_args,
@@ -9,6 +10,7 @@ Struct.new('Config',
             keyword_init: true) do
     def initialize()
         default_values = {
+            html_multipage: false,
             asciidoctor_args: [],
             asciidoctor_docbook_args: [],
             asciidoctor_epub_args:  [],

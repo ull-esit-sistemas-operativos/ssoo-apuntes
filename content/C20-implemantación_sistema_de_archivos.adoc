@@ -540,5 +540,5 @@ Actualmente, los planificadores *CFS* y *NOOP* se consideran obsoletos.
 En su lugar el planificador por defecto en Linux para SSD y discos duros es *mq-deadline* —una adaptación del planificador https://en.wikipedia.org/wiki/Deadline_scheduler[deadline], también obsoleto—.
 Mientras que para dispositivos NVM Express se utiliza *NONE*, que básicamente desactiva la planificación de la E/S de disco.
 
-Otros planificadores disponibles actualmente son http://algo.ing.unimo.it/people/paolo/disk_sched/[BFQ] —diseñado para minimizar la latencia— y Kyber.
+Otros planificadores disponibles actualmente son https://algo.ing.unimo.it/people/paolo/disk_sched/[BFQ] —diseñado para minimizar la latencia— y Kyber.
 ====

@@ -3,11 +3,12 @@ require 'webrick'
 Rake.add_rakelib 'lib/tasks'
 
 task :config do |t|
+    CONFIG[:html_multipage] = true
     CONFIG[:asciidoctor_pdf_args] = [
         '--require', 'asciidoctor-mathematical', '-a', 'mathematical-format=svg',
     ]
     CONFIG[:htmlproofer_opts] = {
-        url_ignore: [
+        ignore_urls: [
             /github\.(io|com).*\/ssoo-apuntes/
         ]
     }
@@ -17,7 +18,6 @@ namespace :build do
     
     desc 'Generar el sitio web donde se alojan los apuntes'
     task :site do
-        ENV['HTML_MULTIPAGE'] = '1'
         ENV['HTML_COMMENTS_ENABLED'] = '1'
         Rake::Task['build:html'].invoke
        

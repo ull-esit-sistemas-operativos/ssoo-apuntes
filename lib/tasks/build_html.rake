@@ -13,7 +13,7 @@ Project::documents.each do |document|
                 asciidoctor_args += ['--attribute', 'comments_enabled=true']
             end
 
-            backend_args = Utils::EnvVar.new('HTML_MULTIPAGE').to_boolean ? [
+            backend_args = CONFIG[:html_multipage] ? [
                     '--backend', 'multipage_html5',
                     '--require', 'asciidoctor-multipage'
                 ] : [
