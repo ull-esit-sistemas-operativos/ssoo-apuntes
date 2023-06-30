@@ -10,5 +10,5 @@ sudo apt-get -y install --no-install-recommends \
 
 bundle config set --local path.system true
 bundle config set --local build.nokogiri --use-system-libraries
-bundle config set --local without epub3
+bundle config set --local without dev epub3
 bundle install

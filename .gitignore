@@ -3,5 +3,4 @@
 output/
 .bundle
 vendor/bundle/
-.vscode/
 *~

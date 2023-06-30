@@ -6,6 +6,11 @@ gem "rake"
 gem "asciidoctor"
 gem "rouge"
 
+group :dev do
+    gem "ruby-debug-ide"
+    gem "debase", '~> 0.2.5.beta2', require: false
+end
+
 group :docstats do
     gem "nokogiri"
 end

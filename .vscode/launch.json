@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "rake build:html",
+            "type": "Ruby",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "/usr/local/rvm/gems/default/bin/rake",
+            "args": ["build:html"],
+            "useBundler": true,
+        },
+        {
+            "name": "asciidoctor html",
+            "type": "Ruby",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "/usr/local/rvm/gems/default/bin/asciidoctor",
+            "args": [
+                "--backend", "multipage_html5",
+                "--require", "asciidoctor-multipage",
+                "--require", "./lib/time-admonition-block.rb",
+                "--require", "./lib/autoxref-treeprocessor.rb", 
+                "--attribute", "basedir=/workspaces/ssoo-apuntes",
+                "--attribute", "outdir=/workspaces/ssoo-apuntes/output/html",
+                "--destination-dir", "/workspaces/ssoo-apuntes/output/html",
+                "content/main.adoc"
+            ],
+            "useBundler": true,
+        }
+    ]
+}
