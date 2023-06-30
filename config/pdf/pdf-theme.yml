@@ -9,6 +9,11 @@ font:
       bold_italic: InkFree-bold.ttf
     # M+ 1p supports Latin, Latin-1 Supplement, Latin Extended, Greek, Cyrillic, Vietnamese, Japanese & an assortment of symbols
     # It also provides arrows for ->, <-, => and <= replacements in case these glyphs are missing from font
+    Liberation Sans:
+      normal: LiberationSans-Regular.ttf
+      bold: LiberationSans-Bold.ttf
+      italic: LiberationSans-Italic.ttf
+      bold_italic: LiberationSans-BoldItalic.ttf
     M+ 1p Fallback: mplus1p-regular-fallback.ttf
     Noto Emoji: notoemoji-subset.ttf
   fallbacks: [M+ 1p Fallback, Noto Emoji]
