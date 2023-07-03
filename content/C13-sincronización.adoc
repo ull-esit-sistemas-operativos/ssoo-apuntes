@@ -85,15 +85,18 @@ Así, ambos hilos pueden trabajar a su propio ritmo, de forma casi independiente
 ====
 
 Aunque el código anterior del productor y del consumidor es correcto cuando no coinciden en el tiempo al ejecutarse, no funciona adecuadamente cuando sí lo hacen.
-El motivo es que los dos hilos comparten la variable `count` y tanto las sentencias `++count` y como `--count` pueden interrumpirse a medias para dejar paso a la ejecución del otro hilo.
+El motivo es que los dos hilos comparten y modifican la variable `count`.
+
+Obviamente, las sentencias `++count` y `--count` pueden modificar `count` al mismo tiempo si los hilos se ejecutan en núcleos diferentes en máquinas multiprocesador o multinúcleo.
+Eso también puede ocurrir en máquinas monoprocesador con sistemas operativos con planificación expropiativa (véase el <<_planificación_expropiativa>>) dado que en esos sistemas un hilo puede ser interrumpido en cualquier momento para dar paso a la ejecución de otro.
 
 Por ejemplo, `++count` podría dividirse por el compilador en las siguientes operaciones, al generar las instrucciones del procesador:
 
 .++count
 ----
-registro1 = count;
+registro1 = [count];
 registro1 = registro1 + 1;
-count = registro1;
+[count] = registro1;
 ----
 
 Donde `registro1` representa un registro de la CPU.
@@ -101,42 +104,38 @@ De forma parecida la sentencia `--count` podría ser implementada de la siguient
 
 .--count
 ----
-registro2 = count;
+registro2 = [count];
 registro2 = registro2 - 1;
-count = registro2;
+[count] = registro2;
 ----
 
 Donde nuevamente `registro2` representa un registro de la CPU.
-Realmente, aunque `registro1` y `registro2` pueden ser el mismo registro físico, el contenido de los registros se guarda y se recupera durante los cambios de contexto de un hilo al otro, por lo que cada uno ve sus propios valores y no los del otro.
 
-El que las sentencias `++count` y `--count` se ejecute de forma concurrente, es similar a que las instrucciones de lenguaje máquina de ambas sentencias en ambos hilos o procesos se entrelacen en algún orden aleatorio.
+NOTE: Aunque `registro1` y `registro2` pueden ser el mismo registro físico, el contenido de los registros se guarda y se recupera durante los cambios de contexto de un hilo al otro, por lo que es indiferente si son el mismo o registros diferentes.
 
-Un posible entrelazado de las instrucciones en lenguaje máquina entre hilos, suponiendo que inicialmente `count = 5`, podría ser el siguiente:
+En sistemas monoprocesador, el que las sentencias `++count` y `--count` se ejecute de forma concurrente, es similar a que las instrucciones de lenguaje máquina de ambas sentencias en ambos hilos o procesos se entrelacen en algún orden aleatorio.
+
+Por ejemplo, un posible entrelazado de las instrucciones en lenguaje máquina entre hilos, suponiendo que inicialmente `count = 5`, podría ser el siguiente:
 
 [source, c]
 ----
 // Entra ++count
-registro1 = count;          // registro1 = 5
+registro1 = [count];        // registro1 = 5
 registro1 = registro1 + 1;  // registro1 = 6
 // Sale ++count y entra --count
-registro2 = count;          // registro2 = 5
+registro2 = [count];        // registro2 = 5
 registro2 = registro2 - 1;  // registro2 = 4
 // Sale --count y entra ++count
-count = registro1;          // count = 6 <2>
+[count] = registro1;        // count = 6 <2>
 // Entra --count
-count = registro2;          // count = 4 <1><2>
+[count] = registro2;        // count = 4 <1><2>
 ----
 <1> Así llegamos al resultado incorrecto `count = 4`, indicando que hay 4 elementos en el vector cuando realmente hay 5.
 <2> Si invertimos el orden de las sentencias obtendremos el resultado, también incorrecto, `count = 6`.
 
 Como se puede apreciar, hemos llegado a estos valores incorrectos porque hemos permitido la manipulación concurrente de la variable `count`.
 Según como se entrelacen las instrucciones de `++count` y `--count` en la CPU, el resultado final podría ser: 4, 5 o 6.
-Pero el único resultado correcto es 5, que es el que obtendremos si ejecutamos las sentencias secuencialmente, sin mezclar las operaciones en las que se dividen.
-
-[NOTE]
-====
-Ambos hilos se ejecutan de forma concurrente porque o bien, tenemos un sistema multiprocesador o multinúcleo, donde ambos hilos se ejecutan a la vez en procesadores diferentes, o bien, porque tenemos un sistema operativo donde uno de los hilos puede ver interrumpida su ejecución en cualquier momento para asignar la CPU a otro (véase el <<_planificación_expropiativa>>.
-====
+Sin embargo, el único resultado correcto es 5, que es el que obtendremos si ejecutamos las sentencias secuencialmente, sin mezclar las operaciones en las que se dividen.
 
 === Manipular estructuras de datos
 
@@ -208,9 +207,48 @@ Indudablemente esta solución no es práctica en sistema multiprocesador, donde 
 
 === Instrucciones atómicas
 (((instrucción, atómica)))
-Todas las CPU modernas disponen de instrucciones para comparar y modificar el contenido de una variable o intercambiar el contenido de dos variables, de forma *((atómica))*. 
+Las CPU modernas disponen de instrucciones para comparar y modificar el contenido de una variable o intercambiar el contenido de dos variables, de forma *((atómica))*. 
 El término *atómico* hace referencia a que las operaciones se ejecutan como una unidad ininterrumpible.
 No importa que varias CPU ejecuten estas instrucciones simultáneamente, puesto el hardware se encargará de que sean ejecutadas secuencialmente en algún orden arbitrario.
+
+[[instrucciones-atómicas-en-mips]]
+.Instrucciones atómicas en procesadores MIPS.
+====
+En los procesadores MIPS el acceso atómico a la memoria se realiza mediante las instrucciones *_load-linked_* `ll` y *_store-conditional_* `sc`.
+
+La instrucción `ll` caga un valor de la memoria en un registro y monitorizar la dirección de memoria correspondiente para detectar si otro procesador la modifica.
+Mientras que la instrucción `sc` intenta almacenar un valor en la dirección de memoria, siempre que dicha dirección no haya sido modificada desde la anterior instrucción `ll`.
+
+Ambas instrucciones se utilizan de la siguiente manera para implementar una operación atómica de incremento:
+
+[source]
+----
+main:
+  la      r2, count
+
+retry_increment:
+  ll      r1, 0(r2)                 <1>
+  addiu   r1, r1, 1                 <2>
+  sc      r1, 0(r2)                 <3>
+  beqz    r1, retry_increment       <4>
+  nop                               <5>
+----
+<1> Suponiendo que `r2` contiene la dirección de la variable `count`, carga el valor de dicha variable en `r1`.
+
+<2> Incrementa el valor en el registro `r1`.
+
+<3> Intenta almacenar el valor incrementado en `count`.
+Si tiene éxito, porque el valor de `count` no ha sido modificado por otro proceso, `r1` se pone a 1.
+En caso contrario, se pone a 0.
+
+<4> Si `r1` vale 0, es que la instrucción `sc` falló porque la variable `count` fue modificada por otro proceso.
+En ese caso, se salta a `retry_increment` para volver a intentar el incremento de la variable.
+
+<5> Se pone una instrucción para evitar que después de `beqz` se ponga un instrucción que el procesador ejecute antes del salto.
+
+Antes y después del bloque de instrucciones `ll` y `sc`, generalmente se usa la instrucción `sync`.
+Esta instrucción crear una barrera de operaciones en memoria, de forma que el procesador se ve obligado a completar todas las operaciones en memoria anteriores a `sync` antes de realizar las operaciones en memoria siguientes, como `ll` y `sc`.
+====
 
 Estas instrucciones están disponibles para los programadores de C y {cpp} a través de tipos especiales.
 Por ejemplo, en C11 {clang_stdatomic} define tipos como: `atomic_bool`, `atomic_uint` o `atomic_char` para declarar variables atómicas de los tipos `bool`, `unsigned int` y `char`, respectivamente.
@@ -230,7 +268,7 @@ En {cpp}11, {cpp_atomic_h} declara la plantilla {cpp_atomic} que ofrece una func
 [source,cpp]
 ----
 std::atomic<int> count {0}; <1> <2>
-int old_count = count++;    <3>
+int old_count = count++;     <3>
 ----
 <1> También hay un tipo `std::atomic_int` que es equivalente.
 <2> Se usa el constructor para inicializar la variable atómica.
@@ -246,6 +284,9 @@ Estos recursos utilizan internamente instrucciones y otras características de l
 Ese es el caso de los *semáforos*.
 
 Los *semáforos* son un tipo de objetos del sistema operativo que nos permiten controlar el acceso a una sección crítica, por medio de dos primitivas: *acquire* y *release* —o *wait* y *signal*, según el libro de texto que consultemos—.
+
+Los *semáforos* tienen un contador interno que se inicializa, de tal forma que *un semáforo inicializado a _N_ solo permite que _N_ hilos ejecuten la sección crítica al mismo tiempo*.
+
 A continuación describimos el mecanismo de funcionamiento:
 
 [source, cpp]
@@ -464,10 +505,10 @@ Cuando el que haya pasado termine, debe usar {linux_sem_post} sobre `mutex` para
 
 == Mutex
 
-Los semáforos inicializados a 1 se denominan *_((mutex))_* —término que tiene su origen en _mutual exclusion_— o *semáforos binarios*(((semáforo, binario))).
-Por tanto, aunque un sistema o lenguaje solo soporte *semáforos*, es directo implementar *_mutex_*.
-A la inversa ocurre igual.
-Si un sistema o lenguaje soporta *_mutex_*, es muy sencillo hacer una implementación *semáforos*, si nos hiciera falta.
+Los *_((mutex))_* —término que tiene su origen en _mutual exclusion_— son un tipo de objeto del sistema operativo que permite controlar el acceso a una sección crítica, de forma que *solo un hilo pueda ejecutarla al mismo tiempo*.
+
+En este sentido, los *_mutex_* se comportan como semáforos inicializados a 1, motivo por el que también se denominan *semáforos binarios*(((semáforo, binario))).
+Por tanto, aunque un sistema o lenguaje solo soporte *semáforos*, es directo usarlos para implementar *_mutex_*.
 
 El estándar POSIX soporta *_mutex_* a través de {pthreads}.
 Por defecto solo se pueden utilizar para sincronizar hilos del mismo proceso; pero tienen un atributo para permitir la sincronización entre procesos diferentes, aunque para eso deben ser creados en una región de memoria compartida por dichos procesos.
@@ -670,7 +711,7 @@ Para señalar estos eventos necesitamos dos *variables de condición*:
 
 [source, cpp]
 ----
-std::mutext mutex; <1>
+std::mutext mutex;                <1>
 std::condition_variable no_full;  <2>
 std::condition_variable no_empty; <3> 
 
@@ -684,17 +725,17 @@ void productor()
     {
         item_t item = produce_item();
 
-        std::unique_lock lock{ mutex }; <4> <5>
+        std::unique_lock lock{ mutex };       <4> <5>
 
         while( buffer.size() == VECTOR_SIZE ) <6> <10>
         {
-            no_full.wait( mutex ); <11>
+            no_full.wait( mutex );            <11>
         }
 
-        vector.push_back( item );  <11>
+        vector.push_back( item );             <11>
 
-        no_empty.notify_one(); <7>
-    } <6>
+        no_empty.notify_one();                <7>
+    }                                         <6>
 
     // ...
 }
@@ -707,18 +748,18 @@ void consumer()
     {
         std::unique_lock lock{ mutex }; <4> <5>
 
-        while( buffer.size() == 0 ) <8> <10>
+        while( buffer.size() == 0 )     <8> <10>
         {
-            no_empty.wait( mutex );  <11>
+            no_empty.wait( mutex );     <11>
         }
 
-        item_t item = vector.back(); <11>
+        item_t item = vector.back();    <11>
         vector.pop_back();
 
-        no_full.notify_one(); <9>
+        no_full.notify_one();           <9>
 
         consume_item(item);
-    } <6>
+    }                                   <6>
 
     // ...
 }
@@ -755,6 +796,97 @@ Por eso hay que volver a comprobar la condición antes de continuar ejecutando s
 De lo contrario, no podría hacerlo y ambos se quedarían bloqueados indefinidamente —en una situación que se denomina *((interbloqueo))* o *_deadlock_*—.
 Pero antes de salir de {cpp_condition_variable_wait}, el hilo adquiere de nuevo el `mutex`.
 Así que el código que inserta y extrae elementos se ejecuta en *exclusión mutua*, tal y como nos interesa.
+
+== Implementación de semáforos
+
+Como hemos visto, tanto los *_mutex_* como las *variables de condición* son casos particulares de los *semáforos*.
+De igual forma, si un sistema o lenguaje soporta *_mutex_* y *variables de condición*, es muy sencillo implementar *semáforos*, así como otras primitivas de sincronización.
+
+Un *semáforo* se implementa de forma muy parecida a la solución anterior al *problema del productor-consumidor* (véase el <<_ejemplos_del_uso_de_variables_de_condición>>), solo que eliminando lo relacionado con el vector de elementos.
+
+[[ejemplo-implementación-semáforo]]
+.Implementación de un semáforo en {cpp}.
+====
+El código fuente completo de la clase `semaphore` está disponible en {semaphore_hpp}.
+
+[source,cpp]
+----
+class semaphore {
+public:
+    
+    semaphore(int count = 0) : count_(count) {}
+
+    void release() {
+        std::unique_lock<std::mutex> lock(mutex_); <1>
+        count_++;
+        cv_.notify_one();                          <3>
+    }
+
+    void acquire() {
+        std::unique_lock<std::mutex> lock(mutex_); <1>
+        while(count_ == 0) {
+            cv_.wait(lock);                        <2>
+        }
+        count_--;
+    }
+
+private:
+    std::mutex mutex_;
+    std::condition_variable cv_;
+    int count_;
+};
+----
+<1> El acceso al contador `count_` esta protegido por el *_mutex_* `mutex_`.
+
+<2> En `semaphore::acquire()`, si el contador está a 0 no pueden entrar más hilos, por lo que el hilo debe esperar en la *variable de condición* `cv_`.
+
+<3> Cada vez que un hilo llama a `semaphore::release()` se incrementa el contador y se despierta uno de los hilos a la espera en `cv_`.
+
+En {threads_sync_semaphore_cpp} se puede ver un ejemplo de cómo utilizarla para limitar el número de hilos que pueden ejecutarse en una *sección crítica* al mismo tiempo.
+
+[source,cpp]
+----
+void thread_function(semaphore& sem, int thread_id)
+{
+    sem.acquire(); <3>
+    fmt::print( "Hilo {} creado\n", thread_id );
+    
+    // Dormir el hilo para simular trabajo
+    // ...
+    
+    fmt::print( "Hilo {} terminado\n", thread_id );
+    sem.release(); <4>
+}
+
+int main()
+{
+    const int num_threads = 10;
+    semaphore sem(3); <1>
+
+    std::vector<std::thread> threads;
+    for(int i = 0; i < num_threads; i++) <2>
+    {
+        threads.push_back( std::thread( thread_function, std::ref(sem), i ));
+    }
+
+    for(auto& t : threads)
+    {
+        t.join();
+    }
+
+    return EXIT_SUCCESS;
+}
+----
+<1> Solo se van a permitir 3 hilos simultáneos.
+
+<2> Se crean 10 hilos y se guardan en un vector los objetos {cpp_thread} para luego poder esperar por ellos usando {cpp_thread_join}, antes de terminar el programa.
+
+<3> Se llama a `semaphore::acquire()` antes de entrar en la *sección crítica*.
+Si hay más de 3 hilos en ella, el hilo es suspendido en la *variable de condición* `cv_` de `semaphore`.
+
+<4> Se llama a `semaphore::release()` al salir de la *sección critica*.
+Esto hace que la *variable de condición* `cv_` de `semaphore` despierte a uno de los hilos que está esperando en `semaphore::acquire()` para que entre en la *sección crítica*.
+====
 
 == Esperas
 

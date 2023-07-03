@@ -304,6 +304,7 @@
 :pthreads_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/pthreads-factorial.cpp[pthreads-factorial.cpp]
 :pthreads_sync_counter_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/pthreads-sync-counter.cpp[pthreads-sync-counter.cpp]
 :pthreads_sync_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/pthreads-sync-factorial.cpp[pthreads-sync-factorial.cpp] 
+:semaphore_hpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/semaphore.hpp[semaphore.hpp]
 :signals_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/signals.c[signals.c]
 :socket_hpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/socket.hpp[socket.hpp]
 :socket_client_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap10/socket-client.cpp[socket-client.cpp]
@@ -313,4 +314,5 @@
 :threads_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap12/threads-factorial.cpp[threads-factorial.cpp]
 :threads_sync_counter_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/threads-sync-counter.cpp[threads-sync-counter.cpp]
 :threads_sync_factorial_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/threads-sync-factorial.cpp[threads-sync-factorial.cpp]
+:threads_sync_semaphore_cpp: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/cap13/threads-sync-semaphore.cpp[threads-sync-semaphore.cpp]
 :timeserver_c: link:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/{release}/src/common/timeserver.c[timeserver.c]
