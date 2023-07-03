@@ -3,3 +3,4 @@
 // Localización de los archivos docinfo.
 :docinfodir: {basedir}/config/html5
 :docinfo: shared-head,shared-footer
+:stylesheet: {basedir}/config/html5/clean.css
