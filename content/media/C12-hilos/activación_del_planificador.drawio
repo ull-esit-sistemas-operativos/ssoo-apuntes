@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2023-07-06T23:58:26.298Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="ql3NBJ7Ommkzzxbeh7KV" version="21.6.1" type="google">
+  <diagram id="akEowiJKr_ScigKzrRVM" name="Page-1">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="689" pageHeight="517" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-1" value="Hilo 1&#xa;de usuario" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=70;fillColor=#C2BEE6;sketch=1;curveFitting=1;jiggle=2;fontColor=#324AB2;fontStyle=1;fontSize=17;fontFamily=Ink Free;strokeColor=#324AB2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2080" y="1040" width="150" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="1guYmQdWcOmHXPnTMp0i-9" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};strokeWidth=2;strokeColor=#AC3235;fillColor=#EBBBB6;sketch=1;curveFitting=1;jiggle=2;fontSize=17;fontFamily=Ink Free;fontColor=#AC3235;fontStyle=1;" vertex="1" parent="Zh_yTgaDA4fyzwAwpNYt-1">
+          <mxGeometry x="60" y="90" width="30" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-2" value="Núcleo" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=70;fontSize=17;fontFamily=Ink Free;fillColor=#C2BEE6;strokeColor=#324AB2;fontColor=#324AB2;sketch=1;curveFitting=1;jiggle=2;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2280" y="1040" width="150" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-3" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};strokeWidth=2;strokeColor=#AC3235;fillColor=#EBBBB6;sketch=1;curveFitting=1;jiggle=2;fontSize=17;fontFamily=Ink Free;fontColor=#AC3235;fontStyle=1;" vertex="1" parent="Zh_yTgaDA4fyzwAwpNYt-2">
+          <mxGeometry x="60" y="200" width="30" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-4" value="Librería de&#xa;hilos de usuario" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=70;fontSize=17;fontFamily=Ink Free;fillColor=#C2BEE6;strokeColor=#324AB2;fontColor=#324AB2;sketch=1;curveFitting=1;jiggle=2;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2488" y="1040" width="150" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-5" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#B8D5CE;strokeColor=#108473;strokeWidth=2;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="Zh_yTgaDA4fyzwAwpNYt-4">
+          <mxGeometry x="58" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-6" value="Hilo 2&#xa;de usuario" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=70;fontSize=17;fontFamily=Ink Free;fillColor=#C2BEE6;strokeColor=#324AB2;fontColor=#324AB2;sketch=1;curveFitting=1;jiggle=2;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2670" y="1040" width="150" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-10" value="&quot;Hilo 1&quot; bloqueado" style="fillColor=default;strokeColor=#AC3235;sketch=1;curveFitting=1;jiggle=2;strokeWidth=2;fontColor=#AC3235;fontFamily=Ink Free;fontSize=17;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="2378" y="1351" width="155" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="Zh_yTgaDA4fyzwAwpNYt-7" value="read()&#xa;(Operación de E/S)" style="verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#AC3235;strokeWidth=2;fontFamily=Ink Free;fontSize=17;fontStyle=1;fontColor=#324AB2;labelBackgroundColor=none;spacingBottom=4;" edge="1" parent="1" target="Zh_yTgaDA4fyzwAwpNYt-3">
+          <mxGeometry x="0.0025" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2266" y="1240" />
+            </Array>
+            <mxPoint as="offset" />
+            <mxPoint x="2170" y="1240" as="sourcePoint" />
+            <mxPoint x="2320" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1guYmQdWcOmHXPnTMp0i-7" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#B8D5CE;strokeColor=#108473;strokeWidth=2;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="2728" y="1400" width="30" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1guYmQdWcOmHXPnTMp0i-8" value="&quot;Hilo 2&quot; se ejecuta en el nuevo hilo de&#xa;núcleo mientras &quot;Hilo 1&quot; espera por la E/S" style="fillColor=default;strokeColor=#108473;strokeWidth=2;sketch=1;curveFitting=1;jiggle=2;fontSize=17;fontFamily=Ink Free;fontColor=#108473;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2406" y="1421" width="310" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="1guYmQdWcOmHXPnTMp0i-11" value="Ejecutándose en&#xa;hilo 1 de núcleo" style="fillColor=default;strokeColor=#AC3235;sketch=1;curveFitting=1;jiggle=2;strokeWidth=2;fontColor=#AC3235;fontFamily=Ink Free;fontSize=17;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="2180" y="1130" width="140" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="1guYmQdWcOmHXPnTMp0i-12" value="Activación&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;del planificador&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;[&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#108473&quot;&gt;nuevo hilo de núcleo&lt;/font&gt;]" style="verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#108473;strokeWidth=2;fontFamily=Ink Free;fontSize=17;fontStyle=1;fontColor=#324AB2;labelBackgroundColor=none;spacingBottom=4;html=1;entryX=0.133;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="Zh_yTgaDA4fyzwAwpNYt-5">
+          <mxGeometry x="0.0025" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2466.5" y="1340" />
+            </Array>
+            <mxPoint as="offset" />
+            <mxPoint x="2370.5" y="1340" as="sourcePoint" />
+            <mxPoint x="2540.5" y="1340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1guYmQdWcOmHXPnTMp0i-13" value="Iniciar ejecución&lt;br style=&quot;border-color: var(--border-color); padding: 0px; margin: 0px;&quot;&gt;en el nuevo hilo&lt;br style=&quot;border-color: var(--border-color); padding: 0px; margin: 0px;&quot;&gt;de núcleo" style="verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;strokeColor=#108473;strokeWidth=2;fontFamily=Ink Free;fontSize=17;fontStyle=1;fontColor=#324AB2;labelBackgroundColor=none;spacingBottom=4;html=1;" edge="1" parent="1">
+          <mxGeometry x="0.0025" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2673" y="1399" />
+            </Array>
+            <mxPoint as="offset" />
+            <mxPoint x="2577" y="1399" as="sourcePoint" />
+            <mxPoint x="2730" y="1399" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -10,13 +10,11 @@ include::../config/attributes.adoc[]
 En el modelo de proceso que hemos descrito hasta el momento, cada proceso tiene una única secuencia de instrucciones que se ejecuta en la CPU.
 Si los procesos solo pueden tener una única secuencia de instrucciones, solo pueden realizar una tarea a la vez.
 Por ejemplo, en un procesador de textos en un sistema operativo con este modelo de procesos, el usuario nunca podría escribir al mismo tiempo que se comprueba la ortografía.
-Si queremos hacer varias tareas al mismo tiempo, estamos obligados a crear varios procesos y seleccionar un mecanismo de comunicación para que estos colaboren.
+En ese caso, si queremos hacer varias tareas al mismo tiempo, estamos obligados a crear varios procesos y seleccionar un mecanismo de comunicación para que estos colaboren.
 
 Por eso muchos sistemas operativos modernos han extendido el concepto de proceso para permitir que cada uno tenga múltiples secuencias de instrucciones para ejecutarse en la CPU.
 A cada una de estas secuencias de instrucciones se las conoce como *((hilo))* de ejecución.
 Los procesos con varios hilos pueden realizar varias tareas a la vez.
-
-//TODO: Aclarar esto. Mira libro de system programming para los diagramas de secuencia de hilos para usar en SS.OO
 
 == Introducción
 
@@ -24,11 +22,8 @@ Desde que introducimos el concepto de *((proceso))* hemos considerado que es la 
 Es decir, que la CPU se asignaba a los procesos, que la usaban para ejecutar sus instrucciones.
 Sin embargo, en los *sistemas operativos multihilo*(((sistema operativo, multihilo))) es el *hilo* la unidad básica de uso de la CPU.
 
-// TODO: Hacer un esquema más realista.
-// Más parecido al de la memoria del proceso en el capítulo 9.
-
 [[fig-multihilo]]
-.Comparación entre procesos monohilo y proceso multihilo.
+.Esquema comparativo entre procesos monohilo y proceso multihilo.
 image::{chapdir}/procesos_multihilo.svg[pdfwidth="60iw"]
 
 ====
@@ -105,175 +100,263 @@ Por el contrario, un proceso monohilo solo se puede ejecutar en una CPU a la vez
 
 == Soporte multihilo
 
-Las *librerías de hilos*(((librería, de hilos))) proporcionan al programador la interfaz de programación para crear y gestionar los hilos de su proceso.
-Hay dos formas de implementar una librería de hilos: en el espacio de usuario o en el núcleo.
+Las *librerías de hilos*(((librería, de hilos))) proporcionan al programador la interfaz de programación para crear y gestionar los hilos de un proceso.
+Por lo general, mediante lenguaje C se puede acceder directamente a la *librería de hilos* del sistema.
+Otros lenguajes proporcionan un *librería de hilos* dentro de su *librería estandar*, que a su vez se apoya en la *librería de hilos* del sistema operativo.
 
-=== Librería de hilos en el espacio de usuario
+El soporte de hilos en un sistema operativo se puede proporcionar a *nivel de usuario* o a *nivel de núcleo*.
 
-La librería de hilos se puede implementar en el espacio de usuario, junto al código y los datos del proceso, sin requerir ningún soporte especial por parte del núcleo.
+=== Hilos a nivel de usuario
+(((hilo, usuario)))
 
-Estos hilos no existen para el núcleo del sistema operativo, solo para el proceso que los ha creado.
-Por ese motivo se los denomina *hilos de usuario*(((hilo, usuario))) o *hilos del nivel de usuario*.
+El soporte de *hilos a nivel de usuario* se implementan mediante un *librería de hilos* en el espacio de usuario, junto al código del programa y los datos del proceso, sin requerir ningún soporte especial por parte del núcleo del sistema operativo.
+Por tanto, como se puede observar en el lado derecho de la <<fig-comparación-soporte-de-hilos>>, estos hilos existen desde el punto de vista del proceso y del programa que ejecuta, pero no para el sistema operativo.
+El planificador de la CPU asigna tiempo de CPU a los procesos, mientras que la *librería de hilos* de cada proceso reparte el tiempo de ejecución del proceso entre los diferentes hilos de este.
 
 Como el código y los datos de la librería residen en el espacio de usuario, invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.
 
-=== Librería de hilos en el núcleo
+=== Hilos a nivel de núcleo
+(((hilo, núcleo)))
 
-Si la librería de hilos se implementa en el núcleo, es el núcleo del sistema el que se encarga de darles soporte.
-Por ese motivo se los denomina *hilos de núcleo*(((hilo, núcleo))) o *hilos del nivel de núcleo*.
+Se habla de *hilos a nivel de núcleo*, cuando el núcleo del sistema es el encargado de ofrecer el soporte multihilo.
+El código y los datos de la *librería de hilos*, mediante la cual los programadores pueden solicitar la creación y gestión de los hilos, reside en el espacio del núcleo.
+Por tanto, para invocar una función de la *librería de hilos* es necesario hacer una llamada al sistema.
+Obviamente, la librería del sistema ofrece las funciones necesarias para realizar estas llamadas al sistema de forma sencilla.
 
-Aparte del *PCB* que vimos en el <<_bloque_de_control_de_proceso>>, cada hilo tiene una estructura llamada *bloque de control del hilo*(((bloque, de control, hilo))) o ((TCB)) (_Thread Control Block_) que representa a cada hilo en el sistema operativo y que guarda información sobre su estado de actividad actual.
+La implementación del soporte de hilos en el núcleo implica cambios respecto a lo que hemos visto hasta el momento de la gestión de procesos, puesto que, en estos sistemas, es el hilo la unidad básica de uso de la CPU, como se ilustra en la <<fig-comparación-soporte-de-hilos>>. 
+Es decir, son los hilos los que se mueven por los estados del <<fig-diagrama-estado-proceso>> y las colas de la <<fig-colas-de-planificación-procesos>>, en lugar de los procesos.
+En estos sistemas, el planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado *preparado* en el sistema y el *cambio de contexto* asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual, que puede ser del mismo o de diferente proceso.
 
-En estos sistemas, es el hilo la unidad básica de uso de la CPU.
-Son los hilos los que se mueven por los estados del <<fig-diagrama-estado-proceso>> y las colas de la <<fig-colas-de-planificación-procesos>> y no los procesos.
-El planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado *preparado* en el sistema y el *cambio de contexto* asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual.
-
+Aparte del *PCB* que vimos en el <<_bloque_de_control_de_proceso>>, ahora el sistema operativo también gestiona una estructura llamada *bloque de control del hilo*(((bloque, de control, hilo))) o ((TCB)) (_Thread Control Block_) para cada hilo en el sistema, donde se guarda información sobre su estado de actividad actual.
 Por tanto, es en *TCB* —y no en el *PCB*— donde se guarda la información privada del hilo necesaria para la gestión de los estados y para el cambio de contexto, como: los valores de los registros de la CPU y el contador de programa, el estado o la información de planificación de la CPU; además de un puntero al *PCB* al que pertenece el hilo con el resto de la información privada del proceso.
 
-Como el código y los datos de la librería residen en el espacio del núcleo, invocar una función de la misma requiere frecuentemente hacer una llamada al sistema.
-Obviamente, la librería del sistema ofrece funciones para no tener que hacer la llamada al sistema directamente.
+=== Implementaciones
 
 En la actualidad, en los diferentes sistemas operativos se pueden encontrar librerías de ambos tipos.
-Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (véase https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads[«Using Processes and Threads -- Microsoft Docs»]) mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente. En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.
+
+Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (véase https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads[«Using Processes and Threads -- Microsoft Docs»]) mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente.
+En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.
 
 == Modelos multihilo
 
-Las distintas formas de implementar los hilos comentadas anteriormente —en espacio de usuario o en el núcleo— no son excluyentes, ya que en un sistema operativo concreto se pueden implementar ambas, una de las dos o ninguna. 
+En base a lo anterior, sabemos que hay sistemas que implementan *hilos a nivel de núcleo* mientras otros los hacen a *nivel de usuario*.
+Sin embargo, también existen sistemas donde se combinan ambos.
 
-A continuación veremos los modelos a los que han dado lugar las distintas combinaciones.
+Para comparar las diferentes opciones que tienen los diseñadores de un sistema en cuanto al soporte de hilos, se definen los *modelos multihilo* en base a la relación entre *hilos de usuario* e *hilos de núcleo*.
+Aquí entendemos por *hilos de núcleo* a estas secuencias de instrucciones tal y como las ve el programa en el espacio de usuario.
+Mientras que el concepto de *hilos de núcleo* corresponde con como las ve el núcleo del sistema.
 
-=== Muchos a uno
+=== Muchos a uno (N:1)
 (((muchos a uno)))(((modelo, muchos a uno)))
-En el modelo *muchos a uno* los hilos que ve el proceso se mapean en una única «entidad planificable en la CPU» del núcleo.
 
-Este, por lo general, es el modelo utilizado cuando el núcleo no soporta múltiples hilos de ejecución.
-En ese caso, la única entidad planificable en la CPU que conoce el núcleo es el proceso, la librería de hilos se implementa en el espacio de usuario —dentro del proceso— y los hilos que ve el proceso son *hilos de usuario* (véase la <<fig-modelo-muchos-a-uno>>).
-
-// TODO: Ajustar el dibujo a la explicación
+En el modelo *muchos a uno* muchos *hilos de usuario* son mapeados en *un único hilo de núcleo*.
+El planificador de la CPU en el núcleo reparte el tiempo de CPU entre los diferentes *hilos de núcleo* en el sistema, mientras que la *librería de hilos* en cada proceso reparte el tiempo de ejecución del *hilo de núcleo* del proceso entre múltiples *hilos de usuario* (véase la <<fig-modelo-muchos-a-uno>>).
 
 [[fig-modelo-muchos-a-uno]]
-.Modelo muchos a uno.
+.Modelo muchos a uno (N:1).
 image::{chapdir}/modelo_muchos_a_uno.svg[]
 
-====
-Las principales características de este modelo son:
+Los sistemas modernos son multihilo, por lo que al crearse un proceso siempre se crea con un *hilo de núcleo* inicial, que es al que el núcleo asigna tiempo de CPU.
+Sin embargo, los sistemas más antiguos no tienen ningún soporte de hilos en el núcleo, por lo que no hay *hilos de núcleo*.
+En este sentido, quizás sería más correcto definir el modelo *muchos a uno* como aquel en el que muchos *hilos de usuario* son mapeados en una «única entidad planificable en la CPU».
+En los sistemas más antiguos estas entidades son los procesos, de forma que, bajo este *modelo multihilo* los *hilos de usuario* realmente se reparten el tiempo de ejecución del proceso al que pertenecen.
 
-* La gestión de hilos se hace con una librería en el espacio de usuario, por lo que los hilos se pueden crear de forma rápida y con poco coste.
-Como hemos visto anteriormente, la invocación de las funciones de la librería se hace por medio de simples llamadas a funciones.
+El modelo *muchos a uno* corresponde al caso en el que solo se implementan *hilos a nivel de usuario*.
 
-* Si uno de los hilos solicita al sistema operativo una operación que deba ser bloqueada a la espera —por ejemplo, operaciones de E/S sobre archivos, comunicaciones o esperar a que otro proceso termine— todo el proceso es bloqueado, no pudiendo ejecutarse otros hilos del mismo proceso mientras tanto.
-Eso significa que si nuestros hilos hacen ese tipo de operaciones, el resultado es como si no tuviéramos hilos.
+==== Ventajas e inconvenientes
 
-* Como solo un hilo puede ser asignado al proceso, los hilos de un mismo proceso no se pueden ejecutar en paralelo en sistemas multiprocesador.
-El planificador de la librería de hilos es el encargado de determinar qué hilo de usuario es asignado al proceso y este solo puede ejecutarse en una única CPU al mismo tiempo.
-====
+La principal *ventaja* de este modelo es su bajo coste, por lo que resulta ideal cuando la cantidad de hilos a crear —el nivel de concurrencia— va a ser muy alta:
 
-El problema del bloqueo de procesos puede ser evitado interceptando las llamadas a funciones de la librería del sistema, para evitar el uso de llamadas al sistema que se puedan bloquear y sustituirlas por versiones equivalentes pero asíncronas.
+* Los *hilos de usuario* son muy baratos de crear porque la gestión de hilos se hace con una librería en el espacio de usuario, dentro del proceso.
+Mientras que los *hilos de núcleo* pueden necesitar más recursos del sistema, como espacio en la tabla de hilos del sistema y en otras estructuras de gestión.
 
-// TODO: ¿Diagrama UML de hilos ilustrando el caso?
+* La invocación de las funciones de la *librería de hilos* se hace por medio de simples llamadas a funciones, que son menos costosas que las llamadas al sistema necesarias cuando el soporte de hilos se implementa en el núcleo.
 
-Por ejemplo, si un hilo llamase a las funciones {linux_recv} o {linux_send} de la librería del sistema, habría que hacer que realmente se invocase una versión diferente que utilizase estas funciones de forma asíncrona.
-Mientras la operación es ejecutada por el sistema operativo, en lugar de retornar de la función, se llama al planificador de la librería de hilos para que la ejecución continúe con otro hilo del proceso, dejando suspendido el que tiene pendiente la operación.
-Obviamente, el planificador de la librería de hilos debe estar al tanto de cuándo las operaciones asíncronas son completadas para poder volver a planificar los *hilos de usuario* suspendidos.
+* Se necesitan menos cambios de contexto.
+Los cambios de contexto, que ocurren cuando se transfiere el control de la CPU, pueden ser operaciones costosas.
+En el modelo *muchos a uno* pueden ocurrir cambios de contexto en el núcleo al intercambiar procesos en la CPU, pero el intercambio de hilos se gestiona en el propio proceso, lo que suele ser más rápido que hacerlo en el núcleo.
 
-Este procedimiento es a todas luces bastante complejo y requiere versiones no bloqueantes de todas las llamadas al sistema —que no siempre existen— así como modificar o interceptar de alguna forma las funciones bloqueantes de la librería del sistema para implementar el comportamiento descrito.
+Mientras que estos son algunos posibles *inconvenientes*:
+
+* Los hilos de un mismo proceso no se pueden ejecutar en paralelo en sistemas multiprocesador, por lo que este modelo no permite aprovechar ese tipo de sistemas.
+El motivo es que la librería de hilos en espacio de usuario no tiene acceso a los procesadores del sistema.
+Solo conoce el proceso en el que se ejecuta y reparte el tiempo de ejecución del proceso entre los distintos hilos.
++
+El núcleo del sistema si ve los diferentes procesadores, pero desconoce la existencia de los hilos dentro de los procesos.
+Solo ve procesos que deben ejecutarse en las distintas CPU.
+
+* Un hilo puede bloquear la ejecución del resto de los hilos de su proceso, en determinadas circunstancias.
++
+Si uno de los hilos solicita al sistema operativo una operación que deba ser bloqueada a la espera —por ejemplo,operaciones de E/S sobre archivos, comunicaciones o esperar a que otro proceso termine— todo el proceso es puesto como _esperando_ por el sistema operativo, no pudiendo ejecutarse otros hilos del mismo proceso en la CPU, mientras tanto.
+Para evitar en parte este problema, es frecuente que las implementaciones de este modelo ofrezcan versiones especiales de estas operaciones, con capacidad para evitar el bloqueo total del proceso, en función de si el sistema operativo tiene el soporte adecuado para ello.
+
+Por tanto, este modelo no es una opción si lo que interesa es aprovechar el paralelismo en sistemas multiprocesador, para intentar realizar ciertas operaciones en menos tiempo.
+
+==== Operaciones bloqueantes
+
+El problema del bloqueo de procesos ocasionado por operaciones de E/S que pongan al proceso en estado _esperando_ puede ser evitado interceptando las llamadas a funciones de la librería del sistema, para evitar el uso de llamadas al sistema que se puedan bloquear y sustituirlas por versiones equivalentes pero asíncronas.
+
+Obviamente, la *librería de hilos* intercambia el *hilo de usuario* en ejecución cuando el que se está ejecutando finaliza.
+Además, generalmente, tiene funciones para que el *hilo de usuario* en ejecución se duerma —`sleep()`— o para que espere a que otro hilo termine —`wait()` o `join()`.
+En ambos casos, el *hilo de usuario* queda bloqueado y la *librería de hilos* asigna otro hilo al *hilo de núcleo* para su ejecución.
+
+Por ejemplo, en la <<fig-modelo-a-uno-operación-bloqueante>> se ilustra como el _Hilo 1_ llama a la función `yield()` de la *librería de hilos*, provocando su intercambio con el _Hilo 2_.
+La función `yield()` suele estar presente en algunas *librerías de hilos*, con el objeto de que los hilos puedan indicar puntos del programa en los que quieren dejar tiempo de ejecución para otros hilos, de forma voluntaria.
+
+[[fig-modelo-a-uno-operación-bloqueante]]
+.Diagrama de secuencia del bloqueo del proceso en el modelo muchos a uno.
+image::{chapdir}/muchos_a_uno_operación_bloqueante.svg[]
+
+Sin embargo, en la <<fig-modelo-a-uno-operación-bloqueante>> también vemos que _Hilo 2_ invoca la llamada al sistema `read()` para leer un archivo.
+Desde el punto de vista del núcleo, esa llamada la realiza el proceso, por lo que es bloqueado, hasta que la operación de lectura del archivo se completa.
+Al proceso nunca se le asignará la CPU mientras esté en estado _esperando_, por lo que ni _Hilo 1_ ni ningún otro *hilo de usuario* del proceso podrá ejecutarse.
+
+La solución, como hemos comentado, es que la *librería de hilos* proporcione sus propias versiones de las llamadas al sistema que pueden poner al proceso en estado _esperando_.
+Por ejemplo, en la <<fig-modelo-a-uno-operación-bloqueante>> el _Hilo 2_ no usa la llamada al sistema `read()` sino una función `read()` proporcionada por la *librería de hilos*.
+
+Para implementar su `read()`, la *librería de hilos* usa una versión asíncrona de la llamada al sistema.
+Es decir, una versión donde se le indica al sistema que se quiere hacer una operación de E/S, pero el proceso no entra en estado de espera mientras ocurre.
+En su lugar, el proceso retorna inmediatamente de la llamada al sistema y sigue ejecutándose en la CPU, lo que permite que la *librería de hilos* comience a ejecutar _Hilo 1_ en el lugar de _Hilo 2_.
+Es decir, desde el punto de vista de _Hilo 2_, la función `read()` de la *librería de hilos* es bloqueante.
+
+[[fig-modelo-a-uno-operación-async]]
+.Diagrama de secuencia de la solución al bloqueo del proceso en el modelo muchos a uno.
+image::{chapdir}/muchos_a_uno_operación_async.svg[]
+
+Más adelante, el sistema operativo notificará a la *librería de hilos* que la operación ha sido realizada, por lo que los datos ya están disponibles en la memoria para ser usados.
+En ese momento, _Hilo 2_ vuelve al estado _preparado_ para volver a ser planificado por la *librería de hilos* cuando sea posible.
+
+Este procedimiento es complejo y requiere versiones no bloqueantes de todas las llamadas al sistema, lo que puede que no siempre se cumpla.
+Por lo general, cualquier sistema operativo moderno ofrece versiones asíncronas de todas las operaciones de E/S, pero puede haber otras llamadas al sistema que puedan poner al proceso en estado _esperando_ y que no tengan versión asíncrona.
 
 ==== Implementaciones
 
-A este modelo de hilos frecuentemente se lo llama https://en.wikipedia.org/wiki/Green_threads[Green Threads].
-En Java 1.1 era el único modelo soportado, pero debido a sus limitaciones se implementó el soporte del modelo *uno a uno* en versiones posteriores.
+A este modelo de hilos también se lo denomina https://en.wikipedia.org/wiki/Green_threads[Green Threads].
+En Java 1.1 era el único modelo soportado —ya que los hilos se implementaban en la máquina virtual de Java, independientemente del soporte del sistema operativo— pero debido a sus limitaciones se implementó el soporte de hilos nativos del sistema operativo.
 
 Otras implementaciones de este modelo son las https://docs.microsoft.com/en-us/windows/win32/procthread/fibers[fibras] de Windows API, http://www.stackless.com/[Stackless Python] y http://www.gnu.org/software/pth/[GNU Portable Threads].
-Estas implementaciones son muy útiles en los sistemas monohilo, de cara a poder ofrecer cierto soporte de hilos a las aplicaciones.
-Pero también lo son en los sistemas multihilo, ya que debido a su bajo coste en recursos y a su alta eficiencia son ideales cuando la cantidad de hilos a crear —el nivel de concurrencia— va a ser previsiblemente muy alta.
 
-=== Uno a uno
+=== Uno a uno (1:1)
 (((uno a uno)))(((modelo, uno a uno)))
 
-En el modelo *uno a uno* cada hilo que ve el proceso se mapea en una «entidad planificable en la CPU» diferente del núcleo.
+En el modelo *muchos a uno* un *hilo de usuario* se mapea en *un único hilo de núcleo*.
 
-Este, por lo general, es el modelo utilizado cuando el núcleo del sistema operativo soporta hilos de ejecución.
-En este caso, la librería de hilos se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los *hilos de núcleo* y los procesos pueden gestionar estos hilos mediante llamadas al sistema.
-
-// TODO: Ajustar el dibujo a la explicación
+Por lo general, este modelo corresponde al caso de los sistemas que solo soportan *hilos a nivel de núcleo*.
+En este caso, la *librería de hilos* se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los *hilos de núcleo* y los procesos pueden gestionar estos hilos mediante llamadas al sistema (véase la <<fig-modelo-uno-a-uno>>).
 
 [[fig-modelo-uno-a-uno]]
-.Modelo uno a uno.
+.Modelo uno a uno (1:1).
 image::{chapdir}/modelo_uno_a_uno.svg[]
 
-====
-Las principales características de este modelo son:
+Es importante tener en cuenta que, a efectos prácticos, los *hilos de usuario* de la <<fig-modelo-uno-a-uno>> no son hilos diferentes a los *hilos de núcleo*.
+Realmente, son los mismos *hilos de núcleo* pero vistos desde la perspectiva del programa en el modo usuario.
+
+==== Ventajas e inconvenientes
+
+Las principales *ventajas* de este modelo son:
 
 * Permite a otros hilos del mismo proceso ejecutarse aun cuando uno de ellos haga una llamada al sistema que debe bloquearse.
 El núcleo se encarga de ponerlo en espera y planificar en la CPU a otro de los hilos preparados para ejecutarse de entre todos los existentes en el sistema.
 
 * Permite paralelismo en sistemas multiprocesador, ya que diferentes hilos pueden ser planificados por el núcleo en distintos procesadores.
 
-* Crear un hilo para un proceso implica crear ciertas estructuras de datos en el núcleo.
+Mientras que estos son algunos posibles *inconvenientes*:
+
+* Crear hilos puede tener mayor coste.
+En este caso, crear un hilo para un proceso implica crear y gestionar ciertas estructuras de datos en el núcleo.
 Debido a que la cantidad de memoria disponible para el núcleo suele estar limitada, muchos sistemas restringen la cantidad máxima de *hilos de núcleo* soportados.
 
 * La gestión de los hilos se hace con una librería en el espacio de núcleo, lo que requiere que el proceso haga llamadas al sistema para gestionarlos.
-Esto siempre es más lento que invocar simplemente una función, como ocurre en el modelo *muchos a uno*.
-====
+Esto suele tener mayor coste que invocar simplemente una función, como ocurre en el modelo *muchos a uno*.
 
-Este modelo se utiliza en la mayor parte de los sistemas operativos multihilo modernos.
-Linux, Microsoft Windows —desde Windows 95— {solaris} 9 y superiores, macOS y la familia de UNIX BSD; son ejemplos de sistemas operativos que utiliza el modelo *uno a uno*.
+==== Implementaciones
 
-=== Muchos a muchos
+El modelo *uno a uno* se utiliza en la mayor parte de los sistemas operativos multihilo modernos.
+Linux, Microsoft Windows —desde Windows 95— {solaris} 9 y superiores, macOS y la familia de UNIX BSD; son ejemplos de sistemas operativos que utilizan el modelo *uno a uno*.
+
+=== Muchos a muchos (M:N)
 (((muchos a muchos)))(((modelo, muchos a muchos)))
-En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una librería de hilos en el núcleo, para crear *hilos de núcleo*, y otra en el espacio de usuario, para crear *hilos de usuario*.
-Así los desarrolladores pueden utilizar la librería de hilos en el espacio de usuario para crear tantos hilos como quieran y que se ejecuten sobre los *hilos de núcleo*.
 
-El planificador de la librería de hilos se encarga de determinar qué hilo de usuario es asignado a qué hilo de núcleo.
-Mientras que el planificador de la CPU asigna la CPU a alguno de los *hilos de núcleo* del sistema.
+En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una *librería de hilos* en el núcleo, para crear *hilos de núcleo*, y otra en el espacio de usuario, para crear *hilos de usuario*.
+Así los desarrolladores pueden utilizar la *librería de hilos* en el espacio de usuario para crear tantos hilos como quieran y que estos se ejecuten sobre los *hilos de núcleo* de su proceso.
 
-// TODO: Ajustar el dibujo a la explicación
+El planificador de la *librería de hilos* en espacio de usuario se encarga de determinar como se reparte el tiempo de ejecución de cada *hilo de núcleo* entre los *hilos de usuario*.
+Mientras que el planificador de la CPU asigna la CPU a alguno de los *hilos de núcleo* del sistema (véase la <<fig-modelo-muchos-a-muchos>>).
 
 [[fig-modelo-muchos-a-muchos]]
-.Modelo muchos a muchos.
+.Modelo muchos a muchos (M:N).
 image::{chapdir}/modelo_muchos_a_muchos.svg[]
 
-====
-En el modelo *muchos a muchos* se mapean los *hilos de usuario* en un menor o igual número de *hilos de núcleo* del proceso (véase la <<fig-modelo-muchos-a-muchos>>).
+==== Ventajas e inconvenientes
 
-* Permite paralelismo en sistemas multiprocesador, ya que diferentes *hilos de núcleo* pueden ser planificados en distintos procesadores y en cada uno puede ejecutarse cualquier hilo de usuario.
+Las principales *ventajas* de este modelo son:
 
-* Permite a otro hilo de usuario del mismo proceso ejecutarse cuando un hilo hace una llamada al sistema que debe bloquearse, puesto que si esto ocurre el correspondiente hilo de núcleo se queda bloqueado.
-Sin embargo, el resto de los *hilos de usuario* pueden seguir ejecutándose en los otros *hilos de núcleo* del proceso.
-====
+* Permite paralelismo en sistemas multiprocesador, ya que diferentes *hilos de núcleo* pueden ser planificados en distintos procesadores y en cada uno puede ejecutarse cualquier *hilo de usuario* de su proceso.
+
+* Permite a otro *hilo de usuario* del mismo proceso ejecutarse cuando un hilo hace una llamada al sistema que debe bloquearse.
+Si esto ocurre el correspondiente hilo de núcleo se queda bloqueado, pero el resto de los *hilos de usuario* pueden seguir ejecutándose en los otros *hilos de núcleo* del proceso (véase el <<_activación_del_planificador>>).
+
+Mientras que el principal *inconveniente* es su complejidad y la dificultad de coordinar el planificador de la librería de hilos en espacio de usuario con el planificador de la CPU para obtener el mejor rendimiento.
+
+Como veremos en el <<planificación_de_la_cpu>>, los planificadores de la CPU modernos intentan clasificar los *hilos de núcleo* para ordenarlos de la forma más óptima en el acceso a la CPU.
+Por ejemplo, no es lo mismo una tarea de cálculo, que necesita usar intensivamente la CPU, que copia datos de la red o del sistema de archivos.
+Por lo general, primero se planifican las segundas, dejando para el final las tareas intensivas en el uso de la CPU.
+
+El problema con el modelo *muchos a muchos* es que en un mismo *hilo de núcleo* se pueden ejecutar diferentes *hilos de usuario* que pueden ser de distinto tipo.
+Por tanto, cualquier clasificación que haga el planificador de la CPU puede ser incorrecta en cuanto la *librería de hilos* en espacio de usuario cambie el *hilo de usuario* que se está ejecutando un *hilo de núcleo* por otro diferente.
+
+La solución pasa porque la *librería de hilos* en espacio de usuario y el planificador de la CPU intercambien información sobre sus hilos y se coordinen.
+
+Por estas dificultades, sistemas como Linux —y {solaris} a partir de la versión 9— han optado finalmente por el modelo *uno a uno*.
+En concreto, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de *hilos de núcleo*, con el objeto de que haya poca o ninguna ventaja en implementar *hilos de usuario*.
+
+==== Implementaciones
 
 Este modelo se soportaba en sistemas {freebsd} y versiones antiguas de {netbsd}, así como en UNIX comerciales, como: {solaris} 8 y anteriores, {irix}, {hpux} y {tru64}.
-También Microsoft Windows —a partir de Windows 7— soporta este modelo gracias a incorporar un mecanismo denominado planificación en modo usuario (véase https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[«User-Mode Scheduling -- Microsoft Docs»]).
+
+También Microsoft Windows —a partir de Windows 7— soporta este modelo gracias a incorporar un mecanismo denominado _planificación en modo usuario_ (véase https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[«User-Mode Scheduling -- Microsoft Docs»]).
+
+[NOTE]
+====
+En Microsoft Windows también se puede implemnentar el modelo *muchos a muchos* usando múltiples *hilos de núcleo* y https://docs.microsoft.com/en-us/windows/win32/procthread/fibers[fibras], aunque es preferible usar _planificación en modo usuario_.
+
+La diferencia es que en la _planificación en modo usuario_ la planificación de hilos es *expropiativa* —es decir, la *librería de hilos* puede interrumpir e intercambiar los hilos en cualquier momento— mientras que las _fibras_ en Windows son *cooperativas* —por lo que deben interrumpir su ejecución voluntariamente para que puedan ser intercambiadas por otra _fibra_—.
+====
 
 Algunos lenguajes de programación implementan el modelo *muchos a muchos* sobre el modelo *uno a uno* soportado por la mayoría de sistemas operativos modernos.
 Ese es el caso de https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)[Go], https://es.wikipedia.org/wiki/Erlang[Erlang] y https://es.wikipedia.org/wiki/Elixir_(lenguaje_de_programaci%C3%B3n)[Elixir].
 
-==== Activación del planificador
-
-// TOOD: Diagrama UML sistema de activación.
-
-Tanto en el modelo *muchos a muchos* como en el de *dos niveles* es necesario cierto grado de coordinación entre el núcleo y la librería de hilos del espacio de usuario.
-Dicha comunicación tiene como objeto ajustar dinámicamente el número de *hilos de núcleo* para garantizar la máxima eficiencia.
-
-Uno de los esquemas de comunicación se denomina *((activación del planificador))* y consiste en que el núcleo informa a la librería de hilos en espacio de usuario que una llamada al sistema va a bloquear un hilo de un proceso.
-Antes de dicha notificación, el núcleo se encarga de crear un nuevo hilo de núcleo en el proceso y se lo pasa a la librería de hilos en la notificación.
-Así, el planificador de la librería puede asignarle alguno de los otros *hilos de usuario*, evitando el bloqueo completo del proceso y ajustando el número de *hilos de núcleo* dinámicamente.
-
-Debido a la complejidad del mecanismo descrito anteriormente y a la dificultad de coordinar el planificador de la librería de hilos con el de la CPU para obtener un rendimiento óptimo, sistemas como Linux y {solaris} —a partir de la versión 9— han optado finalmente por el modelo *uno a uno*.
-
-Con el objetivo de evitar los problemas derivados del coste de dicho modelo, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de *hilos de núcleo*.
-
 === Dos niveles
 
-Existe una variación del modelo *muchos a muchos* donde, además de funcionar de la forma comentada anteriormente, se permite que un hilo de usuario quede ligado indefinidamente a un único hilo de núcleo, como en el modelo *uno a uno*.
+Existe una variación del modelo *muchos a muchos* donde, además de funcionar de la forma comentada anteriormente, se permite que un *hilo de usuario* quede ligado indefinidamente a un único *hilo de núcleo*, como en el modelo *uno a uno*.
 
 Esta variación se denomina, en ocasiones, modelo de *dos niveles* (véase la <<fig-modelo-de-dos-niveles>>).
 
-// TODO: Ajustar el dibujo a la explicación
-
 [[fig-modelo-de-dos-niveles]]
-.Modelo muchos a uno.
+.Modelo de dos niveles.
 image::{chapdir}/modelo_de_dos_niveles.svg[]
+
+==== Ventajas e inconvenientes
+
+El modelo de *dos niveles* presenta los mismos inconvenientes que el modelo *muchos a muchos*, con algunas *ventajas* en casos de uso concretos:
+
+* Al vincular un *hilo de usuario* a un *hilo de núcleo* se asegura la disponibilidad del recurso, lo que puede ser interesante si un *hilo de usuario* es particularmente importante para el rendimiento de la aplicación.
+
+* En sistemas con múltiples procesadores o núcleos, puede interesar que un *hilo de usuario* se ejecute siempre en el mismo procesador o núcleo para aprovechar la caché y mejorar el rendimiento.
+Al vincular un *hilo de usuario* a un *hilo de núcleo* y configurar este último para que siempre se planifique en el mismo procesador, se está asegurando esta misma condición para el *hilo de usuario* correspondiente.
+
+=== Activación del planificador
+
+Tanto en el modelo *muchos a muchos* como en el de *dos niveles* es conveniente que exista cierto grado de coordinación entre el núcleo y la *librería de hilos* del espacio de usuario.
+Dicha comunicación tiene como objeto ajustar dinámicamente el número de *hilos de núcleo* para garantizar la máxima eficiencia.
+
+[[fig-activación-del-planificador]]
+.Diagrama de secuencia del mecanismo de activación del planificador.
+image::{chapdir}/activación_del_planificador.svg[]
+
+Uno de los esquemas de comunicación se denomina *((activación del planificador))* y consiste en que el núcleo informa a la *librería de hilos* en espacio de usuario que una llamada al sistema, realizada por uno de sus hilos de usuario, va a bloquear un *hilo de núcleo* del proceso cuyos hilos gestiona.
+Antes de dicha notificación, el núcleo se encarga de crear un nuevo *hilo de núcleo* en el proceso y se lo pasa a la *librería de hilos* en la notificación (véase la <<fig-activación-del-planificador>>).
+Así, el planificador de la librería puede asignarle alguno de los otros *hilos de usuario*, evitando el bloqueo completo del proceso si no quedan *hilos de núcleo* disponibles, y ajustando el número de *hilos de núcleo* dinámicamente, según las necesidades
 
 == Operaciones sobre los hilos
 
