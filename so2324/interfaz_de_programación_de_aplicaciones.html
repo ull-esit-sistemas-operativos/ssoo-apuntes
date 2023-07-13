@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="interfaz_de_programación_de_aplicaciones" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2023-2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+<ul class="sectlevel1">
+<li><a href="componentes_del_sistema.html">4. Componentes del sistema</a>
+</li>
+<li><a href="servicios_del_sistema.html">5. Servicios del sistema</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html"><span class="toc-current">6. Interfaz de programación de aplicaciones</span></a>
+<ul class="sectlevel2">
+<li><a href="interfaz_de_programación_de_aplicaciones.html#_interfaces_de_programación_de_aplicaciones">6.1. Interfaces de programación de aplicaciones</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html#_llamadas_al_sistema">6.2. Llamadas al sistema</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html#_librería_del_sistema">6.3. Librería del sistema</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html#_librería_estándar">6.4. Librería estándar</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html#_con_todas_las_piezas_juntas">6.5. Con todas las piezas juntas</a>
+</li>
+</ul>
+</li>
+<li><a href="operación_del_sistema_operativo.html">7. Operación del sistema operativo</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html">8. Sistemas operativos por su estructura</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="interfaz_de_programación_de_aplicaciones"><a class="anchor" href="#interfaz_de_programación_de_aplicaciones"></a>6. Interfaz de programación de aplicaciones</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 18 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Un sistema operativo proporciona un entorno controlado para la ejecución de programas.
+Dicho entorno debe proporcionar ciertos servicios que pueden ser accedidos por los programas a través de una <strong>interfaz de programación de aplicaciones</strong> o <strong>API</strong> (<em>Application Programming Interface</em>).</p>
+</div>
+<div class="sect2">
+<h3 id="_interfaces_de_programación_de_aplicaciones"><a class="anchor" href="#_interfaces_de_programación_de_aplicaciones"></a>6.1. Interfaces de programación de aplicaciones</h3>
+<div class="paragraph">
+<p>
+Algunas de las API disponibles para los desarrolladores de aplicaciones son Windows API y POSIX.</p>
+</div>
+<div class="sect3">
+<h4 id="_windows_api"><a class="anchor" href="#_windows_api"></a>6.1.1. Windows API</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Win32_API">Windows API</a> es el nombre que recibe la <strong>interfaz de programación de aplicaciones</strong> de Microsoft Windows, con la que prácticamente tienen que interactuar todas las aplicaciones, de una forma u otra.</p>
+</div>
+<div class="paragraph">
+<p>Antiguamente se denominaba Win32 API, pero Microsoft ha querido aglutinar bajo una misma denominación las distintas versiones de la API de Windows que han existido, como Win16 —usada en las versiones de 16 bits de Windows— o Win64 —que es la variante de Win32 adaptada a arquitecturas de 64 bits—.</p>
+</div>
+<div class="paragraph">
+<p>Está compuesta por funciones en C almacenadas, principalmente, en las librerías de enlace dinámico (<a href="https://es.wikipedia.org/wiki/Biblioteca_de_enlace_din%C3%A1mico">DLL</a>): <code>kernel32.dll</code>, <code>user32.dll</code> y <code>gdi32.dll</code>.
+Aunque según se ha ido ampliando la API, se han incorporado otras librerías adicionales.</p>
+</div>
+<div class="paragraph">
+<p>Provee un conjunto muy amplio de servicios: E/S a archivos y dispositivos, gestión de procesos, hilos y memoria, manejo de errores, registro de Windows, interfaz a dispositivos gráficos —pantallas e impresoras— gestión de ventanas, comunicaciones en red, etc.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_posix"><a class="anchor" href="#_posix"></a>6.1.2. POSIX</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a> (<em>Portable Operating System Interface for Unix</em>) es el nombre de una familia de estándares que definen una <strong>interfaz de programación de aplicaciones</strong> para sistemas operativos.
+Esto permite que un mismo programa pueda ser ejecutado en distintos sistemas operativos, siempre que sean compatibles con POSIX.</p>
+</div>
+<div class="paragraph">
+<p>El lenguaje C fue diseñado originalmente para implementar sistemas UNIX y por eso la librería estándar de C tenía mucho parecido con la librería del sistema de UNIX.
+Con el tiempo, al ir añadiendo más funcionalidades, la librería del sistema de los sistemas UNIX de los distintos fabricantes fue divergiendo, haciendo muy complicado desarrollar programas que usasen las características más avanzadas y que a la vez pudieran ejecutarse en varios de ellos.
+Por eso el <a href="https://es.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers">IEEE</a> desarrolló el estándar POSIX, que define una API común para todos los UNIX y sistemas estilo UNIX modernos —como es el caso de GNU/Linux—.
+Así que la práctica totalidad de estos sistemas son compatible POSIX.</p>
+</div>
+<div class="paragraph">
+<p>Por su origen, la API POSIX es un superconjunto de la API de la librería estándar de C.
+Por eso en los sistemas POSIX, la librería estándar de C es parte de la librería del sistema, en lugar de dos librerías separadas.</p>
+</div>
+<div class="paragraph">
+<p>Las funciones POSIX están almacenadas, principalmente, en la librería <code>libc</code>.
+Aunque algunas características pueden estar en otras librerías, como <code>libm</code> —la librería matemática— o <code>libpthread</code> —la librería de hilos—.</p>
+</div>
+<div class="paragraph">
+<p>Los desarrolladores del sistema a veces añaden funciones no incluidas en el estándar POSIX, con el objeto de soportar algún tipo de funcionalidad avanzada del sistema.
+Este es el caso de las diferentes versiones de BSD y la librería del sistema del proyecto GNU —usada generalmente en los sistemas Linux— que incluye sus propias extensiones.
+Además, el estándar POSIX ha tenido varias revisiones desde la primera —publicada en 1988— cada una de las cuales añade características y funcionalidades adicionales.</p>
+</div>
+<div class="paragraph">
+<p>Antes de usar extensiones y características avanzadas debemos tener presente que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un programa que solo utilice funcionalidades hasta cierta versión de la API POSIX, podrá ejecutarse en cualquier sistema operativo compatible POSIX que implemente al menos hasta esa versión del estándar.</p>
+</li>
+<li>
+<p>Mientras que uno que utilice, por ejemplo, alguna funcionalidad adicional no POSIX de GNU/Linux o macOS, solo podrá compilarse y ejecutarse en GNU/Linux o en macOS, según el caso.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Como la compatibilidad con diferentes sistemas puede ser algo bastante complejo de gestionar para los desarrolladores, los sistemas POSIX ofrecen macros con las que controlar qué funcionalidades del sistema están disponibles para nuestro programa.
+A estas macros sé las denomina <a href="https://man7.org/linux/man-pages/man7/feature_test_macros.7.html">macros de test de características</a>.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el siguiente programa en C —disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap06/softstack.c">softstack.c</a>— realiza una serie de tareas muy sencillas: crea un archivo, muestra una serie de mensajes por la salida estándar, cierra el archivo y termina.
+Sin embargo, si no se define la macro <code>_POSIX_C_SOURCE</code> puede que no compile, según la versión de la librería del sistema y las opciones del compilador.
+El motivo es que todas las funciones utilizadas en el programa forman parte del estándar POSIX desde hace tiempo, excepto <a href="https://man7.org/linux/man-pages/man3/mkstemp.3.html">mkstemp()</a>, que es una función introducida en el estándar POSIX.1-2008.
+Por lo que si el compilador por defecto compila para una versión anterior del estándar, esta y otras funciones definidas en especificaciones posteriores no están.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="cp">#define _POSIX_C_SOURCE 200809L                      <i class="conum" data-value="1"></i><b>(1)</b>
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;fcntl.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">filename</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"/tmp/softstack-fileXXXXXX"</span><span class="p">;</span>
+
+    <span class="n">mkstemp</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>                               <i class="conum" data-value="2"></i><b>(2)</b>
+
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Antes de abrir el archivo..."</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_CREAT</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Después de abrir el archivo..."</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Definir la macro <code>_POSIX_C_SOURCE</code> con el valor <code>200809L</code> activa que las cabeceras expongan definiciones correspondientes a la especificación POSIX.1-2008.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Genera un nombre de archivo que no exista en el sistema de archivos usando la plantilla indica por <code>filename</code>.
+Esta función pertenece al estándar POSIX.1-2008.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Este mecanismo tiene la doble ventaja de que:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Al tener que incluir las macros sabemos los requisitos mínimos del sistema donde podremos compilar y ejecutar nuestro programa, aunque no estemos preocupados por cumplir con un estándar concreto.</p>
+</li>
+<li>
+<p>Si es un requisito del proyecto que se ejecute en sistemas con un estándar particular, solo tenemos que incluir la macro correspondiente y el compilador no nos dejará usar definiciones no incluidas en la especificación indicada.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Los sistemas POSIX pueden soportar muchas otras <a href="https://man7.org/linux/man-pages/man7/feature_test_macros.7.html">macros de test de características</a>, según las especificaciones y extensiones soportadas por la librería del sistema.
+Las de uso más común en los sistemas GNU son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_POSIX_C_SOURCE</code>.
+Según el valor asignado a esta macro se establece la especificación POSIX que debe activarse para el programa.
+Los valores válidos se indican en la documentación de las <a href="https://man7.org/linux/man-pages/man7/feature_test_macros.7.html">macros de test de características</a>.</p>
+</li>
+<li>
+<p><code>_XOPEN_SOURCE</code>.
+Definiendo esta macro se indica la especificación de la <a href="https://es.wikipedia.org/wiki/X/Open">Guía de portabilidad X/Open</a> que debe activarse para el programa.
+Según el valor se activarán ciertas especificaciones POSIX junto con algunas extensiones adicionales.</p>
+</li>
+<li>
+<p><code>_BSD_SOURCE</code>.
+Activa funcionalidades específicas de los sistemas BSD.</p>
+</li>
+<li>
+<p><code>_DEFAULT_SOURCE</code>.
+Activa las especificaciones y extensiones por defecto, por si se diera el caso de que han sido desactivas de alguna manera.
+Las definiciones por defecto incluyen: POSIX.1-2008, ISO C99 y algunas funcionalidades extra de sistemas UNIX BSD y System V.</p>
+</li>
+<li>
+<p><code>_GNU_SOURCE</code>.
+Activa <code>_DEFAULT_SOURCE</code> y extensiones específicas de los sistemas GNU.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_llamadas_al_sistema"><a class="anchor" href="#_llamadas_al_sistema"></a>6.2. Llamadas al sistema</h3>
+<div class="paragraph">
+<p>
+Para un programa, acceder a los servicios del sistema operativo no es tan sencillo como invocar una función.
+Para invocar una función, un programa necesita conocer la dirección en la memoria del punto de entrada de dicha función —es decir, la ubicación de su primera instrucción—.
+Sin embargo, el código del núcleo del sistema puede estar en cualquier ubicación de la memoria principal.
+Así que las direcciones de los puntos de entrada a las funciones del núcleo son desconocidas.
+Además, generalmente, el código y los datos del núcleo están protegidos frente a accesos indebidos (véase el <a href="operación_del_sistema_operativo.html#_protección_de_la_memoria">Apartado 7.3</a>).
+Eso significa que para que un proceso pueda invocar los servicios que necesita hace falta un procedimiento diferente, denominado <strong>llamada al sistema</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_invocar_llamadas_al_sistema"><a class="anchor" href="#_invocar_llamadas_al_sistema"></a>6.2.1. Invocar llamadas al sistema</h4>
+<div class="paragraph">
+<p>Generalmente una llamada al sistema se invoca mediante una instrucción específica en lenguaje ensamblador que genera una <strong>excepción</strong> —que no es más que una interrupción lanzada por la propia CPU al detectar instrucciones especiales o un error al ejecutar una instrucción, como una división por 0 o un acceso indebido a ciertas zonas de la memoria—.
+Por ejemplo, en MIPS e Intel x86 se usa la instrucción <code>syscall</code>, que lanza una excepción, haciendo que la CPU salte a una rutina en el código del núcleo del sistema, deteniendo así la ejecución del proceso que la invocó.</p>
+</div>
+<div class="paragraph">
+<p>Al realizar una llamada, es necesario que el sistema sepa qué operación le está pidiendo el proceso.
+Esto se suele hacer poniendo un número identificativo de la llamada en un registro concreto de la CPU.
+Por ejemplo, en Linux para x86 la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> —que se utiliza para abrir archivos— se identifica con el número 2 o con el 5, según si es en 64 o en 32 bits, respectivamente.
+Este número se debe guardar en el registro <code>v0</code> en MIPS o <code>eax</code> en x86, antes de la instrucción <code>syscall</code>.</p>
+</div>
+<div class="paragraph">
+<p>Los números utilizados para identificar cada llamada al sistema dependen del sistema operativo.
+Mientras que el registro donde se guarda, la instrucción utilizada y el resto de detalles sobre cómo realizar la llamada, dependen también de la arquitectura de la CPU.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_paso_de_argumentos"><a class="anchor" href="#_paso_de_argumentos"></a>6.2.2. Paso de argumentos</h4>
+<div class="paragraph">
+<p>Obviamente una llamada al sistema suele requerir más información que la identidad de la llamada.
+Si, por ejemplo, se quiere abrir un archivo, al menos es necesario indicar su nombre, así como si se abre para leer o para escribir.</p>
+</div>
+<div class="paragraph">
+<p>En concreto hay tres métodos para pasar parámetros adicionales al identificador a una llamada al sistema:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Mediante registros de la CPU</strong>.
+Consiste en cargar los parámetros de la llamada al sistema en los registros de la CPU antes de realizar la llamada al sistema.
+Este método es el más eficiente, pero limita el número de parámetros al número de registros disponibles.</p>
+<div class="paragraph">
+<p>Es utilizado, por ejemplo, en Linux para MIPS (véase el <a href="interfaz_de_programación_de_aplicaciones.html#ejemplo-linux-mips-syscall">Ejemplo 6.1</a>) y en la mayoría de sistemas operativos para x86-64.</p>
+</div>
+</li>
+<li>
+<p><strong>Mediante tabla en memoria</strong>
+Consiste en copiar los parámetros de la llamada al sistema en una tabla en la memoria principal y luego guardar la dirección de dicha tabla en un registro específico de la CPU, antes de la llamada al sistema.
+Así no se limita el número de parámetros que pueden ser pasados en cada llamada al sistema.</p>
+<div class="paragraph">
+<p>Era utilizado por Microsoft Windows 2000 y anteriores.
+También en Linux para x86 32 bits, cuando el número de parámetros es superior a 6.</p>
+</div>
+</li>
+<li>
+<p><strong>Mediante la pila del proceso</strong> se insertan los parámetros de la llamada al sistema en la pila del proceso —que también se suele usar para guardar variables locales y, en algunas arquitecturas, los argumentos pasados al llamar a funciones— y el sistema operativo los recupera de allí durante la llamada al sistema.
+Al igual que en el caso anterior, tampoco limita el número de parámetros que pueden ser pasados en cada llamada al sistema.</p>
+<div class="paragraph">
+<p>Es utilizado, por ejemplo, en sistemas UNIX BSD y en Windows XP y posteriores para x86 de 32 bits.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="ejemplo-linux-mips-syscall" class="exampleblock">
+<div class="title">Ejemplo 6.1. Llamada al sistema en Linux MIPS.</div>
+<div class="content">
+<div class="paragraph">
+<p>Veamos cómo invocar directamente la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a> en Linux para MIPS.</p>
+</div>
+<div class="paragraph">
+<p>Esta llamada sirve para escribir datos en un archivo.
+Así que necesita tres argumentos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SIZE</strong>: El número de bytes a escribir.</p>
+</li>
+<li>
+<p><strong>BUFFER</strong>: La dirección de la memoria de la que coger los bytes.</p>
+</li>
+<li>
+<p><strong>FILEDES</strong>: El descriptor que identifica a un archivo abierto donde se van a escribir los datos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Al terminar devuelve el número de bytes escritos en el archivo, que puede ser inferior a <code>SIZE</code>.</p>
+</div>
+<div class="paragraph">
+<p>El identificador de la llamada al sistema es 4004, según el <a href="https://github.com/torvalds/linux/blob/v4.20/arch/mips/include/uapi/asm/unistd.h">listado de llamadas al sistema</a> para Linux en MIPS.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>  lw      $a0, FILEDES   <i class="conum" data-value="1"></i><b>(1)</b>
+  la      $a1, BUFFER    <i class="conum" data-value="1"></i><b>(1)</b>
+  lw      $a2, SIZE      <i class="conum" data-value="1"></i><b>(1)</b>
+  li      $v0, 40004     <i class="conum" data-value="2"></i><b>(2)</b>
+  syscall                <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Cargar cada uno de los 3 argumentos de la llamada al sistema en los registros <code>a0</code>, <code>a1</code> y <code>a2</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Cargar el identificador de la llamada <code>write()</code> en el registro <code>v0</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Invocar la llamada al sistema.
+Aunque vemos que es una única instrucción, lo que realmente va a ocurrir es que el sistema operativo va a tomar el control de la CPU para realizar la tarea solicitada.
+La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operativo no lo decida, por lo que, desde el punto de vista del programa, va a ser como si <code>syscall</code> fuera una instrucción más lenta de lo normal.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Al ejecutar la siguiente instrucción del código del programa, el registro <code>v0</code> contendrá el número de bytes escritos.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap06/syscall.s">syscalls.s</a> se puede ver un ejemplo completo similar, pero para Linux x86 de 64 bits.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>En cualquier caso, sea cual sea el método utilizado, el sistema operativo es responsable de comprobar de manera estricta la validez de los parámetros enviados en la llamada al sistema antes de realizar cualquier operación, puesto que nunca debe confiar en que los procesos hagan su trabajo correctamente.
+A fin de cuentas, una de las funciones del sistema operativo es el control de dichos procesos.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_librería_del_sistema"><a class="anchor" href="#_librería_del_sistema"></a>6.3. Librería del sistema</h3>
+<div class="paragraph">
+<p>
+Las <strong>llamadas al sistema</strong> proporcionan una interfaz con la que los procesos pueden invocar los servicios que el sistema operativo ofrece.
+El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <a href="interfaz_de_programación_de_aplicaciones.html#ejemplo-linux-mips-syscall">Ejemplo 6.1</a>) no son demasiado cómodas de utilizar.
+Así que generalmente los programas no las invocan directamente.
+En su lugar, lo que hacen es llamar a funciones de la <strong>librería del sistema</strong>, que a su vez son las encargadas de hacer las llamadas al sistema necesarias.</p>
+</div>
+<div class="paragraph">
+<p>Cuando hablamos anteriormente de <a href="https://es.wikipedia.org/wiki/Win32_API">Windows API</a> y del estándar <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>, hablábamos de la interfaz de la <strong>librería del sistema</strong> en esos sistemas operativos.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>La <strong>librería del sistema</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Es parte del sistema operativo, por lo que se distribuye con él.</p>
+</li>
+<li>
+<p>Es una colección de clases o funciones que ofrecen los servicios del sistema operativo a los programas, apoyándose en las llamadas al sistema.</p>
+<div class="paragraph">
+<p>Algunas funciones de la librería del sistema son traducciones literales de llamadas al sistema —por ejemplo, <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a> o <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a>— mientras que otras pueden ser más complejas, hacer más trabajo o mostrar conceptos más abstractos que los usados por el sistema operativo al nivel de llamadas al sistema.</p>
+</div>
+</li>
+<li>
+<p>Constituye la verdadera <strong>interfaz de programación de aplicaciones</strong> del sistema operativo.
+Es la forma recomendada de solicitar servicios al sistema operativo.
+Invocar directamente las llamadas al sistema debe ser el último recurso.</p>
+</li>
+<li>
+<p>Sus funciones se llaman como cualquier otra.
+Al igual que el resto de librerías, se carga dentro de la región de memoria asignada al proceso.
+Por lo tanto, la invocación de las funciones de la librería del sistema se realiza como si fueran cualquier otra función del programa.</p>
+</li>
+<li>
+<p>Es muy común que esté implementada en C, lo que permite que tanto los programas en C como en C&#43;&#43; la puedan utilizar directamente.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_librería_estándar"><a class="anchor" href="#_librería_estándar"></a>6.4. Librería estándar</h3>
+<div class="paragraph">
+<p>
+Lenguajes distintos de C y C&#43;&#43; pueden tener difícil usar las funciones de la librería del sistema.
+Pero de alguna forma deben poder hacerlo, porque sus programadores necesitan acceso a los servicios que ofrece el sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>Incluso en C y en C&#43;&#43; puede ser interesante tener acceso a funcionalidades adicionales a las ofrecidas por la API del sistema operativo: estructuras de datos, algoritmos de ordenamiento o búsqueda, funciones para manipular cadenas, funciones matemáticas, etc.
+También abstracciones de los servicios del sistema, que encajen mejor con las particularidades del lenguaje de programación en cuestión.
+Por ejemplo, utilizando clases y objetos en lenguajes que soportan programación orientada a objetos.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Por eso, junto a cada intérprete o compilador de cada lenguaje de programación suele ir una <strong>librería estándar</strong> que ofrece clases o funciones con las que los programas pueden acceder a los servicios del sistema operativo y realizar las tareas más comunes de forma más sencilla.</p>
+</div>
+<div class="paragraph">
+<p>Estas librerías generalmente no forman parte del sistema operativo, sino de las herramientas de desarrollo de cada lenguaje de programación, y constituyen la <strong>interfaz de programación de aplicaciones</strong> del lenguaje al que acompañan.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>librería estándar</strong> necesita acceder a los servicios del sistema operativo para, a su vez, dar servicio a los programas que la usan.
+Es decir, cuando un programa invoca alguna función o método de la librería estándar que lo acompaña, es muy probable que esta necesite invocar uno o más servicios del sistema operativo para atender la petición convenientemente.
+Para ello la <strong>librería estándar</strong> utiliza la <strong>librería del sistema</strong> que acompaña al sistema operativo, que a su vez realiza las <strong>llamadas al sistema</strong> necesarias.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">De archivos a flujos</div>
+<div class="paragraph">
+<p>Un ejemplo del papel de las <strong>librerías estándar</strong> lo podemos encontrar en el acceso a los archivos.</p>
+</div>
+<div class="paragraph">
+<p>Las llamadas al sistema y la librería del sistema de los sistemas operativos ofrecen funciones básicas para manipular archivos.
+Los archivos se abren indicando su ruta y, al hacerlo, el sistema operativo devuelve un identificador del archivo abierto (véase <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>).
+Este identificador se puede usar para leer o escribir en bytes el contenido del archivo.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo en C, C&#43;&#43; y otros lenguajes, todo lo que son flujos de datos se generalizan en el concepto de flujo o <em>stream</em> (véase <a href="https://en.cppreference.com/w/c/io">&lt;stdio.h&gt;</a> e <a href="https://en.cppreference.com/w/cpp/header/iostream">std::iostream</a>).
+En él se incluye la entrada de teclado y la salida por pantalla, la impresión de documentos, las conexiones de red —potencialmente— y, obviamente, el acceso a archivos y a dispositivos.</p>
+</div>
+<div class="paragraph">
+<p>Los flujos pueden ser de texto o binarios, lo que implica algunas transformaciones en los datos.
+Además van ligados al concepto del <em>buffering</em>, es decir, que los bytes o caracteres escritos en el flujo no se «envían» inmediatamente, sino que se acumulan en la memoria para ser enviados en bloque.</p>
+</div>
+<div class="paragraph">
+<p>Todas estas características adicionales las implementa la <strong>librería estándar</strong>.
+Pero por debajo, al final, los datos tienen que ser escritos en un archivo, una impresora o el monitor, recursos que gestiona el sistema operativo.
+Por lo tanto, las <strong>librerías estándar</strong> necesitan hacer uso de la <strong>librería del sistema</strong> para comunicarse con el sistema operativo.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>Algo que suele ocurrir al crear mayores abstracciones es que se suele perder control y características específicas.
+Por ejemplo, la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> con la que se pueden crear archivos permite asignar permisos o crear archivos temporales.
+Sin embargo, con las interfaces de <em>streams</em> de C y C&#43;&#43; no se puede hacer eso, ya que los permisos y la temporalidad son propiedades de los archivos que no son comunes a todas fuentes de flujos de datos.</p>
+</div>
+<div class="paragraph">
+<p>Así que en ocasiones puede ser que nos resulte más útil llamar a las funciones de la <strong>librería del sistema</strong>, que usar las facilidades de la <strong>librería estándar</strong>.
+Sin embargo, debemos valorar que así perdemos portabilidad, ya que ahora nuestro programa ya no podrá usarse allí donde haya un compilador o intérprete de nuestro lenguaje, sino solo en sistemas operativos con una <strong>librería del sistema</strong> compatible.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_con_todas_las_piezas_juntas"><a class="anchor" href="#_con_todas_las_piezas_juntas"></a>6.5. Con todas las piezas juntas</h3>
+<div class="paragraph">
+<p>En la <a href="interfaz_de_programación_de_aplicaciones.html#fig-api-win32">Figura 6.1</a> se ilustra el papel de todos los elementos comentados, con el ejemplo de programas en C y Python, ejecutados en Microsoft Windows, que invocan los métodos <a href="https://en.cppreference.com/w/c/io/fopen">fopen()</a> y <code>file()</code> de la librería estándar de estos lenguajes, respectivamente.</p>
+</div>
+<div id="fig-api-win32" class="imageblock">
+<div class="content">
+<img src="media/C06-api/interfaz_programación_aplicaciones_win32.svg" alt="interfaz programación aplicaciones win32">
+</div>
+<div class="title">Figura 6.1. Elementos de la interfaz de programación de aplicaciones en Microsoft Windows.</div>
+</div>
+<div class="paragraph">
+<p>En ambos casos, la librería estándar llama a la función <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a> de la librería del sistema de Windows, que finalmente realiza una llamada al sistema que hace que el sistema operativo tome el control, deteniendo la ejecución del proceso que la solicita.
+Entonces se realiza la tarea solicitada mediante el funcionamiento coordinado de los diferentes componentes del sistema (véase el <a href="componentes_del_sistema.html">Capítulo 4</a>).</p>
+</div>
+<div class="paragraph">
+<p>El programa en C, puede usar tanto la función <a href="https://en.cppreference.com/w/c/io/fopen">fopen()</a> de su librería estándar como llamar directamente a la función <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a> de la librería del sistema —marcado en rojo en la <a href="interfaz_de_programación_de_aplicaciones.html#fig-api-win32">Figura 6.1</a>—.
+Sin embargo, en el programa en Python no tenemos esa facilidad —al menos directamente—.</p>
+</div>
+<div class="paragraph">
+<p>Usar directamente las funciones de la librería del sistema desde programas en C o C&#43;&#43; tiene la ventaja de que permite utilizar todas las características del sistema operativo.
+Por ejemplo, utilizar las opciones adicionales de <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">HANDLE</span> <span class="n">WINAPI</span> <span class="nf">CreateFile</span><span class="p">(</span>
+  <span class="n">LPCTSTR</span> <span class="n">lpFileName</span><span class="p">,</span>                           <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">DWORD</span> <span class="n">dwDesiredAccess</span><span class="p">,</span>                        <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">DWORD</span> <span class="n">dwShareMode</span><span class="p">,</span>                            <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="n">LPSECURITY_ATTRIBUTES</span> <span class="n">lpSecurityAttributes</span><span class="p">,</span>   <i class="conum" data-value="4"></i><b>(4)</b>
+  <span class="n">DWORD</span> <span class="n">dwCreationDisposition</span><span class="p">,</span>                  <i class="conum" data-value="5"></i><b>(5)</b>
+  <span class="n">DWORD</span> <span class="n">dwFlagsAndAttributes</span><span class="p">,</span>                   <i class="conum" data-value="6"></i><b>(6)</b>
+  <span class="n">HANDLE</span> <span class="n">hTemplateFile</span>                          <i class="conum" data-value="7"></i><b>(7)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nombre del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Modo de acceso: lectura o escritura.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Modo en el que se compartirá el archivo con otros procesos que accedan al mismo tiempo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Permisos del archivo, en caso de crearlo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Acción en caso de que el archivo exista o no: siempre crear, solo abrir, truncar si existe, etc.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Atributos del archivo, en caso de crearlo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Archivo abierto del que copiar los atributos para copiarlo en este, en caso de crearlo.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>que <a href="https://en.cppreference.com/w/c/io/fopen">fopen()</a> no posee:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">FILE</span><span class="o">*</span> <span class="nf">fopen</span><span class="p">(</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">mode</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nombre del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Modo de acceso: lectura o escritura.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sin embargo, debemos tener en cuenta que se pierde portabilidad pues <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a> solo está disponible en Microsoft Window, mientras que <a href="https://en.cppreference.com/w/c/io/fopen">fopen()</a> viene con la librería estándar de cualquier compilador de C.</p>
+</div>
+<div class="paragraph">
+<p>En la <a href="interfaz_de_programación_de_aplicaciones.html#fig-api-posix">Figura 6.2</a> se puede observar un ejemplo similar en <a href="https://es.wikipedia.org/wiki/GNU/Linux">GNU/Linux</a> —un sistema compatible <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>— pero en esta ocasión con programas en C y C&#43;&#43;.
+En este caso la llamada al sistema es <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> y tanto <a href="https://en.cppreference.com/w/c/io/fopen">fopen()</a> en C como <a href="https://en.cppreference.com/w/cpp/io/basic_ofstream/open">std::ofstream::open()</a> en C&#43;&#43; la utilizan.
+Además, ambos lenguajes pueden invocar directamente la librería del sistema —marcado en rojo en la <a href="interfaz_de_programación_de_aplicaciones.html#fig-api-posix">Figura 6.2</a>— si necesitan alguna característica adicional de la función <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>.</p>
+</div>
+<div id="fig-api-posix" class="imageblock">
+<div class="content">
+<img src="media/C06-api/interfaz_programación_aplicaciones_posix.svg" alt="interfaz programación aplicaciones posix">
+</div>
+<div class="title">Figura 6.2. Elementos de la interfaz de programación de aplicaciones en GNU/Linux.</div>
+</div>
+<div class="paragraph">
+<p>La única diferencia es que en <a href="interfaz_de_programación_de_aplicaciones.html#fig-api-posix">Figura 6.2</a> las funciones <a href="https://en.cppreference.com/w/c/io/fopen">fopen()</a> y <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> están realmente en la misma librería, porque en los sistemas POSIX la librería del sistema y la librería estándar de C pueden ser la misma, dado que el estándar POSIX se diseñó como un superconjunto de la librería estándar de C.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="servicios_del_sistema.html">Servicios del sistema</a> | ↑ Subir: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="operación_del_sistema_operativo.html">Operación del sistema operativo</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

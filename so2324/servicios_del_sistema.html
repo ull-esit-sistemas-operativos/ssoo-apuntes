@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="servicios_del_sistema" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2023-2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+<ul class="sectlevel1">
+<li><a href="componentes_del_sistema.html">4. Componentes del sistema</a>
+</li>
+<li><a href="servicios_del_sistema.html"><span class="toc-current">5. Servicios del sistema</span></a>
+<ul class="sectlevel2">
+<li><a href="servicios_del_sistema.html#_servicios_que_garantizan_el_funcionamiento_eficiente_del_sistema">5.1. Servicios que garantizan el funcionamiento eficiente del sistema</a>
+</li>
+<li><a href="servicios_del_sistema.html#_servicios_útiles_para_el_usuario">5.2. Servicios útiles para el usuario</a>
+</li>
+<li><a href="servicios_del_sistema.html#_interfaz_de_usuario">5.3. Interfaz de usuario</a>
+</li>
+</ul>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html">6. Interfaz de programación de aplicaciones</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html">7. Operación del sistema operativo</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html">8. Sistemas operativos por su estructura</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="servicios_del_sistema"><a class="anchor" href="#servicios_del_sistema"></a>5. Servicios del sistema</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 5 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Un sistema operativo proporciona un entorno para la ejecución de programas.
+Ese entorno debe proporcionar ciertos servicios a los programas y a los usuarios de esos programas.
+Estos servicios son proporcionados gracias al funcionamiento coordinado de los diferentes componentes del sistema.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C05-servicios/organización_sistema.svg" alt="organización sistema">
+</div>
+<div class="title">Figura 5.1. Esquema de la relación entre componentes y servicios.</div>
+</div>
+<div class="paragraph">
+<p>Aunque cada sistema operativo proporciona servicios diferentes, es posible identificar unas pocas clases comunes.</p>
+</div>
+<div class="sect2">
+<h3 id="_servicios_que_garantizan_el_funcionamiento_eficiente_del_sistema"><a class="anchor" href="#_servicios_que_garantizan_el_funcionamiento_eficiente_del_sistema"></a>5.1. Servicios que garantizan el funcionamiento eficiente del sistema</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Asignación de recursos</strong>.
+Cuando hay múltiples usuarios o múltiples trabajos ejecutándose los recursos deben ser asignados a cada uno de ellos.</p>
+<div class="paragraph">
+<p>Ejemplos de estos recursos son la CPU —asignada por el planificador de la CPU del gestor de procesos— la memoria principal —asignada por el gestor de memoria— y el almacenamiento de archivos —asignada por el sistema de archivos y el gestor del almacenamiento secundario—.
+Esta asignación debe hacerse con el fin de garantizar la máxima eficacia del sistema.</p>
+</div>
+</li>
+<li>
+<p><strong>Monitorización</strong>.
+Es normal querer hacer seguimiento de los recursos que los usuarios usan y en qué cantidad.
+Esto puede ser útil para facturar a los usuarios por el uso de los recursos —por ejemplo, facturar por el tiempo de CPU— para configurar el sistema mejorando el rendimiento o para limitar cuánto de cada recurso puede usar cada usuario como máximo.</p>
+</li>
+<li>
+<p><strong>Protección y seguridad</strong>.
+Protección implica asegurar que el acceso a los recursos del sistema está controlado.
+Por ejemplo, que la información almacenada en un sistema multiusuario solo pueda ser accedida por su propietario o que un proceso no pueda interferir con otro o con el sistema operativo.
+La seguridad del sistema respecto a los agentes exteriores también es importante.
+Empieza obligando a los usuarios a autenticarse en él para obtener acceso a los recursos del mismo, pero incluye defender de intentos de acceso inválidos a través de la red.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_servicios_útiles_para_el_usuario"><a class="anchor" href="#_servicios_útiles_para_el_usuario"></a>5.2. Servicios útiles para el usuario</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Interfaz de usuario</strong>. Los sistemas operativos diseñados para que los usuarios interactúen con ellos deben proporcionar una interfaz de usuario adecuada, que puede tener diferentes formas según el propósito del sistema.</p>
+</li>
+<li>
+<p><strong>Operaciones de E/S</strong>. Un programa puede necesitar realizar operaciones de E/S que pueden involucrar a archivos o a dispositivos de E/S.
+Por eficiencia y protección un usuario, normalmente los procesos no puede tener acceso directo a los dispositivos; por lo que el sistema operativo debe proporcionar medios para solicitar estas operaciones a los componentes correspondientes del sistema operativo.</p>
+</li>
+<li>
+<p><strong>Manipulación de sistemas de archivos</strong>. Los programas necesitan leer y escribir archivos y directorios, crearlos y borrarlos por nombre, buscar un archivo dado y listar información acerca del mismo.</p>
+</li>
+<li>
+<p><strong>Comunicaciones</strong>. Los procesos necesitan poder intercambiar información entre ellos, tanto si se ejecutan en el mismo ordenador, como en diferentes equipos unidos por una red.</p>
+</li>
+<li>
+<p><strong>Detección de errores</strong>. El sistema operativo necesita tener conocimiento de los posibles errores y para cada tipo de error debe tomar la acción apropiada para asegurar una computación consistente y segura.
+Por ejemplo, puede haber errores del hardware —como fallos de energía o errores en la memoria— en la E/S —como errores de paridad o falta de papel en la impresora— y en los programas de usuario —como desbordamientos aritméticos o accesos ilegales a la memoria—.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interfaz_de_usuario"><a class="anchor" href="#_interfaz_de_usuario"></a>5.3. Interfaz de usuario</h3>
+<div class="paragraph">
+<p>
+La <strong>interfaz de usuario</strong> es un servicio fundamental para todos los sistemas diseñados para que los usuarios interactúen con ellos directamente, por lo que nos vamos a detener un poco más en él.</p>
+</div>
+<div class="paragraph">
+<p>Las interfaces de usuario pueden ser de diferentes tipos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Interfaz de línea de comandos</strong> o <strong>intérprete de comandos</strong>, que permite que los usuarios introduzcan directamente los comandos que el sistema operativo debe ejecutar.
+En algunos sistemas este tipo de interfaz se incluye dentro del núcleo, pero en la mayor parte —como MS-DOS y UNIX— se trata de un programa especial denominado <em>shell</em> que se ejecuta cuando un usuario inicia una sesión.</p>
+</li>
+<li>
+<p><strong>Interfaz de proceso por lotes</strong>, en la que los comandos y directivas para controlar dichos comandos se listan en archivos que posteriormente pueden ser ejecutados.
+Este tipo de interfaz es la utilizada en sistemas no interactivos, como los antiguos sistemas de procesamiento por lotes y los sistemas multiprogramados.</p>
+<div class="paragraph">
+<p>También suele estar disponible en los sistemas de tiempo compartido y en los sistemas de escritorio modernos, junto con algún otro tipo de interfaz de usuario.
+Por ejemplo, la <em>shell</em> de los sistemas UNIX permite indicar comandos uno a uno —de forma interactiva— pero también permite usar <em>scripts</em> —un archivo con una lista de órdenes para que se ejecuten automáticamente de principio a fin—.</p>
+</div>
+</li>
+<li>
+<p><strong>Interfaz gráfica de usuario</strong> o <strong>GUI</strong> (<em>Graphical User Interface</em>) que permite a los usuarios utilizar un sistema de ventanas y menús controlable mediante el ratón.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Puesto que la interfaz de usuario puede variar de un sistema a otro, y de un usuario a otro dentro del mismo sistema, no se suele etiquetar como un componente básico del sistema operativo, sino como un servicio ofrecido por el sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>Aparte de la interfaz de usuario, cualquier sistema operativo moderno incluye una colección de <strong>programas del sistema</strong>.
+El papel de estos programas del sistema es proporcionar un entorno conveniente para la ejecución y desarrollo de programas.
+Entre los programas del sistema se suelen incluir aplicaciones para manipular archivos y directorios, programas para obtener información sobre el estado del sistema —como la fecha y hora o la memoria y el espacio en disco disponible— herramientas de desarrollo —como intérpretes, compiladores, enlazadores y depuradores— programas de comunicaciones —como clientes de correo electrónico y navegadores web— etc.</p>
+</div>
+<div class="paragraph">
+<p>Además, muchos sistemas operativos disponen de programas que son útiles para resolver los problemas más comunes de los usuarios.
+Entre estos programas se suelen incluir: editores de archivos de texto y procesadores de texto, hojas de cálculo, sistemas de base de datos, juegos, etc.
+A esta colección de aplicaciones se la suele conocer con el término de <strong>utilidades del sistema</strong> o <strong>programas de aplicación</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="componentes_del_sistema.html">Componentes del sistema</a> | ↑ Subir: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="interfaz_de_programación_de_aplicaciones.html">Interfaz de programación de aplicaciones</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

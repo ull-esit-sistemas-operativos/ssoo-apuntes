@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="comunicación_mediante_paso_de_mensajes" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2023-2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+<ul class="sectlevel1">
+<li><a href="procesos.html">9. Procesos</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html"><span class="toc-current">10. Comunicación mediante paso de mensajes</span></a>
+<ul class="sectlevel2">
+<li><a href="comunicación_mediante_paso_de_mensajes.html#_tamaño_del_mensaje">10.1. Tamaño del mensaje</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html#_referenciación">10.2. Referenciación</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html#_buffering_2">10.3. Buffering</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html#_operaciones_síncronas_y_asíncronas">10.4. Operaciones síncronas y asíncronas</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html#_ejemplos_de_sistemas_de_paso_de_mensajes">10.5. Ejemplos de sistemas de paso de mensajes</a>
+</li>
+</ul>
+</li>
+<li><a href="memoria_compartida.html">11. Memoria compartida</a>
+</li>
+<li><a href="hilos.html">12. Hilos</a>
+</li>
+<li><a href="sincronización.html">13. Sincronización</a>
+</li>
+<li><a href="planificación_de_la_cpu.html">14. Planificación de la CPU</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="comunicación_mediante_paso_de_mensajes"><a class="anchor" href="#comunicación_mediante_paso_de_mensajes"></a>10. Comunicación mediante paso de mensajes</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 34 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El <strong>paso de mensajes</strong> es un mecanismo que permite a los procesos compartir información y sincronizar sus acciones sin necesidad de compartir recursos —compartir memoria, archivos, etc.—</p>
+</div>
+<div class="paragraph">
+<p>Esto lo hace especialmente útil en entornos distribuidos, donde los procesos a comunicar residen en ordenadores diferentes conectados a una red, por lo que tiene muy difícil —o incluso imposible— compartir memoria u otros recursos para comunicarse.
+En este caso, el sistema operativo es el encargado de codificar los mensajes y enviarlos a través de la red para hacerlos llegar a su destinatario.
+La web —donde un navegador se conecta a un servidor web para obtener contenido— y el resto de servicios de Internet son ejemplos de sistemas de paso de mensajes.</p>
+</div>
+<div class="paragraph">
+<p>El sistema de paso de mensajes debe ser proporcionado por el sistema operativo que, a diferencia de cuando se usa memoria compartida, se encarga de la sincronización —ya que no existen riesgos en el envío y recepción de mensajes al mismo tiempo— y de establecer el formato que deben tener los datos del mensaje.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En algunas fuentes se sigue haciendo referencia al término <strong>IPC</strong> (<em>Interprocess Communication</em>) —o <strong>comunicación entre procesos</strong>— para identificarlo exclusivamente con <strong>sistemas de paso de mensajes</strong>.
+Sin embargo, la <strong>memoria compartida</strong> y otras técnicas también sirven para «comunicar procesos», por lo que es más adecuado usar el término <strong>IPC</strong> para englobar todas las técnicas conocidas de comunicación entre procesos.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Los sistemas de paso de mensaje de cualquier sistema operativo debe proporcionar al menos dos llamadas al sistema similares a:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>send( message )</strong> para mandar mensajes a otro proceso.</p>
+</li>
+<li>
+<p><strong>receive( &amp;message )</strong> para recibir mensajes de otro proceso y copiarlo en <em>message</em>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vamos a hablar de funciones de un sistema de paso de mensajes hipotético.
+Meros ejemplos para ilustrar las diferentes alternativas.
+Esto no significa que en los sistemas operativos reales las funciones se llamen así y tengan esos mismos argumentos.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Para que estas llamadas puedan enviar y recibir mensajes entre dos procesos es necesario que haya un <strong>enlace de comunicaciones</strong> entre ambos.
+No trataremos aquí la implementación física del enlace —que por ejemplo puede ser mediante memoria compartida, un bus hardware o una red de ordenadores— sino de su implementación lógica, es decir, las características de la interfaz que usan las aplicaciones para comunicarse con sus correspondientes operaciones de envío y recepción.</p>
+</div>
+<div class="sect2">
+<h3 id="_tamaño_del_mensaje"><a class="anchor" href="#_tamaño_del_mensaje"></a>10.1. Tamaño del mensaje</h3>
+<div class="paragraph">
+<p>Los diseñadores del sistema operativo deben escoger entre implementar un sistema de paso de mensajes con mensajes de tamaño fijo o mensajes de tamaño variable:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Mensajes de tamaño fijo</strong>.
+La implementación del sistema operativo es muy sencilla, pero el uso de la interfaz por parte de las aplicaciones es mucho más compleja.</p>
+<div class="paragraph">
+<p>Por ejemplo, para comunicar procesos en un mismo ordenador cada enlace puede tener un búfer de tamaño fijo donde se copia el mensaje enviado y de donde se extrae el mensaje al recibirlo.
+Esto es muy sencillo de implementar en el sistema operativo.
+Sin embargo, si el desarrollador de la aplicación quiere enviar algo de mayor tamaño que el tamaño del mensaje, debe trocearlo en varios mensajes para enviarlo y reconstruirlo al recibirlo.</p>
+</div>
+</li>
+<li>
+<p><strong>Mensajes de tamaño variable</strong>.
+La implementación del sistema operativo es más compleja, ya que ahora tiene que gestionar la memoria para almacenar mensajes de tamaño variable hasta que son recibidos.
+Sin embargo, la programación de aplicaciones es más simple, puesto que el programador puede mandar mensajes de cualquier tamaño sin ninguna preocupación</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_comunicación_orientada_a_flujos"><a class="anchor" href="#_comunicación_orientada_a_flujos"></a>10.1.1. Comunicación orientada a flujos</h4>
+<div class="paragraph">
+<p>En algunos sistemas con <strong>mensajes de tamaño variable</strong> no se preserva la separación entre mensajes al recibirlos.
+Es decir, que los procesos leen un número arbitrario de bytes, donde puede haber parte de un mensaje o varios mensajes al mismo tiempo.
+Por ejemplo, en esos sistemas el transmisor puede mandar tres mensajes de 16000, 3200 y 100 bytes, pero el receptor leer la secuencia de bytes en bloques de 512 bytes.</p>
+</div>
+<div class="paragraph">
+<p>A esto se lo denomina <strong>comunicación orientada a flujos</strong> o <strong><em>(streams)</em></strong>.
+Si usamos este tipo de sistema es importante conservar la separación entre los mensajes recibidos, será nuestra responsabilidad escoger un formato de mensaje adecuado que permita al receptor recuperar dónde comienza y termina un mensaje dentro de la secuencia de bytes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_referenciación"><a class="anchor" href="#_referenciación"></a>10.2. Referenciación</h3>
+<div class="paragraph">
+<p>Los procesos que se quieran comunicar deben tener una forma de señalarse el uno al otro.
+Para ello el diseñador del sistema puede elegir que el sistema de paso de mensajes sea con comunicación directa o indirecta.</p>
+</div>
+<div class="sect3">
+<h4 id="_comunicación_directa"><a class="anchor" href="#_comunicación_directa"></a>10.2.1. Comunicación directa</h4>
+<div class="paragraph">
+<p>En la <strong>comunicación directa</strong> cada proceso debe nombrar explícitamente al proceso destinatario o receptor de la información.
+Por ejemplo, ahora las llamadas al sistema básicas podrían ser así:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>send( A, message )</strong> para mandar un mensaje al proceso identificado como «A».</p>
+</li>
+<li>
+<p><strong>receive( A, &amp;message )</strong> para recibir un mensaje del proceso identificado como «A», copiándolo en «<em>message</em>».</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De hecho el ejemplo anterior corresponde a un caso de <strong>comunicación directa</strong> con <strong>direccionamiento simétrico</strong>, pero existe una variante de ese mismo esquema denominado <strong>direccionamiento asimétrico</strong> donde el receptor puede recibir mensajes de cualquier proceso, de forma que al volver de la llamada recibe el mensaje y la identidad del remitente.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>send( A, message )</strong> para mandar un mensaje al proceso identificado como «A»</p>
+</li>
+<li>
+<p><strong>receive( &amp;pid, &amp;message )</strong> para recibir un mensaje de cualquier proceso, recibiendo en «<em>message</em>» una copia del <em>message</em> y en «pid» la identidad del remitente.</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En resumen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>direccionamiento simétrico</strong> tanto el proceso que envía como el que recibe tienen que identificar al otro para comunicarse.</p>
+</li>
+<li>
+<p>En el <strong>direccionamiento asimétrico</strong> solo el proceso que envía identifica a que recibe, mientras que este último no tiene que nombrar al remitente.
+Es el sistema operativo el que informa de quién es el remitente del mensaje que se ha recibido.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Un <strong>enlace de comunicaciones</strong> según este esquema tiene las siguientes características:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un enlace se establece automáticamente entre cada par de procesos que quieren comunicarse.
+Por tanto, los procesos solo necesitan conocer la identidad de los otros para comunicarse.</p>
+</li>
+<li>
+<p>Cada enlace se asocia exactamente a dos procesos.</p>
+</li>
+<li>
+<p>Entre cada par de procesos solo hay un enlace.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C10-ipc/enlace_comunicación_directa.svg" alt="enlace comunicación directa">
+</div>
+<div class="title">Figura 10.1. Comunicación directa.</div>
+</div>
+<div class="paragraph">
+<p>La principal desventaja de este tipo de comunicación es que si cambia el identificador de un proceso hay que actualizar todas las referencias en todos los procesos que se comunican con él.
+En general cualquier técnica que requiera que los identificadores de los procesos sean establecidos explícitamente en el código de los programas no es deseable, puesto que en muchos sistemas los identificadores de los procesos cambian de una ejecución a otra.
+Por lo tanto, lo mejor sería disponer de una solución con un nivel adicional de indirección que evite que los procesos usen sus identificadores para comunicarse.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Colas de mensajes en Windows API</div>
+<div class="paragraph">
+<p>En Windows API un hilo puede enviar mensajes a otro hilo usando <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-postthreadmessagea">PostThreadMessage()</a>.
+Como aún no hemos visto el concepto de hilo, podemos asumir que es equivalente al de proceso.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">BOOL</span> <span class="nf">PostThreadMessage</span><span class="p">(</span>
+    <span class="n">DWORD</span>  <span class="n">idThread</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">UINT</span>   <span class="n">Msg</span><span class="p">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">WPARAM</span> <span class="n">wParam</span><span class="p">,</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="n">LPARAM</span> <span class="n">lParam</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identificador del hilo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Un número entero que identifica el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Parámetros del mensaje de tipo entero.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como se puede observar, en las colas de mensajes de Windows API el <strong>tamaño del mensaje es fijo</strong> y con una estructura muy bien definida: un identificador del mensaje y dos enteros que sirven de parámetros opcionales del mensaje.</p>
+</div>
+<div class="paragraph">
+<p>Para recibir el mensaje el proceso llama a <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagea">GetMessage()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">BOOL</span> <span class="nf">GetMessage</span><span class="p">(</span>
+    <span class="n">LPMSG</span> <span class="n">lpMsg</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">HWND</span>  <span class="n">hWnd</span><span class="p">,</span>
+    <span class="n">UINT</span>  <span class="n">wMsgFilterMin</span><span class="p">,</span>
+    <span class="n">UINT</span>  <span class="n">wMsgFilterMax</span>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Puntero a una estructura <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg">MSG</a> que a la vuelta contendrá el identificador y los parámetros del mensaje recibido, entre otra información.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como se puede observar, no se indica de qué hilo o proceso se quiere recibir el mensaje, por lo que se trata de un caso de <strong>comunicación directa asimétrica</strong>.
+De hecho, si se quiere conocer la identidad del remitente, este tendría que poner su identificador en alguno de los parámetros del mensaje.</p>
+</div>
+<div class="paragraph">
+<p>El sistema de colas de mensajes de Windows API es una pieza fundamental del entorno gráfico de Microsoft Windows.
+Con ese fin, el sistema trae un conjunto de mensajes predefinidos, pero podemos definir nuestros propios mensajes para comunicar unos hilos o procesos con otros.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_comunicación_indirecta"><a class="anchor" href="#_comunicación_indirecta"></a>10.2.2. Comunicación indirecta</h4>
+<div class="paragraph">
+<p>En la <strong>comunicación indirecta</strong> los mensajes son enviados a <strong>buzones</strong>, <strong><em>maillox</em></strong> o <strong>puertos</strong> que son objetos donde los procesos pueden dejar y recoger mensajes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>send( P, message )</strong> para mandar un mensaje al puerto «P»</p>
+</li>
+<li>
+<p><strong>receive( P, &amp;message )</strong> para recibir un mensaje del puerto «P».</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Un <strong>enlace de comunicaciones</strong> según este esquema tiene las siguientes características:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un enlace se establece entre un par de procesos solo si ambos comparten un mismo puerto, dado que cada enlace corresponde con un puerto.</p>
+</li>
+<li>
+<p>Un enlace puede estar asociado a más de dos procesos, puesto que múltiples procesos pueden compartir el mismo puerto.</p>
+</li>
+<li>
+<p>Entre cada par de procesos en comunicación puede haber varios enlaces, cada uno de los cuales corresponde a un puerto.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C10-ipc/enlace_comunicación_indirecta.svg" alt="enlace comunicación indirecta">
+</div>
+<div class="title">Figura 10.2. Comunicación indirecta.</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Colas de mensajes en sistemas POSIX</div>
+<div class="paragraph">
+<p>El estándar POSIX también define un sistema de colas de mensajes, pero es bastante diferente a la solución en Windows API (véase <a href="https://www.man7.org/linux/man-pages/man7/mq_overview.7.html">«mq_overview(7)&#8201;&#8212;&#8201;Linux Manual»</a>).</p>
+</div>
+<div class="paragraph">
+<p>Para usarlo, lo primero es abrir o crear —si aún no existe— la cola de mensajes llamando a <a href="https://man7.org/linux/man-pages/man3/mq_open.3.html">mq_open()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">mqd_t</span> <span class="n">mqueue</span> <span class="o">=</span> <span class="n">mq_open</span><span class="p">(</span>
+    <span class="s">"/foo-mqueue"</span><span class="p">,</span>      <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_RDWR</span><span class="p">,</span>   <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="mo">0644</span><span class="p">,</span>               <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="nb">NULL</span>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nombre que identifica la cola de mensajes.
+Como con los archivos, para que varios procesos puedan acceder a la misma cola, deben indicar el mismo nombre.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Valores que indican diferentes opciones a la hora de abrir la cola de mensajes.
+Por ejemplo, usando <code>O_RDWR</code> se indica abrir para enviar o recibir y con <code>O_CREAT</code> se indica que la cola debe crearse si no existe previamente.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Indica los permisos de la cola de mensajes al crearla nueva, de forma similar a los permisos que se aplican a los archivos.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El valor devuelto por <a href="https://man7.org/linux/man-pages/man3/mq_open.3.html">mq_open()</a> es el descriptor de la cola de mensajes.
+Como otros descriptores, se hereda de padres a hijos al usar <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a>.</p>
+</div>
+<div class="paragraph">
+<p>Este descriptor se utiliza como primer argumento en funciones posteriores para indicar sobre qué cola queremos realizar la correspondiente operación.
+Por ejemplo, para enviar un mensaje se utiliza <a href="https://man7.org/linux/man-pages/man3/mq_send.3.html">mq_send()</a> así:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="nf">mq_send</span><span class="p">(</span>
+    <span class="n">mqueue</span><span class="p">,</span>                 <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">message</span><span class="p">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="k">sizeof</span><span class="p">(</span><span class="n">message</span><span class="p">),</span>        <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="mi">0</span>                       <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Descriptor de la cola a la que enviar el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Puntero a la dirección de memoria donde está el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Tamaño del mensaje en bytes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Prioridad del mensaje.
+Los mensajes con mayor prioridad se entregarán antes.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Mientras que para recibir un mensaje se utiliza <a href="https://man7.org/linux/man-pages/man3/mq_receive.3.html">mq_receive()</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">msg_prio</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">mq_receive</span><span class="p">(</span>
+    <span class="n">mqueue</span><span class="p">,</span>                 <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">message</span><span class="p">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="k">sizeof</span><span class="p">(</span><span class="n">message</span><span class="p">),</span>        <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="o">&amp;</span><span class="n">msg_prio</span>               <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Descriptor de la cola de la que recibir el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Puntero a la dirección de memoria donde guardar el mensaje al recibirlo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Tamaño máximo de espacio reservado en <code>message</code> para guardar el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Puntero a variable entera donde devolver la prioridad del mensaje recibido.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como los mensajes no se dirigen directamente a los procesos, sino a estas entidades llamadas colas de mensajes, se trata de un caso de <strong>comunicación indirecta</strong>.
+Además, el <strong>tamaño de los mensajes es variable</strong>, aunque limitado por defecto a 8 KiB si no se configura de otra manera.</p>
+</div>
+<div class="paragraph">
+<p>Si varios procesos intentan recibir de una misma cola de mensajes al mismo tiempo, queda en manos del sistema operativo decidir cuál recibirá el siguiente mensaje que llegue.
+Por lo general es el primero en ser escogido por el planificador de la CPU para seguir ejecutándose.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_recepción_concurrente"><a class="anchor" href="#_recepción_concurrente"></a>Recepción concurrente</h5>
+<div class="paragraph">
+<p>Este tipo de comunicación da lugar a algunas situaciones que deben ser resueltas durante el diseño.
+Por ejemplo, ¿qué ocurre, por ejemplo, si los procesos A, B y C comparten el puerto P1; A manda un mensaje y B y C invocan <code>receive()</code> en el puerto P al mismo tiempo?.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C10-ipc/recepción_concurrente.svg" alt="recepción concurrente">
+</div>
+<div class="title">Figura 10.3. Problema de la recepción concurrente.</div>
+</div>
+<div class="paragraph">
+<p>La respuesta correcta dependerá de la elección de los diseñadores del sistema:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No permitir que cada enlace de comunicación —y por tanto cada puerto— esté asociado a más de dos procesos.</p>
+</li>
+<li>
+<p>No permitir que más de un proceso puedan ejecutar <code>receive()</code> al mismo tiempo.
+Por ejemplo, en algunos sistemas solo el proceso que crea el puerto tiene permisos para recibir de él.
+Los sistemas que optan por esta solución suelen disponer de algún mecanismo para que un proceso pueda transferir el permiso de recibir a otros procesos.</p>
+</li>
+<li>
+<p>Permitir que el sistema operativo escoja arbitrariamente quién recibe el mensaje si dos o más procesos ejecutan <code>receive()</code> al mismo tiempo.
+La elección puede ser aleatoria, mediante algún algoritmo, por ejemplo, por turnos o el siguiente proceso en obtener la CPU, a criterio del planificador de la CPU.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_buffering_2"><a class="anchor" href="#_buffering_2"></a>10.3. Buffering</h3>
+<div class="paragraph">
+<p>
+Los mensajes intercambiados por enlace de comunicación se almacenan en una cola temporal, a la espera de ser enviados o, tras recibirlos, a la espera de que los reclame el proceso.</p>
+</div>
+<div class="paragraph">
+<p>Básicamente hay tres formas de implementar dicha cola:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Con <strong>capacidad cero</strong> o <strong>sin buffering</strong> la cola tiene una capacidad máxima de 0 mensajes, por lo que no puede haber ningún mensaje esperando en el enlace.
+En este caso el proceso transmisor se bloquea en espera hasta que el receptor recibe el mensaje.</p>
+</li>
+<li>
+<p>Con <strong>buffering automático</strong>, donde existe dos opciones:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Con <strong>capacidad limitada</strong> la cola tiene una capacidad máxima de <em>N</em> mensajes, por lo que si la cola se llena el proceso transmisor se bloquea a la espera de que haya espacio en la cola.
+Obviamente, mientras la cola no se llene en transmisor puede seguir metiendo mensajes sin bloquearse.</p>
+</li>
+<li>
+<p>Con <strong>capacidad ilimitada</strong> la cola es de longitud potencialmente infinita, lo que permite que el transmisor nunca espere.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Las colas de longitud infinita son imposibles, puesto que los recursos son limitados.
+En realidad este término hace referencia a colas de longitud variable cuyo máximo viene determinado por la memoria principal disponible, que suele ser lo suficientemente grande como para que podamos considerar que las colas son infinitas.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Buffering en las colas de mensajes POSIX</div>
+<div class="paragraph">
+<p>Las colas de mensajes en sistemas POSIX tienen capacidad limitada.
+Los límites se configuran al crear la cola, a través del último argumento de <a href="https://man7.org/linux/man-pages/man3/mq_open.3.html">mq_open()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="k">struct</span> <span class="n">mq_attr</span> <span class="n">attr</span> <span class="o">=</span> <span class="p">{</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="p">.</span><span class="n">mq_maxmsg</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>      <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="p">.</span><span class="n">mq_msgsize</span> <span class="o">=</span> <span class="mi">2049</span>   <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">};</span>
+
+<span class="n">mqd_t</span> <span class="n">mqueue</span> <span class="o">=</span> <span class="n">mq_open</span><span class="p">(</span>
+    <span class="s">"/foo-queue"</span><span class="p">,</span>
+    <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_RDWR</span><span class="p">,</span>
+    <span class="mo">0644</span><span class="p">,</span>
+    <span class="o">&amp;</span><span class="n">attr</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Estructura con propiedades para la cola cuando esta se crea nueva.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Una de las propiedades es el número máximo de mensajes en la cola al mismo tiempo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Otra de las propiedades es el tamaño máximo de cada mensaje.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Estos límites tienen unos valores por defecto por si en el lugar de <code>attr</code> en <a href="https://man7.org/linux/man-pages/man3/mq_open.3.html">mq_open()</a> se indica <code>NULL</code>.
+El estándar POSIX indica que esos valores por defecto dependen de cada sistema operativo, por lo que es necesario ir a la documentación para desarrolladores de cada sistema para conocer los detalles en cada caso concreto.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en Linux los valores por defecto son 10 mensajes y 8 KiB por mensaje, siendo estos, además, los valores máximos que admiten esas propiedades.
+Estos valores máximos y por defecto se pueden cambiar de forma global para todo el sistema, por si tuviéramos interés en valores más altos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operaciones_síncronas_y_asíncronas"><a class="anchor" href="#_operaciones_síncronas_y_asíncronas"></a>10.4. Operaciones síncronas y asíncronas</h3>
+<div class="paragraph">
+<p>La comunicación entre dos procesos tiene lugar por medio de las llamadas <code>send()</code> y <code>receive()</code>; de tal forma que generalmente la primera se bloquea cuando la cola de transmisión se llena —en función del tipo de <em>buffering</em>— mientras que la segunda lo hace cuando la cola de recepción está vacía.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, en lugar de bloquearse, puede que aun proceso le interese ejecutar otras tareas en la CPU.
+A fin de cuentas las comunicaciones son bastante lentas, por lo que en caso de bloquearse podría estar dejando de aprovechar bastante tiempo de CPU.
+Incluso puede darse el caso que tengan conexión con otros procesos y que quiera aprovechar para intentar comunicarse con alguno de ellos.</p>
+</div>
+<div class="paragraph">
+<p>Por eso existen diferentes opciones de diseño a la hora de implementar las llamadas anteriores en función de si se pueden bloquear o no.
+Concretamente, el paso de mensajes puede ser <strong>síncrono</strong> —con bloqueo— o <strong>asíncrono</strong> —sin bloqueo—.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cuando el envío es asíncrono</strong>, el proceso transmisor nunca se bloquea.
+Si se llama a <code>send()</code> cuando la cola de mensajes esté llena, lo más común es que retorne con un código de retorno que indique que el proceso debe volver a intentar el envío más tarde.</p>
+</li>
+<li>
+<p><strong>Cuando el envío es síncrono</strong>, el proceso transmisor se bloquea cuando no queda espacio en la cola de mensajes y hasta que pueda depositar el mensaje en la misma.</p>
+</li>
+<li>
+<p><strong>Cuando la recepción es asíncrona</strong>, el receptor nunca se bloquea.
+En caso de que la cola de mensajes esté vacía, el sistema operativo puede indicar al proceso que lo intente más tarde a través de un código de retorno o devolviendo un mensaje vacío.</p>
+</li>
+<li>
+<p><strong>Cuando la recepción es con bloqueo</strong>, el receptor se bloquea cuando no hay mensajes en la cola y hasta que llegue alguno.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Algunos sistemas de paso de mensajes son claramente síncronos o asíncronos.
+Mientras que otros permiten activar un modo u otro según las necesidades de la aplicación.
+E incluso los hay que soportan que la transmisión y recepción sean síncronas o asíncronas de manera totalmente independiente.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Comunicaciones asíncronas con colas de mensajes POSIX</div>
+<div class="paragraph">
+<p>Por defecto las colas de mensajes son síncronas, tanto en envío como en recepción.
+Es decir, si al enviar un mensaje la cola está llena, el proceso transmisor quedará bloqueado en estado <strong>esperando</strong> hasta que haya un hueco libre para depositar el nuevo mensaje.
+Si al recibir un mensaje la cola está vacía, el receptor quedará bloqueado hasta que otro proceso deposite un mensaje.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, si en el argumento <code>oflag</code> de <a href="https://man7.org/linux/man-pages/man3/mq_open.3.html">mq_open()</a> un proceso indica la opción <code>O_NONBLOCK</code> estas operaciones para ese proceso en esa cola serán asíncronas:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">mqd_t</span> <span class="n">mqueue</span> <span class="o">=</span> <span class="n">mq_open</span><span class="p">(</span>
+    <span class="s">"foo-mqueue"</span><span class="p">,</span>
+    <span class="n">O_RDONLY</span> <span class="o">|</span> <span class="n">O_NONBLOCK</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="mo">0644</span><span class="p">,</span>
+    <span class="o">&amp;</span><span class="n">attr</span>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Abrir la cola de mensajes para solo lectura —con <code>O_RDONLY</code>— y para comunicaciones asíncronas —con <code>O_NONBLOCK</code>—.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Eso quiere decir que las funciones <a href="https://man7.org/linux/man-pages/man3/mq_send.3.html">mq_send()</a> y <a href="https://man7.org/linux/man-pages/man3/mq_receive.3.html">mq_receive()</a>, en lugar de bloquear el proceso en estado de esperando, devolverán -1 y el valor de <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a> será <code>EAGAIN</code>.
+Así el proceso puede aprovechar el tiempo de CPU del que dispone para realizar otras tareas mientras tanto y volver a intentarlo más tarde.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">return_code</span> <span class="o">=</span> <span class="n">mq_receive</span><span class="p">(</span><span class="n">mqueue</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">message</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">msg_prio</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">return_code</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">{</span>
+    <span class="c1">// Aquí va código para usar el mensaje recibido...</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="nf">if</span><span class="p">(</span> <span class="n">return_code</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">errno</span> <span class="o">!=</span> <span class="n">EAGAIN</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">{</span>
+    <span class="c1">// Aquí va código para manejar el error de mq_receive()...</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Si todo va bien, <a href="https://man7.org/linux/man-pages/man3/mq_receive.3.html">mq_receive()</a> devuelve el tamaño en bytes del mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Si devuelve -1, es que ha ocurrido un error. Pero solo será un error real si el código de error en <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a> no es <code>EAGAIN</code>.
+Si es <code>EAGAIN</code>, se pueden ejecutar otras partes del programa y volver a intentar la recepción más adelante.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si un proceso debe comunicarse mediante varias colas de mensajes, la comunicación asíncrona también sirve para intentar recibir y enviar de varias colas sin bloquearse en ninguna.
+Para este caso algunos sistemas ofrecen una alternativa más sencilla y eficiente, que veremos en el <a href="comunicación_mediante_paso_de_mensajes.html#_colas_de_mensajes_posix">Apartado 10.5.1</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ejemplos_de_sistemas_de_paso_de_mensajes"><a class="anchor" href="#_ejemplos_de_sistemas_de_paso_de_mensajes"></a>10.5. Ejemplos de sistemas de paso de mensajes</h3>
+<div class="sect3">
+<h4 id="_colas_de_mensajes_posix"><a class="anchor" href="#_colas_de_mensajes_posix"></a>10.5.1. Colas de mensajes POSIX</h4>
+<div class="paragraph">
+<p>Como hemos comentado a lo largo de capítulo, las colas de mensajes POSIX son un caso de <strong>comunicación indirecta</strong>, con <strong>tamaño de mensaje variable</strong>, <em>buffering</em> con <strong>capacidad limitad</strong> y que soporta operaciones <strong>asíncronas</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Las colas de mensajes son útiles para enviar mensajes de pequeño tamaño entre procesos que se ejecutan en el mismo sistema.
+Además tienen la posibilidad de asociar a cada mensaje una prioridad, de tal forma que se reciban primero los mensajes de prioridad más alta.
+Su uso es relativamente común en sistemas de tiempo real, aunque lo más frecuente en los sistemas de propósito general es usar <em>sockets</em>.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/message_queue.hpp">message_queue.hpp</a> se puede ver un ejemplo de una clase desarrollada en C&#43;&#43; para utilizar colas de mensajes POSIX.
+En los distintos métodos se puede ver cómo se utilizan las funciones de la librería del sistema para crear la cola y enviar y recibir mensajes.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/mqueue-client.cpp">mqueue-client.cpp</a> se puede ver un ejemplo de cómo se utiliza la clase en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/message_queue.hpp">message_queue.hpp</a>.
+El primero es un programa que muestra la hora del sistema periódicamente.
+El segundo se puede comunicar con el primero a través de una cola de mensajes para controlarlo.
+En ejemplo es muy sencillo, así que, por el momento, lo único que puede hacer <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/mqueue-client.cpp">mqueue-client.cpp</a> es pedirle a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> que termine.
+Aunque no costaría nada añadir otras órdenes, como pedir que cambie la hora del sistema o la periodicidad con la que la muestra.</p>
+</div>
+<div class="paragraph">
+<p>En Linux los descriptores de colas de mensajes son descriptores de archivo —como también lo son los descriptores de <em>sockets</em>, tuberías y los de archivos abiertos con <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>, entre otros—. Esta particularidad implica que en Linux, mediante las funciones <a href="https://man7.org/linux/man-pages/man2/select.2.html">select()</a>, <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> o <a href="https://man7.org/linux/man-pages/man7/epoll.7.html">epoll()</a>, se pueden monitorizar al mismo tiempo varios descriptores de colas de mensajes, para así saber cuándo se puede enviar o recibir por ellas sin que el proceso se bloquee.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Este comportamiento es específico de Linux.
+No está contemplado en el estándar POSIX, por lo que otros sistemas POSIX no tienen por qué soportarlo.
+Así que no es portable.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A continuación se puede ver un ejemplo específico con <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a>, aunque las tres funciones se utilizan empleando un patrón similar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">mqd_t</span> <span class="n">mqueue1</span> <span class="o">=</span> <span class="n">mq_open</span><span class="p">(</span> <span class="s">"/foo-queue"</span><span class="p">,</span> <span class="cm">/* ... */</span> <span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">mqd_t</span> <span class="n">mqueue2</span> <span class="o">=</span> <span class="n">mq_open</span><span class="p">(</span> <span class="s">"/bar-queue"</span><span class="p">,</span> <span class="cm">/* ... */</span> <span class="p">);</span>
+
+<span class="k">struct</span> <span class="n">pollfd</span> <span class="n">fds</span><span class="p">[]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="p">{</span>
+        <span class="p">.</span><span class="n">fd</span> <span class="o">=</span> <span class="n">mqueue1</span><span class="p">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="p">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">POLLIN</span><span class="p">,</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="p">.</span><span class="n">revents</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">fd</span> <span class="o">=</span> <span class="n">mqueue2</span><span class="p">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="p">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">POLLIN</span> <span class="o">|</span> <span class="n">POLLOUT</span><span class="p">,</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="p">.</span><span class="n">revents</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">while</span> <span class="p">(</span> <span class="o">!</span><span class="n">quit_app</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">return_code</span> <span class="o">=</span> <span class="n">poll</span><span class="p">(</span> <span class="n">fds</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="p">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="k">if</span> <span class="p">(</span><span class="n">return_code</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">fds</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">revents</span> <span class="o">&amp;</span> <span class="n">POLLIN</span><span class="p">)</span> <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="p">{</span>
+            <span class="n">mq_receive</span><span class="p">(</span> <span class="n">fds</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">fd</span><span class="p">,</span> <span class="cm">/* ... */</span> <span class="p">);</span>
+
+            <span class="c1">// Aquí va código para usar el mensaje recibido...</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">fds</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">revents</span> <span class="o">&amp;</span> <span class="n">POLLIN</span><span class="p">)</span> <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="p">{</span>
+            <span class="n">mq_receive</span><span class="p">(</span> <span class="n">fds</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">fd</span><span class="p">,</span> <span class="cm">/* ... */</span> <span class="p">);</span>
+
+            <span class="c1">// Aquí va código para usar el mensaje recibido...</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">fds</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">revents</span> <span class="o">&amp;</span> <span class="n">POLLOUT</span><span class="p">)</span> <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="p">{</span>
+            <span class="c1">// Aquí va código para preparar el mensaje a enviar...</span>
+
+            <span class="n">mq_send</span><span class="p">(</span> <span class="n">fds</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">fd</span><span class="p">,</span> <span class="cm">/* ... */</span> <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">return_code</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="p">{</span>
+        <span class="c1">// Error en poll().</span>
+        <span class="c1">// Aquí va código para leer errno y manejar el error...</span>
+
+        <span class="n">quit_app</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Abrimos o creamos las colas que vamos a utilizar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Creamos un <em>array</em> de la estructura <code>pollfd</code> con un elemento por cola que vamos a monitorizar con <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a>.
+En cada estructura, en el campo <code>fd</code>, se indica el descriptor de cada una de las colas de mensajes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Para cada cola hay que utilizar el campo <code>events</code> para indicar qué queremos que monitorice <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a>.
+<code>events</code> es una máscara de bit donde a cada evento monitorizable le corresponde un bit.
+Si queremos monitorizar un evento, debemos poner su bit a 1.
+<div class="paragraph">
+<p>Para eso nos podemos ayudar de macros como <code>POLLIN</code> y <code>POLLOUT</code>.
+Por ejemplo, para <code>mqueue1</code> se quiere monitorizar cuándo hay mensajes para recibir, por lo que se activa <code>POLLIN</code>.
+Mientras que para <code>mqueue2</code> se quiere saber tanto cuándo hay mensajes para recibir como cuándo hay un hueco en la cola para enviar sin bloqueos, por lo que se activan <code>POLLIN</code> y <code>POLLOUT</code>.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Iterativamente se llama a <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> —mientras no queramos que termine la aplicación— que pondrá el proceso en estado <strong>esperando</strong> hasta que ocurra alguno de los eventos que nos interesan.
+<a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> necesita <code>fds</code> —el <em>array</em> de la estructura <code>pollfd</code> que hemos inicializado previamente— el número de elementos en el <em>array</em> y el tiempo máximo que debe mantener bloqueado el proceso esperando a que ocurra alguno de los eventos.
+Con un número negativo en este último campo, se indica que queremos que espere indefinidamente.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Si <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> tiene éxito, devuelve un número positivo que indica en cuántos descriptores se ha detectado un evento.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Si <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> devuelve un valor negativo, es que ha ocurrido algún error.
+El motivo del error se puede conocer comprobando el valor de la variable global <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>El campo <code>revents</code> es una máscara de bits similar a <code>events</code>, pero al retornar de <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> indica qué eventos se han detectado, para cada cola de mensajes en <code>fds</code>.
+<div class="paragraph">
+<p>Por ejemplo, en ambas colas se comprueba si <code>POLLIN</code> está activo.
+En caso afirmativo, sabemos que podemos leer un mensaje sin que <a href="https://man7.org/linux/man-pages/man3/mq_receive.3.html">mq_receive()</a> se bloquee.
+Igualmente, sabemos si <code>mqueue2</code> tiene hueco para enviar un mensaje comprobando si <code>POLLOUT</code> está activo.
+En caso afirmativo, podemos enviar un mensaje con <a href="https://man7.org/linux/man-pages/man3/mq_send.3.html">mq_send()</a> sabiendo que no se bloqueará.</p>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_señales_en_sistemas_operativos_posix"><a class="anchor" href="#_señales_en_sistemas_operativos_posix"></a>10.5.2. Señales en sistemas operativos POSIX</h4>
+<div class="paragraph">
+<p>En los sistemas POSIX, una forma más sencilla de comunicar dos procesos del mismo sistema es mediante el envío de una <strong>señal</strong> de uno al otro.</p>
+</div>
+<div class="paragraph">
+<p>Los procesos pueden mandar señales utilizando la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/kill.2.html">kill()</a>, que solo requiere el identificador del proceso de destino y el número que identifica la señal.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">kill</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">SIGTERM</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Como se usa el identificador del proceso, estamos hablando de un mecanismo de <strong>comunicación directa</strong>.</p>
+</div>
+<div class="paragraph">
+<p>El <strong>tamaño y formato del mensaje es fijo</strong>.
+Las señales solo pueden portar la información de que ha ocurrido un evento, indicado qué evento es a través del número que identifica la señal.</p>
+</div>
+<div class="paragraph">
+<p>Cada señal tiene un efecto particular por defecto —que por lo general es matar al proceso— en el proceso que las recibe.
+Sin embargo, cada proceso puede declarar un <strong>manejador de señal</strong>.
+Una función del programa que será invocada por el sistema operativo para tratar una señal determinada, interrumpiendo lo que esté haciendo el proceso en ese momento.
+En ese sentido las señales en POSIX puede interpretarse como una forma de interrupción por software.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Como la ejecución del programa se interrumpe para saltar al <strong>manejador de señal</strong> y luego continuar, hay que tener cuidado con el código de los <strong>manejadores de señal</strong>.
+Puede causar problemas que, por ejemplo, modifiquen el valor de una variable en un punto donde el resto del código no espera que puedan ocurrir cambios.
+Por eso es recomendable que el código de los <strong>manejadores de señal</strong> sea <strong>reentrante</strong> (véase el <a href="sincronización.html#_funciones_reentrantes">Apartado 13.8.1</a>) y que solo invoquen otras funciones <strong>reentrantes</strong> o funciones de la librería del sistema marcadas como <a href="https://man7.org/linux/man-pages/man7/signal-safety.7.html">seguras en señales</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El <strong>manejador de señal</strong> se puede configurar usando la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/signal.2.html">signal()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">signal</span><span class="p">(</span>
+    <span class="n">SIGTERM</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="o">&amp;</span><span class="n">mi_manejador_de_sigterm</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identificador de la señal a recibir.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Puntero al manejador de señal.
+Es decir, la del programa que será llamada por el sistema operativo cuando llegue la señal <code>SIGTERM</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El problema de <a href="https://man7.org/linux/man-pages/man2/signal.2.html">signal()</a> es que el estándar POSIX permite diferencias que hacen que se pueda comportar de forma distinta en diferentes sistemas operativos.
+Por ejemplo, qué ocurre al retornar del <strong>manejador de señal</strong> si cuando llegó la señal el proceso estaba ocupado en una llamada al sistema.
+Como el estándar no especifica nada al respecto, los sistemas BSD optaron porque las llamadas al sistema continuaran como si nada, mientras que en otros sistemas POSIX las llamadas al sistema son interrumpidas como si hubiera ocurrido un error.</p>
+</div>
+<div class="paragraph">
+<p>Para resolverlo, el estándar recomienda usar <a href="https://man7.org/linux/man-pages/man2/sigaction.2.html">sigaction()</a> en su lugar, ya que está descrita de forma más precisa —evitando este tipo de divergencias— y permite que el programador escoja de entre varias opciones el comportamiento que más le convenga:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="k">struct</span> <span class="n">sigaction</span> <span class="n">act</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">sa_handler</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">mi_manejador_de_sigterm</span><span class="p">,</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="p">.</span><span class="n">sa_sigaction</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span>   <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="p">.</span><span class="n">sa_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>           <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="p">.</span><span class="n">sa_flags</span> <span class="o">=</span> <span class="n">SA_RESTART</span><span class="p">,</span> <i class="conum" data-value="7"></i><b>(7)</b>
+<span class="p">}</span>
+
+<span class="n">sigaction</span><span class="p">(</span>
+    <span class="n">SIGTERM</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="o">&amp;</span><span class="n">act</span><span class="p">,</span>    <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="nb">NULL</span>     <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identificador de la señal a recibir.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Puntero a una estructura de tipo <code>sigaction</code> que describe los detalles de como tratar la señal cuando llega al proceso.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Puntero a una estructura de tipo <code>sigaction</code> donde <a href="https://man7.org/linux/man-pages/man2/sigaction.2.html">sigaction()</a> guarda la configuración anterior sobre como tratar la señal indicada.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Puntero al manejador de señal para la señal indicada.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Puntero a un manejador de señal alternativo al de <code>sa_handler</code>.
+Este manejador recibe más información sobre la señal cuando es llamado.
+Para activar es necesario indicar <code>SA_SIGINFO</code> en el campo <code>sa_flags</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Máscara de bits de señales a bloquear durante el manejo de la señal.
+Cada bit de la máscara identifica a una señal.
+Deben ponerse a 1 aquellas señales que queremos que estén bloqueadas —es decir, que no se puedan recibir— mientras se ejecuta el manejador de señal porque ha llegado una.
+Es especialmente útil si se va a usar el mismo manejador para varias señales.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Opciones de configuración.
+En el ejemplo se usa <code>SA_RESTART</code>, que indica que si la señal llega durante una llamada al sistema, la llamada debe continuar una vez se haya salido del manejador de señal.
+Como comentamos anteriormente, este es el comportamiento de <a href="https://man7.org/linux/man-pages/man2/signal.2.html">signal()</a> en los sistemas BSD.
+El comportamiento por defecto, sin esta opción, es que la llamada al sistema interrumpida falle con el error <code>EINTR</code> en <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a>.</td>
+</tr>
+</table>
+</div>
+<div id="fig-orígenes-de-las-señales" class="imageblock">
+<div class="content">
+<img src="media/C10-ipc/orígenes_de_las_señales.svg" alt="orígenes de las señales">
+</div>
+<div class="title">Figura 10.4. Orígenes más comunes de las señales.</div>
+</div>
+<div class="paragraph">
+<p>Las señales fueron diseñadas originalmente como un mecanismo para que el sistema operativo notificase a los programas ciertos errores y sucesos críticos.
+Por ejemplo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La señal <code>HUP</code> o <code>SIGHUP</code> es enviada a cada proceso iniciado desde una sesión de terminal cuando dicha sesión termina —o cuando se usa la combinación de teclas <span class="keyseq"><kbd>CTRL</kbd>+<kbd>D</kbd></span>, que tiene el mismo efecto—.</p>
+<div class="paragraph">
+<p>En el caso de los servicios del sistema —que, como no son interactivos, no están conectados a ninguna terminal— esta señal suele usarse para indicarles que deben reiniciarse, volviendo a leer sus archivos de configuración, o para que guarden su estado interno en algún sitio conocido del almacenamiento.</p>
+</div>
+</li>
+<li>
+<p>La señal <code>INT</code> o <code>SIGINT</code> es enviada al proceso que está enganchado a la consola cuando el usuario pulsa el carácter de interrupción —frecuentemente la combinación de teclas <span class="keyseq"><kbd>CTRL</kbd>+<kbd>C</kbd></span>—.</p>
+</li>
+<li>
+<p>La señal <code>TERM</code> o <code>SIGTERM</code> es enviada al proceso cuando debe terminar.
+Por ejemplo, el sistema operativo envía esta señal a todos los procesos cuando se está apagando el sistema.</p>
+</li>
+<li>
+<p>La señal <code>SEGV</code> o <code>SIGSEGV</code> es enviada a un proceso cuando intenta acceder a una zona de memoria a la que no tiene permiso.
+Si no se maneja esta señal, el programa termina con el conocido mensaje de <strong>violación de segmento</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Obviamente hay muchas más señales.
+Entre todas, el estándar POSIX incluye dos señales —<code>USR1</code> y <code>USR2</code>— especialmente indicadas para usarlas con el significado que nosotros queramos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Se puede consultar una lista de las señales del estándar POSIX en <a href="https://es.wikipedia.org/wiki/Se%C3%B1al_(inform%C3%A1tica)">«Señales (informática)&#8201;&#8212;&#8201;Wikipedia»</a>.
+Mientras que la lista completa de señales soportadas en Linux se puede consultar en <a href="https://man7.org/linux/man-pages/man7/signal.7.html">«signal(7)&#8201;&#8212;&#8201;Linux Manual»</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El ejemplo en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> y en otros ejemplos de este capítulo, utiliza señales para manejar <code>SIGINT</code>, <code>SIGTERM</code> y para mostrar la hora periódicamente.
+El código dedicado a eso está en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/common/timeserver.c">timeserver.c</a> y se comparte entre todos los ejemplos.
+En todos los casos se evita usar <code>SA_RESTART</code> porque interesa que el proceso interrumpa lo que esté haciendo cuando llegue una señal para terminar.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/signals.c">signals.c</a> hay un programa de ejemplo que muestra cómo manejar las señales del sistema y que sirve para ver cómo funcionan.
+Solo hay que ejecutarlo y luego enviarle señales con el comando <code>kill</code> desde otra terminal.
+En este caso si se usa <code>SA_RESTART</code>, porque el programa debe estar esperando la pulsación de una tecla con <code>getc()</code> y no nos interesa que deje de hacerlo cuando llegue una señal.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tuberías"><a class="anchor" href="#_tuberías"></a>10.5.3. Tuberías</h4>
+<div class="paragraph">
+<p>Las <strong>tuberías</strong> son un mecanismo de paso de mensajes de <strong>comunicación indirecta</strong>, <strong>orientada a flujos</strong>, <strong>capacidad limitada</strong> y, generalmente, <strong>comunicación síncrona</strong> —aunque en algunos sistemas operativos también puede soportar asíncrona—.</p>
+</div>
+<div class="paragraph">
+<p>Conceptualmente, cada tubería tiene dos extremos en los que opera utilizando la misma interfaz que generalmente empleamos para manipular archivos.
+Es decir, usando funciones como <code>read()</code>, <code>write()</code> y <code>close()</code>, entre otras.
+Un extremo permite a los procesos en ese extremo escribir en la tubería, mientras el otro extremo permite a los procesos leer de la tubería los datos escritos desde el otro extremo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C10-ipc/tuberías.svg" alt="tuberías">
+</div>
+<div class="title">Figura 10.5. Esquema del concepto de tubería.</div>
+</div>
+<div class="paragraph">
+<p>El que cada extremo imite ser un archivo, facilita que se puedan usar en muchas de las llamadas al sistema que aceptan un archivo como argumento.
+Los procesos pueden leer o escribir en un archivo sin saber realmente si están accediendo a una archivo real o se están comunicando con otro proceso mediante una tubería.</p>
+</div>
+<div class="paragraph">
+<p>Existen dos tipos de tuberías:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las <strong>tuberías anónimas</strong> que solo existen en el espacio de direcciones del proceso que las crea, de tal forma que debe heredarse de padres a hijos para que otros procesos puedan tener acceso.</p>
+</li>
+<li>
+<p>Las <strong>tuberías con nombre</strong> son públicas al resto del sistema, por lo que teóricamente cualquier proceso con permisos puede abrir una para comunicarse con otros procesos.
+Por eso se suele utilizar en aplicaciones cliente-servidor, donde un proceso servidor ofrece algún servicio a otros procesos cliente a través de la tubería.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En los sistemas POSIX las <strong>tuberías con nombre</strong> se denominan <em>FIFO</em> y tienen presencia en el sistema de archivos como archivos especiales.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 10.1. Funciones de la API para manipular tuberías.</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">POSIX API</th>
+<th class="tableblock halign-left valign-top">Windows API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Crear tubería anónima</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/pipe.2.html">pipe()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/namedpipeapi/nf-namedpipeapi-createpipe">CreatePipe()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Crear tubería con nombre</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man3/mkfifo.3.html">mkfifo()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createnamedpipea">CreateNamedPipe()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Abrir tubería con nombre</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea">CreateFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Leer</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile">ReadFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Escribir</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-writefile">WriteFile()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Cerrar</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle">CloseHandle()</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Destruir tubería con nombre</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://man7.org/linux/man-pages/man2/unlink.2.html">unlink()</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="lightcell">[Automático]</span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Con <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> es muy sencillo lanzar otros procesos para que ejecuten tareas en paralelo.
+El proceso hijo tiene acceso a los datos del padre por la forma en la que funciona <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> y gracias a las tuberías anónimas puede comunicar los resultados al padre.
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp">fork-pipe.cpp</a> se puede observar un ejemplo de esto.</p>
+</div>
+<div class="paragraph">
+<p>Además, el hecho de que cada extremo se comporte como un archivo —uno en modo solo lectura y el otro en modo solo escritura— hace posible redirigir la E/S estándar del proceso hijo.
+Es decir, conectar la entrada, la salida estándar o la salida de error a una tubería, desde la que leer lo que el proceso intenta imprimir por la pantalla de la terminal o proporcionarle lo que debe leer, como si fuera desde el teclado.
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/fork-redir.c">fork-redir.c</a> se puede ver un ejemplo de cómo ejecutar el comando <code>ls</code> y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.</p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, las tuberías con nombre permiten que un proceso se comunique con cualquier otro, solo con conocer la ruta de la tubería.
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/fifo-client.c">fifo-server.c</a> tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
+Los programas en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/fifo-client.c">fifo-client.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/fifo-client.cpp">fifo-client.cpp</a> pueden conectarse a esa tubería y mandar el comando que hace terminar <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/fifo-client.c">fifo-server.c</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sockets"><a class="anchor" href="#_sockets"></a>10.5.4. Sockets</h4>
+<div class="paragraph">
+<p>Mientras que las tuberías son conceptualmente un enlace de comunicación unidireccional que tiene dos extremos, un <strong><em>socket</em></strong> representa un solo extremo en un enlace de comunicación bidireccional.
+Para que una pareja de procesos se pueda comunicar son necesarios dos <em>sockets</em> —uno en cada proceso— de manera que cada uno de ellos es el medio por el que el proceso accede al enlace de comunicación.</p>
+</div>
+<div class="paragraph">
+<p>La API de <em>sockets</em> fue creada por la Universidad de Berkeley para abstraer el acceso a la familia de protocolos de Internet en el UNIX desarrollado por esa misma universidad.
+Sin embargo, rápidamente se convirtió en el estándar de facto para la comunicación en red, por lo que todos los sistemas operativos modernos —incluidos los sistemas POSIX y Microsoft Windows— tienen una implementación de la misma.</p>
+</div>
+<div class="paragraph">
+<p>Pese a sus orígenes en Internet, los <em>sockets</em> se diseñaron para ser independientes de la tecnología de red subyacente con la que se implementa el enlace de comunicación.
+En Linux, por ejemplo, se puede utilizar como interfaz de programación para utilizar dos decenas de familias de protocolos y tecnologías diferentes.</p>
+</div>
+<div class="paragraph">
+<p>Para crear un <em>socket</em> se utiliza la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/socket.2.html">socket()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">AF_UNIX</span><span class="p">,</span>         <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">SOCK_DGRAM</span><span class="p">,</span>      <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="mi">0</span>
+<span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>En sistemas POSIX la función devuelve un <code>int</code> con el descriptor del socket mientras que en Microsoft Windows devuelve un <code>HANDLE</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>En el primer argumento se especifica la familia de protocolos.
+<code>AF_UNIX</code> son un tipo de <em>socket</em> que solo sirve para comunicar procesos en el mismo sistema, denominado <strong>socket de dominio UNIX</strong>.
+Otras familias muy comunes son <code>AF_INET</code>, que corresponde a la familia de protocolos TCP/IP y <code>AF_INET6</code> para los protocolos IPv6.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>En el segundo argumento se especifica el tipo del <em>socket</em>.
+Cada tipo suele corresponde con un protocolo concreto de la familia elegida.
+Por ejemplo, los <em>sockets</em> <code>SOCK_DGRAM</code> son «no orientados a conexión», no fiables y de longitud máxima fija, así que en la familia <code>AF_INET</code> estos <em>sockets</em> utilizan UDP.
+Mientras que los <em>sockets</em> <code>SOCK_STREAM</code> son orientados a conexión, fiables, bidireccionales y orientados a flujo, por lo que en la familia <code>AF_INET</code> utilizan TCP.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+Los <strong>sockets de dominio UNIX</strong> solo entregan los mensajes dentro del mismo sistema, así que siempre son confiables, independientemente de si son <code>SOCK_DGRAM</code> o <code>SOCK_STREAM</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Un <em>socket</em> recién creado no tiene un nombre que otro proceso pueda usar para identificarlo y comunicarse con él.
+Si se va a usar este <em>socket</em> solo para enviar mensajes a otro <em>socket</em>, esto es no es un problema.
+Pero para recibir mensajes, el remitente tiene que poder identificar al destinatario.</p>
+</div>
+<div class="paragraph">
+<p>Para asignar un nombre o dirección a un <em>socket</em> se utiliza <a href="https://man7.org/linux/man-pages/man2/bind.2.html">bind()</a>.
+La dificultad es que cada familia de protocolos tiene un formato de direcciones diferente, así que hay que tener cuidado de usar el adecuado:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="k">struct</span> <span class="n">sockaddr_un</span> <span class="n">addr</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">sun_family</span> <span class="o">=</span> <span class="n">AF_UNIX</span><span class="p">,</span>        <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="p">.</span><span class="n">sun_path</span> <span class="o">=</span> <span class="s">"/tmp/foo-socket"</span> <i class="conum" data-value="6"></i><b>(6)</b>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">result_code</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">sockfd</span><span class="p">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">addr</span><span class="p">,</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="k">sizeof</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Como en el resto de llamadas al sistema, en caso de error se devuelve un número negativo y <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a> contendrá el código del error.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>El descriptor del <em>socket</em> al que se le quiere cambiar la dirección.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>La nueva dirección del <em>socket</em> especificada como una estructura adecuada para la familia del <em>socket</em>.
+En <em>socket</em> de tipo <code>AF_UNIX</code> la estructura debe ser de tipo <code>sockaddr_un</code> mientras que en los de tipo <code>AF_INET</code> es del tipo <code>sockaddr_in</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>El tamaño en bytes de la estructura con la nueva dirección.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>En la estructura con la dirección, el primer campo siempre es para
+indicar la familia.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>En los <em>sockets</em> de dominio UNIX la dirección es una ruta en el sistema de archivos.
+Para otras familias, las direcciones se indican de otra manera, por lo que es necesario consultar la documentación.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La API de <em>sockets</em> incluye muchas otras funciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/listen.2.html">listen()</a>, para poner <em>sockets</em> tipo <code>SOCK_STREAM</code> a la espera de conexiones.</p>
+</li>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/connect.2.html">connect()</a>, para conectar un <em>socket</em> tipo <code>SOCK_STREAM</code> con otro que esté a la espera de conexiones.</p>
+</li>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/accept.2.html">accept()</a> para que un <em>socket</em> tipo <code>SOCK_STREAM</code> a la espera de conexiones acepte una solicitud de conexión.</p>
+</li>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/shutdown.2.html">shutdown()</a> para cerrar uno de los sentidos de una conexión.</p>
+</li>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a> para destruir un <em>socket</em>.</p>
+</li>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/send.2.html">send()</a>, <a href="https://man7.org/linux/man-pages/man2/send.2.html">sendto()</a> y <a href="https://man7.org/linux/man-pages/man2/send.2.html">sendmsg()</a> para enviar mensajes.
+<a href="https://man7.org/linux/man-pages/man2/send.2.html">send()</a> solo se puede utilizar con <em>sockets</em> conectados.
+Mientras que <a href="https://man7.org/linux/man-pages/man2/send.2.html">sendto()</a> permiten indicar la dirección del <em>socket</em> de destino, por lo que es útil en <em>sockets</em> no orientados a conexión <code>SOCK_DGRAM</code>.</p>
+</li>
+<li>
+<p><a href="https://man7.org/linux/man-pages/man2/recv.2.html">recv()</a>, <a href="https://man7.org/linux/man-pages/man2/recvfrom.2.html">recvfrom()</a> y <a href="https://man7.org/linux/man-pages/man2/recvmsg.2.html">recvmsg()</a> para recibir mensajes.
+<a href="https://man7.org/linux/man-pages/man2/recvfrom.2.html">recvfrom()</a> permite obtener la dirección del <em>socket</em> del que llegó el mensaje.
+Por eso es útil en <em>sockets</em> no orientados a conexión <code>SOCK_DGRAM</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="k">struct</span> <span class="n">sockaddr_un</span> <span class="n">addr</span><span class="p">;</span>
+<span class="n">socklen_t</span> <span class="n">addrlen</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">result_code</span> <span class="o">=</span> <span class="n">recvfrom</span><span class="p">(</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">sockfd</span><span class="p">,</span>          <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="o">&amp;</span><span class="n">message</span><span class="p">,</span>        <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="k">sizeof</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="mi">0</span><span class="p">,</span>               <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">addr</span><span class="p">,</span> <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="o">&amp;</span><span class="n">addrlen</span>         <i class="conum" data-value="7"></i><b>(7)</b>
+<span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>En caso de éxito devuelve el número de bytes del mensaje recibido.
+En caso de error, un -1 y <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno</a> contiene el código del error.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>El descriptor del <em>socket</em> al que se le quiere cambiar la dirección.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Puntero a la dirección de memoria donde está el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Tamaño del mensaje en bytes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Opciones adicionales de configuración.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Estructura de dirección vacía donde se copiará la dirección del <em>socket</em> que remite el mensaje.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Puntero donde la llamada al sistema copiará el tamaño de la estructura copiada en <code>addr</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Las operaciones con <em>sockets</em> son síncronas por defecto.
+Sin embargo, es posible configurarlos en modo asíncrono, para que así cualquiera de estas funciones falle, retornando -1 y código de error <code>EAGAIN</code> o <code>EWOULDBLOCK</code>, antes de poner el proceso en estado <strong>esperando</strong>.</p>
+</div>
+<div class="paragraph">
+<p>También se pueden utilizar las funciones <a href="https://man7.org/linux/man-pages/man2/select.2.html">select()</a> y <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> para monitorizar varios <em>sockets</em> al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <a href="comunicación_mediante_paso_de_mensajes.html#_colas_de_mensajes_posix">Apartado 10.5.1</a>).</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/socket-server.cpp">socket-server.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/socket-client.cpp">socket-client.cpp</a> se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando <em>sockets</em> de dominio UNIX.
+Ambos programas utilizan la cabecera <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2324/src/cap10/socket.hpp">socket.hpp</a> que incluye un ejemplo de clase en C&#43;&#43; para comunicaciones mediante <em>sockets</em>.
+En los distintos métodos se puede ver cómo se utilizan las funciones de la librería del sistema para crear <em>sockets</em>, asignarles dirección y usarlos para enviar y recibir mensajes.</p>
+</div>
+<div class="paragraph">
+<p>En resumen, los <strong><em>sockets</em></strong> son un mecanismo de paso de mensajes de <strong>comunicación indirecta</strong>, que admite tanto comunicación <strong>orientada a flujos</strong> como <strong>mensajes de tamaño variable</strong>, <em>buffering</em> de <strong>capacidad limitada</strong> y tanto <strong>comunicación síncrona</strong> como <strong>asíncrona</strong>, aunque el comportamiento real final de la interfaz depende de la tecnología de red utilizada.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="procesos.html">Procesos</a> | ↑ Subir: <a href="gestión_de_procesos.html">Gestión de procesos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="memoria_compartida.html">Memoria compartida</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

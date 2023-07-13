@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="bibliografía" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2023-2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html"><span class="toc-current">Bibliografía</span></a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="bibliografía"><a class="anchor" href="#bibliografía"></a>Bibliografía</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Parte de los contenidos de este documento están basados en las siguientes fuentes:</p>
+</div>
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="Bavier2000"></a>[Bavier2000]
+Bavier, A. (2000). Creating New CPU Schedulers with Virtual Time. <em>WIP Proceedings of 21st IEEE Real-Time Systems Symposium (RTSS 2000)</em>.</p>
+</li>
+<li>
+<p><a id="Chase2009"></a>[Chase2009]
+Chase, K. y Russinovich, M. (2009). <em>Processes, Threads, and Jobs in the Windows Operating System</em>. The Microsoft Press Store by Pearson. <a href="https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=7" class="bare">https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&amp;seqNum=7</a></p>
+</li>
+<li>
+<p><a id="Friedman1999"></a>[Friedman1999]
+Friedman, M. B. (1999). Windows NT Page Replacement Policies. <em>Proceedings of 25th International Computer Measurement Group Conference</em> (pp. 234-244).</p>
+</li>
+<li>
+<p><a id="Ganger2000"></a>[Ganger2000]
+Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. (2000). Soft Updates: A Solution to the Metadata Update Problem in File Systems. <em>ACM Transactions on Computer Systems</em>, 18 (2), 127—153.</p>
+</li>
+<li>
+<p><a id="Gaydov2016"></a>[Gaydov2016]
+Gaydov, V. (2016). <em>File locking in Linux</em>. <a href="https://gavv.github.io/articles/file-locks/" class="bare">https://gavv.github.io/articles/file-locks/</a></p>
+</li>
+<li>
+<p><a id="Gorman2004"></a>[Gorman2004]
+Gorman, M. (2004). <em>Understanding the Linux Virtual Memory Manager</em>. Prentice Hall.</p>
+</li>
+<li>
+<p><a id="Hailperin2006"></a>[Hailperin2006]
+Hailperin, M. (2006). <em>Operating Systems and Middleware: Supporting Controlled Interaction</em>. Course Technology.</p>
+</li>
+<li>
+<p><a id="Jacob1998"></a>[Jacob1998]
+Jacob, B y Mudge, T. (1998). Virtual Memory: Issues of Implementation. <em>Computer</em>, 31, 33-43. <a href="http://dx.doi.org/10.1109/2.683005" class="bare">http://dx.doi.org/10.1109/2.683005</a></p>
+</li>
+<li>
+<p><a id="Microsoft2005"></a>[Microsoft2005]
+Microsoft Corporation. (2005). <em>Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn</em>. SlideShare. <a href="https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn" class="bare">https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn</a>.</p>
+</li>
+<li>
+<p><a id="Microsoft2003"></a>[Microsoft2003]
+Microsoft Corporation. (2003). <em>Kernel Enhancements for Windows XP</em>. Archivado en <a href="https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx" class="bare">https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx</a></p>
+</li>
+<li>
+<p><a id="Microsoft2018"></a>[Microsoft2018]
+Microsoft Corporation. (2018). <em>Processes and Threads: Scheduling Priorities</em>. <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities" class="bare">https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities</a></p>
+</li>
+<li>
+<p><a id="Silberschatz2004"></a>[Silberschatz2004]
+Silberschatz, A., Galvin, P. y Gagne, G. (2004). <em>Operating System Concepts with Java</em>. (6º ed.) John Wiley &amp; Sons Inc.</p>
+</li>
+<li>
+<p><a id="Silberschatz2005"></a>[Silberschatz2005]
+Silberschatz, A., Galvin, P. y Gagne, G. (2006). <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=345629"><em>Fundamentos de Sistemas Operativos</em></a>. (7ª ed.) McGraw Hill Interamericana.</p>
+</li>
+<li>
+<p><a id="SGI2006"></a>[SGI2006]
+Silicon Graphics Inc. (2006). <em>XFS Filesystem Structure</em>. Archivado en <a href="https://web.archive.org/web/20210427160429/https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html" class="bare">https://web.archive.org/web/20210427160429/https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html</a></p>
+</li>
+<li>
+<p><a id="Solomon2005"></a>[Solomon2005]
+Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. Windows Thread. <em>Windows OS Internals</em>. <a href="https://slideplayer.com/slide/6972581/" class="bare">https://slideplayer.com/slide/6972581/</a></p>
+</li>
+<li>
+<p><a id="Stallings2005"></a>[Stallings2005]
+Stallings, W. (2005). <a href="http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530"><em>Sistemas operativos: Aspectos internos y principios de diseño</em></a>. (5ª ed.) Pearson.</p>
+</li>
+<li>
+<p><a id="Sun2006"></a>[Sun2006]
+Sun Microsystems, Inc. (2006). <em>ZFS On-Disk Specification (Draft)</em>. <a href="https://es.scribd.com/document/217201456/Zfs-ondiskformat" class="bare">https://es.scribd.com/document/217201456/Zfs-ondiskformat</a></p>
+</li>
+<li>
+<p><a id="Tanenbaum2014"></a>[Tanenbaum2014]
+Tanenbaum, A. y Bos, H. (2014). <em>Modern Operating Systems</em>. (4ª ed.) Prentice Hall Press.</p>
+</li>
+<li>
+<p><a id="Wikipedia-cmalloc"></a>[Wikipedia-cmalloc]
+C dynamic memory allocation. En <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/C_dynamic_memory_allocation" class="bare">https://en.wikipedia.org/wiki/C_dynamic_memory_allocation</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="implementación_de_sistemas_de_archivos.html">Implementación de sistemas de archivos</a> | ↑ Subir: <a href="main.html">Sistemas Operativos</a></p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

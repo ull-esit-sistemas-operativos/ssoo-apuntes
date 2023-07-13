@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="historia_de_los_sistemas_operativos" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2023-2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+<ul class="sectlevel1">
+<li><a href="qué_es_un_sistema_operativo.html">1. ¿Qué es un sistema operativo?</a>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html">2. Tipos de sistemas operativos</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html"><span class="toc-current">3. Historia de los sistemas operativos</span></a>
+<ul class="sectlevel2">
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-primera-generación">3.1. 1ª Generación (1945-55)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-segunda-generación">3.2. 2ª Generación (1955-64)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-tercera-generación">3.3. 3ª Generación (1965-1968)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-cuarta-generación">3.4. 4ª Generación (1965-1980)</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html#sect-historia-quinta-generación">3.5. 5ª Generación (desde 1980):</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="historia_de_los_sistemas_operativos"><a class="anchor" href="#historia_de_los_sistemas_operativos"></a>3. Historia de los sistemas operativos</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 23 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La historia de los sistemas operativos se puede dividir en cinco grandes etapas o generaciones, obviamente conectadas con las generaciones de los ordenadores donde funcionaban.</p>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-primera-generación"><a class="anchor" href="#sect-historia-primera-generación"></a>3.1. 1ª Generación (1945-55)</h3>
+<div class="paragraph">
+<p>En la primera generación de ordenadores no se utilizaban sistemas operativos.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Sus principales características son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Computadoras construidas con electrónica de <a href="https://es.wikipedia.org/wiki/V%C3%A1lvula_termoi%C3%B3nica">válvulas de vacío</a>.</p>
+</li>
+<li>
+<p>Sin sistema operativo.</p>
+</li>
+<li>
+<p>Sin lenguajes de programación.
+Se programaban directamente en lenguaje máquina.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Algunos ejemplos de ordenadores destacables fueron:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://es.wikipedia.org/wiki/ENIAC">ENIAC</a> (1945)</dt>
+<dd>
+<p>Se le considera el primer ordenador electrónico digital de propósito general, aunque existe cierta polémica sobre este punto.
+Lo cierto es que se construyeron otros ordenadores antes que este, pero o no eran de propósito general —como las famosas computadoras <a href="https://es.wikipedia.org/wiki/Colossus">Colossus</a> (1944), que fueron diseñadas para ayudar en <a href="https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis">criptoanálisis</a>— o no eran electrónicos sino electromecánicos —como la computadora <a href="https://es.wikipedia.org/wiki/Z3">Z3</a> (1941), que usaba <a href="https://es.wikipedia.org/wiki/Rel%C3%A9">relés</a>—.</p>
+<div class="paragraph">
+<p>No era un producto comercial sino un proyecto experimental de defensa que principalmente se diseñó y utilizó para calcular tablas de tiro de artillería destinadas al Laboratorio de Investigación Balística del Ejército de los Estados Unidos.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Z4">Z4</a> (1945) fue el primer ordenador digital comercial, pero era electro-mecánico.</p>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://es.wikipedia.org/wiki/IBM_701">IBM 701</a> (1953)</dt>
+<dd>
+<p>Fue el primer <em>mainframe</em> de la serie IBM 700, que a la larga se convertiría en un éxito de ventas.
+Utilizaba tubos de vacío y tarjetas perforadas.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El IBM 7090 —versión transistorizada del 709, que utilizaba válvulas de vacío, como todos los de la serie 700— y el posterior 7094, fueron usados por la NASA para los cálculos de control de las misiones de los programas espaciales Mercury y Gemini y durante la primera etapa del programa Apolo.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-segunda-generación"><a class="anchor" href="#sect-historia-segunda-generación"></a>3.2. 2ª Generación (1955-64)</h3>
+<div class="paragraph">
+<p>En la segunda generación de ordenadores los transistores reemplazaron a las válvulas de vacío.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En lo que respecta a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Aparecen los monitores del sistema, que se pueden considerar un predecesor de los sistemas operativos.</p>
+</li>
+<li>
+<p>Sistema de procesamiento por lotes.</p>
+</li>
+<li>
+<p>Se comienzan a utilizar lenguajes de programación, como: ensamblador, FORTRAN y COBOL.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/GM-NAA_I/O">GM-NAA I/O</a> (<em>General Motors and North American Aviation Input/Output system</em>) fue el primer sistema operativo.
+Fue desarrollado por General Motors Research Laboratory en 1956 para el <em>mainframe</em> <a href="https://en.wikipedia.org/wiki/IBM_704">IBM 704</a> con el fin de automatizar la carga y ejecución de un nuevo trabajo una vez había terminado el anterior.
+Para su desarrollo se basaron en un monitor del sistema creado en 1955 por programadores de General Motors para el IBM 701.</p>
+</div>
+<div id="fig-instalación-ibm-702" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/instalación_ibm_702.jpg" alt="instalación ibm 702">
+</div>
+<div class="title">Figura 3.1. Instalación de un mainframe IBM 702&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:BRL61-IBM_702.jpg">Wikipedia</a></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-tercera-generación"><a class="anchor" href="#sect-historia-tercera-generación"></a>3.3. 3ª Generación (1965-1968)</h3>
+<div class="paragraph">
+<p>En la tercera generación se comenzaron a utilizar los circuitos integrados, que fue una invención de finales de la década de 1950.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En lo que respecta a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Aparecen los sistemas operativos multiprogramados.</p>
+</li>
+<li>
+<p>Aparecen más lenguajes de programación.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>El ejemplo más destacado de esta época es el <a href="https://en.wikipedia.org/wiki/OS/360_and_successors">IBM OS/360</a>
+Fue un sistema operativo desarrollado por IBM para su <em>mainframe</em> <a href="https://en.wikipedia.org/wiki/IBM_System/360">IBM System/360</a> (S/360) (véase la <a href="historia_de_los_sistemas_operativos.html#fig-instalación-ibm-system-360">Figura 3.2</a>).
+Su versión DOS/360 (<em>Disk Operating System/360</em>) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.</p>
+</div>
+<div id="fig-instalación-ibm-system-360" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/instalación_ibm_system_360.jpg" alt="instalación ibm system 360">
+</div>
+<div class="title">Figura 3.2. Instalación de un mainframe IBM System/360&#8201;&#8212;&#8201;Fuente: <a href="http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/">IBM</a></div>
+</div>
+<div class="paragraph">
+<p>Se anunció en 1964, pero fue lanzado en 1966, con un año de retraso respecto a la fecha prevista originalmente.
+Los motivos fundamentales fueron ciertos problemas de organización interna de la compañía y la falta de experiencia en proyectos de esa envergadura.
+Las previsiones iniciales eran de 1 millón de líneas de código y miles de componentes de software.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Algunos autores fechan los inicios de la ingeniería del software en la publicación del libro «The Mythical Man-Month: Essays on Software Engineering», escrito por Frederick Brooks y publicado en 1975.
+Frederick Brooks se basó en la experiencia adquirida mientras administraba el desarrollo del IBM OS/360, donde era jefe de proyecto.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-cuarta-generación"><a class="anchor" href="#sect-historia-cuarta-generación"></a>3.4. 4ª Generación (1965-1980)</h3>
+<div class="paragraph">
+<p>La cuarta generación abarca desde mediados de los años 60 hasta finales de la década de los 70.
+Respecto a los ordenadores, es el resultado del desarrollo de los microprocesadores.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En lo que respecta a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Aparecen los sistemas operativos de tiempo compartido.</p>
+</li>
+<li>
+<p>Aparecen los terminales, los programas interactivos y las máquinas virtuales.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación veremos los ejemplos más representativos de esta época.</p>
+</div>
+<div class="sect3">
+<h4 id="_multics"><a class="anchor" href="#_multics"></a>3.4.1. MULTICS</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Multics">MULTICS</a> fue anunciado en 1964, fruto de la colaboración entre el MIT, General Electrics y Bell Labs, como el primer sistema operativo de propósito general.</p>
+</div>
+<div id="sect-multics-mainframe" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/multics_mainframe.jpg" alt="multics mainframe">
+</div>
+<div class="title">Figura 3.3. Mainframe GE-6180 con sistema MULTICS, en torno a 1976 en el MIT&#8201;&#8212;&#8201;Fuente: <a href="http://www.multicians.org/multics-stories.html">Multicians</a></div>
+</div>
+<div class="paragraph">
+<p>Fue el primer sistema operativo en proporcionar un sistema de archivos jerárquico, intérprete de comandos implementado como programa de usuario, listas de control de acceso individuales para cada archivo y enlazado dinámico, entre otras características novedosas.</p>
+</div>
+<div class="paragraph">
+<p>Además experimentó con eliminar la separación entre el espacio de direcciones de los procesos y los archivos.
+Es decir, como si los archivos estuvieran mapeados en memoria, permitiendo a los procesos acceder al contenido de los archivos directamente, sin tener que ordenar manualmente operaciones de lectura desde el disco a la memoria (véase el <a href="memoria_virtual.html#_archivos_mapeados_en_memoria">Apartado 17.3</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vmcms"><a class="anchor" href="#_vmcms"></a>3.4.2. VM/CMS</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/VM_(sistema_operativo)">VM/CMS</a> es un sistema de IBM utilizado en los <em>mainframes</em> <a href="https://en.wikipedia.org/wiki/IBM_System/360">IBM System/360</a>, System/370, System/390 y zSeries.
+VM es un <a href="https://es.wikipedia.org/wiki/Hipervisor">hipervisor</a> que se encarga de virtualizar el hardware para crear múltiples máquinas virtuales, dando la sensación de que cada una es un <em>mainframe</em> independiente.</p>
+</div>
+<div class="paragraph">
+<p>Como sistema operativo de las máquinas virtuales, una opción común es CMS, un sistema interactivo y monousuario muy ligero, diseñado para operar fundamentalmente en una máquina virtual de VM.
+Gracias a VM/CMS, cada usuario tiene la sensación de trabajar en un sistema completamente independiente y seguro.</p>
+</div>
+<div class="paragraph">
+<p>El desarrollo de VM/CMS comenzó en 1965 y la primera versión estuvo disponible a primeros de 1966.
+Las versiones actuales se denominan IBM z/VM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_unix"><a class="anchor" href="#_unix"></a>3.4.3. UNIX</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Unix">UNIX</a> fue desarrollado originalmente por Bell Labs en 1970 para los sistemas <a href="https://es.wikipedia.org/wiki/PDP-11">PDP-11/20</a> (véase la <a href="historia_de_los_sistemas_operativos.html#fig-dec-pdp11">Figura 3.4</a>).
+La autoría de este se le atribuye a un grupo de programadores, liderados por Ken Thompson, que decidieron rehacer el trabajo de MULTICS, pero a menor escala, después de que Bell Labs abandonara el proyecto MULTICS en 1969.
+Inicialmente se llamó UNICS y fue desarrollado para los sistemas PDP-7 —una minicomputadora de la serie PDP de Digital Equipment Corporation (DEC)—.</p>
+</div>
+<div id="fig-dec-pdp11" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/dec_pdp11_ken_den.jpg" alt="dec pdp11 ken den">
+</div>
+<div class="title">Figura 3.4. Dennis Ritchie (de pie) y Ken Thompson (sentado) frente a un PDP-11 y sus dos terminales <a href="https://en.wikipedia.org/wiki/Teletype_Model_33">Teletype 33</a>&#8201;&#8212;&#8201;Fuente: <a href="https://www.bell-labs.com/usr/dmr/www/">Dennis Ritchie</a></div>
+</div>
+<div class="paragraph">
+<p>Los sistemas UNIX se caracterizan por ofrecer un gran número de pequeñas herramientas especializadas diseñadas para trabajar unidas —a través de la línea de comandos usando tuberías— y por usar la E/S salida de archivos como modelo universal de E/S. Es decir, que los dispositivos, ciertos mecanismos de comunicación entre procesos y hasta algunos aspectos de la configuración e información del sistema son gestionados como archivos.</p>
+</div>
+<div class="paragraph">
+<p>La primera versión de UNIX fue implementada en ensamblador, como era común en la época.
+Posteriormente, Dennis Ritchie y Brian Kernighan diseñaron un nuevo lenguaje de programación llamado «C», especialmente pensado para que UNIX fuera escrito con él.
+Eso facilitó que UNIX pudiera ser portado a ordenadores diferentes.
+Además, gracias al lenguaje C, el código era más conciso y compacto, lo que se tradujo en que se pudieron desarrollar nuevas funcionalidades más rápidamente.</p>
+</div>
+<div class="paragraph">
+<p>AT&amp;T, la compañía matriz de Bell Labs, no podía competir en la industria de los ordenadores, por lo que puso el código fuente de UNIX a disposición de universidades, compañías privadas y del gobierno de los Estados Unidos.
+Eso aumentó su difusión y dio resultados inesperados.
+Por ejemplo, una de las variantes más importantes de UNIX fue <a href="https://es.wikipedia.org/wiki/Berkeley_Software_Distribution">BSD</a>, desarrollada por la Universidad de California en Berkeley.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La versión 4.2BSD (<em>Berkeley Software Distribution</em>) de esta variante de UNIX fue la primera que incluyó la interfaz de <em>sockets</em> para facilitar la comunicación entre procesos a través de Internet y otras redes.
+Esta interfaz se ha convertido en estándar en prácticamente cualquier sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>También implementó y ayudó a difundir el estándar de comunicaciones TCP/IP, base de la actual Internet.
+Muchos sistemas operativos actuales, tanto libres como privativos, utilizan código de UNIX BSD en sus implementaciones de los protocolos TCP/IP y de diversas utilidades de red.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_familias"><a class="anchor" href="#_familias"></a>Familias</h5>
+<div class="paragraph">
+<p>Los sistemas UNIX siguieron evolucionando hasta adaptarse a la 5ª generación de sistemas, la de los sistemas de escritorio y los ordenadores personales.
+En la actualidad se considera que hay dos grandes familias de UNIX y las distintas variantes pertenecen a una u otra en función del UNIX del que derivaron originalmente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La familia derivada de <strong>AT&amp;T UNIX System V</strong>, en la que se incluyen sistemas operativos no libres, tales como: <a href="https://es.wikipedia.org/wiki/SCO_OpenServer">SCO OpenServer</a>, <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Oracle/Sun Microsystems Solaris Operating Environment</a> y <a href="https://es.wikipedia.org/wiki/UnixWare">SCO UnixWare</a>.</p>
+</li>
+<li>
+<p>La familia derivada de <strong>UNIX BSD</strong>, en la que se incluyen sistemas libres como: <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a>, <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a>, <a href="https://es.wikipedia.org/wiki/OpenBSD">OpenBSD</a>, <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Darwin</a> y <a href="https://es.wikipedia.org/wiki/DragonFly_BSD">DragonFly BSD</a>, entre muchos otros.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> es el sistema base de algunos sistemas no libres.
+Por ejemplo, <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Darwin</a> es el sistema operativo en el que se basan los sistemas operativos de Apple: macOS, IOS, watchOS, tvOS e iPadOS.
+A su vez Darwin utiliza múltiples elementos de FreeBSD (véase el <a href="historia_de_los_sistemas_operativos.html#_mach">Apartado 3.5.8</a>).</p>
+</div>
+<div class="paragraph">
+<p>Otro ejemplo destacable es <a href="https://en.wikipedia.org/wiki/PlayStation_4_system_software">Orbis OS</a> —el sistema operativo de PlayStation 4— que también está basado en FreeBSD.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_estandarización"><a class="anchor" href="#_estandarización"></a>Estandarización</h5>
+<div class="paragraph">
+<p>En 1988 el <a href="https://es.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers">IEEE</a> publicó el primer estándar <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>, un intento de crear un estandarizar mínimo de las características que debería soportar cualquier sistema operativo.
+Este estándar se basó en las características de las principales variantes de UNIX en el momento.</p>
+</div>
+<div class="paragraph">
+<p>A principios de los 90, como las distintas variantes de UNIX estaban divergiendo —haciendo muy difícil desarrollar programas compatibles con todas ellas— se inició un esfuerzo para desarrollar una especificación común; de tal forma que solo aquellas variantes que la cumplieran pudieran denominarse como «UNIX».
+En 1994 se publicó la <a href="https://es.wikipedia.org/wiki/Single_Unix_Specification">Single UNIX Specification (SUR)</a>, gestionada por <a href="https://es.wikipedia.org/wiki/The_Open_Group">The Open Group</a>.</p>
+</div>
+<div class="paragraph">
+<p>En 1998, las organizaciones IEEE, The Open Group y la <a href="https://en.wikipedia.org/wiki/International_Organization_for_Standardization">International Organization for Standardization (ISO)</a> comenzaron a trabajar en una nueva especificación que integrara POSIX y SUR.
+En 2002 se publicó como la «Single UNIX Specification, Version 3», cuya base es idéntica al estándar POSIX.1-2001 IEEE.
+Los sistemas operativos certificados por su cumplimiento reciben la marca «UNIX 03», como es el caso de macOS.
+Pero hay que tener en cuenta que la mayoría de los sistemas basados en UNIX BSD y Linux no han pasado nunca por el proceso de certificación, por lo que no pueden usar la marca UNIX, aunque cumplan con el estándar POSIX, que es la base de la especificación SUR.</p>
+</div>
+<div class="paragraph">
+<p>Desde 2002 se han publicado otras versiones de SUR, siempre sobre la base de nuevas versiones de la especificación POSIX.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sucesores"><a class="anchor" href="#_sucesores"></a>Sucesores</h5>
+<div class="paragraph">
+<p>Sistemas UNIX y estilo UNIX hay muchos, pero <a href="https://es.wikipedia.org/wiki/Plan_9">Plan 9</a> —también de Bell Labs— fue desarrollado para llevar los conceptos de UNIX un poco más lejos, sustituyendo a UNIX en Bell Labs como plataforma principal de investigación en sistemas operativos.</p>
+</div>
+<div class="paragraph">
+<p>Plan 9 es un sistema operativo distribuido, diseñado para que una red heterogénea de ordenadores separados geográficamente funcionara como un único sistema informático.
+En Plan 9, cada proceso tiene su propia vista del sistema de archivos, a través de la cual los procesos pueden acceder a distintos recursos o comunicarse con otros procesos.
+Es decir, Plan 9 generalizó el modelo universal de E/S de UNIX —basado en la E/S de archivos— porque todo a lo que puede tener acceso un proceso —incluidos los canales de comunicación con otras aplicaciones y servicios— son archivos en la vista privada que del sistema de archivos tiene cada proceso.</p>
+</div>
+<div class="paragraph">
+<p>Los procesos en equipos diferentes pueden comunicarse de forma transparente.
+Solo hace falta que un proceso exponga parte de su sistema de archivos en la vista de los procesos que quieren comunicarse con él.
+Esto ocurre de forma transparente, gracias al protocolo de comunicación 9P de Plan 9.
+Este protocolo es el que usan actualmente Windows Subsystem for Linux (WSL), QEMU y otras herramientas de virtualización, para ofrecer acceso a los archivos de una máquina virtual desde el sistema operativo anfitrión.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El desarrollo de Plan 9 dejo otras aportaciones.
+Por ejemplo, el estándar de codificación Unicode <a href="https://es.wikipedia.org/wiki/UTF-8">UTF-8</a> nació para ser usado en Plan 9 como formato de cadenas nativo.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En 1996, el desarrollo de Plan 9 pasó a un segundo plano para dar prioridad a <a href="https://es.wikipedia.org/wiki/Inferno_(sistema_operativo)">Inferno</a>, con el que Bell Labs intentó usar su experiencia con Plan 9 para desarrollar un sistema operativo distribuido que al mismo tiempo fuera una plataforma con la que competir con Java.
+Las aplicaciones se desarrollaban en un lenguaje llamado Limbo y se ejecutaban en una máquina virtual —similar a la de Java— que venía incluida con Inferno.
+De esta manera las aplicaciones podían ejecutarse independientemente de la arquitectura del hardware.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vms"><a class="anchor" href="#_vms"></a>3.4.4. VMS</h4>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/OpenVMS">VMS</a> es un sistema operativo de 32 bits diseñado originalmente por Digital Equipment Corporation (DEC) —ahora propiedad de HP— en 1978 para usarlo en minicomputadoras <a href="https://es.wikipedia.org/wiki/VAX">VAX</a>.
+Posteriormente fue portado a sistemas DEC Alpha e Intel Itanium.</p>
+</div>
+<div id="fig-dec-vax11" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/dec_vax11.jpg" alt="dec vax11">
+</div>
+<div class="title">Figura 3.5. Instalación de VAX 11/780 en 1980&#8201;&#8212;&#8201;Fuente: <a href="http://www.chilton-computing.org.uk/">Science and Technology Facilities Council</a></div>
+</div>
+<div class="paragraph">
+<p>Las siglas VMS vienen de <em>Virtual Memory System</em>, ya que una de sus principales características era explotar el concepto de <strong>memoria virtual</strong>.
+Este concepto también es muy utilizado en los sistemas operativos modernos.
+Permite que los procesos se ejecuten aislados, unos de otros, en la memoria principal y sin tener que ser cargados completamente, lo que permite que cada uno consuma menos memoria.</p>
+</div>
+<div class="paragraph">
+<p>VMS era un sistema multiusuario y multiprocesador que podía distribuir el trabajo entre varias máquinas, lo que le permitía ser tolerante a fallos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>VMS es en cierta medida un ancestro de Microsoft Windows NT (véase el <a href="historia_de_los_sistemas_operativos.html#sect-windows-nt">Apartado 3.5.6</a>).
+Para desarrollar Windows NT, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation.
+Muchos aspectos del diseño de Windows NT reflejan la experiencia de DEC en VMS.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ibm_os400"><a class="anchor" href="#_ibm_os400"></a>3.4.5. IBM OS/400</h4>
+<div class="paragraph">
+<p>El <a href="https://es.wikipedia.org/wiki/OS/400">IBM OS/400</a> es un sistema utilizado en la familia de minicomputadoras <a href="https://es.wikipedia.org/wiki/AS/400">IBM AS/400</a> —llamada iSeries desde 2006—.
+Fueron introducidos en el mercado en 1988, pero aún es posible verlos en algunas organizaciones.
+En 2008 el sistema operativo IBM OS/400 pasó a llamarse IBM i y siguen publicándose nuevas versiones en la actualidad.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sect-historia-quinta-generación"><a class="anchor" href="#sect-historia-quinta-generación"></a>3.5. 5ª Generación (desde 1980):</h3>
+<div class="paragraph">
+<p>Esta última generación abarca desde la década de 1980 hasta la actualidad.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Respecto a los sistemas operativos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Incluye a los sistemas operativos de escritorio y ordenadores personales (PC).</p>
+</li>
+<li>
+<p>Aparecen múltiples conceptos nuevos: monousuario, multitarea, distribuidos, paralelos, tiempo real, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Se puede observar una muestra de la interfaz gráfica de usuario de algunos de estos sistemas en el artículo <a href="https://www.webdesignerdepot.com/2009/03/operating-system-interface-design-between-1981-2009/">«Operating System Interface Design Between 1981-2009»</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_cpm"><a class="anchor" href="#_cpm"></a>3.5.1. CP/M</h4>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/CP/M">CP/M</a> (1974) fue el sistema operativo estándar en la primera generación de microcomputadoras. Fue creado por Digital Research, Inc. —fundada por Gary Kildall— para ser el sistema operativo de los microordenadores basados en <a href="https://es.wikipedia.org/wiki/Intel_8080">Intel 8080/85</a> y <a href="https://es.wikipedia.org/wiki/Zilog_Z80">Zilog Z80</a>.</p>
+</div>
+<div class="paragraph">
+<p>Con la elección de MS-DOS por parte de IBM para su <a href="https://es.wikipedia.org/wiki/IBM_PC">IBM PC</a>, CP/M fue perdiendo mercado paulatinamente hasta desaparecer.
+Sin embargo, la influencia de CP/M en MS-DOS es indudable, en tanto en cuanto 86-DOS, el predecesor de MS-DOS, estaba basado en las ideas de CP/M.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ms_dos"><a class="anchor" href="#_ms_dos"></a>3.5.2. MS-DOS</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/MS-DOS">MS-DOS</a> fue el sistema operativo estándar en la segunda generación de microcomputadoras.
+No era ni multitarea ni multiusuario.
+Fue el primer sistema operativo del <a href="https://es.wikipedia.org/wiki/IBM_PC">IBM PC</a> —lanzado en 1981— y durante mucho tiempo fue ampliamente utilizado en toda la plataforma «PC compatible».</p>
+</div>
+<div class="paragraph">
+<p>MS-DOS fue creado por Seattle Computer Products (SCP) con el nombre de <a href="https://es.wikipedia.org/wiki/QDOS">86-DOS</a> en 1979.
+Se basaron en ideas de CP/M, pues pretendían ofrecer una versión de CP/M para procesadores <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a>.
+Inicialmente era conocido como QDOS (<em>Quick and Dirty Operating System</em>) pero SCP le cambió el nombre en 1980, cuando comenzaron a licenciarlo.
+Posteriormente Microsoft adquirió el sistema y lo vendió a IBM en 1981 con el nombre de MS-DOS.</p>
+</div>
+<div class="paragraph">
+<p>Tanto IBM como Microsoft lanzaron versiones de DOS, aunque originalmente IBM solamente validaba y empaquetaba el software de Microsoft.
+Microsoft lanzaba sus versiones bajo el nombre de MS-DOS, mientras IBM las lanzaba bajo el nombre de <a href="https://es.wikipedia.org/wiki/IBM_PC_DOS">IBM PC-DOS</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En <a href="https://www.pcjs.org/">PCjs</a> se pueden probar de forma sencilla sistemas operativos y aplicaciones antiguas del IBM PC.
+Solo hace falta acceder con el navegador y elegir la experiencia que más nos llame la atención.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_os2"><a class="anchor" href="#_os2"></a>3.5.3. OS/2</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/OS/2">OS/2</a> fue un sistema operativo creado por Microsoft e IBM para aprovechar las nuevas características de la segunda generación de ordenadores personales de IBM, equipados con procesador <a href="https://es.wikipedia.org/wiki/Intel_80286">Intel 80286</a>.
+Pero al final terminó siendo desarrollado en exclusiva por IBM.</p>
+</div>
+<div class="paragraph">
+<p>OS/2 fue pensado como un sucesor con <strong>operación en modo dual</strong> de MS-DOS y de Microsoft Windows 2.0.
+Fue anunciado en abril y lanzado en diciembre de 1987 como un sistema operativo en modo texto.
+En la versión 1.1, lanzada en noviembre de 1988, se le añadió interfaz gráfica.</p>
+</div>
+<div id="fig-os-21" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/os_2_1.png" alt="os 2 1">
+</div>
+<div class="title">Figura 3.6. Panel de control de Microsoft-IBM OS/2 1.1&#8201;&#8212;&#8201;Fuente: Michal Necasek</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En los sistemas con <strong>operación en modo dual</strong> se distingue entre dos modos de ejecución, de tal forma que solo en el modo en el que se ejecuta el código del sistema operativo se pueden realizar operaciones peligrosas.
+En el otro modo y con menos privilegios, se ejecutan las aplicaciones de usuario.
+Para más información, véase el <a href="operación_del_sistema_operativo.html#_operación_en_modo_dual">Apartado 7.2</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La colaboración entre IBM y Microsoft terminó en 1990, entre el lanzamiento de Windows 3.0 y la de OS/2 1.3.
+El aumento de popularidad de Windows llevó a Microsoft a dejar de centrarse en el desarrollo de OS/2, lo que hizo que IBM se preocupara por los continuos retrasos en el desarrollo de OS/2 2.0.
+Inicialmente ambas compañías acordaron que IBM tomaría el mantenimiento de OS/2 1.0 y el desarrollo de OS/2 2.0, mientras Microsoft continuaría desarrollando OS/2 3.0, que entonces era conocido como «NT OS/2».
+Sin embargo, Microsoft finalmente decidió renombrar NT OS/2 como Windows NT, dejando el futuro desarrollo de OS/2 en manos de IBM.</p>
+</div>
+<div class="paragraph">
+<p>OS/2 Warp 3 fue un sistema completo de 32 bits lanzado en 1994.
+Le seguiría OS/2 Warp 4, en 1996.
+Poco después, IBM anunció que OS/2 desaparecería.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows_3_x"><a class="anchor" href="#_windows_3_x"></a>3.5.4. Windows 3.x</h4>
+<div class="paragraph">
+<p>La familia <a href="https://es.wikipedia.org/wiki/Windows_3.1x">Windows 3.x</a> de Microsoft Windows fue desarrollada desde 1990 hasta 1994.
+Windows 3.0 fue la primera versión de éxito de Windows, permitiendo a Microsoft competir con el <a href="https://es.wikipedia.org/wiki/Macintosh">Macintosh</a> de Apple Computer y el <a href="https://es.wikipedia.org/wiki/Commodore_Amiga">Commodore Amiga</a>.</p>
+</div>
+<div id="fig-windows-30" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/windows_30.png" alt="windows 30">
+</div>
+<div class="title">Figura 3.7. Administrador de programas de Microsoft Windows 3.0&#8201;&#8212;&#8201;Fuente: <a href="https://guidebookgallery.org/screenshots/win30">Guidebook</a></div>
+</div>
+<div class="paragraph">
+<p>En 1983, Microsoft anunció el desarrollo de Windows, una interfaz gráfica de usuario para su sistema MS-DOS, que se usaba en los IBM PC y compatibles desde 1981.
+Windows requería una instalación previa de MS-DOS y era iniciado como un programa más, que podía ser terminado en cualquier momento, devolviendo al usuario a la línea de comandos de MS-DOS.</p>
+</div>
+<div class="paragraph">
+<p>MS-DOS le proporcionaba a Windows controladores de dispositivo para ciertas tareas, como el acceso al CD-ROM o a la interfaz de red.
+Sin embargo Windows ejecutaba aplicaciones específicas de Windows, almacenadas en un formato ejecutable mucho más complejo que el de los programas de MS-DOS.
+Además, debido a que MS-DOS no aislaba a las aplicaciones del hardware y no se protegía así mismo de los errores en dichas aplicaciones, Windows disponía de controladores de dispositivo propios, así como sus propios sistemas de gestión de procesos y de memoria.
+En realidad Windows no se ejecutaba sobre MS-DOS, si no que hacía uso de él.
+Por ello puede ser considerado como un sistema operativo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows_95_98_me"><a class="anchor" href="#_windows_95_98_me"></a>3.5.5. Windows 95, 98, Me</h4>
+<div class="paragraph">
+<p>La familia Windows 3.x fue sustituida por una serie de sistemas operativos gráficos híbridos de 16/32 bits.</p>
+</div>
+<div id="fig-windows-95" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/windows_95.png" alt="windows 95">
+</div>
+<div class="title">Figura 3.8. Escritorio de Microsoft Windows 95&#8201;&#8212;&#8201;Fuente: <a href="http://www.guidebookgallery.org/screenshots/win95">Guidebook</a></div>
+</div>
+<div class="paragraph">
+<p>Windows 95 fue lanzado en 1995.
+Fue el primer Windows unido a una versión de MS-DOS específica, aunque este hecho se intentaba mantener oculto.
+Entre las características de Windows 95 destacan: mejoras significativas en la interfaz de usuario (véase la <a href="historia_de_los_sistemas_operativos.html#fig-windows-95">Figura 3.8</a>), nombres de archivo de hasta 256 caracteres con conservación de mayúsculas y minúsculas —en MS-DOS el límite era de 8 caracteres para el nombre más 3 de extensión— y multitarea expropiativa para las aplicaciones de 32 bits.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Como veremos en el <a href="planificación_de_la_cpu.html#_planificación_expropiativa">Apartado 14.1</a>, la planificación expropiativa es una técnica que permite al sistema operativo expulsar de la CPU a los procesos en ciertas circunstancias; como, por ejemplo, que llevan demasiado tiempo utilizando la CPU de forma ininterrumpida.</p>
+</div>
+<div class="paragraph">
+<p>En la familia Windows 3.x la planificación era cooperativa, es decir, los procesos abandonaban la CPU voluntariamente.
+Esto ocasionaba problemas con programas que no devolvía la CPU al sistema con la suficiente frecuencia, ya que así el resto de procesos no tenía ocasión de ejecutarse para hacer su trabajo o responder al usuario.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Windows 98 fue lanzado el 25 de junio de 1998.
+Le siguió Windows Me, el 14 de septiembre de 2000.
+Windows Me fue la última versión de la familia de sistemas operativos híbridos de 16/32 bits que sucedió a la familia Windows 3.x.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sect-windows-nt"><a class="anchor" href="#sect-windows-nt"></a>3.5.6. Windows NT, 2000, XP, Vista, 7, 8 y 10</h4>
+<div class="paragraph">
+<p>Windows NT fue un sistema operativo de 32 bits.
+El primero de la familia de sistemas operativos Microsoft Windows actuales.</p>
+</div>
+<div class="paragraph">
+<p>Su desarrollo empezó en 1988 con el nombre de OS/2 3.0.
+Cuando Windows 3.0 fue lanzado en mayo de 1990, tuvo tanto éxito que Microsoft decidió cambiar la API del aún en desarrollo NT OS/2 —que era como Microsoft lo llamaba entonces— pasando de ser una versión extendida de la API de OS/2 a una versión extendida de la API de Windows 3.0.
+Esta decisión causó tensión entre Microsoft e IBM y provocó que finalmente terminara la colaboración.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Una interfaz de programación de aplicaciones o API (del inglés <em>Application Programming Interface</em>) es el conjunto de funciones, procedimientos o métodos que ofrece el sistema operativo para ser utilizado por las aplicaciones.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como hemos comentado anteriormente, Microsoft contrató a un grupo de desarrolladores de Digital Equipment Corporation para crear Windows NT.
+Por lo que muchos de sus elementos reflejan la experiencia anterior de DEC en VMS.</p>
+</div>
+<div class="paragraph">
+<p>Windows NT soportaba varias API de distintos sistemas operativos —por ejemplo Win32, POSIX y OS/2 2.1— que eran implementadas como subsistemas encima de una API nativo no documentado públicamente.
+Esta estructura en subsistemas, fue lo que permitió la adopción tardía de la API de Windows 3.0 como API principal, tal y como hemos comentado.</p>
+</div>
+<div class="paragraph">
+<p>La primera versión —Windows NT 3.1— lanzada el 13 de julio de 1993, era un sistema operativo <em>microkernel</em> (véase el <a href="historia_de_los_sistemas_operativos.html#_mach">Apartado 3.5.8</a> un poco más adelante) multiplataforma que corría sobre procesadores <a href="https://es.wikipedia.org/wiki/IA-32">x86</a>, <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a> 4000 y <a href="https://es.wikipedia.org/wiki/PowerPC">PowerPC</a>.</p>
+</div>
+<div class="paragraph">
+<p>Windows NT 4.0 —lanzado en 1996— fue la última versión en soportar plataformas distintas a Intel IA-32.
+Aunque el desarrollo de Windows 2000 para procesador Alpha continuó un poco más, hasta 1999, cuando Compaq dejó de soportar Windows NT en esa arquitectura.
+Además Windows NT 4.0 integró en el núcleo más funciones —por ejemplo, parte del subsistema gráfico— para obtener un rendimiento más próximo al de Windows 95 en ese apartado.</p>
+</div>
+<div class="paragraph">
+<p>Windows 2000 —o Windows NT 5.0— fue lanzado el 17 de febrero de 2000 y fue el primer sistema operativo de la familia NT al que se le eliminaron las siglas del nombre.
+Fue por motivos de marketing, para favorecer la unificación de las dos familias de sistemas operativos Microsoft Windows de entonces —Windows 9x y Windows NT— alrededor de la tecnología NT.</p>
+</div>
+<div class="paragraph">
+<p>Windows XP —o Windows NT 5.1— completó en 2001 el proceso de unificación de las dos familias de sistemas operativos Windows.
+Con su aparición forzó la extinción de la familia Windows 9x, al sustituirla con una versión de Windows XP denominada Windows XP Home Edition, específica para la informática doméstica.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gnulinux"><a class="anchor" href="#_gnulinux"></a>3.5.7. GNU/Linux</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/GNU/Linux">GNU/Linux</a> es un sistema operativo libre y, tal vez, el más famoso proyecto de <a href="https://es.wikipedia.org/wiki/Software_libre">software libre</a>.</p>
+</div>
+<div class="paragraph">
+<p>El proyecto GNU se inició en 1983, con el fin de desarrollar un sistema operativo estilo UNIX enteramente libre.
+El proyecto incluía la creación de herramientas de desarrollo de software y aplicaciones de usuario.</p>
+</div>
+<div class="paragraph">
+<p>Mucho tiempo después, el estudiante universitario finés Linus Torvalds comenzó a desarrollar el núcleo Linux como hobby, mientras estudiaba en la Universidad de Helsinki.
+Torvalds originalmente usaba <a href="https://es.wikipedia.org/wiki/MINIX">Minix</a>, un sistema operativo simplificado escrito por Andrew Tanenbaum para enseñar diseño de sistemas operativos.
+Sin embargo, el hecho de que Tanenbaum no diera soporte a las mejoras del sistema operativo que eran propuestas por otros desarrolladores, llevó a Torvalds a escribir un sustituto de MINIX.</p>
+</div>
+<div class="paragraph">
+<p>En 1991, cuando se liberó la primera versión del núcleo Linux, el proyecto GNU había desarrollado todos los componentes necesarios del sistema operativo excepto el núcleo.
+Torvalds y otros desarrolladores rápidamente adaptaron Linux para que funcionara con los componentes de GNU, creando un sistema operativo completamente funcional que se denomina GNU/Linux.</p>
+</div>
+<div class="paragraph">
+<p>El núcleo Linux fue licenciado bajo la GNU General Public License (GPL), como el resto del proyecto GNU.
+Pero Linux no es parte de dicho proyecto.
+El proyecto GNU tiene su propio núcleo, denominado <a href="https://es.wikipedia.org/wiki/GNU_Hurd">GNU/Hurd</a>, que lleva 30 años en desarrollo y parece que aún está muy lejos de estar listo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>GNU no es el único sistema operativo que utiliza el núcleo Linux.
+<a href="https://es.wikipedia.org/wiki/Android">Android</a>, por ejemplo, es un sistema operativo que usa el núcleo Linux, pero no es GNU.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mach"><a class="anchor" href="#_mach"></a>3.5.8. Mach</h4>
+<div class="paragraph">
+<p><a href="https://es.wikipedia.org/wiki/Mach_(n%C3%BAcleo)">Mach</a> es un núcleo de sistema operativo desarrollado en la Universidad Carnegie-Mellon (CMU).
+El proyecto en la CMU se desarrolló desde 1985 hasta 1994.</p>
+</div>
+<div class="paragraph">
+<p>Mach explora el concepto que denominamos <strong><em>microkernel</em></strong>.
+En los sistemas operativos <strong><em>microkernel</em></strong> solo se implementa en el núcleo del sistema un conjunto mínimo de servicios básicos.
+El resto de los servicios proporcionados por el sistema operativo se implementan como procesos con menos privilegios.</p>
+</div>
+<div class="paragraph">
+<p>Por sus ventajas en cuanto a seguridad y fiabilidad, en algún momento se pensó que los <em>microkernel</em> dominarían el universo de los sistemas operativos.
+Sin embargo, el mayor esfuerzo hasta la fecha para conseguirlo es <a href="https://es.wikipedia.org/wiki/GNU_Hurd">GNU/Hurd</a>, que lleva varias décadas de retraso.
+Por fortuna, otros sistemas operativos <em>microkernel</em> han tenido algo más éxito, como es el caso de <a href="https://es.wikipedia.org/wiki/QNX">QNX</a> o <a href="https://en.wikipedia.org/wiki/MINIX_3">MINIX 3</a>.
+Mientras que Google parece que lo va a intentar con <a href="https://es.wikipedia.org/wiki/Google_Fuchsia">Google Fuchsia</a>, el posible sustituto de Android.</p>
+</div>
+<div class="paragraph">
+<p>A mediados de los 90, Apple Computers seleccionó <a href="https://es.wikipedia.org/wiki/NEXTSTEP">OpenStep</a> como base para el sucesor de su clásico <a href="https://es.wikipedia.org/wiki/Mac_OS_Classic">Mac OS</a>.
+OpenStep es realmente una versión actualizada de NeXTSTEP que era un sistema basado en un núcleo Mach 2.5 con porciones del sistema UNIX BSD de la Universidad de Berkeley.
+Por tanto, la mezcla de Mach con UNIX BSD de OpenStep es la base del sistema operativo <a href="https://es.wikipedia.org/wiki/MacOS">macOS</a> actual de Apple.</p>
+</div>
+<div id="fig-openstep-42" class="imageblock">
+<div class="content">
+<img src="media/C03-historia/openstep_42.png" alt="openstep 42">
+</div>
+<div class="title">Figura 3.9. Entorno gráfico de OpenStep 4.2&#8201;&#8212;&#8201;Fuente: <a href="https://guidebookgallery.org/screenshots/openstep42">Guidebook</a></div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Para ser exactos, la base del sistema operativo macOS es un sistema operativo libre denominado <a href="https://en.wikipedia.org/wiki/Darwin_(operating_system)">Darwin</a> y desarrollado por Apple.
+Se trata de un sistema <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> adaptado para correr sobre el núcleo Mach.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C03-historia/historia_sistemas_operativos.svg" alt="historia sistemas operativos">
+</div>
+<div class="title">Figura 3.10. Línea de tiempo de la historia de los sistemas operativos.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="tipos_de_sistemas_operativos.html">Tipos de sistemas operativos</a> | ↑ Subir: <a href="introducción.html">Introducción</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

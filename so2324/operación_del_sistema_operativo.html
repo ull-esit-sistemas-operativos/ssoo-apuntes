@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='robots' content='noindex,nofollow'>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="operación_del_sistema_operativo" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 2023-2024</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+<ul class="sectlevel1">
+<li><a href="componentes_del_sistema.html">4. Componentes del sistema</a>
+</li>
+<li><a href="servicios_del_sistema.html">5. Servicios del sistema</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html">6. Interfaz de programación de aplicaciones</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html"><span class="toc-current">7. Operación del sistema operativo</span></a>
+<ul class="sectlevel2">
+<li><a href="operación_del_sistema_operativo.html#_software_controlado_mediante_interrupciones">7.1. Software controlado mediante interrupciones</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html#_operación_en_modo_dual">7.2. Operación en modo dual</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html#_protección_de_la_memoria">7.3. Protección de la memoria</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html#_el_temporizador">7.4. El temporizador</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html#_máquinas_virtuales">7.5. Máquinas virtuales</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html#_arranque_del_sistema">7.6. Arranque del sistema</a>
+</li>
+</ul>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html">8. Sistemas operativos por su estructura</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="operación_del_sistema_operativo"><a class="anchor" href="#operación_del_sistema_operativo"></a>7. Operación del sistema operativo</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 19 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Dado que el sistema operativo y los procesos de usuarios comparten los recursos del sistema informático, necesitamos estar seguros de que un error en un programa solo afecte al proceso que lo ejecuta —por ejemplo, que un proceso no puede modificar la memoria de otro proceso o la del núcleo del sistema—.
+Por eso es necesario establecer mecanismos de protección frente a los errores en los programas que se ejecutan en el sistema.</p>
+</div>
+<div class="sect2">
+<h3 id="_software_controlado_mediante_interrupciones"><a class="anchor" href="#_software_controlado_mediante_interrupciones"></a>7.1. Software controlado mediante interrupciones</h3>
+<div class="paragraph">
+<p>Antes de entender cómo funcionan estos mecanismos de protección debemos entender que los sistemas operativos modernos pertenecen a un tipo de software que se dice que está controlado mediante interrupciones.</p>
+</div>
+<div class="paragraph">
+<p>Los sucesos que requieren la atención del sistema casi siempre se indican mediante una interrupción:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cuando un proceso comete un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una excepción.
+Esta excepción despierta al sistema operativo para que haga lo que sea más conveniente.</p>
+</li>
+<li>
+<p>Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción.
+Esta excepción despierta al sistema operativo para que atienda la petición.</p>
+</li>
+<li>
+<p>Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción que despierta al sistema operativo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esto funciona así porque el sistema operativo configura la CPU durante el arranque para que si ocurre cualquier interrupción o excepción la ejecución, salte a rutinas en el código del núcleo, con el objeto de darles el tratamiento adecuado.</p>
+</div>
+<div class="paragraph">
+<p>Si ningún proceso realiza una acción ilegal o pide un servicio, ni ningún dispositivo de E/S pide la atención del sistema, el sistema operativo permanece inactivo esperando a que algo ocurra.</p>
+</div>
+<div class="paragraph">
+<p>Teniendo todo esto en cuenta podremos entender mejor cómo funciona el modo dual.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operación_en_modo_dual"><a class="anchor" href="#_operación_en_modo_dual"></a>7.2. Operación en modo dual</h3>
+<div class="paragraph">
+<p>Para proteger el sistema de programas con errores es necesario poder distinguir entre la ejecución del código del sistema operativo y del código de los programas de usuario, de tal forma que el código de los programas de usuario esté más limitado en lo que puede hacer que el del sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>El método que utilizan la mayor parte de los sistemas operativos consiste en utilizar algún tipo de soporte en la CPU que permita diferenciar entre varios modos de ejecución y restringir la utilización de las instrucciones peligrosas —llamadas <strong>instrucciones privilegiadas</strong>— para que solo puedan ser utilizadas en el modo en el que se ejecuta el código del sistema operativo.</p>
+</div>
+<div class="sect3">
+<h4 id="_modos_de_operación"><a class="anchor" href="#_modos_de_operación"></a>7.2.1. Modos de operación</h4>
+<div class="paragraph">
+<p>Así que como mínimo son necesarios dos modos de operación diferentes:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>modo usuario</strong>, en el que se ejecuta el código de los procesos de los usuarios.
+Si se hace un intento de ejecutar una instrucción privilegiada en este modo, el hardware la trata como ilegal y genera una excepción que es interceptada por el sistema operativo, en lugar de ejecutar la instrucción.</p>
+</li>
+<li>
+<p>En el <strong>modo privilegiado</strong> —también denominado <strong>modo supervisor</strong>, <strong>modo del sistema</strong> o <strong>modo kernel</strong>— se ejecuta el código de las tareas del sistema operativo.
+La CPU es la encargada de garantizar que las instrucciones privilegiadas solo pueden ser ejecutadas en este modo.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>El modo actual de operación puede venir indicado por un <strong>bit de modo</strong> en alguno de los registros de configuración de la CPU, de tal forma que, si por ejemplo, el bit está a 0, la CPU considera que el código en ejecución opera en modo privilegiado, mientras que si el bit está a 1, el código en ejecución opera en modo usuario.</p>
+</div>
+<div class="paragraph">
+<p>Comúnmente en el grupo de las <strong>instrucciones privilegiadas</strong> se suelen incluir:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La instrucción para conmutar al modo usuario desde el modo privilegiado.</p>
+</li>
+<li>
+<p>Las instrucciones para acceder a dispositivos de E/S.</p>
+</li>
+<li>
+<p>Las instrucciones necesarias para la gestión de las interrupciones.
+Por ejemplo, para desactivarlas —evitando que se lancen— activarlas y configurarlas.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Niveles de privilegio en procesadores x86</div>
+<div class="paragraph">
+<p>Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de tener mayor control sobre el nivel de privilegio en el que se ejecuta cada componente del sistema.</p>
+</div>
+<div class="paragraph">
+<p>Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación.
+El modo 0 es para el software más confiable y el que necesita más privilegios, que generalmente es el núcleo.
+Mientras que el modo 3 se utiliza para el software menos confiable y que necesita más supervisión, que normalmente son los procesos de usuario.</p>
+</div>
+<div class="paragraph">
+<p>La idea detrás de tener los modos 1 y 2 es usarlos para controladores de dispositivo o procesos que dan servicio al resto del sistema.
+Así estos componentes pueden tener mayores privilegios que los procesos de usuario —por ejemplo, los controladores de dispositivo necesitan acceso directo al hardware— pero al mismo tiempo serían supervisados y no podrían afectar al núcleo, que se ejecuta en el modo 0.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, los sistemas operativos con mayor cuota de mercado —incluyendo Microsoft Windows, macOS, Linux y Android— solo utilizan los modos 0 y 3.
+Los motivos son que los desarrolladores de sistemas no encuentran realmente ninguna ventaja en utilizar más modos y que complica portar el sistema operativo a procesadores donde solo se soporten dos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+En procesadores x86 recientes, que vienen con instrucciones específicas para facilitar la ejecución de máquinas virtuales, se ha incorporado un modo -1, para que el núcleo del sistema operativo virtualizado se ejecute en el modo 0 mientras es supervisado desde el modo -1 por el núcleo del sistema operativo anfitrión.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Para más información, véase <a href="https://es.wikipedia.org/wiki/Anillo_(seguridad_inform%C3%A1tica)">«Anillo (seguridad informática)&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>En los procesadores x86 es importante no confundir los <strong>modos real</strong> y <strong>protegido</strong> con el modo dual y los niveles de privilegio de los que estamos hablando.</p>
+</div>
+<div class="paragraph">
+<p>Por compatibilidad hacia atrás, los procesadores x86 se inician en modo real, donde se comportan como una CPU <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a>.
+En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —ya que los procesadores <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a> solo tenían 20 bits para direcciones de memoria—.</p>
+</div>
+<div class="paragraph">
+<p>Cuando un sistema operativo moderno arranca, lo primero que hace es iniciar el modo protegido, en el que se activan todas las características de la CPU.
+Entre otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.</p>
+</div>
+<div class="paragraph">
+<p>Para más información, véase <a href="https://es.wikipedia.org/wiki/Modo_protegido">«Modo protegido&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ejecución_de_instrucciones"><a class="anchor" href="#_ejecución_de_instrucciones"></a>7.2.2. Ejecución de instrucciones</h4>
+<div class="paragraph">
+<p>A continuación podemos ver el ciclo de vida de la ejecución de instrucciones en un sistema con modo dual de operación:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Inicialmente, al arrancar el ordenador, la CPU se inicia en el modo privilegiado —es decir, en nuestro ejemplo, con el bit de modo a 0—.
+En este modo se carga el núcleo del sistema operativo e inicia su ejecución.</p>
+</li>
+<li>
+<p>El núcleo del sistema operativo debe cambiar al modo usuario —poniendo el bit de modo a 1— antes de ceder la CPU a un proceso de usuario.
+Esto ocurre cuando es necesario que un proceso de usuario continúe o inicie su ejecución (véase el <a href="planificación_de_la_cpu.html#_el_asignador">Apartado 14.2</a>).
+Así se asegura que el código de los procesos de usuario siempre se ejecuten en modo usuario, con menos privilegios.</p>
+</li>
+<li>
+<p>La CPU conmuta a modo privilegiado cuando ocurre una interrupción o una excepción —poniendo el bit de modo a 0— antes de comenzar el código del sistema operativo que se encargará de tratarlas.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Esto último es muy importante.
+Como ya hemos comentado, los sistemas operativos están controlados mediante interrupciones.
+Al activarse el modo privilegiado cada vez que ocurre una interrupción, podemos estar seguros de que las tareas del sistema operativo se ejecutarán siempre en modo privilegiado.</p>
+</div>
+<div class="paragraph">
+<p>Cuando se dispone de la protección del modo dual, el hardware se encarga de detectar los errores de ejecución y de notificarlo al sistema operativo mediante excepciones, siendo responsabilidad de este último realizar un tratamiento adecuado de los mismos.
+Por lo general, si un programa falla de alguna forma —como por ejemplo, intentando utilizar una instrucción ilegal o de acceder a una zona de memoria inválida— el sistema operativo lo hace terminar.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_protección_de_la_memoria"><a class="anchor" href="#_protección_de_la_memoria"></a>7.3. Protección de la memoria</h3>
+<div class="paragraph">
+<p>La memoria principal debe acomodar tanto el sistema operativo como a los diferentes procesos de los usuarios.
+Por eso la memoria normalmente se divide en dos partes o espacios:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La primera parte es el <strong>espacio del núcleo</strong>.
+Sirve para albergar el núcleo del sistema operativo.</p>
+<div class="paragraph">
+<p>El sistema operativo puede estar localizado tanto en la parte baja como en la parte alta de la memoria.
+El factor determinante en la elección es la localización del vector de interrupciones, que es una tabla en la memoria que define las direcciones a las que saltará la CPU en caso de que ocurra una interrupción o una excepción.</p>
+</div>
+<div class="paragraph">
+<p>Puesto que en la mayor parte de las arquitecturas este reside en la parte baja de la memoria, normalmente el sistema operativo también se aloja en la parte baja.</p>
+</div>
+</li>
+<li>
+<p>La segunda parte es el <strong>espacio de usuario</strong> y alberga los procesos de usuario.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Sin embargo, en los sistemas operativos modernos, los procesos no tienen acceso libre a toda memoria física, con el objeto de proteger a los procesos en ejecución y al sistema operativo de posibles errores en cualquiera de ellos:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>El sistema operativo proporciona a cada proceso una «vista» privada de la memoria RAM; de tal forma que el <strong>espacio de usuario</strong> que ve cada proceso es similar al que vería cada uno de ellos si se estuviera ejecutando en solitario (véase la <a href="operación_del_sistema_operativo.html#fig-protección-memoria">Figura 7.1</a>).</p>
+</li>
+<li>
+<p>A esa «vista» que tiene cada proceso de la memoria es a lo que se denomina <strong>espacio de direcciones virtual</strong> del proceso.
+Está formada por el conjunto de todas las direcciones que puede generar la CPU para un proceso dado.
+Por ejemplo, en una CPU de 32 bits el espacio de direcciones virtual tiene 4 GiB, desde la dirección 0x00000000 a 0xFFFFFFFF.</p>
+</li>
+<li>
+<p>En los accesos a la memoria principal durante la ejecución del proceso, estas <strong>direcciones virtuales</strong> son convertidas por la CPU en direcciones físicas, antes de ser enviadas a la memoria principal.
+Por tanto las <strong>direcciones físicas</strong> son las direcciones reales que ve la memoria.
+Mientras que el <strong>espacio de direcciones físico</strong> es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un espacio de direcciones virtual dado.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="fig-protección-memoria" class="imageblock">
+<div class="content">
+<img src="media/C07-modo_dual/protección_memoria.svg" alt="protección memoria">
+</div>
+<div class="title">Figura 7.1. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
+</div>
+<div class="paragraph">
+<p>La conversión de una dirección virtual en una física, la realiza en tiempo de ejecución un componente de la CPU denominado MMU (<em>Memory-Management Unit</em>).</p>
+</div>
+<div class="paragraph">
+<p>Las ventajas de usar esta técnica, desde el punto de vista de la protección de la memoria son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Permite el aislamiento de los procesos, creando para cada uno la ilusión de que toda la memoria es para él y evitando que un proceso pueda acceder a la memoria de otros procesos.</p>
+</li>
+<li>
+<p>Permite marcar modos de acceso autorizados en las diferentes regiones de la memoria —como por ejemplo lectura, escritura y ejecución— evitando que el código ejecutado en modo usuario tenga acceso a zonas a las que no debería tenerlo.
+El acceso a la memoria en un modo no autorizado se considera una instrucción privilegiada, por lo que ese tipo de acceso desde el modo usuario siempre genera una excepción.
+Por ejemplo, si se intenta ejecutar instrucciones en una zona de memoria no marcada con el permiso de ejecución.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_el_temporizador"><a class="anchor" href="#_el_temporizador"></a>7.4. El temporizador</h3>
+<div class="paragraph">
+<p>El <strong>temporizador</strong> se configura por el sistema operativo durante el arranque del sistema para interrumpir a la CPU a intervalos regulares.
+Así, cuando el temporizador interrumpe, el control se transfiere automáticamente al núcleo del sistema.
+Entonces este puede:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Conceder más tiempo al proceso en ejecución.</p>
+</li>
+<li>
+<p>Detenerlo y darle más tiempo de CPU en el futuro</p>
+</li>
+<li>
+<p>Tratar la interrupción como un error y terminar el programa.</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>El temporizador se utiliza para asegurar que ningún proceso acapara la CPU indefinidamente.
+Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del que no sale jamás.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Obviamente, las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_máquinas_virtuales"><a class="anchor" href="#_máquinas_virtuales"></a>7.5. Máquinas virtuales</h3>
+<div class="paragraph">
+<p>
+Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los estén compartiendo con otros procesos.
+Obviamente, los procesos saben que hay un sistema operativo que los supervisa, porque no pueden acceder directamente al hardware, sino que deben solicitar los distintos recursos a través de las llamadas al sistema.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, en algunos casos puede interesar que los procesos accedan a los recursos a través de una interfaz de hardware virtual.
+Por ejemplo, que un proceso, en lugar de hacer llamadas al sistema para pedir al sistema operativo que lea cierto bloque de datos del disco duro, pueda ejecutar directamente las instrucciones de E/S necesarias para pedir a la controladora de disco que lea el bloque que le interesa y lo deposite en la memoria, como si no estuviera siendo supervisado por el sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>Obviamente, no se trata de que el proceso tengo acceso a la controladora real, sino que en el sistema hay un componente de software que ejecuta una simulación de algún modelo de controladora de disco al que llegan las peticiones del proceso.
+Como las instrucciones de E/S necesarias para acceder al hardware son instrucciones privilegiadas, el sistema operativo las intercepta —gracias al apoyo del modo dual— pero no interpreta la situación como debida a un programa defectuoso, sino que traslada la operación solicitada a los componentes de hardware virtual, para luego continuar la ejecución del proceso en la siguiente instrucción.
+El resultado es que el proceso tiene la ilusión de que se ejecuta solo en una máquina vacía, con cierto hardware al que puede acceder directamente, aunque este hardware realmente está siendo simulado.</p>
+</div>
+<div class="paragraph">
+<p>Los componentes de hardware virtual simulan el comportamiento de modelos concretos de dispositivos hardware reales, implementando la funcionalidad del hardware simulado con ayuda de otros componentes del sistema operativo.
+Por ejemplo, una tarjeta de sonido virtualizada, en última instancia usará los servicios del sistema operativo para reproducir o grabar sonido usando el dispositivo real, mientras que el controlador de disco virtualizado probablemente simulará las operaciones de lectura y escritura trasladándolas a un archivo del sistema de archivos real que hará de imagen del disco duro virtual.</p>
+</div>
+<div class="paragraph">
+<p>Estos procesos que no se solicitan servicios al sistema operativo mediante llamadas al sistema, si no haciendo uso de una interfaz de hardware virtual, es lo que se conoce como máquinas virtuales.
+El software de gestión de las máquinas virtuales es el responsable de implementar los componentes de hardware virtual y de recibir del sistema operativo los intentos de ejecutar instrucciones privilegiadas por parte del código que se ejecuta dentro de las máquinas virtuales.
+Por tanto, la operación en modo dual y las técnicas comentadas anteriormente en este tema son fundamentales para implementar el soporte de máquinas virtuales en los sistemas operativos modernos.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Paravirtualización</div>
+<div class="paragraph">
+<p>Una interfaz de hardware virtual es, por lo general, menos eficiente que una basada en llamadas al sistema.
+A fin de cuentas, necesita que se simule el hardware virtual mediante software, para luego traducir las peticiones realizadas mediante esa interfaz en peticiones al sistema operativo del sistema anfitrión.
+Una solución frecuente a este inconveniente es la <strong>paravirtualización</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Por lo general, en la máquina virtual se ejecuta un sistema operativo, que debe tener controladores de dispositivos para gestionar el acceso al hardware virtual de la máquina.
+Es decir, los procesos que se ejecutan en la máquina virtual solicitan servicios al sistema mediante llamadas al sistema.
+El sistema operativo atiende esas peticiones usando los recursos del hardware virtual, a los que accede mediante los controladores de dispositivo correspondientes.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>paravirtualización</strong> consiste en instalar en el sistema operativo de las máquinas virtuales controladores de dispositivo desarrollados bajo la premisa de que se van a usar en una máquina virtual.
+La particularidad es que estos controladores saben usar una interfaz que provee el software de gestión de máquinas virtuales —mediante un mecanismo similar a las llamadas al sistema— para trasladar las peticiones que llegan del sistema operativo en la máquina virtual directamente al sistema operativo anfitrión, sin necesidad de utilizar el hardware simulado.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_arranque_del_sistema"><a class="anchor" href="#_arranque_del_sistema"></a>7.6. Arranque del sistema</h3>
+<div class="paragraph">
+<p>Desde el momento en que el ordenador se pone en marcha hasta que el sistema operativo inicia su ejecución se realizan una serie de operaciones.
+Estos son los pasos más comunes en el arranque de un sistema:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Llega a la CPU una señal de RESET motivada por el encendido del sistema o por un reinicio.</p>
+</li>
+<li>
+<p>La CPU inicializa el contador de programa a una dirección predefinida de la memoria.
+En esa dirección está el <em>bootstrap</em> inicial.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El <em>bootstrap</em> es el programa que se encarga en primera instancia del arranque.
+Debe estar almacenado en una memoria no volátil —ROM o Flash— porque la RAM está en un estado indeterminado en el momento del arranque.</p>
+</div>
+<div class="paragraph">
+<p>En los PC el <em>bootstrap</em> forma parte del <em>firmware</em> —sea BIOS o UEFI— de las placas madres.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El término <em>firmware</em> viene de que por sus características se sitúa en algún lugar entre el hardware y el software.
+Concretamente es un componente de software instalado en un dispositivo hardware para encargarse de su control a bajo nivel.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_tareas_del_bootstrap"><a class="anchor" href="#_tareas_del_bootstrap"></a>7.6.1. Tareas del bootstrap</h4>
+<div class="paragraph">
+<p>El <em>bootstrap</em> debe realizar diversas tareas:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Diagnóstico de la máquina</strong> —o <em>Power-on Self-Test</em> (POST)—.
+El <em>bootstrap</em> se detiene en este punto si el sistema no supera el diagnóstico.</p>
+</li>
+<li>
+<p><strong>Inicializar el sistema</strong>.
+Por ejemplo, configurar los registros de la CPU, inicializar los dispositivos y contenido de la memoria, etc.</p>
+</li>
+<li>
+<p><strong>Iniciar el sistema operativo</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Al iniciar el sistema operativo hay que considerar que puede estar en diferentes ubicaciones según el tipo de dispositivo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En <strong>consolas de videojuegos, móviles y otros dispositivos empotrados</strong> se almacena el sistema operativo en alguna forma de memoria de solo lectura —ROM o Flash—.
+Como la ejecución en esas memorias es más lenta que en la RAM, muchas veces el <em>bootstrap</em> suele copiar el sistema a la RAM durante el arranque, antes de iniciarlo.</p>
+</li>
+<li>
+<p>En <strong>sistemas operativos de gran tamaño</strong> —incluidos los de propósito general— el sistema se almacena en disco.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En los sistemas más antiguos, el <em>bootstrap</em> lee de una posición fija del disco —generalmente el bloque 0— el gestor de arranque, lo copia en la memoria y lo ejecuta.
+Esto es lo que ocurre en los PC más antiguos que utilizan BIOS y particiones MBR.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>También se llama MBR a ese bloque 0 del disco donde está el gestor de arranque.
+De hecho MBR son las siglas de <em>Master Boot Record</em> o <a href="https://es.wikipedia.org/wiki/Registro_de_arranque_principal">registro de arranque principal</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Aunque en ocasiones el código de ese bloque inicial de arranque sabe cargar e iniciar el sistema operativo completo, es común que solo sepa donde está el resto del gestor de arranque en el disco, para cargarlo y ejecutarlo.
+No debemos olvidar que el código cargado por el <em>bootstrap</em> debe caber en un solo bloque del disco, que generalmente tiene solo 512 bytes.</p>
+</div>
+<div class="paragraph">
+<p>En los PC más modernos que utilizan UEFI y particiones GPT, la UEFI tiene la capacidad de leer el sistema de archivo en las particiones para buscar directamente los archivos del gestor de arranque completo.
+Una vez el <em>bootstrap</em> los encuentra, los carga y ejecuta.</p>
+</div>
+<div class="paragraph">
+<p>En ambos casos, el gestor de arranque completo es el programa que sabe cómo iniciar el sistema operativo así que: explora el sistema de archivos en busca del núcleo del sistema, lo carga e inicia su ejecución.</p>
+</div>
+<div class="paragraph">
+<p>A partir de este punto, cada sistema operativo prosigue de forma diferente.
+A modo de ejemplo, veremos como prosigue el arranque en sistemas UNIX en modo texto.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_arranque_de_sistemas_unix"><a class="anchor" href="#_arranque_de_sistemas_unix"></a>7.6.2. Arranque de sistemas UNIX</h4>
+<div class="paragraph">
+<p>Al iniciarse el núcleo del sistema, este realiza una serie de tareas:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configura el sistema para crear un entorno adecuado para la ejecución de los procesos: configuración de interrupciones, configuración de los modos de ejecución —privilegiado y usuario— y de la gestión de la memoria; inicialización de dispositivos y controladores; montaje del sistema de archivos raíz; creación del proceso inactivo —que se ejecutará cuando no haya nada que hacer— etc.</p>
+</li>
+<li>
+<p>Crea el proceso <strong>init</strong> —que por ser el primero tiene PID 1— a partir de la carga del programa <code>init</code> almacenado en el sistema de archivos raíz.
+En los sistemas GNU/Linux actuales el proceso <strong>init</strong> más común es <a href="https://es.wikipedia.org/wiki/Systemd">systemd</a>.</p>
+</li>
+<li>
+<p>El planificador de la CPU toma el control de la gestión de la CPU y el núcleo se queda dormido.
+Puesto que la función del planificador es asignar procesos a la CPU y solo hay uno, el proceso <strong>init</strong>, este es escogido y comienza su ejecución.</p>
+</li>
+<li>
+<p>El proceso <strong>init</strong> lanza los <em>scripts</em> encargados de configurar los servicios —también llamados demonios— del sistema.
+Por ejemplo, para el registro de eventos del sistema, gestión de dispositivos, particiones, impresoras, entre otros.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El proceso <strong>init</strong> también configura el entorno de usuario.
+Configura las terminales del sistema, inicia un proceso <strong>login</strong> conectado a cada una y se duerme a la espera.
+Estos procesos <strong>login</strong> son monitorizados por <strong>init</strong> para reiniciarlos en caso de que mueran.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Aunque, por lo general, un sistema de escritorio tiene una única pareja de teclado y monitor y, por lo tanto, una única terminal real; el sistema suele estar configurado para crear varios terminales virtuales entre los que el usuario puede conmutar usando las combinaciones de teclas adecuadas.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Los procesos <strong>login</strong> se encargan de autenticar a los usuarios y de iniciar y configurar su sesión:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Muestran una pantalla de inicio de sesión donde se solicita el nombre del usuario y su contraseña.</p>
+</li>
+<li>
+<p>Autentican al usuario comprobando las credenciales proporcionadas por el mismo.</p>
+</li>
+<li>
+<p>Si la autenticación es positiva, el proceso <strong>login</strong> cambia su identidad actual —generalmente de <em>root</em> o administrador del sistema— por la del usuario autenticado, configura la sesión y sustituye su programa actual por el del intérprete de comandos que tiene configurado ese usuario (véase el <a href="procesos.html#sect-procesos-posix-api">Apartado 9.7.3.2</a>).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El intérprete de comandos completa la configuración del entorno basándose en sus archivos de configuración, muestra el <a href="https://es.wikipedia.org/wiki/Prompt">prompt</a> y queda a la espera del primer comando del usuario.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="interfaz_de_programación_de_aplicaciones.html">Interfaz de programación de aplicaciones</a> | ↑ Subir: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="sistemas_operativos_por_su_estructura.html">Sistemas operativos por su estructura</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>
