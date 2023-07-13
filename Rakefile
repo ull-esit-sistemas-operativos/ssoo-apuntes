@@ -28,7 +28,6 @@ namespace :build do
                 <html lang="es">                                                                
                     <head>                                                                      
                         <meta charset="utf-8">
-                        <meta name='robots' content='noindex,nofollow'>
                         <meta http-equiv="refresh" content="0;url=main.html">      
                         <link rel="canonical" href="main.html">                    
                     </head>                                                                                                                                                                  
