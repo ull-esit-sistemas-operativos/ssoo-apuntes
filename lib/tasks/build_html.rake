@@ -9,18 +9,7 @@ Project::documents.each do |document|
 
         file document[:output_pathnames][:html] => [*document[:dependencies], :config] do |t, args|
             asciidoctor_args = CONFIG[:asciidoctor_args] + CONFIG[:asciidoctor_html_args]
-            if Utils::EnvVar.new('HTML_COMMENTS_ENABLED').to_boolean
-                asciidoctor_args += ['--attribute', 'comments_enabled=true']
-            end
-
-            backend_args = CONFIG[:html_multipage] ? [
-                    '--backend', 'multipage_html5',
-                    '--require', 'asciidoctor-multipage'
-                ] : [
-                    '--backend', 'html5'
-                ]
-            
-            sh "asciidoctor", *backend_args,
+            sh "asciidoctor", '--backend', 'html5',
                               '--require', './lib/time-admonition-block.rb',
                               '--require', './lib/autoxref-treeprocessor.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",

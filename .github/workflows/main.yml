@@ -44,7 +44,7 @@ jobs:
         bundle install
 
     - name: Generar la documentación
-      run: bundle exec rake build:site build:pdf DOCUMENT_NAME=sistemas_operativos
+      run: bundle exec rake build:www build:pdf DOCUMENT_NAME=sistemas_operativos
 
     - name: Publicar web
       uses: JamesIves/github-pages-deploy-action@v4
