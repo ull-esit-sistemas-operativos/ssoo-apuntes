@@ -1,5 +1,5 @@
-:document-characters: 567057
-:document-words: 112236
+:document-characters: 567156
+:document-words: 112279
 :document-paragraphs: 1732
 :document-reading-time: 9 horas y 21 minutos
 :s01-characters: 7530
@@ -46,8 +46,8 @@
 :s11-words: 1040
 :s11-paragraphs: 17
 :s11-reading-time: 5 minutos
-:s12-characters: 45341
-:s12-words: 9134
+:s12-characters: 45440
+:s12-words: 9177
 :s12-paragraphs: 132
 :s12-reading-time: 46 minutos
 :s13-characters: 35523
