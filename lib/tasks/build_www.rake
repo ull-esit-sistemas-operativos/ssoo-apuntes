@@ -46,7 +46,7 @@ Project::documents.each do |document|
             end
         end
 
-        task :www_sitemap do |t, args|
+        task :www_sitemap, [:site_root] do |t, args|
             args.with_defaults(:site_root => CONFIG[:site_root])
             
             output_directory = document[:output_directories][:www]
@@ -64,7 +64,7 @@ Project::documents.each do |document|
                 Dir.glob('*.html', base: output_directory).each do |filename|
                     f << <<~EOF
                         <url>
-                            <loc>#{URI.join(args.site_root, URI.encode_www_form_component(filename))}</loc>
+                            <loc>#{URI.parse([args.site_root, URI.encode_www_form_component(filename)].join('/'))}</loc>
                             <lastmod>#{now}</lastmod>
                             <priority>#{filename == 'main.html' ? 1.0 : 0.5}</priority>
                         </url>

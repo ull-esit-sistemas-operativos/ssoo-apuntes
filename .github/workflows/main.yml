@@ -6,6 +6,10 @@ on:
     tags:
       - '*'
 
+env:
+  ACADEMIC_YEAR: 2023-2024
+  SITE_ROOT: https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/so2324
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-22.04
@@ -44,13 +48,13 @@ jobs:
         bundle install
 
     - name: Generar la documentación
-      run: bundle exec rake build:www build:pdf DOCUMENT_NAME=sistemas_operativos
+      run: bundle exec rake build:www[$SITE_ROOT] build:pdf DOCUMENT_NAME=sistemas_operativos
 
     - name: Publicar web
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
-        folder: output/html
+        folder: output/www
         target-folder: ${{ steps.branch_name.outputs.SOURCE_NAME }}
         clean: true
 
@@ -61,6 +65,6 @@ jobs:
         file: output/pdf/*.pdf
         tag: ${{ github.ref }}
         file_glob: true
-        release_name: "Curso 20XX-20XY"
-        body: "Apuntes de sistemas operativos del curso 20XX-20XY."
+        release_name: "Curso ${{ env.ACADEMIC_YEAR }}"
+        body: "Apuntes de sistemas operativos del curso ${{ env.ACADEMIC_YEAR }}."
         overwrite: true
