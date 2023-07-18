@@ -318,7 +318,7 @@ pre.rouge .gs {
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 36 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 46 minutos</p>
 </div>
 </td>
 </tr>
@@ -484,8 +484,14 @@ Otros lenguajes proporcionan un <strong>librería de hilos</strong> dentro de su
 </div>
 <div class="paragraph">
 <p>El soporte de <strong>hilos a nivel de usuario</strong> se implementan mediante un <strong>librería de hilos</strong> en el espacio de usuario, junto al código del programa y los datos del proceso, sin requerir ningún soporte especial por parte del núcleo del sistema operativo.
-Por tanto, como se puede observar en el lado derecho de la <a href="#fig-comparación-soporte-de-hilos">[fig-comparación-soporte-de-hilos]</a>, estos hilos existen desde el punto de vista del proceso y del programa que ejecuta, pero no para el sistema operativo.
+Por tanto, como se puede observar en el lado derecho de la <a href="hilos.html#fig-comparación-soporte-de-hilos">Figura 12.3</a>, estos hilos existen desde el punto de vista del proceso y del programa que ejecuta, pero no para el sistema operativo.
 El planificador de la CPU asigna tiempo de CPU a los procesos, mientras que la <strong>librería de hilos</strong> de cada proceso reparte el tiempo de ejecución del proceso entre los diferentes hilos de este.</p>
+</div>
+<div id="fig-comparación-soporte-de-hilos" class="imageblock">
+<div class="content">
+<img src="media/C12-hilos/comparación_soporte_de_hilos.svg" alt="comparación soporte de hilos">
+</div>
+<div class="title">Figura 12.3. Comparación de hilos a nivel de usuario y a nivel de núcleo.</div>
 </div>
 <div class="paragraph">
 <p>Como el código y los datos de la librería residen en el espacio de usuario, invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.</p>
@@ -503,7 +509,7 @@ Por tanto, para invocar una función de la <strong>librería de hilos</strong> e
 Obviamente, la librería del sistema ofrece las funciones necesarias para realizar estas llamadas al sistema de forma sencilla.</p>
 </div>
 <div class="paragraph">
-<p>La implementación del soporte de hilos en el núcleo implica cambios respecto a lo que hemos visto hasta el momento de la gestión de procesos, puesto que, en estos sistemas, es el hilo la unidad básica de uso de la CPU, como se ilustra en la <a href="#fig-comparación-soporte-de-hilos">[fig-comparación-soporte-de-hilos]</a>.
+<p>La implementación del soporte de hilos en el núcleo implica cambios respecto a lo que hemos visto hasta el momento de la gestión de procesos, puesto que, en estos sistemas, es el hilo la unidad básica de uso de la CPU, como se ilustra en la <a href="hilos.html#fig-comparación-soporte-de-hilos">Figura 12.3</a>.
 Es decir, son los hilos los que se mueven por los estados del <a href="procesos.html#fig-diagrama-estado-proceso">Figura 9.2</a> y las colas de la <a href="procesos.html#fig-colas-de-planificación-procesos">Figura 9.3</a>, en lugar de los procesos.
 En estos sistemas, el planificador de la CPU selecciona un hilo para ejecutarse en la CPU de entre todos los que están en el estado <strong>preparado</strong> en el sistema y el <strong>cambio de contexto</strong> asigna la CPU a un hilo distinto al que la tiene asignada en el momento actual, que puede ser del mismo o de diferente proceso.</p>
 </div>
@@ -541,13 +547,13 @@ Mientras que el concepto de <strong>hilos de núcleo</strong> corresponde con co
 </div>
 <div class="paragraph">
 <p>En el modelo <strong>muchos a uno</strong> muchos <strong>hilos de usuario</strong> son mapeados en <strong>un único hilo de núcleo</strong>.
-El planificador de la CPU en el núcleo reparte el tiempo de CPU entre los diferentes <strong>hilos de núcleo</strong> en el sistema, mientras que la <strong>librería de hilos</strong> en cada proceso reparte el tiempo de ejecución del <strong>hilo de núcleo</strong> del proceso entre múltiples <strong>hilos de usuario</strong> (véase la <a href="hilos.html#fig-modelo-muchos-a-uno">Figura 12.3</a>).</p>
+El planificador de la CPU en el núcleo reparte el tiempo de CPU entre los diferentes <strong>hilos de núcleo</strong> en el sistema, mientras que la <strong>librería de hilos</strong> en cada proceso reparte el tiempo de ejecución del <strong>hilo de núcleo</strong> del proceso entre múltiples <strong>hilos de usuario</strong> (véase la <a href="hilos.html#fig-modelo-muchos-a-uno">Figura 12.4</a>).</p>
 </div>
 <div id="fig-modelo-muchos-a-uno" class="imageblock">
 <div class="content">
 <img src="media/C12-hilos/modelo_muchos_a_uno.svg" alt="modelo muchos a uno">
 </div>
-<div class="title">Figura 12.3. Modelo muchos a uno (N:1).</div>
+<div class="title">Figura 12.4. Modelo muchos a uno (N:1).</div>
 </div>
 <div class="paragraph">
 <p>Los sistemas modernos son multihilo, por lo que al crearse un proceso siempre se crea con un <strong>hilo de núcleo</strong> inicial, que es al que el núcleo asigna tiempo de CPU.
@@ -556,7 +562,7 @@ En este sentido, quizás sería más correcto definir el modelo <strong>muchos a
 En los sistemas más antiguos estas entidades son los procesos, de forma que, bajo este <strong>modelo multihilo</strong> los <strong>hilos de usuario</strong> realmente se reparten el tiempo de ejecución del proceso al que pertenecen.</p>
 </div>
 <div class="paragraph">
-<p>El modelo <strong>muchos a uno</strong> corresponde al caso en el que solo se implementan <strong>hilos a nivel de usuario</strong>.</p>
+<p>El modelo <strong>muchos a uno</strong> corresponde al caso en el que solo se implementan <strong>hilos a nivel de usuario</strong>, que es el caso ilustrado a la izquierda en la <a href="hilos.html#fig-comparación-soporte-de-hilos">Figura 12.3</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_ventajas_e_inconvenientes"><a class="anchor" href="#_ventajas_e_inconvenientes"></a>Ventajas e inconvenientes</h5>
@@ -617,23 +623,23 @@ Además, generalmente, tiene funciones para que el <strong>hilo de usuario</stro
 En ambos casos, el <strong>hilo de usuario</strong> queda bloqueado y la <strong>librería de hilos</strong> asigna otro hilo al <strong>hilo de núcleo</strong> para su ejecución.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, en la <a href="hilos.html#fig-modelo-a-uno-operación-bloqueante">Figura 12.4</a> se ilustra como el <em>Hilo 1</em> llama a la función <code>yield()</code> de la <strong>librería de hilos</strong>, provocando su intercambio con el <em>Hilo 2</em>.
+<p>Por ejemplo, en la <a href="hilos.html#fig-modelo-a-uno-operación-bloqueante">Figura 12.5</a> se ilustra como el <em>Hilo 1</em> llama a la función <code>yield()</code> de la <strong>librería de hilos</strong>, provocando su intercambio con el <em>Hilo 2</em>.
 La función <code>yield()</code> suele estar presente en algunas <strong>librerías de hilos</strong>, con el objeto de que los hilos puedan indicar puntos del programa en los que quieren dejar tiempo de ejecución para otros hilos, de forma voluntaria.</p>
 </div>
 <div id="fig-modelo-a-uno-operación-bloqueante" class="imageblock">
 <div class="content">
 <img src="media/C12-hilos/muchos_a_uno_operación_bloqueante.svg" alt="muchos a uno operación bloqueante">
 </div>
-<div class="title">Figura 12.4. Diagrama de secuencia del bloqueo del proceso en el modelo muchos a uno.</div>
+<div class="title">Figura 12.5. Diagrama de secuencia del bloqueo del proceso en el modelo muchos a uno.</div>
 </div>
 <div class="paragraph">
-<p>Sin embargo, en la <a href="hilos.html#fig-modelo-a-uno-operación-bloqueante">Figura 12.4</a> también vemos que <em>Hilo 2</em> invoca la llamada al sistema <code>read()</code> para leer un archivo.
+<p>Sin embargo, en la <a href="hilos.html#fig-modelo-a-uno-operación-bloqueante">Figura 12.5</a> también vemos que <em>Hilo 2</em> invoca la llamada al sistema <code>read()</code> para leer un archivo.
 Desde el punto de vista del núcleo, esa llamada la realiza el proceso, por lo que es bloqueado, hasta que la operación de lectura del archivo se completa.
 Al proceso nunca se le asignará la CPU mientras esté en estado <em>esperando</em>, por lo que ni <em>Hilo 1</em> ni ningún otro <strong>hilo de usuario</strong> del proceso podrá ejecutarse.</p>
 </div>
 <div class="paragraph">
 <p>La solución, como hemos comentado, es que la <strong>librería de hilos</strong> proporcione sus propias versiones de las llamadas al sistema que pueden poner al proceso en estado <em>esperando</em>.
-Por ejemplo, en la <a href="hilos.html#fig-modelo-a-uno-operación-bloqueante">Figura 12.4</a> el <em>Hilo 2</em> no usa la llamada al sistema <code>read()</code> sino una función <code>read()</code> proporcionada por la <strong>librería de hilos</strong>.</p>
+Por ejemplo, en la <a href="hilos.html#fig-modelo-a-uno-operación-bloqueante">Figura 12.5</a> el <em>Hilo 2</em> no usa la llamada al sistema <code>read()</code> sino una función <code>read()</code> proporcionada por la <strong>librería de hilos</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Para implementar su <code>read()</code>, la <strong>librería de hilos</strong> usa una versión asíncrona de la llamada al sistema.
@@ -645,7 +651,7 @@ Es decir, desde el punto de vista de <em>Hilo 2</em>, la función <code>read()</
 <div class="content">
 <img src="media/C12-hilos/muchos_a_uno_operación_async.svg" alt="muchos a uno operación async">
 </div>
-<div class="title">Figura 12.5. Diagrama de secuencia de la solución al bloqueo del proceso en el modelo muchos a uno.</div>
+<div class="title">Figura 12.6. Diagrama de secuencia de la solución al bloqueo del proceso en el modelo muchos a uno.</div>
 </div>
 <div class="paragraph">
 <p>Más adelante, el sistema operativo notificará a la <strong>librería de hilos</strong> que la operación ha sido realizada, por lo que los datos ya están disponibles en la memoria para ser usados.
@@ -677,17 +683,17 @@ En Java 1.1 era el único modelo soportado —ya que los hilos se implementaban 
 </div>
 <div class="paragraph">
 <p>Por lo general, este modelo corresponde al caso de los sistemas que solo soportan <strong>hilos a nivel de núcleo</strong>.
-En este caso, la <strong>librería de hilos</strong> se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los <strong>hilos de núcleo</strong> y los procesos pueden gestionar estos hilos mediante llamadas al sistema (véase la <a href="hilos.html#fig-modelo-uno-a-uno">Figura 12.6</a>).</p>
+En este caso, la <strong>librería de hilos</strong> se implementa en el núcleo, por lo que las entidades que planifica el núcleo en la CPU son los <strong>hilos de núcleo</strong> y los procesos pueden gestionar estos hilos mediante llamadas al sistema (véase la <a href="hilos.html#fig-modelo-uno-a-uno">Figura 12.7</a>).</p>
 </div>
 <div id="fig-modelo-uno-a-uno" class="imageblock">
 <div class="content">
 <img src="media/C12-hilos/modelo_uno_a_uno.svg" alt="modelo uno a uno">
 </div>
-<div class="title">Figura 12.6. Modelo uno a uno (1:1).</div>
+<div class="title">Figura 12.7. Modelo uno a uno (1:1).</div>
 </div>
 <div class="paragraph">
-<p>Es importante tener en cuenta que, a efectos prácticos, los <strong>hilos de usuario</strong> de la <a href="hilos.html#fig-modelo-uno-a-uno">Figura 12.6</a> no son hilos diferentes a los <strong>hilos de núcleo</strong>.
-Realmente, son los mismos <strong>hilos de núcleo</strong> pero vistos desde la perspectiva del programa en el modo usuario.</p>
+<p>Es importante tener en cuenta que, a efectos prácticos, los <strong>hilos de usuario</strong> de la <a href="hilos.html#fig-modelo-uno-a-uno">Figura 12.7</a> no son hilos diferentes a los <strong>hilos de núcleo</strong>.
+Realmente, son los mismos <strong>hilos de núcleo</strong> pero vistos desde la perspectiva del programa en el modo usuario, como se ilustra a la derecha en la <a href="hilos.html#fig-comparación-soporte-de-hilos">Figura 12.3</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_ventajas_e_inconvenientes_2"><a class="anchor" href="#_ventajas_e_inconvenientes_2"></a>Ventajas e inconvenientes</h5>
@@ -741,13 +747,13 @@ Así los desarrolladores pueden utilizar la <strong>librería de hilos</strong> 
 </div>
 <div class="paragraph">
 <p>El planificador de la <strong>librería de hilos</strong> en espacio de usuario se encarga de determinar como se reparte el tiempo de ejecución de cada <strong>hilo de núcleo</strong> entre los <strong>hilos de usuario</strong>.
-Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hilos de núcleo</strong> del sistema (véase la <a href="hilos.html#fig-modelo-muchos-a-muchos">Figura 12.7</a>).</p>
+Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hilos de núcleo</strong> del sistema (véase la <a href="hilos.html#fig-modelo-muchos-a-muchos">Figura 12.8</a>).</p>
 </div>
 <div id="fig-modelo-muchos-a-muchos" class="imageblock">
 <div class="content">
 <img src="media/C12-hilos/modelo_muchos_a_muchos.svg" alt="modelo muchos a muchos">
 </div>
-<div class="title">Figura 12.7. Modelo muchos a muchos (M:N).</div>
+<div class="title">Figura 12.8. Modelo muchos a muchos (M:N).</div>
 </div>
 <div class="sect4">
 <h5 id="_ventajas_e_inconvenientes_3"><a class="anchor" href="#_ventajas_e_inconvenientes_3"></a>Ventajas e inconvenientes</h5>
@@ -822,13 +828,13 @@ Ese es el caso de <a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_program
 <p>Existe una variación del modelo <strong>muchos a muchos</strong> donde, además de funcionar de la forma comentada anteriormente, se permite que un <strong>hilo de usuario</strong> quede ligado indefinidamente a un único <strong>hilo de núcleo</strong>, como en el modelo <strong>uno a uno</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Esta variación se denomina, en ocasiones, modelo de <strong>dos niveles</strong> (véase la <a href="hilos.html#fig-modelo-de-dos-niveles">Figura 12.8</a>).</p>
+<p>Esta variación se denomina, en ocasiones, modelo de <strong>dos niveles</strong> (véase la <a href="hilos.html#fig-modelo-de-dos-niveles">Figura 12.9</a>).</p>
 </div>
 <div id="fig-modelo-de-dos-niveles" class="imageblock">
 <div class="content">
 <img src="media/C12-hilos/modelo_de_dos_niveles.svg" alt="modelo de dos niveles">
 </div>
-<div class="title">Figura 12.8. Modelo de dos niveles.</div>
+<div class="title">Figura 12.9. Modelo de dos niveles.</div>
 </div>
 <div class="sect4">
 <h5 id="_ventajas_e_inconvenientes_4"><a class="anchor" href="#_ventajas_e_inconvenientes_4"></a>Ventajas e inconvenientes</h5>
@@ -858,11 +864,11 @@ Dicha comunicación tiene como objeto ajustar dinámicamente el número de <stro
 <div class="content">
 <img src="media/C12-hilos/activación_del_planificador.svg" alt="activación del planificador">
 </div>
-<div class="title">Figura 12.9. Diagrama de secuencia del mecanismo de activación del planificador.</div>
+<div class="title">Figura 12.10. Diagrama de secuencia del mecanismo de activación del planificador.</div>
 </div>
 <div class="paragraph">
 <p>Uno de los esquemas de comunicación se denomina <strong>activación del planificador</strong> y consiste en que el núcleo informa a la <strong>librería de hilos</strong> en espacio de usuario que una llamada al sistema, realizada por uno de sus hilos de usuario, va a bloquear un <strong>hilo de núcleo</strong> del proceso cuyos hilos gestiona.
-Antes de dicha notificación, el núcleo se encarga de crear un nuevo <strong>hilo de núcleo</strong> en el proceso y se lo pasa a la <strong>librería de hilos</strong> en la notificación (véase la <a href="hilos.html#fig-activación-del-planificador">Figura 12.9</a>).
+Antes de dicha notificación, el núcleo se encarga de crear un nuevo <strong>hilo de núcleo</strong> en el proceso y se lo pasa a la <strong>librería de hilos</strong> en la notificación (véase la <a href="hilos.html#fig-activación-del-planificador">Figura 12.10</a>).
 Así, el planificador de la librería puede asignarle alguno de los otros <strong>hilos de usuario</strong>, evitando el bloqueo completo del proceso si no quedan <strong>hilos de núcleo</strong> disponibles, y ajustando el número de <strong>hilos de núcleo</strong> dinámicamente, según las necesidades</p>
 </div>
 </div>
