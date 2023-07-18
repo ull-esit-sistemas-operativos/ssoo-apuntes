@@ -113,6 +113,10 @@ El soporte de *hilos a nivel de usuario* se implementan mediante un *librería d
 Por tanto, como se puede observar en el lado derecho de la <<fig-comparación-soporte-de-hilos>>, estos hilos existen desde el punto de vista del proceso y del programa que ejecuta, pero no para el sistema operativo.
 El planificador de la CPU asigna tiempo de CPU a los procesos, mientras que la *librería de hilos* de cada proceso reparte el tiempo de ejecución del proceso entre los diferentes hilos de este.
 
+[[fig-comparación-soporte-de-hilos]]
+.Comparación de hilos a nivel de usuario y a nivel de núcleo.
+image::{chapdir}/comparación_soporte_de_hilos.svg[]
+
 Como el código y los datos de la librería residen en el espacio de usuario, invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.
 
 === Hilos a nivel de núcleo
@@ -161,7 +165,7 @@ Sin embargo, los sistemas más antiguos no tienen ningún soporte de hilos en el
 En este sentido, quizás sería más correcto definir el modelo *muchos a uno* como aquel en el que muchos *hilos de usuario* son mapeados en una «única entidad planificable en la CPU».
 En los sistemas más antiguos estas entidades son los procesos, de forma que, bajo este *modelo multihilo* los *hilos de usuario* realmente se reparten el tiempo de ejecución del proceso al que pertenecen.
 
-El modelo *muchos a uno* corresponde al caso en el que solo se implementan *hilos a nivel de usuario*.
+El modelo *muchos a uno* corresponde al caso en el que solo se implementan *hilos a nivel de usuario*, que es el caso ilustrado a la izquierda en la <<fig-comparación-soporte-de-hilos>>.
 
 ==== Ventajas e inconvenientes
 
@@ -249,7 +253,7 @@ En este caso, la *librería de hilos* se implementa en el núcleo, por lo que la
 image::{chapdir}/modelo_uno_a_uno.svg[]
 
 Es importante tener en cuenta que, a efectos prácticos, los *hilos de usuario* de la <<fig-modelo-uno-a-uno>> no son hilos diferentes a los *hilos de núcleo*.
-Realmente, son los mismos *hilos de núcleo* pero vistos desde la perspectiva del programa en el modo usuario.
+Realmente, son los mismos *hilos de núcleo* pero vistos desde la perspectiva del programa en el modo usuario, como se ilustra a la derecha en la <<fig-comparación-soporte-de-hilos>>.
 
 ==== Ventajas e inconvenientes
 
