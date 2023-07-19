@@ -50,13 +50,37 @@ jobs:
     - name: Generar la documentación
       run: bundle exec rake build:www[$SITE_ROOT] build:pdf DOCUMENT_NAME=sistemas_operativos
 
-    - name: Publicar web
+    - name: Publicar el sitio web
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
         folder: output/www
         target-folder: ${{ steps.branch_name.outputs.SOURCE_NAME }}
         clean: true
+
+    - name: Generar archivos para actualizar la raíz del sitio web
+      if: ${{ steps.branch_name.outputs.SOURCE_NAME == vars.CURRENT_BRANCH }}
+      run: |
+        mkdir -p ${{ runner.temp }}/html
+        cp output/www/sitemap.xml ${{ runner.temp }}/html
+        cat << EOF > ${{ runner.temp }}/html/index.html
+        <!DOCTYPE HTML>                                                                
+        <html lang="es">                                                                
+            <head>                                                                      
+                <meta charset="utf-8">
+                <meta http-equiv="refresh" content="0;url=https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/${{ steps.branch_name.outputs.SOURCE_NAME }}/">
+                <link rel="canonical" href="https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/${{ steps.branch_name.outputs.SOURCE_NAME }}/">
+            </head>                                                                                                             
+        </html>
+        EOF
+
+    - name: Actualizar la raíz del sitio web
+      uses: JamesIves/github-pages-deploy-action@v4
+      if: ${{ steps.branch_name.outputs.SOURCE_NAME == vars.CURRENT_BRANCH }}
+      with:
+        branch: gh-pages
+        folder: ${{ runner.temp }}/html
+        clean: false
 
     - name: Publicar el PDF en 'Releases'
       uses: svenstaro/upload-release-action@v2
