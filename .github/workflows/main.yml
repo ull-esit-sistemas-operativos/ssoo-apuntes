@@ -23,9 +23,9 @@ jobs:
     - name: Obtener el nombre de la rama
       id: branch_name
       run: |
-        echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
-        echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
-        echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+        echo "SOURCE_NAME=${GITHUB_REF#refs/*/}" >> "$GITHUB_ENV"
+        echo "SOURCE_BRANCH=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+        echo "SOURCE_TAG=${GITHUB_REF#refs/tags/}" >> "$GITHUB_ENV"
 
     - name: Configurar Ruby
       uses: ruby/setup-ruby@v1
@@ -55,11 +55,11 @@ jobs:
       with:
         branch: gh-pages
         folder: output/www
-        target-folder: ${{ steps.branch_name.outputs.SOURCE_NAME }}
+        target-folder: ${{ env.SOURCE_NAME }}
         clean: true
 
     - name: Generar archivos para actualizar la raíz del sitio web
-      if: ${{ steps.branch_name.outputs.SOURCE_NAME == vars.CURRENT_BRANCH }}
+      if: ${{  env.SOURCE_NAME == vars.CURRENT_BRANCH }}
       run: |
         mkdir -p ${{ runner.temp }}/html
         cp output/www/sitemap.xml ${{ runner.temp }}/html
@@ -68,15 +68,15 @@ jobs:
         <html lang="es">                                                                
             <head>                                                                      
                 <meta charset="utf-8">
-                <meta http-equiv="refresh" content="0;url=https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/${{ steps.branch_name.outputs.SOURCE_NAME }}/">
-                <link rel="canonical" href="https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/${{ steps.branch_name.outputs.SOURCE_NAME }}/">
+                <meta http-equiv="refresh" content="0;url=https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/${{ env.SOURCE_NAME }}/">
+                <link rel="canonical" href="https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/${{ env.SOURCE_NAME }}/">
             </head>                                                                                                             
         </html>
         EOF
 
     - name: Actualizar la raíz del sitio web
       uses: JamesIves/github-pages-deploy-action@v4
-      if: ${{ steps.branch_name.outputs.SOURCE_NAME == vars.CURRENT_BRANCH }}
+      if: ${{ env.SOURCE_NAME == vars.CURRENT_BRANCH }}
       with:
         branch: gh-pages
         folder: ${{ runner.temp }}/html
