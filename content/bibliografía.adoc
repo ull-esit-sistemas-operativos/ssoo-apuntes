@@ -25,6 +25,9 @@ Gorman, M. (2004). _Understanding the Linux Virtual Memory Manager_. Prentice Ha
 * [[[Hailperin2006]]]
 Hailperin, M. (2006). _Operating Systems and Middleware: Supporting Controlled Interaction_. Course Technology.
 
+* [[[Hansen2023]]]
+Hansen, S. (2023). _Threads and Goroutines_. https://shane.ai/posts/threads-and-goroutines/
+
 * [[[Jacob1998]]]
 Jacob, B y Mudge, T. (1998). Virtual Memory: Issues of Implementation. _Computer_, 31, 33-43. http://dx.doi.org/10.1109/2.683005
 

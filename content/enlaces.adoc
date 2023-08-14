@@ -250,6 +250,9 @@
 :os2: link:https://es.wikipedia.org/wiki/OS/2[OS/2]
 :qnx: link:https://es.wikipedia.org/wiki/QNX[QNX]
 :zircon: link:https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)[Zircon]
+// Lenguajes y librerías
+:stackless_python: link:https://en.wikipedia.org/wiki/Stackless_Python[Stackless Python]
+:golang: link:https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)[Go]
 //
 // Ordenadores y arquitecturas
 :ibmpc: link:https://es.wikipedia.org/wiki/IBM_PC[IBM PC]
