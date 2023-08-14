@@ -669,7 +669,7 @@ Por lo general, cualquier sistema operativo moderno ofrece versiones asíncronas
 En Java 1.1 era el único modelo soportado —ya que los hilos se implementaban en la máquina virtual de Java, independientemente del soporte del sistema operativo— pero debido a sus limitaciones se implementó el soporte de hilos nativos del sistema operativo.</p>
 </div>
 <div class="paragraph">
-<p>Otras implementaciones de este modelo son las <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/fibers">fibras</a> de Windows API, <a href="http://www.stackless.com/">Stackless Python</a> y <a href="http://www.gnu.org/software/pth/">GNU Portable Threads</a>.</p>
+<p>Otras implementaciones de este modelo son las <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/fibers">fibras</a> y <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling">UMS</a> de Windows API, <a href="https://en.wikipedia.org/wiki/Stackless_Python">Stackless Python</a> y <a href="http://www.gnu.org/software/pth/">GNU Portable Threads</a>.</p>
 </div>
 </div>
 </div>
@@ -693,7 +693,7 @@ En este caso, la <strong>librería de hilos</strong> se implementa en el núcleo
 </div>
 <div class="paragraph">
 <p>Es importante tener en cuenta que, a efectos prácticos, los <strong>hilos de usuario</strong> de la <a href="hilos.html#fig-modelo-uno-a-uno">Figura 12.7</a> no son hilos diferentes a los <strong>hilos de núcleo</strong>.
-Realmente, son los mismos <strong>hilos de núcleo</strong> pero vistos desde la perspectiva del programa en el modo usuario, como se ilustra a la derecha en la <a href="hilos.html#fig-comparación-soporte-de-hilos">Figura 12.3</a>.</p>
+Realmente, son los mismos <strong>hilos de núcleo</strong>, pero vistos desde la perspectiva del programa en el modo usuario, como se ilustra a la derecha en la <a href="hilos.html#fig-comparación-soporte-de-hilos">Figura 12.3</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_ventajas_e_inconvenientes_2"><a class="anchor" href="#_ventajas_e_inconvenientes_2"></a>Ventajas e inconvenientes</h5>
@@ -756,6 +756,24 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hil
 <div class="title">Figura 12.8. Modelo muchos a muchos (M:N).</div>
 </div>
 <div class="sect4">
+<h5 id="_activación_del_planificador"><a class="anchor" href="#_activación_del_planificador"></a>Activación del planificador</h5>
+<div class="paragraph">
+<p>En el modelo <strong>muchos a muchos</strong> es conveniente que exista cierto grado de coordinación entre el núcleo y la <strong>librería de hilos</strong> del espacio de usuario.
+Dicha comunicación tiene como objeto ajustar dinámicamente el número de <strong>hilos de núcleo</strong> para garantizar la máxima eficiencia.</p>
+</div>
+<div id="fig-activación-del-planificador" class="imageblock">
+<div class="content">
+<img src="media/C12-hilos/activación_del_planificador.svg" alt="activación del planificador">
+</div>
+<div class="title">Figura 12.9. Diagrama de secuencia del mecanismo de activación del planificador.</div>
+</div>
+<div class="paragraph">
+<p>Uno de los esquemas de comunicación se denomina <strong>activación del planificador</strong> y consiste en que el núcleo informa a la <strong>librería de hilos</strong> en espacio de usuario que una llamada al sistema, realizada por uno de sus hilos de usuario, va a bloquear un <strong>hilo de núcleo</strong> del proceso cuyos hilos gestiona.
+Antes de dicha notificación, el núcleo se encarga de crear un nuevo <strong>hilo de núcleo</strong> en el proceso y se lo pasa a la <strong>librería de hilos</strong> en la notificación (véase la <a href="hilos.html#fig-activación-del-planificador">Figura 12.9</a>).
+Así, el planificador de la librería puede asignarle alguno de los otros <strong>hilos de usuario</strong>, evitando el bloqueo completo del proceso si no quedan <strong>hilos de núcleo</strong> disponibles, y ajustando el número de <strong>hilos de núcleo</strong> dinámicamente, según las necesidades</p>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_ventajas_e_inconvenientes_3"><a class="anchor" href="#_ventajas_e_inconvenientes_3"></a>Ventajas e inconvenientes</h5>
 <div class="paragraph">
 <p>Las principales <strong>ventajas</strong> de este modelo son:</p>
@@ -767,58 +785,40 @@ Mientras que el planificador de la CPU asigna la CPU a alguno de los <strong>hil
 </li>
 <li>
 <p>Permite a otro <strong>hilo de usuario</strong> del mismo proceso ejecutarse cuando un hilo hace una llamada al sistema que debe bloquearse.
-Si esto ocurre el correspondiente hilo de núcleo se queda bloqueado, pero el resto de los <strong>hilos de usuario</strong> pueden seguir ejecutándose en los otros <strong>hilos de núcleo</strong> del proceso (véase el <a href="hilos.html#_activación_del_planificador">Apartado 12.4.5</a>).</p>
+Si esto ocurre el correspondiente hilo de núcleo se queda bloqueado, pero el resto de los <strong>hilos de usuario</strong> pueden seguir ejecutándose en los otros <strong>hilos de núcleo</strong> del proceso (véase el <a href="hilos.html#_activación_del_planificador">Apartado 12.4.3.1</a>).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Mientras que el principal <strong>inconveniente</strong> es su complejidad y la dificultad de coordinar el planificador de la librería de hilos en espacio de usuario con el planificador de la CPU para obtener el mejor rendimiento.</p>
+<p>Mientras que el principal <strong>inconveniente</strong> es su complejidad para implementarlo y la dificultad de coordinar el planificador de la librería de hilos en espacio de usuario con el planificador de la CPU para obtener el mejor rendimiento.</p>
 </div>
 <div class="paragraph">
 <p>Como veremos en el <a href="planificación_de_la_cpu.html">Capítulo 14</a>, los planificadores de la CPU modernos intentan clasificar los <strong>hilos de núcleo</strong> para ordenarlos de la forma más óptima en el acceso a la CPU.
 Por ejemplo, no es lo mismo una tarea de cálculo, que necesita usar intensivamente la CPU, que copia datos de la red o del sistema de archivos.
-Por lo general, primero se planifican las segundas, dejando para el final las tareas intensivas en el uso de la CPU.</p>
+Generalmente, primero se planifican las segundas, dejando para el final las tareas intensivas en el uso de la CPU.</p>
 </div>
 <div class="paragraph">
-<p>El problema con el modelo <strong>muchos a muchos</strong> es que en un mismo <strong>hilo de núcleo</strong> se pueden ejecutar diferentes <strong>hilos de usuario</strong> que pueden ser de distinto tipo.
-Por tanto, cualquier clasificación que haga el planificador de la CPU puede ser incorrecta en cuanto la <strong>librería de hilos</strong> en espacio de usuario cambie el <strong>hilo de usuario</strong> que se está ejecutando un <strong>hilo de núcleo</strong> por otro diferente.</p>
+<p>En el modelo <strong>muchos a muchos</strong> un mismo <strong>hilo de núcleo</strong> se pueden ejecutar diferentes <strong>hilos de usuario</strong> que pueden ser de distinto tipo.
+Por tanto, cualquier clasificación que haga el planificador de la CPU puede ser incorrecta en cuanto la <strong>librería de hilos</strong> en espacio de usuario cambie el <strong>hilo de usuario</strong> que se está ejecutando un <strong>hilo de núcleo</strong> por otro diferente.
+La solución a este problema pasa porque la <strong>librería de hilos</strong> en espacio de usuario y el planificador de la CPU intercambien información sobre sus hilos y se coordinen.</p>
 </div>
 <div class="paragraph">
-<p>La solución pasa porque la <strong>librería de hilos</strong> en espacio de usuario y el planificador de la CPU intercambien información sobre sus hilos y se coordinen.</p>
+<p>Debido a estas dificultades, muchos sistemas actuales han optado finalmente por el modelo <strong>uno a uno</strong>, concentrando esfuerzos en reducir el coste de creación de <strong>hilos a nivel de núcleo</strong>, con el objeto de que haya poca ventaja en implementar también <strong>hilos a nivel de usuario</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Por estas dificultades, sistemas como Linux —y <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> a partir de la versión 9— han optado finalmente por el modelo <strong>uno a uno</strong>.
-En concreto, los desarrolladores de Linux han preferido concentrar sus esfuerzos en conseguir un planificador de CPU más eficiente, así como en reducir los costes de la creación de <strong>hilos de núcleo</strong>, con el objeto de que haya poca o ninguna ventaja en implementar <strong>hilos de usuario</strong>.</p>
+<p>Esto no significa que actualmente no se puedan obtener las ventajas del modelo <strong>muchos a muchos</strong> en casos en los que puede ser beneficioso.
+Para esos casos los desarrolladores pueden utilizar librerías o lenguajes específicos, con implementaciones diseñadas para crear un gran número de <strong>hilos de usuario</strong> con un coste mínimo, sobre la librería de hilos de los sistemas operativos actuales.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_implementaciones_4"><a class="anchor" href="#_implementaciones_4"></a>Implementaciones</h5>
 <div class="paragraph">
-<p>Este modelo se soportaba en sistemas <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> y versiones antiguas de <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a>, así como en UNIX comerciales, como: <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> 8 y anteriores, <a href="https://es.wikipedia.org/wiki/IRIX">IRIX</a>, <a href="https://es.wikipedia.org/wiki/HP-UX">HP-UX</a> y <a href="https://es.wikipedia.org/wiki/Tru64">Tru64 UNIX</a>.</p>
-</div>
-<div class="paragraph">
-<p>También Microsoft Windows —a partir de Windows 7— soporta este modelo gracias a incorporar un mecanismo denominado <em>planificación en modo usuario</em> (véase <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling">«User-Mode Scheduling&#8201;&#8212;&#8201;Microsoft Docs»</a>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Nota"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>En Microsoft Windows también se puede implemnentar el modelo <strong>muchos a muchos</strong> usando múltiples <strong>hilos de núcleo</strong> y <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/fibers">fibras</a>, aunque es preferible usar <em>planificación en modo usuario</em>.</p>
-</div>
-<div class="paragraph">
-<p>La diferencia es que en la <em>planificación en modo usuario</em> la planificación de hilos es <strong>expropiativa</strong> —es decir, la <strong>librería de hilos</strong> puede interrumpir e intercambiar los hilos en cualquier momento— mientras que las <em>fibras</em> en Windows son <strong>cooperativas</strong> —por lo que deben interrumpir su ejecución voluntariamente para que puedan ser intercambiadas por otra <em>fibra</em>—.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Este modelo se soportaba en sistemas <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> y versiones antiguas de <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a>, así como en UNIX comerciales, como: <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> 8 y anteriores, <a href="https://es.wikipedia.org/wiki/IRIX">IRIX</a>, <a href="https://es.wikipedia.org/wiki/HP-UX">HP-UX</a> y <a href="https://es.wikipedia.org/wiki/Tru64">Tru64 UNIX</a>.
+Microsoft Windows también soportaba este modelo —a partir de Windows 7 y hasta Windows 10— gracias a incorporar un mecanismo denominado <em>planificación en modo usuario</em> (véase <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling">«User-Mode Scheduling&#8201;&#8212;&#8201;Microsoft Docs»</a>).</p>
 </div>
 <div class="paragraph">
 <p>Algunos lenguajes de programación implementan el modelo <strong>muchos a muchos</strong> sobre el modelo <strong>uno a uno</strong> soportado por la mayoría de sistemas operativos modernos.
-Ese es el caso de <a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)">Go</a>, <a href="https://es.wikipedia.org/wiki/Erlang">Erlang</a> y <a href="https://es.wikipedia.org/wiki/Elixir_(lenguaje_de_programaci%C3%B3n)">Elixir</a>.</p>
+Ese es el caso de <a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)">Go</a>, <a href="https://es.wikipedia.org/wiki/Erlang">Erlang</a>, <a href="https://es.wikipedia.org/wiki/Elixir_(lenguaje_de_programaci%C3%B3n)">Elixir</a> y <a href="https://blogs.oracle.com/javamagazine/post/java-loom-virtual-threads-platform-threads">Java</a>.</p>
 </div>
 </div>
 </div>
@@ -828,13 +828,13 @@ Ese es el caso de <a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_program
 <p>Existe una variación del modelo <strong>muchos a muchos</strong> donde, además de funcionar de la forma comentada anteriormente, se permite que un <strong>hilo de usuario</strong> quede ligado indefinidamente a un único <strong>hilo de núcleo</strong>, como en el modelo <strong>uno a uno</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Esta variación se denomina, en ocasiones, modelo de <strong>dos niveles</strong> (véase la <a href="hilos.html#fig-modelo-de-dos-niveles">Figura 12.9</a>).</p>
+<p>Esta variación se denomina, en ocasiones, modelo de <strong>dos niveles</strong> (véase la <a href="hilos.html#fig-modelo-de-dos-niveles">Figura 12.10</a>).</p>
 </div>
 <div id="fig-modelo-de-dos-niveles" class="imageblock">
 <div class="content">
 <img src="media/C12-hilos/modelo_de_dos_niveles.svg" alt="modelo de dos niveles">
 </div>
-<div class="title">Figura 12.9. Modelo de dos niveles.</div>
+<div class="title">Figura 12.10. Modelo de dos niveles.</div>
 </div>
 <div class="sect4">
 <h5 id="_ventajas_e_inconvenientes_4"><a class="anchor" href="#_ventajas_e_inconvenientes_4"></a>Ventajas e inconvenientes</h5>
@@ -855,21 +855,54 @@ Al vincular un <strong>hilo de usuario</strong> a un <strong>hilo de núcleo</st
 </div>
 </div>
 <div class="sect3">
-<h4 id="_activación_del_planificador"><a class="anchor" href="#_activación_del_planificador"></a>12.4.5. Activación del planificador</h4>
+<h4 id="_el_coste_de_crear_hilos_y_la_elección_de_modelo"><a class="anchor" href="#_el_coste_de_crear_hilos_y_la_elección_de_modelo"></a>12.4.5. El coste de crear hilos y la elección de modelo</h4>
 <div class="paragraph">
-<p>Tanto en el modelo <strong>muchos a muchos</strong> como en el de <strong>dos niveles</strong> es conveniente que exista cierto grado de coordinación entre el núcleo y la <strong>librería de hilos</strong> del espacio de usuario.
-Dicha comunicación tiene como objeto ajustar dinámicamente el número de <strong>hilos de núcleo</strong> para garantizar la máxima eficiencia.</p>
-</div>
-<div id="fig-activación-del-planificador" class="imageblock">
-<div class="content">
-<img src="media/C12-hilos/activación_del_planificador.svg" alt="activación del planificador">
-</div>
-<div class="title">Figura 12.10. Diagrama de secuencia del mecanismo de activación del planificador.</div>
+<p>Hemos comentado que el modelo <strong>muchos a uno</strong> debe ser, teóricamente, «más ligero» que el modelo <strong>uno a uno</strong>.
+También hemos dicho que el modelo <strong>muchos a muchos</strong>, teóricamente, permite conservar esa ventaja, al tiempo que ofrece los beneficios del modelo <strong>uno a uno</strong>, en lo que respecta al aprovechamiento de los sistemas multiprocesador.
+Sin embargo, debemos tener en cuenta que la diferencia real puede variar en función de múltiples factores.</p>
 </div>
 <div class="paragraph">
-<p>Uno de los esquemas de comunicación se denomina <strong>activación del planificador</strong> y consiste en que el núcleo informa a la <strong>librería de hilos</strong> en espacio de usuario que una llamada al sistema, realizada por uno de sus hilos de usuario, va a bloquear un <strong>hilo de núcleo</strong> del proceso cuyos hilos gestiona.
-Antes de dicha notificación, el núcleo se encarga de crear un nuevo <strong>hilo de núcleo</strong> en el proceso y se lo pasa a la <strong>librería de hilos</strong> en la notificación (véase la <a href="hilos.html#fig-activación-del-planificador">Figura 12.10</a>).
-Así, el planificador de la librería puede asignarle alguno de los otros <strong>hilos de usuario</strong>, evitando el bloqueo completo del proceso si no quedan <strong>hilos de núcleo</strong> disponibles, y ajustando el número de <strong>hilos de núcleo</strong> dinámicamente, según las necesidades</p>
+<p>Un criterio común hasta la década de los 2000, era que el modelo <strong>uno a uno</strong> era adecuado hasta varias decenas hilos —a lo sumo, en torno a 100 o, quizás, a unos pocos cientos de hilos— por proceso, mientras que el modelo <strong>muchos a uno</strong> podía llegar a varios miles de hilos.</p>
+</div>
+<div class="paragraph">
+<p>La principal limitación en la cantidad de <strong>hilos de usuario</strong> del modelo <strong>muchos a uno</strong> estaba en el tamaño del espacio de direcciones del proceso.
+Por ejemplo, en las versiones de Windows de 32 bits, los procesos dispone de 2 GiB de su espacio de direcciones para código y datos.
+Como cada <em>fibra</em> —que es como se llama a los hilos del modelo multihilo <strong>muchos a uno</strong> que implementa la API Win32 de Windows— necesita 1 MiB de memoria para su pila, el límite teórico era de 2048 <em>fibras</em>.
+Este límite era realmente algo inferior porque en el mismo espacio se almacena el código y los datos del programa y las librerías que este utiliza.</p>
+</div>
+<div class="paragraph">
+<p>Una forma de soslayar este problema es indicar al sistema que reserve menos memoria para la pila al crear cada <em>fibra</em>.
+Esta posibilidad la suelen soportar los sistemas operativos, independientemente del modelo multihilo.
+En el caso de Microsoft Windows, esto permite llegar hasta cerca de las 32 KiB <em>fibras</em> en sistemas de 32 bits.</p>
+</div>
+<div class="paragraph">
+<p>Posteriormente, se optimizó la creación de <strong>hilos a nivel de núcleo</strong>, hasta el punto de equiparar, en gran medida, el coste de cada hilo en ambos modelos.
+Mientras que el pasar a sistemas de 64 bits, permitió superar las limitaciones derivadas por el pequeño tamaño del espacio de direcciones de los procesos en los sistemas de 32 bits, que limitaba a ambos modelos multihilo</p>
+</div>
+<div class="paragraph">
+<p>Actualmente, la creación de <strong>hilos a nivel de núcleo</strong> se ha optimizado hasta el punto de que usando el modelo <strong>uno a uno</strong> se puede llegar a decenas o cientos de miles de hilos por proceso, equiparándose a muchas implementaciones del modelo <strong>muchos a uno</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Con suficiente memoria y ajustando el tamaño de la pila de los hilos, se puede llegar a millones de hilos en ambos modelos.
+Sin embargo, cuando se tienen requisitos tan específicos, suele recomendarse utilizar librerías o lenguajes específicos, con implementaciones concretas del modelo <strong>muchos a uno</strong> o <strong>muchos a muchos</strong> —siendo actualmente más interesante porque permite aprovechar el paralelismo de las CPU modernas— específicamente diseñadas para escalar hasta dicha cantidad de hilos.</p>
+</div>
+<div class="paragraph">
+<p>Algunas de estas implementaciones son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><a href="https://en.wikipedia.org/wiki/Stackless_Python">Stackless Python</a></strong>, una implementación del modelo muchos a uno para Python.
+Permite crear un millón de <strong>hilos a nivel de usuario</strong> —llamados <em>tasklets</em>— consumiendo solo 100 MiB de memoria.</p>
+</li>
+<li>
+<p><strong><a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)">Go</a></strong>, un lenguaje de programación orientado a la creación de servicios de alto rendimiento, que incluye su propia implementación del modelo <strong>muchos a muchos</strong>.
+Go puede crear un millón de <strong>hilos a nivel de usuario</strong> —llamadas <em>gorutinas</em>— 10 veces más rápido de lo que se pueden crear la misma cantidad de hilos del sistema operativo en Linux <a href="bibliografía.html#Hansen2023">[Hansen2023]</a>, utilizando 2 GiB de memoria para las pilas.</p>
+</li>
+<li>
+<p><strong>Java</strong>, soporta <a href="https://blogs.oracle.com/javamagazine/post/java-loom-virtual-threads-platform-threads">hilos virtuales</a> —a partir de la versión 19 como <em>feature preview</em>— una implementación del modelo <strong>muchos a muchos</strong>, dirigida a cargas de trabajo que necesitan una cantidad extremadamente alta de hilos.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

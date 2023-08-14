@@ -229,6 +229,9 @@ Los componentes no están bien separados y las interfaces entre ellos no están 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>En la actualidad, este tipo de estructura se usa en sistemas que deben ejecutarse en hardware muy limitado, como en sensores conectados, termostatos, sistemas de control o electrodomésticos.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -244,13 +247,13 @@ Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el 
 <div class="title">Figura 8.1. Esquema de la estructura de MS-DOS.</div>
 </div>
 <div class="paragraph">
-<p>Como el <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a> para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.</p>
+<p>Como el <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a> para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no podían evitar que los programas de usuario accedieran directamente al hardware ni tenían forma de proteger las distintas partes del sistema operativo.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_unix_2"><a class="anchor" href="#_unix_2"></a>8.1.2. UNIX</h4>
 <div class="paragraph">
-<p>Otro ejemplo es el de <a href="https://es.wikipedia.org/wiki/Unix">UNIX original</a>, donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba un montón de funcionalidad en el núcleo del sistema.</p>
+<p>Otro ejemplo es el de <a href="https://es.wikipedia.org/wiki/Unix">UNIX original</a>, donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba mucha funcionalidad en el núcleo del sistema.</p>
 </div>
 <div id="fig-estructura-unix" class="imageblock">
 <div class="content">
@@ -299,6 +302,10 @@ En cada capa los argumentos son transformados y los datos necesarios deben de se
 <p>También son sistemas <strong>monolíticos</strong>, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Actualmente, no existe ningún motivo para diseñar sistemas operativos con esta estructura.
+Es preferible utilizar la <strong>estructura modular</strong>, que presenta las mismas ventajas y evita las dificultades en el diseño, de las que hablaremos a continuación.</p>
 </div>
 </div>
 </div>
@@ -364,6 +371,11 @@ Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por 
 También sirve para que los componentes del sistema se comuniquen entre sí y se pidan servicio.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Aunque se puede utilizar en cualquier ámbito, este tipo de estructura se utiliza, principalmente, en algunos sistemas operativos para sistemas empotrados, como ocurre con los de <strong>estructura simple</strong>.
+Sin embargo, la <strong>estructura microkernel</strong> necesita un hardware algo más potente, que admita modo dual de operación; siendo especialmente interesante en sistemas críticos o cuando hay especial preocupación por la seguridad.
+Algunos ejemplos son los sistemas de automoción o los equipos médicos.</p>
 </div>
 </div>
 </div>
@@ -482,6 +494,10 @@ Por ejemplo, operaciones de E/S —fundamentales para los controladores de dispo
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>La mayor parte de los sistemas operativos de propósito general, que se instalan tanto en sistema de escritorio como en servidores, son de este tipo.
+También en los <em>smartphones</em>, <em>smart TV</em> y otros dispositivos «inteligentes» y, en general, en muchos sistemas empotrados.</p>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -510,7 +526,8 @@ Un error en cualquier componente puede comprometer o hacer caer el sistema.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Este tipo de estructura es la utilizada en los UNIX modernos, como <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Oracle/Sun Microsystems Solaris</a>, <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a>, <a href="https://es.wikipedia.org/wiki/GNU/Linux">Linux</a> (véase la <a href="sistemas_operativos_por_su_estructura.html#fig-estructura-linux">Figura 8.5</a>) y <a href="https://es.wikipedia.org/wiki/MacOS">macOS</a>.</p>
+<p>Este tipo de estructura es la utilizada en los UNIX modernos, como <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Oracle/Sun Microsystems Solaris</a>, <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a>, <a href="https://es.wikipedia.org/wiki/GNU/Linux">Linux</a> (véase la <a href="sistemas_operativos_por_su_estructura.html#fig-estructura-linux">Figura 8.5</a>) y <a href="https://es.wikipedia.org/wiki/MacOS">macOS</a>.
+También se puede considerar que los sistemas Windows actuales, tienen estructura modular.</p>
 </div>
 </div>
 </div>
