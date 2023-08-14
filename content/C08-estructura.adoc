@@ -20,6 +20,8 @@ Los sistemas con *estructura sencilla* se caracterizan por:
 Los componentes no están bien separados y las interfaces entre ellos no están bien definidas.
 
 * Son sistemas *monolíticos*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.
+
+En la actualidad, este tipo de estructura se usa en sistemas que deben ejecutarse en hardware muy limitado, como en sensores conectados, termostatos, sistemas de control o electrodomésticos.
 ====
 
 === MS-DOS
@@ -31,11 +33,11 @@ Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el 
 .Esquema de la estructura de MS-DOS.
 image::{chapdir}/estructura_msdos.svg[]
 
-Como el {intel8086} para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no tuvieron más opción que dejar accesible el hardware a los programas de usuario.
+Como el {intel8086} para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no podían evitar que los programas de usuario accedieran directamente al hardware ni tenían forma de proteger las distintas partes del sistema operativo.
 
 === UNIX
 
-Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba un montón de funcionalidad en el núcleo del sistema.
+Otro ejemplo es el de https://es.wikipedia.org/wiki/Unix[UNIX original], donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba mucha funcionalidad en el núcleo del sistema.
 
 [[fig-estructura-unix]]
 .Esquema de la estructura de UNIX.
@@ -64,6 +66,9 @@ Por ejemplo, al corregir un _bug_ o añadir una nueva funcionalidad solo hay que
 En cada capa los argumentos son transformados y los datos necesarios deben de ser transferidos al invocar operaciones en la capa inferior, por lo que cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.
 
 * También son sistemas *monolíticos*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.
+
+Actualmente, no existe ningún motivo para diseñar sistemas operativos con esta estructura.
+Es preferible utilizar la *estructura modular*, que presenta las mismas ventajas y evita las dificultades en el diseño, de las que hablaremos a continuación.
 ====
 
 Un ejemplo de este tipo de sistemas operativos es el {os2}.
@@ -104,6 +109,10 @@ Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por 
 
 * El mecanismo de comunicación permite a los procesos de los usuarios solicitar servicios a los componentes del sistema.
 También sirve para que los componentes del sistema se comuniquen entre sí y se pidan servicio.
+
+Aunque se puede utilizar en cualquier ámbito, este tipo de estructura se utiliza, principalmente, en algunos sistemas operativos para sistemas empotrados, como ocurre con los de *estructura simple*.
+Sin embargo, la *estructura microkernel* necesita un hardware algo más potente, que admita modo dual de operación; siendo especialmente interesante en sistemas críticos o cuando hay especial preocupación por la seguridad.
+Algunos ejemplos son los sistemas de automoción o los equipos médicos.
 ====
 
 Dado que los componentes del sistema están aislados unos de otros —ya que se implementan como procesos de usuario— el mecanismo de comunicación entre procesos es la única forma que tienen los procesos de los usuarios y los componentes, de solicitarles un servicio.
@@ -175,6 +184,9 @@ Los sistemas con *estructura modular* se caracterizan por:
 * Todos los módulos pueden llamar a funciones de la interfaz de cualquier otro módulo, a diferencia de los sistemas operativos con *estructura en capas*, donde una capa solo podía usar a la inmediatamente inferior.
 
 * También son sistemas *monolíticos*, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.
+
+La mayor parte de los sistemas operativos de propósito general, que se instalan tanto en sistema de escritorio como en servidores, son de este tipo.
+También en los _smartphones_, _smart TV_ y otros dispositivos «inteligentes» y, en general, en muchos sistemas empotrados.
 ====
 
 Estos núcleos suelen disponer de un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.
@@ -193,3 +205,4 @@ Sin embargo los núcleos modulares:
 Un error en cualquier componente puede comprometer o hacer caer el sistema.
 
 Este tipo de estructura es la utilizada en los UNIX modernos, como https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Oracle/Sun Microsystems Solaris], https://es.wikipedia.org/wiki/FreeBSD[FreeBSD], https://es.wikipedia.org/wiki/GNU/Linux[Linux] (véase la <<fig-estructura-linux>>) y https://es.wikipedia.org/wiki/MacOS[macOS].
+También se puede considerar que los sistemas Windows actuales, tienen estructura modular.
