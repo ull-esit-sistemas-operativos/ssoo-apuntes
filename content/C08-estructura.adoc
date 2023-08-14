@@ -204,5 +204,5 @@ Sin embargo los núcleos modulares:
 * **Son menos seguros y fiables**, puesto que gran parte de su funcionalidad se ofrece desde el modo privilegiado.
 Un error en cualquier componente puede comprometer o hacer caer el sistema.
 
-Este tipo de estructura es la utilizada en los UNIX modernos, como https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)[Solaris], https://es.wikipedia.org/wiki/FreeBSD[FreeBSD], https://es.wikipedia.org/wiki/GNU/Linux[Linux] (véase la <<fig-estructura-linux>>) y https://es.wikipedia.org/wiki/MacOS[macOS].
+Este tipo de estructura es la utilizada en los UNIX modernos, como {solaris}, {freebsd}, {gnulinux} (véase la <<fig-estructura-linux>>) y {macos}.
 También se puede considerar que los sistemas Windows actuales, tienen estructura modular.
