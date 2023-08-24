@@ -46,10 +46,13 @@ image::{chapdir}/consola_ibm_705.jpg[]
 Estos sistemas se convirtieron en *sistemas de procesamiento por lotes* o *sistemas en _batch_* cuando se comenzó a utilizar un pequeño programa —llamado *monitor del sistema*— cuya función era cargar y ejecutar sin interrupción un conjunto —o lote— de programas.
 
 Para preparar los lotes, por lo general, el operador cargaba previamente en cinta magnética el conjunto de programas a partir de las tarjetas perforadas proporcionadas por los programadores.
-Para ello se utilizaba un lector de tarjetas autónomo, independiente del _mainframe_.
+Como se ilustra en la <<fig-sistemas-procesamiento-lotes>>, para ello se utilizaba un ordenador autónomo —independiente del _mainframe_— con lector de tarjetas y unidad de cinta.
+Posteriomente, el operador movía la cinta con el conjunto de programas a la unidad de cinta de entrada del _mainframe_ y lanzaba la ejecución del *monitor del sistema*, para que este se encargara de ir leyendo y ejecutando cada uno de los programas.
+Para obtener mayor rendimiento, los resultados de los programas se escribían en una unidad de cinta diferente.
+Cuando terminaba la ejecución de todo el conjunto, el operador llevaba la cinta a otro ordenador autónomo para leer los resultados e imprimrlos, con el objeto de entregárselos a los programadaores.
 
 [[fig-sistemas-procesamiento-lotes]]
-.Organización de la memoria en sistemas de procesamiento por lotes.
+.Gestión de trabajos en sistemas de procesamiento por lotes.
 image::{chapdir}/sistemas_procesamiento_lotes.svg[]
 
 ====
