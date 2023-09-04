@@ -17,13 +17,13 @@ Antes de entender cómo funcionan estos mecanismos de protección debemos entend
 
 Los sucesos que requieren la atención del sistema casi siempre se indican mediante una interrupción:
 
-* Cuando un proceso comete un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una excepción.
+* Cuando un proceso comete un error —como una división por cero o un acceso a memoria no válido— lo que se genera es una excepción en la CPU.
 Esta excepción despierta al sistema operativo para que haga lo que sea más conveniente.
 
-* Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción.
+* Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción en la CPU.
 Esta excepción despierta al sistema operativo para que atienda la petición.
 
-* Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción que despierta al sistema operativo.
+* Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción en la CPU, que despierta al sistema operativo.
 
 Esto funciona así porque el sistema operativo configura la CPU durante el arranque para que si ocurre cualquier interrupción o excepción la ejecución, salte a rutinas en el código del núcleo, con el objeto de darles el tratamiento adecuado.
 
