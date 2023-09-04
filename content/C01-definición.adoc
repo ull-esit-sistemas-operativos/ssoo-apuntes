@@ -23,15 +23,13 @@ Por ejemplo, algunos sistemas operativos apenas alcanzan el megabyte de espacio,
 +
 [NOTE]
 ====
-Aunque pueda parecer lo contrario, la cuestión de qué componentes son parte o no de un sistema operativo no es trivial. Por ejemplo, Microsoft y el Departamento de Justicia de los Estados Unidos se enfrentaron en 1998 por la inclusión del navegador Internet Explorer como parte del sistema operativo Microsoft Windows.
+Aunque pueda parecer lo contrario, la cuestión de qué componentes son parte o no de un sistema operativo no es trivial. Por ejemplo, Microsoft y el Departamento de Justicia de los Estados Unidos se enfrentaron en 1998 por la inclusión del navegador Internet Explorer como parte del sistema operativo Microsoft Windows<<Wikipedia-CaseUsaVsMicrosoft>>.
 
 Microsoft afirmaba que ambos productos eran realmente uno solo y que su unión fue el resultado de un proceso de innovación.
 Mientras tanto, la otra parte alegaba que el navegador era un producto distinto y separado, que no formaba parte del sistema operativo y que todo el asunto restringía la libre competencia en el mercado de los navegadores.
 
 Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados Unidos tenían mucho sentido, ¿pero qué ocurriría si se plantea este mismo asunto en la actualidad?.
 ¿Concibes que tu móvil o tu ordenador no trajeran de serie un navegador?
-
-Para más información, véase https://es.wikipedia.org/wiki/Caso_Estados_Unidos_contra_Microsoft[«Caso Estados Unidos contra Microsoft -- Wikipedia»].
 ====
 
 * Una definición mucho más común es que el sistema operativo es «aquel programa que se ejecuta continuamente en el ordenador» —lo que denominamos comúnmente como _**((kernel))**_ o *((núcleo))* del sistema— siendo el resto: programas del sistema y aplicaciones.

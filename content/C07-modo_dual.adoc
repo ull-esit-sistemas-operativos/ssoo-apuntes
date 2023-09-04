@@ -63,7 +63,7 @@ Por ejemplo, para desactivarlas —evitando que se lancen— activarlas y config
 ****
 Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de tener mayor control sobre el nivel de privilegio en el que se ejecuta cada componente del sistema.
 
-Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación.
+Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación<<Wikipedia-Anillo>>.
 El modo 0 es para el software más confiable y el que necesita más privilegios, que generalmente es el núcleo.
 Mientras que el modo 3 se utiliza para el software menos confiable y que necesita más supervisión, que normalmente son los procesos de usuario.
 
@@ -76,8 +76,6 @@ Los motivos son que los desarrolladores de sistemas no encuentran realmente ning
 [NOTE]
 En procesadores x86 recientes, que vienen con instrucciones específicas para facilitar la ejecución de máquinas virtuales, se ha incorporado un modo -1, para que el núcleo del sistema operativo virtualizado se ejecute en el modo 0 mientras es supervisado desde el modo -1 por el núcleo del sistema operativo anfitrión.
 
-Para más información, véase https://es.wikipedia.org/wiki/Anillo_(seguridad_inform%C3%A1tica)[«Anillo (seguridad informática) -- Wikipedia»].
-
 '''
 
 En los procesadores x86 es importante no confundir los *modos real*(((modo, real))) y *protegido*(((modo, protegido))) con el modo dual y los niveles de privilegio de los que estamos hablando.
@@ -87,9 +85,6 @@ En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —y
 
 Cuando un sistema operativo moderno arranca, lo primero que hace es iniciar el modo protegido, en el que se activan todas las características de la CPU.
 Entre otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.
-
-Para más información, véase https://es.wikipedia.org/wiki/Modo_protegido[«Modo protegido -- Wikipedia»].
-
 ****
 
 === Ejecución de instrucciones

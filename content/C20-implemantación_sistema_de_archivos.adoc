@@ -89,7 +89,7 @@ Las ventajas de los árboles B+ son:
 
 .Implementación de directorios en XFS
 ****
-El sistema de archivos {xfs} también utiliza un https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+], pero en este caso la implementación es un poco más compleja:
+El sistema de archivos {xfs} también utiliza un https://es.wikipedia.org/wiki/%C3%81rbol_B%2B[árbol B+], pero en este caso la implementación es un poco más compleja<<SGI2006>>:
 
 * Un directorio de pequeño tamaño almacena sus entradas como una lista lineal no ordenada dentro de su mismo *inodo* o FCB.
 

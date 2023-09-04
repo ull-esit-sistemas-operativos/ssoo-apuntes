@@ -4,63 +4,105 @@
 
 Parte de los contenidos de este documento están basados en las siguientes fuentes:
 
-* [[[Bavier2000]]]
+* [[[Bavier2000,1]]]
 Bavier, A. (2000). Creating New CPU Schedulers with Virtual Time. _WIP Proceedings of 21st IEEE Real-Time Systems Symposium (RTSS 2000)_.
 
-* [[[Chase2009]]]
+* [[[Chase2009,2]]]
 Chase, K. y Russinovich, M. (2009). _Processes, Threads, and Jobs in the Windows Operating System_. The Microsoft Press Store by Pearson. https://www.microsoftpressstore.com/articles/article.aspx?p=2233328&seqNum=7
 
-* [[[Friedman1999]]]
+* [[[Friedman1999,3]]]
 Friedman, M. B. (1999). Windows NT Page Replacement Policies. _Proceedings of 25th International Computer Measurement Group Conference_ (pp. 234-244).
 
-* [[[Ganger2000]]]
+* [[[Fuchsia-ZirconFairScheduler,4]]]
+Zircon Fair Scheduler. _Learn about Fuchsia_. https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler
+
+* [[[Ganger2000,5]]]
 Ganger, G. R., McKusick, M. K., Soules, C. A. N. y Patt, Y. N. (2000). Soft Updates: A Solution to the Metadata Update Problem in File Systems. _ACM Transactions on Computer Systems_, 18 (2), 127—153.
 
-* [[[Gaydov2016]]]
+* [[[Gaydov2016,6]]]
 Gaydov, V. (2016). _File locking in Linux_. https://gavv.github.io/articles/file-locks/
 
-* [[[Gorman2004]]]
+* [[[Gorman2004,7]]]
 Gorman, M. (2004). _Understanding the Linux Virtual Memory Manager_. Prentice Hall.
 
-* [[[Hailperin2006]]]
+* [[[Hailperin2006,8]]]
 Hailperin, M. (2006). _Operating Systems and Middleware: Supporting Controlled Interaction_. Course Technology.
 
-* [[[Hansen2023]]]
+* [[[Hansen2023,9]]]
 Hansen, S. (2023). _Threads and Goroutines_. https://shane.ai/posts/threads-and-goroutines/
 
-* [[[Jacob1998]]]
+* [[[Jacob1998,10]]]
 Jacob, B y Mudge, T. (1998). Virtual Memory: Issues of Implementation. _Computer_, 31, 33-43. http://dx.doi.org/10.1109/2.683005
 
-* [[[Microsoft2005]]]
+* [[[Jones2018,11]]]
+Jones, M. (2018). Inside the Linux 2.6 Completely Fair Scheduler. _IBM Developer_. https://developer.ibm.com/tutorials/l-completely-fair-scheduler/
+
+* [[[LinuxManual-acl,12]]]
+acl(5). (2002). _Linux Manual_. https://www.man7.org/linux/man-pages/man5/acl.5.html
+
+* [[[LinuxManual-mq,13]]]
+mq_overview(7). (2023). _Linux Manual_. https://www.man7.org/linux/man-pages/man7/mq_overview.7.html
+
+* [[[Microsoft2005,14]]]
 Microsoft Corporation. (2005). _Kernel Enhancements for Microsoft Windows Vista and Windows Server Longhorn_. SlideShare. https://www.slideserve.com/iolani/kernel-enhancements-for-windows-server-longhorn.
 
-* [[[Microsoft2003]]]
+* [[[Microsoft2003,15]]]
 Microsoft Corporation. (2003). _Kernel Enhancements for Windows XP_. Archivado en https://web.archive.org/web/20080307105611/http://www.microsoft.com/whdc/driver/kernel/xp_kernel.mspx
 
-* [[[Microsoft2018]]]
-Microsoft Corporation. (2018). _Processes and Threads: Scheduling Priorities_. https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
+* [[[Microsoft-MultithreadingWithC,16]]]
+Microsoft Corporation. (2021). Multithreading with C and Win32. _Microsoft Learn --  Microsoft C++, C, and Assembler_. https://learn.microsoft.com/en-us/cpp/parallel/parallel-programming-in-visual-cpp?view=msvc-170
 
-* [[[Silberschatz2004]]]
+* [[[Win32-SchedulingPriorities,17]]]
+Microsoft Corporation. (2021). Processes and Threads: Scheduling Priorities. _Microsoft Learn -- Desktop Win32 Apps_. https://docs.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
+
+* [[[Win32-UserModeScheduling,18]]]
+Microsoft Corporation. (2022). Processes and Threads: User-Mode Scheduling. _Microsoft Learn -- Desktop Win32 Apps_. https://learn.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling
+
+* [[[Win32-UsingProcessesAndThreads,19]]]
+Microsoft Corporation. (2021). Processes and Threads: Using Processes and Threads. _Microsoft Learn -- Desktop Win32 Apps_. https://learn.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads
+
+* [[[Win32-SecurityDescriptors,20]]]
+Microsoft Corporation. (2021). Autorization: Security Descriptors. _Microsoft Learn -- Desktop Win32 Apps_. https://learn.microsoft.com/en-us/windows/win32/secauthz/security-descriptors
+
+* [[[Win32-EventObjects,21]]]
+Microsoft Corporation. (2021). Synchronization: Using Event Objects. _Microsoft Learn -- Desktop Win32 Apps_. https://learn.microsoft.com/en-us/windows/win32/sync/using-event-objects
+
+* [[[Silberschatz2004,22]]]
 Silberschatz, A., Galvin, P. y Gagne, G. (2004). _Operating System Concepts with Java_. (6º ed.) John Wiley & Sons Inc.
 
-* [[[Silberschatz2005]]]
+* [[[Silberschatz2005,23]]]
 Silberschatz, A., Galvin, P. y Gagne, G. (2006). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=345629[_Fundamentos de Sistemas Operativos_]. (7ª ed.) McGraw Hill Interamericana.
 
-* [[[SGI2006]]]
+* [[[SGI2006,24]]]
 Silicon Graphics Inc. (2006). _XFS Filesystem Structure_. Archivado en https://web.archive.org/web/20210427160429/https://xfs.org/docs/xfsdocs-xml-dev/XFS_Filesystem_Structure//tmp/en-US/html/index.html
 
-* [[[Solomon2005]]]
+* [[[Solomon2005,25]]]
 Solomon, D. A. y Russinovich, M. (2005). Unit OS4: Scheduling and Dispatch 4.4. Windows Thread. _Windows OS Internals_. https://slideplayer.com/slide/6972581/
 
-* [[[Stallings2005]]]
+* [[[Stallings2005,26]]]
 Stallings, W. (2005). http://absysnetweb.bbtk.ull.es/cgi-bin/abnetopac?TITN=314530[_Sistemas operativos: Aspectos internos y principios de diseño_]. (5ª ed.) Pearson.
 
-* [[[Sun2006]]]
+* [[[Sun2006,27]]]
 Sun Microsystems, Inc. (2006). _ZFS On-Disk Specification (Draft)_. https://es.scribd.com/document/217201456/Zfs-ondiskformat
 // http://www.giis.co.in/Zfs_ondiskformat.pdf
 
-* [[[Tanenbaum2014]]]
+* [[[Tanenbaum2014,28]]]
 Tanenbaum, A. y Bos, H. (2014). _Modern Operating Systems_. (4ª ed.) Prentice Hall Press.
 
-* [[[Wikipedia-cmalloc]]]
+* [[[Wikipedia-Anillo,29]]]
+Anillo (seguridad informática). En _Wikipedia_. link:https://es.wikipedia.org/wiki/Anillo_(seguridad_inform%C3%A1tica)[]
+
+* [[[Wikipedia-CaseUsaVsMicrosoft,30]]]
+Caso Estados Unidos contra Microsoft. En _Wikipedia_. https://es.wikipedia.org/wiki/Caso_Estados_Unidos_contra_Microsoft
+
+* [[[Wikipedia-cmalloc,31]]]
 C dynamic memory allocation. En _Wikipedia_. https://en.wikipedia.org/wiki/C_dynamic_memory_allocation
+
+* [[[Wikipedia-Mainframe,32]]]
+Ordenador central. En _Wikipedia_. http://es.wikipedia.org/wiki/Ordenador_central
+
+* [[[Wikipedia-ModoProtegido,33]]]
+Modo protegido. En _Wikipedia_. https://es.wikipedia.org/wiki/Modo_protegido
+
+* [[[Wikipedia-TSC,34]]]
+Time Stamp Counter. En _Wikipedia_. https://en.wikipedia.org/wiki/Time_Stamp_Counter

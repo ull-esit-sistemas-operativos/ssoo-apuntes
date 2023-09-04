@@ -932,8 +932,8 @@ Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para 
 La *planificación equitativa* resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo proporcionalmente más tiempo de CPU a los procesos con mayor peso.
 A esta generalización del planificador equitativo se la conoce como *planificador equitativo ponderado*.
 
-Linux, desde la versión 2.6.23, utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo))) (véase https://developer.ibm.com/tutorials/l-completely-fair-scheduler/[«Inside the Linux 2.6 Completely Fair Schedule -- IBM Developer»]).
-Otro ejemplo es {zircon} —el _microkernel_ de {google_fuchsia}— que está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del *planificador equitativo ponderado* (véase https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler[«Zircon Fair Scheduler -- Fuchsia Project»]).
+Linux, desde la versión 2.6.23, utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo)))<<Jones2018>>.
+Otro ejemplo es {zircon} —el _microkernel_ de {google_fuchsia}— que está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del *planificador equitativo ponderado*<<Fuchsia-ZirconFairScheduler>>.
 
 ==== Implementación
 
@@ -1210,7 +1210,7 @@ Ambas tienen una organización muy diferente, pero en última instancia, las pri
 
 |===
 
-Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <<tabla-win32-clases-prioridad>>.
+Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <<tabla-win32-clases-prioridad>><<Win32-SchedulingPriorities>>.
 La clase de prioridad de un proceso se puede indicar durante la creación del proceso, a través del argumento `dwCreationFlags` de la función {win32_createprocess}, o sea puede obtener y cambiar con las funciones {win32_getpriorityclass} y {win32_setpriorityclass}, respectivamente.
 Por lo general, la clase de prioridad `NORMAL_PRIORITY_CLASS` es la clase por defecto de cualquier proceso nuevo, excepto que se indique otra cosa durante su creación. 
 
@@ -1349,9 +1349,7 @@ Así el sistema puede determinar con precisión el tiempo que se ha estado ejecu
 
 [NOTE]
 ====
-Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (_Time Stamp Counter_ o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.
-
-Para más información véase https://en.wikipedia.org/wiki/Time_Stamp_Counter[«Time Stamp Counter -- Wikipedia»].
+Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (_Time Stamp Counter_ o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador<<Wikipedia-TSC>>.
 ====
 
 Una característica curiosa es que los hilos expropiados se insertan en la cabeza de su cola —no en el final— y conservan lo que les queda de *cuanto*.

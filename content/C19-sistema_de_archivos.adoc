@@ -575,7 +575,7 @@ Al crear un archivo nuevo, se puede indicar la *ACL* deseada a través del argum
 También se puede consultar la *ACL* de cualquier objeto con permisos —incluidos los archivos— usando {win32_getsecurityinfo} o {win32_getnamedsecurityinfo} y modificarla usando {win32_setsecurityinfo} o {win32_setnamedsecurityinfo}.
 
 Las *ACL* y los *descriptores de seguridad* de Windows API son un tema complejo.
-Antes de manipularlos, es conveniente consultar https://docs.microsoft.com/en-us/windows/win32/secauthz/security-descriptors[«Security Descriptors»] en Microsoft Docs.
+Antes de manipularlos, es conveniente consultar la documentación de la API<<Win32-SecurityDescriptors>>.
 ====
 
 ==== Lista de control de acceso condensada 
@@ -625,12 +625,7 @@ Si necesitan leer los permisos, el propietario y el resto de *metadatos* del arc
 ==== Combinar ambos tipos de listas de control de acceso
 
 Muchos sistemas POSIX también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las *ACL* más genéricas.
-Sistemas operativos como Linux, macOS o FreeBSD implementan ambos tipos de ACL.
-
-[NOTE]
-====
-Para más información sobre las listas de control de acceso POSIX, véase https://www.man7.org/linux/man-pages/man5/acl.5.html[«acl(5) -- Linux Manual»]
-====
+Sistemas operativos como Linux<<LinuxManual-acl>>, macOS o FreeBSD implementan ambos tipos de ACL.
 
 Combinar ambos tipos de *ACL* ofrece lo mejor de ambos mundos, pero no es una solución que esté exenta de dificultades:
 
@@ -825,7 +820,7 @@ Mientras que en sistemas POSIX se llama {cmd_fsck}.
 
 === Soft Updates
 
-Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada *((soft updates))* en su implementación del sistema de archivos {ufs}.
+Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada *((soft updates))* en su implementación del sistema de archivos {ufs}<<Ganger2000>>.
 
 Cuando se monta un sistema de archivos con la opción *soft updates*, el sistema operativo desactiva la escritura síncrona de los *metadatos*, que comentamos anteriormente, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.
 
@@ -892,7 +887,7 @@ Por lo que el resultado global es una significativa ganancia en la velocidad de 
 
 .Journaling en XFS
 ****
-El sistema de archivos {xfs} modifica ligeramente esta técnica, sustituyendo las escrituras síncronas necesarias para actualizar el *registro* por escrituras asíncronas.
+El sistema de archivos {xfs} modifica ligeramente esta técnica, sustituyendo las escrituras síncronas necesarias para actualizar el *registro* por escrituras asíncronas<<SGI2006>>.
 Es decir, el control se devuelve al proceso antes de terminar de escribir las operaciones en el *registro* y confirmar la transacción, por lo que el proceso puede seguir ejecutándose antes que en otros sistemas de archivos. 
 
 El uso de escrituras asíncronas en el *registro* es peligroso.
@@ -939,5 +934,5 @@ Como antes, este cambio en el FCB dispara copias y modificaciones por todo el á
 Si el sistema falla antes de la modificación del _bloque de control de volumen_, durante el montaje del sistema de archivos no quedará ni rastro de ninguno de los cambios porque dicho bloque aún hace referencia a la antigua raíz del árbol de FCB y, a partir de ellas, a todos los nodos, bloques y FCB originales.
 Obviamente los sistemas que implementan este tipo de sistemas de archivo usan la memoria principal como caché con el objeto de combinar varias modificaciones sobre un mismo bloque antes de proceder a su escritura en disco, evitando desencadenar múltiples veces los cambios posteriores.
 
-Los sistemas de archivos ZFS y Btrfs son los principales ejemplos de sistemas de archivos basados en _copy-on-write_.
+Los sistemas de archivos ZFS<<Sun2006>> y Btrfs son los principales ejemplos de sistemas de archivos basados en _copy-on-write_.
 Esta solución no solo les permite tener las mismas propiedades que el uso de registro en cuanto a la preservación de la coherencia —con la ventaja de evitar dos escrituras en disco, una en el registro y otra para el cambio propiamente dicho— sino que además facilita que puedan ofrecer características adicionales, como integrar en el propio sistema de archivos la gestión de volúmenes dinámicos (véase el <<_volúmenes_dinámicos>>) o la creación de copias instantáneas del volumen.

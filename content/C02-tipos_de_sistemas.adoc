@@ -19,9 +19,7 @@ Los _mainframes_ pueden funcionar durante años sin problemas ni interrupciones 
 
 [NOTE]
 ====
-La mayor diferencia entre los superordenadores y los _mainframes_ está en que los primeros se centran en resolver problemas limitados por la velocidad de cálculo —lo cual requiere miles de CPU de alto rendimiento— mientras que los segundos se centran en la fiabilidad y en problemas limitados por la E/S —por lo que los _mainframes_ suelen tener «solo» entre una y varias docenas de CPU—.
-
-Para más información sobre los _mainframes_, véase http://es.wikipedia.org/wiki/Ordenador_central[«Ordenador central -- Wikipedia»].
+La mayor diferencia entre los superordenadores y los _mainframes_<<Wikipedia-Mainframe>> está en que los primeros se centran en resolver problemas limitados por la velocidad de cálculo —lo cual requiere miles de CPU de alto rendimiento— mientras que los segundos se centran en la fiabilidad y en problemas limitados por la E/S —por lo que los _mainframes_ suelen tener «solo» entre una y varias docenas de CPU—.
 ====
 
 Los _mainframes_ aparecieron a finales de la década de los 50 del siglo pasado y han seguido evolucionando hasta la actualidad, por lo que dentro de este tipo de sistemas nos encontramos con varias categorías.

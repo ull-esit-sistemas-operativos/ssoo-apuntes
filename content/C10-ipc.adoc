@@ -164,7 +164,7 @@ image::{chapdir}/enlace_comunicación_indirecta.svg[]
 
 .Colas de mensajes en sistemas POSIX
 ****
-El estándar POSIX también define un sistema de colas de mensajes, pero es bastante diferente a la solución en Windows API (véase https://www.man7.org/linux/man-pages/man7/mq_overview.7.html[«mq_overview(7) -- Linux Manual»]).
+El estándar POSIX también define un sistema de colas de mensajes<<LinuxManual-mq>>, pero es bastante diferente a la solución en Windows API.
 
 Para usarlo, lo primero es abrir o crear —si aún no existe— la cola de mensajes llamando a {linux_mq_open}:
 

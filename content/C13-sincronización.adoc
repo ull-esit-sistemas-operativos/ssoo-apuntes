@@ -667,7 +667,7 @@ Por defecto, las *variables de condición* de {pthreads} solo se pueden utilizar
 Obviamente, para eso deben ser creadas en una región de memoria compartida por dichos procesos.
 
 Las *variables de condición* de Windows API solo se pueden utilizar en hilos del mismo procesos.
-Como alternativa, Windows API soporta *eventos*, que son un tipo de objeto similar a las *variables de condición*, pero que sí se puede utilizar entre hilos de procesos diferentes (véase https://docs.microsoft.com/en-us/windows/win32/sync/using-event-objects[«Using Event Objects -- Microsoft Docs»]).
+Como alternativa, Windows API soporta *eventos*, que son un tipo de objeto similar a las *variables de condición*, pero que sí se puede utilizar entre hilos de procesos diferentes<<Win32-EventObjects>>.
 
 A los *eventos* se les puede asignar un nombre, para que sean accesibles por otros procesos, o heredarse de padres a hijos.
 Además son más pesados que las *variables de condición* de Windows API, no exigen un *_mutex_* para liberar al invocar su operación *wait*, ni admiten la operación *notifyAll*.
@@ -961,7 +961,7 @@ Obviamente, las clases de mecanismos de sincronización y gestión de hilos gene
 
 El estándar de C no menciona nada sobre *seguridad en hilos*, por lo que se debe suponer que las funciones de la librería estándar no lo son o consultar la documentación ofrecida por el proveedor de la librería.
 
-Por ejemplo, todas las versiones de la librería estándar de C en Windows actualmente son *seguras en hilos* (véase https://docs.microsoft.com/en-us/cpp/parallel/multithreading-with-c-and-win32?view=vs-2019[«Multithreading with C and Win32 -- Microsoft Docs»]).
+Por ejemplo, todas las versiones de la librería estándar de C en Windows actualmente son *seguras en hilos*<<Microsoft-MultithreadingWithC>>.
 Pero hasta hace unos años Microsoft ofrecía varias versiones de la librería, algunas *seguras en hilos*, para usar en aplicaciones multihilo, y otras no seguras para usar en aplicaciones monohilo.
 
 ==== Seguridad en hilos en POSIX

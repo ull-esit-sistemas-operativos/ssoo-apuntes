@@ -138,7 +138,7 @@ Por tanto, es en *TCB* —y no en el *PCB*— donde se guarda la información pr
 
 En la actualidad, en los diferentes sistemas operativos se pueden encontrar librerías de ambos tipos.
 
-Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (véase https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads[«Using Processes and Threads -- Microsoft Docs»]) mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente.
+Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo<<Win32-UsingProcessesAndThreads>> mientras que la librería de hilos {pthreads} —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente.
 En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.
 
 == Modelos multihilo
@@ -331,7 +331,7 @@ Para esos casos los desarrolladores pueden utilizar librerías o lenguajes espec
 ==== Implementaciones
 
 Este modelo se soportaba en sistemas {freebsd} y versiones antiguas de {netbsd}, así como en UNIX comerciales, como: {solaris} 8 y anteriores, {irix}, {hpux} y {tru64}.
-Microsoft Windows también soportaba este modelo —a partir de Windows 7 y hasta Windows 10— gracias a incorporar un mecanismo denominado _planificación en modo usuario_ (véase https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[«User-Mode Scheduling -- Microsoft Docs»]).
+Microsoft Windows también soportaba este modelo —a partir de Windows 7 y hasta Windows 10— gracias a incorporar un mecanismo denominado _planificación en modo usuario_<<Win32-UserModeScheduling>>.
 
 Algunos lenguajes de programación implementan el modelo *muchos a muchos* sobre el modelo *uno a uno* soportado por la mayoría de sistemas operativos modernos.
 Ese es el caso de {golang}, https://es.wikipedia.org/wiki/Erlang[Erlang], https://es.wikipedia.org/wiki/Elixir_(lenguaje_de_programaci%C3%B3n)[Elixir] y https://blogs.oracle.com/javamagazine/post/java-loom-virtual-threads-platform-threads[Java].
@@ -386,7 +386,7 @@ Algunas de estas implementaciones son:
 Permite crear un millón de *hilos a nivel de usuario* —llamados _tasklets_— consumiendo solo 100 MiB de memoria.
 
 * *{golang}*, un lenguaje de programación orientado a la creación de servicios de alto rendimiento, que incluye su propia implementación del modelo *muchos a muchos*.
-Go puede crear un millón de *hilos a nivel de usuario* —llamadas _gorutinas_— 10 veces más rápido de lo que se pueden crear la misma cantidad de hilos del sistema operativo en Linux <<Hansen2023>>, utilizando 2 GiB de memoria para las pilas.
+Go puede crear un millón de *hilos a nivel de usuario* —llamadas _gorutinas_— 10 veces más rápido de lo que se pueden crear la misma cantidad de hilos del sistema operativo en Linux<<Hansen2023>>, utilizando 2 GiB de memoria para las pilas.
 
 * *Java*, soporta https://blogs.oracle.com/javamagazine/post/java-loom-virtual-threads-platform-threads[hilos virtuales] —a partir de la versión 19 como _feature preview_— una implementación del modelo *muchos a muchos*, dirigida a cargas de trabajo que necesitan una cantidad extremadamente alta de hilos.
 
