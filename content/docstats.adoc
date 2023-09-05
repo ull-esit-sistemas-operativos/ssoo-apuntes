@@ -1,14 +1,14 @@
-:document-characters: 567156
-:document-words: 112279
-:document-paragraphs: 1732
-:document-reading-time: 9 horas y 21 minutos
-:s01-characters: 7530
-:s01-words: 1372
-:s01-paragraphs: 26
+:document-characters: 574551
+:document-words: 113764
+:document-paragraphs: 1748
+:document-reading-time: 9 horas y 29 minutos
+:s01-characters: 7463
+:s01-words: 1363
+:s01-paragraphs: 25
 :s01-reading-time: 7 minutos
-:s02-characters: 24211
-:s02-words: 4523
-:s02-paragraphs: 77
+:s02-characters: 24654
+:s02-words: 4618
+:s02-paragraphs: 76
 :s02-reading-time: 23 minutos
 :s03-characters: 23286
 :s03-words: 4547
@@ -26,38 +26,38 @@
 :s06-words: 3602
 :s06-paragraphs: 56
 :s06-reading-time: 18 minutos
-:s07-characters: 18985
-:s07-words: 3724
-:s07-paragraphs: 58
+:s07-characters: 18817
+:s07-words: 3703
+:s07-paragraphs: 56
 :s07-reading-time: 19 minutos
-:s08-characters: 9940
-:s08-words: 1908
-:s08-paragraphs: 35
-:s08-reading-time: 10 minutos
+:s08-characters: 11075
+:s08-words: 2101
+:s08-paragraphs: 39
+:s08-reading-time: 11 minutos
 :s09-characters: 39629
 :s09-words: 7932
 :s09-paragraphs: 96
 :s09-reading-time: 40 minutos
-:s10-characters: 34650
-:s10-words: 6891
+:s10-characters: 34617
+:s10-words: 6886
 :s10-paragraphs: 91
 :s10-reading-time: 34 minutos
 :s11-characters: 5367
 :s11-words: 1040
 :s11-paragraphs: 17
 :s11-reading-time: 5 minutos
-:s12-characters: 45440
-:s12-words: 9177
-:s12-paragraphs: 132
-:s12-reading-time: 46 minutos
-:s13-characters: 35523
-:s13-words: 6848
+:s12-characters: 48152
+:s12-words: 9738
+:s12-paragraphs: 137
+:s12-reading-time: 49 minutos
+:s13-characters: 35437
+:s13-words: 6836
 :s13-paragraphs: 96
 :s13-reading-time: 34 minutos
-:s14-characters: 54624
-:s14-words: 11162
-:s14-paragraphs: 198
-:s14-reading-time: 56 minutos
+:s14-characters: 56418
+:s14-words: 11580
+:s14-paragraphs: 210
+:s14-reading-time: 58 minutos
 :s15-characters: 32208
 :s15-words: 6307
 :s15-paragraphs: 86
@@ -74,11 +74,11 @@
 :s18-words: 2019
 :s18-paragraphs: 25
 :s18-reading-time: 10 minutos
-:s19-characters: 56483
-:s19-words: 10910
-:s19-paragraphs: 195
-:s19-reading-time: 55 minutos
-:s20-characters: 31521
-:s20-words: 6239
+:s19-characters: 56406
+:s19-words: 10899
+:s19-paragraphs: 194
+:s19-reading-time: 54 minutos
+:s20-characters: 31525
+:s20-words: 6240
 :s20-paragraphs: 110
 :s20-reading-time: 31 minutos

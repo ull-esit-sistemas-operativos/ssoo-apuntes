@@ -916,108 +916,190 @@ Para evitarlo se puede optar por un *planificador de colas multinivel* —para r
 === Planificación equitativa
 (((planificación, de CPU, equitativa)))
 Hasta el momento hemos hablado de planificadores que se centran en cuál es el proceso más importante para ejecutarlo a continuación.
-Sin embargo otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
-Esto es precisamente lo que hace la *planificación equitativa* (_Fair Scheduling_) que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.
+Sin embargo, otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
+Esto es precisamente lo que hace la *planificación equitativa* (_Fair Scheduling_), que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.
 
-Por ejemplo, si 4 procesos compiten por el uso de la CPU, el planificador asignaría un 25% del tiempo de la misma a cada uno.
-Si a continuación un usuario inicia un nuevo proceso, el planificador tendría que ajustar el reparto asignando un 20% del tiempo a cada uno, ya que ahora habría 5 procesos compitiendo por el tiempo de CPU.
+Por ejemplo, supongamos que 4 procesos con diferentes ráfagas de CPU llegan juntos y compiten por el uso de la CPU:
 
-El algoritmo de planificación equitativa es muy similar al algoritmo *RR*. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula dinámicamente para garantizar el reparto equitativo de la CPU.
+[cols="2*^" options=header]
+|===
+|Proceso
+|Tiempo de ráfaga de CPU (ms)
 
-==== Planificación equitativa ponderada
-(((planificación, de CPU, equitativa ponderada)))
-Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
-Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_es>>.
+|P1
+|8
 
-La *planificación equitativa* resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo proporcionalmente más tiempo de CPU a los procesos con mayor peso.
-A esta generalización del planificador equitativo se la conoce como *planificador equitativo ponderado*.
+|P2 
+|4
 
-Linux, desde la versión 2.6.23, utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo)))<<Jones2018>>.
-Otro ejemplo es {zircon} —el _microkernel_ de {google_fuchsia}— que está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del *planificador equitativo ponderado*<<Fuchsia-ZirconFairScheduler>>.
+|P3
+|12
 
-==== Implementación
+|P4 
+|4
 
-Para ilustrar como funciona este tipo de planificadores, vamos a describir brevemente una posible implementación basada en la de {zircon}.
+|===
 
+Tomando un periodo de 4 ms., en el primer periodo a cada proceso le corresponde 1 ms. porque hay 4 procesos en estado *preparado*.
+Al final del periodo 4, la ráfaga de los procesos P2 y P4 termina —porque ambos procesos han ejecutado 4 ms. en la CPU— por lo que a cada uno de los restantes le corresponden 2 ms. del periodo. 
+Finalmente, al terminar el periodo 6, acaba el proceso P1 —que ya debe haberse ejecutado 8 ms.— por lo que P4 puede usar los 4 ms. del periodo 7 y terminar ráfaga.
+
+En la siguiente tabla se ilustra este reparto indicando el tiempo de cada cuanto que corresponde a cada proceso:
+
+[[tbl-planificación-equitativa-ideal]]
+[cols="8*^" options=header]
+|===
+|Proceso
+|Q1
+|Q2
+|Q3
+|Q4
+|Q5
+|Q6
+|Q7
+
+
+|P1
+|1
+|1
+|1
+|1
+|2
+|2
+|
+
+|P2 
+|1
+|1
+|1
+|1
+|
+|
+|
+
+|P3
+|1
+|1
+|1
+|1
+|2
+|2
+|4
+
+|P4 
+|1
+|1
+|1
+|1
+|
+|
+|
+
+|===
+
+Sin embargo, debemos tener en cuenta que en un instante dado, no puede ejecutarse más de un proceso en la CPU.
+Es decir, durante todo el periodo 1, realmente no pueden ejecutarse los 4 procesos al mismo tiempo.
+El planificador tiene asignar la CPU en algún orden, de forma que el tiempo finalmente usado por cada proceso en cada periodo sea aproximadamente el calculado en la tabla anterior.
+
+En la siguiente figura puede verse un posible reparto:
+
+image::{chapdir}/equitativo1.svg[]
+
+El algoritmo de *planificación equitativa* es muy similar al algoritmo *RR*, pero en la *planificación equitativa* la ventana de tiempo que finalmente se asigna a cada proceso se calcula dinámicamente.
+
+==== Implementación básica
+
+Las implementaciones del algoritmo de *planificación equitativa* suelen utilizar el concepto de _tiempo virtual_ para seguir la pista de cuánto tiempo debe ejecutarse el proceso.
+Por ejemplo, en el planificador de {zircon}<<Fuchsia-ZirconFairScheduler>> —el _microkernel_ de {google_fuchsia}— cuando un proceso stem:[P_i] entra en la *cola de preparados*, en el PCB de dicho proceso se actualizan dos tiempos:
+
+* *Instante inicial stem:[t_{si}]* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+
+* *Instante final stem:[t_{fi}]* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+
+Estos tiempos se dicen que están en _tiempo virtual_ de la CPU para señalar que idealmente el proceso comenzaría su ejecución en stem:[t_{si}] y terminaría en stem:[t_{fi}], aunque esto difícilmente va a ocurrir en la realidad porque el tiempo de CPU hay que repartirlo entre los diferentes procesos.
+
+[NOTE]
 {zircon} es un _microkernel_ multihilo con modelo uno a uno, por lo que su planificador trabaja con hilos.
 Es decir, las propiedades que necesita el planificador para hacer su trabajo están vinculadas a los hilos y son estos hilos los que el planificador ordena y selecciona para ser ejecutados en la CPU.
-Por el contrario, en la versión que vamos a describir los hilos no existen.
-En su lugar hablaremos de planificar procesos en la CPU, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.
+Sin embargo, en la versión que vamos a describir hablaremos de planificar procesos, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.
 
-Este planificador tiene una serie de parámetros ajustables:
-
-* La *granularidad mínima _M_*, es la porción mínima de tiempo de CPU que se puede asignar a cualquier proceso.
-
-* La *latencia de planificación _L_*, es el periodo de tiempo en el que todos los procesos deben haber sido planificados aproximadamente una vez en la CPU.
-+
-Lo que hace el planificador es repartir periodos de tiempo _L_ entre todos los procesos que compiten por la CPU, para que todos tengan una oportunidad de ejecutarse en intervalos de al menos _L_ segundos.
-
-Como en otros planificadores, los procesos listos para ejecutarse en un instante dado se almacenan en la cola de preparados.
-Cada proceso _P~i~_ tiene una serie de propiedades:
-
-* *Peso _w~i~_*, que indica el peso relativo del proceso en el reparto del tiempo de CPU.
-Se trata de un número real en el intervalo (0.0, 1.0].
-
-* *Instante inicial _T~si~_* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
-
-* *Instante final _T~fi~_* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
-
-* *Cuanto del tiempo de CPU _T~i~_* en el periodo actual.
-Como ocurre con el cuanto en la planificación RR, se trata del tiempo máximo que el proceso puede estar de forma continua en la CPU.
-
-El concepto de _tiempo virtual_ es muy común en este tipo de planificadores.
-Es como si cada proceso tuviera su propia dimensión temporal, de forma que el tiempo fluyera más despacio para los procesos con mayor peso _w~i~_.
-Así, una unidad de tiempo virtual para un proceso muy pesado implica más tiempo real, que la misma unidad para un proceso muy ligero.
-
-Sea _t_ es el instante de tiempo en el que un proceso _P~i~_ entra en la cola de preparados, en relación al tiempo virtual el proceso comienza a ejecutarse en la CPU desde ese mismo instante y necesitará más tiempo para terminar cuanto mayor sea su peso.
-Por lo tanto, podemos calcular el instante inicial _T~si~_ y el instante final _T~fi~_ de la siguiente manera:
+Si stem:[t] es el instante de tiempo en el que un proceso stem:[P_i] entra en la cola de preparados, el instante inicial stem:[t_{si}] y el instante final stem:[t_{fi}] se calculan de la siguiente manera:
 
 [latexmath]
 ++++
 \begin{split}
-T_{si} &= t \\
-T_{fi} &= T_{si} + L/w_i
+t_{si} &= t \\
+t_{fi} &= t_{si} + gM
 \end{split}
 ++++
 
-El tiempo virtual no es el tiempo real en la CPU.
-Por lo tanto, el proceso _P~i~_ no entrará en la CPU nada más llegar en _t_, pero si se colocará en la cola de preparados en orden ascendente en relación al instante final _T~fi~_.
-Es decir, los procesos con mayor peso _w~i~_ se colocarán antes en la cola de preparados, con bastante probabilidad.
+donde stem:[M] es la porción mínima de tiempo de CPU real que se puede asignar a cada proceso y stem:[g] es la cantidad de estas porciones de tiempo que se quiere repartir entre todos los procesos que están en disposición de ser ejecutados.
+Es decir, en el ejemplo anterior stem:[gM = 4\text( ms.)], por lo que si la porción mínima fuera stem:[M = 1\text( ms.)], cada periodo tendría 4 porciones de tiempo para repartir.
 
-Cuando un proceso _P~i~_ es seleccionado para pasar al estado *ejecutando*, se calcula su cuanto de tiempo.
-Como el tiempo se asigna en múltiplos de _M_, primero es necesario saber cuantas unidades de tiempo _M_ tiene el periodo de latencia de planificación _L_, que es el tiempo máximo que se le podría asignar si el proceso estuviera solo:
+En la *cola de preparados* los procesos son ordenados por el valor de stem:[t_{fi}], de forma que primero se planifican los procesos que tiene ráfagas que virtualmente terminarían antes.
 
-[stem]
+El planificador de {zircon} tiene una serie de parámetros ajustables:
+
+* La *granularidad mínima stem:[M]* que, como hemos comentado, es la porción mínima de tiempo de CPU real que se puede asignar a cualquier proceso.
+
+* La *latencia objetivo stem:[L]*, que es el periodo de tiempo de CPU mínimo que se va a repartir entre los procesos.
+Es decir, dentro de un periodo de *latencia objetivo* stem:[L] hay stem:[\text{floor}(L / M)] porciones de tiempo para repartir entre los procesos.
+
+Si hay stem:[n] procesos que se pueden ejecutar, lo que hace el planificador es calcular stem:[g] de la siguiente manera:
+
+[latexmath]
 ++++
-g_i = "floor"(L/M)
-++++
-
-A cada proceso le corresponde más tiempo de CPU según su peso en relación al resto de procesos en competición, lo que lleva a calcular el peso relativo _r~i~_ como:
-
-[stem]
-++++
-r_i = w_i / W
-++++
-
-donde _W_ es la suma de los pesos de todos los procesos en competición por la CPU —en la cola de preparados— más el peso del que se está ejecutando.
-
-[stem]
-++++
-W = sum_i w_i : P_i["estado"] in {"PREPARADO", "EJECUTANDO"}
+g = \text{min}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)
 ++++
 
-Cuando un proceso entra en la cola de preparados su peso se suma a _W_, mientras que cuando pasa al estado *esperando* o termina, su peso se resta.
+de forma que siempre haya suficientes porciones para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a stem:[\text{floor}(L / M)].
 
-Finalmente, podemos calcular el cuanto del proceso _P~i~_: 
+Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_{i}] durante el que se le asignará la CPU:
 
-[stem]
+[latexmath]
 ++++
-T_i = "ceil"(g_i * r_i) * M
+t_{i} = \text{ceil}\left(\frac{g}{n}\right)M
 ++++
 
-Esta definición asegura que _T~i~_ sea un entero múltiplo de la granularidad mínima _M_, mientras es aproximadamente proporcional al peso del proceso respecto al resto de procesos con los que compite.
+de forma que se reparten las stem:[g] porciones entre los stem:[n] procesos. 
 
-Ilustremos el algoritmo con un ejemplo con _L_ = 5 y _M_ = 1:
+==== Planificación equitativa ponderada
+(((planificación, de CPU, equitativa ponderada)))
+
+Al igual que en los algoritmos anteriores de planificación, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
+Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <<_ciclo_de_ráfagas_de_cpu_y_de_es>>.
+
+La *planificación equitativa* resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo más tiempo de CPU a los procesos con mayor peso.
+A esta generalización del planificador equitativo se la conoce como *planificador equitativo ponderado*.
+
+Linux, desde la versión 2.6.23, utiliza un tipo de *planificador equitativo ponderado* denominado *((CFS))* (_Completely Fair Scheduler_) o *planificador completamente equitativo*(((planificador, completamente equitativo)))<<Jones2018>>.
+Otro ejemplo es {zircon} que, como hemos comentado, está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del *planificador equitativo* que, de hecho, es realmente un *planificador equitativo ponderado*<<Fuchsia-ZirconFairScheduler>>.
+
+==== Implementación de la planificación equitativa ponderada
+
+En {zircon} cada proceso stem:[P_i] tiene un peso stem:[w_i] que indica la importancia del proceso en el reparto del tiempo de CPU.
+
+El primer cambio —respecto a la implementación vista anteriormente— es que el instante final stem:[t_{fi}] realmente se calcula de la siguiente manera:
+
+[latexmath]
+++++
+t_{fi} = t_{si} + gM/w_i
+++++
+
+de forma que es los procesos con mayor peso stem:[w_i] tiene un stem:[t_{fi}] más pequeño, por lo que se colocan antes en la *cola de preparados*.
+
+Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_{i}] durante el que se le asignará la CPU, asignándole un tiempo proporcional al peso del proceso stem:[w_i] respecto al peso del resto de los procesos con los que compite:
+
+[latexmath]
+++++
+t_{i} = \text{ceil}(g \frac{w_i}{W})M
+++++
+
+donde stem:[W] es la suma de todos los pesos stem:[w_i] para los stem:[n] procesos preparados para ser ejecutados.
+
+==== Ejemplo de planificación equitativa ponderada
+
+Ilustremos el algoritmo con un ejemplo con stem:[L=5] y stem:[M=1]:
 
 [cols="4*^" options=header]
 |===
@@ -1029,36 +1111,91 @@ Ilustremos el algoritmo con un ejemplo con _L_ = 5 y _M_ = 1:
 |P1
 |0
 |10
-|0.3
+|2
 
 |P2 
 |1
 |2
-|0.1
+|1
 
 |P3
 |2
 |3
-|0.4
+|2
 
 |P4 
 |3
 |2
-|0.5
-
-|P5
-|4
 |5
-|0.2
 |===
 
 El resultado es el que se muestra en el siguiente diagrama de Gantt:
 
-image::{chapdir}/equitativo.svg[]
+image::{chapdir}/equitativo2.svg[]
 
-Como el primer proceso está solo cuando se le asigna la CPU, puede consumir toda la latencia de planificación _L_ en el primer periodo.
-Sin embargo, ya han llegado el resto de procesos del problema cuando es expulsado de la CPU, por lo que a partir de ese momento tiene que competir con ellos.
-Entonces, el orden para asignar la CPU viene determinado por el peso y el tiempo de cuanto por la expresión para _T~i~_ que vimos anteriormente.
+Al empezar, el primer proceso está solo cuando se le asigna la CPU, por lo que puede consumir toda la latencia de planificación stem:[L] en el primer periodo.
+Posteriormente, cuando vuelve a la *cola de preparados* en el instante 5, han llegado el resto de procesos, por lo que tiene que competir con ellos por la CPU.
+
+A partir de ese instante el orden para asignar la CPU viene determinado por stem:[t_{fi}], cuya expresión depende de stem:[g].
+En este caso stem:[g=M/L=5] en todo momento, puesto que hay menos procesos que porciones de tiempo stem:[M] en stem:[L].
+
+En la siguiente tabla se puede observar los valores de stem:[t_{si}] y stem:[t_{fi}] para cada proceso en el instante 5:
+
+[cols="3*^" options=header]
+|===
+|Proceso
+|stem:[t_{si}]
+|stem:[t_{fi}]
+
+|P1
+|5
+|7.5
+
+|P2 
+|1
+|6
+
+|P3
+|2
+|4.5
+
+|P4 
+|3
+|4
+|===
+
+Aunque el proceso stem:[P_4] es el último en llegar, es el siguiente en ser planificado, porque al tener un peso más alto su stem:[t_{f4}] es el más bajo.
+Entonces se calcula el tiempo de cuanto stem:[t_4], que da 3, por lo que se planifica en la CPU durante ese tiempo.
+
+Sin embargo, stem:[P_4] no consume su tiempo de cuanto porque su ráfaga terminar antes, por lo que en el instante 7 se tiene que planificar el siguiente proceso en la *cola de preparados*.
+En este caso sería stem:[P_3], con un tiempo de cuanto de 2.
+
+Para calcular stem:[t_3] es importante recordar que stem:[W = 5], puesto que stem:[P_4] ya no está en la *cola de preparados* por lo que su peso no se incluye.
+
+En el instante 9, el proceso stem:[P_3] es expulsado de la CPU y vuelve a la *cola de preparados*.
+Entonces, se tienen que actualizar sus valores para stem:[t_{si}] y stem:[t_{fi}] con el objeto de determinar cuál será el próximo proceso planificado:
+
+[cols="3*^" options=header]
+|===
+|Proceso
+|stem:[t_{si}]
+|stem:[t_{fi}]
+
+|P1
+|5
+|7.5
+
+|P2 
+|1
+|6
+
+|P3
+|9
+|11.5
+|===
+
+Por tanto, el siguiente proceso a planificar es stem:[P_2] con stem:[t_2 = 1].
+Y así se repite el procedimiento, sucesivamente.
 
 Una vez resuelto el problema, los *tiempos de espera y ejecución promedio* correspondientes serían:
 
@@ -1070,38 +1207,32 @@ Una vez resuelto el problema, los *tiempos de espera y ejecución promedio* corr
 2+|Tiempo de ejecución (ms)
 
 |P1
-|17
->|[.lightcell]#(0-0) + (9-5) + (14-11)=#|7
->|[.lightcell]#(17-0)=#|17
+|16
+>|[.lightcell]#(0-0) + (10-5) + (13-12)=#|6
+>|[.lightcell]#(16-0)=#|16
 
 |P2
-|22
->|[.lightcell]#(12-1) + (21-13)=#|19
->|[.lightcell]#(22-1)=#|21
+|17
+>|[.lightcell]#(9-1) + (16-10)=#|14
+>|[.lightcell]#(17-1)=#|16
 
 |P3
 |14
+>|[.lightcell]#(7-2) + (12-9)=#|7
 >|[.lightcell]#(13-2)=#|11
->|[.lightcell]#(14-2)=#|12
 
 |P4
 |7
 >|[.lightcell]#(5-4)=#|1
 >|[.lightcell]#(7-3)=#|4
 
-|P5
-|21
->|[.lightcell]#(11-5) + (17-12)=#|11
->|[.lightcell]#(21-4)=#|17
-
 |Tiempos promedio (ms)
 |
 |
-|9.80
+|7.00
 |
-|14.20 
+|11.75 
 |===
-
 
 === Planificación con colas multinivel
 (((planificación, de CPU, multinivel)))
