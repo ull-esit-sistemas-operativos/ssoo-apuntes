@@ -318,7 +318,7 @@ pre.rouge .gs {
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 46 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 49 minutos</p>
 </div>
 </td>
 </tr>
@@ -524,7 +524,7 @@ Por tanto, es en <strong>TCB</strong> —y no en el <strong>PCB</strong>— dond
 <p>En la actualidad, en los diferentes sistemas operativos se pueden encontrar librerías de ambos tipos.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo (véase <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/using-processes-and-threads">«Using Processes and Threads&#8201;&#8212;&#8201;Microsoft Docs»</a>) mientras que la librería de hilos <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente.
+<p>Por ejemplo, la librería de hilos de Windows API se implementa en el núcleo<a href="bibliografía.html#Win32-UsingProcessesAndThreads">[19]</a> mientras que la librería de hilos <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> —frecuentemente utilizada en los sistemas POSIX— puede ser de ambos tipos, dependiendo solamente del sistema donde se implemente.
 En Linux y en la mayor parte de los UNIX modernos, POSIX Threads se implementa en el núcleo del sistema.</p>
 </div>
 </div>
@@ -814,7 +814,7 @@ Para esos casos los desarrolladores pueden utilizar librerías o lenguajes espec
 <h5 id="_implementaciones_4"><a class="anchor" href="#_implementaciones_4"></a>Implementaciones</h5>
 <div class="paragraph">
 <p>Este modelo se soportaba en sistemas <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a> y versiones antiguas de <a href="https://es.wikipedia.org/wiki/NetBSD">NetBSD</a>, así como en UNIX comerciales, como: <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a> 8 y anteriores, <a href="https://es.wikipedia.org/wiki/IRIX">IRIX</a>, <a href="https://es.wikipedia.org/wiki/HP-UX">HP-UX</a> y <a href="https://es.wikipedia.org/wiki/Tru64">Tru64 UNIX</a>.
-Microsoft Windows también soportaba este modelo —a partir de Windows 7 y hasta Windows 10— gracias a incorporar un mecanismo denominado <em>planificación en modo usuario</em> (véase <a href="https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling">«User-Mode Scheduling&#8201;&#8212;&#8201;Microsoft Docs»</a>).</p>
+Microsoft Windows también soportaba este modelo —a partir de Windows 7 y hasta Windows 10— gracias a incorporar un mecanismo denominado <em>planificación en modo usuario</em><a href="bibliografía.html#Win32-UserModeScheduling">[18]</a>.</p>
 </div>
 <div class="paragraph">
 <p>Algunos lenguajes de programación implementan el modelo <strong>muchos a muchos</strong> sobre el modelo <strong>uno a uno</strong> soportado por la mayoría de sistemas operativos modernos.
@@ -897,7 +897,7 @@ Permite crear un millón de <strong>hilos a nivel de usuario</strong> —llamado
 </li>
 <li>
 <p><strong><a href="https://es.wikipedia.org/wiki/Go_(lenguaje_de_programaci%C3%B3n)">Go</a></strong>, un lenguaje de programación orientado a la creación de servicios de alto rendimiento, que incluye su propia implementación del modelo <strong>muchos a muchos</strong>.
-Go puede crear un millón de <strong>hilos a nivel de usuario</strong> —llamadas <em>gorutinas</em>— 10 veces más rápido de lo que se pueden crear la misma cantidad de hilos del sistema operativo en Linux <a href="bibliografía.html#Hansen2023">[Hansen2023]</a>, utilizando 2 GiB de memoria para las pilas.</p>
+Go puede crear un millón de <strong>hilos a nivel de usuario</strong> —llamadas <em>gorutinas</em>— 10 veces más rápido de lo que se pueden crear la misma cantidad de hilos del sistema operativo en Linux<a href="bibliografía.html#Hansen2023">[9]</a>, utilizando 2 GiB de memoria para las pilas.</p>
 </li>
 <li>
 <p><strong>Java</strong>, soporta <a href="https://blogs.oracle.com/javamagazine/post/java-loom-virtual-threads-platform-threads">hilos virtuales</a> —a partir de la versión 19 como <em>feature preview</em>— una implementación del modelo <strong>muchos a muchos</strong>, dirigida a cargas de trabajo que necesitan una cantidad extremadamente alta de hilos.</p>

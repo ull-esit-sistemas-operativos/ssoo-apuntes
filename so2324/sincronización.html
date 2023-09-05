@@ -1317,7 +1317,7 @@ Obviamente, para eso deben ser creadas en una región de memoria compartida por 
 </div>
 <div class="paragraph">
 <p>Las <strong>variables de condición</strong> de Windows API solo se pueden utilizar en hilos del mismo procesos.
-Como alternativa, Windows API soporta <strong>eventos</strong>, que son un tipo de objeto similar a las <strong>variables de condición</strong>, pero que sí se puede utilizar entre hilos de procesos diferentes (véase <a href="https://docs.microsoft.com/en-us/windows/win32/sync/using-event-objects">«Using Event Objects&#8201;&#8212;&#8201;Microsoft Docs»</a>).</p>
+Como alternativa, Windows API soporta <strong>eventos</strong>, que son un tipo de objeto similar a las <strong>variables de condición</strong>, pero que sí se puede utilizar entre hilos de procesos diferentes<a href="bibliografía.html#Win32-EventObjects">[21]</a>.</p>
 </div>
 <div class="paragraph">
 <p>A los <strong>eventos</strong> se les puede asignar un nombre, para que sean accesibles por otros procesos, o heredarse de padres a hijos.
@@ -1741,7 +1741,7 @@ Pero si un hilo modifica un objeto, todas las lecturas y escrituras en el mismo 
 <p>El estándar de C no menciona nada sobre <strong>seguridad en hilos</strong>, por lo que se debe suponer que las funciones de la librería estándar no lo son o consultar la documentación ofrecida por el proveedor de la librería.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, todas las versiones de la librería estándar de C en Windows actualmente son <strong>seguras en hilos</strong> (véase <a href="https://docs.microsoft.com/en-us/cpp/parallel/multithreading-with-c-and-win32?view=vs-2019">«Multithreading with C and Win32&#8201;&#8212;&#8201;Microsoft Docs»</a>).
+<p>Por ejemplo, todas las versiones de la librería estándar de C en Windows actualmente son <strong>seguras en hilos</strong><a href="bibliografía.html#Microsoft-MultithreadingWithC">[16]</a>.
 Pero hasta hace unos años Microsoft ofrecía varias versiones de la librería, algunas <strong>seguras en hilos</strong>, para usar en aplicaciones multihilo, y otras no seguras para usar en aplicaciones monohilo.</p>
 </div>
 </div>

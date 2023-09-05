@@ -223,15 +223,15 @@ Por eso es necesario establecer mecanismos de protección frente a los errores e
 <div class="ulist">
 <ul>
 <li>
-<p>Cuando un proceso comete un error —como una división por cero o un acceso a memoria no válido— o un programa solicita un servicio al sistema operativo a través de una llamada al sistema lo que se genera es una excepción.
+<p>Cuando un proceso comete un error —como una división por cero o un acceso a memoria no válido— lo que se genera es una excepción en la CPU.
 Esta excepción despierta al sistema operativo para que haga lo que sea más conveniente.</p>
 </li>
 <li>
-<p>Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción.
+<p>Cuando un proceso necesita un servicio lo que hace es lanzar una llamada al sistema, que no es más que ejecutar una instrucción que lanza una excepción en la CPU.
 Esta excepción despierta al sistema operativo para que atienda la petición.</p>
 </li>
 <li>
-<p>Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción que despierta al sistema operativo.</p>
+<p>Cuando los dispositivos de E/S requieren la atención del sistema operativo —por ejemplo, porque se ha completado una transferencia de datos— se genera una interrupción en la CPU, que despierta al sistema operativo.</p>
 </li>
 </ul>
 </div>
@@ -301,7 +301,7 @@ Por ejemplo, para desactivarlas —evitando que se lancen— activarlas y config
 <p>Aunque para operar en modo dual solo se necesita que la CPU admita los dos modos descritos, existen procesadores que soportan más, con la idea de tener mayor control sobre el nivel de privilegio en el que se ejecuta cada componente del sistema.</p>
 </div>
 <div class="paragraph">
-<p>Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación.
+<p>Es el caso de la arquitectura Intel x86, que soporta 4 modos de operación<a href="bibliografía.html#Wikipedia-Anillo">[29]</a>.
 El modo 0 es para el software más confiable y el que necesita más privilegios, que generalmente es el núcleo.
 Mientras que el modo 3 se utiliza para el software menos confiable y que necesita más supervisión, que normalmente son los procesos de usuario.</p>
 </div>
@@ -325,9 +325,6 @@ En procesadores x86 recientes, que vienen con instrucciones específicas para fa
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Para más información, véase <a href="https://es.wikipedia.org/wiki/Anillo_(seguridad_inform%C3%A1tica)">«Anillo (seguridad informática)&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
-</div>
 <hr>
 <div class="paragraph">
 <p>En los procesadores x86 es importante no confundir los <strong>modos real</strong> y <strong>protegido</strong> con el modo dual y los niveles de privilegio de los que estamos hablando.</p>
@@ -339,9 +336,6 @@ En este modo, por ejemplo, solo tienen acceso al primer mega de memoria RAM —y
 <div class="paragraph">
 <p>Cuando un sistema operativo moderno arranca, lo primero que hace es iniciar el modo protegido, en el que se activan todas las características de la CPU.
 Entre otras, el direccionamiento de 32 o 64 bits —según el procesador que sea— y la posibilidad de usar los 4 niveles de privilegio, de los que hemos hablado, para que el núcleo pueda supervisar al resto de componentes.</p>
-</div>
-<div class="paragraph">
-<p>Para más información, véase <a href="https://es.wikipedia.org/wiki/Modo_protegido">«Modo protegido&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
 </div>
 </div>
 </div>

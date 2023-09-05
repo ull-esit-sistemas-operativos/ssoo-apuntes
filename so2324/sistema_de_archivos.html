@@ -316,7 +316,7 @@ pre.rouge .gs {
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 55 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 54 minutos</p>
 </div>
 </td>
 </tr>
@@ -1218,7 +1218,7 @@ Al crear un archivo nuevo, se puede indicar la <strong>ACL</strong> deseada a tr
 </div>
 <div class="paragraph">
 <p>Las <strong>ACL</strong> y los <strong>descriptores de seguridad</strong> de Windows API son un tema complejo.
-Antes de manipularlos, es conveniente consultar <a href="https://docs.microsoft.com/en-us/windows/win32/secauthz/security-descriptors">«Security Descriptors»</a> en Microsoft Docs.</p>
+Antes de manipularlos, es conveniente consultar la documentación de la API<a href="bibliografía.html#Win32-SecurityDescriptors">[20]</a>.</p>
 </div>
 </td>
 </tr>
@@ -1296,21 +1296,7 @@ Si necesitan leer los permisos, el propietario y el resto de <strong>metadatos</
 <h5 id="_combinar_ambos_tipos_de_listas_de_control_de_acceso"><a class="anchor" href="#_combinar_ambos_tipos_de_listas_de_control_de_acceso"></a>Combinar ambos tipos de listas de control de acceso</h5>
 <div class="paragraph">
 <p>Muchos sistemas POSIX también soportan un borrador de especificación llamado POSIX ACL, que describe una interfaz para usar las <strong>ACL</strong> más genéricas.
-Sistemas operativos como Linux, macOS o FreeBSD implementan ambos tipos de ACL.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Nota"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Para más información sobre las listas de control de acceso POSIX, véase <a href="https://www.man7.org/linux/man-pages/man5/acl.5.html">«acl(5)&#8201;&#8212;&#8201;Linux Manual»</a></p>
-</div>
-</td>
-</tr>
-</table>
+Sistemas operativos como Linux<a href="bibliografía.html#LinuxManual-acl">[12]</a>, macOS o FreeBSD implementan ambos tipos de ACL.</p>
 </div>
 <div class="paragraph">
 <p>Combinar ambos tipos de <strong>ACL</strong> ofrece lo mejor de ambos mundos, pero no es una solución que esté exenta de dificultades:</p>
@@ -1615,7 +1601,7 @@ Mientras que en sistemas POSIX se llama <a href="https://es.wikipedia.org/wiki/F
 <div class="sect3">
 <h4 id="_soft_updates"><a class="anchor" href="#_soft_updates"></a>19.8.2. Soft Updates</h4>
 <div class="paragraph">
-<p>Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada <strong>soft updates</strong> en su implementación del sistema de archivos <a href="https://es.wikipedia.org/wiki/Unix_File_System">UFS</a>.</p>
+<p>Para mejorar la eficiencia del sistema de archivos, sin comprometer la coherencia en caso de fallo, los distintos sabores de los sistemas UNIX BSD utilizan una técnica denominada <strong>soft updates</strong> en su implementación del sistema de archivos <a href="https://es.wikipedia.org/wiki/Unix_File_System">UFS</a><a href="bibliografía.html#Ganger2000">[5]</a>.</p>
 </div>
 <div class="paragraph">
 <p>Cuando se monta un sistema de archivos con la opción <strong>soft updates</strong>, el sistema operativo desactiva la escritura síncrona de los <strong>metadatos</strong>, que comentamos anteriormente, permitiendo que estos sean escritos cuando los algoritmos de gestión de la caché lo consideren necesario, pero se impone cierto orden en el que dichas operaciones de escritura deben ser realizadas.</p>
@@ -1715,7 +1701,7 @@ Por lo que el resultado global es una significativa ganancia en la velocidad de 
 <div class="content">
 <div class="title">Journaling en XFS</div>
 <div class="paragraph">
-<p>El sistema de archivos <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> modifica ligeramente esta técnica, sustituyendo las escrituras síncronas necesarias para actualizar el <strong>registro</strong> por escrituras asíncronas.
+<p>El sistema de archivos <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> modifica ligeramente esta técnica, sustituyendo las escrituras síncronas necesarias para actualizar el <strong>registro</strong> por escrituras asíncronas<a href="bibliografía.html#SGI2006">[24]</a>.
 Es decir, el control se devuelve al proceso antes de terminar de escribir las operaciones en el <strong>registro</strong> y confirmar la transacción, por lo que el proceso puede seguir ejecutándose antes que en otros sistemas de archivos.</p>
 </div>
 <div class="paragraph">
@@ -1778,7 +1764,7 @@ Como antes, este cambio en el FCB dispara copias y modificaciones por todo el á
 Obviamente los sistemas que implementan este tipo de sistemas de archivo usan la memoria principal como caché con el objeto de combinar varias modificaciones sobre un mismo bloque antes de proceder a su escritura en disco, evitando desencadenar múltiples veces los cambios posteriores.</p>
 </div>
 <div class="paragraph">
-<p>Los sistemas de archivos ZFS y Btrfs son los principales ejemplos de sistemas de archivos basados en <em>copy-on-write</em>.
+<p>Los sistemas de archivos ZFS<a href="bibliografía.html#Sun2006">[27]</a> y Btrfs son los principales ejemplos de sistemas de archivos basados en <em>copy-on-write</em>.
 Esta solución no solo les permite tener las mismas propiedades que el uso de registro en cuanto a la preservación de la coherencia —con la ventaja de evitar dos escrituras en disco, una en el registro y otra para el cambio propiamente dicho— sino que además facilita que puedan ofrecer características adicionales, como integrar en el propio sistema de archivos la gestión de volúmenes dinámicos (véase el <a href="almacenamiento_secundario.html#_volúmenes_dinámicos">Apartado 18.3.3</a>) o la creación de copias instantáneas del volumen.</p>
 </div>
 </div>

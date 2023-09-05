@@ -206,7 +206,7 @@ table {
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 56 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 58 minutos</p>
 </div>
 </td>
 </tr>
@@ -1717,144 +1717,270 @@ Para evitarlo se puede optar por un <strong>planificador de colas multinivel</st
 <div class="paragraph">
 <p>
 Hasta el momento hemos hablado de planificadores que se centran en cuál es el proceso más importante para ejecutarlo a continuación.
-Sin embargo otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
-Esto es precisamente lo que hace la <strong>planificación equitativa</strong> (<em>Fair Scheduling</em>) que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.</p>
+Sin embargo, otra opción, desde el punto de vista de la planificación, es dividir directamente el tiempo de CPU entre los procesos.
+Esto es precisamente lo que hace la <strong>planificación equitativa</strong> (<em>Fair Scheduling</em>), que intenta repartir por igual el tiempo de CPU entre los procesos de la cola de preparados.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, si 4 procesos compiten por el uso de la CPU, el planificador asignaría un 25% del tiempo de la misma a cada uno.
-Si a continuación un usuario inicia un nuevo proceso, el planificador tendría que ajustar el reparto asignando un 20% del tiempo a cada uno, ya que ahora habría 5 procesos compitiendo por el tiempo de CPU.</p>
+<p>Por ejemplo, supongamos que 4 procesos con diferentes ráfagas de CPU llegan juntos y compiten por el uso de la CPU:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Tiempo de ráfaga de CPU (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Tomando un periodo de 4 ms., en el primer periodo a cada proceso le corresponde 1 ms. porque hay 4 procesos en estado <strong>preparado</strong>.
+Al final del periodo 4, la ráfaga de los procesos P2 y P4 termina —porque ambos procesos han ejecutado 4 ms. en la CPU— por lo que a cada uno de los restantes le corresponden 2 ms. del periodo.
+Finalmente, al terminar el periodo 6, acaba el proceso P1 —que ya debe haberse ejecutado 8 ms.— por lo que P4 puede usar los 4 ms. del periodo 7 y terminar ráfaga.</p>
 </div>
 <div class="paragraph">
-<p>El algoritmo de planificación equitativa es muy similar al algoritmo <strong>RR</strong>. Pero, mientras que en este último se utiliza un cuanto de tamaño fijo, en la planificación equitativa la ventana de tiempo se calcula dinámicamente para garantizar el reparto equitativo de la CPU.</p>
+<p>En la siguiente tabla se ilustra este reparto indicando el tiempo de cada cuanto que corresponde a cada proceso:</p>
+</div>
+<table id="tbl-planificación-equitativa-ideal" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">Q1</th>
+<th class="tableblock halign-center valign-top">Q2</th>
+<th class="tableblock halign-center valign-top">Q3</th>
+<th class="tableblock halign-center valign-top">Q4</th>
+<th class="tableblock halign-center valign-top">Q5</th>
+<th class="tableblock halign-center valign-top">Q6</th>
+<th class="tableblock halign-center valign-top">Q7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sin embargo, debemos tener en cuenta que en un instante dado, no puede ejecutarse más de un proceso en la CPU.
+Es decir, durante todo el periodo 1, realmente no pueden ejecutarse los 4 procesos al mismo tiempo.
+El planificador tiene asignar la CPU en algún orden, de forma que el tiempo finalmente usado por cada proceso en cada periodo sea aproximadamente el calculado en la tabla anterior.</p>
+</div>
+<div class="paragraph">
+<p>En la siguiente figura puede verse un posible reparto:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C14-planificación/equitativo1.svg" alt="equitativo1">
+</div>
+</div>
+<div class="paragraph">
+<p>El algoritmo de <strong>planificación equitativa</strong> es muy similar al algoritmo <strong>RR</strong>, pero en la <strong>planificación equitativa</strong> la ventana de tiempo que finalmente se asigna a cada proceso se calcula dinámicamente.</p>
 </div>
 <div class="sect4">
-<h5 id="_planificación_equitativa_ponderada"><a class="anchor" href="#_planificación_equitativa_ponderada"></a>Planificación equitativa ponderada</h5>
+<h5 id="_implementación_básica"><a class="anchor" href="#_implementación_básica"></a>Implementación básica</h5>
 <div class="paragraph">
-<p>
-Al igual que en los algoritmos anteriores, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
-Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <a href="planificación_de_la_cpu.html#_ciclo_de_ráfagas_de_cpu_y_de_es">Apartado 14.4</a>.</p>
+<p>Las implementaciones del algoritmo de <strong>planificación equitativa</strong> suelen utilizar el concepto de <em>tiempo virtual</em> para seguir la pista de cuánto tiempo debe ejecutarse el proceso.
+Por ejemplo, en el planificador de <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a><a href="bibliografía.html#Fuchsia-ZirconFairScheduler">[4]</a> —el <em>microkernel</em> de <a href="https://es.wikipedia.org/wiki/Google_Fuchsia">Google Fuchsia</a>— cuando un proceso \$P_i\$ entra en la <strong>cola de preparados</strong>, en el PCB de dicho proceso se actualizan dos tiempos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Instante inicial \$t_{si}\$</strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
+</li>
+<li>
+<p><strong>Instante final \$t_{fi}\$</strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>La <strong>planificación equitativa</strong> resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo proporcionalmente más tiempo de CPU a los procesos con mayor peso.
-A esta generalización del planificador equitativo se la conoce como <strong>planificador equitativo ponderado</strong>.</p>
+<p>Estos tiempos se dicen que están en <em>tiempo virtual</em> de la CPU para señalar que idealmente el proceso comenzaría su ejecución en \$t_{si}\$ y terminaría en \$t_{fi}\$, aunque esto difícilmente va a ocurrir en la realidad porque el tiempo de CPU hay que repartirlo entre los diferentes procesos.</p>
 </div>
-<div class="paragraph">
-<p>Linux, desde la versión 2.6.23, utiliza un tipo de <strong>planificador equitativo ponderado</strong> denominado <strong>CFS</strong> (<em>Completely Fair Scheduler</em>) o <strong>planificador completamente equitativo</strong> (véase <a href="https://developer.ibm.com/tutorials/l-completely-fair-scheduler/">«Inside the Linux 2.6 Completely Fair Schedule&#8201;&#8212;&#8201;IBM Developer»</a>).
-Otro ejemplo es <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> —el <em>microkernel</em> de <a href="https://es.wikipedia.org/wiki/Google_Fuchsia">Google Fuchsia</a>— que está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del <strong>planificador equitativo ponderado</strong> (véase <a href="https://fuchsia.dev/fuchsia-src/concepts/kernel/fair_scheduler">«Zircon Fair Scheduler&#8201;&#8212;&#8201;Fuchsia Project»</a>).</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_implementación"><a class="anchor" href="#_implementación"></a>Implementación</h5>
-<div class="paragraph">
-<p>Para ilustrar como funciona este tipo de planificadores, vamos a describir brevemente una posible implementación basada en la de <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a>.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> es un <em>microkernel</em> multihilo con modelo uno a uno, por lo que su planificador trabaja con hilos.
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> es un <em>microkernel</em> multihilo con modelo uno a uno, por lo que su planificador trabaja con hilos.
 Es decir, las propiedades que necesita el planificador para hacer su trabajo están vinculadas a los hilos y son estos hilos los que el planificador ordena y selecciona para ser ejecutados en la CPU.
-Por el contrario, en la versión que vamos a describir los hilos no existen.
-En su lugar hablaremos de planificar procesos en la CPU, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.</p>
+Sin embargo, en la versión que vamos a describir hablaremos de planificar procesos, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Este planificador tiene una serie de parámetros ajustables:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>La <strong>granularidad mínima <em>M</em></strong>, es la porción mínima de tiempo de CPU que se puede asignar a cualquier proceso.</p>
-</li>
-<li>
-<p>La <strong>latencia de planificación <em>L</em></strong>, es el periodo de tiempo en el que todos los procesos deben haber sido planificados aproximadamente una vez en la CPU.</p>
-<div class="paragraph">
-<p>Lo que hace el planificador es repartir periodos de tiempo <em>L</em> entre todos los procesos que compiten por la CPU, para que todos tengan una oportunidad de ejecutarse en intervalos de al menos <em>L</em> segundos.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Como en otros planificadores, los procesos listos para ejecutarse en un instante dado se almacenan en la cola de preparados.
-Cada proceso <em>P<sub>i</sub></em> tiene una serie de propiedades:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Peso <em>w<sub>i</sub></em></strong>, que indica el peso relativo del proceso en el reparto del tiempo de CPU.
-Se trata de un número real en el intervalo (0.0, 1.0].</p>
-</li>
-<li>
-<p><strong>Instante inicial <em>T<sub>si</sub></em></strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
-</li>
-<li>
-<p><strong>Instante final <em>T<sub>fi</sub></em></strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
-</li>
-<li>
-<p><strong>Cuanto del tiempo de CPU <em>T<sub>i</sub></em></strong> en el periodo actual.
-Como ocurre con el cuanto en la planificación RR, se trata del tiempo máximo que el proceso puede estar de forma continua en la CPU.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>El concepto de <em>tiempo virtual</em> es muy común en este tipo de planificadores.
-Es como si cada proceso tuviera su propia dimensión temporal, de forma que el tiempo fluyera más despacio para los procesos con mayor peso <em>w<sub>i</sub></em>.
-Así, una unidad de tiempo virtual para un proceso muy pesado implica más tiempo real, que la misma unidad para un proceso muy ligero.</p>
-</div>
-<div class="paragraph">
-<p>Sea <em>t</em> es el instante de tiempo en el que un proceso <em>P<sub>i</sub></em> entra en la cola de preparados, en relación al tiempo virtual el proceso comienza a ejecutarse en la CPU desde ese mismo instante y necesitará más tiempo para terminar cuanto mayor sea su peso.
-Por lo tanto, podemos calcular el instante inicial <em>T<sub>si</sub></em> y el instante final <em>T<sub>fi</sub></em> de la siguiente manera:</p>
+<p>Si \$t\$ es el instante de tiempo en el que un proceso \$P_i\$ entra en la cola de preparados, el instante inicial \$t_{si}\$ y el instante final \$t_{fi}\$ se calculan de la siguiente manera:</p>
 </div>
 <div class="stemblock">
 <div class="content">
 \[\begin{split}
-T_{si} &amp;= t \\
-T_{fi} &amp;= T_{si} + L/w_i
+t_{si} &amp;= t \\
+t_{fi} &amp;= t_{si} + gM
 \end{split}\]
 </div>
 </div>
 <div class="paragraph">
-<p>El tiempo virtual no es el tiempo real en la CPU.
-Por lo tanto, el proceso <em>P<sub>i</sub></em> no entrará en la CPU nada más llegar en <em>t</em>, pero si se colocará en la cola de preparados en orden ascendente en relación al instante final <em>T<sub>fi</sub></em>.
-Es decir, los procesos con mayor peso <em>w<sub>i</sub></em> se colocarán antes en la cola de preparados, con bastante probabilidad.</p>
+<p>donde \$M\$ es la porción mínima de tiempo de CPU real que se puede asignar a cada proceso y \$g\$ es la cantidad de estas porciones de tiempo que se quiere repartir entre todos los procesos que están en disposición de ser ejecutados.
+Es decir, en el ejemplo anterior \$gM = 4\text( ms.)\$, por lo que si la porción mínima fuera \$M = 1\text( ms.)\$, cada periodo tendría 4 porciones de tiempo para repartir.</p>
 </div>
 <div class="paragraph">
-<p>Cuando un proceso <em>P<sub>i</sub></em> es seleccionado para pasar al estado <strong>ejecutando</strong>, se calcula su cuanto de tiempo.
-Como el tiempo se asigna en múltiplos de <em>M</em>, primero es necesario saber cuantas unidades de tiempo <em>M</em> tiene el periodo de latencia de planificación <em>L</em>, que es el tiempo máximo que se le podría asignar si el proceso estuviera solo:</p>
+<p>En la <strong>cola de preparados</strong> los procesos son ordenados por el valor de \$t_{fi}\$, de forma que primero se planifican los procesos que tiene ráfagas que virtualmente terminarían antes.</p>
+</div>
+<div class="paragraph">
+<p>El planificador de <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> tiene una serie de parámetros ajustables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La <strong>granularidad mínima \$M\$</strong> que, como hemos comentado, es la porción mínima de tiempo de CPU real que se puede asignar a cualquier proceso.</p>
+</li>
+<li>
+<p>La <strong>latencia objetivo \$L\$</strong>, que es el periodo de tiempo de CPU mínimo que se va a repartir entre los procesos.
+Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \$\text{floor}(L / M)\$ porciones de tiempo para repartir entre los procesos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si hay \$n\$ procesos que se pueden ejecutar, lo que hace el planificador es calcular \$g\$ de la siguiente manera:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$g_i = "floor"(L/M)\$
+\[g = \text{min}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)\]
 </div>
 </div>
 <div class="paragraph">
-<p>A cada proceso le corresponde más tiempo de CPU según su peso en relación al resto de procesos en competición, lo que lleva a calcular el peso relativo <em>r<sub>i</sub></em> como:</p>
+<p>de forma que siempre haya suficientes porciones para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a \$\text{floor}(L / M)\$.</p>
+</div>
+<div class="paragraph">
+<p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_{i}\$ durante el que se le asignará la CPU:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$r_i = w_i / W\$
+\[t_{i} = \text{ceil}\left(\frac{g}{n}\right)M\]
 </div>
 </div>
 <div class="paragraph">
-<p>donde <em>W</em> es la suma de los pesos de todos los procesos en competición por la CPU —en la cola de preparados— más el peso del que se está ejecutando.</p>
+<p>de forma que se reparten las \$g\$ porciones entre los \$n\$ procesos.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_planificación_equitativa_ponderada"><a class="anchor" href="#_planificación_equitativa_ponderada"></a>Planificación equitativa ponderada</h5>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>Al igual que en los algoritmos anteriores de planificación, en ocasiones puede ser interesante priorizar unos procesos frente a otros, tanto por motivos ajenos al sistema operativo como por motivos internos.
+Por ejemplo, se puede querer favorecer a los procesos limitados por la E/S para mejorar la eficiencia del sistema, tal y como comentamos en el apartado <a href="planificación_de_la_cpu.html#_ciclo_de_ráfagas_de_cpu_y_de_es">Apartado 14.4</a>.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>planificación equitativa</strong> resuelve este problema permitiendo que a los procesos se les asignen pesos y repartiendo más tiempo de CPU a los procesos con mayor peso.
+A esta generalización del planificador equitativo se la conoce como <strong>planificador equitativo ponderado</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Linux, desde la versión 2.6.23, utiliza un tipo de <strong>planificador equitativo ponderado</strong> denominado <strong>CFS</strong> (<em>Completely Fair Scheduler</em>) o <strong>planificador completamente equitativo</strong><a href="bibliografía.html#Jones2018">[11]</a>.
+Otro ejemplo es <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> que, como hemos comentado, está inmerso en cambiar su actual planificador basado en colas multinivel con prioridades a una implementación del <strong>planificador equitativo</strong> que, de hecho, es realmente un <strong>planificador equitativo ponderado</strong><a href="bibliografía.html#Fuchsia-ZirconFairScheduler">[4]</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_implementación_de_la_planificación_equitativa_ponderada"><a class="anchor" href="#_implementación_de_la_planificación_equitativa_ponderada"></a>Implementación de la planificación equitativa ponderada</h5>
+<div class="paragraph">
+<p>En <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> cada proceso \$P_i\$ tiene un peso \$w_i\$ que indica la importancia del proceso en el reparto del tiempo de CPU.</p>
+</div>
+<div class="paragraph">
+<p>El primer cambio —respecto a la implementación vista anteriormente— es que el instante final \$t_{fi}\$ realmente se calcula de la siguiente manera:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$W = sum_i w_i : P_i["estado"] in {"PREPARADO", "EJECUTANDO"}\$
+\[t_{fi} = t_{si} + gM/w_i\]
 </div>
 </div>
 <div class="paragraph">
-<p>Cuando un proceso entra en la cola de preparados su peso se suma a <em>W</em>, mientras que cuando pasa al estado <strong>esperando</strong> o termina, su peso se resta.</p>
+<p>de forma que es los procesos con mayor peso \$w_i\$ tiene un \$t_{fi}\$ más pequeño, por lo que se colocan antes en la <strong>cola de preparados</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Finalmente, podemos calcular el cuanto del proceso <em>P<sub>i</sub></em>:</p>
+<p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_{i}\$ durante el que se le asignará la CPU, asignándole un tiempo proporcional al peso del proceso \$w_i\$ respecto al peso del resto de los procesos con los que compite:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$T_i = "ceil"(g_i * r_i) * M\$
+\[t_{i} = \text{ceil}(g \frac{w_i}{W})M\]
 </div>
 </div>
 <div class="paragraph">
-<p>Esta definición asegura que <em>T<sub>i</sub></em> sea un entero múltiplo de la granularidad mínima <em>M</em>, mientras es aproximadamente proporcional al peso del proceso respecto al resto de procesos con los que compite.</p>
+<p>donde \$W\$ es la suma de todos los pesos \$w_i\$ para los \$n\$ procesos preparados para ser ejecutados.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_ejemplo_de_planificación_equitativa_ponderada"><a class="anchor" href="#_ejemplo_de_planificación_equitativa_ponderada"></a>Ejemplo de planificación equitativa ponderada</h5>
 <div class="paragraph">
-<p>Ilustremos el algoritmo con un ejemplo con <em>L</em> = 5 y <em>M</em> = 1:</p>
+<p>Ilustremos el algoritmo con un ejemplo con \$L=5\$ y \$M=1\$:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1876,31 +2002,25 @@ Como el tiempo se asigna en múltiplos de <em>M</em>, primero es necesario saber
 <td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0.3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0.1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0.4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0.5</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">0.2</p></td>
 </tr>
 </tbody>
 </table>
@@ -1909,13 +2029,105 @@ Como el tiempo se asigna en múltiplos de <em>M</em>, primero es necesario saber
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/C14-planificación/equitativo.svg" alt="equitativo">
+<img src="media/C14-planificación/equitativo2.svg" alt="equitativo2">
 </div>
 </div>
 <div class="paragraph">
-<p>Como el primer proceso está solo cuando se le asigna la CPU, puede consumir toda la latencia de planificación <em>L</em> en el primer periodo.
-Sin embargo, ya han llegado el resto de procesos del problema cuando es expulsado de la CPU, por lo que a partir de ese momento tiene que competir con ellos.
-Entonces, el orden para asignar la CPU viene determinado por el peso y el tiempo de cuanto por la expresión para <em>T<sub>i</sub></em> que vimos anteriormente.</p>
+<p>Al empezar, el primer proceso está solo cuando se le asigna la CPU, por lo que puede consumir toda la latencia de planificación \$L\$ en el primer periodo.
+Posteriormente, cuando vuelve a la <strong>cola de preparados</strong> en el instante 5, han llegado el resto de procesos, por lo que tiene que competir con ellos por la CPU.</p>
+</div>
+<div class="paragraph">
+<p>A partir de ese instante el orden para asignar la CPU viene determinado por \$t_{fi}\$, cuya expresión depende de \$g\$.
+En este caso \$g=M/L=5\$ en todo momento, puesto que hay menos procesos que porciones de tiempo \$M\$ en \$L\$.</p>
+</div>
+<div class="paragraph">
+<p>En la siguiente tabla se puede observar los valores de \$t_{si}\$ y \$t_{fi}\$ para cada proceso en el instante 5:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">\$t_{si}\$</th>
+<th class="tableblock halign-center valign-top">\$t_{fi}\$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Aunque el proceso \$P_4\$ es el último en llegar, es el siguiente en ser planificado, porque al tener un peso más alto su \$t_{f4}\$ es el más bajo.
+Entonces se calcula el tiempo de cuanto \$t_4\$, que da 3, por lo que se planifica en la CPU durante ese tiempo.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, \$P_4\$ no consume su tiempo de cuanto porque su ráfaga terminar antes, por lo que en el instante 7 se tiene que planificar el siguiente proceso en la <strong>cola de preparados</strong>.
+En este caso sería \$P_3\$, con un tiempo de cuanto de 2.</p>
+</div>
+<div class="paragraph">
+<p>Para calcular \$t_3\$ es importante recordar que \$W = 5\$, puesto que \$P_4\$ ya no está en la <strong>cola de preparados</strong> por lo que su peso no se incluye.</p>
+</div>
+<div class="paragraph">
+<p>En el instante 9, el proceso \$P_3\$ es expulsado de la CPU y vuelve a la <strong>cola de preparados</strong>.
+Entonces, se tienen que actualizar sus valores para \$t_{si}\$ y \$t_{fi}\$ con el objeto de determinar cuál será el próximo proceso planificado:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Proceso</th>
+<th class="tableblock halign-center valign-top">\$t_{si}\$</th>
+<th class="tableblock halign-center valign-top">\$t_{fi}\$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11.5</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Por tanto, el siguiente proceso a planificar es \$P_2\$ con \$t_2 = 1\$.
+Y así se repite el procedimiento, sucesivamente.</p>
 </div>
 <div class="paragraph">
 <p>Una vez resuelto el problema, los <strong>tiempos de espera y ejecución promedio</strong> correspondientes serían:</p>
@@ -1940,27 +2152,27 @@ Entonces, el orden para asignar la CPU viene determinado por el peso y el tiempo
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P1</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (9-5) + (14-11)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-0)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(0-0) + (10-5) + (13-12)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(16-0)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P2</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">22</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(12-1) + (21-13)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(22-1)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(9-1) + (16-10)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(17-1)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P3</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-2) + (12-9)=</span></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(13-2)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(14-2)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">P4</p></td>
@@ -1970,23 +2182,15 @@ Entonces, el orden para asignar la CPU viene determinado por el peso y el tiempo
 <td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(7-3)=</span></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">P5</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">21</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(11-5) + (17-12)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><span class="lightcell">(21-4)=</span></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
-</tr>
 </tbody>
 <tfoot>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Tiempos promedio (ms)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">9.80</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7.00</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">14.20</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11.75</p></td>
 </tr>
 </tfoot>
 </table>
@@ -2146,7 +2350,7 @@ Ambas tienen una organización muy diferente, pero en última instancia, las pri
 </tbody>
 </table>
 <div class="paragraph">
-<p>Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <a href="planificación_de_la_cpu.html#tabla-win32-clases-prioridad">Tabla 14.3</a>.
+<p>Desde el punto de vista de Windows API, todo proceso pertenece a alguna de las 6 clases de prioridad de la <a href="planificación_de_la_cpu.html#tabla-win32-clases-prioridad">Tabla 14.3</a><a href="bibliografía.html#Win32-SchedulingPriorities">[17]</a>.
 La clase de prioridad de un proceso se puede indicar durante la creación del proceso, a través del argumento <code>dwCreationFlags</code> de la función <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa">CreateProcess()</a>, o sea puede obtener y cambiar con las funciones <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getpriorityclass">GetPriorityClass()</a> y <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass">SetPriorityClass()</a>, respectivamente.
 Por lo general, la clase de prioridad <code>NORMAL_PRIORITY_CLASS</code> es la clase por defecto de cualquier proceso nuevo, excepto que se indique otra cosa durante su creación.</p>
 </div>
@@ -2331,10 +2535,7 @@ Así el sistema puede determinar con precisión el tiempo que se ha estado ejecu
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (<em>Time Stamp Counter</em> o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador.</p>
-</div>
-<div class="paragraph">
-<p>Para más información véase <a href="https://en.wikipedia.org/wiki/Time_Stamp_Counter">«Time Stamp Counter&#8201;&#8212;&#8201;Wikipedia»</a>.</p>
+<p>Desde el Intel Pentium las CPU de la familia x86 incorporan un contador de marca de tiempo (<em>Time Stamp Counter</em> o TSC) de 64 bits que indica el número de ciclos transcurridos desde el último reinicio del procesador<a href="bibliografía.html#Wikipedia-TSC">[34]</a>.</p>
 </div>
 </td>
 </tr>
