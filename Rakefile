@@ -30,3 +30,17 @@ task :server, [:port] => 'build:www' do |t, args|
     puts "=> Server starting on http://0.0.0.0:#{args.port}"
     server.start
 end
+
+desc 'Publich release'
+task :publish, [:yeartag] do |t, args|
+    if ! args[:yeartag]
+        raise "Argument 'yeartag' is required."
+    end
+
+    release_branch = "curso-#{args[:yeartag]}"
+    release_tag = "so#{args[:yeartag]}"
+
+    sh 'git', 'rebase', 'master', release_branch
+    sh 'git', 'tag', '-f', release_tag, release_branch
+    sh 'git', 'push', '--atomic', '-f', 'origin', release_branch, release_tag
+end
