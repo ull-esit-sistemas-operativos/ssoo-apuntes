@@ -74,7 +74,7 @@ Por ejemplo, ahora las llamadas al sistema básicas podrían ser así:
 * *send( A, message )* para mandar un mensaje al proceso identificado como «A».
 * *receive( A, &message )* para recibir un mensaje del proceso identificado como «A», copiándolo en «_message_».
 
-De hecho el ejemplo anterior corresponde a un caso de *comunicación directa* con *direccionamiento simétrico*(((direccionamiento, simétrico))), pero existe una variante de ese mismo esquema denominado *direccionamiento asimétrico*(((direccionamiento, asimétrico))) donde el receptor puede recibir mensajes de cualquier proceso, de forma que al volver de la llamada recibe el mensaje y la identidad del remitente.
+De hecho el ejemplo anterior corresponde a un caso de *comunicación directa* con *direccionamiento simétrico*(((direccionamiento, simétrico))), pero existe una variante de ese mismo esquema denominado *direccionamiento asimétrico*(((direccionamiento, asimétrico))) donde el receptor puede recibir mensajes de cualquier proceso, de forma que al volver de la llamada recibe el mensaje y, opcionalmente, la identidad del remitente.
 
 * *send( A, message )* para mandar un mensaje al proceso identificado como «A»
 * *receive( &pid, &message )* para recibir un mensaje de cualquier proceso, recibiendo en «_message_» una copia del _message_ y en «pid» la identidad del remitente.
@@ -85,7 +85,7 @@ En resumen:
 * En el *direccionamiento simétrico* tanto el proceso que envía como el que recibe tienen que identificar al otro para comunicarse.
 
 * En el *direccionamiento asimétrico* solo el proceso que envía identifica a que recibe, mientras que este último no tiene que nombrar al remitente.
-Es el sistema operativo el que informa de quién es el remitente del mensaje que se ha recibido.
+Puede que el sistema operativo informe de quién es el remitente del mensaje que se ha recibido o que no se proporcione forma de saberlo.
 ====
 
 Un *enlace de comunicaciones* según este esquema tiene las siguientes características:
