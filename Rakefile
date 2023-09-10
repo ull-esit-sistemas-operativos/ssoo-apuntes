@@ -37,10 +37,12 @@ task :publish, [:yeartag] do |t, args|
         raise "Argument 'yeartag' is required."
     end
 
+    current_branch = `git branch --show-current`.strip!
     release_branch = "curso-#{args[:yeartag]}"
     release_tag = "so#{args[:yeartag]}"
 
     sh 'git', 'rebase', 'master', release_branch
     sh 'git', 'tag', '-f', release_tag, release_branch
     sh 'git', 'push', '--atomic', '-f', 'origin', release_branch, release_tag
+    sh 'git', 'checkout', current_branch
 end
