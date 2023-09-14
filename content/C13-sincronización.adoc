@@ -910,7 +910,7 @@ La *espera ocupada* de estos objetos *sección crítica* de Windows API solo ocu
 En sistemas monoprocesador nunca hay *espera ocupada*.
 ====
 
-A los *_mutex_* con *espera ocupada* también se los denomina *_(spinlock)_*.
+A los *_mutex_* con *espera ocupada* también se los denomina *_((spinlock))_*.
 Los *_spinlocks_* son utilizados frecuentemente para proteger las estructuras del núcleo en los sistemas multiprocesador, cuando la tarea a realizar dentro de la sección crítica en el núcleo requiere poco tiempo y los diseñadores calculan que se desperdicia más tiempo sacando de la CPU al hilo en espera para ejecutar otro en su lugar.
 
 == Funciones reentrantes y seguras en hilos
