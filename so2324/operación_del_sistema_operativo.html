@@ -389,10 +389,12 @@ Por eso la memoria normalmente se divide en dos partes o espacios:</p>
 Sirve para albergar el núcleo del sistema operativo.</p>
 <div class="paragraph">
 <p>El sistema operativo puede estar localizado tanto en la parte baja como en la parte alta de la memoria.
-El factor determinante en la elección es la localización del vector de interrupciones, que es una tabla en la memoria que define las direcciones a las que saltará la CPU en caso de que ocurra una interrupción o una excepción.</p>
+El factor determinante es la dirección de memoria a la que salta la CPU cuando ocurre una interrupción o la dirección del vector de interrupciones —que es una tabla en la memoria donde se definen las direcciones a las que saltará la CPU en caso de que ocurra una interrupción o una excepción— según esté definido en la arquitectura correspondiente.</p>
 </div>
 <div class="paragraph">
-<p>Puesto que en la mayor parte de las arquitecturas este reside en la parte baja de la memoria, normalmente el sistema operativo también se aloja en la parte baja.</p>
+<p>En los procesadores de la familia x86, el vector de interrupciones reside en la dirección 0x00000000 y ocupa 0x400 bytes, por lo que, normalmente, el sistema operativo se aloja en la parte baja de la memoria.
+Sin embargo, en los procesadores MIPS las interrupciones se manejan saltando a la dirección 0x80000180, que está en la mitad del espacio de direcciones, en procesadores de 32 bits.
+Por tanto, lo más probable es que se aloje el sistema operativo por encima de la dirección 0x80000000.</p>
 </div>
 </li>
 <li>
