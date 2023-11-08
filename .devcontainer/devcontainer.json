@@ -20,7 +20,7 @@
 			"extensions": [
 				"asciidoctor.asciidoctor-vscode",
 				"github.copilot",
-				"rebornix.Ruby",
+				"shopify.ruby-lsp",
 		        "valentjn.vscode-ltex"
 			]
 		}
