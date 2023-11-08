@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-09-18T09:34:54.326Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="hR4DdiI6mPn43jpopTmj" version="21.7.5" type="google">
+<mxfile host="app.diagrams.net" modified="2023-11-08T12:58:10.171Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="99Q5g-3h6oOpRgcQkgV_" version="22.0.8" type="google">
   <diagram id="akEowiJKr_ScigKzrRVM" name="Page-1">
     <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="689" pageHeight="517" math="0" shadow="0">
       <root>
@@ -46,7 +46,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="lh1tizzmxkAoWYCJBo1o-15" value="" style="endArrow=classic;strokeWidth=2;fontFamily=Ink Free;fontSize=17;sketch=1;endSize=12;endFill=1;startSize=12;startArrow=none;startFill=0;strokeColor=#324AB2;fontColor=#324AB2;fontSource=https%3A%2F%2Full-esit-sistemas-operativos.github.io%2Fssoo-apuntes%2Ffonts%2FInkFree.woff;fontStyle=1;spacingBottom=5;curved=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="lh1tizzmxkAoWYCJBo1o-4">
+        <mxCell id="lh1tizzmxkAoWYCJBo1o-15" value="" style="endArrow=none;strokeWidth=2;fontFamily=Ink Free;fontSize=17;sketch=1;endSize=12;endFill=0;startSize=12;startArrow=classic;startFill=1;strokeColor=#324AB2;fontColor=#324AB2;fontSource=https%3A%2F%2Full-esit-sistemas-operativos.github.io%2Fssoo-apuntes%2Ffonts%2FInkFree.woff;fontStyle=1;spacingBottom=5;curved=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="lh1tizzmxkAoWYCJBo1o-4">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="560" y="40" as="sourcePoint" />
             <mxPoint x="480" y="113" as="targetPoint" />
@@ -64,7 +64,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="lh1tizzmxkAoWYCJBo1o-17" value="" style="endArrow=classic;strokeWidth=2;fontFamily=Ink Free;fontSize=17;sketch=1;endSize=12;endFill=1;startSize=12;startArrow=none;startFill=0;strokeColor=#324AB2;fontColor=#324AB2;fontSource=https%3A%2F%2Full-esit-sistemas-operativos.github.io%2Fssoo-apuntes%2Ffonts%2FInkFree.woff;fontStyle=1;spacingBottom=5;curved=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+        <mxCell id="lh1tizzmxkAoWYCJBo1o-17" value="" style="endArrow=none;strokeWidth=2;fontFamily=Ink Free;fontSize=17;sketch=1;endSize=12;endFill=0;startSize=12;startArrow=classic;startFill=1;strokeColor=#324AB2;fontColor=#324AB2;fontSource=https%3A%2F%2Full-esit-sistemas-operativos.github.io%2Fssoo-apuntes%2Ffonts%2FInkFree.woff;fontStyle=1;spacingBottom=5;curved=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="210" y="172.1" as="sourcePoint" />
             <mxPoint x="285" y="310.1" as="targetPoint" />
