@@ -6,6 +6,7 @@ Struct.new('Config',
     :asciidoctor_pdf_args,
     :htmlproofer_opts,
     :pandoc_docx_args,
+    :pandoc_markdown_args,
     :server_port,
     :site_root,
     keyword_init: true) do
@@ -19,6 +20,7 @@ Struct.new('Config',
                 asciidoctor_pdf_args: [],
                 htmlproofer_opts: {},
                 pandoc_docx_args: [],
+                pandoc_markdown_args: [],
                 server_port: 8080,
                 site_root: 'http://localhost/'
             }
