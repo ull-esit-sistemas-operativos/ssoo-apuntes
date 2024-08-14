@@ -849,12 +849,12 @@ En {threads_sync_semaphore_cpp} se puede ver un ejemplo de cómo utilizarla para
 void thread_function(semaphore& sem, int thread_id)
 {
     sem.acquire(); <3>
-    fmt::print( "Hilo {} creado\n", thread_id );
+    std::println( "Hilo {} creado", thread_id );
     
     // Dormir el hilo para simular trabajo
     // ...
     
-    fmt::print( "Hilo {} terminado\n", thread_id );
+    std::println( "Hilo {} terminado", thread_id );
     sem.release(); <4>
 }
 
