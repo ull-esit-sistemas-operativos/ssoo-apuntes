@@ -76,7 +76,8 @@ Así el sistema operativo —como podemos comenzar a llamarlo— tiene la oportu
 
 Además, con la aparición de la tecnología de los discos magnéticos en la década de los 60 del siglo pasado, los trabajos de los programadores comenzaron a ser almacenados en discos, desde donde eran escogidos por el sistema operativo para su ejecución.
 
-A estos sistemas se los llamó *multiprogramados*.
+A estos sistemas se los llamó *multiprogramados*, porque permitían tener varios programas en memoria al mismo tiempo e intercalar su ejecución en la CPU.
+A la cantidad de programas cargados en memoria en un instante dado se la denominaba *((grado de multiprogramación))*.
 
 [[fig-sistemas-multiprogramados]]
 .Gestión de trabajos en sistemas multiprogramados.

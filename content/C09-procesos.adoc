@@ -153,7 +153,7 @@ En los sistemas operativos hay diferentes *colas de planificación* para los pro
 
 Cola de trabajo(((cola, trabajo)))::
 Contiene todos los trabajos en el sistema, de manera que cuando entran en el sistema van a esta cola, a la espera de ser escogidos para ser cargados en la memoria y ejecutados.
-Esta cola existía en los *sistemas multiprogramados*, pero no existe en los sistemas operativos modernos.
+Esta cola existía en los *sistemas multiprogramados*, pero no existe en los *sistemas de tiempo compartido* ni en los sistemas operativos modernos posteriores.
 
 Cola de preparados(((cola, preparados)))::
 Contiene a los procesos que están en estado *preparado*.
@@ -207,10 +207,10 @@ En ese momento son eliminados de todas las colas mientras el PCB y los recursos 
 Durante su ejecución, los procesos se mueven entre las diversas colas de planificación a criterio del sistema operativo.
 Este proceso de selección debe ser realizado por el *planificador* adecuado:
 
-* El *planificador de largo plazo*(((planificador, largo plazo))) o *planificador de trabajos*(((planificador, trabajos)))— selecciona los trabajos desde la cola de trabajos en el almacenamiento secundario —dónde están todos almacenados— y los carga en memoria.
+* El *planificador de largo plazo*(((planificador, largo plazo))) o *planificador de trabajos*(((planificador, trabajos)))— selecciona los trabajos desde la *cola de trabajos* en el almacenamiento secundario —dónde están todos almacenados— y los carga en memoria.
 +
-Este planificador se usaba en los sistemas multiprogramados, donde había cola de trabajos.
-Los sistemas de tiempo compartido posteriores y los sistemas modernos, carecen de planificador de trabajos, porque los programas se cargan directamente en memoria para ser ejecutados, cuando el usuario lo solicita.
+Este planificador se usaba en los *sistemas multiprogramados*, donde había una *cola de trabajos*.
+Los *sistemas de tiempo compartido* posteriores y los sistemas operativos modernos, carecen de *planificador de largo plazo*, porque los programas se cargan directamente en memoria para ser ejecutados cuando el usuario lo solicita.
 
 * El *planificador de corto plazo*(((planificador, corto plazo))) o *planificador de CPU*(((planificador, CPU))) selecciona uno de los procesos en la cola de preparados y lo asigna a la CPU.
 Obviamente este planificador es invocado cuando un proceso en ejecución abandona la CPU, dejándola disponible para otro proceso.
@@ -220,11 +220,8 @@ A este esquema se le denomina *((intercambio))* —o *_((swapping))_*.
 +
 Esto era útil en sistemas antiguos donde un proceso tenía que estar cargado completamente en la memoria para poder ejecutarse.
 Así que si faltaba memoria, se podía suspender un proceso completo, preservar el contenido de su memoria en disco y liberar la memoria ocupada para usarla con otros procesos.
-
-[NOTE]
-====
-En los sistemas de propósito general modernos no se utiliza *planificador de medio plazo* porque utilizan técnicas de *memoria virtual* (véase el <<memoria_virtual>>), que permite mover parte de la memoria de los procesos al disco para liberar memoria, sin tener que suspender su ejecución. 
-====
++
+En los sistemas de propósito general modernos no se utiliza *planificador de medio plazo* porque utilizan técnicas de *memoria virtual* (véase el <<memoria_virtual>>), que permite mover parte de la memoria de los procesos al disco para liberar memoria, sin tener que suspender la ejecución del proceso. 
 
 == Cambio de contexto
 

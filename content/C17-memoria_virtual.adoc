@@ -932,11 +932,14 @@ Cuando eso ocurre se dice que el proceso está *hiperpaginando*.
 
 == Hiperpaginación
 (((hiperpaginación)))
+
+Como hemos comentado, la *hiperpaginación* se produce cuando un proceso no dispone de suficientes marcos como para alojar todas las páginas que necesita con frecuencia, por lo que la *tasa de fallos de página* se vuelve muy elevada.
+
 Se dice que un proceso sufre de *hiperpaginación* cuando gasta más tiempo paginando que ejecutándose.
 
-=== Causas de la hiperpaginación
+=== Hiperpaginación en sistemas multiprogramados
 
-En los primeros sistemas multiprogramados que implementaron la paginación bajo demanda, era posible que se diera el siguiente caso:
+En los primeros *sistemas multiprogramados* (*mainframes*) que implementaron la paginación bajo demanda, era posible que se diera el siguiente caso:
 
 . El sistema operativo monitorizaba el uso de la CPU.
 Si el uso de la misma era bajo, se cargaban nuevos procesos desde la *cola de entrada* para aumentar el número de procesos ejecutándose al mismo tiempo —también llamado *((grado de multiprogramación))* en esos sistemas—.
@@ -957,23 +960,31 @@ image::{chapdir}/hiperpaginación.svg[]
 El fenómeno comentado se ilustra en la <<fig-hiperpaginación>>, donde se muestra el uso de la CPU frente al número de procesos cargados en el sistema.
 Cuando esto último aumenta, el uso de la CPU aumenta hasta alcanzar un máximo.
 Si el *grado de multiprogramación* supera dicho punto, el sistema comienza a *hiperpaginar*, por lo que el uso de la CPU disminuye bruscamente.
-Por lo tanto, si el sistema está *hiperpaginando*, es necesario reducir el *grado de multiprogramación* con el objetivo de liberar memoria.
 
-En los sistemas operativos modernos ocurre algo parecido a lo descrito para los sistemas multiprogramados, aunque sin el efecto en cadena ocasionado por el intento del planificador de largo plazo de maximizar el uso de la CPU, ya que estos sistemas carecen de dicho planificador.
-Sea como fuere, en ambos casos, los procesos *hiperpaginan* si no se les asigna un número suficiente de marcos, haciendo que sea imposible utilizarlos.
+Una solución es introducir un *planificador de medio plazo* que detecte si el sistema está *hiperpaginando*, en cuyo caso suspende y saca algunos procesos de la memoria —reduciendo así el *grado de multiprogramación*— con el objeto de liberar memoria para el resto de procesos en ejecución.
+
+=== Hiperpaginación en sistemas operativos modernos
+
+Los *sistemas de tiempo compartido* posteriores y los *sistemas operativos modernos* no tienen ni *planificador de largo plazo* ni *cola de entrada*, por lo que no ocurre el efecto en cadena descrito en el caso de los sistemas multiprogramados.
+Sin embargo, puede ocurrir la *hiperpaginación* si se ejecutan demasiados procesos simultáneamente, de forma que alguno de ellos no disponga de suficientes marcos para alojar todas las páginas que utiliza frecuentemente (véase el <<_modelo_del_conjunto_de_trabajo>>), aumentando así la *tasa de fallos de páginas*, hasta el punto en que el proceso pasa más tiempo paginando que ejecutándose.
+
+Los sistemas operativos modernos suelen carecer de *planificador de medio plazo* por lo que, a diferencia de los *sistemas multiprogramados*, no suspenden completamente la ejecución de algunos procesos para reducir el consumo de memoria y evitar la *hiperpaginación*.
+En su lugar, utilizan técnicas de memoria virtual para ajustar la cantidad de marcos asignados a cada proceso, intentando evitar la *hiperpaginación*, al tiempo que maximizan el número de procesos que se pueden ejecutar simultaneamente.
+
+En cualquier caso, como veremos en el <<_modelo_del_conjunto_de_trabajo>>, habrá *hiperpaginación* si la cantidad mínima total de marcos que necesitan todos los procesos para evitar la *hiperpaginación* excede el número de marcos disponibles en el sistema.
 
 === Soluciones a la hiperpaginación
 
 Para el problema de la *hiperpaginación* existen diversas soluciones:
 
-* Utilizar un algoritmo de reemplazo local, pues de esta manera un proceso que *hiperpagina* no puede afectar a otro.
-+
-Sin embargo, esto no es cierto del todo.
-El uso intensivo del *dispositivo de intercambio* podría afectar al rendimiento del sistema, al aumentar el *tiempo de acceso efectivo* al disco.
+* La principal solución es proporcionar a un proceso tantos marcos como le hagan falta.
+Como ya hemos comentado en diversas ocasiones, para evitar la *hiperpaginación* es necesario asignar al proceso al menos un número mínimo de marcos, que a priori no es conocido, ya que depende de cómo se comporta el proceso en su uso de la memoria.
+Una de las estrategias que pretenden estimar dicho número es el *modelo de conjunto de trabajo*, que veremos en la <<_modelo_del_conjunto_de_trabajo>>.
 
-* Proporcionar a un proceso tantos marcos como le hagan falta.
-Como ya hemos comentado en diversas ocasiones, para evitar la *hiperpaginación* es necesario asignar al proceso al menos un número mínimo de marcos, que a priori no es conocido.
-Una de las estrategias que pretenden estimar dicho número es el *modelo de conjunto de trabajo*.
+* Utilizar un algoritmo *de reemplazo local* puede limitiar el problema, pues de esta manera un proceso que *hiperpagina* no puede quitar marcos a otro, quizás incrementando su *tasa de fallos de página* y causando que también *hiperpagine*.
++
+Sin embargo, un algoritmo de *reemplazo local* no evita completamente que un proceso que *hiperpagine* afecte a otros.
+El uso intensivo del *dispositivo de intercambio*, por parte del proceso *hiperpagina*, puede afectar al rendimiento del sistema al aumentar el *tiempo de acceso efectivo* al disco.
 
 === Modelo del conjunto de trabajo
 (((modelo, conjunto de trabajo)))
@@ -1007,8 +1018,7 @@ image::{chapdir}/modelo_de_conjunto_de_trabajo.svg[]
 si _{Delta}_ = 10 referencias a la memoria, entonces el conjunto de trabajo en _t_~1~ es {1, 2, 5, 6, 7}.
 Mientras que en _t_~2~ el conjunto de trabajo es {1, 2, 3, 4}.
 
-Obviamente, la precisión del *conjunto de trabajo* como aproximación de la *localidad* del programa depende del parámetro _{Delta}_.
-Por ejemplo:
+Obviamente, la precisión del *conjunto de trabajo* como aproximación de la *localidad* del programa depende del parámetro _{Delta}_:
 
 * Si _{Delta}_ es muy pequeña, el *conjunto de trabajo* no cubriría toda la *localidad*.
 
@@ -1022,12 +1032,21 @@ El uso del conjunto de trabajo es bastante sencillo:
 
 . El sistema operativo monitoriza el *conjunto de trabajo* de cada proceso y le asigna tantos marcos como páginas haya en el *conjunto de trabajo*.
 
-. Si sobran suficientes marcos otro proceso puede ser iniciado —en el caso de los sistemas multiprogramados— o se puede destinar la memoria libre a otros usos.
+. Si sobran globalmente suficientes marcos:
 
-. Si el *tamaño del conjunto de trabajo* total _WSS_ crece y excede el número de marcos disponibles, el sistema podría seleccionar un proceso para ser suspendido.
-Este podrá volver a ser reiniciado más tarde.
+** En el caso de los *sistemas multiprogramados*, otro proceso puede ser cargado desde la *cola de entrada* o desde el *dispositivo de intercambio*, si había sido suspendido previamente por el *planificador de medio plazo*.
 
-Donde el *tamaño del conjunto de trabajo* _WSS_ es la suma del *tamaño de los conjuntos de trabajo* _WSS~i~_ para cada proceso _i_:
+** En sistemas más modernos la memoria libre puede destinarse a otros usos, como caché o búferes de E/S.
+
+. Si el *tamaño del conjunto de trabajo* total _WSS_ crece y excede el número de marcos disponibles:
+
+** En los *sistemas multiprogramados* con *planificador de medio plazo*, el sistema podría seleccionar un proceso para ser suspendido.
+Este volverá a ser cargado y reiniciado más tardel, cuando haya suficientes marcos libres.
+
+.. Los sistemas operativos más modernos reparten los marcos disponibles entre todos los procesos.
+Al ser la cantidad de marcos disponibles inferior al  _WSS_, es posible que algunos procesos *hiperpaginen*.
+
+En la descripción anterior, el *tamaño del conjunto de trabajo* _WSS_ es la suma del *tamaño de los conjuntos de trabajo* _WSS~i~_ para cada proceso _i_:
 
 [stem]
 ++++
@@ -1038,8 +1057,9 @@ y representa la demanda total de marcos.
 Por eso, si _WSS_ es mayor que el número de marcos disponibles, habrá *hiperpaginación*.
 
 El sencillo algoritmo anterior permite evitar la *hiperpaginación*.
-Sin embargo, el problema está en cómo mover la *ventana del conjunto de trabajo* en cada referencia, con el fin de volver a calcular el *conjunto de trabajo*.
-Una posible aproximación sería utilizar un temporizador que periódicamente invocase a una función encargada de examinar el *bit de referencia* de las páginas en la ventana _{Delta}_.
+Sin embargo, el reto está en cómo mover la *ventana del conjunto de trabajo* en cada referencia, con el fin de volver a calcular el *conjunto de trabajo*.
+
+Una posible aproximación es utilizar un temporizador que periódicamente invoque a una función encargada de examinar el *bit de referencia* de las páginas en la ventana de referencias _{Delta}_.
 Es de suponer que las páginas con el *bit de referencia* a 1 forman parte de la *localidad* del programa y por tanto serán el *conjunto de trabajo* a lo largo del siguiente periodo.
 
 == Otras consideraciones
