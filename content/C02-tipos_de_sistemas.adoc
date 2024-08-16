@@ -40,7 +40,7 @@ El trabajo era preparado por cada programador —normalmente en tarjetas perfora
 No había sistema operativo y el operador debía cargar y ejecutar cada programa de uno en uno.
 
 [[fig-consola-ibm-705]]
-.Operadora en la consola de un mainframe IBM 705 -- Fuente: link:++https://www.ibm.com/ibm/history/ibm100/images/icp/Y444110I58591Z46/us__en_us__ibm100__700_series__705__620x350.jpg++[IBM]
+.Operadora en la consola de un mainframe IBM 705 -- Fuente: https://www.ibm.com/history/700[IBM]
 image::{chapdir}/consola_ibm_705.jpg[]
 
 Estos sistemas se convirtieron en *sistemas de procesamiento por lotes* o *sistemas en _batch_* cuando se comenzó a utilizar un pequeño programa —llamado *monitor del sistema*— cuya función era cargar y ejecutar sin interrupción un conjunto —o lote— de programas.

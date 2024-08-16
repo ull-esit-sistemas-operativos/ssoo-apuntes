@@ -84,7 +84,7 @@ Fue un sistema operativo desarrollado por IBM para su _mainframe_ https://en.wik
 Su versión DOS/360 (_Disk Operating System/360_) fue el primer sistema operativo en hacer los discos magnéticos un requisito para poder operar.
 
 [[fig-instalación-ibm-system-360]]
-.Instalación de un mainframe IBM System/360 -- Fuente: http://www-03.ibm.com/ibm/history/ibm100/us/en/icons/system360/impacts/[IBM]
+.Instalación de un mainframe IBM System/360 -- Fuente: https://www.ibm.com/history/system-360[IBM]
 image::{chapdir}/instalación_ibm_system_360.jpg[]
 
 Se anunció en 1964, pero fue lanzado en 1966, con un año de retraso respecto a la fecha prevista originalmente.
