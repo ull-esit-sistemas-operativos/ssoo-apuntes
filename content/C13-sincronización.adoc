@@ -206,6 +206,7 @@ Así, el sistema operativo no puede tomar el control y asignar otro hilo a la CP
 Indudablemente esta solución no es práctica en sistema multiprocesador, donde hay varios procesadores ejecutándose a la vez.
 
 === Instrucciones atómicas
+
 (((instrucción, atómica)))
 Las CPU modernas disponen de instrucciones para comparar y modificar el contenido de una variable o intercambiar el contenido de dos variables, de forma *((atómica))*. 
 El término *atómico* hace referencia a que las operaciones se ejecutan como una unidad ininterrumpible.
@@ -278,6 +279,7 @@ La importancia de estas instrucciones está en que pueden ser utilizadas por el 
 Por ejemplo, *semáforos* o *_mutex_*.
 
 == Semáforos
+
 (((semáforo)))
 La exclusión mutua en las secciones críticas se asegura utilizando adecuadamente una serie de recursos que para ese fin proporciona el sistema operativo.
 Estos recursos utilizan internamente instrucciones y otras características de la CPU, incluidas por los diseñadores para resolver este tipo de problemas, que hemos comentado anteriormente.
@@ -604,6 +606,7 @@ pthread_mutex_unlock( &args->mutex );
 En {threads_sync_counter_cpp} y {threads_sync_factorial_cpp} se puede ver ejemplos equivalentes pero usando {cpp_thread} y {cpp_mutex}, de la librería estándar de {cpp}.
 
 == Variables de condición
+
 (((variable de condición)))
 En la solución que dimos al *problema del productor-consumidor* usando *semáforos* (véase el <<_ejemplos_del_uso_de_semáforos>>) empleamos *semáforos* para implementar las esperas del productor y el consumidor cuando el vector está lleno o vacío, respectivamente.
 Lamentablemente, los _mutex_ no se pueden usar de la misma manera para señalar eventos.
@@ -919,7 +922,9 @@ Todas estas cuestiones sobre la sincronización no solo afectan al código que e
 A la hora de decidir utilizar una librería en un programa multihilo es necesario que tengamos en cuenta los conceptos de *reentrante* y *seguridad de hilos*.
 
 === Funciones reentrantes
-(((reentrante)))(((función, reentrante)))
+
+(((reentrante)))
+(((función, reentrante)))
 Una función es *reentrante* puede ser interrumpida en medio de su ejecución y, mientras espera, volver a ser llamada con total seguridad.
 Obviamente las funciones recursivas deben ser reentrantes para poder llamarse a sí mismas una y otra vez con seguridad.
 
@@ -935,7 +940,9 @@ Si lo hiciera solo puede hacerlo mediante operaciones *leer-modificar-escribir* 
 Como hemos mencionado anteriormente, los *manejadores de señal* deben ser funciones *reentrantes*.
 
 === Seguridad en hilos
-(((seguridad, en hilos)))(((función, segura en hilos)))
+
+(((seguridad, en hilos)))
+(((función, segura en hilos)))
 Una función es *segura en hilos* o *((thread-safe))* si al manipular estructuras compartidas de datos lo hace de tal manera que se garantiza la ejecución segura de la misma por múltiples hilos al mismo tiempo.
 Obviamente estamos hablando de un problema de secciones críticas, por lo que las funciones lo  resuelven sincronizando el acceso a estos datos mediante el uso de *semáforos*, *_mutex_* u otros recursos similares ofrecidos por el sistema operativo.
 

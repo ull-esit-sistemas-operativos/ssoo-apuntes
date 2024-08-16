@@ -247,6 +247,7 @@ Este último método parece conseguir un buen compromiso entre el tamaño del es
 Por eso se utiliza en la mayor parte de los sistemas operativos modernos.
 
 == Copy-on-write
+
 (((copy-on-write)))
 El *_copy-on-write_* o *copia durante la escritura* permite la creación rápida de nuevos procesos, minimizando la cantidad de páginas que deben ser asignadas a estos.
 
@@ -300,6 +301,7 @@ En previsión de esto, el sistema mantiene un marco completamente a 0 y durante 
 De esta forma, se ahorra memoria física y tiempo de CPU, puesto que realmente no se asigna un marco de memoria física y se pone a 0 su contenido hasta el momento en el que el proceso intenta escribir en una página de memoria previamente reservada.
 
 == Archivos mapeados en memoria
+
 (((archivo, mapeado en memoria)))
 Los *archivos mapeados en memoria* permiten acceder a un archivo como parte del espacio de direcciones virtuales de un proceso.
 Algunas de las características de esta técnica son:
@@ -422,11 +424,13 @@ En general, para implementar la paginación bajo demanda necesitamos:
 Obviamente, estos algoritmos deben ser escogidos de forma que mantengan la *tasa de fallos de página* lo más baja posible para perjudicar en lo mínimo el rendimiento del sistema.
 
 === Algoritmos de reemplazo de páginas
+
 (((algoritmo, reemplazo)))
 Hay muchos *algoritmos de reemplazo de página*.
 La cuestión es cómo seleccionar uno en particular, sabiendo que debe tener la menor tasa posible de *fallos de página*.
 
 ==== Trazas de referencias
+
 (((traza de referencias)))
 Podemos evaluar el algoritmo utilizando una secuencia de referencias a memoria y calculando el número de *fallos de página*.
 A dicha secuencia de referencias se la denomina *trazas de referencias*.
@@ -452,7 +456,9 @@ con páginas de 100 bytes, podemos reducirla a:
 Indudablemente, para determinar el número de *fallos de página* también debemos conocer el número de marcos disponibles para el proceso.
 
 ==== Reemplazo FIFO
-(((algoritmo, reemplazo, FIFO)))(((reemplazo, FIFO)))
+
+(((algoritmo, reemplazo, FIFO)))
+(((reemplazo, FIFO)))
 El *algoritmo de reemplazo de páginas ((FIFO))* es el más sencillo.
 Funciona de la siguiente manera:
 
@@ -508,7 +514,9 @@ La <<fig-anormalidad-de-belady>> muestra la curva de *fallos de página* frente 
 Como se puede apreciar, el número de *fallos de página* con cuatro marcos es superior al número de fallos con tres marcos, aunque era de esperar que el número de fallos de páginas decrementara al aumentar el número de marcos.
 
 ==== Reemplazo óptimo
-(((algoritmo, reemplazo, óptimo)))(((reemplazo, óptimo)))
+
+(((algoritmo, reemplazo, óptimo)))
+(((reemplazo, óptimo)))
 Como resultado del descubrimiento de la *anormalidad de Belady* se comenzó a buscar un algoritmo de reemplazo de página óptimo.
 Es decir:
 
@@ -534,7 +542,9 @@ Desafortunadamente, el *algoritmo de reemplazo óptimo* es difícil de implement
 Por lo que solo se usa en estudios comparativos, con el fin de saber cuánto se aproxima al óptimo un algoritmo de reemplazo determinado.
 
 ==== Reemplazo LRU
-(((algoritmo, reemplazo, LRU)))(((reemplazo, LRU)))
+
+(((algoritmo, reemplazo, LRU)))
+(((reemplazo, LRU)))
 El *algoritmo de reemplazo de página ((LRU))* (_Least Recently Used_) es una aproximación del óptimo.
 La hipótesis es que si una página no ha sido usada durante un gran periodo de tiempo, entonces probablemente tampoco será utilizada en el futuro; por lo que reemplazando la página que hace más tiempo que no se usa, nos estaríamos aproximando al algoritmo óptimo.
 Vamos a ilustrarlo con un ejemplo:
@@ -607,7 +617,9 @@ Con el *bit de referencia* no podemos saber con exactitud el instante, pero sí 
 Utilizándolo, podemos implementar diversas aproximaciones al algoritmo LRU.
 
 ===== Reemplazo NRU
-(((algoritmo, reemplazo, NRU)))(((reemplazo, NRU)))
+
+(((algoritmo, reemplazo, NRU)))
+(((reemplazo, NRU)))
 En el *algoritmo de reemplazo de página ((NRU))* se utiliza el *bit de referencia* de la siguiente manera:
 
 . En intervalos regulares de tiempo, todos los *bits de referencia* son puestos a cero por el sistema operativo.
@@ -705,7 +717,12 @@ En un caso extremo, el número de *bits de referencia adicionales* podría ser c
 A este algoritmo se lo conoce como el *algoritmo de la segunda oportunidad*.
 
 ===== Algoritmo de la segunda oportunidad
-(((algoritmo, reemplazo, reloj)))(((algoritmo, reloj)))(((algoritmo, reemplazo, segunda oportunidad)))(((reemplazo, reloj)))(((reemplazo, segunda oportunidad)))
+
+(((algoritmo, reemplazo, reloj)))
+(((algoritmo, reloj)))
+(((algoritmo, reemplazo, segunda oportunidad)))
+(((reemplazo, reloj)))
+(((reemplazo, segunda oportunidad)))
 El *algoritmo de reemplazo de la segunda oportunidad* o del *reloj* es un *algoritmo de reemplazo de página FIFO*, pero donde una página es seleccionada considerando el *bit de referencia*:
 
 . Cuando es necesario seleccionar una víctima para reemplazo se extrae una página de la cola FIFO.
@@ -821,7 +838,11 @@ Debido a que esas páginas han sido utilizadas intensamente, tiene un contador d
 La solución es utilizar el *algoritmo LRU aproximado con bits de referencia adicionales* (véase <<_con_bits_de_referencia_adicionales>>) porque tiene un coste muy similar a este y prioriza las usadas más recientemente sobre las que fueron usadas con mucha frecuencia en el pasado.
 
 ===== Reemplazo LFU
-(((algoritmo, reemplazo, NFU)))(((algoritmo, reemplazo, LFU)))(((reemplazo, NFU)))(((reemplazo, LFU)))
+
+(((algoritmo, reemplazo, NFU)))
+(((algoritmo, reemplazo, LFU)))
+(((reemplazo, NFU)))
+(((reemplazo, LFU)))
 En el *algoritmo de reemplazo de página ((LFU))* (_Least Frequently Used_) o *((NFU))*  (_Not Frequently Used_) se escoge la página con el contador más bajo.
 Esto es así, puesto que suponemos que las páginas menos referenciadas son las que no se están utilizando de forma más activa.
 
@@ -869,6 +890,7 @@ h|F    h|F    h|F    h|F    h|     h|     h|     h|     h|F    h|F    h|F    h| 
 Por extraña que parezca esta política, suele ser más eficiente que el *LRU* cuando se utiliza en las aplicaciones de almacenamiento de datos, porque algunas las páginas se utilizan intensamente durante breves periodos de tiempo, pero están un tiempo sin utilizarse.
 
 === Algoritmos de buffering de páginas
+
 (((algoritmo, buffering de páginas)))
 Existen otros procedimientos que pueden ser utilizados, junto con alguno de los *algoritmos de reemplazo* comentados, con el objetivo de mejorar su eficiencia.
 Estos procedimientos se agrupan dentro de lo que se denomina *algoritmos de _buffering_ de páginas*.
@@ -910,6 +932,7 @@ Por tanto:
 Generalmente, el *reemplazo global* proporciona mayor rendimiento, por lo que es el método más utilizado.
 
 == Asignación de marcos de página
+
 (((algoritmo, asignación de marcos)))
 La cuestión que queda por resolver es cómo repartir los marcos de memoria física libre entre los diferentes procesos, con el fin de cubrir las necesidades de reemplazo de cada uno de ellos.
 Posibles soluciones a esto serían: repartir la memoria por igual entre todos los procesos o hacerlo en proporción a la cantidad de memoria virtual que utilizan.
@@ -931,8 +954,8 @@ En general, si se va reduciendo el número de marcos asignados a un proceso, muc
 Cuando eso ocurre se dice que el proceso está *hiperpaginando*.
 
 == Hiperpaginación
-(((hiperpaginación)))
 
+(((hiperpaginación)))
 Como hemos comentado, la *hiperpaginación* se produce cuando un proceso no dispone de suficientes marcos como para alojar todas las páginas que necesita con frecuencia, por lo que la *tasa de fallos de página* se vuelve muy elevada.
 
 Se dice que un proceso sufre de *hiperpaginación* cuando gasta más tiempo paginando que ejecutándose.
@@ -987,6 +1010,7 @@ Sin embargo, un algoritmo de *reemplazo local* no evita completamente que un pro
 El uso intensivo del *dispositivo de intercambio*, por parte del proceso *hiperpagina*, puede afectar al rendimiento del sistema al aumentar el *tiempo de acceso efectivo* al disco.
 
 === Modelo del conjunto de trabajo
+
 (((modelo, conjunto de trabajo)))
 Para entender el modelo de conjunto de trabajo es necesario comenzar definiendo el *modelo de localidad*(((modelo, localidad))).
 El *modelo de localidad* establece que:
@@ -1068,8 +1092,8 @@ Ya hemos comentado que las principales decisiones que deben ser tomadas en el di
 Sin embargo, hay otras consideraciones que deben ser tenidas en cuenta.
 
 === Prepaginado
-(((prepaginado)))
-El *prepaginado* es una técnica que consiste en cargar múltiples páginas junto con la página demandada en cada *fallo de página*.
+
+El *((prepaginado))* es una técnica que consiste en cargar múltiples páginas junto con la página demandada en cada *fallo de página*.
 
 Esas otras páginas se escogen especulativamente bajo la hipótesis de que van a ser necesitadas por el proceso en un corto espacio de tiempo.
 De manera que si la predicción es acertada, la *tasa de fallos de página* se reduce significativamente.

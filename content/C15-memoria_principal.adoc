@@ -383,6 +383,7 @@ Esto permite reducir el consumo de memoria principal compartiendo las regiones d
 Esto aumenta el tiempo de carga de las librerías y solo permite que compartan memoria física partes de la librería que sigan siendo iguales tras la reubicación de las direcciones.
 
 === Librerías compartidas
+
 (((librería, compartida)))
 Habitualmente las librerías incluyen información acerca de su versión.
 Esta información puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en el sistema.
@@ -458,6 +459,7 @@ En la *asignación contigua de memoria*(((asignación, contigua, memoria))) a ca
 Esto se puede hacer mediante *particionado fijo* o *particionado dinámico*
 
 === Particionado fijo
+
 (((particionado, fijo)))
 El *particionado fijo* la memoria se divide en varias secciones de tamaño fijo, cada una de las cuales contiene un proceso.
 Cuando un proceso termina, se carga uno nuevo de la cola de entrada en la partición libre.
@@ -468,6 +470,7 @@ image::{chapdir}/particionado_fijo.svg[]
 Este método fue utilizado originalmente por el {ibmos360}, pero ya no se utiliza
 
 === Particionado dinámico
+
 (((particionado, dinámico)))
 El *particionado dinámico* es una generalización del anterior:
 
@@ -505,11 +508,13 @@ Para evaluar qué estrategia es la mejor, se han realizado algunas simulaciones 
 * El *primer ajuste* es normalmente más rápido que el *mejor ajuste*.
 
 == Fragmentación 
+
 (((fragmentación)))
 Las estrategias de asignación de espacio de almacenamiento generalmente sufren de problemas de *fragmentación*.
 Vamos a comentar brevemente cómo afecta la *fragmentación* a la *asignación contigua de memoria*.
 
 === Fragmentación externa
+
 (((fragmentación, externa)))
 La *fragmentación externa* ocurre cuando hay suficiente espacio libre para satisfacer una petición, pero el espacio no es contiguo.
 Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeño tamaño:
@@ -530,6 +535,7 @@ Existen dos técnicas complementarias que utilizan esta solución: la paginació
 (véase el <<paginación>>) y la https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria[segmentación].
 
 === Fragmentación interna
+
 (((fragmentación, interna)))
 La *fragmentación interna* se origina por la diferencia entre el espacio solicitado y el espacio finalmente asignado.
 
@@ -542,7 +548,9 @@ Esto hace que, en general, se asigne más memoria de la que realmente se ha soli
 A esto se lo denomina *fragmentación interna*.
 
 == Intercambio
-(((intercambio)))(((swapping)))
+
+(((intercambio)))
+(((swapping)))
 Un proceso debe estar en la memoria para ser ejecutado, pero en algunos sistemas operativos un proceso puede ser sacado de la memoria y copiado a un almacenamiento de respaldo de forma temporal —generalmente un dispositivo de almacenamiento secundario, como un disco— y en algún momento volver a ser traído a la memoria para continuar su ejecución.
 Al procedimiento descrito se lo denomina *intercambio* o *_swapping_*.
 

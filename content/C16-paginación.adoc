@@ -263,6 +263,7 @@ La protección de las páginas se consigue mediante unos bits que indican las op
 Normalmente, estos bits son almacenados en cada una de las entradas de la *tabla de páginas*.
 
 === Bits de protección
+
 (((bit, protección)))
 Los *bits de protección* pueden ser:
 
@@ -281,6 +282,7 @@ Si no lo es, se genera una excepción de violación de protección de memoria, d
 Normalmente, el sistema operativo responde a dicha excepción terminando el proceso que la generó.
 
 === Bit de válido
+
 (((bit, válido)))
 Además de los *bits de protección* comentados, se suele añadir a cada entrada un *bit de válido*:
 
@@ -336,6 +338,7 @@ En cualquier caso, las *páginas* de la región no ocupada, forman parte del esp
 La falta de *marco* es indicada por el sistema operativo utilizando el *bit de válido* para denegar el acceso.
 
 == Páginas compartidas
+
 (((página, compartida)))
 Una de las ventajas importantes de la paginación, es la posibilidad de compartir *páginas* entre procesos.
 Para conseguir esto, basta con que las *páginas compartidas* de los distintos procesos tengan asignadas un mismo *marco*.
@@ -345,6 +348,7 @@ También permite compartir las *páginas* de código de una librería compartida
 Compartir *páginas* no solo permite ahorrar memoria, pues en los sistemas operativos modernos, la comunicación entre procesos mediante memoria compartida (véase el <<memoria_compartida>>), se implementa mediante *páginas compartidas*.
 
 == Paginación jerárquica
+
 (((paginación, jerárquica)))
 Al método básico de paginación, se lo conoce como *tabla de páginas lineal*(((tabla, páginas, lineal))).
 Sin embargo, las CPU comúnmente, utilizan otras técnicas a la hora de estructurar la *tabla de páginas*.

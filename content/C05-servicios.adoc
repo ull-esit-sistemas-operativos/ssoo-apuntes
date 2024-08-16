@@ -50,6 +50,7 @@ Por eficiencia y protección un usuario, normalmente los procesos no puede tener
 Por ejemplo, puede haber errores del hardware —como fallos de energía o errores en la memoria— en la E/S —como errores de paridad o falta de papel en la impresora— y en los programas de usuario —como desbordamientos aritméticos o accesos ilegales a la memoria—.
 
 == Interfaz de usuario
+
 (((interfaz, de usuario)))
 La *interfaz de usuario* es un servicio fundamental para todos los sistemas diseñados para que los usuarios interactúen con ellos directamente, por lo que nos vamos a detener un poco más en él.
 

@@ -12,8 +12,9 @@ Ya hemos discutido anteriormente acerca de los componentes más comunes en un si
 En esta sección comentaremos cómo se clasifican los distintos sistemas operativos según la organización e interconexión de sus componentes.
 
 == Estructura sencilla
-(((estructura, sencilla)))
+
 ====
+(((estructura, sencilla)))
 Los sistemas con *estructura sencilla* se caracterizan por: 
 
 * No tener una estructura bien definida.
@@ -50,8 +51,9 @@ Tanto MS-DOS como UNIX eran originalmente sistemas pequeños y simples, limitado
 Lo cierto es que con mejor soporte del hardware se puede dividir el sistema operativo en piezas más pequeñas y apropiadas que las del MS-DOS y el UNIX original.
 
 == Estructura en capas
-(((estructura, en capas)))
+
 ====
+(((estructura, en capas)))
 Los sistemas con *estructura en capas* se caracterizan por: 
 
 * La funcionalidad se divide en capas, de tal forma que una capa solo utiliza funciones y servicios de la capa inmediatamente inferior y lo hace a través de una interfaz bien definida.
@@ -98,8 +100,9 @@ Esto limita mucho las ventajas de esta técnica porque no permite compartimentar
 ====
 
 == Microkernel
-(((estructura, microkernel)))(((microkernel)))
 ====
+(((estructura, microkernel)))
+(((microkernel)))
 Los sistemas con *estructura microkernel* se caracterizan por: 
 
 * Eliminar todos los componentes no esenciales del núcleo e implementarlos como procesos de usuario.

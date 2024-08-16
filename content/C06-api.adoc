@@ -12,6 +12,7 @@ Un sistema operativo proporciona un entorno controlado para la ejecución de pro
 Dicho entorno debe proporcionar ciertos servicios que pueden ser accedidos por los programas a través de una *interfaz de programación de aplicaciones* o *((API))* (_Application Programming Interface_).
 
 == Interfaces de programación de aplicaciones
+
 (((interfaz, programación de aplicaciones)))
 Algunas de las API disponibles para los desarrolladores de aplicaciones son Windows API y POSIX.
 
@@ -119,6 +120,7 @@ Las definiciones por defecto incluyen: POSIX.1-2008, ISO C99 y algunas funcional
 Activa `_DEFAULT_SOURCE` y extensiones específicas de los sistemas GNU.
 
 == Llamadas al sistema
+
 (((llamada al sistema)))
 Para un programa, acceder a los servicios del sistema operativo no es tan sencillo como invocar una función.
 Para invocar una función, un programa necesita conocer la dirección en la memoria del punto de entrada de dicha función —es decir, la ubicación de su primera instrucción—.
@@ -206,6 +208,7 @@ En cualquier caso, sea cual sea el método utilizado, el sistema operativo es re
 A fin de cuentas, una de las funciones del sistema operativo es el control de dichos procesos.
 
 == Librería del sistema
+
 (((librería, del sistema)))
 Las *llamadas al sistema* proporcionan una interfaz con la que los procesos pueden invocar los servicios que el sistema operativo ofrece.
 El problema es que como se hacen mediante instrucciones en lenguaje ensamblador (véase el <<ejemplo-linux-mips-syscall>>) no son demasiado cómodas de utilizar.
@@ -235,6 +238,7 @@ Por lo tanto, la invocación de las funciones de la librería del sistema se rea
 ====
 
 == Librería estándar
+
 (((librería, estándar)))
 Lenguajes distintos de C y {cpp} pueden tener difícil usar las funciones de la librería del sistema.
 Pero de alguna forma deben poder hacerlo, porque sus programadores necesitan acceso a los servicios que ofrece el sistema operativo.

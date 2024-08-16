@@ -22,6 +22,7 @@ En la <<fig-estructura-sistema-de-archivos>> se muestra un ejemplo típico de la
 Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
 
 === Control de E/S
+
 (((control de E/S)))
 En el nivel más bajo, accediendo directamente a los dispositivos de almacenamiento, se encuentra el *control de E/S*.
 
@@ -36,6 +37,7 @@ Lo más común es que su tamaño sea de 512 bytes.
 ====
 
 === Sistema básico de archivos
+
 (((sistema de archivos, básico)))
 El *sistema básico de archivos* se encarga de enviar comandos genéricos al controlador de dispositivo apropiado, con el fin de leer y escribir bloques físicos en el disco.
 Cada bloque físico se identifica mediante su dirección de disco numérica.
@@ -51,6 +53,7 @@ Antes de este método, se usaba el de cabeza-cilindro-sector (CHS), pero tenía 
 ====
 
 === Módulo de organización de archivos
+
 (((módulo de organización de archivos)))
 El *módulo de organización de archivos* tiene conocimiento de los archivos y se encarga de traducir las direcciones lógicas de los bloques en los archivos —es decir, posición del bloque dentro del archivo, siendo 0 la dirección del primer bloque— en las direcciones físicas de bloque —por ejemplo, cilindro, cabeza y sector del bloque correspondiente en el dispositivo de almacenamiento— que serán enviadas al *sistema básico de archivos* para que realice las transferencias solicitadas.
 
@@ -87,12 +90,16 @@ Estas estructuras varían dependiendo del sistema operativo y del sistema de arc
 Sin embargo, a continuación intentaremos describir brevemente las estructuras en disco más comunes.
 
 === Bloque de control de arranque
-(((bloque, de control, arranque)))(((bloque, inicio)))(((sector, arranque)))
+
+(((bloque, de control, arranque)))
+(((bloque, inicio)))
+(((sector, arranque)))
 En todo sistema de archivos suele haber un *bloque de control de arranque* —también llamado *bloque de inicio* o *sector de arranque*— que suele ocupar el primer bloque de cada volumen y que contiene la información necesaria para iniciar un sistema operativo a partir de dicho volumen.
 
 Este bloque puede estar vacío, si el volumen no contiene un sistema operativo.
 
 === Bloque de control de volumen
+
 (((bloque, de control, volumen)))
 El *bloque de control de volumen* contiene todos los detalles acerca del volumen.
 Por ejemplo, el número máximo de bloques, el tamaño de los bloques, el número de bloques libres y punteros a los mismos; así como un contador de bloques de información *FCB* ocupados y punteros a estos.
@@ -101,6 +108,7 @@ A esta estructura se la denomina *((superbloque))*, en los sistemas de archivos 
 Mientras que en {ntfs} esta información se almacena en la *tabla maestra de archivos* o *((MFT))* (_Master File Table_).
 
 === Bloque de control de archivo
+
 (((bloque, de control, archivo)))
 Todo sistema de archivos tiene un *bloque de control de archivo* o *((FCB))* (_File Control Block_) por archivo, en que se almacenan numerosos detalles sobre cada uno de los archivos 
 Por ejemplo, los permisos, el propietario, el tamaño y la ubicación de los bloques de datos, entre otros.
@@ -139,6 +147,7 @@ La *tabla de archivos abiertos* contiene, para cada archivo, un puntero a la ent
 Por ejemplo, si el proceso lo ha abierto para lectura o escritura o la posición del puntero que indica la siguiente posición a leer o escribir.
 
 == Montaje de sistemas de archivos
+
 (((montaje)))
 Un sistema de archivos debe *montarse* para que sus archivos sean accesibles a los procesos del sistema.
 El proceso de montaje incluye los siguientes pasos:
@@ -390,6 +399,7 @@ Normalmente, cada entrada de directorio incluye un bit donde se indica si dicha 
 Esto se hace así porque, generalmente, los directorios no son más que archivos con un formato interno especial; por lo que el sistema debe saber si la entrada apunta a un directorio para interpretar correctamente los datos del directorio.
 
 ==== Directorio de trabajo actual
+
 (((directorio, trabajo)))
 Comúnmente, en el *PCB* de cada proceso se guarda cuál es su *directorio de trabajo* actual.
 De esta forma, cuando se hace referencia a un archivo en una llamada al sistema usando solo su nombre, se le busca en el *directorio de trabajo* del proceso.
@@ -414,6 +424,7 @@ Ese proceso hereda el *directorio de trabajo* actual de *Bash*.
 ====
 
 ==== Nombre de ruta
+
 (((nombre de ruta)))
 Los *nombres de ruta* es la forma en la que se indica la ubicación de un archivo o directorio en el árbol de directorios.
 
@@ -637,6 +648,7 @@ Esos permisos pueden ser gestionados utilizando los comandos {cmd_setfacl} y {cm
 En general, se suele asignar a la *ACL* más prioridad que a la *ACL condensada*, pues la primera tiene una granularidad más fina y no se crea de forma predeterminada.
 
 === Semántica de coherencia
+
 (((semántica, coherencia)))
 La *semántica de coherencia* especifica cuándo las modificaciones que un proceso realiza en los archivos serán observables por los otros procesos.
 Por tanto, es importante tenerla en cuenta cuando esperamos que varios procesos utilicen los mismos archivos al mismo tiempo.
@@ -644,6 +656,7 @@ Por tanto, es importante tenerla en cuenta cuando esperamos que varios procesos 
 A continuación vamos a comentar algunos ejemplos de tipos *semántica de coherencia*.
 
 ==== Semántica POSIX
+
 (((semántica, POSIX)))
 Los sistemas de archivos de los sistemas operativos POSIX utilizan la siguiente *semántica de coherencia*:
 
@@ -658,6 +671,7 @@ Por ejemplo, un proceso que haga *read* sobre un archivo podría quedar en esper
 La competición por acceder a esta imagen única provoca retrasos en los procesos debido a estos bloqueos.
 
 ==== Semántica de sesión
+
 (((semántica, sesión)))
 El https://es.wikipedia.org/wiki/Andrew_File_System[sistema de archivos Andrew] (AFS) es un sistema de archivos en red —o sistema de archivos distribuido— es decir, sirve para compartir archivos en una red de ordenadores y usarlos como si estuvieran almacenados localmente.
 
@@ -685,6 +699,7 @@ A cambio hay que tener cuidado con el hecho de que un proceso puede estar leyend
 Si un proceso necesita acceder a los datos que escribe otro proceso, ambos deben sincronizarse explícitamente abriendo y cerrando el archivo.
 
 ==== Semántica de archivos compartidos inmutables
+
 (((semántica, archivos compartidos inmutables)))
 En esta semántica, cuando un archivo es declarado como compartido por su creador, ya no puede ser modificado.
 

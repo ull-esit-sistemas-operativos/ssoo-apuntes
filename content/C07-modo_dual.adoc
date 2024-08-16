@@ -173,6 +173,7 @@ Por ejemplo, un programa mal desarrollado que entra en un bucle infinito, del qu
 Obviamente, las instrucciones que pueden modificar el contenido del temporizador son instrucciones privilegiadas.
 
 == Máquinas virtuales
+
 (((máquina virtual)))
 Utilizando las técnicas comentadas anteriormente, el sistema operativo crea a los procesos la ilusión de que se ejecutan en su propio procesador y memoria principal, aunque realmente los estén compartiendo con otros procesos.
 Obviamente, los procesos saben que hay un sistema operativo que los supervisa, porque no pueden acceder directamente al hardware, sino que deben solicitar los distintos recursos a través de las llamadas al sistema.

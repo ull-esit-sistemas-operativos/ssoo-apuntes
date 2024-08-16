@@ -107,8 +107,8 @@ Otros lenguajes proporcionan un *librería de hilos* dentro de su *librería est
 El soporte de hilos en un sistema operativo se puede proporcionar a *nivel de usuario* o a *nivel de núcleo*.
 
 === Hilos a nivel de usuario
-(((hilo, usuario)))
 
+(((hilo, usuario)))
 El soporte de *hilos a nivel de usuario* se implementan mediante un *librería de hilos* en el espacio de usuario, junto al código del programa y los datos del proceso, sin requerir ningún soporte especial por parte del núcleo del sistema operativo.
 Por tanto, como se puede observar en el lado derecho de la <<fig-comparación-soporte-de-hilos>>, estos hilos existen desde el punto de vista del proceso y del programa que ejecuta, pero no para el sistema operativo.
 El planificador de la CPU asigna tiempo de CPU a los procesos, mientras que la *librería de hilos* de cada proceso reparte el tiempo de ejecución del proceso entre los diferentes hilos de este.
@@ -120,8 +120,8 @@ image::{chapdir}/comparación_soporte_de_hilos.svg[]
 Como el código y los datos de la librería residen en el espacio de usuario, invocar una función de la misma se reduce a una simple llamada a una función, evitando el coste de hacer llamadas al sistema.
 
 === Hilos a nivel de núcleo
-(((hilo, núcleo)))
 
+(((hilo, núcleo)))
 Se habla de *hilos a nivel de núcleo*, cuando el núcleo del sistema es el encargado de ofrecer el soporte multihilo.
 El código y los datos de la *librería de hilos*, mediante la cual los programadores pueden solicitar la creación y gestión de los hilos, reside en el espacio del núcleo.
 Por tanto, para invocar una función de la *librería de hilos* es necesario hacer una llamada al sistema.
@@ -151,8 +151,9 @@ Aquí entendemos por *hilos de núcleo* a estas secuencias de instrucciones tal 
 Mientras que el concepto de *hilos de núcleo* corresponde con como las ve el núcleo del sistema.
 
 === Muchos a uno (N:1)
-(((muchos a uno)))(((modelo, muchos a uno)))
 
+(((muchos a uno)))
+(((modelo, muchos a uno)))
 En el modelo *muchos a uno* muchos *hilos de usuario* son mapeados en *un único hilo de núcleo*.
 El planificador de la CPU en el núcleo reparte el tiempo de CPU entre los diferentes *hilos de núcleo* en el sistema, mientras que la *librería de hilos* en cada proceso reparte el tiempo de ejecución del *hilo de núcleo* del proceso entre múltiples *hilos de usuario* (véase la <<fig-modelo-muchos-a-uno>>).
 
@@ -241,8 +242,9 @@ En Java 1.1 era el único modelo soportado —ya que los hilos se implementaban 
 Otras implementaciones de este modelo son las https://docs.microsoft.com/en-us/windows/win32/procthread/fibers[fibras] y https://docs.microsoft.com/en-us/windows/win32/procthread/user-mode-scheduling[UMS] de Windows API, {stackless_python} y http://www.gnu.org/software/pth/[GNU Portable Threads].
 
 === Uno a uno (1:1)
-(((uno a uno)))(((modelo, uno a uno)))
 
+(((uno a uno)))
+(((modelo, uno a uno)))
 En el modelo *muchos a uno* un *hilo de usuario* se mapea en *un único hilo de núcleo*.
 
 Por lo general, este modelo corresponde al caso de los sistemas que solo soportan *hilos a nivel de núcleo*.
@@ -279,8 +281,9 @@ El modelo *uno a uno* se utiliza en la mayor parte de los sistemas operativos mu
 Linux, Microsoft Windows —desde Windows 95— {solaris} 9 y superiores, macOS y la familia de UNIX BSD; son ejemplos de sistemas operativos que utilizan el modelo *uno a uno*.
 
 === Muchos a muchos (M:N)
-(((muchos a muchos)))(((modelo, muchos a muchos)))
 
+(((muchos a muchos)))
+(((modelo, muchos a muchos)))
 En teoría debería ser posible aprovechar lo mejor de los dos modelos anteriores con una *librería de hilos* en el núcleo, para crear *hilos de núcleo*, y otra en el espacio de usuario, para crear *hilos de usuario*.
 Así los desarrolladores pueden utilizar la *librería de hilos* en el espacio de usuario para crear tantos hilos como quieran y que estos se ejecuten sobre los *hilos de núcleo* de su proceso.
 
@@ -645,6 +648,7 @@ int return_code = pthread_setcanceltypr(
 Se pueden cambiar entre estado y tipo de cancelación en cualquier momento, según lo que encaje mejor con las características de las distintas partes del código.
 
 ==== Cancelación asíncrona
+
 (((cancelación, asíncrona)))
 Por los motivos comentados anteriormente, no es recomendable la *cancelación asíncrona*, a menos que estemos muy seguros de que no puede causar problemas.
 Uno de los pocos casos con los que es compatible es en bucles 100% dedicados a ejecutar cálculos en la CPU, como el siguiente: 
@@ -668,6 +672,7 @@ El estándar POSIX solo indica que las funciones {pthread_setcancelstate} y {pth
 En general, no se puede llamar a otras funciones de la librería del sistema de forma segura en un hilo cancelable asíncronamente.
 
 ==== Cancelación en diferido
+
 (((cancelación, en diferido)))
 Por tanto, la *cancelación en diferido* es la mejor alternativa.
 Con este tipo de cancelación, la terminación del hilo ocurre en puntos concretos del código.
