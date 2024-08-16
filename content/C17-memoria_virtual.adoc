@@ -142,7 +142,7 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 Como se puede apreciar, la mayor parte del *tiempo de fallo de página* es debido al tiempo requerido para acceder al *dispositivo de intercambio*.
 
 Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página*, ya que comparativamente consumen mucho menos tiempo.
-Vamos suponer que el *tiempo de acceso* a la memoria stem:[T_text(m)] es de 200 ns y que la probabilidad stem:[p_text(fp)] es muy pequeña —es decir, latexmath:[p_\mathrm{fp} \ll 1]—:
+Vamos a suponer que el *tiempo de acceso* a la memoria stem:[T_text(m)] es de 200 ns y que la probabilidad stem:[p_text(fp)] es muy pequeña —es decir, latexmath:[p_\mathrm{fp} \ll 1]—:
 
 [latexmath]
 ++++
@@ -1084,6 +1084,30 @@ El sistema puede determinar que el acceso va a ser de tipo secuencial, tanto med
 En cualquier caso, si el sistema determina que el acceso al archivo es secuencial, en cada *fallo de página* puede cargar tanto la página demanda como las siguientes, en previsión de que vayan a ser utilizadas por el proceso.
 
 En general, el único inconveniente del *prepaginado* es que debe ser ajustado para que el coste del mismo sea inferior al de servir los *fallos de página*.
+
+=== Sobrereserva
+
+(((sobrereserva)))
+(((overcommit)))
+Como las páginas de memoria de los procesos no necesitan memoria física hasta que son referenciadas, los sistemas operativos con memoria virtual pueden aceptar solicitudes de reserva de memoria aunque no haya suficiente memoria física disponible.
+Para que el sistema operativo pueda garantizar que siempre tiene dónde almacenar cualquier página de cualquier proceso, debe asegurarse de que la cantidad total de memoria reservada no exceda el espacio total disponible entre la memoria física y el *espacio de intercambio*.
+Por lo general, si una petición de reserva de memoria excede el espacio total disponible, el sistema operativo la rechazará.
+
+Si embargo, algunos sistemas operativos pueden aceptar solicitudes de reserva de memoria que excedan el espacio total disponible.
+En estos casos, el sistema operativo acepta la solicitud, pero no garantiza que la memoria reservada pueda ser utilizada.
+Es lo que se conoce como *sobrereserva* u ***overcommit***.
+
+[NOTE]
+====
+Muchas distribuciones de Linux hacen *sobrereserva* por defecto, aunque este comportamiento se puede desactivar.
+Desactivar la *sobrereserva* es especialmente recomendable en sistemas críticos, donde no se puede permitir que el sistema operativo termine los procesos de forma prematura si el sistema se quedan sin espacio para almacenar las páginas de memoria.
+====
+
+La *sobrereserva* es útil porque algunos programas reservan más memoria de la que realmente necesitan, por lo que no tiene sentido que se compruebe si hay suficiente espacio hasta que el proceso no utilice realmente la memoria reservada.
+Sin embargo, tiene el riesgo de que si se reserva más memoria de la disponible y todos los procesos intentan utilizar buena parte de ella, el sistema se quede sin espacio para almacenar las páginas de memoria y tenga que terminar procesos de forma prematura para liberar espacio.
+
+En los sistemas Linux, **((Out Of Memory Killer))** u **((OOM Killer))** es el nombre que recibe la tarea del núcleo encargada de terminar procesos cuando el sistema se queda sin memoria.
+El **OOM Killer** selecciona los procesos a terminar en función de una serie de criterios, como el uso de la CPU, la cantidad de memoria que consumen o si el proceso es un servicio o un proceso de usuario.
 
 === Aplicaciones en modo RAW
 
