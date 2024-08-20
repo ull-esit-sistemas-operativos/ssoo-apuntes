@@ -254,7 +254,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Jesús Torres</span><br>
 <span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
-<span id="revdate">Curso 20XX-20XY</span>
+<span id="revdate">Curso 2024-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
@@ -969,14 +969,14 @@ Además tienen la posibilidad de asociar a cada mensaje una prioridad, de tal fo
 Su uso es relativamente común en sistemas de tiempo real, aunque lo más frecuente en los sistemas de propósito general es usar <em>sockets</em>.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/message_queue.hpp">message_queue.hpp</a> se puede ver un ejemplo de una clase desarrollada en C&#43;&#43; para utilizar colas de mensajes POSIX.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/message_queue.hpp">message_queue.hpp</a> se puede ver un ejemplo de una clase desarrollada en C&#43;&#43; para utilizar colas de mensajes POSIX.
 En los distintos métodos se puede ver cómo se utilizan las funciones de la librería del sistema para crear la cola y enviar y recibir mensajes.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/mqueue-client.cpp">mqueue-client.cpp</a> se puede ver un ejemplo de cómo se utiliza la clase en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/message_queue.hpp">message_queue.hpp</a>.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/mqueue-client.cpp">mqueue-client.cpp</a> se puede ver un ejemplo de cómo se utiliza la clase en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/message_queue.hpp">message_queue.hpp</a>.
 El primero es un programa que muestra la hora del sistema periódicamente.
 El segundo se puede comunicar con el primero a través de una cola de mensajes para controlarlo.
-En ejemplo es muy sencillo, así que, por el momento, lo único que puede hacer <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/mqueue-client.cpp">mqueue-client.cpp</a> es pedirle a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> que termine.
+En ejemplo es muy sencillo, así que, por el momento, lo único que puede hacer <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/mqueue-client.cpp">mqueue-client.cpp</a> es pedirle a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> que termine.
 Aunque no costaría nada añadir otras órdenes, como pedir que cambie la hora del sistema o la periodicidad con la que la muestra.</p>
 </div>
 <div class="paragraph">
@@ -1286,12 +1286,12 @@ Mientras que la lista completa de señales soportadas en Linux se puede consulta
 </table>
 </div>
 <div class="paragraph">
-<p>El ejemplo en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> y en otros ejemplos de este capítulo, utiliza señales para manejar <code>SIGINT</code>, <code>SIGTERM</code> y para mostrar la hora periódicamente.
-El código dedicado a eso está en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/common/timeserver.c">timeserver.c</a> y se comparte entre todos los ejemplos.
+<p>El ejemplo en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/mqueue-server.cpp">mqueue-server.cpp</a> y en otros ejemplos de este capítulo, utiliza señales para manejar <code>SIGINT</code>, <code>SIGTERM</code> y para mostrar la hora periódicamente.
+El código dedicado a eso está en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/common/timeserver.c">timeserver.c</a> y se comparte entre todos los ejemplos.
 En todos los casos se evita usar <code>SA_RESTART</code> porque interesa que el proceso interrumpa lo que esté haciendo cuando llegue una señal para terminar.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/signals.c">signals.c</a> hay un programa de ejemplo que muestra cómo manejar las señales del sistema y que sirve para ver cómo funcionan.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/signals.c">signals.c</a> hay un programa de ejemplo que muestra cómo manejar las señales del sistema y que sirve para ver cómo funcionan.
 Solo hay que ejecutarlo y luego enviarle señales con el comando <code>kill</code> desde otra terminal.
 En este caso si se usa <code>SA_RESTART</code>, porque el programa debe estar esperando la pulsación de una tecla con <code>getc()</code> y no nos interesa que deje de hacerlo cuando llegue una señal.</p>
 </div>
@@ -1404,12 +1404,12 @@ En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/m
 <div class="paragraph">
 <p>Además, el hecho de que cada extremo se comporte como un archivo —uno en modo solo lectura y el otro en modo solo escritura— hace posible redirigir la E/S estándar del proceso hijo.
 Es decir, conectar la entrada, la salida estándar o la salida de error a una tubería, desde la que leer lo que el proceso intenta imprimir por la pantalla de la terminal o proporcionarle lo que debe leer, como si fuera desde el teclado.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-redir.c">fork-redir.c</a> se puede ver un ejemplo de cómo ejecutar el comando <code>ls</code> y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.</p>
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fork-redir.c">fork-redir.c</a> se puede ver un ejemplo de cómo ejecutar el comando <code>ls</code> y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.</p>
 </div>
 <div class="paragraph">
 <p>Por otro lado, las tuberías con nombre permiten que un proceso se comunique con cualquier otro, solo con conocer la ruta de la tubería.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fifo-client.c">fifo-server.c</a> tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
-Los programas en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fifo-client.c">fifo-client.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fifo-client.cpp">fifo-client.cpp</a> pueden conectarse a esa tubería y mandar el comando que hace terminar <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fifo-client.c">fifo-server.c</a>.</p>
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo-client.c">fifo-server.c</a> tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
+Los programas en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo-client.c">fifo-client.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo-client.cpp">fifo-client.cpp</a> pueden conectarse a esa tubería y mandar el comando que hace terminar <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo-client.c">fifo-server.c</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1613,8 +1613,8 @@ Sin embargo, es posible configurarlos en modo asíncrono, para que así cualquie
 <p>También se pueden utilizar las funciones <a href="https://man7.org/linux/man-pages/man2/select.2.html">select()</a> y <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll()</a> para monitorizar varios <em>sockets</em> al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <a href="comunicación_mediante_paso_de_mensajes.html#_colas_de_mensajes_posix">Apartado 10.5.1</a>).</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/socket-server.cpp">socket-server.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/socket-client.cpp">socket-client.cpp</a> se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando <em>sockets</em> de dominio UNIX.
-Ambos programas utilizan la cabecera <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/socket.hpp">socket.hpp</a> que incluye un ejemplo de clase en C&#43;&#43; para comunicaciones mediante <em>sockets</em>.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/socket-server.cpp">socket-server.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/socket-client.cpp">socket-client.cpp</a> se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando <em>sockets</em> de dominio UNIX.
+Ambos programas utilizan la cabecera <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/socket.hpp">socket.hpp</a> que incluye un ejemplo de clase en C&#43;&#43; para comunicaciones mediante <em>sockets</em>.
 En los distintos métodos se puede ver cómo se utilizan las funciones de la librería del sistema para crear <em>sockets</em>, asignarles dirección y usarlos para enviar y recibir mensajes.</p>
 </div>
 <div class="paragraph">

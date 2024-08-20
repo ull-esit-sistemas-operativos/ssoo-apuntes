@@ -254,7 +254,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Jesús Torres</span><br>
 <span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
-<span id="revdate">Curso 20XX-20XY</span>
+<span id="revdate">Curso 2024-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
@@ -907,10 +907,10 @@ Mientras que en sistemas POSIX es necesario crear el <strong>semáforo</strong> 
 <div class="sect3">
 <h4 id="_ejemplos_del_uso_de_semáforos"><a class="anchor" href="#_ejemplos_del_uso_de_semáforos"></a>13.3.2. Ejemplos del uso de semáforos</h4>
 <div class="paragraph">
-<p>En el ejemplo <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> de comunicación mediante memoria compartida, se usa un <strong>semáforo</strong> para que el proceso hijo indique al proceso padre que ha terminado de calcular el factorial y el resultado ya está en la memoria.</p>
+<p>En el ejemplo <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> de comunicación mediante memoria compartida, se usa un <strong>semáforo</strong> para que el proceso hijo indique al proceso padre que ha terminado de calcular el factorial y el resultado ya está en la memoria.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-server.c">shared-memory-server.c</a> está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a>.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-server.c">shared-memory-server.c</a> está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a>.</p>
 </div>
 <div class="paragraph">
 <p>Para enviar los mensajes entre el cliente y el servidor, en la memoria compartida se reserva hueco para un búfer en el que el cliente copia el comando que quiere enviar y para dos <strong>semáforos</strong>:</p>
@@ -964,7 +964,7 @@ El cliente lo hace después de escribir un nuevo comando en <code>command_buffer
 </table>
 </div>
 <div class="paragraph">
-<p>El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-server.c">shared-memory-server.c</a>, respectivamente.</p>
+<p>El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-server.c">shared-memory-server.c</a>, respectivamente.</p>
 </div>
 <div class="paragraph">
 <p>Finalmente, para resolver el <strong>problema del productor-consumidor</strong> tenemos que considerar que:</p>
@@ -1171,7 +1171,7 @@ Mientras que los <strong><em>mutex</em></strong> de Windows API son objetos más
 <div class="sect3">
 <h4 id="_ejemplos_del_uso_de_mutex"><a class="anchor" href="#_ejemplos_del_uso_de_mutex"></a>13.4.1. Ejemplos del uso de mutex</h4>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap13/pthreads-sync-factorial.cpp">pthreads-sync-factorial.cpp</a> se puede estudiar el código completo de un ejemplo similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/pthreads.cpp">pthreads.cpp</a>, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando la API de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap13/pthreads-sync-factorial.cpp">pthreads-sync-factorial.cpp</a> se puede estudiar el código completo de un ejemplo similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/pthreads.cpp">pthreads.cpp</a>, donde se calculaba el factorial de un número, repartiendo la tarea entre dos hilos, usando la API de <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.
 La diferencia es que ahora los hilos no retornan el resultado, sino que cada uno lo mete en un vector compartido.
 Al terminar, el hilo principal recorre el vector multiplicando los resultados parciales.</p>
 </div>
@@ -1209,7 +1209,7 @@ Es importante no olvidarnos de liberar el <strong><em>mutex</em></strong> al ter
 </table>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap13/pthreads-sync-counter.cpp">pthreads-sync-counter.cpp</a> se puede observar un ejemplo más simple donde dos hilos intentan incrementar un contador.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap13/pthreads-sync-counter.cpp">pthreads-sync-counter.cpp</a> se puede observar un ejemplo más simple donde dos hilos intentan incrementar un contador.
 El resultado es correcto siempre que cada hilo adquiera el mismo <strong><em>mutex</em></strong> antes del incremento:</p>
 </div>
 <div class="listingblock">
@@ -1222,7 +1222,7 @@ El resultado es correcto siempre que cada hilo adquiera el mismo <strong><em>mut
 </div>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap13/threads-sync-counter.cpp">threads-sync-counter.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap13/threads-sync-factorial.cpp">threads-sync-factorial.cpp</a> se puede ver ejemplos equivalentes pero usando <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> y <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a>, de la librería estándar de C&#43;&#43;.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap13/threads-sync-counter.cpp">threads-sync-counter.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap13/threads-sync-factorial.cpp">threads-sync-factorial.cpp</a> se puede ver ejemplos equivalentes pero usando <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> y <a href="https://en.cppreference.com/w/cpp/thread/mutex">std::mutex</a>, de la librería estándar de C&#43;&#43;.</p>
 </div>
 </div>
 </div>
@@ -1509,7 +1509,7 @@ De igual forma, si un sistema o lenguaje soporta <strong><em>mutex</em></strong>
 <div class="title">Ejemplo 13.2. Implementación de un semáforo en C&#43;&#43;.</div>
 <div class="content">
 <div class="paragraph">
-<p>El código fuente completo de la clase <code>semaphore</code> está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap13/semaphore.hpp">semaphore.hpp</a>.</p>
+<p>El código fuente completo de la clase <code>semaphore</code> está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap13/semaphore.hpp">semaphore.hpp</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1556,7 +1556,7 @@ De igual forma, si un sistema o lenguaje soporta <strong><em>mutex</em></strong>
 </table>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap13/threads-sync-semaphore.cpp">threads-sync-semaphore.cpp</a> se puede ver un ejemplo de cómo utilizarla para limitar el número de hilos que pueden ejecutarse en una <strong>sección crítica</strong> al mismo tiempo.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap13/threads-sync-semaphore.cpp">threads-sync-semaphore.cpp</a> se puede ver un ejemplo de cómo utilizarla para limitar el número de hilos que pueden ejecutarse en una <strong>sección crítica</strong> al mismo tiempo.</p>
 </div>
 <div class="listingblock">
 <div class="content">

@@ -254,7 +254,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Jesús Torres</span><br>
 <span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
-<span id="revdate">Curso 20XX-20XY</span>
+<span id="revdate">Curso 2024-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
@@ -424,7 +424,7 @@ Mientras que <code>MAP_PRIVATE</code> establece que la región de memoria es pri
 Por lo tanto, escribiendo y leyendo en esa región, ambos procesos pueden comunicarse.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> se puede ver un ejemplo muy simple, similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp">fork-pipe.cpp</a> pero utilizando memoria compartida para comunicar ambos procesos.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> se puede ver un ejemplo muy simple, similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp">fork-pipe.cpp</a> pero utilizando memoria compartida para comunicar ambos procesos.
 Como se puede apreciar, la versión que usa memoria compartida es bastante más sencilla que la que utiliza tuberías.</p>
 </div>
 <div class="paragraph">
@@ -530,9 +530,9 @@ Para esto último se indica el tamaño de la región y el desplazamiento dentro 
 Para redimensionarlo se utiliza <a href="https://man7.org/linux/man-pages/man2/ftruncate.2.html">ftruncate()</a>, que lo que necesita es el descriptor del objeto y el nuevo tamaño.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-server.c">shared-memory-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-server.c">shared-memory-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
 En este caso controlado por otro mediante memoria compartida.
-Ambos programas usan la clase definida en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared_memory.hpp">shared_memory.hpp</a> para gestionar el objeto de memoria compartida.
+Ambos programas usan la clase definida en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared_memory.hpp">shared_memory.hpp</a> para gestionar el objeto de memoria compartida.
 Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema comentadas.</p>
 </div>
 <div class="paragraph">

@@ -254,7 +254,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Jesús Torres</span><br>
 <span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
-<span id="revdate">Curso 20XX-20XY</span>
+<span id="revdate">Curso 2024-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
@@ -389,7 +389,7 @@ Además, el estándar POSIX ha tenido varias revisiones desde la primera —publ
 A estas macros sé las denomina <a href="https://man7.org/linux/man-pages/man7/feature_test_macros.7.html">macros de test de características</a>.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, el siguiente programa en C —disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap06/softstack.c">softstack.c</a>— realiza una serie de tareas muy sencillas: crea un archivo, muestra una serie de mensajes por la salida estándar, cierra el archivo y termina.
+<p>Por ejemplo, el siguiente programa en C —disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap06/softstack.c">softstack.c</a>— realiza una serie de tareas muy sencillas: crea un archivo, muestra una serie de mensajes por la salida estándar, cierra el archivo y termina.
 Sin embargo, si no se define la macro <code>_POSIX_C_SOURCE</code> puede que no compile, según la versión de la librería del sistema y las opciones del compilador.
 El motivo es que todas las funciones utilizadas en el programa forman parte del estándar POSIX desde hace tiempo, excepto <a href="https://man7.org/linux/man-pages/man3/mkstemp.3.html">mkstemp()</a>, que es una función introducida en el estándar POSIX.1-2008.
 Por lo que si el compilador por defecto compila para una versión anterior del estándar, esta y otras funciones definidas en especificaciones posteriores no están.</p>
@@ -606,7 +606,7 @@ La siguiente instrucción no comenzará a ejecutarse hasta que el sistema operat
 </table>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap06/syscall.s">syscalls.s</a> se puede ver un ejemplo completo similar, pero para Linux x86 de 64 bits.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap06/syscall.s">syscalls.s</a> se puede ver un ejemplo completo similar, pero para Linux x86 de 64 bits.</p>
 </div>
 </div>
 </div>

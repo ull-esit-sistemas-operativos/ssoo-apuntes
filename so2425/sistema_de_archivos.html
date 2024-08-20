@@ -254,7 +254,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Jesús Torres</span><br>
 <span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
-<span id="revdate">Curso 20XX-20XY</span>
+<span id="revdate">Curso 2024-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
@@ -1528,9 +1528,9 @@ Por ejemplo, la llamada <a href="https://man7.org/linux/man-pages/man2/fcntl.2.h
 Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como ocurre con los bloqueos BSD de <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock()</a>.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap19/filelock-server.c">filelock-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap19/filelock-client.cpp">filelock-client.cpp</a> se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
-El servidor <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap19/filelock-server.c">filelock-server.c</a> es un programa que muestra periódicamente la hora del sistema.
-Mientras que el cliente <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap19/filelock-client.cpp">filelock-client.cpp</a>, simplemente envía una señal <code>SIGTERM</code> al servidor cuando queremos que termine.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-client.cpp">filelock-client.cpp</a> se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
+El servidor <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> es un programa que muestra periódicamente la hora del sistema.
+Mientras que el cliente <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-client.cpp">filelock-client.cpp</a>, simplemente envía una señal <code>SIGTERM</code> al servidor cuando queremos que termine.
 Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en una ubicación conocida por ambos.</p>
 </div>
 <div class="paragraph">
@@ -1547,7 +1547,7 @@ En caso contrario, debe terminar.</p>
 <div class="paragraph">
 <p>Para evitar que varios servidores den todos esos pasos al mismo tiempo, acaben creyendo que son los únicos y sobrescriban el archivo varias veces, el acceso al archivo debe hacerse en <strong>exclusión mutua</strong>.
 Así lo van bloqueando de uno en uno y mientras no hace sus comprobaciones los demás esperan.
-Por eso <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap19/filelock-server.c">filelock-server.c</a> utiliza <a href="https://man7.org/linux/man-pages/man3/lockf.3.html">lockf()</a> para bloquear el archivo, sincronizando el acceso de los servidores.</p>
+Por eso <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> utiliza <a href="https://man7.org/linux/man-pages/man3/lockf.3.html">lockf()</a> para bloquear el archivo, sincronizando el acceso de los servidores.</p>
 </div>
 </div>
 </div>

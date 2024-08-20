@@ -254,7 +254,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Jesús Torres</span><br>
 <span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
-<span id="revdate">Curso 20XX-20XY</span>
+<span id="revdate">Curso 2024-2025</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenido</div>
@@ -955,9 +955,9 @@ Excepto por la característica especial del <strong>hilo principal</strong> de q
 <div class="title">Ejemplo 12.1. Creación de hilos con <a href="https://en.cppreference.com/w/cpp/thread/thread">std::thread</a> en C&#43;&#43;.</div>
 <div class="content">
 <div class="paragraph">
-<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/threads.cpp">threads.cpp</a>.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/pthreads.cpp">pthreads.cpp</a> se puede ver un ejemplo equivalente, pero usando <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> de la librería de sistema POSIX.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/threads-factorial.cpp">threads-factorial.cpp</a> se puede examinar un ejemplo más interesante donde los hilos se utilizan para dividir el cálculo del factorial de un número, con el objetivo de calcularlo en menos tiempo.</p>
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/threads.cpp">threads.cpp</a>.
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/pthreads.cpp">pthreads.cpp</a> se puede ver un ejemplo equivalente, pero usando <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a> de la librería de sistema POSIX.
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/threads-factorial.cpp">threads-factorial.cpp</a> se puede examinar un ejemplo más interesante donde los hilos se utilizan para dividir el cálculo del factorial de un número, con el objetivo de calcularlo en menos tiempo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1036,8 +1036,8 @@ En el <a href="hilos.html#ejemplo-pthread">Ejemplo 12.2</a> se puede ver código
 <div class="title">Ejemplo 12.2. Creación de hilos con <a href="https://man7.org/linux/man-pages/man7/pthreads.7.html">POSIX Threads</a>.</div>
 <div class="content">
 <div class="paragraph">
-<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/pthreads.cpp">pthreads.cpp</a>.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/pthreads-factorial.cpp">pthreads-factorial.cpp</a> se puede estudiar un ejemplo similar, pero dónde se usan los hilos para dividir el cálculo del factorial de un número.</p>
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/pthreads.cpp">pthreads.cpp</a>.
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/pthreads-factorial.cpp">pthreads-factorial.cpp</a> se puede estudiar un ejemplo similar, pero dónde se usan los hilos para dividir el cálculo del factorial de un número.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1521,13 +1521,13 @@ El código de los hilos debe comprobar frecuentemente el valor de dicha variable
 Esta nueva clase de hilo puede pasar a la función principal lo que se llama un <strong><em>token</em> de cancelación</strong> —en lugar de la variable tipo <code>bool</code> que comentamos anteriorment— que se debe comprobar regularmente para saber si hay que terminar el hilo prematuramente.</p>
 </div>
 <div class="paragraph">
-<p>En el <a href="hilos.html#ejemplo-jthread">Ejemplo 12.3</a> se ilustra de forma simplificada cómo se usa <a href="https://en.cppreference.com/w/cpp/thread/jthread">std::jthread</a> en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/jthreads-factorial.cpp">jthreads-factorial.cpp</a> para crear hilos para calcular el factorial de un número, cancelando el cálculo antes de que termine.</p>
+<p>En el <a href="hilos.html#ejemplo-jthread">Ejemplo 12.3</a> se ilustra de forma simplificada cómo se usa <a href="https://en.cppreference.com/w/cpp/thread/jthread">std::jthread</a> en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/jthreads-factorial.cpp">jthreads-factorial.cpp</a> para crear hilos para calcular el factorial de un número, cancelando el cálculo antes de que termine.</p>
 </div>
 <div id="ejemplo-jthread" class="exampleblock">
 <div class="title">Ejemplo 12.3. Creación y cancelación de hilos con <a href="https://en.cppreference.com/w/cpp/thread/jthread">std::jthread</a> en C&#43;&#43;.</div>
 <div class="content">
 <div class="paragraph">
-<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap12/jthreads-factorial.cpp">jthreads-factorial.cpp</a>.</p>
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap12/jthreads-factorial.cpp">jthreads-factorial.cpp</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
