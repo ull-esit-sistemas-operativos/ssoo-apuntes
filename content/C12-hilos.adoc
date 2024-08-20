@@ -487,7 +487,8 @@ void* thread_function(void* arg) <7> <8> <9>
 {
     thread_args* args = static_cast<thread_args*>(arg); <9>
 
-    std::println( "[Hilo {}] Creado. Manejador del sistema: 0x{:x}", args->id, pthread_self() ); <10>
+    std::println( "[Hilo {}] Creado. Manejador del sistema: 0x{:x}",
+        args->id, pthread_self() ); <10>
 
     for(int i = 0; i < 5; ++i)
     {
@@ -822,41 +823,80 @@ Antes de {cpp}20, la forma recomendada de implementar la cancelación es pasando
 El código de los hilos debe comprobar frecuentemente el valor de dicha variable y, llegado el momento, terminar retornando ordenadamente por la función principal del hilo.
 
 En {cpp}20 esta estrategia de *cancelación cooperativa*(((cancelación, cooperativa))) se ha formalizado e incluido en el estándar al introducir la clase {cpp_jthread}.
-Esta nueva clase de hilo puede pasar a la función principal lo que se llama un *((_token_ de cancelación))*(((cancelación, token))) —en lugar de una variable tipo `bool`— que se debe comprobar regularmente para saber si hay que terminar el hilo prematuramente.
+Esta nueva clase de hilo puede pasar a la función principal lo que se llama un *((_token_ de cancelación))*(((cancelación, token))) —en lugar de la variable tipo `bool` que comentamos anteriorment— que se debe comprobar regularmente para saber si hay que terminar el hilo prematuramente.
 
-Por ejemplo, la función del factorial podría hacer uso de esa funcionalidad para terminar cuando se lo indiquen:
+En el <<ejemplo-jthread>> se ilustra de forma simplificada cómo se usa {cpp_jthread} en {jthreads_factorial_cpp} para crear hilos para calcular el factorial de un número, cancelando el cálculo antes de que termine.
+
+[[ejemplo-jthread]]
+.Creación y cancelación de hilos con {cpp_jthread} en {cpp}.
+====
+El código fuente completo de este ejemplo está disponible en {jthreads_factorial_cpp}.
 
 [source,cpp]
 ----
-void compute_factorial(std::stop_token stoken, int& factorial, int number) <2>
+int compute_factorial(std::stop_token stoken, int number, int lower_bound) <2>
 {
     factorial = 1;
-    for ( int i = 2; i <= number; i++ )
+    for ( int i = lower_bound; i <= number; i++ )
     {
-        if(stoken.stop_requested()) return; <4>
+        if(stoken.stop_requested()) <5>
+        {
+            return factorial;
+        }
         factorial = factorial * i;
     }
 }
 
+void factorial_thread (std::stop_token stoken, int& result, int number, <2>
+    int lower_bound)
+{
+    result = cancellable_calculate_factorial( stoken, number, lower_bound );
+}
+
 int main()
 {
+    auto number = /* Leer el número de algún sitio */;
+
+    // Para calcular el number!, un hilo multiplica desde number a number/2 y el
+    // otro desde (number/2)-1 hasta 2.
+    auto thread1_lower_bound = number / 2;
+    auto thread2_number = thread1_lower_bound - 1;
+    
+    int thread1_result, thread2_result;
+
+    std::jthread thread1(factorial_thread, std::ref(thread1_result), <1> <2>
+        number, thread1_lower_bound);
+    std::jthread thread2(factorial_thread, std::ref(thread2_result), <1> <2>
+        thread2_number, 2);
+
     // ...
 
-    int factorial;
-    std::jthread thread(compute_factorial, std::ref(factorial), 122); <1> <2>
+    thread1.request_stop(); <3>
+    thread2.request_stop(); <3>
+
+    thread1.join(); <4>
+    thread2.join(); <4>
 
     // ...
-
-    thread.request_stop(); <3>
-
-    // ...
+    <6>
 }
 ----
-<1> Crear e iniciar el hilo con {cpp_jthread} para calcular el factorial de 122.
-<2> Al crear el hilo se pasa a la función el *_token_ de cancelación* `stoken`.
-<3> En algún momento de la ejecución del programa pedimos al hilo que se detenga antes de terminar los cálculos.
-<4> El código del hilo debe comprobar el *_token_ de cancelación* regularmente.
-Si se ha pedido la cancelación, se termina el hilo retornando desde la función principal.
+<1> Crear e iniciar el hilo con {cpp_jthread} para calcular el factorial de `number`.
+
+<2> Al crear el hilo, la clase {cpp_jthread} le pasa a la función el *_token_ de cancelación* `stoken`.
+Este *_token_ de cancelación* se debe propagar desde la función principal a las funciones cancelables que este hilo invoque.
+
+<3> En algún momento de la ejecución del programa se pide a los hilos que se detengan antes de terminar los cálculos.
+Un posible motivo es que el usuario haya pulsado el botón de cancelar o porque se haya excedido el tiempo de cálculo.
+
+<4> Después de pedir la cancelación, el programa espera a que los hilos terminen antes de continuar la ejecución del hilo principal.
+
+<5> Periódicamente, el código del hilo debe comprobar el *_token_ de cancelación*.
+Si se ha pedido la cancelación, se termina el hilo retornando.
+
+<6> También se puede dejar que la cancelación ocurra automáticamente al salir de la función.
+El destructor de los objetos {cpp_jthread} —a diferencia del de cpp_thread— se encarga de pedir la cancelación de los hilos, llamando a {cpp_jthread_request_stop}, y luego espera a que terminen usando {cpp_jthread_join}.
+====
 
 Java y C# han terminado incluyendo también este tipo de *cancelación cooperativa* usando un *_token_ de cancelación*, debido a los problemas que tienen los desarrolladores para recordar usar correctamente la excepción de la *cancelación coordinada*. 
 
