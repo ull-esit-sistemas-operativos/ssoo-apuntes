@@ -694,14 +694,16 @@ else if (child > 0) <3> <4>
     
     int status;
     wait( &status ); <8> <9>
-    printf( "[PADRE] El valor de salida de mi hijo fue: %d\n", WEXITSTATUS(status) ); <9>
+    printf( "[PADRE] El valor de salida de mi hijo fue: %d\n",
+        WEXITSTATUS(status) ); <9>
     
     puts( "[PADRE] ¡Adios!" );
     return EXIT_SUCCESS;
 }
 else { <5>
     // Aquí solo entra el padre si no pudo crear el hijo
-    fprintf( stderr, "Error (%d) al crear el proceso: %s\n", errno, strerror(errno) ); <6>
+    fprintf( stderr, "Error (%d) al crear el proceso: %s\n",
+        errno, strerror(errno) ); <6>
     return EXIT_FAILURE;
 }
 ----
@@ -787,7 +789,8 @@ if (child == 0)
 
     execl( "/bin/ls", "ls", "-l", NULL ); <2> <3> <5>
     
-    fprintf( stderr, "Error (%d) al ejecutar el programa: %s\n", errno, strerror(errno) ); <6>
+    fprintf( stderr, "Error (%d) al ejecutar el programa: %s\n",
+        errno, strerror(errno) ); <6>
     return EXIT_FAILURE; <7>
 }
 else if (child > 0)
@@ -798,14 +801,16 @@ else if (child > 0)
     
     int status;
     wait( &status ); <8>
-    printf( "[PADRE] El valor de salida de mi hijo fue: %d\n", WEXITSTATUS(status) );
+    printf( "[PADRE] El valor de salida de mi hijo fue: %d\n",
+        WEXITSTATUS(status) );
     
     puts( "[PADRE] ¡Adios!" );
     return EXIT_SUCCESS;
 }
 else {
     // Aquí solo entra el padre si no pudo crear el hijo
-    fprintf( stderr, "Error (%d) al crear el proceso: %s\n", errno, strerror(errno) );
+    fprintf( stderr, "Error (%d) al crear el proceso: %s\n",
+        errno, strerror(errno) );
     return EXIT_FAILURE;
 }
 ----
