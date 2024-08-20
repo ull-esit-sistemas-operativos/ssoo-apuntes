@@ -67,7 +67,7 @@ En la <<fig-proceso-multihilo-en-memoria>> se puede observar como cambia la disp
 
 == Beneficios
 
-Son muchos los beneficios que aporta la programación multihilo:
+Son muchos los beneficios que aporta la programación multihilo, derivados de que ofrece una forma sencilla de que un único proceso pueda realizar varias tareas al mismo tiempo.
 
 === Tiempo de respuesta
 
@@ -76,12 +76,19 @@ Una aplicación multihilo interactiva puede continuar ejecutando tareas aunque u
 Por ejemplo, un navegador web multihilo puede gestionar la interacción del usuario a través de un hilo, mientras el contenido solicitado se descarga en otro.
 Para hacer lo mismo en un navegador monohilo habría que utilizar comunicaciones asíncronas, de lo contrario, mientras el proceso está en estado *esperando*, a la espera de que lleguen los datos a través de la red, no puede atender las acciones del usuario.
 
+El uso de comunicaciones asíncronas para obtener el mismo beneficio tiene menor coste que usar hilos, pero son más difíciles de programar.
+
 === Compartición de recursos
 
-En sistemas operativos monohilo se pueden crear varios procesos y comunicarlos mediante memoria compartida para conseguir algo similar a lo que ofrecen los sistemas multihilo.
-Sin embargo, al utilizar hilos, las tareas ejecutadas en ellos comparten los recursos automáticamente, sin que tengamos que hacer nada.
-Además, los hilos no solo comparten la memoria, sino también otros muchos recursos del proceso.
-Por lo que los hilos son una forma más conveniente de tener procesos que realizan diferentes actividades al mismo tiempo.
+Los hilos no son la única forma de conseguir que un programa realice varias tareas al mismo tiempo.
+Una alternativa es que un mismo programa cree varios procesos hijo, que se comuniquen y coordinen entre sí, para hacer distintas tareas.
+
+Sin embargo, aunque la programación multiproceso ofrece beneficios similares a la multihilo, en esta última la comunicación es mucho más sencilla porque los hilos comparten automáticamente los recursos del proceso al que pertenecen.
+De hecho, los hilos no solo comparten la memoria, sino también otros muchos recursos del proceso, como los archivos y los dispositivos abiertos.
+Por lo que los hilos son una forma más conveniente de ejecutar múltiples tareas al mismo tiempo, que la programación multiproceso.
+
+Como contrapartida, la programación multiproceso es más fiable, ya que los errores en un proceso no afectan al resto.
+Es decir, si un proceso hijo termina de forma inesperada, el proceso padre puede continuar ejecutándose sin problemas e incluso crear un nuevo proceso hijo para sustituir al que ha terminado.
 
 === Economía
 
@@ -89,14 +96,28 @@ Reservar memoria y otros recursos para la creación de un proceso es muy costoso
 Por eso los sistemas operativos modernos han desarrollado diversas técnicas para que sea lo más eficaz posible.
 
 Aun así, puesto que los hilos comparten los recursos de los procesos a los que pertenecen, son mucho más económicos de crear.
-También es más económico el cambio de contexto entre ellos, ya que hay que guardar y recuperar menos información al cambiar entre dos hilos de un mismo proceso.
+También es más económico el cambio de contexto entre ellos, ya que hay que guardar y recuperar menos información a conmutar la ejecución en la CPU entre dos hilos de un mismo proceso, que entre dos procesos diferentes.
 
-Por ejemplo, en Microsoft Windows crear un proceso puede ser 300 veces más costoso que un hilo. Mientras que en sistemas Linux es 3 veces más lento, por la eficiencia de {linux_fork}.
+Por ejemplo, en Microsoft Windows crear un proceso puede ser 300 veces más costoso que un hilo.
+Mientras que en sistemas Linux es 3 veces más lento, por la eficiencia de {linux_fork}.
 
-=== Aprovechamiento de las arquitecturas multiprocesador.
+=== Aprovechamiento de las arquitecturas multiprocesador
 
 En los sistemas multiprocesador diferentes hilos pueden ejecutarse en paralelo en distintos procesadores.
 Por el contrario, un proceso monohilo solo se puede ejecutar en una CPU a la vez, independientemente de cuantas CPU estén disponibles para ejecutarlo.
+
+Nuevamente, en los sistemas monohilo se pueden utilizar varios procesos para aprovechar las arquitecturas multiprocesador.
+Sin embargo, como hemos comentado anteriormente, los hilos son más fáciles de programar y más económicos de crear y gestionar que los procesos.
+
+=== Comparación con soluciones alternativas
+
+A modo de resumen, los hilos son una forma sencilla de que un único proceso pueda realizar varias tareas al mismo tiempo, pero no son la única:
+
+* El uso de *comunicaciones asíncronas* permite realizar varias tareas de E/S al mismo tiempo, sin necesidad de hilos.
+Suele ser una opción más económica que usar hilos, pero también es más difícil de programar.
+
+* El uso de *múltiples procesos* permite realizar varias tareas al mismo tiempo, tanto de E/S como de cálculo, y de forma más fiable que los hilos.
+Sin embargo, los procesos suelen ser más caros de crear y gestionar que los hilos y no comparten los recursos de forma automática, por lo que la comunicación entre ellos es algo más complicada.
 
 == Soporte multihilo
 
