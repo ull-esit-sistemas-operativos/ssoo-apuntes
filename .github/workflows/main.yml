@@ -7,8 +7,8 @@ on:
       - '*'
 
 env:
-  ACADEMIC_YEAR: 2023-2024
-  SITE_ROOT: https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/so2324
+  ACADEMIC_YEAR: 2024-2025
+  SITE_ROOT: https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/so2425
 
 jobs:
   build-and-publish:
