@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="implementación_de_sistemas_de_archivos" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+<ul class="sectlevel1">
+<li><a href="almacenamiento_secundario.html">18. Almacenamiento secundario</a>
+</li>
+<li><a href="sistema_de_archivos.html">19. Sistemas de archivos</a>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html"><span class="toc-current">20. Implementación de sistemas de archivos</span></a>
+<ul class="sectlevel2">
+<li><a href="implementación_de_sistemas_de_archivos.html#_implementación_de_directorios">20.1. Implementación de directorios</a>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html#_métodos_de_asignación">20.2. Métodos de asignación</a>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html#_gestión_del_espacio_libre">20.3. Gestión del espacio libre</a>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html#_sistemas_de_archivos_virtuales">20.4. Sistemas de archivos virtuales</a>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html#_planificación_de_disco">20.5. Planificación de disco</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="implementación_de_sistemas_de_archivos"><a class="anchor" href="#implementación_de_sistemas_de_archivos"></a>20. Implementación de sistemas de archivos</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 31 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Como ya hemos comentado, un sistema de archivos suele estar compuesto de varios niveles diferentes.
+En la <a href="sistema_de_archivos.html#fig-estructura-sistema-de-archivos">Figura 19.1</a> se muestra un ejemplo de la estructura de un sistema de archivos diseñado en niveles.
+Cada nivel utiliza las funciones de los niveles inferiores y proporciona nuevas funciones a los niveles superiores.
+El papel de cada uno de estos niveles fue descrito en el <a href="sistema_de_archivos.html#_estructura_de_un_sistema_de_archivos">Apartado 19.1</a>.
+Mientras que las estructuras de metadatos utilizadas, tanto en la memoria como en disco, fueron tratadas brevemente en el <a href="sistema_de_archivos.html#_estructuras_de_metadatos_en_disco">Apartado 19.2</a> y en el <a href="sistema_de_archivos.html#_estructuras_de_metadatos_en_memoria">Apartado 19.3</a>.</p>
+</div>
+<div class="paragraph">
+<p>A continuación, vamos a profundizar aún más en las estructuras y operaciones utilizadas para implementar los sistemas de archivos</p>
+</div>
+<div class="sect2">
+<h3 id="_implementación_de_directorios"><a class="anchor" href="#_implementación_de_directorios"></a>20.1. Implementación de directorios</h3>
+<div class="paragraph">
+<p>Cada directorio suele contener una estructura de datos que relaciona el nombre de cada archivo que contiene con el identificador de su <strong>FCB</strong>.
+Dicho identificador permite localizar el FCB en la <strong>tabla de contenidos del volumen</strong>, que contiene el resto de los atributos del archivo.</p>
+</div>
+<div class="paragraph">
+<p>En esta sección vamos a estudiar las formas más comunes de implementar la estructura de datos de un directorio.</p>
+</div>
+<div class="sect3">
+<h4 id="_lista_lineal"><a class="anchor" href="#_lista_lineal"></a>20.1.1. Lista lineal</h4>
+<div class="paragraph">
+<p>El método más simple para implementar un directorio consiste en utilizar una lista lineal o vector de nombres de archivos e identificadores del <strong>FCB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Las acciones a realizar, para implementar cada una de las posibles operaciones sobre el directorio, serían:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Crear un archivo</strong>.
+Primero se explora el directorio para estar seguros de que no haya ningún archivo con el mismo nombre.
+Después se añade una nueva entrada al final del directorio.</p>
+</li>
+<li>
+<p><strong>Borrar un archivo</strong>.
+Primero se explora la lista en busca del archivo especificado y, una vez localizada, se libera la entrada correspondiente.
+Para reutilizar la entrada del directorio tenemos diversas alternativas:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Se puede marcar la entrada como no utilizada.
+Para eso se puede emplear un nombre especial o utilizar algún campo adicional —a parte de nombre de archivo e identificador del <strong>FCB</strong>— que se haya añadido a la entrada con ese propósito.</p>
+</li>
+<li>
+<p>Insertar un puntero a la entrada en una lista de entradas libres, que se guarda dentro del mismo directorio.</p>
+</li>
+<li>
+<p>Copiar la última entrada del directorio en la ubicación que ha quedado libre y reducir la longitud del directorio.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La principal desventaja de un directorio implementado como una lista lineal de entradas es que para localizar un archivo es necesario realizar una búsqueda lineal, lo cual puede resultar muy costoso en directorios con un número muy grande de archivos.
+Utilizando una lista ordenada se puede reducir el tiempo medio de búsqueda, pero complica los procesos de creación y borrado, pues puede que sea necesario mover cantidades importantes de información para mantener la lista ordenada.</p>
+</div>
+<div class="paragraph">
+<p>También se puede utilizar una lista enlazada, tanto para reducir el tiempo necesario para borrar un archivo como para facilitar la tarea de mantener ordenada la lista.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> y <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> implementan los directorios utilizando una lista lineal, donde en cada entrada se almacena el nombre del archivo y el <strong>FCB</strong> del mismo.
+Al borrar un archivo, la entrada correspondiente se marca poniendo 0xE5 en el primer caracter del nombre del archivo.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Ext2">ext2</a> y <a href="https://es.wikipedia.org/wiki/Unix_File_System">UFS</a> también utilizan una lista lineal no ordenada, donde solo se almacena el nombre del archivo o subdirectorio y el identificador del <strong>inodo</strong> —el FCB, esos sistemas de archivo— correspondiente.
+En caso de borrar un archivo, el identificador del <strong>inodo</strong> se pone a 0.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tabla_de_dispersión"><a class="anchor" href="#_tabla_de_dispersión"></a>20.1.2. Tabla de dispersión</h4>
+<div class="paragraph">
+<p>En los directorios implementados con una <a href="https://es.wikipedia.org/wiki/Tabla_hash">tabla de dispersión</a> también se almacenan las entradas de directorio en una lista lineal, pero al mismo tiempo se utiliza una tabla de dispersión para reducir enormemente el tiempo de búsqueda en el directorio.
+Para obtener la ubicación de dicho archivo dentro de la lista lineal, se usa un índice calculado con cierta función de dispersión a partir del nombre del archivo.</p>
+</div>
+<div class="paragraph">
+<p>El único inconveniente es que debemos tratar la posible aparición de colisiones, que son aquellas situaciones en las que dos nombres de archivo dan lugar, al aplicarles la función de dispersión, la misma ubicación en la tabla.
+Esto se puede resolver utilizando una lista enlazada en cada entrada de la lista —cada entrada en la lista señalaría la ubicación de la siguiente entrada de la lista que tiene el mismo valor para la función de dispersión— a cambio de que las búsquedas sean un poco más lentas.
+En cualquier caso, este método será normalmente más rápido que una búsqueda lineal por todo el directorio.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_árbol_b"><a class="anchor" href="#_árbol_b"></a>20.1.3. Árbol B</h4>
+<div class="paragraph">
+<p>Para mantener el directorio ordenado, algunos sistemas de archivos modernos utilizan estructuras de datos en árbol más sofisticadas, como por ejemplo árboles B.</p>
+</div>
+<div class="paragraph">
+<p>Un caso concreto es el sistema de archivos <a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a>, utilizado por Microsoft Windows.
+<a href="https://es.wikipedia.org/wiki/NTFS">NTFS</a> utiliza una estructura de datos denominada <a href="https://es.wikipedia.org/wiki/%C3%81rbol_B%2B">árbol B+</a> para almacenar el índice de los nombres de archivo contenidos en un directorio.</p>
+</div>
+<div class="paragraph">
+<p>En la entrada en la <strong>MFT</strong> (<em>Master File Table</em>) de cada directorio se almacena un atributo denominado <strong>raíz del índice</strong>.
+Si el directorio es de pequeño tamaño, la <strong>raíz del índice</strong> contiene todas las entradas de archivos del directorio, pero para un directorio de gran tamaño, la <strong>raíz del índice</strong> solo puede almacenar unas pocas entradas de archivos del directorio.
+En ese caso la <strong>raíz del índice</strong> contiene el nivel superior del árbol B+.
+Es decir, cada una de esas entradas de archivos en la <strong>raíz del índice</strong> incluye también un puntero al bloque del disco que contiene un nodo del árbol con las entradas con nombres alfabéticamente anteriores a ese.
+Si en dicho nodo tampoco caben todas las entradas, solo podrá contener algunas de ellas, por lo que cada una tendrá, a su vez, un puntero a un nuevo nodo del árbol; y así sucesivamente.</p>
+</div>
+<div class="paragraph">
+<p>Las ventajas de los árboles B+ son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Eliminan el coste de reordenar las entradas del directorio.</p>
+</li>
+<li>
+<p>La longitud desde la raíz del árbol hasta un nodo hoja es la misma para todas los caminos por el árbol, por lo que el tiempo de búsqueda tiene una cota superior.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Implementación de directorios en XFS</div>
+<div class="paragraph">
+<p>El sistema de archivos <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> también utiliza un <a href="https://es.wikipedia.org/wiki/%C3%81rbol_B%2B">árbol B+</a>, pero en este caso la implementación es un poco más compleja<a href="bibliografía.html#SGI2006">[24]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un directorio de pequeño tamaño almacena sus entradas como una lista lineal no ordenada dentro de su mismo <strong>inodo</strong> o FCB.</p>
+</li>
+<li>
+<p>Cuando el directorio no cabe en el <strong>inodo</strong> se le asigna un bloque propio, donde el directorio es implementado con una tabla de dispersión, tal y como hemos visto anteriormente.</p>
+</li>
+<li>
+<p>Cuando el tamaño del directorio excede el tamaño del bloque, la tabla de dispersión se extrae y se almacena en un bloque diferente.
+La lista lineal también se extrae, pero no tiene que ser almacenada en un único bloque, sino que puede estar repartida por distintos bloques a lo largo del disco.</p>
+</li>
+<li>
+<p>Finalmente, cuando la tabla de dispersión excede el tamaño de un bloque, dicha tabla se convierte en un árbol B+.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_métodos_de_asignación"><a class="anchor" href="#_métodos_de_asignación"></a>20.2. Métodos de asignación</h3>
+<div class="paragraph">
+<p>El siguiente problema es cómo asignar el espacio disponible en el disco a los archivos almacenados, de forma que el espacio sea utilizado de forma eficiente y que se pueda acceder a los archivos de la forma más rápida posible.</p>
+</div>
+<div class="paragraph">
+<p>Como la unidad mínima de asignación de espacio a un archivo es el bloque, la fragmentación interna suele ser un problema común a todos los métodos que veremos a continuación.</p>
+</div>
+<div class="sect3">
+<h4 id="_asignación_contigua"><a class="anchor" href="#_asignación_contigua"></a>20.2.1. Asignación contigua</h4>
+<div class="paragraph">
+<p>
+La <strong>asignación contigua</strong> requiere que cada archivo ocupe un conjunto contiguo de bloques en el disco.
+Esto es muy eficiente, puesto que el acceso a todos los datos de un archivo requiere un movimiento mínimo del cabezal del disco.</p>
+</div>
+<div class="paragraph">
+<p>El problema de la <strong>asignación contigua</strong> puede verse como un caso concreto del problema de la asignación dinámica del almacenamiento (véase el <a href="memoria_principal.html#_asignación_contigua_de_memoria">Apartado 15.5</a>).
+Es decir, que en un momento dado tendremos una petición de tamaño <em>N</em> que deberemos satisfacer con una lista de huecos libres de tamaño variable.
+Como estudiamos anteriormente, las estrategias más comunes son las del <strong>primer ajuste</strong> y el <strong>mejor ajuste</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_fragmentación_externa_2"><a class="anchor" href="#_fragmentación_externa_2"></a>Fragmentación externa</h5>
+<div class="paragraph">
+<p>La asignación contigua sufre el problema de la <strong>fragmentación externa</strong>.
+La solución sería utilizar alguna forma de <strong>compactación</strong> para unir los huecos libres, pero esto puede llevar mucho tiempo en discos duros de gran tamaño y en algunos sistemas esta tarea tiene que realizarse con el dispositivo desmontado.
+Por eso es conveniente evitar utilizar técnicas de compactación en los sistemas en producción.</p>
+</div>
+<div class="paragraph">
+<p>Afortunadamente, la mayor parte de los sistemas operativos modernos que necesitan mecanismos de <strong>desfragmentación</strong> pueden realizar esta tarea sin detener el sistema, aunque la pérdida de rendimiento puede ser significativa.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_estimación_del_tamaño_del_archivo"><a class="anchor" href="#_estimación_del_tamaño_del_archivo"></a>Estimación del tamaño del archivo</h5>
+<div class="paragraph">
+<p>En la asignación contigua es necesario determinar cuánto espacio necesita un archivo antes de asignárselo.
+El problema es que eso no siempre es posible.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si vamos a copiar un archivo, es indudable que conocemos de antemano cuánto espacio necesita la copia.
+Pero ¿qué ocurre cuando vamos a crear uno nuevo? Entonces al crear un archivo es necesario que el usuario haga una estimación del espacio que va a necesitar y se la indique al sistema.</p>
+</div>
+<div class="paragraph">
+<p>¿Y si la estimación no es correcta o posteriormente queremos añadir nuevos datos al archivo?
+Entonces, lo más probable es que el espacio situado a ambos lados del archivo ya esté ocupado, si hemos utilizado la estrategia del <strong>mejor ajuste</strong>.
+Para resolver este problema existen dos estrategias:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La primera, es terminar el programa de usuario, emitiendo un error.
+Entonces, el usuario deberá volver a crear el archivo indicando más espacio y volver a ejecutar el programa.
+Puesto que las ejecuciones repetidas pueden ser muy costosas, lo más común es que el usuario acabe sobreestimando el espacio, lo que dará como resultado un desperdicio considerable de espacio.</p>
+</li>
+<li>
+<p>La segunda, es buscar un hueco libre de mayor tamaño y copiar el contenido del archivo al nuevo espacio.
+Esto puede hacerse siempre que exista suficiente espacio, aunque puede consumir bastante tiempo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para minimizar estos problemas, se puede implementar un esquema de asignación contigua modificado, donde se asigna inicialmente un bloque contiguo de espacio al archivo y, posteriormente, si dicho espacio resulta no ser lo suficientemente grande, se añade otra área de espacio contiguo, denominado <strong>extensión</strong>.</p>
+</div>
+<div class="paragraph">
+<p>La ubicación de las <strong>extensiones</strong> de un archivo se registran en el FCB, guardando la dirección del primer bloque de cada extensión que compone el archivo y el número de bloques que ocupa cada una.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivo <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> y <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> utilizan <strong>extensiones</strong> para optimizar su funcionamiento.
+El motivo es que cuantos más bloques contiguos sean asignados a un archivo, menos reposicionamientos del cabezal del disco son necesarios para leerlos.
+En <a href="https://es.wikipedia.org/wiki/Ext4">ext4</a> el espacio se asigna a los archivos en <strong>extensiones</strong> de hasta 128 MiB, compuestas por bloques, generalmente, de 4 KiB.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_asignación_enlazada"><a class="anchor" href="#_asignación_enlazada"></a>20.2.2. Asignación enlazada</h4>
+<div class="paragraph">
+<p>
+En la <strong>asignación enlazada</strong> cada archivo es una lista enlazada de bloques de disco, pudiendo estos bloques estar dispersos por todo el disco:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Cada entrada de directorio contiene un puntero al primer bloque.
+En ocasiones, la entrada también incluye un puntero al último, para facilitar añadir nuevos datos al final del archivo.</p>
+</li>
+<li>
+<p>Cada bloque contiene un puntero al bloque siguiente.
+Por ejemplo, si cada bloque tiene 512 bytes de tamaño y un puntero requiere 4 bytes, los bloques de disco tendrán un tamaño efectivo de 508 bytes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Este mecanismo resuelve todos los problemas de la asignación contigua y además:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>No hay fragmentación externa</strong>, puesto que pueden utilizarse cualquier bloque libre para satisfacer una solicitud de espacio.</p>
+</li>
+<li>
+<p><strong>No es necesario declarar el espacio del archivo</strong> en el momento de crearlo, pues el archivo podrá siempre podrá crecer mientras haya bloques libres.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sin embargo, la asignación enlazada también tiene sus desventajas.</p>
+</div>
+<div class="sect4">
+<h5 id="_eficiencia_en_accesos_aleatorios"><a class="anchor" href="#_eficiencia_en_accesos_aleatorios"></a>Eficiencia en accesos aleatorios</h5>
+<div class="paragraph">
+<p>La <strong>asignación enlazada</strong> solo resulta eficaz para acceder a los archivos de acceso secuencial.</p>
+</div>
+<div class="paragraph">
+<p>Si necesitamos ir directamente al bloque i-ésimo de un archivo, tendremos que comenzar desde el principio e ir leyendo cada bloque para obtener el puntero que nos indica el siguiente bloque.
+Es muy posible que esas lecturas debán ir precedidas de un reposicionamiento de los cabezales del disco.</p>
+</div>
+<div class="paragraph">
+<p>Una solución parcial a esto puede ser guardar en la memoria una caché de las direcciones de los bloques de los archivos accedidos recientemente.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_eficiencia_en_el_uso_del_espacio_de_almacenamiento"><a class="anchor" href="#_eficiencia_en_el_uso_del_espacio_de_almacenamiento"></a>Eficiencia en el uso del espacio de almacenamiento</h5>
+<div class="paragraph">
+<p>En la <strong>asignación enlazada</strong> se pierde cierta cantidad de espacio con los punteros.</p>
+</div>
+<div class="paragraph">
+<p>Si, por ejemplo, un puntero ocupa 4 bytes y un bloque tienen un tamaño de 512 bytes, el 0.758% del espacio en disco será utilizado para los punteros, en lugar de para almacenar información útil.</p>
+</div>
+<div class="paragraph">
+<p>La solución para este problema consiste en asignar los bloques en grupos —denominados <strong>clústeres</strong>—.
+Así, el primer bloque de cada <strong>clúster</strong> solo tendría que almacenar un puntero al siguiente <strong>clúster</strong>, lo que reduciría la cantidad de espacio desperdiciada en los punteros y mejoraría la eficiencia al reducir el número de reposicionamientos del cabezal del disco.
+Sin embargo, esto también incrementa el grado de <strong>fragmentación interna</strong> pues se pierde más espacio cuando un <strong>clúster</strong> está parcialmente lleno.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_fiabilidad"><a class="anchor" href="#_fiabilidad"></a>Fiabilidad</h5>
+<div class="paragraph">
+<p>Teniendo en cuenta que los archivos están enlazados mediante punteros, parte de un archivo se puede corromper fácilmente con que solo uno de esos punteros se pierda o resulte dañado.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Asignación enlazada en FAT y FAT32</div>
+<div class="paragraph">
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> y <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> utilizan una variante del mecanismo de asignación enlazada en la que se emplea una <strong>tabla de asignación de archivo</strong> o <strong>FAT</strong> (<em>File-Allocation Table</em>).</p>
+</div>
+<div class="paragraph">
+<p>La FAT se almacena en una sección al principio del volumen.
+Contiene una entrada por cada <strong>clúster</strong> del disco y en cada una guarda el número del siguiente <strong>clúster</strong> del archivo.
+Es decir, lo que hace la FAT es agrupar en un solo lugar los punteros de la <strong>asignación enlazada</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Eso significa que la FAT es una estructura crítica.
+Si se corrompe, puede provocar la pérdida de todo el sistema de archivos.
+Por eso, realmente se almacenan dos copias de la FAT al principio del volumen.</p>
+</div>
+<div class="paragraph">
+<p>El indexar con clústeres —o grupos de bloques— sirve para ubicar cerca bloques contiguos, pero sobre todo es una decisión de diseño para permitir que los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> puedan gestionar volúmenes más grandes.
+Por ejemplo, la FAT de MS-DOS 3.0 y posteriores usaba 16 bits para numerar los clústeres —por eso se llamaba FAT16—.
+Si FAT16 trabaja directamente con bloques y cada bloque tuviera 512 bytes, no podría gestionar volúmenes de más de 512&#215;2<sup>16</sup> bytes, es decir, 32 MiB.
+Sin embargo, trabajando con 64 bloques por clúster, se puede usar para gestionar volúmenes de hasta 2 GiB.</p>
+</div>
+<div class="paragraph">
+<p>Aunque algunas versiones de Microsoft Windows NT llegaron a admitir 128 e, incluso, 512 bloques por clúster, con clústeres tan grandes la <strong>fragmentación interna</strong> es un problema.</p>
+</div>
+<div class="paragraph">
+<p>Por eso —entre otras cosas— Microsoft introdujo <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a>, que utiliza 32 bits para numerar los clústeres.
+Eso implica poder gestionar más cantidad de clústeres, lo que permite gestionar volúmenes más grandes con clústeres más pequeños y, por tanto, con menor <strong>fragmentación interna</strong>.
+Por ejemplo, <a href="https://es.wikipedia.org/w/index.php?title=FAT32">FAT32</a> podía gestionar volúmenes de hasta 2 TiB con 64 bloques por clúster.</p>
+</div>
+<div class="paragraph">
+<p>Como se puede ver en la <a href="implementación_de_sistemas_de_archivos.html#fig-estructura-fat">Figura 20.1</a>, en los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> cada entrada de directorio contiene, aparte del nombre del archivo y otros atributos, el número del primer clúster con datos del archivo.
+La entrada de la FAT indexada según ese número contiene el número del siguiente clúster del archivo.
+Iterando de esa manera, se puede conocer los números de todos los clústeres de un archivo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El último bloque del archivo se indica con un valor especial en su entrada en la FAT.
+Mientras que los bloques no utilizados se indican con un valor igual a 0 en su entrada en la FAT.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El uso de la FAT puede provocar un número importante de reposicionamientos del cabezal de disco, debido a que siempre es necesario volver al principio del volumen para leer dicha tabla.
+Por eso, es muy habitual que el sistema operativo intente mantener una copia de la FAT en la memoria, a modo de caché.</p>
+</div>
+<div id="fig-estructura-fat" class="imageblock">
+<div class="content">
+<img src="media/C20-implemantación_sistema_de_archivos/estructura_fat.svg" alt="estructura fat">
+</div>
+<div class="title">Figura 20.1. Asignación enlazada en el sistema de archivos FAT.</div>
+</div>
+<div class="paragraph">
+<p>Una de las ventajas de este esquema es que mejora el tiempo de los accesos aleatorios a los archivos —respecto a la asignación enlazada convencional— porque se puede conocer la ubicación de cualquier bloque a partir de la información en la FAT, sin tener que leer todos los bloques del archivo uno a uno.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_asignación_indexada"><a class="anchor" href="#_asignación_indexada"></a>20.2.3. Asignación indexada</h4>
+<div class="paragraph">
+<p>
+El mecanismo de <strong>asignación indexada</strong> agrupa todos los punteros de la asignación enlazada en una única ubicación: el <strong>bloque de índices</strong>.
+Así se resuelve la falta de eficiencia de la asignación enlazada convencional —en ausencia de FAT— cuando se realizan accesos aleatorios.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En la <strong>asignación indexada</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cada archivo tiene su propio <strong>bloque de índices</strong>, que es un bloque del disco con una tabla con los números de los bloques del disco que contienen los datos del archivo.</p>
+</li>
+<li>
+<p>La entrada i-ésima del bloque de índice contiene la dirección del bloque i-ésimo del archivo.</p>
+</li>
+<li>
+<p>Cada entrada de directorio contiene la dirección del bloque de índices del archivo correspondiente.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Este mecanismo soporta el acceso aleatorio eficiente, además de no sufrir el problema de la fragmentación externa.
+Sin embargo, también tiene sus desventajas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se pierde más espacio en los punteros que con el mecanismo de asignación enlazada, pues siempre hay que reservar un <strong>bloque de índices</strong> completo para cada archivo.
+Mientras que con la asignación enlazada, solo se pierde el espacio de los punteros que realmente es necesario utilizar.</p>
+</li>
+<li>
+<p>Al diseñar el sistema de archivos debemos determinar el tamaño del <strong>bloque de índices</strong>.</p>
+<div class="paragraph">
+<p>Por el inconveniente anterior y puesto que cada archivo debe tener un bloque de índices, ese bloque debe ser lo más pequeño posible para no perder espacio.
+Pero si es demasiado pequeño, no podrá almacenar suficientes punteros para un archivo de gran tamaño.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Entre los mecanismos que pueden utilizarse para resolver este último problema están los siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>esquema enlazado</strong>, se enlazan los bloques de índices.</p>
+<div class="paragraph">
+<p>Por ejemplo, se puede utilizar el último puntero del bloque de índices para apuntar al siguiente bloque de índices.
+Si dicho puntero tiene valor 0, entonces estamos en el último bloque de índices del archivo.</p>
+</div>
+</li>
+<li>
+<p>En el <strong>índice multinivel</strong>, los punteros del bloque de índices no señalan a los bloques del archivo, sino a un conjunto de bloques de índices de segundo nivel y estos, a su vez señalan, a los bloques del archivo.
+Esta técnica puede ampliarse utilizando un tercer o cuarto nivel, dependiendo del tamaño máximo de archivo que se desee.</p>
+</li>
+<li>
+<p>En el <strong>esquema combinado</strong> las primeras entradas del bloque de índices apuntan directamente a los primeros bloques del archivo.
+Mientras que las siguientes entradas contiene punteros indirectos, que apunta a un conjunto de bloques de índices de segundo nivel.
+Después podría haber entradas que contienen punteros doblemente indirectos y luego entradas con punteros triplemente indirectos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para mejorar el rendimiento de los mecanismos de asignación indexados, es muy común que el sistema operativo intente mantener los bloques de índices en la memoria.</p>
+</div>
+<div id="fig-asignación-ext2" class="imageblock">
+<div class="content">
+<img src="media/C20-implemantación_sistema_de_archivos/asignación_ext2.svg" alt="asignación ext2">
+</div>
+<div class="title">Figura 20.2. Asignación indexada combinada en el sistema de archivos ext2.</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Ext2">ext2</a> y <a href="https://es.wikipedia.org/wiki/Ext3">ext3</a> utilizan el mecanismo de <strong>asignación indexada</strong> con <strong>esquema combinado</strong>.
+Concretamente el mecanismo en <a href="https://es.wikipedia.org/wiki/Ext2">ext2</a> se implementa de la siguiente manera:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El disco se divide en múltiples grupos de bloques de disco.</p>
+</li>
+<li>
+<p>En cada grupo, se utilizan los primeros bloques para almacenar una tabla de <strong>inodos</strong>.
+Estos <strong>inodos</strong> son los <strong>FCB</strong> de los archivos almacenados en el grupo.</p>
+<div class="paragraph">
+<p>El resto de los bloques se utilizan para almacenar los datos de los archivos representados por los <strong>inodos</strong> del grupo.</p>
+</div>
+</li>
+<li>
+<p>Dentro de cada <strong>inodo</strong> —entre otra información típica en un <strong>FCB</strong>— se almacenan los punteros a los bloques del archivo, en lugar de utilizar un bloque de índices aparte.</p>
+</li>
+<li>
+<p>Como se puede ver en la <a href="implementación_de_sistemas_de_archivos.html#fig-asignación-ext2">Figura 20.2</a>, los primeros 12 punteros en el <strong>inodo</strong> son directos, seguidos de un puntero indirecto, un puntero doblemente indirecto y uno triplemente indirecto.
+Esto permite almacenar hasta 2<sup>64</sup> bytes de información en cada archivo.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gestión_del_espacio_libre"><a class="anchor" href="#_gestión_del_espacio_libre"></a>20.3. Gestión del espacio libre</h3>
+<div class="paragraph">
+<p>Puesto que el espacio en disco es limitado, necesitamos poder reutilizar el espacio de los archivos borrados.
+Para controlar el espacio libre en el disco, el sistema de archivos mantiene una <strong>lista de espacio libre</strong> que contiene todos los bloques de disco disponibles.
+Para crear un archivo, se explora la <strong>lista de espacio libre</strong> hasta obtener la cantidad de espacio requerida y se asigna ese espacio al nuevo archivo.</p>
+</div>
+<div class="paragraph">
+<p>A continuación estudiaremos las diferentes maneras de implementar esa lista.</p>
+</div>
+<div class="sect3">
+<h4 id="_vector_de_bits"><a class="anchor" href="#_vector_de_bits"></a>20.3.1. Vector de bits</h4>
+<div class="paragraph">
+<p>La lista de espacio libre puede ser implementada como un <strong>vector de bits</strong> o <strong>mapa de bits</strong>, donde cada bloque es representado por un bit.
+Si el bloque está libre, el bit está a 1, mientras que si el bloque está asignado, el bit está a 0.</p>
+</div>
+<div class="paragraph">
+<p>Este enfoque es relativamente sencillo y eficiente, puesto que muchos procesadores disponen de instrucciones para manipular bits, que pueden utilizarse para obtener rápidamente el primer bloque libre.
+Por ejemplo, la familia de procesadores <a href="https://es.wikipedia.org/wiki/IA-32">x86</a>, a partir del <a href="https://es.wikipedia.org/wiki/Intel_80386">Intel 80386</a>, tiene instrucciones que devuelven la posición del primer bit a 1 en el valor de un registro.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, leer el vector de bits, modificarlo y actualizarlo en disco en cada ocasión, es tremendamente ineficiente.
+Por tanto, usar vectores de bits es ineficiente, a menos que se mantenga el vector completo en la memoria principal, escribiéndose ocasionalmente en el disco.</p>
+</div>
+<div class="paragraph">
+<p>Esto último puede ser imposible para los discos de gran tamaño, en función de la cantidad de memoria principal.
+Por ejemplo, un disco de 40 GiB con bloques de 512 bytes necesitará un mapa de bits de más de 10 MiB, lo que no es un gran requisito para un sistema moderno, pero sí lo era hace dos décadas.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El sistema de archivo NTFS y la familia <em>extended filesystem</em> —es decir, <a href="https://es.wikipedia.org/wiki/Extended_file_system">ext</a>, <a href="https://es.wikipedia.org/wiki/Ext2">ext2</a>, <a href="https://es.wikipedia.org/wiki/Ext3">ext3</a> y {ext4— utilizan mapas de bits, tanto para gestionar los bloques de datos libres como las entradas disponibles en la tabla de <strong>inodos</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lista_enlazada"><a class="anchor" href="#_lista_enlazada"></a>20.3.2. Lista enlazada</h4>
+<div class="paragraph">
+<p>Otra técnica consiste en enlazar todos los bloques de disco libres.
+Para eso se puede guardar un puntero al primer bloque libre en una ubicación especial del disco y que ese bloque contenga un puntero al siguiente bloque libre del disco.
+El segundo bloque contenga un puntero al tercer bloque libre, y así sucesivamente.</p>
+</div>
+<div class="paragraph">
+<p>El inconveniente es que recorrer la lista no resulta eficiente, pues tenemos que leer cada bloque para conocer la dirección del siguiente bloque libre en disco.
+Sin embargo, debemos tener en cuenta que no es frecuente tener que recorrer la lista de espacio libre completa porque, por lo general, basta con encontrar el primer bloque libre para asignar el espacio.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los sistemas de archivos <a href="https://es.wikipedia.org/wiki/Tabla_de_asignaci%C3%B3n_de_archivos">FAT</a> incorporan el control de bloques libres dentro de la <strong>tabla de asignación de archivos</strong> guardando un 0 en las entradas de los <strong>clústeres</strong> libres, por lo que no se necesita ningún método adicional.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_agrupamiento"><a class="anchor" href="#_agrupamiento"></a>20.3.3. Agrupamiento</h4>
+<div class="paragraph">
+<p>Una modificación de la técnica basada en la lista enlazada consiste en almacenar las direcciones de <em>N</em> bloques libres en el primer bloque libre.
+Los primeros <em>N — 1</em> de esos bloques estarían realmente libres, pero el último de ellos apuntaría a otro bloque con <em>N</em> bloques libres.
+Así podrían localizarse rápidamente las direcciones de un gran número de bloques libres, lo cual mejora la eficiencia respecto a la técnica de lista enlazada.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recuento"><a class="anchor" href="#_recuento"></a>20.3.4. Recuento</h4>
+<div class="paragraph">
+<p>Generalmente los bloques son asignados o liberados en bloques contiguos, especialmente si el espacio es asignado mediante asignación contigua o en <strong>extensiones</strong> o <strong>clústeres</strong>.
+Esto puede ser aprovechado para mantener una lista donde cada entrada almacena la dirección del primer bloque de un conjunto de bloques libres contiguo, así como el número de bloques del conjunto.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el sistema de archivos <a href="https://es.wikipedia.org/wiki/XFS">XFS</a> utiliza un árbol B+ para almacenar las direcciones de las extensiones de bloques libres y mantenerlas ordenadas por el tamaño de la extensión a la que apuntan.
+Así el sistema operativo puede localizar rápidamente el espacio libre necesario para satisfacer una necesidad concreta.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sistemas_de_archivos_virtuales"><a class="anchor" href="#_sistemas_de_archivos_virtuales"></a>20.4. Sistemas de archivos virtuales</h3>
+<div class="paragraph">
+<p>En el <a href="sistema_de_archivos.html#_montaje_de_sistemas_de_archivos">Apartado 19.4</a> vimos cómo el sistema operativo <strong>monta</strong> sistemas de archivos de tal forma que aparenten estar integrados en una única estructura de directorios, permitiendo a los usuarios moverse de forma transparente entre distintos dispositivos y tipos de sistemas de archivos.
+Para hacerlo, un sistema operativo moderno debe ser capaz de soportar de manera eficiente distintos tipos de sistemas de archivos, ocultando sus diferencias de cara a los usuarios.</p>
+</div>
+<div class="paragraph">
+<p>Un método para implementar múltiples tipos de sistemas de archivos consiste en escribir diferentes rutinas de acceso, manipulación y gestión —de los directorios y archivos— para cada uno de los tipos de sistema de archivo existentes.
+Sin embargo, en lugar de esta solución, la mayoría de los sistemas operativos utilizan técnicas de programación orientada a objetos para implementar diferentes tipos de sistemas de archivos detrás de una misma interfaz de programación.
+Es decir, se utilizan estructuras de datos y procedimientos comunes para separar las llamadas al sistema de los detalles de su implementación real, para cada uno de los sistemas de archivos.</p>
+</div>
+<div class="paragraph">
+<p>La implementación de un sistema de archivos está compuesta de tres niveles fundamentales: la <strong>interfaz del sistema de archivos</strong>, el <strong>sistema de archivos virtual</strong> y, finalmente, la implementación real del sistema de archivos.</p>
+</div>
+<div class="sect3">
+<h4 id="_interfaz_del_sistema_de_archivos"><a class="anchor" href="#_interfaz_del_sistema_de_archivos"></a>20.4.1. Interfaz del sistema de archivos</h4>
+<div class="paragraph">
+<p>
+El primer nivel es la <strong>interfaz del sistema de archivos</strong>, a la que acceden los desarrolladores a través de las llamadas al sistema.
+En sistemas POSIX, estamos hablando de las llamadas <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>, <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>, <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a> y <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a>, entre otras.
+Y de los descriptores de archivos con los que se identifican los archivos abiertos.</p>
+</div>
+<div class="paragraph">
+<p>Esta interfaz es la misma sea cual sea el sistema de archivos al que se esté intentando acceder.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sistema_de_archivos_virtual"><a class="anchor" href="#_sistema_de_archivos_virtual"></a>20.4.2. Sistema de archivos virtual</h4>
+<div class="paragraph">
+<p>
+El segundo nivel es la interfaz del <strong>sistema de archivos virtual</strong> o <strong>VFS</strong> (<em>Virtual File System</em>).
+Este nivel es utilizado por el anterior para atender las peticiones realizadas.</p>
+</div>
+<div class="paragraph">
+<p>Describe operaciones genéricas sobre cualquier sistema de archivos y estructuras genéricas.
+Por ejemplo, el <strong>FCB virtual</strong>, que identifica de forma unívoca a cada archivo o directorio en uso en todo el sistema, dando acceso a sus metadatos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En Linux el <strong>FCB virtual</strong> se denomina <strong>vnodo</strong>.
+El <strong>vnodo</strong> de un archivo lo identifica de forma unívoca en todo el sistema, incluso diferenciando archivos en sistemas de archivos diferentes.
+Mientras que el <strong>inodo</strong> es un detalle de la implementación real del sistema de archivos, por lo que solo es único dentro del mismo sistema de archivos.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Este nivel cumple con dos importantes funciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Separa las operaciones genéricas sobre el sistema de archivos con respecto a su implementación.</p>
+<div class="paragraph">
+<p><strong>VFS</strong> define una interfaz muy clara y común para todos los sistemas de archivos.
+De esta interfaz existirán diversas implementaciones en el mismo sistema, una para cada sistema de archivos diferente.</p>
+</div>
+</li>
+<li>
+<p>Proporcionar un mecanismo para acceder de forma coherente a los archivos a través de la red.</p>
+<div class="paragraph">
+<p>Una implementación de <strong>VFS</strong> no tiene que estar limitada exclusivamente a ofrecer acceso a archivos en dispositivos conectados físicamente al sistema.
+Las operaciones de la interfaz <strong>VFS</strong> pueden implementarse de tal forma que usen un protocolo de acceso a algún servidor de archivos conectado a la red.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementación_del_sistema_de_archivos"><a class="anchor" href="#_implementación_del_sistema_de_archivos"></a>20.4.3. Implementación del sistema de archivos</h4>
+<div class="paragraph">
+<p>El tercer nivel es donde se implementa cada tipo de sistema de archivos o los distintos protocolos de los servidores de archivos en la red.
+La interfaz <strong>VFS</strong> recurre a la implementación correspondiente para cada tipo de sistema de archivos, para satisfacer las solicitudes de los niveles superiores.</p>
+</div>
+<div class="paragraph">
+<p>Así, por ejemplo, un <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> puede implicar que se tenga que recuperar el <strong>vnodo</strong> del archivo involucrado desde la tabla de archivos abiertos, usando el descriptor de archivo indicado en la llamada al sistema.
+Después, se invoca la operación <strong>VFS</strong> <code>read()</code> sobre el <strong>vnodo</strong>, en la implementación concreta de <strong>VFS</strong> según el tipo de sistema de archivos involucrado.
+Será esa implementación quien extraiga del <strong>vnodo</strong> la información necesaria —por ejemplo, el <strong>inodo</strong> real del archivo en el sistema de archivos— para llevar a cabo la operación indicada, según las especificidades del sistema de archivos.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_planificación_de_disco"><a class="anchor" href="#_planificación_de_disco"></a>20.5. Planificación de disco</h3>
+<div class="paragraph">
+<p>Como ya hemos comentado, es responsabilidad del sistema operativo usar los recursos del hardware de forma eficiente.
+Eso incluye planificar los procesos en la CPU para conseguir el mínimo tiempo de espera que sea posible o aprovechar de la mejor forma la memoria principal disponible para atender la demanda de los distintos procesos al mismo tiempo; pero también, intentar obtener el menor tiempo de acceso y el mayor ancho de banda posible en el acceso a los discos.</p>
+</div>
+<div class="sect3">
+<h4 id="_rendimiento_del_acceso_a_disco"><a class="anchor" href="#_rendimiento_del_acceso_a_disco"></a>20.5.1. Rendimiento del acceso a disco</h4>
+<div class="paragraph">
+<p>En un disco duro magnético el <strong>tiempo de acceso al disco</strong> <em>T<sup>d</sup></em> viene determinado por el <strong>tiempo de búsqueda</strong> <em>T<sup>b</sup></em> y la <strong>latencia rotacional</strong> <em>T<sup>r</sup></em>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_d=T_b+T_r\$
+</div>
+</div>
+<div class="paragraph">
+<p>El <strong>tiempo de búsqueda</strong> <em>T<sup>b</sup></em> es el tiempo que se tarda en mover el brazo del disco hasta el cilindro deseado.
+Mientras que la <strong>latencia rotacional</strong> <em>T<sup>r</sup></em> es el tiempo que hay que esperar para que el disco gira hasta que la cabeza llegue al sector deseado del cilindro.
+Por lo tanto, el <strong>tiempo de acceso al disco</strong> es menor cuando se realizan accesos consecutivos a sectores físicamente próximos que cuando están dispersos por todo el disco.</p>
+</div>
+<div class="paragraph">
+<p>El <strong>ancho de banda</strong> o <strong>tasa de transferencia</strong> del disco es el total de bytes transferidos en una petición dividida por el tiempo total que transcurre desde la primera solicitud de servicio hasta el final de la última transferencia, con la que se termina de atender la petición.
+Al considerar todo el tiempo necesario para atender la petición, a más <strong>tiempo de acceso al disco</strong> menor es el <strong>ancho de banda</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En los dispositivos de almacenamiento basados en memorias de estado sólido (véase el <a href="almacenamiento_secundario.html#_memorias_de_estado_sólido">Apartado 18.1.3</a>) el tiempo de acceso viene determinado por las características de la memoria —entre otros factores— lo que hace que las diferencias entre accesos secuenciales y accesos aleatorios sean mucho menos significativas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cola_de_es_al_disco"><a class="anchor" href="#_cola_de_es_al_disco"></a>20.5.2. Cola de E/S al disco</h4>
+<div class="paragraph">
+<p>
+Cuando se solicita una operación de E/S sobre el almacenamiento, si la controladora y la unidad de disco están desocupadas, el sistema operativo puede atender la petición sobre la marcha.
+Pero si están ocupadas, el sistema operativo almacena la solicitud en una cola de peticiones pendientes.
+Cuando se resuelve una solicitud, el sistema operativo escoge otra de la cola y se comunica con el hardware para programar la siguiente petición.
+La cuestión es ¿cuál es el orden adecuado para escoger la peticiones de E/S de la cola, si se quiere acceder al disco de la forma más eficaz posible?</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_fcfs_2"><a class="anchor" href="#_planificación_fcfs_2"></a>20.5.3. Planificación FCFS</h4>
+<div class="paragraph">
+<p>
+En la planificación <strong>FCFS</strong> (<em>First Come, First Served</em>) o <strong>primero que llega, primero servido</strong> la cola de E/S al disco es FIFO.
+Es decir, que las solicitudes se atienden en orden de llegada.</p>
+</div>
+<div class="paragraph">
+<p>Es el algoritmo de planificación más simple y es equitativo, en sentido de que atiende a todos los procesos por igual.
+Pero, lamentablemente, no proporciona el servicio más rápido en discos duros magnéticos, donde interesa mover el brazo del disco lo menos posible.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En Linux el <strong>FCFS</strong> es actualmente denominado <strong>NOOP</strong>.
+Se suele utilizar en los discos basados en memorias de estado sólido, donde reordenar las solicitudes no proporciona una mejora significativa del rendimiento, o cuando se utilizan controladoras de disco inteligentes que pueden reordenar las solicitudes según su propio criterio.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_sstf"><a class="anchor" href="#_planificación_sstf"></a>20.5.4. Planificación SSTF</h4>
+<div class="paragraph">
+<p>
+En la planificación <strong>SSTF</strong> (<em>Sortest</em> <em>Seek Time First</em>) o algoritmo de <strong>tiempo de búsqueda más corto</strong>, de toda cola se selecciona la solicitud con el menor <strong>tiempo de búsqueda</strong> desde la posición actual de la cabeza.
+Este algoritmo de planificación primero da servicio a las solicitudes cercanas a la posición actual de la cabeza, antes de alejarse para dar servicio a otras solicitudes, dado que el <strong>tiempo de búsqueda</strong> se incrementa a medida que lo hace el número de cilindros que es necesario recorrer para llegar a una posición dada.</p>
+</div>
+<div class="paragraph">
+<p>Aun así, la solución no es óptima, dado que puede provocar inanición de algunas solicitudes, si van llegando constantemente nuevas solicitudes sobre regiones cercanas a donde está actualmente la cabeza del disco.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_scan_y_c_scan"><a class="anchor" href="#_planificación_scan_y_c_scan"></a>20.5.5. Planificación SCAN y C-SCAN</h4>
+<div class="paragraph">
+<p>
+
+En la planificación <strong>SCAN</strong>, algoritmo de <strong>exploración</strong> o del <strong>ascensor</strong>, el brazo del disco comienza en un extremo del disco y se mueve hacia el otro, atendiendo solicitudes a medida que pasa por cada cilindro, hasta llegar al otro extremo del disco.
+En el otro extremo, la dirección de movimiento de la cabeza se invierte para recorrer el disco en sentido inverso, repitiendo el proceso.</p>
+</div>
+<div class="paragraph">
+<p>Suponiendo que las solicitudes se distribuyen de forma uniforme a lo largo del disco, es de suponer que cuando se llega a un extremo —justo antes de volver— la cantidad de solicitudes en dicho extremo será notablemente menor que dónde comenzó el barrido que acaba de terminar.
+Entonces ¿por qué no volver a empezar desde ese extremo?</p>
+</div>
+<div class="paragraph">
+<p>A la variante del <strong>SCAN</strong> que cuando llega a un extremo vuelve al inicio, para volver a barrer desde allí, sin atender ninguna solicitud por el camino, se la denomina <strong>C-SCAN</strong> —de <em>Circula SCAN</em>—.
+Con esta variante el tiempo que tiene que esperar una solicitud para ser atendida es más uniforme que con el algoritmo <strong>SCAN</strong> original.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_look_y_c_look"><a class="anchor" href="#_planificación_look_y_c_look"></a>20.5.6. Planificación LOOK y C-LOOK</h4>
+<div class="paragraph">
+<p>
+
+En teoría los algoritmos <strong>SCAN</strong> y <strong>C-SCAN</strong> hacen que el brazo recorra los cilindros del primero al último, pero normalmente no se suelen implementar así.</p>
+</div>
+<div class="paragraph">
+<p>Por lo general, cuando en el recorrido del brazo, tras atender una solicitud, se descubre que ya no hay más solicitudes siguiendo la misma dirección, el brazo invierte la dirección sin llegar hasta el extremo del disco.</p>
+</div>
+<div class="paragraph">
+<p>A estas variantes de <strong>SCAN</strong> y <strong>C-SCAN</strong> se las denomina <strong>(LOOK)</strong> y <strong>(C-LOOK)</strong>, respectivamente.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Linux utilizó <strong>C-LOOK</strong>, bajo el nombre de <strong><em>elevator</em></strong>, como planificador de E/S de disco hasta Linux 2.6.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_n_step_scan_n_step_look_y_f_scan"><a class="anchor" href="#_planificación_n_step_scan_n_step_look_y_f_scan"></a>20.5.7. Planificación N-Step-SCAN, N-Step-LOOK y F-SCAN</h4>
+<div class="paragraph">
+<p>
+
+
+Los algoritmos <strong>N-Step-SCAN</strong> y <strong>N-Step-LOOK</strong> son variantes de los algoritmos <strong>SCAN</strong> y <strong>LOOK</strong>, respectivamente; donde se limita a <em>N</em> el número de solicitudes que se atenderán en cada barrido del brazo del disco.
+Estos algoritmos funcionan de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Se utiliza una cola con espacio para <em>N</em> solicitudes pendientes, que se van atendiendo mientras el brazo barre el disco.</p>
+</li>
+<li>
+<p>Mientras tanto, todas las nuevas solicitudes se incorporan a una cola diferente.</p>
+</li>
+<li>
+<p>Cuando el brazo termina el barrido y las <em>N</em> primeras solicitudes han sido atendidas, el planificador toma otras <em>N</em> solicitudes de la segunda cola y las introduce en la primera para repetir el proceso.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Si en lugar de copiar <em>N</em> peticiones de la segunda a la primera cola, se copian todas las solicitudes pendientes, el algoritmo se denomina <strong>F-SCAN</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Estos algoritmos previenen un problema denominado <strong>rigidez del brazo</strong> —o <em>arm stickiness</em>, en inglés— a diferencia de los algoritmos SSTF, SCAN, C-SCAN, LOOK y C-LOOK, que no lo hacen.
+El término <strong>rigidez del brazo</strong> hace referencia a cuando hay un flujo continuo de solicitudes para el mismo cilindro, esto hace que con los algoritmos vistos hasta ahora, el brazo no avance por los cilindros hasta llegar al otro extremo.
+Como <strong>F-SCAN</strong>, <strong>N-Step-SCAN</strong> y <strong>N-Step-LOOK</strong> separan las solicitudes en dos colas —haciendo que las nuevas tengan que esperar— el brazo siempre continúa su barrido hacia el extremo del disco.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_planificación_cfq"><a class="anchor" href="#_planificación_cfq"></a>20.5.8. Planificación CFQ</h4>
+<div class="paragraph">
+<p>
+El planificador <strong>CFQ</strong> (<em>Completely Fair Queuing</em>) se diseñó para compartir de forma equitativa el <strong>ancho de banda</strong> entre todos los procesos que solicitan acceso al disco.
+Fue utilizado por defecto en muchas distribuciones de Linux hasta la versión 5.0 del núcleo y funciona de la siguiente manera:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CFQ</strong> mantiene una cola de solicitudes para cada proceso y en ella inserta las solicitudes síncronas de E/S.
+Cada cola tiene una ventana de tiempo —o <strong>cuanto</strong>— para acceder al disco.
+La longitud del <strong>cuanto</strong> y el tamaño máximo de cada cola dependen de la prioridad de E/S que tenga el proceso.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Las solicitudes síncronas de E/S son aquellas que hacen que el proceso permanezca en estado <strong>esperando</strong> hasta que se resuelve la petición.
+Por ejemplo, las operaciones de lectura bloqueantes, como ocurre por defecto con <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>.
+Mientras que las solicitudes asíncronas son las que permiten que el proceso continúe su ejecución en la CPU mientras se atiende la petición.
+Como las escrituras con <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CFQ</strong> mantiene una cola de solicitudes por cada prioridad de E/S, donde se insertan las solicitudes asíncronas de todos los procesos.
+Una solicitud asíncrona se inserta en una cola u otra según la prioridad del proceso que la generó.</p>
+</li>
+<li>
+<p>Usando el algoritmo <strong><em>round-robin</em></strong>, el planificador <strong>CFQ</strong> recorre las colas y extrae de ellas las solicitudes durante el tiempo marcado por el cuanto de cada cola.
+Las solicitudes extraídas se insertan en la cola de E/S al disco, donde se ordenan para minimizar el <strong>tiempo de búsqueda</strong>, antes de ser enviadas al dispositivo.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Actualmente, los planificadores <strong>CFS</strong> y <strong>NOOP</strong> se consideran obsoletos.
+En su lugar el planificador por defecto en Linux para SSD y discos duros es <strong>mq-deadline</strong> —una adaptación del planificador <a href="https://en.wikipedia.org/wiki/Deadline_scheduler">deadline</a>, también obsoleto—.
+Mientras que para dispositivos NVM Express se utiliza <strong>NONE</strong>, que básicamente desactiva la planificación de la E/S de disco.</p>
+</div>
+<div class="paragraph">
+<p>Otros planificadores disponibles actualmente son <a href="https://algo.ing.unimo.it/people/paolo/disk_sched/">BFQ</a> —diseñado para minimizar la latencia— y Kyber.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="sistema_de_archivos.html">Sistemas de archivos</a> | ↑ Subir: <a href="gestión_del_almacenamiento.html">Gestión del almacenamiento</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="bibliografía.html">Bibliografía</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

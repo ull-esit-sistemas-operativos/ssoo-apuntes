@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="memoria_compartida" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+<ul class="sectlevel1">
+<li><a href="procesos.html">9. Procesos</a>
+</li>
+<li><a href="comunicación_mediante_paso_de_mensajes.html">10. Comunicación mediante paso de mensajes</a>
+</li>
+<li><a href="memoria_compartida.html"><span class="toc-current">11. Memoria compartida</span></a>
+<ul class="sectlevel2">
+<li><a href="memoria_compartida.html#_memoria_compartida_anónima">11.1. Memoria compartida anónima</a>
+</li>
+<li><a href="memoria_compartida.html#_memoria_compartida_con_nombre">11.2. Memoria compartida con nombre</a>
+</li>
+</ul>
+</li>
+<li><a href="hilos.html">12. Hilos</a>
+</li>
+<li><a href="sincronización.html">13. Sincronización</a>
+</li>
+<li><a href="planificación_de_la_cpu.html">14. Planificación de la CPU</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="memoria_compartida"><a class="anchor" href="#memoria_compartida"></a>11. Memoria compartida</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 5 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La <strong>memoria compartida</strong> es una estrategia para comunicar procesos donde uno de ellos gana acceso a regiones de la memoria del otro; algo que por lo general el sistema operativo siempre intenta evitar.
+Por eso, para que pueda haber memoria compartida es necesario que los dos procesos estén de acuerdo en eliminar dicha restricción.</p>
+</div>
+<div class="paragraph">
+<p>Dos procesos que comparten una región de la memoria pueden intercambiar información simplemente leyendo y escribiendo datos en la misma.
+Sin embargo debemos tener en cuenta que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La estructura de los datos y su localización dentro de la región compartida la determinan los procesos en comunicación y no el sistema operativo, a diferencia de lo que ocurre en los sistemas de paso de mensajes.</p>
+</li>
+<li>
+<p>Los procesos son responsables de sincronizarse para no escribir y leer en el mismo sitio de la memoria al mismo tiempo, pues esto puede generar inconsistencias (véase el <a href="sincronización.html">Capítulo 13</a>) .</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Las principales ventajas de la memoria compartida frente a otros mecanismos de comunicación son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Eficiencia</strong>.
+Puesto que la comunicación tiene lugar a la velocidad de la memoria principal, se trata de un mecanismo tremendamente rápido.</p>
+</li>
+<li>
+<p><strong>Conveniencia</strong>.
+Puesto que el mecanismo de comunicación solo requiere leer y escribir de la memoria, se trata de un sistema muy sencillo y fácil de utilizar.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Como ocurre con las tuberías (véase el <a href="comunicación_mediante_paso_de_mensajes.html#_tuberías">Apartado 10.5.3</a>) la memoria compartida puede ser anónima o con nombre.</p>
+</div>
+<div class="sect2">
+<h3 id="_memoria_compartida_anónima"><a class="anchor" href="#_memoria_compartida_anónima"></a>11.1. Memoria compartida anónima</h3>
+<div class="paragraph">
+<p>La <strong>memoria compartida anónima</strong> solo existe para el proceso que la crea y para sus procesos hijos, que heredan el acceso.
+Es por tanto, una forma eficiente de comunicar procesos padres e hijos.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas POSIX, las funciones y operadores de reserva de memoria como <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/cpp/language/new">new</a>, utilizan internamente la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>.
+Esta función se puede llamar de la siguiente manera para reservar <code>length</code> bytes de memoria.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">length</span><span class="p">,</span>     <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span>      <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="n">MAP_ANONYMOUS</span> <span class="o">|</span> <span class="n">MAP_PRIVATE</span><span class="p">,</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="mi">0</span>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Si todo va bien, <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> devuelve un puntero al primer byte de la memoria reservada.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Cantidad de memoria a reservar en bytes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Permisos de acceso para la memoria reservada.
+En este caso, se solicita permitir la lectura y la escritura de la memoria.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>MAP_ANONYMOUS</code> indica que la memoria no está respaldada por ningún archivo, por lo que su contenido inicial será cero.
+Mientras que <code>MAP_PRIVATE</code> establece que la región de memoria es privada.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Lo interesante es que si se cambia <code>MAP_PRIVATE</code> por <code>MAP_SHARED</code> la región de memoria reservada es memoria compartida:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">length</span><span class="p">,</span>
+    <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span>
+    <span class="n">MAP_ANONYMOUS</span> <span class="o">|</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="mi">0</span>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Memoria anónima y compartida.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Es decir, que al crear un hijo con <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> este tendrá una copia de toda la memoria del proceso padre, excepto esta región en particular, que será la misma que la del padre.
+Por lo tanto, escribiendo y leyendo en esa región, ambos procesos pueden comunicarse.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> se puede ver un ejemplo muy simple, similar a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp">fork-pipe.cpp</a> pero utilizando memoria compartida para comunicar ambos procesos.
+Como se puede apreciar, la versión que usa memoria compartida es bastante más sencilla que la que utiliza tuberías.</p>
+</div>
+<div class="paragraph">
+<p>En Microsoft Windows se puede hacer algo similar con <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga">CreateFileMapping()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">HANDLE</span> <span class="n">hMapFile</span> <span class="o">=</span> <span class="n">CreateFileMapping</span><span class="p">(</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="n">INVALID_HANDLE_VALUE</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">PAGE_READWRITE</span><span class="p">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">length</span><span class="p">,</span>         <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="nb">NULL</span>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Permisos de acceso para la memoria reservada.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Cantidad de memoria a reservar en bytes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A diferencia de <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>, <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga">CreateFileMapping()</a> crea un objeto de memoria compartida, pero no hace visible esa memoria para nuestro proceso.
+Para eso hay que llamar a <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile">MapViewOfFile()</a> pasándole el manejador <code>hMapFile</code> devuelto por <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga">CreateFileMapping()</a>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_memoria_compartida_con_nombre"><a class="anchor" href="#_memoria_compartida_con_nombre"></a>11.2. Memoria compartida con nombre</h3>
+<div class="paragraph">
+<p>La <strong>memoria compartida con nombre</strong> es pública para el resto del sistema, por lo que teóricamente cualquier proceso con permisos puede acceder a ella para comunicarse con otros procesos.</p>
+</div>
+<div class="paragraph">
+<p>Como ocurre en las tuberías con nombre, los <strong>objetos de memoria compartida con nombre</strong> hay que crearlos antes de comenzar a utilizarlos.
+Para eso los sistemas POSIX ofrecen la función <a href="https://www.man7.org/linux/man-pages/man3/shm_open.3.html">shm_open()</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">shmfd</span> <span class="o">=</span> <span class="n">shm_open</span><span class="p">(</span>   <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="s">"/foo-shm"</span><span class="p">,</span>         <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_CREAT</span><span class="p">,</span>   <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="mo">0666</span>                <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nombre que identifica al objeto de memoria compartida.
+Como ocurre con los archivos, varios procesos pueden acceder al mismo objeto indicando el mismo nombre.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Valores que indican diferentes opciones a la hora de abrir el objeto.
+Por ejemplo, usando <code>O_RDWR</code> indicamos que se abra para lectura y escritura.
+Mientras que con <code>O_CREAT</code> se indica que el objeto debe crearse si no existía previamente.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Indica los permisos del objeto de memoria compartida al crearlo nuevo, de forma similar a los permisos que se aplican a los archivos en el sistema de archivos.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El valor devuelto por <a href="https://www.man7.org/linux/man-pages/man3/shm_open.3.html">shm_open()</a> es el descriptor del objeto de memoria compartida, que utilizaremos posteriormente con <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a> al reservar una región de la memoria de nuestro proceso donde ese objeto de memoria compartida será visible:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">length</span><span class="p">,</span>                 <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span>
+    <span class="n">MAP_SHARED</span><span class="p">,</span>             <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">shmfd</span><span class="p">,</span>                  <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="mi">0</span>                       <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Al pasar el descriptor del objeto de memoria compartida, ya no se puede indicar <code>MAP_ANONYMOUS</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Se puede hacer visible para el proceso todo el objeto de memoria compartida o solo una parte.
+Para esto último se indica el tamaño de la región y el desplazamiento dentro del objeto, que es el último argumento de <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Un objeto de memoria compartida recién creado tiene tamaño 0.
+Para redimensionarlo se utiliza <a href="https://man7.org/linux/man-pages/man2/ftruncate.2.html">ftruncate()</a>, que lo que necesita es el descriptor del objeto y el nuevo tamaño.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-server.c">shared-memory-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
+En este caso controlado por otro mediante memoria compartida.
+Ambos programas usan la clase definida en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap11/shared_memory.hpp">shared_memory.hpp</a> para gestionar el objeto de memoria compartida.
+Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema comentadas.</p>
+</div>
+<div class="paragraph">
+<p>En Microsoft Windows también se utiliza <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga">CreateFileMapping()</a> para crear el objeto de memoria compartida con nombre.
+Simplemente hay que indicar el nombre en el último argumento de la función.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="n">HANDLE</span> <span class="n">hMapFile</span> <span class="o">=</span> <span class="n">CreateFileMapping</span><span class="p">(</span>
+    <span class="n">INVALID_HANDLE_VALUE</span><span class="p">,</span>
+    <span class="nb">NULL</span><span class="p">,</span>
+    <span class="n">PAGE_READWRITE</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">length</span><span class="p">,</span>
+    <span class="s">"Global</span><span class="se">\\</span><span class="s">FooMemoriaCompartida"</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nombre del nuevo objeto de memoria compartida.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="comunicación_mediante_paso_de_mensajes.html">Comunicación mediante paso de mensajes</a> | ↑ Subir: <a href="gestión_de_procesos.html">Gestión de procesos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="hilos.html">Hilos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

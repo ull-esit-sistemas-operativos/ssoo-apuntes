@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="componentes_del_sistema" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+<ul class="sectlevel1">
+<li><a href="componentes_del_sistema.html"><span class="toc-current">4. Componentes del sistema</span></a>
+<ul class="sectlevel2">
+<li><a href="componentes_del_sistema.html#sect-componente-gestión-de-procesos">4.1. Gestión de procesos</a>
+</li>
+<li><a href="componentes_del_sistema.html#_gestión_de_la_memoria_principal">4.2. Gestión de la memoria principal</a>
+</li>
+<li><a href="componentes_del_sistema.html#_gestión_del_sistema_de_es">4.3. Gestión del sistema de E/S</a>
+</li>
+<li><a href="componentes_del_sistema.html#_gestión_del_almacenamiento_secundario">4.4. Gestión del almacenamiento secundario</a>
+</li>
+<li><a href="componentes_del_sistema.html#_gestión_del_sistema_de_archivos">4.5. Gestión del sistema de archivos</a>
+</li>
+<li><a href="componentes_del_sistema.html#_gestión_de_red">4.6. Gestión de red</a>
+</li>
+<li><a href="componentes_del_sistema.html#_protección_y_seguridad">4.7. Protección y seguridad</a>
+</li>
+</ul>
+</li>
+<li><a href="servicios_del_sistema.html">5. Servicios del sistema</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html">6. Interfaz de programación de aplicaciones</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html">7. Operación del sistema operativo</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html">8. Sistemas operativos por su estructura</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="componentes_del_sistema"><a class="anchor" href="#componentes_del_sistema"></a>4. Componentes del sistema</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 14 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Crear un software tan complejo como un sistema operativo no es sencillo, por ello resulta más práctico dividirlo en piezas más pequeñas especializadas en aspectos concretos de la gestión del sistema.</p>
+</div>
+<div class="paragraph">
+<p>Cada sistema operativo tiene diferentes componentes con distinto nombre.
+Lo que veremos en este capítulo es un esquema de los más comunes a la mayoría de sistemas operativos actuales.</p>
+</div>
+<div class="sect2">
+<h3 id="sect-componente-gestión-de-procesos"><a class="anchor" href="#sect-componente-gestión-de-procesos"></a>4.1. Gestión de procesos</h3>
+<div class="paragraph">
+<p>
+La gestión de los procesos es un elemento central de todo sistema operativo:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>El <strong>proceso</strong> es la unidad de trabajo en cualquier sistema operativo moderno.
+Es quién realiza las tareas que interesan a los usuarios.
+Por eso, es a cada proceso al que se le asigna el tiempo de CPU y el resto de recursos del sistema, como por ejemplo: memoria, archivos o dispositivos de E/S abiertos.</p>
+</li>
+<li>
+<p>Un <strong>proceso</strong> es un programa en ejecución.
+Un programa se convierte en proceso cuando las instrucciones del programa son cargadas en la memoria desde el archivo del ejecutable y se le asignan recursos para su ejecución.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Los procesos son entidades activas que necesitan recursos —CPU, memoria, archivos, dispositivos E/S—.
+Algunos de esos recursos se asignan durante su creación, mientras que otros son solicitados por el proceso durante su ejecución —por ejemplo la memoria, de la que todo proceso necesita cierta cantidad para comenzar, pero que luego puede pedir más dinámicamente durante su ejecución—.
+Cuando el proceso termina el sistema operativo reclama de estos recursos aquellos que sean reutilizables para otros procesos.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Un <strong>programa</strong> no es un proceso, es una entidad pasiva.
+Es el contenido de un archivo en disco con las instrucciones que algún día una CPU ejecutará.
+Un programa no puede hacer ningún tipo de trabajo a menos que sus instrucciones sean ejecutadas por una CPU, pero si eso ocurre, ya no sería un programa sino un proceso.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Aunque varios procesos estén asociados al mismo programa no pueden ser considerados el mismo proceso.
+La CPU ejecuta las instrucciones de cada proceso una detrás de otra, de manera que para conocer la siguiente instrucción a ejecutar cada proceso tiene un contador de programa que se lo indica a la CPU, así como valores en los registros de la CPU que dependen de la historia pasada del proceso.
+Aunque varios procesos ejecuten el mismo programa, la secuencia de instrucciones ejecutadas y el estado del proceso en cada momento seguramente sean diferentes.
+Por lo tanto, no son el mismo proceso.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Por el momento estamos considerando que <strong>proceso</strong> y <strong>trabajo</strong> hacen referencia al mismo concepto porque en los sistemas más antiguos (véase el <a href="tipos_de_sistemas_operativos.html#_mainframe">Apartado 2.1</a>) la unidad de trabajo se llamaba <strong>trabajo</strong> mientras que en los sistemas modernos se llama <strong>proceso</strong>, de tal forma que podemos considerar al segundo una evolución del primero.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, mirándolo exclusivamente desde la perspectiva de los sistemas operativos modernos, son dos conceptos diferentes aunque relacionados.
+En un sistema moderno un trabajo puede ser realizado por un solo proceso o mediante la colaboración de varios.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_responsabilidades_de_la_gestión_de_procesos"><a class="anchor" href="#_responsabilidades_de_la_gestión_de_procesos"></a>4.1.1. Responsabilidades de la gestión de procesos</h4>
+<div class="paragraph">
+<p>El componente de gestión de procesos es el responsable de las siguientes actividades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Crear y terminar procesos.</p>
+</li>
+<li>
+<p>Suspender y reanudar los procesos.</p>
+</li>
+<li>
+<p>Proporcionar mecanismos para la sincronización de procesos.</p>
+</li>
+<li>
+<p>Proporcionar mecanismos para la comunicación entre procesos.</p>
+</li>
+<li>
+<p>Proporcionar mecanismos para el tratamiento de interbloqueos.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gestión_de_la_memoria_principal"><a class="anchor" href="#_gestión_de_la_memoria_principal"></a>4.2. Gestión de la memoria principal</h3>
+<div class="paragraph">
+<p>
+La memoria principal es un recurso fundamental para las operaciones de cualquier sistema operativo moderno.
+Esto es así porque generalmente es el único almacenamiento al que la CPU tiene acceso directo.
+Para que un programa pueda ser ejecutado debe ser copiado a la memoria principal.
+Y para que un proceso tenga acceso a datos almacenados en cualquier otro dispositivo de almacenamiento, primero deben ser copiados a la memoria principal.</p>
+</div>
+<div class="paragraph">
+<p>Para mejorar el aprovechamiento de la CPU y la respuesta al usuario es necesario tener en la memoria varios programas al mismo tiempo.
+Puesto que dichos programas deben compartir la memoria durante su ejecución, automáticamente existe la necesidad de que el sistema operativo disponga de un componente de gestión de la memoria principal.</p>
+</div>
+<div class="sect3">
+<h4 id="_responsabilidad_de_la_gestión_de_la_memoria"><a class="anchor" href="#_responsabilidad_de_la_gestión_de_la_memoria"></a>4.2.1. Responsabilidad de la gestión de la memoria</h4>
+<div class="paragraph">
+<p>El componente de gestión de la memoria debe asumir las siguientes responsabilidades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Controlar qué partes de la memoria están actualmente en uso y cuáles no.</p>
+</li>
+<li>
+<p>Decidir que procesos —o partes de procesos— añadir o extraer de la memoria cuando hay o falta espacio en la misma.</p>
+</li>
+<li>
+<p>Asignar y liberar espacio de la memoria principal según sea necesario.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gestión_del_sistema_de_es"><a class="anchor" href="#_gestión_del_sistema_de_es"></a>4.3. Gestión del sistema de E/S</h3>
+<div class="paragraph">
+<p>
+El <strong>sistema de E/S</strong> hace de interfaz con el hardware, oculta las peculiaridades del hardware al resto del sistema.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>El sistema de E/S consta de:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Un componente de gestión de memoria especializado en E/S</strong>, con soporte para servicios de <em>buffering</em>, <em>caching</em> y <em>spooling</em>.
+Estos servicios son utilizados por el resto del sistema de E/S.</p>
+</li>
+<li>
+<p><strong>Una interfaz genérica de acceso a los controladores de dispositivo</strong>.
+Cada dispositivo es diferente, pero los procesos y el resto de componentes del sistema no deben tener necesidad de conocer sus particularidades a la hora de acceder a ellos.
+Es decir, para acceder a cualquier disco duro el sistema ofrece una misma interfaz, independiente de su marca y modelo.
+Y lo mismo ocurre con las tarjetas de sonido o con los dispositivos de entrada, como teclados y ratones.
+Así los programadores pueden acceder a cualquier dispositivo abstrayendo de las particularidades concretas del hardware instalado en cada ordenador.</p>
+</li>
+<li>
+<p><strong>Controladores de dispositivo</strong>, que generalmente son desarrollados por los fabricantes de los dispositivos y son el componente que realmente conoce las peculiaridades específicas del dispositivo.
+Por tanto, las peticiones que hacen los procesos a la interfaz de E/S genérica la traslada el sistema a los controladores de dispositivo para que estos las conviertan en acciones concretas sobre el hardware del dispositivo.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Interfaz de acceso a dispositivos en sistemas UNIX</div>
+<div class="paragraph">
+<p>Una característica de los sistemas UNIX es que todos los dispositivos de E/S se representan como un archivo en el sistema de archivos.
+Esto se puede comprobar rápidamente visitando el directorio <code>/dev</code> en cualquier sistema GNU/Linux o UNIX BSD, ya que es allí donde suelen estar.</p>
+</div>
+<div class="paragraph">
+<p>Así no hace falta diseñar y aprender una interfaz diferente para cada tipo de dispositivo.
+Por ejemplo, no hace falta que el sistema ofrezca funciones para leer y escribir bloques en dispositivos de almacenamiento.
+Ni para leer la geometría del dispositivo, para configurar modos de trasferencia o de ahorro de energía o para eyectarlo, en el caso de los dispositivos removibles.
+Tampoco son necesarias funciones específicas para grabar y reproducir sonidos, para configurar la tarjeta de sonido o para leer y establecer los valores del mezclador.
+Por el contrario, todas las operaciones sobre los dispositivos de E/S se ofrecen a través de una interfaz bien conocida por los desarrolladores, la misma que se utiliza para gestionar archivos convencionales: <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a>, <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>, <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a> o <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">mmap()</a>.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, <code>/dev/urandom</code> es un dispositivo que se utiliza para obtener una secuencia de bytes aleatorios.
+Para usarlo, solo tenemos que abrirlo y leer de él la cantidad de bytes que necesitemos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span> <span class="s">"/dev/urandom"</span><span class="p">,</span> <span class="n">O_RDONLY</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">fd</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">random_data</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    <span class="kt">ssize_t</span> <span class="n">bytes_read</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span> <span class="n">fd</span><span class="p">,</span> <span class="n">random_data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">random_data</span><span class="p">)</span> <span class="p">);</span>   <i class="conum" data-value="1"></i><b>(1)</b>
+
+    <span class="c1">// ...</span>
+
+    <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Si <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> tiene éxito, <code>random_data</code> contendrá datos aleatorios al volver de la llamada al sistema.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sin embargo, algunos dispositivos tienen funciones de control que no se trasladan bien a esta interfaz basada en archivos.
+Por ejemplo, si tenemos un lector de DVD o de Blu-ray, las operación <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> nos permite leer el contenido del disco en crudo —es decir, bloque a bloque, ignorando el sistema de archivos— pero ¿cómo lo eyectamos o cómo sabemos si hay un disco en el lector?.</p>
+</div>
+<div class="paragraph">
+<p>Para resolver este tipo de situaciones, los sistemas UNIX incorporan la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/ioctl.2.html">ioctl()</a>, que permite enviar comandos u obtener parámetros específicos del dispositivo.
+La llamada al sistema <a href="https://man7.org/linux/man-pages/man2/ioctl.2.html">ioctl()</a> acepta los siguientes argumentos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El descriptor de archivo obtenido al abrir el dispositivo.</p>
+</li>
+<li>
+<p>El código de petición al dispositivo.
+Depende del dispositivo, por lo que para conocer los códigos que se soportan es necesario leer la documentación del controlador.</p>
+</li>
+<li>
+<p>Un puntero opcional a un búfer en la memoria, para recibir los parámetros solicitados o para enviar datos al dispositivo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, así podríamos eyectar el primer lector de CD/DVD-ROM o Blue-ray en Linux:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/cdrom.h&gt;</span><span class="c1">                              </span><span class="cp"><i class="conum" data-value="1"></i><b>(1)</b>
+</span>
+<span class="c1">// ...</span>
+
+<span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span> <span class="s">"/dev/sr0"</span><span class="p">,</span> <span class="n">O_RDONLY</span> <span class="o">|</span> <span class="n">O_NONBLOCK</span> <span class="p">);</span>   <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="k">if</span> <span class="p">(</span><span class="n">fd</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ioctl</span> <span class="p">(</span> <span class="n">fd</span><span class="p">,</span> <span class="n">CDROMEJECT</span> <span class="p">);</span>                         <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="n">close</span> <span class="p">(</span> <span class="n">fd</span> <span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Este archivo contiene los códigos IOCTL conocidos por los controladores de dispositivo del tipo lectores de CD-ROM.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Como en el ejemplo anterior con <code>/dev/uranom</code>, es necesario abrir el dispositivo para obtener un descriptor de archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>En la llamada al sistema <a href="https://man7.org/linux/man-pages/man2/ioctl.2.html">ioctl()</a> se indica el código de la petición para eyectar la bandeja.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_buffering"><a class="anchor" href="#_buffering"></a>4.3.1. Buffering</h4>
+<div class="paragraph">
+<p>El <strong>buffering</strong> o uso de memoria intermedia es una estrategia en la que se almacenan los datos de manera temporal en una zona de la memoria, llamada búfer.</p>
+</div>
+<div class="paragraph">
+<p>Consiste en que el controlador indica a un dispositivo que escriba los bloques de datos solicitados en un búfer.
+Cuando la escritura del búfer se ha completado, se transfiere su contenido al proceso que hizo la solicitud para que procese los datos.
+Mientras lo hace, el controlador indica al dispositivo que copie nuevos datos en el búfer.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, al grabar sonido del dispositivo de sonido del sistema no se entregan las muestras una a una al proceso.
+En su lugar se graban varios miles de muestras que se escriben en un búfer.
+Cuando el búfer está lleno, se transfieren todas las muestras al proceso de una sola vez y se siguen grabando muestras en el búfer.</p>
+</div>
+<div class="paragraph">
+<p>Lo mismo ocurre al reproducir sonido.
+El proceso no entrega las muestras de sonido de una en una al dispositivo, sino que empaqueta varios miles que se copian al búfer de una sola vez.
+Entonces el controlador indica al dispositivo que lea las muestras desde ese búfer según lo vaya necesitando.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_caching"><a class="anchor" href="#_caching"></a>4.3.2. Caching</h4>
+<div class="paragraph">
+<p>En el <strong>caching</strong> el sistema mantiene en la memoria principal una copia de datos  leídos o escritos recientemente en los dispositivos de E/S del sistema —por ejemplo, en los discos duros o en las memorias USB—.
+Esto mejora la eficiencia del sistema si accede con frecuencia a los mismos datos, puesto que el acceso a la memoria principal es más rápido que el acceso a los dispositivos de E/S.
+La memoria principal es de tamaño limitado, por lo que solo se mantiene copia de los datos utilizados con mayor frecuencia.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spooling"><a class="anchor" href="#_spooling"></a>4.3.3. Spooling</h4>
+<div class="paragraph">
+<p>El <strong>spooling</strong> se utiliza en dispositivos que no admiten el acceso simultáneo de varias aplicaciones a la vez, como es el caso de impresoras y unidades de cinta.</p>
+</div>
+<div class="paragraph">
+<p>Cuando varias aplicaciones intentan enviar un trabajo a una impresora, el sistema operativo lo intercepta para copiar los datos enviados a un archivo independiente.
+Cuando una aplicación termina de enviar el trabajo, el archivo correspondiente se mete en una cola de donde son extraídos los trabajos para su impresión de uno en uno.
+Así no hay acceso simultáneo al dispositivo por parte de varios procesos, mientras que estos pueden entregar el trabajo y continuar con su trabajo sin esperar a que la impresora esté disponible.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gestión_del_almacenamiento_secundario"><a class="anchor" href="#_gestión_del_almacenamiento_secundario"></a>4.4. Gestión del almacenamiento secundario</h3>
+<div class="paragraph">
+<p>
+Dentro de los dispositivos de E/S, los dedicados al almacenamiento secundario —como discos duros, memorias USB o lectores de DVD-ROM— merecen un tratamiento especial.</p>
+</div>
+<div class="paragraph">
+<p>Los programas que se desean ejecutar deben estar en la memoria principal —o almacenamiento primario— pero esta es demasiado pequeña para alojar todos los datos y todos los programas del sistema.
+Además, incluso aunque pudiera ser así, los datos almacenados en la memoria principal se perderían en caso de que ocurriera un fallo de alimentación.
+Por eso los ordenadores disponen de un almacenamiento secundario para guardar datos de forma masiva y permanente.</p>
+</div>
+<div class="paragraph">
+<p>El gestor del almacenamiento secundario utiliza el sistema de E/S para acceder a los dispositivos y ofrecer al sistema servicios más complejos.</p>
+</div>
+<div class="sect3">
+<h4 id="_responsabilidades_de_la_gestión_del_almacenamiento_secundario"><a class="anchor" href="#_responsabilidades_de_la_gestión_del_almacenamiento_secundario"></a>4.4.1. Responsabilidades de la gestión del almacenamiento secundario</h4>
+<div class="paragraph">
+<p>El gestor del almacenamiento secundario es el responsable de:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gestionar el espacio libre en discos duros y resto de dispositivos de almacenamiento secundario.</p>
+</li>
+<li>
+<p>Asignar el espacio de almacenamiento.</p>
+</li>
+<li>
+<p>Planificar el acceso a los dispositivos, de tal forma que se ordenen las operaciones de forma eficiente.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gestión_del_sistema_de_archivos"><a class="anchor" href="#_gestión_del_sistema_de_archivos"></a>4.5. Gestión del sistema de archivos</h3>
+<div class="paragraph">
+<p>
+Los ordenadores pueden almacenar información en diferentes tipos de medios físicos —por ejemplo en discos duros magnéticos, CD/DVD-ROM, memorias USB o SSD— cada uno de los cuales tiene características propias.
+El acceso a cada tipo de medio es controlado por un dispositivo —por ejemplo el controlador de disco o la unidad de DVD-ROM— que también tiene características propias.
+El sistema de E/S y la gestión del almacenamiento secundario simplifican el acceso a estos dispositivos, pero no lo suficiente como para que sea cómodo usarlos constantemente en cualquier programa.</p>
+</div>
+<div class="paragraph">
+<p>Para simplificar aún más el acceso al almacenamiento, el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
+Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir el <strong>archivo</strong>, una unidad de almacenamiento lógico con la que trabajan los procesos para guardar y recuperar datos.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Un <strong>archivo</strong> o <strong>fichero</strong> es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como la unidad de información en el almacenamiento secundario.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Esto quiere decir que, por lo general, para el sistema operativo un archivo no es más que una colección de bytes y lo que ofrece son servicios para leer, escribir, identificar y manipular dicha colección.
+La organización y formato utilizados para guardar la información —como, por ejemplo, el detalle de cómo se codifica en un archivo una imagen al guardarla en formato JPEG— y lo que se hace dicha información, es algo que generalmente solo incumbe a las aplicaciones, no al sistema operativo.</p>
+</div>
+<div class="paragraph">
+<p>Los archivos normalmente se organizan en directorios para facilitar su uso y organización.</p>
+</div>
+<div class="sect3">
+<h4 id="_responsabilidades_de_la_gestión_del_sistema_de_archivos"><a class="anchor" href="#_responsabilidades_de_la_gestión_del_sistema_de_archivos"></a>4.5.1. Responsabilidades de la gestión del sistema de archivos</h4>
+<div class="paragraph">
+<p>El sistema de archivos utiliza al gestor del almacenamiento secundario y al sistema de E/S y es responsable de las siguientes actividades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Crear y borrar archivos.</p>
+</li>
+<li>
+<p>Crear y borrar directorios para organizar los archivos.</p>
+</li>
+<li>
+<p>Soportar operaciones básicas para la manipulación de archivos y directorios: lectura y escritura de datos, cambio de nombre, cambio de permisos, etc.</p>
+</li>
+<li>
+<p>Mapear en memoria archivos del almacenamiento secundario.</p>
+</li>
+<li>
+<p>Hacer copias de seguridad de los archivos en sistemas de almacenamiento estables y seguros.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gestión_de_red"><a class="anchor" href="#_gestión_de_red"></a>4.6. Gestión de red</h3>
+<div class="paragraph">
+<p>
+El componente de red se responsabiliza de la comunicación con otros sistemas interconectados mediante una red de ordenadores —por ejemplo, en Internet o en la red de área local de una oficina—.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_protección_y_seguridad"><a class="anchor" href="#_protección_y_seguridad"></a>4.7. Protección y seguridad</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Protección</strong> es cualquier mecanismo para controlar el acceso de los procesos y usuarios a los recursos definidos por el sistema.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Son mecanismos necesarios cuando un sistema informático tiene múltiples usuarios y permite la ejecución concurrente de varios procesos, pues así solo pueden utilizar los recursos aquellos procesos que hayan obtenido la autorización del sistema operativo.</p>
+</li>
+<li>
+<p>Permite mejorar la fiabilidad, al permitir detectar los elementos del sistema que no operan correctamente.
+Un recurso desprotegido no puede defenderse contra el uso —o mal uso— de un usuario no autorizado o incompetente.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Ejemplos típicos de mecanismos de protección son el hardware de direccionamiento de memoria, que se utiliza para que los procesos se ejecuten en su propio espacio de direcciones, y el temporizador, que garantiza que ningún proceso toma el control de la CPU por tiempo indefinido.
+Además, los registros de los dispositivos de E/S suelen estar protegidos del acceso directo de los usuarios, lo que protege la integridad de los dispositivos.
+Mientras que en algunos sistemas se pueden establecer permisos sobre los archivos para garantizar que solo los procesos con la debida autorización tengan acceso.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Un sistema puede tener la protección adecuada pero estar expuesto a fallos y permitir accesos inapropiados.
+Por eso es necesario disponer de mecanismos de <strong>seguridad</strong> que se encarguen de defender el sistema frente a ataques internos y externos.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Eso incluye a virus y gusanos, ataques de <a href="https://es.wikipedia.org/wiki/Ataque_de_denegaci%C3%B3n_de_servicio">denegación de servicio</a>, robo de identidad y uso no autorizado del sistema, entre muchos otros tipos de ataque.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Subir: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="servicios_del_sistema.html">Servicios del sistema</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

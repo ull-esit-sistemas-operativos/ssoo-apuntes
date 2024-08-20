@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="almacenamiento_secundario" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+<ul class="sectlevel1">
+<li><a href="almacenamiento_secundario.html"><span class="toc-current">18. Almacenamiento secundario</span></a>
+<ul class="sectlevel2">
+<li><a href="almacenamiento_secundario.html#_dispositivos_de_almacenamiento">18.1. Dispositivos de almacenamiento</a>
+</li>
+<li><a href="almacenamiento_secundario.html#_archivos_y_sistemas_de_archivos">18.2. Archivos y sistemas de archivos</a>
+</li>
+<li><a href="almacenamiento_secundario.html#_volúmenes_de_datos">18.3. Volúmenes de datos</a>
+</li>
+</ul>
+</li>
+<li><a href="sistema_de_archivos.html">19. Sistemas de archivos</a>
+</li>
+<li><a href="implementación_de_sistemas_de_archivos.html">20. Implementación de sistemas de archivos</a>
+</li>
+</ul>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="almacenamiento_secundario"><a class="anchor" href="#almacenamiento_secundario"></a>18. Almacenamiento secundario</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 10 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_dispositivos_de_almacenamiento"><a class="anchor" href="#_dispositivos_de_almacenamiento"></a>18.1. Dispositivos de almacenamiento</h3>
+<div class="paragraph">
+<p>Los ordenadores pueden almacenar información en diferentes soportes de almacenamiento —por ejemplo, en discos magnéticos, DVD o memorias de estado sólido—.
+Cada uno tiene propiedades físicas diferentes que pasamos a comentar brevemente a continuación.</p>
+</div>
+<div class="sect3">
+<h4 id="_discos_magnéticos"><a class="anchor" href="#_discos_magnéticos"></a>18.1.1. Discos magnéticos</h4>
+<div class="paragraph">
+<p>Los discos magnéticos son el tipo principal de almacenamiento secundario, generalmente en la forma de lo que se denominan discos duros.</p>
+</div>
+<div id="fig-disco-duro-físico" class="imageblock">
+<div class="content">
+<img src="media/C18-almacenamiento/disco_duro_físico.jpg" alt="disco duro físico">
+</div>
+<div class="title">Figura 18.1. Disco duro&#8201;&#8212;&#8201;Fuente: <a href="https://commons.wikimedia.org/wiki/File:Hard_Drive_(11644168395).jpg">Wikipedia</a></div>
+</div>
+<div class="paragraph">
+<p>Tal y como se puede apreciar en la <a href="almacenamiento_secundario.html#fig-disco-duro-físico">Figura 18.1</a> cada unidad está compuesta por una serie de platos de forma circular recubiertos de material magnético.
+La información se almacena grabándola magnéticamente sobre los platos, para lo cual se utilizan unas cabezas de lectura que «flotan» tanto por encima como por debajo de cada plato.</p>
+</div>
+<div id="fig-disco-duro-lógico" class="imageblock">
+<div class="content">
+<img src="media/C18-almacenamiento/disco_duro_lógico.svg" alt="disco duro lógico">
+</div>
+<div class="title">Figura 18.2. Estructura lógica de un disco magnético.</div>
+</div>
+<div class="paragraph">
+<p>Desde el punto de vista lógico (véase la <a href="almacenamiento_secundario.html#fig-disco-duro-lógico">Figura 18.2</a>) la superficie de cada plato está dividida en <strong>pista</strong> circulares, cada una de las cuales se subdivide en <strong>sectores</strong>.
+El conjunto de pistas formado por todas aquellas que están situadas en la misma posición en los distintos platos se denomina <strong>cilindro</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En estos dispositivos consume mucho más tiempo mover la cabeza de lectura hasta el sector de interés, que la lectura y transferencia de los datos almacenados a la memoria RAM.
+Por lo tanto, el tiempo de acceso aleatorio al disco es mucho mayor que el de acceso secuencial.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discos_ópticos"><a class="anchor" href="#_discos_ópticos"></a>18.1.2. Discos ópticos</h4>
+<div class="paragraph">
+<p>Los discos ópticos —CD, DVD, BluRay, o cualquier otro medio similar— consisten en un disco circular en el cual la información se almacena haciendo uso de surcos microscópicos, que se leen haciendo incidir un láser sobre una de las caras planas que lo componen.</p>
+</div>
+<div class="paragraph">
+<p>En este tipo de discos la información se almacena siguiendo un recorrido continuo en espiral que cubre la superficie entera del disco, extendiéndose desde el interior hacia el exterior.
+Dado que el láser siempre debe desplazarse sobre la espiral, el acceso aleatorio a los datos es más lento que con otras tecnologías de disco.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_memorias_de_estado_sólido"><a class="anchor" href="#_memorias_de_estado_sólido"></a>18.1.3. Memorias de estado sólido</h4>
+<div class="paragraph">
+<p>Una memoria de estado sólido —memoria USB o un SSD— es un dispositivo de almacenamiento que usa una memoria no volátil —como las <a href="https://es.wikipedia.org/wiki/Memoria_flash">memorias <em>flash</em></a>— para almacenar datos, en lugar de utilizar discos ópticos o magnéticos.</p>
+</div>
+<div class="paragraph">
+<p>En este tipo de memorias la información se almacena como en un vector lineal de bytes, que se puede indexar aleatoriamente con la misma eficiencia con la que se accede secuencialmente —como ocurre con la memoria RAM—.
+Sin embargo algunos dispositivos, de cara al resto del sistema informático, emulan una interfaz y un modo de direccionamiento similar al utilizado por los discos magnéticos —es decir, usando pistas, sectores y cilindros— por temas de compatibilidad.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_archivos_y_sistemas_de_archivos"><a class="anchor" href="#_archivos_y_sistemas_de_archivos"></a>18.2. Archivos y sistemas de archivos</h3>
+<div class="paragraph">
+<p>Teniendo en cuenta la gran diversidad de dispositivos de almacenamiento que existen, para que el sistema informático sea cómodo de utilizar, el sistema operativo proporciona una visión lógica uniforme de todos los sistemas de almacenamiento.
+Es decir, abstrae las propiedades físicas de los dispositivos de almacenamiento para definir una unidad de almacenamiento lógico que sea útil para los usuarios.
+Esta unidad es el <strong>archivo</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Un <strong>archivo</strong> o <strong>fichero</strong> es una colección de datos relacionados, identificados por un nombre, que es tratada por el sistema operativo como la unidad de información en el almacenamiento secundario.
+Desde la perspectiva de los usuarios, un archivo es la unidad más pequeña de almacenamiento.
+Es decir, los usuarios no pueden escribir datos en el almacenamiento secundario a menos que estos se encuentren dentro de un archivo.</p>
+</div>
+<div class="paragraph">
+<p>El sistema operativo puede ofrecer esta abstracción gracias al <strong>sistema de archivos</strong>.
+Este proporciona los mecanismos para el almacenamiento de los datos y programas en archivos, tanto del propio sistema operativo como los de todos los usuarios del sistema informático.</p>
+</div>
+<div class="paragraph">
+<p>Los sistemas de archivos están compuestos de dos partes claramente diferenciadas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Una colección de archivos</strong>, cada una de las cuales almacena una serie de datos relacionados.</p>
+</li>
+<li>
+<p><strong>Una colección de estructuras de metadatos</strong>, que contienen información relativa a los archivos almacenados —nombre, ubicación en el disco, permisos, entre otros— y que se encarga de organizarlos; generalmente haciendo uso de una estructura de directorios.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_volúmenes_de_datos"><a class="anchor" href="#_volúmenes_de_datos"></a>18.3. Volúmenes de datos</h3>
+<div class="paragraph">
+<p>Los dispositivos de almacenamiento comentados anteriormente pueden ser utilizados al 100% con un único sistema de archivos.
+Sin embargo, en ocasiones es interesante hacer divisiones con el objeto de disponer de múltiples sistemas de archivos en el mismo dispositivo.
+Cada una de esas divisiones es un <strong>volumen</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En otros casos interesa combinar divisiones o dispositivos de almacenamiento completos para crear espacios de mayor tamaño —también denominados <strong>volúmenes</strong>— cada una de las cuales puede albergar un único sistema de archivos.
+Así que en general, utilizaremos el término <strong>volumen</strong> para referirnos a un espacio de almacenamiento que alberga un sistema de archivos, tanto si ese espacio es una pequeña parte del espacio completo del dispositivo, como si se trata de una estructura de mayor tamaño compuesta a partir de varios dispositivos.</p>
+</div>
+<div class="paragraph">
+<p>A continuación comentaremos brevemente las tecnologías utilizadas con mayor frecuencia para construir estos volúmenes.</p>
+</div>
+<div class="sect3">
+<h4 id="_raid"><a class="anchor" href="#_raid"></a>18.3.1. RAID</h4>
+<div class="paragraph">
+<p>La tecnología <strong>RAID</strong> (<em>Redundant Array of Inexpensive Disks</em>) permite combinar varios discos duros para mejorar las prestaciones a través del paralelismo en el acceso o para mejorar la fiabilidad a través del almacenamiento de información redundante.
+En concreto se definen diversos <strong>niveles RAID</strong>, de entre los cuales los más comunes son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En un <strong>conjunto RAID 0</strong> se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos, sin incluir ningún tipo de información redundante.
+Esto permite leer y escribir más datos al mismo tiempo, ya que se pueden enviar en paralelo peticiones a los distintos discos.
+Sin embargo, la fiabilidad es inversamente proporcional al número de discos, ya que para que el conjunto falle basta con que lo haga cualquiera de ellos.</p>
+</li>
+<li>
+<p>En un <strong>conjunto RAID 1</strong> se crea una copia exacta —en espejo— de los datos en dos o más discos.
+El resultado es que, incluso con dos discos, se incrementa exponencialmente la fiabilidad respecto a tener uno solo, ya que para que el conjunto falle es necesario que lo hagan todos los discos.
+Adicionalmente, el rendimiento en las operaciones de lectura se incrementa linealmente con el número de copias, ya que los datos están disponibles en todos los discos al mismo tiempo, por lo que se pueden balancear las operaciones de lectura entre todos ellos.</p>
+</li>
+<li>
+<p>En un <strong>conjunto RAID 5</strong> se distribuyen los datos equitativamente en bloques de tamaño fijo entrelazados entre dos o más discos y se utiliza uno adicional para almacenar la información de paridad de los bloques de una misma división.
+En RAID se denomina división o <em>stripe</em> a la serie de bloques consecutivos, escogidos de cada uno de los discos del conjunto.</p>
+<div class="paragraph">
+<p>El disco utilizado para almacenar el bloque de paridad cambia de forma escalonada de una división a la siguiente, de ahí que se diga que el bloque de paridad está distribuido.
+Algunos aspectos adicionales a tener en cuenta son que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cada vez que se escribe un bloque de datos se debe actualizar el bloque de paridad.
+Por lo tanto las escrituras en un conjunto RAID 5 son costosas en términos de operaciones de disco y tráfico.</p>
+</li>
+<li>
+<p>Los bloques de paridad no se leen durante las lecturas de datos, ya que eso reduciría el rendimiento.
+Solo se hace en caso de que la lectura de un sector falle, puesto que el sector en la misma posición relativa dentro de cada uno de los otros bloques de datos de la división y en el bloque de paridad se pueden utilizar para reconstruir el sector erróneo.</p>
+</li>
+<li>
+<p>En un conjunto RAID 5 el fallo de 2 discos provoca la pérdida completa de los datos.
+Esto significa que aunque se pueden añadir discos de manera ilimitada, eso no suele ocurrir, puesto que a más discos en el conjunto más probabilidad de que fallen dos de ellos.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>En un <strong>conjunto RAID 6</strong> se utiliza la misma estrategia que en RAID 5, pero en cada división hay dos bloques de paridad —en lugar de uno— en dos discos diferentes.
+Esto permite que fallen hasta dos discos sin perder los datos.</p>
+</li>
+<li>
+<p>En un conjunto con niveles anidados se combinan varios niveles RAID básicos como si fueran capas superpuestas.
+Ejemplos típicos son:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>RAID 0+1</strong>, donde se hace un espejo de un conjunto RAID 0.</p>
+</li>
+<li>
+<p><strong>RAID 1+0</strong> o <strong>RAID 10</strong>, donde diversos conjuntos en espejo se combinan en un RAID 0, aumentando la capacidad total.</p>
+</li>
+<li>
+<p><strong>RAID 50</strong>, donde diversos conjuntos RAID 5 se combinan en un RAID 0, aumentando también la capacidad total.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La implementación de RAID es otra de las áreas donde existen diversas variantes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>RAID puede implementarse en el hardware de la controladora de disco, de tal forma que solo los discos conectados a esta pueden formar parte de un conjunto RAID determinado.
+Esta solución es muy eficiente, especialmente cuando se utilizan niveles que requieren cálculo de la paridad, ya que se evita utilizar tiempo de CPU para ese trabajo.
+Sin embargo, estas controladoras son notablemente más caras que las que carecen de soporte para RAID.</p>
+</li>
+<li>
+<p>RAID puede implementarse dentro del sistema operativo en lo que se denomina el <strong>software de gestión de volúmenes</strong>.
+En este caso las soluciones RAID con paridad son bastante lentas, por lo que normalmente solo se soportan los niveles RAID 0, 1, 10 o 0+1.
+Algunas controladoras de disco modernas que dicen venir con soporte RAID realmente implementan esta tecnología en software, a nivel del controlador de dispositivo, mientras que en el hardware solo se implementan unas características de apoyo mínimas.
+En algunos entornos se denomina a este tipo de implementaciones <em>fakeRAID</em> o <em>hostRAID</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cada conjunto RAID se comporta como una unidad de almacenamiento independiente desde el punto de vista del resto del sistema, por lo que se puede utilizar entero para albergar un único sistema de archivos.
+Sin embargo, lo más común es dividirlo en regiones con el objeto de utilizar múltiples sistemas de archivos o combinarlo en estructuras de mayor tamaño, para lo cual se pueden utilizar alguna de las técnicas que veremos a continuación.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_particiones"><a class="anchor" href="#_particiones"></a>18.3.2. Particiones</h4>
+<div class="paragraph">
+<p>Un disco, un conjunto RAID o cualquier otro dispositivo de almacenamiento se puede dividir en regiones para utilizar en cada una de ellas un sistema de archivos diferente.
+A esas regiones se las conoce comúnmente como <strong>particiones</strong>, <strong>franjas</strong> o <strong>minidiscos</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Según la plataforma, existen diversas maneras de implementar el soporte de particiones.
+Entre los sistemas de escritorio las tecnologías más difundidas y utilizadas son la <strong>MBR</strong> (<em>Master Boot Record</em>) y la <strong>GPT</strong> (<em>GUID Partition Table</em>).
+En ambas se almacena, en los primeros sectores del dispositivo de almacenamiento, una tabla con una entrada por partición donde se guardan las direcciones del primer y último sector de cada una de ellas en el dispositivo, así como otra información.
+Eso es todo lo que necesita el sistema operativo para determinar los límites de la región ocupada por cada sistema de archivos.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_volúmenes_dinámicos"><a class="anchor" href="#_volúmenes_dinámicos"></a>18.3.3. Volúmenes dinámicos</h4>
+<div class="paragraph">
+<p>Según la tecnología que se utilice para particionar es posible encontrarse con una serie de restricciones comunes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Limitado número de particiones que puede contener un mismo dispositivo.</p>
+</li>
+<li>
+<p>Limitaciones o imposibilidad de redimensionar las particiones.
+Especialmente si el sistema operativo está en ejecución.</p>
+</li>
+<li>
+<p>La imposibilidad de crear particiones que hagan uso de regiones libres en diferentes dispositivos de almacenamiento.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para resolverlo, algunos sistemas operativos incluyen un <strong>software de gestión de volúmenes</strong> que hace uso de tecnología propia para superar estas limitaciones.
+Estas herramientas generalmente permiten agrupar dispositivos completos, conjuntos RAID, particiones, etc. y sobre ellos construir los volúmenes que sean necesarios.
+Estos volúmenes pueden ser redimensionados —en ocasiones sin tener que detener la ejecución del sistema operativo— y en caso de que haga falta se pueden incluir dinámicamente nuevos dispositivos para incrementar el espacio disponible.
+Además, como ya hemos comentado, el software de gestión de volúmenes puede incluir alguna funcionalidad propia de conjuntos RAID, con el objeto de mejorar las prestaciones, a través del paralelismo en el acceso, o mejorar la fiabilidad, a través del almacenamiento de información redundante.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Subir: <a href="gestión_del_almacenamiento.html">Gestión del almacenamiento</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="sistema_de_archivos.html">Sistemas de archivos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

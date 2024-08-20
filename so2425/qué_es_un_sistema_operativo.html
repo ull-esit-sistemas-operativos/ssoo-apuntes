@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="qué_es_un_sistema_operativo" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+<ul class="sectlevel1">
+<li><a href="qué_es_un_sistema_operativo.html"><span class="toc-current">1. ¿Qué es un sistema operativo?</span></a>
+<ul class="sectlevel2">
+<li><a href="qué_es_un_sistema_operativo.html#_definición_de_sistema_operativo">1.1. Definición de sistema operativo</a>
+</li>
+<li><a href="qué_es_un_sistema_operativo.html#_funciones_del_sistema_operativo">1.2. Funciones del sistema operativo</a>
+</li>
+</ul>
+</li>
+<li><a href="tipos_de_sistemas_operativos.html">2. Tipos de sistemas operativos</a>
+</li>
+<li><a href="historia_de_los_sistemas_operativos.html">3. Historia de los sistemas operativos</a>
+</li>
+</ul>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="qué_es_un_sistema_operativo"><a class="anchor" href="#qué_es_un_sistema_operativo"></a>1. ¿Qué es un sistema operativo?</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 7 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>¿Qué es un sistema operativo? ¿cuáles son sus responsabilidades en el contexto de un sistema informático? ¿cómo cumple con ellas?
+Estas son algunas de las cuestiones que responderemos en este capítulo.
+Aunque, cómo veremos, no son preguntas sencillas de responder.</p>
+</div>
+<div class="sect2">
+<h3 id="_definición_de_sistema_operativo"><a class="anchor" href="#_definición_de_sistema_operativo"></a>1.1. Definición de sistema operativo</h3>
+<div class="paragraph">
+<p>En general no existe una definición universal de lo que es un <strong>sistema operativo</strong>, aunque si muchas propuestas de diferentes autores:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hay quien considera que simplemente es una cuestión del mercado: «lo que nos venden cuando llegamos a una tienda y pedimos un sistema operativo».</p>
+<div class="paragraph">
+<p>En realidad esta definición no es muy precisa, puesto que las características incluidas pueden variar enormemente de un sistema a otro.
+Por ejemplo, algunos sistemas operativos apenas alcanzan el megabyte de espacio, careciendo incluso de las aplicaciones más básicas, mientras que otros ocupan gigabytes de espacio, incluyen una interfaz gráfica basada en ventanas y las aplicaciones más comunes que cualquier usuario puede necesitar.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Aunque pueda parecer lo contrario, la cuestión de qué componentes son parte o no de un sistema operativo no es trivial. Por ejemplo, Microsoft y el Departamento de Justicia de los Estados Unidos se enfrentaron en 1998 por la inclusión del navegador Internet Explorer como parte del sistema operativo Microsoft Windows<a href="bibliografía.html#Wikipedia-CaseUsaVsMicrosoft">[30]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Microsoft afirmaba que ambos productos eran realmente uno solo y que su unión fue el resultado de un proceso de innovación.
+Mientras tanto, la otra parte alegaba que el navegador era un producto distinto y separado, que no formaba parte del sistema operativo y que todo el asunto restringía la libre competencia en el mercado de los navegadores.</p>
+</div>
+<div class="paragraph">
+<p>Seguramente en 1998 los argumentos del Departamento de Justicia de los Estados Unidos tenían mucho sentido, ¿pero qué ocurriría si se plantea este mismo asunto en la actualidad?.
+¿Concibes que tu móvil o tu ordenador no trajeran de serie un navegador?</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Una definición mucho más común es que el sistema operativo es «aquel programa que se ejecuta continuamente en el ordenador» —lo que denominamos comúnmente como <em><strong>kernel</strong></em> o <strong>núcleo</strong> del sistema— siendo el resto: programas del sistema y aplicaciones.</p>
+<div class="paragraph">
+<p>Sin embargo, en algunos casos esta definición excluye como parte del sistema operativo algunos servicios que intuitivamente solemos considerar dentro del mismo.
+Por ejemplo, si aplicamos esta definición a los sistemas operativos de estructura microkernel, no podríamos decir que servicios básicos como la comunicación en red, los sistemas de archivos y la gestión de la memoria son parte del sistema operativo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Como veremos en el <a href="sistemas_operativos_por_su_estructura.html#_microkernel">Apartado 8.3</a>, en los sistemas operativos <em>microkernel</em> la funcionalidad implementada en el núcleo del sistema es la mínima necesaria.
+Por lo tanto, según la definición anterior, muchos de los componentes y servicios básicos que damos por supuestos a un sistema operativo no formarían parte del mismo en ese tipo de sistemas.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_funciones_del_sistema_operativo"><a class="anchor" href="#_funciones_del_sistema_operativo"></a>1.2. Funciones del sistema operativo</h3>
+<div class="paragraph">
+<p>Por lo que hemos visto hasta ahora, parece evidente que no es sencillo definir lo que «es» un sistema operativo.
+Sin embargo, es posible que tengamos más suerte definiéndolo a través de lo que «hace».
+Es decir, describiendo sus funciones dentro de un sistema informático cualquiera.</p>
+</div>
+<div id="fig-componentes-sistema-informático" class="imageblock">
+<div class="content">
+<img src="media/C01-definición/componentes_sistema_informático.svg" alt="componentes sistema informático">
+</div>
+<div class="title">Figura 1.1. Vista abstracta de los componentes de un sistema informático.</div>
+</div>
+<div class="paragraph">
+<p>Un <strong>sistema informático</strong> puede ser dividido, <em>grosso modo</em>, en cuatro componentes: el hardware, los usuarios, los programas de aplicación y el sistema operativo (véase la <a href="qué_es_un_sistema_operativo.html#fig-componentes-sistema-informático">Figura 1.1</a>):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Programas de aplicación</strong>. El objetivo fundamental de cualquier sistema informático es ejecutar programas para resolver los problemas informáticos de los usuarios.
+Con ese objetivo se construye su hardware y se desarrollan los programas de aplicación —procesadores de textos, hojas de cálculo, compiladores, navegadores de Internet, etc.— que usan los usuarios para resolver sus problemas.</p>
+</li>
+<li>
+<p><strong>Hardware</strong>. El hardware —la CPU, la memoria, los dispositivos de entrada salida, etc.— proporcionan los recursos computacionales del sistema informático.
+Los programas de aplicación necesitan usar estos recursos computacionales para resolver los problemas informáticos de los usuarios.</p>
+</li>
+<li>
+<p><strong>Sistema operativo</strong>. En un sistema informático las aplicaciones necesitan realizar operaciones comunes, como acceder a los dispositivos de E/S o reservar porciones de la memoria.
+En lugar de que cada aplicación intente hacerlo por su cuenta, es mucho más sencillo que estas operaciones comunes estén centralizadas en el sistema operativo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Por lo tanto, el sistema operativo controla, coordina el acceso y asigna los recursos computacionales del hardware a los distintos programas de aplicación.</p>
+</div>
+<div class="paragraph">
+<p>En realidad esta es solo una de las dos perspectivas desde las que se pueden analizar las funciones del sistema operativo.
+Es la denominada como: <strong>perspectiva del sistema informático</strong>, mientras que la otra es la <strong>perspectiva del usuario</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_perspectiva_del_sistema_informático"><a class="anchor" href="#_perspectiva_del_sistema_informático"></a>1.2.1. Perspectiva del sistema informático</h4>
+<div class="paragraph">
+<p>Un sistema informático tiene múltiples recursos hardware, como son: tiempo de CPU, espacio de memoria, espacio de almacenamiento de archivos, dispositivos de E/S, etc.
+También tiene recursos software ofrecidos por algunos programas que se ejecutan en el sistema, como son: servicios de red, servicios de impresión, seguridad, etc.—.
+Estos recursos los necesitan los programas de aplicación para resolver los problemas informáticos de los usuarios.</p>
+</div>
+<div class="paragraph">
+<p>Dentro del sistema informático, el sistema operativo es el programa más íntimamente relacionado con el hardware y su función es gestionar los recursos hardware y software disponibles, asignarlos a los diferentes programas, resolver los conflictos en las peticiones y hacer que el sistema opere eficientemente para resolver los problemas de los usuarios.</p>
+</div>
+<div class="paragraph">
+<p>Además, el sistema operativo es el programa encargado del control de la ejecución de los programas de los usuarios, por lo que tiene la tarea de prevenir errores y el uso inadecuado del ordenador.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>En resumen, desde la perspectiva del sistema informático, las funciones del <strong>sistema operativo</strong> son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gestionar los recursos computacionales del sistema informático.</p>
+</li>
+<li>
+<p>Controlar la ejecución de los programas de usuario y el acceso a los dispositivos de E/S.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Un <strong>sistema operativo</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No hace un trabajo directamente útil para los usuarios.</p>
+</li>
+<li>
+<p>Pero proporciona un entorno adecuado para que los programas de aplicación lo hagan.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los sistemas operativos existen porque es más sencillo crear sistemas informáticos útiles para los usuarios con ellos que sin ellos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_perspectiva_del_usuario"><a class="anchor" href="#_perspectiva_del_usuario"></a>1.2.2. Perspectiva del usuario</h4>
+<div class="paragraph">
+<p>Si intentamos definir las funciones del sistema operativo desde nuestra experiencia como usuarios, seguramente haríamos referencia a la interfaz que nos proporciona para utilizar el sistema informático.
+Sin embargo, debemos tener en cuenta que la interfaz varía con el tipo de sistema, por lo que definir las funciones del sistema operativo desde la perspectiva del usuario es mucho más difícil.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, los usuarios que se sientan frente a un sistema de escritorio disponen de: monitor, teclado, ratón y una unidad central.
+Estos sistemas se diseñan buscando la máxima productividad en equipos donde un usuario monopoliza todos los recursos; por lo que el sistema operativo se diseña considerando fundamentalmente la facilidad de uso, poniendo algo de atención en el rendimiento y nada en el aprovechamiento de los recursos.</p>
+</div>
+<div class="paragraph">
+<p>Esto difiere mucho de otro tipo de sistema informático, donde múltiples usuarios se sientan frente a terminales conectadas a un gran ordenador central.
+Así todos los usuarios comparten los recursos del sistema informático y pueden intercambiar información entre sí.
+En este tipo de sistemas el sistema operativo maximiza el aprovechamiento de los recursos con el objeto de garantizar que toda la CPU, memoria y E/S son empleadas de forma eficiente y que ningún usuario utiliza más de lo que le corresponde.
+Obviamente, en este tipo de sistemas la facilidad de uso está en un segundo plano.</p>
+</div>
+<div class="paragraph">
+<p>Otros sistemas operativos se diseñan para sistemas informáticos que tienen poca o ninguna interacción con los usuarios.
+Es, por ejemplo, el caso de los sistemas empotrados de los electrodomésticos.</p>
+</div>
+<div class="paragraph">
+<p>Todos estos tipos de sistemas tienen interfaces muy diferentes, lo que dificulta obtener una definición única de sistema operativo desde la perspectiva del usuario.</p>
+</div>
+<div class="paragraph">
+<p>En los tres casos los objetivos con los que se diseña el sistema operativo son opuestos, por lo que seguramente sea diferente «lo que tiene que hacer» cada sistema operativo para alcanzarlos.
+Sin embargo, en los tres casos el sistema operativo es el responsable de la gestión de los recursos computacionales y del control de los programas, funciones que definimos anteriormente desde la perspectiva del sistema informático y que no cambian de un tipo de sistema a otro.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Subir: <a href="introducción.html">Introducción</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="tipos_de_sistemas_operativos.html">Tipos de sistemas operativos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

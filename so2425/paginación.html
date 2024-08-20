@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="paginación" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+<ul class="sectlevel1">
+<li><a href="memoria_principal.html">15. Memoria principal</a>
+</li>
+<li><a href="paginación.html"><span class="toc-current">16. Paginación</span></a>
+<ul class="sectlevel2">
+<li><a href="paginación.html#_método_básico">16.1. Método básico</a>
+</li>
+<li><a href="paginación.html#_soporte_hardware_de_la_tabla_de_páginas">16.2. Soporte hardware de la tabla de páginas</a>
+</li>
+<li><a href="paginación.html#_tiempos_de_acceso_a_la_memoria">16.3. Tiempos de acceso a la memoria</a>
+</li>
+<li><a href="paginación.html#_protección_de_la_memoria_2">16.4. Protección de la memoria</a>
+</li>
+<li><a href="paginación.html#_páginas_compartidas">16.5. Páginas compartidas</a>
+</li>
+<li><a href="paginación.html#_paginación_jerárquica">16.6. Paginación jerárquica</a>
+</li>
+</ul>
+</li>
+<li><a href="memoria_virtual.html">17. Memoria virtual</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="paginación"><a class="anchor" href="#paginación"></a>16. Paginación</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 26 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La traducción entre direcciones virtuales y físicas puede realizarse de diversas maneras.
+La forma más extendida es la <strong>paginación</strong>, que no es sino un esquema de gestión de la memoria que permite que el espacio de direcciones físico de un proceso no sea continuo, evitando el problema de la <strong>fragmentación externa</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="_método_básico"><a class="anchor" href="#_método_básico"></a>16.1. Método básico</h3>
+<div class="paragraph">
+<p>En la paginación la memoria física se divide en bloques de tamaño fijo denominados <strong>marcos</strong>, mientras que el espacio de direcciones virtual se divide en bloques del mismo tamaño que los marcos, denominados <strong>páginas</strong>.
+Cuando un proceso va a ser ejecutado, sus páginas son cargadas desde el almacenamiento secundario en marcos libres de la memoria física.</p>
+</div>
+<div id="fig-paginación" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/paginación.svg" alt="paginación">
+</div>
+<div class="title">Figura 16.1. Soporte del hardware para la paginación.</div>
+</div>
+<div class="paragraph">
+<p>La paginación es una forma de <strong>reubicación de las direcciones en tiempo de ejecución</strong> donde la transformación de las direcciones virtuales en direcciones físicas se realiza de la siguiente manera (véase la <a href="paginación.html#fig-paginación">Figura 16.1</a>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Cada dirección virtual generada por la CPU es divida en dos partes: un <strong>número de página</strong> <em>p</em> y un <strong>desplazamiento</strong> <em>d</em>.</p>
+</li>
+<li>
+<p>El <strong>número de página</strong> es utilizado por la MMU para indexar la <strong>tabla de páginas</strong>, que contiene el <strong>número de marco</strong> <em>f</em> de cada <strong>página</strong> en la memoria física.</p>
+</li>
+<li>
+<p>El <strong>número de marco</strong> <em>f</em> es combinado con el <strong>desplazamiento</strong> <em>d</em> para generar la dirección física que va a ser enviada por el bus de direcciones hacia la memoria.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El tamaño de las <strong>páginas</strong> —y el de los <strong>marcos</strong>— viene definido por el hardware y normalmente es un número entero potencia de 2 que puede variar entre 512 bytes y 16 MiB, dependiendo de la arquitectura.
+Es decir, si el espacio de direcciones es de 2<sup><em>m</em></sup> y el tamaño de página es de 2<sup><em>n</em></sup>, los <em>m</em> - <em>n</em> bits de mayor orden de las direcciones virtuales indican el <strong>número de página</strong>, mientras que los <em>n</em> bits de menor orden indican el <strong>desplazamiento</strong> (véase la <a href="paginación.html#fig-dirección-virtual-paginación">Figura 16.2</a>).</p>
+</div>
+<div id="fig-dirección-virtual-paginación" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/dirección_virtual_paginación.svg" alt="dirección virtual paginación">
+</div>
+<div class="title">Figura 16.2. Descomposición de las direcciones virtuales en paginación.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en muchos sistemas operativos el tamaño de página es de 4 KiB, por lo que el desplazamiento <em>n</em> necesita:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$n = log_2 4096 = 12\ "bits"\$
+</div>
+</div>
+<div class="paragraph">
+<p>Si las direcciones virtuales son de 32 bits, eso deja para el número de página <em>p</em>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$p = 32 - 12 = 20\ "bits"\$
+</div>
+</div>
+<div class="paragraph">
+<p>por lo que el espacio de direcciones virtual tiene 2<sup>20</sup> páginas —es decir, 1&#x2009;048&#x2009;576 páginas—.</p>
+</div>
+<div class="sect3">
+<h4 id="_desde_el_punto_de_vista_de_los_procesos"><a class="anchor" href="#_desde_el_punto_de_vista_de_los_procesos"></a>16.1.1. Desde el punto de vista de los procesos</h4>
+<div class="paragraph">
+<p>Cada <strong>página</strong> de un proceso requiere un <strong>marco</strong>.
+Por tanto, cuando un proceso llega al sistema:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Si el proceso requiere <em>n</em> <strong>páginas</strong>, el sistema operativo debe escoger <em>n</em> <strong>marcos</strong>.
+Estos <strong>marcos</strong> son tomados de la <strong>lista de marcos libres</strong> que debe mantener el sistema.
+Puesto que son escogidos de allí donde los haya libres, el <strong>espacio de direcciones físico</strong> puede no ser contiguo, aunque los procesos vean un <strong>espacio de direcciones virtual</strong> contiguo.</p>
+</li>
+<li>
+<p>Los <strong>marcos</strong> seleccionados son asignados al proceso y cada <strong>página</strong> del proceso es cargada en uno de dichos <strong>marcos</strong>.</p>
+</li>
+<li>
+<p>La <strong>tabla de páginas</strong> es actualizada de manera que en la entrada de cada <strong>página</strong> del proceso se pone el número de <strong>marco</strong> correspondiente.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Un aspecto importante de la paginación es la diferencia entre cómo ven los procesos la memoria y como es realmente la memoria física.
+Cada proceso ve la memoria como un espacio único que lo contiene solo a él.
+Sin embargo, la realidad es que el programa está disperso por la memoria física, que además puede almacenar a otros programas.
+Esto es posible porque en cada momento la <strong>tabla de páginas</strong> solo contiene las <strong>páginas</strong> del proceso en ejecución en la CPU.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_desde_el_punto_de_vista_del_sistema_operativo"><a class="anchor" href="#_desde_el_punto_de_vista_del_sistema_operativo"></a>16.1.2. Desde el punto de vista del sistema operativo</h4>
+<div class="paragraph">
+<p>Puesto que el sistema operativo es quién gestiona la memoria física, este debe saber:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Que <strong>marcos</strong> están asignados y a que <strong>página</strong> de qué proceso o procesos.</p>
+</li>
+<li>
+<p>Que <strong>marcos</strong> están disponibles.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Toda esta información generalmente se guarda en una estructura denominada la <strong>tabla de marcos</strong>, que tiene una entrada por cada <strong>marco</strong> de la memoria física.</p>
+</div>
+<div class="paragraph">
+<p>Además, el sistema operativo debe mantener una copia de la <strong>tabla de páginas</strong> para cada proceso en el <strong>PCB</strong>, igual que mantiene una copia del contador de programa y del contenido de los registros de la CPU.
+Esta copia es utilizada:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Por el <strong>asignador</strong> para sustituir la <strong>tabla de páginas</strong> usada por la CPU cuando realiza un <strong>cambio de contexto</strong>.
+Por lo tanto, el uso de la paginación incrementa el tiempo del cambio de contexto.</p>
+</li>
+<li>
+<p>Para la traducción manual de direcciones virtuales en físicas.
+Por ejemplo, cuando un proceso realiza una llamada al sistema para realizar una operación de E/S y proporciona una dirección como parámetro, dicha dirección debe ser traducida manualmente para producir la dirección física correspondiente, que será comunicada al hardware para realizar la operación.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tamaño_de_las_páginas"><a class="anchor" href="#_tamaño_de_las_páginas"></a>16.1.3. Tamaño de las páginas</h4>
+<div class="paragraph">
+<p>Una decisión de diseño importante es escoger el tamaño de las <strong>páginas</strong> adecuado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Con <strong>páginas</strong> más pequeñas esperamos tener menos <strong>fragmentación interna</strong>.</p>
+</li>
+<li>
+<p>Con páginas más grandes se pierde menos espacio en la <strong>tabla de páginas</strong>.
+No olvidemos que cuanto más pequeñas son las <strong>páginas</strong>, más <strong>páginas</strong> son necesarias y, por tanto, más entradas en la <strong>tabla de páginas</strong> se necesitan.
+Además, la E/S es más eficiente cuanto más datos son transferidos de cada vez.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los tamaños de <strong>páginas</strong> típicos son 4 y 8 KiB.
+En un sistema de 32 bits con páginas de 4 KiB —como del que hablamos antes— el espacio de direcciones virtual tiene 1&#x2009;048&#x2009;576 páginas.
+Si se utilizan 4 bytes para cada entrada de la <strong>tabla de páginas</strong> —aunque esto también puede variar— eso significa que cada <strong>tabla de páginas</strong> ocupa 4 MiB de espacio.
+Mientras que con <strong>páginas</strong> de 8 KiB, la <strong>tabla de páginas</strong> ocuparía 2 MiB de espacios.</p>
+</div>
+<div class="paragraph">
+<p>También significa que si los 4 bytes de la <strong>tabla de páginas</strong> se utilizan para guardar únicamente el <strong>número de marco</strong>, cada entrada puede direccionar a uno de 2<sup>32</sup> —o 4 GiB— <strong>marcos</strong> de la memoria física.
+Si el tamaño de cada <strong>marco</strong> es de 4 KiB —dado que debe coincidir con el tamaño de las páginas— podemos determinar que el sistema es capaz de direccionar 2<sup>44</sup> bytes —o 16 TiB— de memoria física, aunque el espacio de direcciones virtual de cada proceso solo le da acceso a un máximo de 4 GiB.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_soporte_hardware_de_la_tabla_de_páginas"><a class="anchor" href="#_soporte_hardware_de_la_tabla_de_páginas"></a>16.2. Soporte hardware de la tabla de páginas</h3>
+<div class="paragraph">
+<p>La implementación en hardware de la <strong>tabla de páginas</strong> puede realizarse de diversas maneras.</p>
+</div>
+<div class="sect3">
+<h4 id="_almacenada_en_registros_de_la_cpu"><a class="anchor" href="#_almacenada_en_registros_de_la_cpu"></a>16.2.1. Almacenada en registros de la CPU</h4>
+<div class="paragraph">
+<p>La <strong>tabla de páginas</strong> del proceso actual en la CPU puede alojarse dentro de la propia CPU, en unos registros destinados a tal fin.</p>
+</div>
+<div class="paragraph">
+<p>Debido a la velocidad de los registros de la CPU, la implementación en registros es la más eficiente.
+Sin embargo, solo puede ser utilizado para <strong>tablas de páginas</strong> razonablemente pequeñas, ya que alojar tablas de más de 256 entradas en registros es muy costoso.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el DEC <a href="https://es.wikipedia.org/wiki/PDP-11">PDP-11</a> —para el que se diseñó el primer UNIX— es un ejemplo de sistema con esta implementación.
+Utilizaba un espacio de direcciones de 16 bits y un tamaño de <strong>páginas</strong> de 8 KiB, por lo que solo necesitaba 8 registros dedicados para alojar toda la <strong>tabla de páginas</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_almacenada_en_memoria"><a class="anchor" href="#_almacenada_en_memoria"></a>16.2.2. Almacenada en memoria</h4>
+<div class="paragraph">
+<p>La otra opción es alojar la <strong>tabla de páginas</strong> del proceso actual en la memoria, normalmente en un formato definido por la CPU.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas modernos se utilizan <strong>tablas de páginas</strong> de un millón de entradas o más, que difícilmente pueden alojarse en registros dentro de la CPU.
+Por eso, los sistemas actuales almacenan la <strong>tabla de páginas</strong> del proceso actualmente en ejecución, en la memoria.
+Eso permite disponer de <strong>tablas de páginas</strong> de gran tamaño, aunque a costa de necesitar dos accesos a la memoria física por cada acceso a una dirección virtual.</p>
+</div>
+<div class="paragraph">
+<p>Para que la MMU pueda conocer la ubicación de la <strong>tabla de páginas</strong> durante la traducción de las direcciones, la CPU debe disponer de un registro —el <strong>PTBR</strong> (<em>Page-Table Base Register</em>)— donde se guarda la dirección de la <strong>tabla de páginas</strong> actual.</p>
+</div>
+<div class="paragraph">
+<p>Además, esto tiene la ventaja de que el <strong>cambio de contexto</strong> es más rápido —respecto al uso de registros para almacenar la tabla de páginas— puesto que solo es necesario cargar un único registro más —el <strong>PTBR</strong>— durante el mismo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tlb"><a class="anchor" href="#_tlb"></a>16.2.3. TLB</h4>
+<div class="paragraph">
+<p>La solución al retraso originado por el acceso a la tabla de páginas, cuando esta está en la memoria, pasa porque el sistema disponga de una pequeña caché de traducciones en hardware llamada <strong>TLB</strong> (<em>Translation Look-aside Buffer</em>).</p>
+</div>
+<div class="paragraph">
+<p>La <strong>TLB</strong> es una memoria asociativa de alta velocidad.
+Cada entrada de la <strong>TLB</strong> tiene dos partes: la <strong>clave</strong> —o etiqueta— y el valor.
+Cuando a la <strong>TLB</strong> se le entrega un elemento, este es comparado simultáneamente con todas las claves.
+Si se produce alguna coincidencia, la memoria devuelve el valor de la entrada correspondiente.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Debido a la forma que tienen de operar, son rápidas pero muy caras de fabricar.
+Por ello, el número de entradas es bajo, normalmente entre 64 y 1024.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_uso_básico_de_la_tlb"><a class="anchor" href="#_uso_básico_de_la_tlb"></a>Uso básico de la TLB</h5>
+<div class="paragraph">
+<p>La <strong>TLB</strong> es utiliza con la <strong>tabla de páginas</strong> de la siguiente manera:</p>
+</div>
+<div id="fig-paginación-tlb" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/tlb.svg" alt="tlb">
+</div>
+<div class="title">Figura 16.3. Soporte del hardware para la paginación con TLB.</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La <strong>TLB</strong> contiene unas pocas entradas de la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Cuando la CPU genera una dirección virtual, el <strong>número de página</strong> es entregado a la <strong>TLB</strong>.
+La <strong>TLB</strong> utiliza los números de páginas como <strong>clave</strong>, por lo que si hay alguna coincidencia, devolverá la entrada correspondiente de la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Si hay coincidencia —o <strong>acierto de TLB</strong>— el <strong>número de marco</strong> es extraído de la entrada devuelta por la <strong>TLB</strong> y es utilizado para generar la dirección física.
+Todo este proceso puede requerir un 10% más de tiempo que si no se hiciera la traducción de las direcciones.</p>
+</li>
+<li>
+<p>Si no hay coincidencia —o <strong>fallo de TLB</strong>— es necesario acceder a la <strong>tabla de páginas</strong> para obtener la entrada correspondiente directamente de ella.
+Indudablemente, este acceso puede beneficiarse de la existencia de diferentes niveles de caché en el acceso a la memoria principal.</p>
+</li>
+<li>
+<p>En este último caso, la entrada recuperada debe ser añadida a la <strong>TLB</strong>, por lo que sí está llena, se debe seleccionar una para ser sustituida.
+Los algoritmos de reemplazo utilizados van, desde elegir una aleatoriamente, hasta el <strong>LRU</strong> (<em>Least Recently Used</em>).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_borrado_de_la_tlb_en_el_cambio_de_contexto"><a class="anchor" href="#_borrado_de_la_tlb_en_el_cambio_de_contexto"></a>Borrado de la TLB en el cambio de contexto</h5>
+<div class="paragraph">
+<p>Una cuestión importante es qué ocurre con las <strong>TLB</strong> cuando el sistema operativo realiza un <strong>cambio de contexto</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En general, es necesario que el asignador realice un borrado de la <strong>TLB</strong>.
+De lo contrario, el nuevo proceso podría utilizar las entradas de la <strong>tabla de páginas</strong> del viejo proceso, que estuvieran almacenadas en la <strong>TLB</strong>.
+Sin embargo, un proceso no tiene por qué utilizar todas las entradas de la <strong>TLB</strong>, por lo que sería más interesante, no tener que borrar las entradas de procesos anteriores, mientras no sean necesarias, por si estos vuelven a ser ejecutados en la CPU.</p>
+</div>
+<div class="paragraph">
+<p>El borrado se puede evitar si cada entrada de la <strong>TLB</strong> tiene un <strong>ASID</strong> (<em>Address-Space Identification</em>), que no es más que un identificador único para cada proceso.
+En este tipo de <strong>TLB</strong>, en la <strong>clave</strong> se buscan pares <strong>(número de página, ASID)</strong>, donde el primero proviene de la dirección virtual y el segundo es el <strong>ASID</strong> del proceso actual.
+De esta forma, si el <strong>número de página</strong> coincide, pero no el <strong>ASID</strong>, se produce un fallo de la <strong>TLB</strong>.
+Esto obliga a acceder a la <strong>tabla de páginas</strong> en memoria para recuperar la entrada, evitando que se lea por error la entrada de un proceso anterior.</p>
+</div>
+<div class="paragraph">
+<p>Esta característica está presente en los procesadores <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a>  y <a href="https://es.wikipedia.org/wiki/UltraSPARC">Sun UltraSPARC</a>.
+Entre 2005 y 2006 también comenzó a ser incluida en algunos procesadores de la familia x86, a través de las extensiones de virtualización Intel VT y AMD Pacifica.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tiempos_de_acceso_a_la_memoria"><a class="anchor" href="#_tiempos_de_acceso_a_la_memoria"></a>16.3. Tiempos de acceso a la memoria</h3>
+<div class="paragraph">
+<p>El rendimiento de un sistema con paginación, está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria \$T_text(em)\$, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria, teniendo en cuenta mecanismos del sistema operativo como el método de paginación o la existencia de <strong>TLB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En muchos sistemas informáticos, el <strong>tiempo de acceso</strong> a la memoria física \$T_text(m)\$ es de unos pocos nanosegundos.
+Por tanto, en el método de básico de paginación —con una <strong>tabla de páginas lineal</strong>— y sin <strong>TLB</strong>, el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ es el doble del <strong>tiempo de acceso</strong> \$T_text(m)\$ a la memoria:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$T_text(em)=2T_text(m)\$
+</div>
+</div>
+<div class="paragraph">
+<p>porque es necesario acceder a la memoria en dos ocasiones:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Primero, para consultar la <strong>tabla de páginas</strong>, con el objetivo de traducir la dirección virtual en una dirección física.</p>
+</li>
+<li>
+<p>Después, para realizar la operación solicitada sobre la memoria física.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Obviamente, en métodos de paginación donde hagan falta más accesos para obtener finalmente el <strong>número de marco</strong>, el <strong>tiempo de acceso efectivo</strong> será mayor.</p>
+</div>
+<div class="paragraph">
+<p>En el caso anterior, el segundo acceso a la memoria es inevitable, porque corresponde a la operación solicitada por el proceso.
+Mientras que el primero puede evitarse, en ciertas ocasiones, consultado la <strong>TLB</strong> antes de acceder a la <strong>tabla de páginas</strong>.
+Es decir, en un sistema con <strong>TLB</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cuando la dirección virtual <strong>NO</strong> está en la <strong>TLB</strong>: \$T_text(em)=2T_text(m) + T_text(TLB)\$, porque primero se accede a la <strong>TLB</strong> y después —como no se encuentra allí la direcció virtual— se consulta la <strong>tabla de páginas</strong>.</p>
+</li>
+<li>
+<p>Cuando la dirección virtual está en la <strong>TLB</strong>: \$T_text(em)=T_text(m) + T_text(TLB)\$, porque la <strong>TLB</strong> proporciona la información necesaria para traducir la dirección, evitando la consulta posterior a la <strong>tabla de páginas</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El cálculo de \$T_text(em)\$ puede complicarse aun más si tenemos en cuenta que los sistemas suelen tener varios niveles de memoria caché.
+En ese caso \$T_text(m)\$ no tiene un valor determinado, sino que se estima un promedio considernado tanto el tiempo de acceso a la memoria física como a cada uno de los niveles de caché del sistema, así como la probabilidad de que la dirección de memoria a la que se quiere acceder esté disponible en alguno de dichos niveles.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El \$T_text(em)\$ del primer caso suele ser mucho mayor que el segundo porque, por lo general, \(T_\mathrm{TLB} \ll T_\mathrm{m}\).
+Esto hace que en muchos sistemas se pueda considerar que \$T_text(em) ~~ T_text(m)\$ cuando la dirección virtual está en la <strong>TLB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Como el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ ahora depende de la probabilidad \$p_text(TLB)\$ de que las direcciones virtuales consultadas estén en la <strong>TLB</strong>, ya no podemos hacer el cálculo de forma determinista, sino estimar un \$T_text(em)\$ promedio para el sistema.
+Para ello, solo es necesario sumar el \$T_text(em)\$ para ambos casos, ponderando por la probabilidad \$p_text(TLB)\$ de que la dirección esté en la <strong>TLB</strong> o \$(1 - p_text(TLB))\$ de que no esté en la <strong>TLB</strong>, respectivamente:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+T_\mathrm{em} &amp;= (1-p_\mathrm{TLB})(2T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
+       &amp;= (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Como comentamos anteriormente, esta expresión se puede simplificar si consideramos que \(T_\mathrm{TLB} \ll T_\mathrm{m}\):</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+T_\mathrm{em} &amp;= 2(1-p_\mathrm{TLB})T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
+       &amp;= (2-p_\mathrm{TLB}) T_\mathrm{m}
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Obviamente, cuanto más se aproxima a 1 la probabilidad \$p_text(TLB)\$ de que la entrada esté en la <strong>TLB</strong>, más cerca está \$T_text(em)\$ de \$T_text(m)\$.</p>
+</div>
+<div class="paragraph">
+<p>Para mejorar esta probabilidad:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Las <strong>TLB</strong> permiten marcar algunas entradas como insustituibles.
+Esto normalmente se hace con las entradas de las <strong>páginas</strong> del código y los datos del núcleo, ya que son páginas que se utilizan con muchísima frecuencia.</p>
+</li>
+<li>
+<p>Si la MMU soporta páginas de mayor tamaño que el estándar, se utilizan para alojar el código y los datos del núcleo.
+De esta forma se minimiza el número de entradas de la <strong>TLB</strong> que utilizan, con el fin de disponer de más entradas libres para los procesos en ejecución.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En la familia x86 el tamaño de página estándar es de 4 KiB, pero también se puede disponer de páginas de 4 MiB.
+En x86-64 las páginas de gran tamaño son de 2 MiB, aunque algunos modelos también soportan páginas de 1 GiB.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_protección_de_la_memoria_2"><a class="anchor" href="#_protección_de_la_memoria_2"></a>16.4. Protección de la memoria</h3>
+<div class="paragraph">
+<p>La protección de las páginas se consigue mediante unos bits que indican las operaciones que se pueden realizar sobre ellas.
+Normalmente, estos bits son almacenados en cada una de las entradas de la <strong>tabla de páginas</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_bits_de_protección"><a class="anchor" href="#_bits_de_protección"></a>16.4.1. Bits de protección</h4>
+<div class="paragraph">
+<p>
+Los <strong>bits de protección</strong> pueden ser:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Solo lectura</strong>.</p>
+</li>
+<li>
+<p><strong>Lectura&#8201;&#8212;&#8201;Escritura</strong>.
+En algunos sistemas hay un bit específico para este permiso, mientras que en otros se utilizan bits separados, como: <strong>lectura</strong>, <strong>escritura</strong> y <strong>ejecución</strong>; que se pueden combinar libremente.</p>
+</li>
+<li>
+<p><strong>Solo ejecución</strong>.
+Que no existen en todas las plataformas.
+Por ejemplo, la familia x86 careció de esta característica hasta que AMD la incluyó en su arquitectura x86-64, lo que obligó a Intel a incluirla en las versiones más modernas de Pentium IV.
+El bit —que para ser exacto indica <strong>no ejecución</strong>— fue introducido para evitar cierto tipo de ataques de seguridad.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Durante la traducción de las direcciones, la MMU comprueba que el tipo de acceso sea válido.
+Si no lo es, se genera una excepción de violación de protección de memoria, dado que el acceso en un modo no autorizado se considera una instrucción privilegiada.
+Normalmente, el sistema operativo responde a dicha excepción terminando el proceso que la generó.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bit_de_válido"><a class="anchor" href="#_bit_de_válido"></a>16.4.2. Bit de válido</h4>
+<div class="paragraph">
+<p>
+Además de los <strong>bits de protección</strong> comentados, se suele añadir a cada entrada un <strong>bit de válido</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cuando una <strong>página es válida</strong>, la página existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página se puede utilizar.
+Otro término comúnmente utilizado, es que la página es <strong>legal</strong>.</p>
+</li>
+<li>
+<p>Cuando la <strong>página es inválida</strong>, la página no existe en el espacio de direcciones virtual del proceso.
+Es decir, que la página no se puede utilizar.
+El término alternativo utilizado es que la página es <strong>ilegal</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Al igual que con los <strong>bits de protección</strong>, los intentos de acceso a una página ilegal generan una excepción.</p>
+</div>
+<div class="paragraph">
+<p>El sistema operativo puede utilizar este bit para permitir o denegar cualquier tipo de acceso a una <strong>página</strong>.
+Generalmente, porque no se le ha asignado un <strong>marco</strong> de memoria física, ya que esa página no está siendo utilizada por el proceso.</p>
+</div>
+<div id="fig-bit-de-válido-en-la-tabla-de-páginas" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/bit_de_válido_en_la_tabla_de_páginas.svg" alt="bit de válido en la tabla de páginas">
+</div>
+<div class="title">Figura 16.4. Bit de válido en la tabla de páginas.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en la <a href="paginación.html#fig-bit-de-válido-en-la-tabla-de-páginas">Figura 16.4</a>, vemos el espacio de direcciones virtual y la <strong>tabla de páginas</strong> de un proceso de 5096 bytes en un sistema con <strong>páginas</strong> de 1 KiB.
+Puesto que el proceso no ocupa todo el espacio de direcciones, solo las direcciones de la 0 a la 5119 son válidas.
+En dicho ejemplo, podemos apreciar varios fenómenos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Debido a la <strong>fragmentación interna</strong>, las direcciones de la 5097 a la 5119 son válidas, aunque el proceso solo ocupe hasta la 5096.
+Es decir, se está asignando al proceso una porción de memoria que no necesita.</p>
+</li>
+<li>
+<p>Solo las <strong>páginas</strong> con datos y código del proceso son válidas.
+Mientras que todas las <strong>páginas</strong> con direcciones por encima de la 5119 están marcadas como ilegales.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En general, los procesos solo necesitan una porción muy pequeña de su espacio de direcciones virtual.
+Por ejemplo, en un sistema de 32 bits, muy pocos procesos necesitan los 3 GiB disponibles como máximo para cada proceso —el 1 GiB restante suele estar ocupado por el núcleo del sistema—.
+Utilizando el <strong>bit de válido</strong>, el sistema operativo no tiene que asignar <strong>marcos</strong> a <strong>páginas</strong> no utilizadas por el proceso, ahorrando mucha memoria.</p>
+</div>
+<div class="paragraph">
+<p>En el <a href="paginación.html#_tamaño_de_las_páginas">Apartado 16.1.3</a>, vimos que el tamaño de la <strong>tabla de páginas</strong> se puede calcular como el número máximo de páginas del espacio de direcciones virtual multiplicado por el tamaño de cada entrada de la tabla.
+Así, en un sistema de 32 bits con páginas de 4 KiB y 4 bytes por entrada, se necesitan 4 MiB de memoria para almacenar la <strong>tabla de páginas</strong>.
+Como un proceso suele ocupar muy poco de su espacio de direcciones virtual, suele ser un desperdicio de memoria crear y almacenar una <strong>tabla de páginas</strong> completa, con una entrada para cada <strong>página</strong> del espacio de direcciones.</p>
+</div>
+<div class="paragraph">
+<p>Para evitarlo, en algunas CPU existe el registro <strong>PTLR</strong> (<em>Page-Table Length Register</em>) que se utiliza para indicar el tamaño actual de la <strong>tabla de páginas</strong>.
+Este valor es comparado por la MMU, durante la traducción de las direcciones virtuales, con el <strong>número de página</strong> de cada dirección virtual, de manera que las <strong>páginas</strong> con entradas más allá de la última almacenada en la tabla son consideradas ilegales.</p>
+</div>
+<div id="fig-proceso-en-memoria-disperso" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/proceso_en_memoria.svg" alt="proceso en memoria">
+</div>
+<div class="title">Figura 16.5. Anatomía de un proceso en memoria.</div>
+</div>
+<div class="paragraph">
+<p>En realidad, el registro <strong>PTLR</strong> no es de mucha utilidad en los sistemas operativos modernos porque, tal y como vimos en el <a href="procesos.html#_el_proceso">Apartado 9.1</a>, lo más común es que los procesos tengan un espacio de direcciones virtual disperso como el de la <a href="paginación.html#fig-proceso-en-memoria-disperso">Figura 16.5</a>.
+En ella, podemos observar, como el sistema operativo ubica los diferentes componentes del proceso de una forma particular dentro del espacio de direcciones virtual.
+Este esquema permite que tanto el <strong>montón</strong> —a través del mecanismo de asignación dinámica de memoria— como la <strong>pila</strong> puedan extenderse —según las necesidades de memoria que tenga el proceso— sobre la región de memoria no ocupada.
+Esa región también puede ser parcialmente ocupada por <strong>librerías de enlace dinámico</strong> o regiones de <strong>memoria compartida</strong>, si son necesarias durante la ejecución del proceso.</p>
+</div>
+<div class="paragraph">
+<p>En cualquier caso, las <strong>páginas</strong> de la región no ocupada, forman parte del espacio de direcciones virtual, pero no necesitan tener asignado ningún <strong>marco</strong> de memoria física, en tanto en cuanto el proceso no las vaya a utilizar.
+La falta de <strong>marco</strong> es indicada por el sistema operativo utilizando el <strong>bit de válido</strong> para denegar el acceso.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_páginas_compartidas"><a class="anchor" href="#_páginas_compartidas"></a>16.5. Páginas compartidas</h3>
+<div class="paragraph">
+<p>
+Una de las ventajas importantes de la paginación, es la posibilidad de compartir <strong>páginas</strong> entre procesos.
+Para conseguir esto, basta con que las <strong>páginas compartidas</strong> de los distintos procesos tengan asignadas un mismo <strong>marco</strong>.
+Esto permite, por ejemplo, que los procesos de un mismo programa puedan compartir las <strong>páginas</strong> de código o los datos de solo lectura con el fin de ahorrar memoria.
+También permite compartir las <strong>páginas</strong> de código de una librería compartida enlazada en diferentes procesos.</p>
+</div>
+<div class="paragraph">
+<p>Compartir <strong>páginas</strong> no solo permite ahorrar memoria, pues en los sistemas operativos modernos, la comunicación entre procesos mediante memoria compartida (véase el <a href="memoria_compartida.html">Capítulo 11</a>), se implementa mediante <strong>páginas compartidas</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_paginación_jerárquica"><a class="anchor" href="#_paginación_jerárquica"></a>16.6. Paginación jerárquica</h3>
+<div class="paragraph">
+<p>
+Al método básico de paginación, se lo conoce como <strong>tabla de páginas lineal</strong>.
+Sin embargo, las CPU comúnmente, utilizan otras técnicas a la hora de estructurar la <strong>tabla de páginas</strong>.
+Una de las más comunes es la <strong>paginación jerárquica</strong>, utilizada en los procesadores de la familia x86 y en ARM, entre otros.</p>
+</div>
+<div class="paragraph">
+<p>La mayor parte de los sistemas modernos soportan el uso de espacios de direcciones de gran tamaño.
+Por ejemplo, supongamos un sistema con un espacio de direcciones virtual de 32 bits:</p>
+</div>
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño del espacio de direcciones</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>32</sup> = 4 GiB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tamaño de página</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>12</sup> = 4 KiB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>número de páginas</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 2<sup>32</sup> / 2<sup>12</sup> = 2<sup>32-12</sup> = 2<sup>20</sup> = 1&#x2009;048&#x2009;576 entradas</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Es decir, que si el tamaño de cada entrada fuera de 4 bytes, la <strong>tabla de páginas</strong> de un proceso podría ocupar hasta 4 MiB; que debe ser alojada en una región continúa del espacio de direcciones físico, por lo que podría darse el caso de que en algún momento no hubiera un hueco contiguo lo suficientemente grande.
+Una forma de resolver este problema es partir la <strong>tabla de páginas</strong>, de manera que no sea necesario asignarle memoria de forma contigua.</p>
+</div>
+<div class="sect3">
+<h4 id="_paginación_jerárquica_de_dos_niveles"><a class="anchor" href="#_paginación_jerárquica_de_dos_niveles"></a>16.6.1. Paginación jerárquica de dos niveles</h4>
+<div class="paragraph">
+<p>La <strong>paginación jerárquica</strong> se basa en la idea de que un vector de gran tamaño puede ser mapeado en uno más pequeño, que a su vez, puede ser mapeado en un vector de menor tamaño.</p>
+</div>
+<div id="fig-paginación-jerárquica" class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/paginación_jerárquica.svg" alt="paginación jerárquica">
+</div>
+<div class="title">Figura 16.6. Esquema de paginación jerárquica de dos niveles.</div>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si asumimos el caso anterior de un sistema con un espacio de direcciones de 32 bits y un tamaño de página de 4 KiB, entonces podemos dividir la tabla de páginas de 1&#x2009;048&#x2009;576 entradas —4 MiB si cada entrada necesita 4 bytes— en 1024 porciones, cada una de las cuales cabría en un <strong>marco</strong> de 4 KiB.</p>
+</div>
+<div class="paragraph">
+<p>Estos <strong>marcos</strong>, a su vez, pueden ser mapeados por 1024 entradas con las direcciones físicas de cada <strong>marco</strong>.
+Si organizamos estas 1024 entradas en un vector lineal, obtendremos una <strong>tabla de páginas externa</strong> de 4 KiB (véase la <a href="paginación.html#fig-paginación-jerárquica">Figura 16.6</a>).</p>
+</div>
+<div class="paragraph">
+<p>Dado que 4 KiB es una cantidad de memoria muy pequeña, muchos sistemas operativos mantienen la <strong>tabla de páginas externa</strong> en la memoria mientras el proceso se está ejecutando.
+Sin embargo, ahora la <strong>tabla de páginas</strong> está dividida en <strong>marcos</strong>, que no tienen por qué ser asignados de forma contigua en la memoria.
+Incluso podrían ser intercambiados al disco, en caso de necesitar memoria libre.</p>
+</div>
+<div class="paragraph">
+<p>Para tener dos niveles de 1024 entradas, solo es necesario dividir el <strong>número de página</strong> <em>p</em> de la dirección virtual —que tenía 2<sup>20</sup> bits— en dos <strong>números de página</strong> de 2<sup>10</sup> bits cada uno:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/dirección_virtual_paginación_jerárquica.svg" alt="dirección virtual paginación jerárquica">
+</div>
+</div>
+<div class="paragraph">
+<p>Este es el método utilizado por la familia de procesadores x86.</p>
+</div>
+<div class="paragraph">
+<p>Otra variación de la <strong>paginación jerárquica de dos niveles</strong> es la utilizada por VAX.
+Estos sistemas utilizaban una arquitectura de 32 bits con un tamaño de página de 512 bytes.
+Las direcciones virtuales eran divididas de la siguiente manera:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C16-paginación/dirección_virtual_vax.svg" alt="dirección virtual vax">
+</div>
+</div>
+<div class="paragraph">
+<p>El espacio de direcciones de un proceso estaba dividido en 3 secciones.
+Los 2 bits de orden más alto <em>s</em> de las direcciones virtuales se utilizaban para indicar la <strong>sección</strong>.
+Cada <strong>sección</strong> estaba dividida en <strong>páginas</strong> de 512 bytes, por lo que los siguientes 21 bits de las direcciones virtuales <em>p</em> eran utilizadas para seleccionar la <strong>página</strong> concreta.</p>
+</div>
+<div class="paragraph">
+<p>Dividiendo el espacio de direcciones de esta manera, el sistema operativo podía mantener secciones sin utilizar mientras no fueran necesarias.
+Esto era importante, puesto que la <strong>tabla de páginas</strong> de una
+<strong>sección</strong> tenía un tamaño de 8 MiB.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_paginación_jerárquica_de_n_niveles"><a class="anchor" href="#_paginación_jerárquica_de_n_niveles"></a>16.6.2. Paginación jerárquica de N niveles</h4>
+<div class="paragraph">
+<p>En general, en la <strong>paginación jerárquica</strong> de <em>n</em> niveles el <strong>número de página</strong> <em>p</em> de cada dirección virtual es dividido en <em>n</em> números: { <em>p</em><sub>1</sub>, <em>p</em><sub>2</sub>, <em>p</em><sub>3</sub>, &#8230;, <em>p<sub>N</sub></em>}, donde:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>p</em><sub>1</sub> se utiliza para indexar la <strong>tabla de páginas externa</strong> —también llamada <strong>directorio de páginas</strong> o <strong>tabla de páginas de nivel 0</strong>— cuya dirección conoce la CPU mediante el <strong>PTBR</strong>.
+La entrada obtenida de esta manera, contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 1—.</p>
+</li>
+<li>
+<p><em>p</em><sub>2</sub> se utiliza para indexar la <strong>tabla de páginas de nivel 1</strong>.
+E, igualmente, la entrada así obtenida contiene la dirección en la memoria física de una porción de la <strong>tabla de páginas</strong> en el siguiente nivel —el nivel 2—.</p>
+</li>
+<li>
+<p>El proceso continúa hasta que <em>p<sub>N</sub></em>, se utiliza para indexar la <strong>tabla de páginas de nivel N-1</strong>, con la que se obtiene el <strong>número de marco</strong> que es utilizado, finalmente, para generar la dirección física al combinarlo con el desplazamiento <em>d</em> de la dirección virtual.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Como se puede ver, resolver una dirección virtual necesita tantos accesos a la memoria como niveles hay en la jerarquía.</p>
+</div>
+<div class="paragraph">
+<p>Debido a que la traducción funciona desde las <strong>tablas de páginas</strong> de nivel superior —nivel 0— hacia las de nivel inferior —nivel <em>N</em> - 1— a esta estructura también se la conoce como <strong>tabla de páginas directa</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los procesadores <a href="https://es.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a> y <a href="https://es.wikipedia.org/wiki/MIPS_(procesador)">MIPS</a> utilizan una variante denominada <strong>tabla de páginas virtualizada</strong>.
+En este esquema, el último nivel de la <strong>paginación jerárquica</strong>, aunque esté en marcos separados en el espacio de direcciones físico, se mapea de manera continua en el espacio de direcciones virtual del proceso.</p>
+</div>
+<div class="paragraph">
+<p>Así, si la consulta a la <strong>TLB</strong> falla, se indexa la <strong>tabla de páginas</strong> directamente con direcciones virtuales usando el <strong>número de página</strong> completo.
+Esta consulta conlleva la traducción de la dirección virtual de la entrada indexada, que puede estar en la <strong>TLB</strong>.
+Si no es así, se pasa a recorrer la <strong>tabla de páginas</strong> desde el nivel 0 y usando direcciones físicas.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Existen algunos procesadores que utilizan más de dos niveles.
+Por ejemplo, los procesadores x86-64 utilizan un esquema de 4 niveles de paginación.
+Cada <strong>página</strong> es de 4 KiB —como en el resto de la familia x86— pero como cada entrada en la <strong>tabla de páginas</strong> es de 8 bytes —con el fin de poder almacenar direcciones de 64 bits— en cada una caben 512 entradas, por lo que los <strong>números de página</strong> de cada nivel necesitan 9 bits.
+Eso significa que de las direcciones virtuales se utilizan actualmente 48 bits —resultado de multiplicar 4 niveles por 9 bits cada uno más 12 bits de desplazamiento— aunque el límite de la arquitectura para las direcciones virtuales sea de 64 bits.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tiempos_de_acceso_a_la_memoria_2"><a class="anchor" href="#_tiempos_de_acceso_a_la_memoria_2"></a>16.6.3. Tiempos de acceso a la memoria</h4>
+<div class="paragraph">
+<p>La <strong>paginación jerárquica</strong> aumenta el número de accesos necesarios para consultar la <strong>tabla de páginas</strong>.
+Es decir, mientras que para consultar una <strong>tabla de páginas lineal</strong> solo necesitamos un acceso a la memoria, para obtener una dirección fisica en la <strong>paginación jerárquica</strong> de <em>n</em> niveles necesitamos <em>n</em> accesos a la memoria.
+Por tanto, el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ en un sistema sin <strong>TLB</strong> es:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[T_\mathrm{em} = (n+1)T_\mathrm{m}\]
+</div>
+</div>
+<div class="paragraph">
+<p>porque, además de los <em>n</em> accesos para consultar la <strong>tabla de páginas</strong> y obtener la dirección física, es necesario ejecutar la operación solicitada en la memoria física.</p>
+</div>
+<div class="paragraph">
+<p>Como en el <a href="paginación.html#_tiempos_de_acceso_a_la_memoria">Apartado 16.3</a>, cuando el sistema dispone de <strong>TLB</strong>, el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ anterior corresponde al caso en el que la dirección virtual no está en la <strong>TLB</strong>.
+Mientras que, en caso contrario, el <strong>tiempo de acceso efectivo</strong> es \$T_text(em)=T_text(m) + T_text(TLB)\$.</p>
+</div>
+<div class="paragraph">
+<p>Siguiendo los mismos pasos que en el <a href="paginación.html#_tiempos_de_acceso_a_la_memoria">Apartado 16.3</a>, para obtener una estimación de \$T_text(em)\$ en base a la probabilidad \$p_text(TLB)\$ de que las direcciones virtuales consultadas estén en la <strong>TLB</strong>, obtenemos el siguiente resultado:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+T_\mathrm{em} &amp;= (1-p_\mathrm{TLB}) ((n+1)T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
+       &amp;= ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB}
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Esta expresión se puede simplificar si consideramos que \(T_\mathrm{TLB} \ll T_\mathrm{m}\):</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+T_\mathrm{em} &amp;= (1-p_\mathrm{TLB})(n+1)T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
+       &amp;= (1-p_\mathrm{TLB})n+1)T_\mathrm{m}
+\end{aligned}\]
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="memoria_principal.html">Memoria principal</a> | ↑ Subir: <a href="gestión_de_la_memoria.html">Gestión de la memoria</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="memoria_virtual.html">Memoria virtual</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

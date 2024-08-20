@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="sistemas_operativos_por_su_estructura" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+<ul class="sectlevel1">
+<li><a href="componentes_del_sistema.html">4. Componentes del sistema</a>
+</li>
+<li><a href="servicios_del_sistema.html">5. Servicios del sistema</a>
+</li>
+<li><a href="interfaz_de_programación_de_aplicaciones.html">6. Interfaz de programación de aplicaciones</a>
+</li>
+<li><a href="operación_del_sistema_operativo.html">7. Operación del sistema operativo</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html"><span class="toc-current">8. Sistemas operativos por su estructura</span></a>
+<ul class="sectlevel2">
+<li><a href="sistemas_operativos_por_su_estructura.html#_estructura_sencilla">8.1. Estructura sencilla</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html#_estructura_en_capas">8.2. Estructura en capas</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html#_microkernel">8.3. Microkernel</a>
+</li>
+<li><a href="sistemas_operativos_por_su_estructura.html#_estructura_modular">8.4. Estructura modular</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="sistemas_operativos_por_su_estructura"><a class="anchor" href="#sistemas_operativos_por_su_estructura"></a>8. Sistemas operativos por su estructura</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 11 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ya hemos discutido anteriormente acerca de los componentes más comunes en un sistema operativo (véase el <a href="componentes_del_sistema.html">Capítulo 4</a>).
+En esta sección comentaremos cómo se clasifican los distintos sistemas operativos según la organización e interconexión de sus componentes.</p>
+</div>
+<div class="sect2">
+<h3 id="_estructura_sencilla"><a class="anchor" href="#_estructura_sencilla"></a>8.1. Estructura sencilla</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>
+Los sistemas con <strong>estructura sencilla</strong> se caracterizan por:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No tener una estructura bien definida.
+Los componentes no están bien separados y las interfaces entre ellos no están bien definidas.</p>
+</li>
+<li>
+<p>Son sistemas <strong>monolíticos</strong>, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la actualidad, este tipo de estructura se usa en sistemas que deben ejecutarse en hardware muy limitado, como en sensores conectados, termostatos, sistemas de control o electrodomésticos.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ms_dos_2"><a class="anchor" href="#_ms_dos_2"></a>8.1.1. MS-DOS</h4>
+<div class="paragraph">
+<p>Por ejemplo, en el <a href="https://es.wikipedia.org/wiki/MS-DOS">MS-DOS</a> los programas de aplicación podían acceder directamente a toda la memoria y a cualquier dispositivo.
+Disponiendo de esa libertad un programa erróneo cualquiera podía corromper el sistema completo.</p>
+</div>
+<div id="fig-estructura-msdos" class="imageblock">
+<div class="content">
+<img src="media/C08-estructura/estructura_msdos.svg" alt="estructura msdos">
+</div>
+<div class="title">Figura 8.1. Esquema de la estructura de MS-DOS.</div>
+</div>
+<div class="paragraph">
+<p>Como el <a href="https://es.wikipedia.org/wiki/Intel_8086_y_8088">Intel 8086</a> para el que fue escrito MS-DOS no proporcionaba un modo dual de operación, los diseñadores del sistema no podían evitar que los programas de usuario accedieran directamente al hardware ni tenían forma de proteger las distintas partes del sistema operativo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_unix_2"><a class="anchor" href="#_unix_2"></a>8.1.2. UNIX</h4>
+<div class="paragraph">
+<p>Otro ejemplo es el de <a href="https://es.wikipedia.org/wiki/Unix">UNIX original</a>, donde sí había una separación clara entre procesos de usuario y código del sistema, pero juntaba mucha funcionalidad en el núcleo del sistema.</p>
+</div>
+<div id="fig-estructura-unix" class="imageblock">
+<div class="content">
+<img src="media/C08-estructura/estructura_unix.svg" alt="estructura unix">
+</div>
+<div class="title">Figura 8.2. Esquema de la estructura de UNIX.</div>
+</div>
+<div class="paragraph">
+<p>El núcleo proporciona la planificación de CPU, la gestión de la memoria, el soporte de los sistemas de archivos y muchas otras funcionalidades del sistema operativo.
+En general se trata de una enorme cantidad de funcionalidad que es difícil de implementar y mantener, si no se compartimenta adecuadamente.</p>
+</div>
+<div class="paragraph">
+<p>Tanto MS-DOS como UNIX eran originalmente sistemas pequeños y simples, limitados por las funcionalidades del hardware de su época, que fueron creciendo más allá de las previsiones originales.
+Lo cierto es que con mejor soporte del hardware se puede dividir el sistema operativo en piezas más pequeñas y apropiadas que las del MS-DOS y el UNIX original.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_estructura_en_capas"><a class="anchor" href="#_estructura_en_capas"></a>8.2. Estructura en capas</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>
+Los sistemas con <strong>estructura en capas</strong> se caracterizan por:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La funcionalidad se divide en capas, de tal forma que una capa solo utiliza funciones y servicios de la capa inmediatamente inferior y lo hace a través de una interfaz bien definida.</p>
+</li>
+<li>
+<p>Como en la programación orientada a objetos, cada capa oculta a la capa superior los detalles de su implementación.
+Por ejemplo, las estructuras de datos internas que usa y las operaciones o el hardware de la capa inferior que utiliza.</p>
+</li>
+<li>
+<p>Escalan mejor que los sistemas con <strong>estructura sencilla</strong> porque las capas hacen que el código esté mejor compartimentado.
+Por ejemplo, al corregir un <em>bug</em> o añadir una nueva funcionalidad solo hay que preocuparse de su efecto en la capa a la que afecta y no en todo el código del núcleo —siempre que no se altere la interfaz de la capa con el exterior—.</p>
+</li>
+<li>
+<p>Ser menos eficiente que la de los sistemas de <strong>estructura sencilla</strong>.
+En cada capa los argumentos son transformados y los datos necesarios deben de ser transferidos al invocar operaciones en la capa inferior, por lo que cada una añade cierto nivel de sobrecarga al funcionamiento del sistema.</p>
+</li>
+<li>
+<p>También son sistemas <strong>monolíticos</strong>, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en capas.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Actualmente, no existe ningún motivo para diseñar sistemas operativos con esta estructura.
+Es preferible utilizar la <strong>estructura modular</strong>, que presenta las mismas ventajas y evita las dificultades en el diseño, de las que hablaremos a continuación.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Un ejemplo de este tipo de sistemas operativos es el <a href="https://es.wikipedia.org/wiki/OS/2">OS/2</a>.</p>
+</div>
+<div id="fig-estructura-os2" class="imageblock">
+<div class="content">
+<img src="media/C08-estructura/estructura_os2.svg" alt="estructura os2">
+</div>
+<div class="title">Figura 8.3. Esquema de la estructura de IBM OS/2.</div>
+</div>
+<div class="sect3">
+<h4 id="_dificultades_con_el_diseño"><a class="anchor" href="#_dificultades_con_el_diseño"></a>8.2.1. Dificultades con el diseño</h4>
+<div class="paragraph">
+<p>Es importante tener en cuenta que diseñar un sistema con <strong>estructura en capas</strong> no es tan sencillo como pudiera parecer.
+La definición de las capas y sus funcionalidades debe ser planificada cuidadosamente debido a la restricción, comentada anteriormente, de que una capa solo puede utilizar los servicios de las capas inferiores.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, el planificador de la CPU suele tener información de los procesos que están en la memoria.
+Parte de esa información puede ser almacenada en el disco para aumentar la memoria principal disponible.
+Esto nos debería llevar a pensar que la gestión del almacenamiento secundario debe ir en una capa inferior a la del planificador de la CPU, para que así el segundo pueda pedir al primero que guarde los datos en disco.</p>
+</div>
+<div class="paragraph">
+<p>Sin embargo, el planificador de la CPU debe asignar la CPU a otro proceso cuando el proceso que actualmente la ocupa solicita alguna operación de E/S —lo típico en multiprogramación—.
+Como es la gestión del almacenamiento secundario el que debe pedir una operación al planificador de la CPU, ahora el primero debe estar sobre el segundo.</p>
+</div>
+<div class="paragraph">
+<p>La solución a esta dependencia circular es hacer que ambos componentes estén en la misma capa.
+Este tipo de dependencias no son raras, ocurre en muchos otros casos, ya que los componentes del sistema operativo suelen depender mucho unos de otros.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Al final, la solución de compromiso es tender hacia sistemas con muy pocas capas donde cada una tiene mucha funcionalidad.
+Esto limita mucho las ventajas de esta técnica porque no permite compartimentar el núcleo tanto como sería deseable.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_microkernel"><a class="anchor" href="#_microkernel"></a>8.3. Microkernel</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>
+
+Los sistemas con <strong>estructura microkernel</strong> se caracterizan por:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Eliminar todos los componentes no esenciales del núcleo e implementarlos como procesos de usuario.</p>
+</li>
+<li>
+<p>Un núcleo <strong>microkernel</strong> proporciona funciones mínimas de gestión de procesos y de memoria y algún mecanismo de comunicación entre procesos.
+Sin embargo, hay que tener en cuenta que hay poco consenso a este respecto, por lo que algunos <strong>microkernel</strong> reales incluyen en el núcleo algunas funcionalidades adicionales.</p>
+</li>
+<li>
+<p>El mecanismo de comunicación permite a los procesos de los usuarios solicitar servicios a los componentes del sistema.
+También sirve para que los componentes del sistema se comuniquen entre sí y se pidan servicio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aunque se puede utilizar en cualquier ámbito, este tipo de estructura se utiliza, principalmente, en algunos sistemas operativos para sistemas empotrados, como ocurre con los de <strong>estructura simple</strong>.
+Sin embargo, la <strong>estructura microkernel</strong> necesita un hardware algo más potente, que admita modo dual de operación; siendo especialmente interesante en sistemas críticos o cuando hay especial preocupación por la seguridad.
+Algunos ejemplos son los sistemas de automoción o los equipos médicos.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Dado que los componentes del sistema están aislados unos de otros —ya que se implementan como procesos de usuario— el mecanismo de comunicación entre procesos es la única forma que tienen los procesos de los usuarios y los componentes, de solicitarles un servicio.</p>
+</div>
+<div id="fig-estructura-minix3" class="imageblock">
+<div class="content">
+<img src="media/C08-estructura/estructura_minix3.svg" alt="estructura minix3">
+</div>
+<div class="title">Figura 8.4. Esquema de la estructura microkernel de MINIX 3.</div>
+</div>
+<div class="paragraph">
+<p>Generalmente esta comunicación se implementa mediante paso de mensajes (véase el <a href="procesos.html#_comunicación_entre_procesos">Apartado 9.8.2</a>).</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Entre los beneficios de estos sistemas operativos se incluyen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Facilidad a la hora de añadir nuevas funcionalidades</strong>.
+Los nuevos servicios son añadidos como aplicaciones de nivel de usuario, por lo que no es necesario hacer modificaciones en el núcleo.
+Desarrollar en el modo privilegiado siempre es más peligrosos que en el modo usuario porque los errores pueden ser catastróficos: bloqueo o caída del sistema, corrupción de datos, etc.</p>
+</li>
+<li>
+<p><strong>Facilidad a la hora de llevar el sistema a otras plataformas</strong>.
+Puesto que el núcleo es muy pequeño, resulta muy sencillo de portar a otras plataformas.</p>
+</li>
+<li>
+<p><strong>Más seguridad y fiabilidad</strong>.
+Puesto que la mayor parte de los servicios se ejecutan como procesos separados de usuario, un servicio que falla no puede afectar a otros ni puede ser utilizado para ganar acceso a otros servicios o al núcleo.
+Además se pueden implementar estrategias para mejorar la tolerancia a fallos, como reiniciar un servicio que ha fallado, como si fuera un programa cualquiera.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rendimiento"><a class="anchor" href="#_rendimiento"></a>8.3.1. Rendimiento</h4>
+<div class="paragraph">
+<p>El mayor inconveniente es el pobre rendimiento que puede tener, causado por la sobrecarga que añade el mecanismo de comunicación.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, <a href="https://es.wikipedia.org/wiki/Windows_NT">Microsoft Windows NT</a> nació con una estructura de <strong>microkernel</strong> en capas donde una parte importante de los servicios eran proporcionados por unos procesos de usuario llamados subsistemas.</p>
+</div>
+<div class="paragraph">
+<p>El sistema operativo podía mostrar diferentes personalidades o <em>entornos operativos</em> —básicamente de OS/2, POSIX y MS-DOS— a través del uso de subsistemas ambientales, que también se ejecutaban como procesos de usuario.
+Las aplicaciones de Microsoft Windows NT se comunicaban con estos subsistemas utilizando un mecanismo de comunicación denominado <a href="https://en.wikipedia.org/wiki/Local_Inter-Process_Communication">LPC</a> (<em>Local Inter-Process Communication</em>).</p>
+</div>
+<div class="paragraph">
+<p>Con esta estructura, la pérdida de rendimiento respecto a Microsoft Windows 95 era tan importante —especialmente en lo relativo a operaciones gráficas— que los diseñadores se vieron obligados a mover más servicios al espacio del núcleo en la versión 4.0.
+El resultado es que los Windows sucesores a Windows NT 4.0 tienen una arquitectura más monolítica que microkernel, ya que aunque muchos servicios siguen siendo proporcionados por procesos de usuario, esto solo ocurre con aquellos donde el rendimiento no es un factor crítico.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Microsoft Windows XP tiene 280 llamadas al sistema a las que hay que sumar las más de 650 llamadas del subsistema gráfico, que también se aloja en el núcleo desde Microsoft Windows NT 4.0.
+Mientras que Microsoft Windows NT 3.51 tenía algo menos de 200 llamadas al sistema.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sin embargo, varios sistemas operativos siguen utilizando núcleos <strong>microkernel</strong>, como <a href="https://es.wikipedia.org/wiki/QNX">QNX</a> o <a href="https://en.wikipedia.org/wiki/MINIX_3">MINIX 3</a>.
+Ambos son sistemas operativos de tiempo real, que basan en la estructura de <strong>microkernel</strong> su estabilidad como sistema para tareas críticas.</p>
+</div>
+<div class="paragraph">
+<p>En la <a href="sistemas_operativos_por_su_estructura.html#fig-estructura-minix3">Figura 8.4</a>, por ejemplo, se puede observar un esquema de <a href="https://en.wikipedia.org/wiki/MINIX_3">MINIX 3</a>.
+El núcleo es muy pequeño —apenas tiene 5000 líneas de código— por lo que la mayor parte de la funcionalidad reside en los procesos de servicios y de controladores de dispositivo.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/MINIX_3">MINIX 3</a> es un sistema compatible POSIX.
+Así que soporta las llamadas al sistema definidas por este estándar, pero estas se convierten en mensajes enviados al servidor correspondiente con la petición, y no en llamadas directas al núcleo.
+Para que un servidor pueda atender una petición, quizás tenga que enviar peticiones a otros servidores o controladores de dispositivo.
+Incluso pueden tener que hacer llamadas al núcleo, para solicitar alguna operación privilegiada que no se puede implementar en el modo usuario.
+Por ejemplo, operaciones de E/S —fundamentales para los controladores de dispositivo— o el acceso a tablas del núcleo —como la tabla de procesos—.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Es este trasiego de mensajes con peticiones y respuestas —y la correspondiente conmutación de procesos en la CPU para ejecutar el proceso que atiende cada mensaje— para resolver una petición de un proceso de usuario, lo que teóricamente justifica el menor rendimiento de los sistemas <strong>microkernel</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_estructura_modular"><a class="anchor" href="#_estructura_modular"></a>8.4. Estructura modular</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Los sistemas con <strong>estructura modular</strong> se caracterizan por:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Dividir el núcleo en módulos, cada uno de los cuales implementa funciones y servicios concretos y se comunican entre sí a través de una interfaz bien definida.</p>
+</li>
+<li>
+<p>Como en la programación orientada a objetos, cada módulo oculta al resto los detalles de su implementación.</p>
+</li>
+<li>
+<p>Todos los módulos pueden llamar a funciones de la interfaz de cualquier otro módulo, a diferencia de los sistemas operativos con <strong>estructura en capas</strong>, donde una capa solo podía usar a la inmediatamente inferior.</p>
+</li>
+<li>
+<p>También son sistemas <strong>monolíticos</strong>, dado que gran parte de la funcionalidad del sistema se implementa en el núcleo, aunque ahora el núcleo esté compartimentado en módulos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La mayor parte de los sistemas operativos de propósito general, que se instalan tanto en sistema de escritorio como en servidores, son de este tipo.
+También en los <em>smartphones</em>, <em>smart TV</em> y otros dispositivos «inteligentes» y, en general, en muchos sistemas empotrados.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Estos núcleos suelen disponer de un pequeño conjunto de componentes fundamentales que se cargan durante el arranque.
+Posteriormente pueden cargar módulos adicionales, tanto durante la inicialización del sistema como en tiempo de ejecución.</p>
+</div>
+<div id="fig-estructura-linux" class="imageblock">
+<div class="content">
+<img src="media/C08-estructura/estructura_linux.svg" alt="estructura linux">
+</div>
+<div class="title">Figura 8.5. Esquema de la estructura del núcleo Linux.</div>
+</div>
+<div class="paragraph">
+<p>En este aspecto se asemejan a los núcleos <strong>microkernel</strong>, ya que el módulo principal solo tiene funciones básicas.
+Sin embargo los núcleos modulares:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Son más eficientes</strong> al no necesitar un mecanismo de comunicación, puesto que los componentes se cargan en la memoria destinada al núcleo, por lo que pueden llamarse directamente.</p>
+</li>
+<li>
+<p><strong>Son menos seguros y fiables</strong>, puesto que gran parte de su funcionalidad se ofrece desde el modo privilegiado.
+Un error en cualquier componente puede comprometer o hacer caer el sistema.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Este tipo de estructura es la utilizada en los UNIX modernos, como <a href="https://es.wikipedia.org/wiki/Solaris_(sistema_operativo)">Solaris</a>, <a href="https://es.wikipedia.org/wiki/FreeBSD">FreeBSD</a>, <a href="https://es.wikipedia.org/wiki/GNU/Linux">GNU/Linux</a> (véase la <a href="sistemas_operativos_por_su_estructura.html#fig-estructura-linux">Figura 8.5</a>) y <a href="https://es.wikipedia.org/wiki/MacOS">macOS</a>.
+También se puede considerar que los sistemas Windows actuales, tienen estructura modular.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Anterior: <a href="operación_del_sistema_operativo.html">Operación del sistema operativo</a> | ↑ Subir: <a href="organización_de_los_sistemas_operativos.html">Organización de los sistemas operativos</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="gestión_de_procesos.html">Gestión de procesos</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>

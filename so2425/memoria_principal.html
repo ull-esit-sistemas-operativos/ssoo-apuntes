@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Jesús Torres">
+<title>Sistemas Operativos</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+@import url("//fonts.googleapis.com/css?family=Noto+Sans:300,600italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");
+@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
+
+/* CUSTOMISATIONS */
+/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
+
+:root{
+--maincolor:#FFFFFF;
+--primarycolor:#2c3e50;
+--secondarycolor:#ba3925;
+--tertiarycolor: #186d7a;
+--sidebarbackground:#CCC;
+--linkcolor:#b71c1c;
+--linkcoloralternate:#f44336;
+--white:#FFFFFF;
+--black:#000000;
+}
+
+/* Text styles */
+h1{color:var(--primarycolor) !important;}
+h2,h3,h4,h5,h6{color:var(--secondarycolor) !important;}
+.title{color:var(--tertiarycolor) !important; font-family:"Noto Sans",sans-serif !important;font-style: normal !important; font-weight: normal !important;}
+p{font-family: "Noto Sans",sans-serif !important}
+
+/* Table styles */
+th{font-family: "Noto Sans",sans-serif !important}
+
+/* Responsiveness fixes */
+video {
+  max-width: 100%;
+}
+
+@media all and (max-width: 600px) {
+table {
+  width: 55vw!important;
+  font-size: 3vw;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<link rel="icon" href="media/extras/favicon.ico" sizes="any">
+<link rel="icon" href="media/extras/ssoo-icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="192x192" href="media/extras/ssoo-icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/extras/ssoo-icon-512.png">
+<link rel="apple-touch-icon" href="media/extras/ssoo-apple-touch-icon.png"><!-- 180×180 -->
+<link rel="stylesheet" href="media/extras/inlineDisqussions.css">
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    content {
+        flex: 1;
+    }
+    #preamble {
+        margin-top: 0.5em;
+    }
+    #header, #content, #footnotes {
+        margin: 0 auto 0 5em
+    }
+    #content h1>a.anchor, h2>a.anchor, h3>a.anchor,
+    #toctitle>a.anchor, .sidebarblock>.content>.title>a.anchor,
+    h4>a.anchor, h5>a.anchor, h6>a.anchor {
+        color: #ba3925;
+    }
+    .imageblock {
+        text-align: center;
+    }
+    .imageblock > .content {
+        margin-bottom: 1rem;
+    }
+    .imageblock > .title {
+        text-align: inherit;
+    }
+    .tableblock > .lightcell {
+        color: gray;
+    }
+    table tfoot td p {
+        font-weight: bold;
+    }
+    #footer-text {
+        margin: 0 auto;
+        max-width: 62.5em;
+        padding-left: .9375em;
+        padding-right: .9375em;
+    }
+    #footer-text a {
+        color: hsla(0,0%,100%,.8);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    #footer-text a:hover {
+        color: hsla(0,0%,100%,.8);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="media/extras/inlineDisqussions.js"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        if ('{comments_enabled}' === 'true') {
+            setTimeout(function() {
+                disqus_shortname = 'ull-esit-sistemas-operativos';
+                jQuery("img, p, .colist td, .stemblock").not('#toc p').inlineDisqussions();
+                query_params = (new URL(document.location)).searchParams;
+                if (query_params.has('disqussion')) {
+                    let identifier = window.location.pathname + 'disqussion-' + query_params.get('disqussion');
+                    let selection = jQuery('[data-disqus-identifier="' +  identifier + '"]').not('.disqussion-link');
+                    if (selection.length) {
+                        selection[0].scrollIntoView(true);
+                    }
+                }
+            }, 500);
+        }
+    }
+</script>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+<style>
+.admonitionblock td.icon .icon-time:before {content:"\f017";color:#f28500;}
+</style>
+</head>
+<body id="memoria_principal" class="book toc2 toc-left">
+<div id="header">
+<h1>Sistemas Operativos</h1>
+<div class="details">
+<span id="author" class="author">Jesús Torres</span><br>
+<span id="email" class="email"><a href="mailto:jmtorres@ull.es">jmtorres@ull.es</a></span><br>
+<span id="revdate">Curso 20XX-20XY</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenido</div>
+<p><span class="toc-root"><a href="main.html">Sistemas Operativos</a></span></p><ul class="sectlevel1">
+<li><a href="ediciones_y_licencia.html">Ediciones y licencia</a>
+</li>
+<li><a href="código_de_los_ejemplos.html">Código de los ejemplos</a>
+</li>
+<li><a href="introducción.html">Parte I: Introducción</a>
+</li>
+<li><a href="organización_de_los_sistemas_operativos.html">Parte II: Organización de los sistemas operativos</a>
+</li>
+<li><a href="gestión_de_procesos.html">Parte III: Gestión de procesos</a>
+</li>
+<li><a href="gestión_de_la_memoria.html">Parte IV: Gestión de la memoria</a>
+<ul class="sectlevel1">
+<li><a href="memoria_principal.html"><span class="toc-current">15. Memoria principal</span></a>
+<ul class="sectlevel2">
+<li><a href="memoria_principal.html#_etapas_de_un_programa_de_usuario">15.1. Etapas de un programa de usuario</a>
+</li>
+<li><a href="memoria_principal.html#_reubicación_de_las_direcciones">15.2. Reubicación de las direcciones</a>
+</li>
+<li><a href="memoria_principal.html#_espacio_de_direcciones_virtual_frente_a_físico">15.3. Espacio de direcciones virtual frente a físico</a>
+</li>
+<li><a href="memoria_principal.html#_enlazado_dinámico_y_librerías_compartidas">15.4. Enlazado dinámico y librerías compartidas</a>
+</li>
+<li><a href="memoria_principal.html#_asignación_contigua_de_memoria">15.5. Asignación contigua de memoria</a>
+</li>
+<li><a href="memoria_principal.html#_fragmentación">15.6. Fragmentación</a>
+</li>
+<li><a href="memoria_principal.html#_intercambio">15.7. Intercambio</a>
+</li>
+</ul>
+</li>
+<li><a href="paginación.html">16. Paginación</a>
+</li>
+<li><a href="memoria_virtual.html">17. Memoria virtual</a>
+</li>
+</ul>
+</li>
+<li><a href="gestión_del_almacenamiento.html">Parte V: Gestión del almacenamiento</a>
+</li>
+<li><a href="bibliografía.html">Bibliografía</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="memoria_principal"><a class="anchor" href="#memoria_principal"></a>15. Memoria principal</h2>
+<div class="sectionbody">
+<div class="admonitionblock time">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-time" title=""></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Tiempo de lectura:</strong> 32 minutos</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La memoria es un recurso central para el funcionamiento de un sistema operativo moderno, puesto que es el único medio de almacenamiento al que la CPU puede acceder directamente.
+Por ello, para que un programa pueda ser ejecutado, debe ser cargado en la memoria desde el disco y creadas o modificadas las estructuras internas del sistema operativo necesarias para convertirlo en un proceso.
+Además, dependiendo de la forma en la que se gestiona la memoria, los procesos —o partes de los mismos— pueden moverse de la memoria al disco —y viceversa— durante su ejecución, con el objetivo de ajustar las necesidades de memoria para mantener el <strong>uso de la CPU</strong> lo más alto posible.</p>
+</div>
+<div class="paragraph">
+<p>Como comentamos en el <a href="tipos_de_sistemas_operativos.html#_sistemas_multiprogramados">Apartado 2.1.2</a>, en los <strong>sistemas multiprogramados</strong> existe una <strong>cola de entrada</strong>, que se define como aquella formada por el conjunto de procesos en disco que esperan para ser cargados en la memoria para su ejecución.</p>
+</div>
+<div class="paragraph">
+<p>Por tanto, el procedimiento normal de ejecución de un programa en dichos sistemas es:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Seleccionar un proceso de la cola de entrada y cargarlo en la memoria.</p>
+</li>
+<li>
+<p>Mientras el proceso se ejecuta, este accede a instrucciones y datos de la memoria.</p>
+</li>
+<li>
+<p>Finalmente, el proceso termina y su espacio en memoria es marcado como disponible.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>En los sistemas de propósito general modernos —desde los <strong>sistemas de tiempo compartido</strong> y los primeros <strong>sistemas de escritorio</strong>— no existe <strong>cola de entrada</strong>, por lo que los programas se cargan inmediatamente en memoria cuando los usuarios solicitan su ejecución.
+Excepto por eso, el procedimiento normal de ejecución de un programa es similar al de los <strong>sistemas multiprogramados</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="_etapas_de_un_programa_de_usuario"><a class="anchor" href="#_etapas_de_un_programa_de_usuario"></a>15.1. Etapas de un programa de usuario</h3>
+<div class="paragraph">
+<p>En la mayor parte de los casos, un programa de usuario debe pasar por diferentes etapas —algunas de las cuales son opcionales— antes de ser ejecutado (véase la <a href="memoria_principal.html#fig-etapas-programas-de-usuario">Figura 15.1</a>).</p>
+</div>
+<div id="fig-etapas-programas-de-usuario" class="imageblock">
+<div class="content">
+<img src="media/C15-memoria_principal/etapas_de_un_programa_de_usuario.svg" alt="etapas de un programa de usuario">
+</div>
+<div class="title">Figura 15.1. Etapas de procesamiento de un programa de usuario.</div>
+</div>
+<div class="paragraph">
+<p>Los archivos de <strong>código fuente</strong> del programa son compilados por el compilador, generando un archivo de <a href="https://es.wikipedia.org/wiki/C%C3%B3digo_objeto"><strong>código objeto</strong></a> —con extensiones <code>.o</code> u <code>.obj</code>— para cada uno.</p>
+</div>
+<div class="paragraph">
+<p>Todos los archivos de <strong>código objeto</strong> son unidos por el enlazador para crear el archivo <strong>ejecutable</strong>, en una fase que se denomina <strong>enlazado estático</strong>.
+En esta fase también se pueden incorporar al ejecutable <strong>librerías de enlace estático</strong> —con extensiones <code>.a</code> o <code>.lib</code>— con <strong>código objeto</strong> que ha sido empaquetado para ser reutilizado en múltiples ejecutables.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El compilador y el enlazador suelen ser dos programas independientes, aunque en ocasiones el compilador se haga cargo de ambas fases por comodidad.
+Por ejemplo, en los sistemas GNU el compilador <a href="https://es.wikipedia.org/wiki/GNU_Compiler_Collection">gcc</a> por defecto genera el <strong>código objeto</strong> en archivos temporales, luego invoca al enlazador <a href="https://en.wikipedia.org/wiki/Linker_(computing)">ld</a> para crear el <strong>ejecutable</strong> y finalmente elimina los archivos temporales.</p>
+</div>
+<div class="paragraph">
+<p>En proyectos grandes suele ser más interesante usar ambas herramientas por separado para reducir el tiempo de compilación.
+El compilador genera los archivos de <strong>código objeto</strong>, que se conservan entre compilaciones.
+Así, cada vez que se quiere generar una nueva versión del ejecutable, solo es necesario compilar los archivos de <strong>código fuente</strong> que hayan cambiado y luego enlazar juntos todos los archivos de <strong>código objeto</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al crear el <strong>ejecutable</strong> se pueden guardar en él dependencias respecto a librerías que se enlazarán posteriormente, durante la carga o ejecución del programa, en una fase denominada <strong>enlazado dinámico</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En el momento en el que se va a ejecutar el programa, cuando está construyendo la imagen binaria del proceso en la memoria; el sistema operativo examina estas dependencias, carga las <strong>librerías de enlace dinámico</strong> indicadas —con extensiones <code>.so</code>, <code>dylib</code> o <code>.dll</code>— y resuelve las referencias del programa sus variables y funciones.
+Las <strong>librerías de enlace dinámico</strong> contienen <strong>código objeto</strong>, enlazado en un formato especial de <strong>ejecutable</strong> diseñado para contener partes compartidas entre archivos ejecutables.</p>
+</div>
+<div class="paragraph">
+<p>Este proceso puede ocurrir mientras se carga el <strong>ejecutable</strong> —como se ha descrito— o cuando el programa usa por primera vez un elemento de las <strong>librerías de enlace dinámico</strong>.
+También es común que el sistema ofrezca funciones para que los programas puedan cargar manualmente e invocar funciones de <strong>librerías de enlace dinámico</strong>.
+Esto es muy útil para crear programas que se puedan mejorar por medio de extensiones o <em>plugins</em>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabla 15.1. Extensiones de archivos de programas.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">UNIX, Linux y otros sistemas estilo UNIX</th>
+<th class="tableblock halign-left valign-top">macOS</th>
+<th class="tableblock halign-left valign-top">Microsoft Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Código objeto</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.o</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.o</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.obj</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Librería de enlace estático</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.lib</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Ejecutable</p></th>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.exe</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Librería de enlace dinámico</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.so</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.so</code>, <code>.dylib</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.dll</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Formato de ejecutables y librerías de enlace dinámico</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://es.wikipedia.org/wiki/Executable_and_Linkable_Format">Executable and Linkable Format</a> (ELF)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/Mach-O">Mach-O</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://es.wikipedia.org/wiki/Portable_Executable">Portable Executable</a> (PE)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_reubicación_de_las_direcciones"><a class="anchor" href="#_reubicación_de_las_direcciones"></a>15.2. Reubicación de las direcciones</h3>
+<div class="paragraph">
+<p>La mayor parte de los sistemas permiten que un proceso de usuario resida en cualquier parte de la memoria física.
+Así, aunque el espacio de direcciones del sistema comience en <code>0x00000000</code>, la primera dirección del proceso de usuario no tiene por qué ser esa.</p>
+</div>
+<div class="paragraph">
+<p>En cada una de las etapas vistas en el <a href="memoria_principal.html#_etapas_de_un_programa_de_usuario">Apartado 15.1</a> las direcciones pueden representarse de formas distintas, por lo que en cada paso es necesario reasignar las direcciones usadas en una etapa en direcciones de la siguiente.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en el código fuente de un programa las direcciones son generalmente simbólicas, como los nombres de las variables y las funciones.
+A continuación, un compilador suele reasignar esas direcciones simbólicas en <strong>direcciones reubicables</strong> del estilo de «120 bytes desde el comienzo del módulo».
+Finalmente —el enlazador— que genera el ejecutable— o el cargador —que carga el programa en la memoria— convierte esas <strong>direcciones reubicables</strong> en <strong>direcciones absolutas</strong>, como <code>0x00210243</code>.</p>
+</div>
+<div class="paragraph">
+<p>Por tanto, en cada etapa se traducen las direcciones de un espacio de direcciones en el siguiente.
+Sin embargo, para que al final el programa pueda ser ejecutado, es necesario que tanto a los datos como a las instrucciones se les reasignen en algún momento a <strong>direcciones absolutas</strong> de la memoria.
+Esto puede ocurrir en <strong>tiempo de compilación</strong>, <strong>tiempo de carga</strong> o <strong>tiempo de ejecución</strong></p>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_en_tiempo_de_compilación"><a class="anchor" href="#_reubicación_en_tiempo_de_compilación"></a>15.2.1. Reubicación en tiempo de compilación</h4>
+<div class="paragraph">
+<p>Si durante la compilación o el enlazado se conoce el lugar de la memoria donde va a ser ejecutado el proceso, se puede generar directamente código con <strong>direcciones absolutas</strong> o <strong>código absoluto</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Eso significa que si en algún momento la dirección de inicio donde es cargado el programa cambia, es necesario recompilar el código fuente del programa para poder ejecutarlo en la nueva ubicación.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Un ejemplo son los ejecutables con formato <a href="https://es.wikipedia.org/wiki/Archivo_COM">COM</a> del sistema operativo MS-DOS.
+Estos ejecutables no eran reubicables, aunque podían ponerse en distintas ubicaciones de la memoria gracias a la <a href="https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria_del_x86">segmentación de memoria de la familia Intel x86</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_en_tiempo_de_carga"><a class="anchor" href="#_reubicación_en_tiempo_de_carga"></a>15.2.2. Reubicación en tiempo de carga</h4>
+<div class="paragraph">
+<p>Si no se conoce durante la compilación el lugar donde va a residir un programa cuando sea ejecutado, el compilador y el enlazador deben generar ejecutables con <strong>código reubicable</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En este tipo de código se utilizan <strong>direcciones reubicables</strong>, de manera que se retrasa su asignación a <strong>direcciones absolutas</strong> hasta el momento de la carga del programa.
+Esto permite que un programa pueda residir en cualquier parte de la memoria física, cargando los procesos donde más convenga para maximizar el aprovechamiento de la misma.</p>
+</div>
+<div class="paragraph">
+<p>Para generar <strong>código reubicable</strong>, por lo general, el compilador genera
+<strong>código independiente de la posición</strong> o <strong>PIC</strong> (<em>Position-Independent Code</em>).
+Este tipo de código se puede ejecutar adecuadamente y sin modificaciones independientemente del lugar de la memoria donde esté ubicado, porque utiliza direcciones relativas.</p>
+</div>
+<div class="paragraph">
+<p>Lamentablemente, esto puede limitar las características de la CPU que puede utilizar el compilador o, a veces, las instrucciones que usan direcciones absolutas son más rápidas que las que usan direcciones relativas, aunque en los procesadores modernos la diferencia apenas es perceptible.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, las CPU x86-64 soportan un modo de direccionamiento en el que las direcciones son relativas a la dirección en el contador de programa.
+Esto simplifica generar código reubicable eficiente.
+Sin embargo, en las CPU x86 anteriores, las instrucciones de salto podían ser relativas al contador de programa, pero no ocurría así con aquellas destinadas a acceder a los datos del programa.</p>
+</div>
+<div class="paragraph">
+<p>Cuando no se puede o no es eficiente generar <strong>código independiente de la posición</strong> se puede recurrir al uso de <strong>tablas de reubicación</strong> en tiempo de carga.
+En este caso el compilador y el enlazador generan:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Código con direcciones relativas a cierta dirección fija del ejecutable —como el comienzo de la sección de código— o direcciones absolutas calculadas bajo la suposición de que el ejecutable se va a poder cargar en cierta dirección concreta de la memoria, que suele guardarse en la cabecera del ejecutable.</p>
+</li>
+<li>
+<p>Una <strong>tabla de reubicaciones</strong> que se almacena en el mismo ejecutable.
+Esta tabla contiene punteros a las ubicaciones en el código del ejecutable de las direcciones que deben reubicarse al cargarlo.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Durante la carga, el cargador del sistema operativo, una vez ha copiado a la memoria el contenido del ejecutable y conoce la ubicación definitiva del programa, recorre la <strong>tabla de reubicaciones</strong> para buscar las <strong>direcciones reubicables</strong> y actualizarlas.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Direcciones en el código objeto en Linux x86-64</div>
+<div class="paragraph">
+<p>Supongamos que en un sistema Linux x86-64 tenemos el siguiente código en un archivo de nombre <code>test.c</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">test</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">test</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En lugar de compilarlo para generar el ejecutable final, podemos usar la opción <code>-c</code> del compilador <a href="https://es.wikipedia.org/wiki/GNU_Compiler_Collection">gcc</a> para que solo genere el archivo de <strong>código objeto</strong> correspondiente.
+Después podemos usar el comando <a href="https://man7.org/linux/man-pages/man1/objdump.1.html">objdump</a> para examinar el <strong>código objeto</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ gcc -c test.c
+$ objdump -d test.o
+
+test.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 &lt;test&gt;:                                <i class="conum" data-value="1"></i><b>(1)</b>
+   0:   f3 0f 1e fa             endbr64
+   4:   55                      push   %rbp
+   5:   48 89 e5                mov    %rsp,%rbp
+   8:   48 c7 05 00 00 00 00    movq   $0xc,0x0(%rip)   <i class="conum" data-value="3"></i><b>(3)</b>
+   f:   0c 00 00 00
+  13:   b8 00 00 00 00          mov    $0x0,%eax
+  18:   5d                      pop    %rbp
+  19:   c3                      retq
+
+000000000000001a &lt;main&gt;:                                <i class="conum" data-value="1"></i><b>(1)</b>
+  1a:   f3 0f 1e fa             endbr64
+  1e:   55                      push   %rbp
+  1f:   48 89 e5                mov    %rsp,%rbp
+  22:   48 c7 05 00 00 00 00    movq   $0xb,0x0(%rip)   <i class="conum" data-value="3"></i><b>(3)</b>
+  29:   0b 00 00 00
+  2d:   b8 00 00 00 00          mov    $0x0,%eax
+  32:   e8 00 00 00 00          callq  37 &lt;main+0x1d&gt;   <i class="conum" data-value="2"></i><b>(2)</b>
+  37:   5d                      pop    %rbp
+  38:   c3                      retq</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>El archivo de <strong>código objeto</strong> se divide en varias secciones o segmentos.
+En el <strong>segmento de código</strong> o <strong>.text</strong> se almacenan las funciones compiladas del código original.
+Cada función tiene una ubicación, que es relativa a su posición dentro del segmento de código en el archivo.
+<div class="paragraph">
+<p>Obviamente, estas no son las direcciones definitivas en las que se ejecutarán estas funciones cuando el ejecutable sea cargado en la memoria, por lo que este <strong>código objeto</strong> generado por el compilador debe ser <strong>código reubicable</strong>.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>callq</code> es la instrucción encargada de invocar a <code>test()</code> desde <code>main()</code>, pero si ejecutamos este código en su estado actual, la ejecución saltaría a la instrucción en 0x37, es decir, a la siguiente tras <code>callq</code>.
+Esto no es un error del compilador, sino que el compilador no ha puesto la dirección correcta porque aún desconoce cuál será la ubicación definitiva de <code>test()</code>.
+<div class="paragraph">
+<p>En x86-64 las instrucciones de salto como <code>callq</code> hacen saltos relativos al contador de programa —almacenado en un registro llamando <code>rip</code>—.
+Todas estas instrucciones llevan un desplazamiento que se suma al valor actual de <code>rip</code>, que contiene la dirección en la memoria de la siguiente instrucción.
+Como el compilador no sabe donde estará <code>test()</code>, deja este desplazamiento a 0 —por eso los bytes '00 00 00 00' en la codificación  de la instrucción <code>callq</code>— por lo que el salto será a la siguiente instrucción.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>En el acceso a la variable <code>i</code> para cambiar su valor, ocurre algo parecido.
+La dirección se escribe relativa al contador de programa <code>rip</code>, pero como el compilador no sabe la posición definitiva de la variable, deja el desplazamiento a 0.
+Por eso el desensamblado indica lo de <code>0x0(%rip)</code>, que quiere decir: dirección desplazada 0 respecto a <code>rip</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Durante el enlazado, para generar el ejecutable definitivo, es necesario saber dónde están en el código las direcciones que se deben reubicar.
+Para eso el archivo de <strong>código objeto</strong> lleva una <strong>tabla de reubicación</strong>, que también se puede leer con <a href="https://man7.org/linux/man-pages/man1/objdump.1.html">objdump</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ objdump -r test.o
+test.o:     file format elf64-x86-64
+
+RELOCATION RECORDS FOR [.text]:
+OFFSET           TYPE              VALUE
+000000000000000b R_X86_64_PC32     i-0x0000000000000008
+0000000000000025 R_X86_64_PC32     i-0x0000000000000008
+0000000000000033 R_X86_64_PLT32    test-0x0000000000000004</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En nuestro ejemplo la tabla contiene tres entradas, dos para las dos instrucciones que modifican la variable <code>i</code> y una para la instrucción <code>callq</code> que sirve para invocar <code>test()</code>.
+La primera columna indica la ubicación en <strong>.text</strong> de la dirección que se debe reubicar.
+Mientras la segunda columna especifica el tipo de reubicación y la tercera contiene información adicional que hace falta para realizar la reubicación.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, la primera entrada del ejemplo indica que debe desplazarse en <code>0x08</code> la dirección a reubicar en <code>0x0b</code> —el acceso a <code>i</code> en <code>test()</code> para que apunte a la dirección de la variable <code>i</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_en_tiempo_de_ejecución"><a class="anchor" href="#_reubicación_en_tiempo_de_ejecución"></a>15.2.3. Reubicación en tiempo de ejecución</h4>
+<div class="paragraph">
+<p>Si un proceso puede ser movido durante su ejecución de un lugar de la memoria a otro, la reubicación de direcciones debe ser retrasada hasta el momento de la ejecución de cada instrucción del programa.</p>
+</div>
+<div class="paragraph">
+<p>Para que esto sea posible, necesitamos disponer de hardware especial que suele estar presente en la mayor parte de las CPU modernas, por lo que la inmensa mayoría de los sistemas operativos de propósito general modernos utilizan este método.
+De él hablaremos en el <a href="memoria_principal.html#_espacio_de_direcciones_virtual_frente_a_físico">Apartado 15.3</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_espacio_de_direcciones_virtual_frente_a_físico"><a class="anchor" href="#_espacio_de_direcciones_virtual_frente_a_físico"></a>15.3. Espacio de direcciones virtual frente a físico</h3>
+<div class="paragraph">
+<p>En el <a href="operación_del_sistema_operativo.html#_protección_de_la_memoria">Apartado 7.3</a> vimos en los sistemas operativos modernos, como medida de protección, los procesos no tienen acceso libre a la memoria física.</p>
+</div>
+<div id="fig-espacio-direcciones-virtual-frente-físico" class="imageblock">
+<div class="content">
+<img src="media/C15-memoria_principal/protección_memoria.svg" alt="protección memoria">
+</div>
+<div class="title">Figura 15.2. Mapeo de la memoria física en el espacio de direcciones virtual de un proceso.</div>
+</div>
+<div class="paragraph">
+<p>En lugar de eso el sistema operativo —asistido por la <strong>MMU</strong> (<em>Memory-Management Unit</em>)— proporciona a cada proceso un <strong>espacio de direcciones virtual</strong> que ofrece una «vista» privada de la memoria, similar a la que tendrían si cada uno de los procesos estuviera siendo ejecutando en solitario (véase la <a href="memoria_principal.html#fig-espacio-direcciones-virtual-frente-físico">Figura 15.2</a>).
+Es durante los accesos a la memoria principal en tiempo de ejecución, cuando estas <strong>direcciones virtuales</strong> son convertidas por la <strong>MMU</strong> en las <strong>direcciones físicas</strong>, con las que realmente se accede a la memoria.
+El <strong>espacio de direcciones físico</strong> es el conjunto de direcciones físicas que corresponden a todas las direcciones virtuales de un <strong>espacio de direcciones virtual</strong> dado.</p>
+</div>
+<div class="paragraph">
+<p>El mecanismo de protección descrito es una forma muy común de <strong>reubicación de las direcciones en tiempo de ejecución</strong>, que está presente en la mayor parte de los sistemas operativos de propósito general modernos.
+Pero, aparte de la protección de la memoria, algunas otras características de dicho mecanismo son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los procesos pueden ser cargados en cualquier zona libre de la memoria física e incluso movidos de una región a otra durante la ejecución de los procesos, puesto que la transformación de las <strong>direcciones virtuales</strong> en <strong>direcciones físicas</strong> se realiza durante la ejecución de cada instrucción.</p>
+</li>
+<li>
+<p>El código generado por el compilador puede ser <strong>código absoluto</strong>, puesto que de antemano se sabe que todas las ubicaciones del espacio de direcciones virtual van a estar disponibles.</p>
+<div class="paragraph">
+<p>Lo común es que los programas se ubiquen en una dirección fija en la parte baja del espacio de direcciones virtual.
+Por ejemplo, empezando en la dirección <code>0x00400000</code>, dejando libres los primeros 4 MiB del <strong>espacio de direcciones virtual</strong>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Nota"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los programas pueden ubicarse en cualquier lugar del <strong>espacio de direcciones virtual</strong>, pero no ocurre lo mismo con las <strong>librerías de enlace dinámico</strong>, cuya posible ubicación va a depender del espacio ocupado por el programa y por otras <strong>librerías de enlace dinámico</strong>.
+Por tanto, como veremos en detalle más adelante, estas librerías deben ser reubicables en tiempo de carga.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se puede reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código y los datos de solo lectura de los procesos de un mismo programa.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El código de un programa suele contener direcciones tanto para los saltos como para el acceso a los datos.
+Al ubicar los programas en las mismas regiones de los espacios de direcciones virtuales de sus procesos, nos estamos asegurando de que el código en memoria de los procesos de un mismo programa es el mismo —pues todos usan las mismas direcciones virtuales absolutas— por lo que se puede compartir la memoria física que ocupan.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Direcciones en ejecutables en Linux x86-64</div>
+<div class="paragraph">
+<p>En Linux cada proceso tiene su propio espacio de direcciones virtual, por lo que los ejecutables pueden generarse para ser cargados en una dirección fija, ya que es seguro que no habrá otro ocupando la misma dirección.</p>
+</div>
+<div class="paragraph">
+<p>Si la dirección donde se va a ejecutar el programa puede fijarse de antemano, los ejecutables pueden contener <strong>código absoluto</strong>.
+Por eso en Linux x86-64 el enlazador coge el <strong>código objeto</strong> que va a formar parte del ejecutable, lo reubica asumiendo que el ejecutable se cargará en cierta dirección de la memoria y genera un ejecutable con <strong>código absoluto</strong>, sin <strong>tablas de reubicación</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si compilamos completamente el <code>test.c</code> anterior y preguntamos por la <strong>tabla de reubicación</strong>, veremos que está vacía:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ gcc -o test test.c
+$ objdump -r test
+test.o:     file format elf64-x86-64</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si desensamblamos el código, veremos que han cambiado algunas cosas en <code>main()</code> y a <code>test()</code> respecto a lo que había en el <strong>código objeto</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ objdump -d test
+
+test.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+...
+
+0000000000001129 &lt;test&gt;:                                           <i class="conum" data-value="2"></i><b>(2)</b>
+    1129:       f3 0f 1e fa             endbr64
+    112d:       55                      push   %rbp
+    112e:       48 89 e5                mov    %rsp,%rbp
+    1131:       c7 05 d9 2e 00 00 03    movl   $0x3,0x2ed9(%rip)   <i class="conum" data-value="1"></i><b>(1)</b>
+    1138:       00 00 00
+    113b:       b8 00 00 00 00          mov    $0x0,%eax
+    1140:       5d                      pop    %rbp
+    1141:       c3                      retq
+
+0000000000001142 &lt;main&gt;:
+    1142:       f3 0f 1e fa             endbr64
+    1146:       55                      push   %rbp
+    1147:       48 89 e5                mov    %rsp,%rbp
+    114a:       c7 05 c0 2e 00 00 01    movl   $0x1,0x2ec0(%rip)   <i class="conum" data-value="1"></i><b>(1)</b>
+    1151:       00 00 00
+    1154:       b8 00 00 00 00          mov    $0x0,%eax
+    1159:       e8 cb ff ff ff          callq  1129 &lt;test&gt;         <i class="conum" data-value="2"></i><b>(2)</b>
+    115e:       5d                      pop    %rbp
+    115f:       c3                      retq
+
+...</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Las instrucciones que acceden a la variable <code>i</code> ahora tienen el desplazamiento adecuado respecto al contador de programa <code>rip</code> para acceder a dicha variable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>La instrucción de salto tiene un desplazamiento que sumado al valor de <code>rip</code> lleva directamente al comienzo del código de la función <code>test()</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enlazado_dinámico_y_librerías_compartidas"><a class="anchor" href="#_enlazado_dinámico_y_librerías_compartidas"></a>15.4. Enlazado dinámico y librerías compartidas</h3>
+<div class="paragraph">
+<p>Como hemos comentado anteriormente, fundamentalmente existen dos tipos de enlazado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>enlazado estático</strong>, las librerías del sistema y otros módulos son combinados por el enlazador para formar la imagen binaria del programa que es almacenada en disco.
+Algunos sistemas operativos —como MS-DOS— solo soportan este tipo de enlazado.</p>
+</li>
+<li>
+<p>En el <strong>enlazado dinámico</strong>, este se pospone hasta la carga o la ejecución_ (véase la <a href="memoria_principal.html#fig-etapas-programas-de-usuario">Figura 15.1</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Generalmente el enlazado dinámico ocurre durante la carga del programa:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Durante la carga del ejecutable se comprueban las dependencias del mismo.
+Estas se almacenan en el mismo archivo en disco que dicho ejecutable.</p>
+</li>
+<li>
+<p>Las librerías a enlazar se cargan y ubican en el espacio de direcciones virtual creado para el nuevo proceso.</p>
+</li>
+<li>
+<p>Finalmente, las referencias del programa a las funciones de cada una de las librerías cargadas se actualizan con la dirección en memoria de las mismas.
+Así la invocación de las funciones por parte del programa se puede realizar de forma transparente, como si siempre hubieran formado parte del mismo.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Cuando el enlazado se va a realizar en tiempo de ejecución se habla de <strong>enlazado dinámico con carga diferida</strong>.
+En ese caso el procedimiento es el siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Durante el enlazado estático del ejecutable se pone un <em>stub</em> a cada referencia a alguna función de la librería que va a ser enlazada dinámicamente.</p>
+</li>
+<li>
+<p>Si durante la ejecución del programa alguna de dichas funciones es invocada, se ejecuta el <em>stub</em>.
+El <em>stub</em> es una pequeña pieza de código que sabe como cargar la librería, si no ha sido cargada previamente, y cómo localizar la función adecuada en la misma.</p>
+</li>
+<li>
+<p>Finalmente, el <em>stub</em> se sustituye a sí mismo con la dirección de la función y la invoca.
+Esto permite que la siguiente ejecución de la función no incurra en ningún coste adicional.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Sin esta habilidad, cada programa en el sistema debería tener, por ejemplo, una copia de la librería del sistema incluida en su ejecutable.
+Esto significa un desperdicio de espacio libre en disco y de memoria principal.
+Además, este esquema facilita la actualización de las librerías, puesto que los programas pueden utilizar directamente las versiones actualizadas sin necesidad de volver a ser enlazados.</p>
+</div>
+<div class="sect3">
+<h4 id="_reubicación_de_las_direcciones_2"><a class="anchor" href="#_reubicación_de_las_direcciones_2"></a>15.4.1. Reubicación de las direcciones</h4>
+<div class="paragraph">
+<p>Durante la compilación de una <strong>librería dinámica</strong> no se conoce la región que va a ocupar, dentro de los espacios de direcciones virtuales de los distintos procesos que la van a utilizar, por lo que es necesario generar <strong>código reubicable</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Atendiendo a lo visto en <a href="memoria_principal.html#_reubicación_en_tiempo_de_carga">Apartado 15.2.2</a> existen fundamentalmente dos estrategias:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El compilador puede generar <strong>código independiente de la posición</strong> (PIC).
+Esto permite reducir el consumo de memoria principal compartiendo las regiones de memoria física asignadas al código de una misma librería en los distintos procesos que la utilizan, pues en todas el código será exactamente el mismo.</p>
+</li>
+<li>
+<p>En los sistemas operativos donde no se usa código PIC, el compilador debe generar código reubicable con <strong>tablas de reubicación</strong>, para que la reubicación de las direcciones virtuales se haga en tiempo de carga.
+Esto aumenta el tiempo de carga de las librerías y solo permite que compartan memoria física partes de la librería que sigan siendo iguales tras la reubicación de las direcciones.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_librerías_compartidas"><a class="anchor" href="#_librerías_compartidas"></a>15.4.2. Librerías compartidas</h4>
+<div class="paragraph">
+<p>
+Habitualmente las librerías incluyen información acerca de su versión.
+Esta información puede ser utilizada para evitar que los programas se ejecuten con versiones incompatibles de las mismas, o para permitir que haya más de una versión de cada librería en el sistema.
+Así los viejos programas se pueden ejecutar con las viejas versiones de las librerías —o con versiones actualizadas aunque compatibles— mientras los nuevos programas se ejecutan con las versiones más recientes e incompatibles con los viejos programas.</p>
+</div>
+<div class="paragraph">
+<p>A este sistema se lo conoce como <strong>librerías compartidas</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Para establecer correctamente la compatibilidad entre librerías y programas, es conveniente y bastante común que los desarrolladores de las <strong>librerías compartidas</strong> utilicen <strong>versionado semántico</strong>.
+El <strong>versionado semántico</strong> es un convenio por el cual el número de versión suele venir indicado por tres número separados por puntos —como, por ejemplo: 5.3.4— de tal forma que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El primer número es incrementado cuando ocurre un cambio drástico en la librería, de tal forma que seguramente los programas hechos para versiones anteriores no van a ser compatibles con la nueva versión.</p>
+</li>
+<li>
+<p>El segundo número es incrementado cuando se añade alguna nueva característica o se modifica alguna ya existente, pero el cambio no debe romper los programas hechos para la versión anterior.</p>
+</li>
+<li>
+<p>El último número es incrementado al corregir errores, pero no se rompe la compatibilidad con versiones previas.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De esta forma, los desarrolladores pueden enlazar sus programas contra la versión 5 de la librería, por ejemplo, sabiendo que así funcionarán con cualquier versión actualizada o corregida —como la 5.1, 5.2.9 o 5.10.1— pero nunca podrán ejecutarse con versiones que tienen cambios mayores y posiblemente incompatibles —como la versión 6.1 o la 2.10—.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Enlazado dinámico en Linux x86-64</div>
+<div class="paragraph">
+<p>Volviendo al programa de ejemplo <code>test.c</code>, podemos obtener fácilmente las librerías compartidas de las que depende usando el comando <a href="https://man7.org/linux/man-pages/man1/ldd.1.html">ldd</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ldd test
+linux-vdso.so.1 (0x00007fffd833e000)
+libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f47c20c9000)   <i class="conum" data-value="1"></i><b>(1)</b>
+/lib64/ld-linux-x86-64.so.2 (0x00007f47c22cf000)                    <i class="conum" data-value="2"></i><b>(2)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>El ejecutable tiene que estar enlazado con la librería del sistema —llamada <code>libc</code> en los sistemas POSIX— para que pueda acceder a los servicios del sistema.
+<div class="paragraph">
+<p><code>libc.so.6</code> es el nombre por el que se buscará el archivo que contiene la librería compartida de la librería del sistema
+Si se hubiera usado solamente <code>libc.so</code>, el ejecutable podría intentar usar cualquier versión de <code>libc</code>, pero al incluir el primer número de versión en el nombre, nos aseguramos de que el ejecutable solo usará versiones 6 de la librería del sistema.
+Así se evita ejecutar el programa con versiones que pueden ser incompatibles.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>La librería <a href="https://man7.org/linux/man-pages/man8/ld.so.8.html">ld</a> se encarga de las cuestiones relacionadas con el enlazado y carga dinámica de librerías.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si estás librerías no estuvieran disponibles al intentar ejecutar el programa, la ejecución fallaría, ya que son un requisito obligatorio.
+Sin embargo, el enlazado dinámico no es algo que solo pueda configurarse durante la compilación para que ocurra automáticamente durante la carga del ejecutable.
+Los sistemas operativo modernos proporcionan funciones para que un proceso pueda cargar cualquier y descargar librería durante la ejecución y acceder a sus variables e invocar sus funciones.
+En los sistemas POSIX estas funciones las proporciona la librería <a href="https://man7.org/linux/man-pages/man8/ld.so.8.html">ld</a>.</p>
+</div>
+<div class="paragraph">
+<p>Esto es muy útil cuando se quiere que ciertas librerías sean opcionales.
+Es decir, que no sea necesario tenerlas instaladas en el sistema donde se va a ejecutar el programa, de tal forma que si no están disponibles, el programa funcione con normalidad, pero si están instaladas, el programa aproveche la funcionalidad adicional que proporcionan.
+Así es como navegadores, editores y otros programas implementan extensiones y <em>plugins</em>, con los que el usuario puede extender la funcionalidad del programa original sin recompilarlo.
+Estas extensiones generalmente se implementan como librerías compartidas que el programa busca y carga durante su ejecución.</p>
+</div>
+<div class="paragraph">
+<p>Por lo general, la mayor parte de las librerías que usan los programas son enlazadas dinámicamente, pero el enlazador siempre tiene que incluir en el ejecutable algunas librerías enlazadas estáticamente que son importantes para la ejecución del programa.
+Por eso al ejecutar <code>objdump -d test</code> vemos funciones que no estaban ni en <code>test.c ni en el archivo de <strong>código objeto</strong> `test.o</code>.
+La librería que vemos incluida en el ejecutable es la <strong>librería de tiempo de ejecución</strong> de C.</p>
+</div>
+<div class="paragraph">
+<p>Todo lenguaje de programación —excepto ensamblador, obviamente— necesita incluir en sus ejecutables una <strong>librería de tiempo de ejecución</strong> o <strong>librería de runtime</strong> con rutinas de bajo nivel que sirven de apoyo para implementar algunas características del lenguaje y del entorno de ejecución.</p>
+</div>
+<div class="paragraph">
+<p>En Linux y otros sistemas POSIX, la posición dónde debe iniciarse la ejecución se marca con la etiqueta <code>_start</code> en el ejecutable.
+Se trata de código de la <strong>librería de tiempo de ejecución</strong> que inicializa el entorno que espera el programa en C, obtiene del sistema operativo los argumentos de la línea de comandos e invoca a la función <code>main()</code> de nuestro programa con ellos.
+Otras funcionalidades que típicamente implementa la <strong>librería de tiempo de ejecución</strong> son operaciones básicas de gestión de la memoria, manejo de excepciones, comprobaciones de límites en los _arrays_ o comprobaciones dinámicas de tipos —por ejemplo, para implementar el operador <code>dynamic_cast</code> en C&#43;&#43;—.</p>
+</div>
+<div class="paragraph">
+<p>Finalmente, no debemos confundir la <strong>librería de tiempo de ejecución</strong> con la <strong>librería estándar</strong>.
+En lenguajes como C o C&#43;&#43; se distingue claramente entre lo que es el lenguaje de programación y la librería estándar que suele acompañarlos.
+En ese sentido, la <strong>librería de tiempo de ejecución</strong> implementa lo mínimo requerido para la ejecución de programa en esos lenguajes.
+Mientras que si además queremos usar funcionalidades de su <strong>librería estándar</strong>, también tendremos que enlazarla, generalmente de forma dinámica.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_asignación_contigua_de_memoria"><a class="anchor" href="#_asignación_contigua_de_memoria"></a>15.5. Asignación contigua de memoria</h3>
+<div class="paragraph">
+<p>Como vimos en el <a href="operación_del_sistema_operativo.html#_protección_de_la_memoria">Apartado 7.3</a>, la memoria principal debe acomodar tanto el sistema operativo como a los diferentes procesos de los usuarios.</p>
+</div>
+<div class="paragraph">
+<p>Normalmente queremos tener varios procesos en la memoria al mismo tiempo.
+Por tanto, necesitamos considerar de qué formas debemos asignar la memoria disponible a los procesos para que puedan ser cargados en ella.
+En este apartado estudiaremos la técnica más simple, denominada <strong>asignación contigua de memoria</strong>.
+Mientras que en capítulos posteriores vemos técnicas más avanzadas de hacer esta asignación.</p>
+</div>
+<div class="paragraph">
+<p>En la <strong>asignación contigua de memoria</strong> a cada proceso se le asigna una única sección de memoria contigua.
+Esto se puede hacer mediante <strong>particionado fijo</strong> o <strong>particionado dinámico</strong></p>
+</div>
+<div class="sect3">
+<h4 id="_particionado_fijo"><a class="anchor" href="#_particionado_fijo"></a>15.5.1. Particionado fijo</h4>
+<div class="paragraph">
+<p>
+El <strong>particionado fijo</strong> la memoria se divide en varias secciones de tamaño fijo, cada una de las cuales contiene un proceso.
+Cuando un proceso termina, se carga uno nuevo de la cola de entrada en la partición libre.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/C15-memoria_principal/particionado_fijo.svg" alt="particionado fijo">
+</div>
+<div class="title">Figura 15.3. Particionado fijo de la memoria en el IBM OS/360.</div>
+</div>
+<div class="paragraph">
+<p>Este método fue utilizado originalmente por el <a href="https://en.wikipedia.org/wiki/OS/360_and_successors">IBM OS/360</a>, pero ya no se utiliza</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_particionado_dinámico"><a class="anchor" href="#_particionado_dinámico"></a>15.5.2. Particionado dinámico</h4>
+<div class="paragraph">
+<p>
+El <strong>particionado dinámico</strong> es una generalización del anterior:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El sistema operativo mantiene una tabla indicando qué partes de la memoria están libres y cuáles ocupadas.
+Inicialmente toda la memoria está libre por lo que es considerada como un gran hueco de memoria disponible.</p>
+</li>
+<li>
+<p>Cuando un proceso llega y necesita memoria, se le busca un hueco lo suficientemente grande para alojarlo.
+Si se encuentra, solo se le asigna el espacio necesario, que es marcado como ocupado.
+El resto sigue siendo un hueco libre, aunque de menor tamaño.</p>
+</li>
+<li>
+<p>Si un proceso termina y se crean dos huecos adyacentes, se funden en uno solo.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>El <strong>particionado dinámico</strong> se utilizaba fundamentalmente en <strong>sistemas de procesamiento por lotes</strong> y <strong>multiprogramados</strong>.
+En este último caso, el sistema operativo tenía una <strong>cola de entrada</strong> ordenada por el <strong>planificador de largo plazo</strong> y la recorría asignando memoria a los procesos, hasta que no quedara ningún hueco libre con tamaño suficiente para alojar al siguiente en la cola.
+Entonces el sistema operativo podía esperar hasta que algunos procesos terminarán y hubiera un hueco lo suficientemente grande en la memoria, para el siguiente proceso, o podía seguir buscando en la cola de entrada procesos de menores requerimientos, aunque para ello tuviera que saltarse algunos procesos.</p>
+</div>
+<div class="paragraph">
+<p>En general, en un momento dado el sistema operativo, debe satisfacer una petición de tamaño <em>N</em> con una lista de huecos libres de tamaño variable.
+Esto no es más que un caso particular del problema clásico de la asignación dinámica de almacenamiento, para el cual hay diversas soluciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En el <strong>primer ajuste</strong> se escoge el primer hueco lo suficientemente grande como para satisfacer la petición.
+La búsqueda puede ser desde el principio de la lista o desde donde ha terminado la búsqueda anterior.</p>
+</li>
+<li>
+<p>En el <strong>mejor ajuste</strong> se escoge el hueco más pequeño que sea lo suficientemente grande para satisfacer la petición.
+Indudablemente esto obliga a recorrer la lista de huecos completa o a tenerla ordenada por tamaño.</p>
+</li>
+<li>
+<p>En el <strong>peor ajuste</strong> se escoge el hueco más grande.
+Igualmente obliga a buscar en toda la lista de huecos o a tenerla ordenada por tamaño.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para evaluar qué estrategia es la mejor, se han realizado algunas simulaciones con los siguientes resultados:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El <strong>primer y el mejor ajuste</strong> son mejores que el peor ajuste en términos de menor tiempo y mayor aprovechamiento del espacio de almacenamiento.</p>
+</li>
+<li>
+<p>Si comparamos el <strong>primer y el mejor ajuste</strong> ninguno de ellos destaca sobre el otro en lo que a mejor aprovechamiento del espacio se refiere.</p>
+</li>
+<li>
+<p>El <strong>primer ajuste</strong> es normalmente más rápido que el <strong>mejor ajuste</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fragmentación"><a class="anchor" href="#_fragmentación"></a>15.6. Fragmentación</h3>
+<div class="paragraph">
+<p>
+Las estrategias de asignación de espacio de almacenamiento generalmente sufren de problemas de <strong>fragmentación</strong>.
+Vamos a comentar brevemente cómo afecta la <strong>fragmentación</strong> a la <strong>asignación contigua de memoria</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_fragmentación_externa"><a class="anchor" href="#_fragmentación_externa"></a>15.6.1. Fragmentación externa</h4>
+<div class="paragraph">
+<p>
+La <strong>fragmentación externa</strong> ocurre cuando hay suficiente espacio libre para satisfacer una petición, pero el espacio no es contiguo.
+Es decir, el espacio de almacenamiento está fraccionado en un gran número de huecos de pequeño tamaño:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Afecta tanto a la estrategia del <strong>primer</strong> como del <strong>mejor ajuste</strong>. Siendo el primero mejor en algunos sistemas y el segundo mejor en otros.</p>
+</li>
+<li>
+<p>Algunos análisis estadísticos realizados con el <strong>primer ajuste</strong> revelan que incluso con algunas optimizaciones, con <em>N</em> bloques asignados se pierden 0.5<em>N</em> por <strong>fragmentación externa</strong> —es decir, un tercio de toda la memoria no es utilizable—.
+A esto se lo conoce como la regla del 50%.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Existen diversas soluciones a este problema:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizar técnicas de <strong>compactación</strong>, lo que consiste en mover los procesos para que toda la memoria libre quede en un único hueco de gran tamaño.
+Sin embargo, esto puede ser muy caro en términos de tiempo y solo puede ser realizado cuando la <strong>asignación de direcciones absolutas se realiza en tiempo de ejecución</strong>.</p>
+</li>
+<li>
+<p>La otra solución es permitir que el <strong>espacio de direcciones físico</strong> de un proceso no sea contiguo.
+Es decir, que la memoria puede ser asignada a un proceso independientemente de donde esté disponible.
+Existen dos técnicas complementarias que utilizan esta solución: la paginación
+(véase el <a href="paginación.html">Capítulo 16</a>) y la <a href="https://es.wikipedia.org/wiki/Segmentaci%C3%B3n_de_memoria">segmentación</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fragmentación_interna"><a class="anchor" href="#_fragmentación_interna"></a>15.6.2. Fragmentación interna</h4>
+<div class="paragraph">
+<p>
+La <strong>fragmentación interna</strong> se origina por la diferencia entre el espacio solicitado y el espacio finalmente asignado.</p>
+</div>
+<div class="paragraph">
+<p>Supongamos un hueco de espacio libre de 12987 bytes que se va a usar para satisfacer una petición de 12985 bytes.
+Esto genera un hueco de 2 bytes, pero la cantidad de información que debemos guardar en la lista de huecos para saber que dicho hueco está ahí, es mucho mayor que el tamaño del hueco en sí mismo.
+Por lo tanto, no nos interesa tener huecos de tamaño arbitrario.</p>
+</div>
+<div class="paragraph">
+<p>La solución más común es dividir la memoria física en unidades de tamaño fijo y asignarla en múltiplos del tamaño de dichos bloques.
+Esto hace que, en general, se asigne más memoria de la que realmente se ha solicitado y, por tanto, de la que realmente los procesos van a utilizar.
+A esto se lo denomina <strong>fragmentación interna</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_intercambio"><a class="anchor" href="#_intercambio"></a>15.7. Intercambio</h3>
+<div class="paragraph">
+<p>
+
+Un proceso debe estar en la memoria para ser ejecutado, pero en algunos sistemas operativos un proceso puede ser sacado de la memoria y copiado a un almacenamiento de respaldo de forma temporal —generalmente un dispositivo de almacenamiento secundario, como un disco— y en algún momento volver a ser traído a la memoria para continuar su ejecución.
+Al procedimiento descrito se lo denomina <strong>intercambio</strong> o <strong><em>swapping</em></strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_implementación"><a class="anchor" href="#_implementación"></a>15.7.1. Implementación</h4>
+<div class="paragraph">
+<p>El <strong>intercambio</strong> se puede implementar de la siguiente manera:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La <strong>cola de preparados</strong> contiene todos los procesos que esperan para ser ejecutados en la CPU.</p>
+</li>
+<li>
+<p>Cuando el <strong>planificador de la CPU</strong> decide ejecutar un proceso, llama al <strong>asignador</strong>.</p>
+</li>
+<li>
+<p>El <strong>asignador</strong> comprueba si el siguiente proceso que debe ser ejecutado está en la memoria.
+Si no lo está y no hay memoria libre, el <strong>asignador</strong> hace que el <strong>gestor de la memoria</strong> intercambie el proceso con alguno de los que sí lo está.</p>
+</li>
+<li>
+<p>Finalmente, el <strong>asignador</strong> ejecuta el resto del cambio de contexto (véase el <a href="procesos.html#_cambio_de_contexto">Apartado 9.6</a>) para entregar la CPU al proceso seleccionado.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, si a un sistema con <strong>planificación de CPU</strong> basado en prioridad llega a la <strong>cola de preparados</strong> un proceso de alta prioridad, el <strong>gestor de memoria</strong> intercambia algunos procesos de baja prioridad con el de alta prioridad y ejecuta este último.
+Cuando el proceso de alta prioridad termina, los de baja prioridad pueden ser intercambiados para continuar su ejecución.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_limitaciones"><a class="anchor" href="#_limitaciones"></a>15.7.2. Limitaciones</h4>
+<div class="paragraph">
+<p>Sin embargo el <strong>intercambio</strong> presenta algunas limitaciones importantes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si un sistema <strong>reubica las direcciones en tiempo de compilación o carga</strong>, el proceso solo puede ser intercambiado en la misma región de la memoria.
+Sin embargo, si se utiliza <strong>reubicación en tiempo de ejecución</strong>, entonces el proceso puede ser intercambiado en cualquier región de la memoria, puesto que las <strong>direcciones físicas</strong> son calculadas durante la ejecución.</p>
+</li>
+<li>
+<p>El <strong>tiempo de cambio de contexto</strong> en un sistema con <strong>intercambio</strong> puede ser mucho mayor, puesto que incluye el tiempo que se tarda en hacer el intercambio.
+La mayor parte del tiempo de intercambio es el tiempo de transferencia con el disco, que puede ser de varios cientos de milisegundos, incluso utilizando los discos más rápidos.
+Esto afecta al <strong>tiempo de cuanto</strong> que siempre debe ser mucho mayor que el tiempo de <strong>cambio de contexto</strong>.</p>
+</li>
+<li>
+<p>Un proceso podría disponer de un espacio en memoria de 120 MiB pero estar utilizando solo 2 MiB.
+Por tanto, es interesante que el sistema operativo conozca con exactitud la memoria utilizada por el proceso —y no la que podría estar utilizando como máximo— para reducir el tiempo de transferencia de los datos al disco durante el intercambio.</p>
+<div class="paragraph">
+<p>Para eso, el sistema operativo proporciona llamadas al sistema con las que un proceso con requerimientos dinámicos de memoria puede informar del cambio en su necesidad de memoria.
+Por ejemplo, los sistemas operativos modernos proporcionan llamadas al sistema para reservar y liberar memoria —como <a href="https://en.cppreference.com/w/c/memory/malloc">malloc()</a> y <a href="https://en.cppreference.com/w/c/memory/free">free()</a> en los sistemas POSIX— gracias a las que el sistema conoce las necesidades reales de los procesos.</p>
+</div>
+</li>
+<li>
+<p>El <strong>intercambio</strong> presenta dificultades cuando el proceso que va a ser sacado de la memoria está esperando por una operación de E/S que accede a la memoria del proceso para leer o escribir datos en ella.
+Las soluciones podrían ser:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No intercambiar procesos con operaciones de E/S síncronas o asíncronas pendientes.</p>
+</li>
+<li>
+<p>Utilizar búferes del sistema operativo en las operaciones de E/S.
+Por ejemplo, en una operación <strong>write</strong> a un archivo, el sistema operativo copiaría primero los datos a un búfer interno y luego ordenaría la escritura de esos datos.
+Así el proceso podría ser intercambiado sin problemas.
+Las transferencias entre los búferes del sistema y la memoria de los procesos serían realizadas, por el sistema operativo, solo cuando los procesos residen en la memoria.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Debido fundamentalmente a que el tiempo de intercambio es muy alto, no se utiliza el intercambio estándar en los sistemas operativos actuales.
+Lo que sí podemos encontrar en muchos sistemas son versiones modificadas de este mecanismo.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, en muchas versiones antiguas de UNIX y en los sistemas modernos, el intercambio permanece desactivado y solo se activa cuando la cantidad de memoria usada supera cierto límite.
+Además, en los sistemas actuales no se intercambian procesos completos si no las porciones menos usadas de cada proceso, como veremos en el <a href="memoria_virtual.html">Capítulo 17</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ Subir: <a href="gestión_de_la_memoria.html">Gestión de la memoria</a> | ⌂ Inicio: <a href="main.html">Sistemas Operativos</a> | Siguiente: <a href="paginación.html">Paginación</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+    <div id="footer-text">
+        Esta obra está sujeta a la licencia
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.es">Creative Commons Atribución 4.0 Internacional</a>,
+        excepto donde se indique lo contrario.
+    </div>
+</div>
+</body>
+</html>
