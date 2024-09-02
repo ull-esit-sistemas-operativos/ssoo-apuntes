@@ -1,6 +1,7 @@
 // Versiones
 :website: link:https://ull-esit-sistemas-operativos.github.io/ssoo-apuntes/{release}[sitio web]
 :github_release: link:https://github.com/ull-esit-sistemas-operativos/ssoo-apuntes/releases/tag/{release}[ull-esit-sistemas-operativos/ssoo-apuntes]
+:gpt: link:https://chatgpt.com/g/g-L0TojNa90-la-profesora[GPT]
 //
 // C STD
 :clang_stdatomic: link:https://en.cppreference.com/w/c/atomic[<stdatomic.h>]

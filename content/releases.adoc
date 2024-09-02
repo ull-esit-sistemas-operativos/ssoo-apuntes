@@ -4,4 +4,6 @@
 Este documento está disponible actualmente en ediciones en formatos HTML y PDF.
 La primera se puede visitar en el {website} del proyecto, mientras que la segunda se puede descargar desde icon:github[] {github_release}.
 
+También hay disponible un icon:comments-o[] {gpt} especializado en sistemas operativos, al que se puede consultar sobre los contenidos de la última versión de este documento.
+
 Todas las ediciones de esta obra están sujetas a la licencia icon:creative-commons[] http://creativecommons.org/licenses/by/4.0/deed.es[Creative Commons Atribución 4.0 Internacional], excepto aquellos contenidos donde se indique lo contrario.
