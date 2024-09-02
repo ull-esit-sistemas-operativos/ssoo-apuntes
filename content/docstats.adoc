@@ -1,13 +1,13 @@
-:document-characters: 574551
-:document-words: 113764
-:document-paragraphs: 1748
-:document-reading-time: 9 horas y 29 minutos
+:document-characters: 582061
+:document-words: 115188
+:document-paragraphs: 1756
+:document-reading-time: 9 horas y 36 minutos
 :s01-characters: 7463
 :s01-words: 1363
 :s01-paragraphs: 25
 :s01-reading-time: 7 minutos
-:s02-characters: 24654
-:s02-words: 4618
+:s02-characters: 24835
+:s02-words: 4653
 :s02-paragraphs: 76
 :s02-reading-time: 23 minutos
 :s03-characters: 23286
@@ -26,37 +26,37 @@
 :s06-words: 3602
 :s06-paragraphs: 56
 :s06-reading-time: 18 minutos
-:s07-characters: 18817
-:s07-words: 3703
+:s07-characters: 19197
+:s07-words: 3777
 :s07-paragraphs: 56
 :s07-reading-time: 19 minutos
 :s08-characters: 11075
 :s08-words: 2101
-:s08-paragraphs: 39
+:s08-paragraphs: 36
 :s08-reading-time: 11 minutos
-:s09-characters: 39629
-:s09-words: 7932
+:s09-characters: 39697
+:s09-words: 7945
 :s09-paragraphs: 96
 :s09-reading-time: 40 minutos
-:s10-characters: 34617
-:s10-words: 6886
+:s10-characters: 34666
+:s10-words: 6894
 :s10-paragraphs: 91
 :s10-reading-time: 34 minutos
 :s11-characters: 5367
 :s11-words: 1040
 :s11-paragraphs: 17
 :s11-reading-time: 5 minutos
-:s12-characters: 48152
-:s12-words: 9738
-:s12-paragraphs: 137
-:s12-reading-time: 49 minutos
-:s13-characters: 35437
-:s13-words: 6836
+:s12-characters: 51081
+:s12-words: 10304
+:s12-paragraphs: 138
+:s12-reading-time: 52 minutos
+:s13-characters: 35435
+:s13-words: 6834
 :s13-paragraphs: 96
 :s13-reading-time: 34 minutos
 :s14-characters: 56418
 :s14-words: 11580
-:s14-paragraphs: 210
+:s14-paragraphs: 209
 :s14-reading-time: 58 minutos
 :s15-characters: 32208
 :s15-words: 6307
@@ -66,10 +66,10 @@
 :s16-words: 5164
 :s16-paragraphs: 81
 :s16-reading-time: 26 minutos
-:s17-characters: 64809
-:s17-words: 13522
-:s17-paragraphs: 189
-:s17-reading-time: 1 hora y 8 minutos
+:s17-characters: 68583
+:s17-words: 14228
+:s17-paragraphs: 199
+:s17-reading-time: 1 hora y 11 minutos
 :s18-characters: 10511
 :s18-words: 2019
 :s18-paragraphs: 25
