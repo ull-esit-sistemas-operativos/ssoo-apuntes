@@ -1230,10 +1230,11 @@ Esto es interesante porque las páginas no modificadas no tienen que ser escrita
 
 ** El cargador puede situar las funciones en la memoria de tal forma que en lo posible no crucen los bordes de las páginas.
 
-=== Interbloqueo de E/S
+=== Interbloqueo de E/S y bloqueo de páginas
 
-Supongamos que un proceso solicita una operación de E/S sobre el contenido de alguna de las páginas de su espacio de direcciones y que, antes de que la operación sea realizada, la página es reemplazada mientras el proceso está esperando.
-En ese caso, la operación de E/S se podría acabar realizando sobre una página que pertenece a un proceso diferente.
+Supongamos que un proceso solicita una operación de E/S sobre el contenido del marco de alguna de las páginas de su espacio de direcciones y que, antes de que la operación sea realizada, la página es reemplazada mientras el proceso está esperando.
+En ese caso, la operación de E/S se podría acabar realizando sobre una página que pertenece a un proceso diferente, ya que la operación de E/S se realiza sobre el marco en la memoria física.
+
 Para evitarlo existen diversas soluciones:
 
 * Se puede utilizar la memoria del núcleo como búfer en las operaciones de E/S.
@@ -1257,6 +1258,58 @@ Para implementarlo, se puede poner el *bit de bloqueo* a 1 cuando la página se 
 +
 Para evitar riesgos, el sistema suele considerar estas solicitudes como «consejos de bloqueo».
 De esta manera el sistema es libre de descartar dichos consejos si el conjunto de marcos libres llega a ser demasiado pequeño o si un proceso pide bloquear demasiadas páginas.
+
+=== Espacio de intercambio
+
+La memoria virtual es una técnica que surgió para permitir ejecutar programas que no caben en la memoria física, cuando esta era un recurso muy limitado.
+Actualmente, con la cantidad de memoria física disponible en los sistemas modernos, surge la duda de si sigue siendo necesario disponer de espacio de intercambio.
+
+Para responder a esa pregunta, hay que tener en cuenta que las páginas de memoria pueden clasificarse en alguna de las siguientes categorías:
+
+* *Páginas de código y datos del núcleo* que siempre están en memoria, por lo que se bloquean para evitar que sean reemplazadas.
+
+* *Páginas de para el caché de datos de E/S* con el objeto de acelerar futuros accesos a los mismos.
+Estas páginas puede ser reemplazadas y su contenido se puede descartar sin problemas.
+
+* *Código de programas*, que son páginas de solo lectura, por lo que su contenido es siempre el mismo que el del archivo del ejecutable que contiene al programa.
+
+* *Páginas que mapean archivos en la memoria*, cuyo contenido es el mismo que el de alguna región de un archivo en disco que les sirve de respaldo.
+Cuando estas páginas son de solo lectura, su contenido puede ser descartado sin problema.
+Mientras que si permiten acceso de escritura, las modificaciones son escritas por el sistema operativo en el archivo mapeado.
+
+* *Páginas anónimas*, son aquellas que no corresponden con ningún archivo en disco.
+Eso incluye la pila, el montón o la memoria reservada dinámicamente con `malloc()`, `new` o `mmap()`.
++
+Como el contenido de estas páginas no está respaldado en disco, si se reemplazan, el sistema operativo debe guardar su contenido en el espacio de intercambio.
+
+Tener suficiente espacio de intercambio asegura la igualdad de trato entre las páginas de memoria, independientemente del tipo de página que sean.
+Porque si un sistema no dispone de espacio de intercambio, no puede reemplazar *páginas anónimas*, sin importar si su contenido es accedido con poca frecuencia,
+lo que puede llevar a reemplazar páginas más importantes para el rendimiento del sistema.
+
+Veamos las situaciones más típicas en cuanto la demanda de memoria y como afecta al sistema tener o no espacio de intercambio:
+
+==== Baja demanda de memoria
+
+* *Con espacio de intercambio*: El sistema puede optar intercambiar memoria anónima raramente utilizada, por ejemplo, para aumentar la cantidad de memoria caché y otras optimizaciones.
+
+* *Sin espacio de intercambio*: No se puede intercambiar la memoria anónima, ya que está bloqueada en la memoria.
+Aunque esto puede no presentar un problema de inmediato, en algunos casos puede implicar una caída en el rendimiento debido a que las páginas anónimas usadas con menor frecuencia no se puede utilizar para cosas más importantes.
+
+==== Demanda moderada de memoria
+
+* *Con espacio de intercambio*: En este caso, todos los tipos de memoria tienen la misma posibilidad de ser reemplazadas.
+Esto significa que hay mayores posibilidades de reemplazar una página que no vaya a ser reclamada rápidamente de nuevo.
+
+* *Sin espacio de intercambio*: Como las páginas anónimas están bloqueadas en la memoria, el reemplazo tiene que ocurrir en otro tipo de memoria, aunque contenga peores candidatos para el reemplazo.
+Por tanto, el sistema tenderá a reducir las páginas utilizadas como caché de E/S, perjudicando el rendimiento del acceso al almacenamiento, y hay más posibilidades de reemplazar una página que se necesitará pronto, aumentando la probabilidad de acabar *hiperpaginando*.
+
+==== Alta demanda de memoria
+
+* *Con espacio de intercambio*: El sistema es más resiliente a picos temporales de demanda de memoria, ya que tiene libertad para escoger las mejores páginas para intercambio.
+En casos de agotamiento severo de la memoria, tiende a prologarse el tiempo desde que comienza la *hiperpaginación* hasta que el sistema deja de ser usable. 
+
+* *Sin espacio de intercambio*: El sistema cae en la *hiperpaginación* más rápidamente, ya que las páginas anónimas están bloqueadas en la memoria y no pueden ser reclamadas.
+En los sistemas Linux, el **OOM Killer** se activa más rápidamente para recuperar memoria por la vía de terminar procesos en ejecución.
 
 == Interfaz de gestión de la memoria
 
