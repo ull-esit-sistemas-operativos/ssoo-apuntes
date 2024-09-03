@@ -316,7 +316,7 @@ pre.rouge .gs {
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Tiempo de lectura:</strong> 1 hora y 11 minutos</p>
+<p><strong>Tiempo de lectura:</strong> 1 hora y 15 minutos</p>
 </div>
 </td>
 </tr>
@@ -3446,11 +3446,13 @@ Esto es interesante porque las páginas no modificadas no tienen que ser escrita
 </div>
 </div>
 <div class="sect3">
-<h4 id="_interbloqueo_de_es"><a class="anchor" href="#_interbloqueo_de_es"></a>17.7.6. Interbloqueo de E/S</h4>
+<h4 id="_interbloqueo_de_es_y_bloqueo_de_páginas"><a class="anchor" href="#_interbloqueo_de_es_y_bloqueo_de_páginas"></a>17.7.6. Interbloqueo de E/S y bloqueo de páginas</h4>
 <div class="paragraph">
-<p>Supongamos que un proceso solicita una operación de E/S sobre el contenido de alguna de las páginas de su espacio de direcciones y que, antes de que la operación sea realizada, la página es reemplazada mientras el proceso está esperando.
-En ese caso, la operación de E/S se podría acabar realizando sobre una página que pertenece a un proceso diferente.
-Para evitarlo existen diversas soluciones:</p>
+<p>Supongamos que un proceso solicita una operación de E/S sobre el contenido del marco de alguna de las páginas de su espacio de direcciones y que, antes de que la operación sea realizada, la página es reemplazada mientras el proceso está esperando.
+En ese caso, la operación de E/S se podría acabar realizando sobre una página que pertenece a un proceso diferente, ya que la operación de E/S se realiza sobre el marco en la memoria física.</p>
+</div>
+<div class="paragraph">
+<p>Para evitarlo existen diversas soluciones:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3491,6 +3493,94 @@ De esta manera el sistema es libre de descartar dichos consejos si el conjunto d
 </div>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_espacio_de_intercambio"><a class="anchor" href="#_espacio_de_intercambio"></a>17.7.7. Espacio de intercambio</h4>
+<div class="paragraph">
+<p>La memoria virtual es una técnica que surgió para permitir ejecutar programas que no caben en la memoria física, cuando esta era un recurso muy limitado.
+Actualmente, con la cantidad de memoria física disponible en los sistemas modernos, surge la duda de si sigue siendo necesario disponer de espacio de intercambio.</p>
+</div>
+<div class="paragraph">
+<p>Para responder a esa pregunta, hay que tener en cuenta que las páginas de memoria pueden clasificarse en alguna de las siguientes categorías:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Páginas de código y datos del núcleo</strong> que siempre están en memoria, por lo que se bloquean para evitar que sean reemplazadas.</p>
+</li>
+<li>
+<p><strong>Páginas de para el caché de datos de E/S</strong> con el objeto de acelerar futuros accesos a los mismos.
+Estas páginas puede ser reemplazadas y su contenido se puede descartar sin problemas.</p>
+</li>
+<li>
+<p><strong>Código de programas</strong>, que son páginas de solo lectura, por lo que su contenido es siempre el mismo que el del archivo del ejecutable que contiene al programa.</p>
+</li>
+<li>
+<p><strong>Páginas que mapean archivos en la memoria</strong>, cuyo contenido es el mismo que el de alguna región de un archivo en disco que les sirve de respaldo.
+Cuando estas páginas son de solo lectura, su contenido puede ser descartado sin problema.
+Mientras que si permiten acceso de escritura, las modificaciones son escritas por el sistema operativo en el archivo mapeado.</p>
+</li>
+<li>
+<p><strong>Páginas anónimas</strong>, son aquellas que no corresponden con ningún archivo en disco.
+Eso incluye la pila, el montón o la memoria reservada dinámicamente con <code>malloc()</code>, <code>new</code> o <code>mmap()</code>.</p>
+<div class="paragraph">
+<p>Como el contenido de estas páginas no está respaldado en disco, si se reemplazan, el sistema operativo debe guardar su contenido en el espacio de intercambio.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Tener suficiente espacio de intercambio asegura la igualdad de trato entre las páginas de memoria, independientemente del tipo de página que sean.
+Porque si un sistema no dispone de espacio de intercambio, no puede reemplazar <strong>páginas anónimas</strong>, sin importar si su contenido es accedido con poca frecuencia,
+lo que puede llevar a reemplazar páginas más importantes para el rendimiento del sistema.</p>
+</div>
+<div class="paragraph">
+<p>Veamos las situaciones más típicas en cuanto la demanda de memoria y como afecta al sistema tener o no espacio de intercambio:</p>
+</div>
+<div class="sect4">
+<h5 id="_baja_demanda_de_memoria"><a class="anchor" href="#_baja_demanda_de_memoria"></a>Baja demanda de memoria</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Con espacio de intercambio</strong>: El sistema puede optar intercambiar memoria anónima raramente utilizada, por ejemplo, para aumentar la cantidad de memoria caché y otras optimizaciones.</p>
+</li>
+<li>
+<p><strong>Sin espacio de intercambio</strong>: No se puede intercambiar la memoria anónima, ya que está bloqueada en la memoria.
+Aunque esto puede no presentar un problema de inmediato, en algunos casos puede implicar una caída en el rendimiento debido a que las páginas anónimas usadas con menor frecuencia no se puede utilizar para cosas más importantes.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_demanda_moderada_de_memoria"><a class="anchor" href="#_demanda_moderada_de_memoria"></a>Demanda moderada de memoria</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Con espacio de intercambio</strong>: En este caso, todos los tipos de memoria tienen la misma posibilidad de ser reemplazadas.
+Esto significa que hay mayores posibilidades de reemplazar una página que no vaya a ser reclamada rápidamente de nuevo.</p>
+</li>
+<li>
+<p><strong>Sin espacio de intercambio</strong>: Como las páginas anónimas están bloqueadas en la memoria, el reemplazo tiene que ocurrir en otro tipo de memoria, aunque contenga peores candidatos para el reemplazo.
+Por tanto, el sistema tenderá a reducir las páginas utilizadas como caché de E/S, perjudicando el rendimiento del acceso al almacenamiento, y hay más posibilidades de reemplazar una página que se necesitará pronto, aumentando la probabilidad de acabar <strong>hiperpaginando</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_alta_demanda_de_memoria"><a class="anchor" href="#_alta_demanda_de_memoria"></a>Alta demanda de memoria</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Con espacio de intercambio</strong>: El sistema es más resiliente a picos temporales de demanda de memoria, ya que tiene libertad para escoger las mejores páginas para intercambio.
+En casos de agotamiento severo de la memoria, tiende a prologarse el tiempo desde que comienza la <strong>hiperpaginación</strong> hasta que el sistema deja de ser usable.</p>
+</li>
+<li>
+<p><strong>Sin espacio de intercambio</strong>: El sistema cae en la <strong>hiperpaginación</strong> más rápidamente, ya que las páginas anónimas están bloqueadas en la memoria y no pueden ser reclamadas.
+En los sistemas Linux, el <strong>OOM Killer</strong> se activa más rápidamente para recuperar memoria por la vía de terminar procesos en ejecución.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
