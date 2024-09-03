@@ -345,6 +345,8 @@ No todos los archivos tienen números mágicos, por lo que se permite hacer suge
 Sin embargo, en estos sistemas estas extensiones no son obligatorias ni el sistema depende de ellas.
 Su objetivo, fundamentalmente, es ayudar a los usuarios a determinar el tipo de contenido de un archivo, por lo que pueden ser utilizadas o ignoradas por cada aplicación concreta, en función de las preferencias de sus desarrolladores.
 
+NOTE: En los sistemas estilo UNIX es muy útil el comando `file` que permite determinar el tipo de un archivo a partir de su contenido, utilizando un conjunto de reglas y una base de datos de *números mágicos*.
+
 == Estructura de directorios
 
 Algunos sistemas de archivos pueden almacenar millones de archivos en terabytes de disco.
