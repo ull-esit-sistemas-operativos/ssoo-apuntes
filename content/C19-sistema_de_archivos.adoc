@@ -354,6 +354,9 @@ Para gestionar todos esos datos necesitamos organizarlos de alguna manera, lo qu
 
 Un *((directorio))* puede considerarse una tabla de símbolos que traduce los nombre de los archivos en los identificadores que permiten recuperar sus correspondientes entradas en la *tabla de contenidos del volumen*, donde se almacenan los *FCB*.
 
+En los sistemas POSIX, los directorios se crean llamando a {linux_mkdir} y se eliminan con {linux_rmdir}.
+Mientras que en Microsoft Windows se crean con {win32_createdirectory} y se eliminan con {win32_removedirectory}.
+
 A continuación vamos a estudiar los diversos esquemas para definir la estructura lógica del sistema de directorios.
 
 === Directorios de un nivel
@@ -598,7 +601,7 @@ Para solucionar algunos de los problemas de las *ACL* muchos sistemas utilizan *
 Para condensar la longitud de la lista de control de acceso, generalmente los sistemas clasifican a los usuarios en tres grupos: *propietario*, *grupo* y *otros*.
 Así solo es necesario un campo para cada clase de usuario, siendo cada campo una colección de bits, donde cada uno permite o deniega el tipo de acceso asociado al mismo.
 
-Por ejemplo, en los sistemas POSIX se definen 3 campos —*propietario*, *grupo* y *otros*) de 3 bits cada uno: `rwx`, donde `r` controla el acceso de lectura, `w` controla el acceso de escritura y `x` controla la ejecución.
+Por ejemplo, en los sistemas POSIX se definen 3 campos —*propietario*, *grupo* y *otros*— de 3 bits cada uno: `rwx`, donde `r` controla el acceso de lectura, `w` controla el acceso de escritura y `x` controla la ejecución.
 
 Las ACL condensadas son más sencillas de construir.
 Al mismo tiempo, por tener una longitud fija, es mucho más simple gestionar el espacio para el *FCB* donde se almacenan.
@@ -632,7 +635,7 @@ Un proceso puede cambiar su *_umask_* mediante la función {linux_umask} y los u
 
 Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando {linux_access}.
 Y pueden cambiar su propietario y el grupo llamando a la función {linux_chown}.
-Si necesitan leer los permisos, el propietario y el resto de *metadatos* del archivo, pueden usar {linux_stat} o {linux_fstat}.
+Si necesitan leer los permisos, el propietario y el resto de *metadatos* del archivo, pueden usar {linux_stat} o {linux_fstat}, como se ilustra en el programa de ejemplo {file_attribs_cpp}.
 ****
 
 ==== Combinar ambos tipos de listas de control de acceso
