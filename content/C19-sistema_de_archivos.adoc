@@ -206,6 +206,42 @@ Los atributos de los archivos se almacenan en las estructuras de *metadatos*.
 Normalmente el nombre se almacena en la estructura de directorios, de tal manera que una entrada de directorio está compuesta del nombre de un archivo y del identificador de su *FCB*.
 Dicho identificador permite localizar el *FCB* en la *tabla de contenidos del volumen*, que contiene el resto de los atributos del archivo.
 
+En {file_attribs_cpp} se muestra como leer algunos atributos de un archivo utilizando la función {linux_stat} de los sistemas POSIX.
+Esta función recibe la ruta de un archivo o directorio y devuelve una estructura de tipo `stat` con sus atributos.
+
+[source,c]
+----
+struct stat
+{
+    dev_t     st_dev;         <1>
+    ino_t     st_ino;         <2>
+    mode_t    st_mode;        <3>
+    nlink_t   st_nlink;       <4>
+    uid_t     st_uid;         <5>
+    gid_t     st_gid;         <6>
+    dev_t     st_rdev;        <7>
+    off_t     st_size;        <8>
+    blksize_t st_blksize;     <9>
+    blkcnt_t  st_blocks;      <10>
+    struct timespec  st_atim; <11>
+    struct timespec  st_mtim; <12>
+    struct timespec  st_ctim; <13>
+};
+----
+<1> Identificador del dispositivo donde se almacena el archivo.
+<2> Número de inodo del archivo.
+<3> Permisos y tipo de archivo.
+<4> Número de enlaces duros al archivo.
+<5> Identificador del usuario propietario del archivo.
+<6> Identificador del grupo propietario del archivo.
+<7> Identificador del dispositivo si el archivo corresponde a un dispositivo.
+<8> Tamaño del archivo en bytes.
+<9> Tamaño de bloque recomendado para hacer operaciones de E/S.
+<10> Número de bloques de 512 bytes asignados al archivo en el almacenamiento.
+<11> Fecha y hora del último acceso al archivo.
+<12> Fecha y hora de la última modificación del archivo.
+<13> Fecha y hora del último cambio de metadatos del archivo.
+
 === Operaciones con los archivos
 
 Un archivo es un tipo abstracto de datos sobre el que pueden realizarse diversas operaciones.
@@ -302,11 +338,78 @@ En concreto la operación *open*:
 . Retorna al proceso devolviendo un identificador —en forma de puntero o de índice— a la nueva entrada en la tabla de archivos abiertos.
 
 El nombre con el que se designa a esas entradas en la tabla de archivos abiertos varía de unos sistemas operativos a otros.
-En los sistemas POSIX se utiliza el término *((descriptor de archivo))* —o _file descriptor_— mientras que en los sistemas Microsoft Windows se prefiere el término *manejador de archivo*(((manejador, archivo))) —o _file handler_—.
+En los sistemas POSIX se utiliza el término *((descriptor de archivo))* —o *_file descriptor_*— mientras que en los sistemas Microsoft Windows se prefiere el término *manejador de archivo*(((manejador, archivo))) —o *_file handler_*—.
+Por ejemplo, en el <<ejemplo-archivos>> se ilustra cómo se usa la función {linux_open} para abrir un archivo, obteniendo un *descriptor de archivo* de tipo `int` que luego se usa para leer su contenido y copiarlo en un archivo diferente.
 
 Después de utilizar la llamada al sistema *open*, cuando se desea solicitar una operación sobre un archivo, solo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.
+Por ejemplo, en el <<ejemplo-archivos>> el *descriptor de archivo* devuelto por {linux_open} se utiliza en las llamadas a {linux_read} y {linux_write}, para leer y escribir el contenido del archivo.
 
-En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:
+[[ejemplo-archivos]]
+.Abrir, crear, leer y escribir archivos en sistemas POSIX
+====
+En este ejemplo se muestra cómo abrir un archivo, leer su contenido y escribirlo en otro archivo en sistemas POSIX.
+Como el archivo el de origen puede tener cualquier tamaño, se lee en bloques de tamaño `BUFSIZ` y se escribe en el archivo de destino en bloques del mismo tamaño, en lugar de intentar leer el contenido completo de una sola vez.
+
+El código fuente completo de este ejemplo está disponible en {file_copy_cpp}.
+
+[source,cpp]
+----
+int source_fd = open( "foo.txt", O_RDONLY ); <1> <2>
+if (source_fd == -1) <2>
+{
+    // Aquí va el código para usar el error de open()... 
+}
+
+// ...
+
+int dest_fd = open( "bar.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666 ); <3>
+if (dest_fd == -1)
+{
+    // Aquí va el código para usar el error de open()...
+}
+
+char buffer[BUFSIZ];
+ssize_t bytes_read;
+while ((bytes_read = read( source_fd, buffer, sizeof(buffer) )) > 0) <4> <5>
+{
+    if (write( dest_fd, buffer, bytes_read ) == -1) <6> <7>
+    {
+        // Aquí va el código para usar el error de write()...
+    }
+}
+
+if (bytes_read == -1) <5>
+{
+    // Aquí va el código para usar el error de read()...
+}
+
+close( source_fd ); <8>
+close( dest_fd ); <8>
+----
+<1> Abrir el archivo `foo.txt` en modo lectura (opción `O_RDONLY`).
+
+<2> En caso de éxito, la función {linux_open} devuelve un *descriptor de archivo* que se guarda en `source_fd`.
+Si el valor devuelto es negativo, indica que ha ocurrido un error al abrir el archivo.
+
+<3> Abrir el archivo `bar.txt` en modo escritura (opción `O_WRONLY`), creándolo si no existe (opción `O_CREAT`) y truncando su tamaño a 0 si ya existe (opción `O_TRUNC`).
++
+En caso de crear el archivo, se usarán los permisos de lectura y escritura para todos (`0666`) en función de la *_umask_* del proceso (véase el <<acl_condensada>>)
+
+<4> Leer el contenido del archivo `foo.txt` en bloques de tamaño `BUFSIZ` y almacenarlo en el búfer `buffer`.
+La función {linux_read} devuelve el número de bytes leídos, que puede ser menos que la cantidad solicitada `BUFSIZ` si se ha llegado al final del archivo.
+
+<5> La función {linux_read} devuelve el número de bytes leídos o `-1` si ha ocurrido un error.
+
+<6> Escribir `bytes_read` bytes de contenido del búfer `buffer` en el archivo `bar.txt`.
+Se utiliza el valor de la variable `bytes_read` devuelto por {linux_read} para escribir con la función {linux_write} la misma cantidad de bytes que fue leída en la llamada previa a {linux_read}.
+
+<7> La función {linux_write} devuelve el número de bytes escritos o `-1` si ha ocurrido un error.
+
+<8> Cerrar los archivos `foo.txt` y `bar.txt` con la función {linux_close}.
+Esto libera los recursos asociados a los archivos abiertos y actualiza la tabla de archivos abiertos del proceso.
+====
+
+En sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:
 
 . Una *tabla para cada proceso* —almacenada en el *PCB*— donde se indican todos los archivos que el proceso tiene abiertos.
 +
@@ -356,6 +459,8 @@ Un *((directorio))* puede considerarse una tabla de símbolos que traduce los no
 
 En los sistemas POSIX, los directorios se crean llamando a {linux_mkdir} y se eliminan con {linux_rmdir}.
 Mientras que en Microsoft Windows se crean con {win32_createdirectory} y se eliminan con {win32_removedirectory}.
+
+Por otro lado, en {dir_list_cpp} se muestra cómo un programa puede acceder al contenido de un directorio, utilizando las funciones {linux_opendir} y {linux_readdir} de la librería de los sistemas POSIX.
 
 A continuación vamos a estudiar los diversos esquemas para definir la estructura lógica del sistema de directorios.
 
@@ -594,7 +699,8 @@ Las *ACL* y los *descriptores de seguridad* de Windows API son un tema complejo.
 Antes de manipularlos, es conveniente consultar la documentación de la API<<Win32-SecurityDescriptors>>.
 ====
 
-==== Lista de control de acceso condensada 
+[[acl_condensada]]
+==== Lista de control de acceso condensada
 
 Para solucionar algunos de los problemas de las *ACL* muchos sistemas utilizan *listas de control de acceso condensadas*(((lista, control de acceso, condensada))).
 
