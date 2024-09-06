@@ -1,7 +1,7 @@
-:document-characters: 585587
-:document-words: 115872
-:document-paragraphs: 1762
-:document-reading-time: 9 horas y 39 minutos
+:document-characters: 589677
+:document-words: 116750
+:document-paragraphs: 1768
+:document-reading-time: 9 horas y 44 minutos
 :s01-characters: 7463
 :s01-words: 1363
 :s01-paragraphs: 25
@@ -74,10 +74,10 @@
 :s18-words: 2019
 :s18-paragraphs: 25
 :s18-reading-time: 10 minutos
-:s19-characters: 56406
-:s19-words: 10899
-:s19-paragraphs: 194
-:s19-reading-time: 54 minutos
+:s19-characters: 60496
+:s19-words: 11777
+:s19-paragraphs: 200
+:s19-reading-time: 59 minutos
 :s20-characters: 31525
 :s20-words: 6240
 :s20-paragraphs: 110
