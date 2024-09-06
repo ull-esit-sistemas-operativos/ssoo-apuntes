@@ -20,7 +20,8 @@ Project::documents.each do |document|
                 a = Tests::find_missing_variables(filename)
             end
             if missing && !missing.empty?
-                missing.uniq!.sort!
+                missing.uniq!
+                missing.sort!
                 fail "Se han encontrado #{missing.size} variables no definidas:\n#{missing.join("\n")}"
             end
         end
