@@ -609,6 +609,86 @@ Puede resultar útil para la protección, seguridad y monitorización del uso de
 <p>Normalmente el nombre se almacena en la estructura de directorios, de tal manera que una entrada de directorio está compuesta del nombre de un archivo y del identificador de su <strong>FCB</strong>.
 Dicho identificador permite localizar el <strong>FCB</strong> en la <strong>tabla de contenidos del volumen</strong>, que contiene el resto de los atributos del archivo.</p>
 </div>
+<div class="paragraph">
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/file-attribs.cpp">file-attribs.cpp</a> se muestra como leer algunos atributos de un archivo utilizando la función <a href="https://man7.org/linux/man-pages/man2/stat.2.html">stat()</a> de los sistemas POSIX.
+Esta función recibe la ruta de un archivo o directorio y devuelve una estructura de tipo <code>stat</code> con sus atributos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="k">struct</span> <span class="n">stat</span>
+<span class="p">{</span>
+    <span class="n">dev_t</span>     <span class="n">st_dev</span><span class="p">;</span>         <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">ino_t</span>     <span class="n">st_ino</span><span class="p">;</span>         <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">mode_t</span>    <span class="n">st_mode</span><span class="p">;</span>        <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="n">nlink_t</span>   <span class="n">st_nlink</span><span class="p">;</span>       <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="n">uid_t</span>     <span class="n">st_uid</span><span class="p">;</span>         <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="n">gid_t</span>     <span class="n">st_gid</span><span class="p">;</span>         <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="n">dev_t</span>     <span class="n">st_rdev</span><span class="p">;</span>        <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="kt">off_t</span>     <span class="n">st_size</span><span class="p">;</span>        <i class="conum" data-value="8"></i><b>(8)</b>
+    <span class="n">blksize_t</span> <span class="n">st_blksize</span><span class="p">;</span>     <i class="conum" data-value="9"></i><b>(9)</b>
+    <span class="n">blkcnt_t</span>  <span class="n">st_blocks</span><span class="p">;</span>      <i class="conum" data-value="10"></i><b>(10)</b>
+    <span class="k">struct</span> <span class="n">timespec</span>  <span class="n">st_atim</span><span class="p">;</span> <i class="conum" data-value="11"></i><b>(11)</b>
+    <span class="k">struct</span> <span class="n">timespec</span>  <span class="n">st_mtim</span><span class="p">;</span> <i class="conum" data-value="12"></i><b>(12)</b>
+    <span class="k">struct</span> <span class="n">timespec</span>  <span class="n">st_ctim</span><span class="p">;</span> <i class="conum" data-value="13"></i><b>(13)</b>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identificador del dispositivo donde se almacena el archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Número de inodo del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Permisos y tipo de archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Número de enlaces duros al archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Identificador del usuario propietario del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Identificador del grupo propietario del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Identificador del dispositivo si el archivo corresponde a un dispositivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Tamaño del archivo en bytes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Tamaño de bloque recomendado para hacer operaciones de E/S.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Número de bloques de 512 bytes asignados al archivo en el almacenamiento.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Fecha y hora del último acceso al archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>Fecha y hora de la última modificación del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
+<td>Fecha y hora del último cambio de metadatos del archivo.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_operaciones_con_los_archivos"><a class="anchor" href="#_operaciones_con_los_archivos"></a>19.5.2. Operaciones con los archivos</h4>
@@ -761,13 +841,105 @@ Sin embargo, lo más común es que los procesos tengan que abrir los archivos ex
 </div>
 <div class="paragraph">
 <p>El nombre con el que se designa a esas entradas en la tabla de archivos abiertos varía de unos sistemas operativos a otros.
-En los sistemas POSIX se utiliza el término <strong>descriptor de archivo</strong> —o <em>file descriptor</em>— mientras que en los sistemas Microsoft Windows se prefiere el término <strong>manejador de archivo</strong> —o <em>file handler</em>—.</p>
+En los sistemas POSIX se utiliza el término <strong>descriptor de archivo</strong> —o <strong><em>file descriptor</em></strong>— mientras que en los sistemas Microsoft Windows se prefiere el término <strong>manejador de archivo</strong> —o <strong><em>file handler</em></strong>—.
+Por ejemplo, en el <a href="sistema_de_archivos.html#ejemplo-archivos">Ejemplo 19.1</a> se ilustra cómo se usa la función <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> para abrir un archivo, obteniendo un <strong>descriptor de archivo</strong> de tipo <code>int</code> que luego se usa para leer su contenido y copiarlo en un archivo diferente.</p>
 </div>
 <div class="paragraph">
-<p>Después de utilizar la llamada al sistema <strong>open</strong>, cuando se desea solicitar una operación sobre un archivo, solo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.</p>
+<p>Después de utilizar la llamada al sistema <strong>open</strong>, cuando se desea solicitar una operación sobre un archivo, solo es necesario proporcionar el identificador devuelto, evitando así que haga falta realizar nuevamente la exploración del directorio para buscar el archivo.
+Por ejemplo, en el <a href="sistema_de_archivos.html#ejemplo-archivos">Ejemplo 19.1</a> el <strong>descriptor de archivo</strong> devuelto por <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> se utiliza en las llamadas a <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> y <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, para leer y escribir el contenido del archivo.</p>
+</div>
+<div id="ejemplo-archivos" class="exampleblock">
+<div class="title">Ejemplo 19.1. Abrir, crear, leer y escribir archivos en sistemas POSIX</div>
+<div class="content">
+<div class="paragraph">
+<p>En este ejemplo se muestra cómo abrir un archivo, leer su contenido y escribirlo en otro archivo en sistemas POSIX.
+Como el archivo el de origen puede tener cualquier tamaño, se lee en bloques de tamaño <code>BUFSIZ</code> y se escribe en el archivo de destino en bloques del mismo tamaño, en lugar de intentar leer el contenido completo de una sola vez.</p>
 </div>
 <div class="paragraph">
-<p>En los sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:</p>
+<p>El código fuente completo de este ejemplo está disponible en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/file-copy.cpp">file-copy.cpp</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">int</span> <span class="n">source_fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span> <span class="s">"foo.txt"</span><span class="p">,</span> <span class="n">O_RDONLY</span> <span class="p">);</span>  <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="k">if</span> <span class="p">(</span><span class="n">source_fd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">{</span>
+    <span class="c1">// Aquí va el código para usar el error de open()...</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="kt">int</span> <span class="n">dest_fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span> <span class="s">"bar.txt"</span><span class="p">,</span> <span class="n">O_WRONLY</span> <span class="o">|</span> <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_TRUNC</span><span class="p">,</span> <span class="mo">0666</span> <span class="p">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="k">if</span> <span class="p">(</span><span class="n">dest_fd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Aquí va el código para usar el error de open()...</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="n">BUFSIZ</span><span class="p">];</span>
+<span class="kt">ssize_t</span> <span class="n">bytes_read</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">((</span><span class="n">bytes_read</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span> <span class="n">source_fd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span> <span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">write</span><span class="p">(</span> <span class="n">dest_fd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">bytes_read</span> <span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <i class="conum" data-value="6"></i><b>(6)</b> <i class="conum" data-value="7"></i><b>(7)</b>
+    <span class="p">{</span>
+        <span class="c1">// Aquí va el código para usar el error de write()...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">bytes_read</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <i class="conum" data-value="5"></i><b>(5)</b>
+<span class="p">{</span>
+    <span class="c1">// Aquí va el código para usar el error de read()...</span>
+<span class="p">}</span>
+
+<span class="n">close</span><span class="p">(</span> <span class="n">source_fd</span> <span class="p">);</span> <i class="conum" data-value="8"></i><b>(8)</b>
+<span class="n">close</span><span class="p">(</span> <span class="n">dest_fd</span> <span class="p">);</span> <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Abrir el archivo <code>foo.txt</code> en modo lectura (opción <code>O_RDONLY</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>En caso de éxito, la función <a href="https://man7.org/linux/man-pages/man2/open.2.html">open()</a> devuelve un <strong>descriptor de archivo</strong> que se guarda en <code>source_fd</code>.
+Si el valor devuelto es negativo, indica que ha ocurrido un error al abrir el archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Abrir el archivo <code>bar.txt</code> en modo escritura (opción <code>O_WRONLY</code>), creándolo si no existe (opción <code>O_CREAT</code>) y truncando su tamaño a 0 si ya existe (opción <code>O_TRUNC</code>).
+<div class="paragraph">
+<p>En caso de crear el archivo, se usarán los permisos de lectura y escritura para todos (<code>0666</code>) en función de la <strong><em>umask</em></strong> del proceso (véase el <a href="sistema_de_archivos.html#acl_condensada">Apartado 19.7.1.2</a>)</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Leer el contenido del archivo <code>foo.txt</code> en bloques de tamaño <code>BUFSIZ</code> y almacenarlo en el búfer <code>buffer</code>.
+La función <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> devuelve el número de bytes leídos, que puede ser menos que la cantidad solicitada <code>BUFSIZ</code> si se ha llegado al final del archivo.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>La función <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> devuelve el número de bytes leídos o <code>-1</code> si ha ocurrido un error.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Escribir <code>bytes_read</code> bytes de contenido del búfer <code>buffer</code> en el archivo <code>bar.txt</code>.
+Se utiliza el valor de la variable <code>bytes_read</code> devuelto por <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> para escribir con la función <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a> la misma cantidad de bytes que fue leída en la llamada previa a <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>La función <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a> devuelve el número de bytes escritos o <code>-1</code> si ha ocurrido un error.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Cerrar los archivos <code>foo.txt</code> y <code>bar.txt</code> con la función <a href="https://man7.org/linux/man-pages/man2/close.2.html">close()</a>.
+Esto libera los recursos asociados a los archivos abiertos y actualiza la tabla de archivos abiertos del proceso.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>En sistemas operativos donde varios procesos pueden abrir un mismo archivo, se suelen utilizar dos niveles de tablas de archivos abiertos:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -850,6 +1022,13 @@ Para gestionar todos esos datos necesitamos organizarlos de alguna manera, lo qu
 </div>
 <div class="paragraph">
 <p>Un <strong>directorio</strong> puede considerarse una tabla de símbolos que traduce los nombre de los archivos en los identificadores que permiten recuperar sus correspondientes entradas en la <strong>tabla de contenidos del volumen</strong>, donde se almacenan los <strong>FCB</strong>.</p>
+</div>
+<div class="paragraph">
+<p>En los sistemas POSIX, los directorios se crean llamando a <a href="https://man7.org/linux/man-pages/man2/mkdir.2.html">mkdir()</a> y se eliminan con <a href="https://man7.org/linux/man-pages/man2/rmdir.2.html">rmdir()</a>.
+Mientras que en Microsoft Windows se crean con <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createdirectorya">CreateDirectory()</a> y se eliminan con <a href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-removedirectorya">RemoveDirectory()</a>.</p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, en ink:https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/dir-list.cpp[dir-list.cpp] se muestra cómo un programa puede acceder al contenido de un directorio, utilizando las funciones <a href="https://man7.org/linux/man-pages/man2/opendir.2.html">opendir()</a> y <a href="https://man7.org/linux/man-pages/man2/readdir.2.html">readdir()</a> de la librería de los sistemas POSIX.</p>
 </div>
 <div class="paragraph">
 <p>A continuación vamos a estudiar los diversos esquemas para definir la estructura lógica del sistema de directorios.</p>
@@ -1240,7 +1419,7 @@ Antes de manipularlos, es conveniente consultar la documentación de la API<a hr
 </div>
 </div>
 <div class="sect4">
-<h5 id="_lista_de_control_de_acceso_condensada"><a class="anchor" href="#_lista_de_control_de_acceso_condensada"></a>Lista de control de acceso condensada</h5>
+<h5 id="acl_condensada"><a class="anchor" href="#acl_condensada"></a>Lista de control de acceso condensada</h5>
 <div class="paragraph">
 <p>Para solucionar algunos de los problemas de las <strong>ACL</strong> muchos sistemas utilizan <strong>listas de control de acceso condensadas</strong>.</p>
 </div>
@@ -1249,7 +1428,7 @@ Antes de manipularlos, es conveniente consultar la documentación de la API<a hr
 Así solo es necesario un campo para cada clase de usuario, siendo cada campo una colección de bits, donde cada uno permite o deniega el tipo de acceso asociado al mismo.</p>
 </div>
 <div class="paragraph">
-<p>Por ejemplo, en los sistemas POSIX se definen 3 campos —<strong>propietario</strong>, <strong>grupo</strong> y <strong>otros</strong>) de 3 bits cada uno: <code>rwx</code>, donde <code>r</code> controla el acceso de lectura, <code>w</code> controla el acceso de escritura y <code>x</code> controla la ejecución.</p>
+<p>Por ejemplo, en los sistemas POSIX se definen 3 campos —<strong>propietario</strong>, <strong>grupo</strong> y <strong>otros</strong>— de 3 bits cada uno: <code>rwx</code>, donde <code>r</code> controla el acceso de lectura, <code>w</code> controla el acceso de escritura y <code>x</code> controla la ejecución.</p>
 </div>
 <div class="paragraph">
 <p>Las ACL condensadas son más sencillas de construir.
@@ -1301,7 +1480,7 @@ Por ejemplo, si el argumento <code>mode</code> es 0666 y <strong><em>umask</em><
 <div class="paragraph">
 <p>Los procesos pueden consultar fácilmente los permisos que tienen sobre un archivo usando <a href="https://man7.org/linux/man-pages/man2/access.2.html">access()</a>.
 Y pueden cambiar su propietario y el grupo llamando a la función <a href="https://man7.org/linux/man-pages/man2/chown.2.html">chown()</a>.
-Si necesitan leer los permisos, el propietario y el resto de <strong>metadatos</strong> del archivo, pueden usar <a href="https://man7.org/linux/man-pages/man2/stat.2.html">stat()</a> o <a href="https://man7.org/linux/man-pages/man2/fstat.2.html">fstat()</a>.</p>
+Si necesitan leer los permisos, el propietario y el resto de <strong>metadatos</strong> del archivo, pueden usar <a href="https://man7.org/linux/man-pages/man2/stat.2.html">stat()</a> o <a href="https://man7.org/linux/man-pages/man2/fstat.2.html">fstat()</a>, como se ilustra en el programa de ejemplo <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/file-attribs.cpp">file-attribs.cpp</a>.</p>
 </div>
 </div>
 </div>
