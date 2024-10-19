@@ -1059,10 +1059,10 @@ Si hay stem:[n] procesos que se pueden ejecutar, lo que hace el planificador es 
 
 [latexmath]
 ++++
-g = \text{min}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)
+g = \text{max}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)
 ++++
 
-de forma que siempre haya suficientes porciones para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a stem:[\text{floor}(L / M)].
+de forma que siempre haya suficientes porciones stem:[M] para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a stem:[\text{floor}(L / M)].
 
 Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_{i}] durante el que se le asignará la CPU:
 
@@ -1071,7 +1071,10 @@ Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[
 t_{i} = \text{ceil}\left(\frac{g}{n}\right)M
 ++++
 
-de forma que se reparten las stem:[g] porciones entre los stem:[n] procesos. 
+de forma que se reparten las stem:[g] porciones entre los stem:[n] procesos.
+
+Si hay muchos procesos, stem:[g = n], por lo que a cada proceso se le asigna un tiempo de CPU de stem:[M].
+Si hay pocos procesos, stem:[g = \text{floor}(L / M)], por lo que a cada proceso se le asignan varias porciones stem:[M] de tiempo de CPU del periodo stem:[L].
 
 ==== Planificación equitativa ponderada
 
