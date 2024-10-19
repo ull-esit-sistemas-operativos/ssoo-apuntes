@@ -324,10 +324,10 @@ Por lo tanto, es el responsable de crear todos los otros procesos que son necesa
 En la <<fig-pstree>> se observa que `systemd` es el proceso *((init))*, como ocurre frecuentemente en muchos sistemas Linux actuales.
 Anteriormente, lo común es que los sistemas Linux emplearan una implementación de *((init))* basada en la de los UNIX System V.
 
-==== Cómo obtienen los procesos hilos los recursos que necesitan
+==== Cómo obtienen los procesos hijos los recursos que necesitan
 
 Hay varios aspectos en la creación de los procesos que pueden variar de un sistema operativo a otro.
-Uno de ellos es cómo obtienen los procesos hilos los recursos que necesitan para hacer su trabajo.
+Uno de ellos es cómo obtienen los procesos hijos los recursos que necesitan para hacer su trabajo.
 
 Fundamentalmente existen dos alternativas: 
 
