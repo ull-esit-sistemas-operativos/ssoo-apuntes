@@ -938,7 +938,7 @@ El programa de control usa <a href="https://man7.org/linux/man-pages/man3/sem_wa
 Después llama a <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> en <code>ready</code>.</p>
 </li>
 <li>
-<p>Si el <strong>semáforo</strong> está a 1, el programa de control queda bloqueado y tiene que esperar a que el servidor use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
+<p>Si el <strong>semáforo</strong> está a 1, el programa de control queda bloqueado y tiene que esperar a que el programa controlado use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
 El programa controlado lo hace después de leer el comando para interpretarlo.</p>
 </li>
 </ul>
