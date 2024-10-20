@@ -572,7 +572,7 @@ En el <<ejemplo-createprocess>> se puede ver cómo se usa {win32_createprocess} 
 [[ejemplo-createprocess]]
 .Crear un proceso usando Windows API
 ====
-El código fuente completo de este ejemplo está disponible en {createprocess_c}.
+El código fuente completo de este ejemplo está disponible en {createprocess_cpp}.
 
 [source,c]
 ----
@@ -656,7 +656,7 @@ Los nuevos procesos se crean con la llamada {linux_fork}, que se encarga de crea
 
 .Crear un proceso en sistemas POSIX
 ====
-El código fuente completo de este ejemplo está disponible en {fork_c}.
+El código fuente completo de este ejemplo está disponible en {fork_cpp}.
 
 [source,c]
 ----
@@ -772,7 +772,7 @@ Para eso necesitamos {linux_exec}, una familia de funciones cuyo propósito es c
 
 .Ejecutar otro programa en un proceso nuevo en sistemas POSIX
 ====
-El código fuente completo de este ejemplo está disponible en {forkexec_c}.
+El código fuente completo de este ejemplo está disponible en {fork_exec_cpp}.
 
 [source,c]
 ----

@@ -896,18 +896,18 @@ Aparte de estos mecanismos, cada sistema operativo puede implementar algunas fun
 Por ejemplo, la llamada {linux_fcntl} de Linux permite un tipo de bloqueo con las ventajas de los bloqueos originales de {linux_fcntl} pero asociados a descriptores de archivo.
 Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como ocurre con los bloqueos BSD de {linux_flock}.
 
-En {filelock_server_c} y {filelock_client_cpp} se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
-El servidor {filelock_server_c} es un programa que muestra periódicamente la hora del sistema.
-Mientras que el cliente {filelock_client_cpp}, simplemente envía una señal `SIGTERM` al servidor cuando queremos que termine.
-Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en una ubicación conocida por ambos.
+En {filelock_server_c} y {filelock_stop_cpp} se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
+El programa {filelock_server_c} hace de servidor proporciona periódicamente la hora del sistema.
+Mientras que el programa {filelock_stop_cpp}, simplemente envía una señal `SIGTERM` a {filelock_server_c} cuando queremos que termine.
+Para que {filelock_stop_cpp} conozca el PID de {filelock_server_c} —de entre todos los procesos en ejecución en el sistema— este último escribe su PID en un archivo en una ubicación conocida por ambos.
 
-Como el cliente lee el archivo con una única operación {linux_read} y el servidor lo escribe con una única operación {linux_write}, no hace falta el uso de bloqueo de archivos para sincronizarlos.
-Gracias a la semántica de coherencia POSIX, el cliente no puede leer el archivo en medio de la escritura.
-Es decir, o ve el PID completo escrito por el servidor o no ve ninguno.
+Como {filelock_stop_cpp} lee el archivo con una única operación {linux_read} y {filelock_server_c} lo escribe con una única operación {linux_write}, no hace falta el uso de bloqueo de archivos para sincronizarlos.
+Gracias a la semántica de coherencia POSIX, el {filelock_stop_cpp} no puede leer el archivo en medio de la escritura.
+Es decir, o ve el PID completo escrito por {filelock_server_c} o no ve ninguno.
 
-Pero si puede darse el caso de que se ejecuten varios servidores al mismo tiempo.
+Pero si puede darse el caso de que se ejecuten varios servidores {filelock_server_c} al mismo tiempo.
 Cada uno debe comprobar si archivo existe y, si es así, leer el PID que contiene y comprobar si hay un proceso con ese mismo PID.
-Si el archivo no existe o no encuentra un proceso con ese PID, debe entender que es el nuevo servidor y escribir su PID en el archivo, para que lo encuentre el cliente.
+Si el archivo no existe o existe no encuentra un proceso con el PID indicado, debe entender que es el nuevo servidor y escribir su PID en el archivo, para que lo encuentre el programa de control.
 En caso contrario, debe terminar.
 
 Para evitar que varios servidores den todos esos pasos al mismo tiempo, acaben creyendo que son los únicos y sobrescriban el archivo varias veces, el acceso al archivo debe hacerse en *exclusión mutua*.

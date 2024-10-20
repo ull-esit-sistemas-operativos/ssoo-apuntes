@@ -385,9 +385,9 @@ Mientras que en sistemas POSIX es necesario crear el *semáforo* en una región 
 
 En el ejemplo {anom_shared_memory_cpp} de comunicación mediante memoria compartida, se usa un *semáforo* para que el proceso hijo indique al proceso padre que ha terminado de calcular el factorial y el resultado ya está en la memoria.
 
-En {shared_memory_server_c} está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de {shared_memory_client_cpp}.
+En {shared_memory_cpp} está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un programa como el de {shared_memory_control_cpp}.
 
-Para enviar los mensajes entre el cliente y el servidor, en la memoria compartida se reserva hueco para un búfer en el que el cliente copia el comando que quiere enviar y para dos *semáforos*:
+Para enviar los mensajes entre ambos programas, en la memoria compartida se reserva hueco para un búfer, en el que el programa de control copia el comando que quiere enviar, y para dos *semáforos*:
 
 [source,c]
 ----
@@ -399,24 +399,24 @@ struct memory_content
 };
 ----
 <1> Indica cuándo `command_buffer` está vacío, así que se inicializa a 1.
-El cliente usa {linux_sem_wait} en este *semáforo* antes de escribir un nuevo comando en `command_buffer`:
+El programa de control usa {linux_sem_wait} en este *semáforo* antes de escribir un nuevo comando en `command_buffer`:
 
-* Si el *semáforo* está a 0, el cliente pasa y escribe el comando.
+* Si el *semáforo* está a 0, el programa de control pasa y escribe el comando.
 Después llama a {linux_sem_post} en `ready`.
 
-* Si el *semáforo* está a 1, el cliente queda bloqueado y tiene que esperar a que el servidor use {linux_sem_post} sobre el mismo *semáforo*.
-El servidor lo hace después de leer el comando para interpretarlo.
+* Si el *semáforo* está a 1, el programa de control queda bloqueado y tiene que esperar a que el servidor use {linux_sem_post} sobre el mismo *semáforo*.
+El programa controlado lo hace después de leer el comando para interpretarlo.
 
 <2> Indica cuándo `command_buffer` tiene un comando, así que se inicializa a 0.
-El servidor usa {linux_sem_wait} en este *semaforo* antes de leer el comando en `command_buffer` para interpretarlo:
+El programa controlado usa {linux_sem_wait} en este *semaforo* antes de leer el comando en `command_buffer` para interpretarlo:
 
-* Si el *semáforo* está a 0, el cliente pasa y lee el comando.
+* Si el *semáforo* está a 0, el programa de control pasa y lee el comando.
 Después llama a {linux_sem_post} en `empty`.
 
-* Si el *semáforo* está a 1, el servidor queda bloqueado y tiene que esperar a que el cliente use {linux_sem_post} sobre el mismo *semáforo*.
-El cliente lo hace después de escribir un nuevo comando en `command_buffer`.
+* Si el *semáforo* está a 1, el programa controlado queda bloqueado y tiene que esperar a que el programa de control use {linux_sem_post} sobre el mismo *semáforo*.
+El programa de control lo hace después de escribir un nuevo comando en `command_buffer`.
 
-El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de {shared_memory_client_cpp} y {shared_memory_server_c}, respectivamente.
+El detalle de cómo ambos programas usan los semáforos, se puede ver en el código de {shared_memory_control_cpp} y {shared_memory_cpp}, respectivamente.
 
 Finalmente, para resolver el *problema del productor-consumidor* tenemos que considerar que:
 
