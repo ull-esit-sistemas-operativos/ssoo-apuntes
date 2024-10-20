@@ -404,7 +404,7 @@ El programa de control usa {linux_sem_wait} en este *semáforo* antes de escribi
 * Si el *semáforo* está a 0, el programa de control pasa y escribe el comando.
 Después llama a {linux_sem_post} en `ready`.
 
-* Si el *semáforo* está a 1, el programa de control queda bloqueado y tiene que esperar a que el servidor use {linux_sem_post} sobre el mismo *semáforo*.
+* Si el *semáforo* está a 1, el programa de control queda bloqueado y tiene que esperar a que el programa controlado use {linux_sem_post} sobre el mismo *semáforo*.
 El programa controlado lo hace después de leer el comando para interpretarlo.
 
 <2> Indica cuándo `command_buffer` tiene un comando, así que se inicializa a 0.
