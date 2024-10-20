@@ -530,10 +530,8 @@ Para esto último se indica el tamaño de la región y el desplazamiento dentro 
 Para redimensionarlo se utiliza <a href="https://man7.org/linux/man-pages/man2/ftruncate.2.html">ftruncate()</a>, que lo que necesita es el descriptor del objeto y el nuevo tamaño.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-server.c">shared-memory-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
-En este caso controlado por otro mediante memoria compartida.
-Ambos programas usan la clase definida en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared_memory.hpp">shared_memory.hpp</a> para gestionar el objeto de memoria compartida.
-Sus métodos muestran de forma práctica cómo utilizar las llamadas al sistema comentadas.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory.cpp">shared-memory.cpp</a> se puede ver el ejemplo de un programa que muestra periódicamente la hora del sistema.
+En este caso controlado por <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-control.cpp">shared-memory-control.cpp</a> mediante memoria compartida.</p>
 </div>
 <div class="paragraph">
 <p>En Microsoft Windows también se utiliza <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga">CreateFileMapping()</a> para crear el objeto de memoria compartida con nombre.

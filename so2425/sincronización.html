@@ -910,10 +910,10 @@ Mientras que en sistemas POSIX es necesario crear el <strong>semáforo</strong> 
 <p>En el ejemplo <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/anom-shared-memory.cpp">anom-shared-memory.cpp</a> de comunicación mediante memoria compartida, se usa un <strong>semáforo</strong> para que el proceso hijo indique al proceso padre que ha terminado de calcular el factorial y el resultado ya está en la memoria.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-server.c">shared-memory-server.c</a> está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un cliente como el de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a>.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory.cpp">shared-memory.cpp</a> está el ejemplo completo de un programa que muestra periódicamente la hora del sistema y que puede ser controlado remotamente, mediante memoria compartida, con un programa como el de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-control.cpp">shared-memory-control.cpp</a>.</p>
 </div>
 <div class="paragraph">
-<p>Para enviar los mensajes entre el cliente y el servidor, en la memoria compartida se reserva hueco para un búfer en el que el cliente copia el comando que quiere enviar y para dos <strong>semáforos</strong>:</p>
+<p>Para enviar los mensajes entre ambos programas, en la memoria compartida se reserva hueco para un búfer, en el que el programa de control copia el comando que quiere enviar, y para dos <strong>semáforos</strong>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -930,16 +930,16 @@ Mientras que en sistemas POSIX es necesario crear el <strong>semáforo</strong> 
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Indica cuándo <code>command_buffer</code> está vacío, así que se inicializa a 1.
-El cliente usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">sem_wait()</a> en este <strong>semáforo</strong> antes de escribir un nuevo comando en <code>command_buffer</code>:
+El programa de control usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">sem_wait()</a> en este <strong>semáforo</strong> antes de escribir un nuevo comando en <code>command_buffer</code>:
 <div class="ulist">
 <ul>
 <li>
-<p>Si el <strong>semáforo</strong> está a 0, el cliente pasa y escribe el comando.
+<p>Si el <strong>semáforo</strong> está a 0, el programa de control pasa y escribe el comando.
 Después llama a <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> en <code>ready</code>.</p>
 </li>
 <li>
-<p>Si el <strong>semáforo</strong> está a 1, el cliente queda bloqueado y tiene que esperar a que el servidor use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
-El servidor lo hace después de leer el comando para interpretarlo.</p>
+<p>Si el <strong>semáforo</strong> está a 1, el programa de control queda bloqueado y tiene que esperar a que el servidor use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
+El programa controlado lo hace después de leer el comando para interpretarlo.</p>
 </li>
 </ul>
 </div></td>
@@ -947,16 +947,16 @@ El servidor lo hace después de leer el comando para interpretarlo.</p>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Indica cuándo <code>command_buffer</code> tiene un comando, así que se inicializa a 0.
-El servidor usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">sem_wait()</a> en este <strong>semaforo</strong> antes de leer el comando en <code>command_buffer</code> para interpretarlo:
+El programa controlado usa <a href="https://man7.org/linux/man-pages/man3/sem_wait.3.html">sem_wait()</a> en este <strong>semaforo</strong> antes de leer el comando en <code>command_buffer</code> para interpretarlo:
 <div class="ulist">
 <ul>
 <li>
-<p>Si el <strong>semáforo</strong> está a 0, el cliente pasa y lee el comando.
+<p>Si el <strong>semáforo</strong> está a 0, el programa de control pasa y lee el comando.
 Después llama a <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> en <code>empty</code>.</p>
 </li>
 <li>
-<p>Si el <strong>semáforo</strong> está a 1, el servidor queda bloqueado y tiene que esperar a que el cliente use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
-El cliente lo hace después de escribir un nuevo comando en <code>command_buffer</code>.</p>
+<p>Si el <strong>semáforo</strong> está a 1, el programa controlado queda bloqueado y tiene que esperar a que el programa de control use <a href="https://man7.org/linux/man-pages/man3/sem_post.3.html">sem_post()</a> sobre el mismo <strong>semáforo</strong>.
+El programa de control lo hace después de escribir un nuevo comando en <code>command_buffer</code>.</p>
 </li>
 </ul>
 </div></td>
@@ -964,7 +964,7 @@ El cliente lo hace después de escribir un nuevo comando en <code>command_buffer
 </table>
 </div>
 <div class="paragraph">
-<p>El detalle de cómo cliente y servidor usan ambos semáforos, se puede ver en el código de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-client.cpp">shared-memory-client.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-server.c">shared-memory-server.c</a>, respectivamente.</p>
+<p>El detalle de cómo ambos programas usan los semáforos, se puede ver en el código de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory-control.cpp">shared-memory-control.cpp</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap11/shared-memory.cpp">shared-memory.cpp</a>, respectivamente.</p>
 </div>
 <div class="paragraph">
 <p>Finalmente, para resolver el <strong>problema del productor-consumidor</strong> tenemos que considerar que:</p>

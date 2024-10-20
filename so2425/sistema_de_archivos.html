@@ -1719,20 +1719,20 @@ Por ejemplo, la llamada <a href="https://man7.org/linux/man-pages/man2/fcntl.2.h
 Esto permite usarlos para sincronizar hilos de un mismo proceso y para que un proceso pueda transferir la adquisición del bloqueo a sus hijos, como ocurre con los bloqueos BSD de <a href="https://man7.org/linux/man-pages/man2/flock.2.html">flock()</a>.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-client.cpp">filelock-client.cpp</a> se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
-El servidor <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> es un programa que muestra periódicamente la hora del sistema.
-Mientras que el cliente <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-client.cpp">filelock-client.cpp</a>, simplemente envía una señal <code>SIGTERM</code> al servidor cuando queremos que termine.
-Para que el cliente conozca el PID del servidor —de entre todos los procesos en ejecución en el sistema— el servidor escribe su PID en un archivo en una ubicación conocida por ambos.</p>
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-stop.cpp">filelock-stop.cpp</a> se puede ver un ejemplo similar al de capítulos anteriores, pero usando en esta ocasión bloqueo de archivos.
+El programa <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> hace de servidor proporciona periódicamente la hora del sistema.
+Mientras que el programa <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-stop.cpp">filelock-stop.cpp</a>, simplemente envía una señal <code>SIGTERM</code> a <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> cuando queremos que termine.
+Para que <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-stop.cpp">filelock-stop.cpp</a> conozca el PID de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> —de entre todos los procesos en ejecución en el sistema— este último escribe su PID en un archivo en una ubicación conocida por ambos.</p>
 </div>
 <div class="paragraph">
-<p>Como el cliente lee el archivo con una única operación <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> y el servidor lo escribe con una única operación <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, no hace falta el uso de bloqueo de archivos para sincronizarlos.
-Gracias a la semántica de coherencia POSIX, el cliente no puede leer el archivo en medio de la escritura.
-Es decir, o ve el PID completo escrito por el servidor o no ve ninguno.</p>
+<p>Como <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-stop.cpp">filelock-stop.cpp</a> lee el archivo con una única operación <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a> y <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> lo escribe con una única operación <a href="https://man7.org/linux/man-pages/man2/write.2.html">write()</a>, no hace falta el uso de bloqueo de archivos para sincronizarlos.
+Gracias a la semántica de coherencia POSIX, el <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-stop.cpp">filelock-stop.cpp</a> no puede leer el archivo en medio de la escritura.
+Es decir, o ve el PID completo escrito por <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> o no ve ninguno.</p>
 </div>
 <div class="paragraph">
-<p>Pero si puede darse el caso de que se ejecuten varios servidores al mismo tiempo.
+<p>Pero si puede darse el caso de que se ejecuten varios servidores <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap19/filelock-server.c">filelock-server.c</a> al mismo tiempo.
 Cada uno debe comprobar si archivo existe y, si es así, leer el PID que contiene y comprobar si hay un proceso con ese mismo PID.
-Si el archivo no existe o no encuentra un proceso con ese PID, debe entender que es el nuevo servidor y escribir su PID en el archivo, para que lo encuentre el cliente.
+Si el archivo no existe o existe no encuentra un proceso con el PID indicado, debe entender que es el nuevo servidor y escribir su PID en el archivo, para que lo encuentre el programa de control.
 En caso contrario, debe terminar.</p>
 </div>
 <div class="paragraph">

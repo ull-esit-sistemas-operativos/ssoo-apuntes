@@ -1914,11 +1914,11 @@ Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \
 </div>
 <div class="stemblock">
 <div class="content">
-\[g = \text{min}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)\]
+\[g = \text{max}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)\]
 </div>
 </div>
 <div class="paragraph">
-<p>de forma que siempre haya suficientes porciones para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a \$\text{floor}(L / M)\$.</p>
+<p>de forma que siempre haya suficientes porciones \$M\$ para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a \$\text{floor}(L / M)\$.</p>
 </div>
 <div class="paragraph">
 <p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_{i}\$ durante el que se le asignará la CPU:</p>
@@ -1930,6 +1930,10 @@ Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \
 </div>
 <div class="paragraph">
 <p>de forma que se reparten las \$g\$ porciones entre los \$n\$ procesos.</p>
+</div>
+<div class="paragraph">
+<p>Si hay muchos procesos, \$g = n\$, por lo que a cada proceso se le asigna un tiempo de CPU de \$M\$.
+Si hay pocos procesos, \$g = \text{floor}(L / M)\$, por lo que a cada proceso se le asignan varias porciones \$M\$ de tiempo de CPU del periodo \$L\$.</p>
 </div>
 </div>
 <div class="sect4">
