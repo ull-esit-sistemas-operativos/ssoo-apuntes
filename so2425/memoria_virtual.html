@@ -829,14 +829,9 @@ Deben coincidir con el modo con el que se abrió el archivo.</td>
 Y la región de memoria mapeada se puede liberar, al terminar, con <a href="https://man7.org/linux/man-pages/man2/munmap.2.html">munmap()</a>.</p>
 </div>
 <div class="paragraph">
-<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap17/mapped-files.c">mapped-files.c</a> se puede ver un ejemplo de un programa que cuenta el número de líneas, palabra y caracteres de un archivo.
+<p>En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap17/mapped-files.cpp">mapped-files.cpp</a> se puede ver un ejemplo de un programa que cuenta el número de líneas, palabra y caracteres de un archivo.
 Para acceder al archivo, primero lo mapea en memoria, para así poder acceder a su contenido sin tener que leerlo usando <a href="https://man7.org/linux/man-pages/man2/read.2.html">read()</a>.
 Una vez ha terminado, libera la memoria mapeada.</p>
-</div>
-<div class="paragraph">
-<p>El ejemplo en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap17/mapped-files.cpp">mapped-files.cpp</a> es identico al de <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap17/mapped-files.c">mapped-files.c</a>, pero desarrollado en C&#43;&#43;.
-Usa la clase definida en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap17/memory_map.hpp">memory_map.hpp</a> para abstraer la gestión del mapeo del archivo, por lo que en la implementación de sus métodos, obviamente, se utilizan las mismas llamadas al sistema que en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap17/mapped-files.c">mapped-files.c</a>.
-Este ejemplo es algo más complejo porque también muestra como manejar el puntero a la memoria mapeada de forma que sea liberada automáticamente cuando ya no es necesaria, siguiendo las pautas recomendadas en C&#43;&#43;.</p>
 </div>
 <div class="paragraph">
 <p>Con Windows API el proceso requiere un paso más. Primero hay que usar el manejador del archivo abierto para crear un <strong>objeto de mapeo de archivo</strong> con <a href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga">CreateFileMapping()</a>.
