@@ -786,9 +786,7 @@ Sin embargo, es posible configurarlos en modo asíncrono, para que así cualquie
 
 También se pueden utilizar las funciones {linux_select} y {linux_poll} para monitorizar varios _sockets_ al mismo tiempo, de forma similar a como se hace para colas de mensajes POSIX (véase el <<_colas_de_mensajes_posix>>).
 
-En {socket_server_cpp} y {socket_client_cpp} se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando _sockets_ de dominio UNIX.
-Ambos programas utilizan la cabecera {socket_hpp} que incluye un ejemplo de clase en {cpp} para comunicaciones mediante _sockets_.
-En los distintos métodos se puede ver cómo se utilizan las funciones de la librería del sistema para crear _sockets_, asignarles dirección y usarlos para enviar y recibir mensajes.
+En {socket_cpp} y {socket_control_cpp} se puede observar un ejemplo similar al que usamos con las tuberías y las colas de mensajes, pero empleando _sockets_ de dominio UNIX para que el programa de control pueda enviar comandos al otro programa.
 
 En resumen, los *_sockets_* son un mecanismo de paso de mensajes de *comunicación indirecta*, que admite tanto comunicación *orientada a flujos* como *mensajes de tamaño variable*, _buffering_ de *capacidad limitada* y tanto *comunicación síncrona* como *asíncrona*, aunque el comportamiento real final de la interfaz depende de la tecnología de red utilizada.
 
