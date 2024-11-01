@@ -355,13 +355,9 @@ Deben coincidir con el modo con el que se abrió el archivo.
 Una vez mapeado el archivo, si no se van a crear más mapeos, se puede cerrar el descriptor de archivo con {linux_close}.
 Y la región de memoria mapeada se puede liberar, al terminar, con {linux_munmap}.
 
-En {mapped_files_c} se puede ver un ejemplo de un programa que cuenta el número de líneas, palabra y caracteres de un archivo.
+En {mapped_files_cpp} se puede ver un ejemplo de un programa que cuenta el número de líneas, palabra y caracteres de un archivo.
 Para acceder al archivo, primero lo mapea en memoria, para así poder acceder a su contenido sin tener que leerlo usando {linux_read}.
 Una vez ha terminado, libera la memoria mapeada.
-
-El ejemplo en {mapped_files_cpp} es identico al de {mapped_files_c}, pero desarrollado en {cpp}.
-Usa la clase definida en {memory_map_hpp} para abstraer la gestión del mapeo del archivo, por lo que en la implementación de sus métodos, obviamente, se utilizan las mismas llamadas al sistema que en {mapped_files_c}.
-Este ejemplo es algo más complejo porque también muestra como manejar el puntero a la memoria mapeada de forma que sea liberada automáticamente cuando ya no es necesaria, siguiendo las pautas recomendadas en {cpp}.
 
 Con Windows API el proceso requiere un paso más. Primero hay que usar el manejador del archivo abierto para crear un *objeto de mapeo de archivo* con {win32_createfilemapping}.
 Después, el manejador devuelto por {win32_createfilemapping} es usado con {win32_mapviewoffile} para mapear el archivo en la memoria del proceso.
