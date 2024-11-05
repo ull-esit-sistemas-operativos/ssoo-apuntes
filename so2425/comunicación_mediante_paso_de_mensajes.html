@@ -1399,17 +1399,17 @@ Por eso se suele utilizar en aplicaciones cliente-servidor, donde un proceso ser
 <div class="paragraph">
 <p>Con <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> es muy sencillo lanzar otros procesos para que ejecuten tareas en paralelo.
 El proceso hijo tiene acceso a los datos del padre por la forma en la que funciona <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork()</a> y gracias a las tuberías anónimas puede comunicar los resultados al padre.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/fork-pipe.cpp">fork-pipe.cpp</a> se puede observar un ejemplo de esto.</p>
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/master/src/cap10/tuberías/fork-pipe.cpp">fork-pipe.cpp</a> se puede observar un ejemplo de esto.</p>
 </div>
 <div class="paragraph">
 <p>Además, el hecho de que cada extremo se comporte como un archivo —uno en modo solo lectura y el otro en modo solo escritura— hace posible redirigir la E/S estándar del proceso hijo.
 Es decir, conectar la entrada, la salida estándar o la salida de error a una tubería, desde la que leer lo que el proceso intenta imprimir por la pantalla de la terminal o proporcionarle lo que debe leer, como si fuera desde el teclado.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fork-redir.c">fork-redir.c</a> se puede ver un ejemplo de cómo ejecutar el comando <code>ls</code> y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.</p>
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/tuberías/fork-redir.cpp">fork-redir.cpp</a> se puede ver un ejemplo de cómo ejecutar el comando <code>ls</code> y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.</p>
 </div>
 <div class="paragraph">
 <p>Por otro lado, las tuberías con nombre permiten que un proceso se comunique con cualquier otro, solo con conocer la ruta de la tubería.
-En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo.cpp">fifo.cpp</a> tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
-El programa en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo-control.cpp">fifo-control.cpp</a> puede conectarse a esa tubería y mandar el comando que hace terminar <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/fifo.cpp">fifo.cpp</a>.</p>
+En <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/tuberías/fifo.cpp">fifo.cpp</a> tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
+El programa en <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/tuberías/fifo-control.cpp">fifo-control.cpp</a> puede conectarse a esa tubería y mandar el comando que hace terminar <a href="https://github.com/ull-esit-sistemas-operativos/ssoo-ejemplos/blob/so2425/src/cap10/tuberías/fifo.cpp">fifo.cpp</a>.</p>
 </div>
 </div>
 <div class="sect3">
