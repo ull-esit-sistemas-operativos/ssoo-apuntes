@@ -669,7 +669,7 @@ En {fork_pipe_cpp} se puede observar un ejemplo de esto.
 
 Además, el hecho de que cada extremo se comporte como un archivo —uno en modo solo lectura y el otro en modo solo escritura— hace posible redirigir la E/S estándar del proceso hijo.
 Es decir, conectar la entrada, la salida estándar o la salida de error a una tubería, desde la que leer lo que el proceso intenta imprimir por la pantalla de la terminal o proporcionarle lo que debe leer, como si fuera desde el teclado.
-En {fork_redir_c} se puede ver un ejemplo de cómo ejecutar el comando `ls` y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.
+En {fork_redir_cpp} se puede ver un ejemplo de cómo ejecutar el comando `ls` y redirigir su salida al proceso padre para contar el número de líneas en lo que el comando quería mostrar por pantalla.
 
 Por otro lado, las tuberías con nombre permiten que un proceso se comunique con cualquier otro, solo con conocer la ruta de la tubería.
 En {fifo_cpp} tenemos un ejemplo de un programa que muestra la hora del sistema de forma periódica, mientras espera órdenes de una tubería que sirve de canal de control remoto.
