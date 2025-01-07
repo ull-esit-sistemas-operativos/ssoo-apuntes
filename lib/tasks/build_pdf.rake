@@ -14,6 +14,7 @@ Project::documents.each do |document|
                               '--require', './lib/autoxref-treeprocessor.rb',
                               '--attribute', "basedir=#{Project::PROJECT_DIRECTORY}",
                               '--attribute', "outdir=#{document[:output_directories][:pdf]}",
+                              '--trace',
                               *asciidoctor_args,
                               '--out-file', t.name, t.prerequisites.first()
         end
