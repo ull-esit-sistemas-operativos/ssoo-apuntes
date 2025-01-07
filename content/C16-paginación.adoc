@@ -217,28 +217,24 @@ El cálculo de stem:[T_text(em)] puede complicarse aun más si tenemos en cuenta
 En ese caso stem:[T_text(m)] no tiene un valor determinado, sino que se estima un promedio considernado tanto el tiempo de acceso a la memoria física como a cada uno de los niveles de caché del sistema, así como la probabilidad de que la dirección de memoria a la que se quiere acceder esté disponible en alguno de dichos niveles.
 ====
 
-El stem:[T_text(em)] del primer caso suele ser mucho mayor que el segundo porque, por lo general, latexmath:[T_\mathrm{TLB} \ll T_\mathrm{m}].
+El stem:[T_text(em)] del primer caso suele ser mucho mayor que el segundo porque, por lo general, stem:[T_text(TLB) ll T_text(m)].
 Esto hace que en muchos sistemas se pueda considerar que stem:[T_text(em) ~~ T_text(m)] cuando la dirección virtual está en la *TLB*.
 
 Como el *tiempo de acceso efectivo* stem:[T_text(em)] ahora depende de la probabilidad stem:[p_text(TLB)] de que las direcciones virtuales consultadas estén en la *TLB*, ya no podemos hacer el cálculo de forma determinista, sino estimar un stem:[T_text(em)] promedio para el sistema.
 Para ello, solo es necesario sumar el stem:[T_text(em)] para ambos casos, ponderando por la probabilidad stem:[p_text(TLB)] de que la dirección esté en la *TLB* o stem:[(1 - p_text(TLB))] de que no esté en la *TLB*, respectivamente:
 
-[latexmath]
+[stem]
 ++++
-\begin{aligned}
-T_\mathrm{em} &= (1-p_\mathrm{TLB})(2T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
-       &= (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}
-\end{aligned}
+{:(T_"em", =, (1-p_"TLB")*(2T_"m" + T_"TLB") + p_"TLB"*(T_"m" + T_"TLB")),
+    (    , =, (2-p_"TLB")*T_"m" + T_"TLB"\qquad\qquad\qquad\qquad\qquad\ \ \ ):}
 ++++
 
-Como comentamos anteriormente, esta expresión se puede simplificar si consideramos que latexmath:[T_\mathrm{TLB} \ll T_\mathrm{m}]:
+Como comentamos anteriormente, esta expresión se puede simplificar si consideramos que stem:[T_text(TLB) ll T_text(m)]:
 
-[latexmath]
+[stem]
 ++++
-\begin{aligned}
-T_\mathrm{em} &= 2(1-p_\mathrm{TLB})T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
-       &= (2-p_\mathrm{TLB}) T_\mathrm{m}
-\end{aligned}
+{:(T_"em", =, 2*(1-p_"TLB")*T_"m" + p_"TLB"*T_"m"),
+    (    , =, (2-p_"TLB")*T_"m"\qquad\qquad\qquad\ \ \ ):}
 ++++
 
 Obviamente, cuanto más se aproxima a 1 la probabilidad stem:[p_text(TLB)] de que la entrada esté en la *TLB*, más cerca está stem:[T_text(em)] de stem:[T_text(m)].
@@ -448,9 +444,9 @@ La *paginación jerárquica* aumenta el número de accesos necesarios para consu
 Es decir, mientras que para consultar una *tabla de páginas lineal* solo necesitamos un acceso a la memoria, para obtener una dirección fisica en la *paginación jerárquica* de _n_ niveles necesitamos _n_ accesos a la memoria.
 Por tanto, el *tiempo de acceso efectivo* stem:[T_text(em)] en un sistema sin *TLB* es:
 
-[latexmath]
+[stem]
 ++++
-T_\mathrm{em} = (n+1)T_\mathrm{m}
+T_"em" = (n+1)*T_"m"
 ++++
 
 porque, además de los _n_ accesos para consultar la *tabla de páginas* y obtener la dirección física, es necesario ejecutar la operación solicitada en la memoria física.
@@ -460,20 +456,16 @@ Mientras que, en caso contrario, el *tiempo de acceso efectivo* es stem:[T_text(
 
 Siguiendo los mismos pasos que en el <<_tiempos_de_acceso_a_la_memoria>>, para obtener una estimación de stem:[T_text(em)] en base a la probabilidad stem:[p_text(TLB)] de que las direcciones virtuales consultadas estén en la *TLB*, obtenemos el siguiente resultado:
 
-[latexmath]
+[stem]
 ++++
-\begin{aligned}
-T_\mathrm{em} &= (1-p_\mathrm{TLB}) ((n+1)T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
-       &= ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB} 
-\end{aligned}
+{:(T_"em", =, (1-p_"TLB")*((n+1)*T_"m" + T_"TLB") + p_"TLB"*(T_"m" + T_"TLB")),
+    (    , =, ((1-p_"TLB")*n+1)*T_"m" + T_"TLB"\qquad\qquad\qquad\qquad\qquad\ \ ):}
 ++++
 
-Esta expresión se puede simplificar si consideramos que latexmath:[T_\mathrm{TLB} \ll T_\mathrm{m}]:
+Esta expresión se puede simplificar si consideramos que stem:[T_text(TLB) ll T_text(m)]:
 
-[latexmath]
+[stem]
 ++++
-\begin{aligned}
-T_\mathrm{em} &= (1-p_\mathrm{TLB})(n+1)T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
-       &= (1-p_\mathrm{TLB})n+1)T_\mathrm{m} 
-\end{aligned}
+{:(T_"em", =, (1-p_"TLB")*(n+1)*T_"m" + p_"TLB"*T_"m"),
+    (    , =, ((1-p_"TLB")*n+1)*T_"m"\qquad\qquad\qquad):}
 ++++

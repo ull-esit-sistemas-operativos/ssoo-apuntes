@@ -509,29 +509,29 @@ El error puede ser notificado al usuario para que vuelva a enviar el trabajo con
 Para utilizar el algoritmo *SJF* en el planificador de la CPU, lo único que se puede hacer es intentar predecir el tiempo de la siguiente ráfaga de CPU.
 Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos de las de ráfagas de CPU pasadas:
 
-[latexmath]
+[stem]
 ++++
-\tau_{n+1} = \alpha{}t_n + (1 - \alpha)\tau_n,\; 0 \leq \alpha \leq 1
+tau_(n+1) = alpha*t_n + (1 - alpha)*tau_n, 0 le alpha le 1
 ++++
 
 donde:
 
-* _{tau}_~_n_+1~ es la estimación de tiempo de la siguiente ráfaga de CPU
-* _t~n~_ es el tiempo real de la última ráfaga
-* _{alpha}_ es el peso relativo del tiempo real de la última ráfaga.
-* _{tau}~n~_ es la estimación de tiempo de la última ráfaga.
+* stem:[tau_(n+1)] es la estimación de tiempo de la siguiente ráfaga de CPU
+* stem:[t_n] es el tiempo real de la última ráfaga
+* stem:[alpha] es el peso relativo del tiempo real de la última ráfaga.
+* stem:[tau_(n)] es la estimación de tiempo de la última ráfaga.
 
-La expresión es recursiva, dado que _{tau}~n~_ se calcula usando la ecuación con _t_~_n_-1~ y _{tau}_~_n_-1~; que a su vez depende de _t_~_n_-2~ y _{tau}_~_n_-2~, y así sucesivamente.
+La expresión es recursiva, dado que stem:[tau_n] se calcula usando la ecuación con stem:[t_(n-1)] y stem:[tau_(n-1)]; que a su vez depende de stem:[t_(n-2)] y stem:[tau_(n-2)], y así sucesivamente.
 
-Si desarrollamos la fórmula sustituyendo los valores, veremos que _t~n~_ se pondera con _{alpha}_, _t_~_n_-1~ con (1 - _{alpha}_)_{alpha}_, _t_~_n_-2~ con(1 - _{alpha}_)^2^_{alpha}_, y así sucesivamente:
+Si desarrollamos la fórmula sustituyendo los valores, veremos que stem:[t_n] se pondera con stem:[alpha], stem:[t_(n-1)] con stem:[(1 - alpha)alpha], stem:[t_(n-2)] con stem:[(1 - alpha)^2alpha], y así sucesivamente:
 
-[latexmath]
+[stem]
 ++++
-\tau_{n+1}=\alpha{}t_n + (1 - \alpha)\alpha{}t_{n-1} + (1 - \alpha)^2\alpha{}t_{n-2} + \ldots
+tau_(n+1) = alpha*t_n + (1 - alpha)*alpha*t_(n-1) + (1 - alpha)^2*alpha*t_(n-2) + ...
 ++++
 
-Si _{alpha}_ = 1, _{tau}_~_n_+1~ = _{alpha}t~n~_, ignorando el resto del histórico.
-En otro caso, dado que tanto _{alpha}_ como 1 - _{alpha}_ son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los _t~n~_ contribuyan menos cuanto más alejados del tiempo actual.
+Si stem:[alpha] = 1, stem:[tau_(n+1)] = stem:[alpha*t_n], ignorando el resto del histórico.
+En otro caso, dado que tanto stem:[alpha] como stem:[1 - alpha] son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los stem:[t_n] contribuyan menos cuanto más alejados del tiempo actual.
 
 El problema es que todos estos cálculos consumen tiempo de CPU, cuando el planificador debe ser lo más rápido posible, dado que se ejecuta con mucha frecuencia.
 
@@ -628,7 +628,7 @@ Las prioridades se suelen indicar con números enteros en un rango fijo. Por eje
 En algunos sistemas operativos los números más grandes representan mayor prioridad, mientras que en otros son los procesos con números más pequeños los que se planifican primero.
 En este curso utilizaremos la convención de que a menor valor, mayor prioridad.
 
-Si las prioridades se asignan en relación al tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del *SJF*; por lo que se considera a este último un caso particular de algoritmo de *planificación con prioridades*.
+Si las prioridades se asignan en relación con el tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del *SJF*; por lo que se considera a este último un caso particular de algoritmo de *planificación con prioridades*.
 
 El algoritmo de planificación con prioridades puede ser *expropiativo* o *cooperativo*:
 
@@ -1022,59 +1022,56 @@ El algoritmo de *planificación equitativa* es muy similar al algoritmo *RR*, pe
 Las implementaciones del algoritmo de *planificación equitativa* suelen utilizar el concepto de _tiempo virtual_ para seguir la pista de cuánto tiempo debe ejecutarse el proceso.
 Por ejemplo, en el planificador de {zircon}<<Fuchsia-ZirconFairScheduler>> —el _microkernel_ de {google_fuchsia}— cuando un proceso stem:[P_i] entra en la *cola de preparados*, en el PCB de dicho proceso se actualizan dos tiempos:
 
-* *Instante inicial stem:[t_{si}]* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+* *Instante inicial stem:[t_(si)]* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
 
-* *Instante final stem:[t_{fi}]* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
+* *Instante final stem:[t_(fi)]* de la ráfaga de CPU del proceso, en el _tiempo virtual_ de la CPU.
 
-Estos tiempos se dicen que están en _tiempo virtual_ de la CPU para señalar que idealmente el proceso comenzaría su ejecución en stem:[t_{si}] y terminaría en stem:[t_{fi}], aunque esto difícilmente va a ocurrir en la realidad porque el tiempo de CPU hay que repartirlo entre los diferentes procesos.
+Estos tiempos se dicen que están en _tiempo virtual_ de la CPU para señalar que idealmente el proceso comenzaría su ejecución en stem:[t_(si)] y terminaría en stem:[t_(fi)], aunque esto difícilmente va a ocurrir en la realidad porque el tiempo de CPU hay que repartirlo entre los diferentes procesos.
 
 [NOTE]
 {zircon} es un _microkernel_ multihilo con modelo uno a uno, por lo que su planificador trabaja con hilos.
 Es decir, las propiedades que necesita el planificador para hacer su trabajo están vinculadas a los hilos y son estos hilos los que el planificador ordena y selecciona para ser ejecutados en la CPU.
 Sin embargo, en la versión que vamos a describir hablaremos de planificar procesos, por coherencia con cómo hemos explicado el resto de planificadores de este capítulo.
 
-Si stem:[t] es el instante de tiempo en el que un proceso stem:[P_i] entra en la cola de preparados, el instante inicial stem:[t_{si}] y el instante final stem:[t_{fi}] se calculan de la siguiente manera:
+Si stem:[t] es el instante de tiempo en el que un proceso stem:[P_i] entra en la cola de preparados, el instante inicial stem:[t_(si)] y el instante final stem:[t_(fi)] se calculan de la siguiente manera:
 
-[latexmath]
+[stem]
 ++++
-\begin{split}
-t_{si} &= t \\
-t_{fi} &= t_{si} + gM
-\end{split}
+{: (t_(si), =, t\qquad\qquad), (t_(fi), =, t_(si) + gM):}
 ++++
 
 donde stem:[M] es la porción mínima de tiempo de CPU real que se puede asignar a cada proceso y stem:[g] es la cantidad de estas porciones de tiempo que se quiere repartir entre todos los procesos que están en disposición de ser ejecutados.
-Es decir, en el ejemplo anterior stem:[gM = 4\text( ms.)], por lo que si la porción mínima fuera stem:[M = 1\text( ms.)], cada periodo tendría 4 porciones de tiempo para repartir.
+Es decir, en el ejemplo anterior stem:[gM = 4" ms"], por lo que si la porción mínima fuera stem:[M = 1" ms."], cada periodo tendría 4 porciones de tiempo para repartir.
 
-En la *cola de preparados* los procesos son ordenados por el valor de stem:[t_{fi}], de forma que primero se planifican los procesos que tiene ráfagas que virtualmente terminarían antes.
+En la *cola de preparados* los procesos son ordenados por el valor de stem:[t_(fi)], de forma que primero se planifican los procesos que tiene ráfagas que virtualmente terminarían antes.
 
 El planificador de {zircon} tiene una serie de parámetros ajustables:
 
 * La *granularidad mínima stem:[M]* que, como hemos comentado, es la porción mínima de tiempo de CPU real que se puede asignar a cualquier proceso.
 
 * La *latencia objetivo stem:[L]*, que es el periodo de tiempo de CPU mínimo que se va a repartir entre los procesos.
-Es decir, dentro de un periodo de *latencia objetivo* stem:[L] hay stem:[\text{floor}(L / M)] porciones de tiempo para repartir entre los procesos.
+Es decir, dentro de un periodo de *latencia objetivo* stem:[L] hay stem:["floor"(L / M)] porciones de tiempo para repartir entre los procesos.
 
 Si hay stem:[n] procesos que se pueden ejecutar, lo que hace el planificador es calcular stem:[g] de la siguiente manera:
 
-[latexmath]
+[stem]
 ++++
-g = \text{max}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)
+g = max(n, "floor"(L/M))
 ++++
 
-de forma que siempre haya suficientes porciones stem:[M] para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a stem:[\text{floor}(L / M)].
+de forma que siempre haya suficientes porciones stem:[M] para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a stem:["floor"(L / M)].
 
-Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_{i}] durante el que se le asignará la CPU:
+Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_i] durante el que se le asignará la CPU:
 
-[latexmath]
+[stem]
 ++++
-t_{i} = \text{ceil}\left(\frac{g}{n}\right)M
+t_i = "ceil"(g/n)*M
 ++++
 
 de forma que se reparten las stem:[g] porciones entre los stem:[n] procesos.
 
 Si hay muchos procesos, stem:[g = n], por lo que a cada proceso se le asigna un tiempo de CPU de stem:[M].
-Si hay pocos procesos, stem:[g = \text{floor}(L / M)], por lo que a cada proceso se le asignan varias porciones stem:[M] de tiempo de CPU del periodo stem:[L].
+Si hay pocos procesos, stem:[g = "floor"(L / M)], por lo que a cada proceso se le asignan varias porciones stem:[M] de tiempo de CPU del periodo stem:[L].
 
 ==== Planificación equitativa ponderada
 
@@ -1092,20 +1089,20 @@ Otro ejemplo es {zircon} que, como hemos comentado, está inmerso en cambiar su 
 
 En {zircon} cada proceso stem:[P_i] tiene un peso stem:[w_i] que indica la importancia del proceso en el reparto del tiempo de CPU.
 
-El primer cambio —respecto a la implementación vista anteriormente— es que el instante final stem:[t_{fi}] realmente se calcula de la siguiente manera:
+El primer cambio —respecto a la implementación vista anteriormente— es que el instante final stem:[t_(fi)] realmente se calcula de la siguiente manera:
 
-[latexmath]
+[stem]
 ++++
-t_{fi} = t_{si} + gM/w_i
+t_(fi) = t_(si) + gM/w_i
 ++++
 
-de forma que es los procesos con mayor peso stem:[w_i] tiene un stem:[t_{fi}] más pequeño, por lo que se colocan antes en la *cola de preparados*.
+de forma que es los procesos con mayor peso stem:[w_i] tiene un stem:[t_(fi)] más pequeño, por lo que se colocan antes en la *cola de preparados*.
 
-Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_{i}] durante el que se le asignará la CPU, asignándole un tiempo proporcional al peso del proceso stem:[w_i] respecto al peso del resto de los procesos con los que compite:
+Cuando se escoge un proceso para su ejecución, se calcula el cuanto real stem:[t_(i)] durante el que se le asignará la CPU, asignándole un tiempo proporcional al peso del proceso stem:[w_i] respecto al peso del resto de los procesos con los que compite:
 
-[latexmath]
+[stem]
 ++++
-t_{i} = \text{ceil}(g \frac{w_i}{W})M
+t_i = "ceil"(g*w_i/W)*M
 ++++
 
 donde stem:[W] es la suma de todos los pesos stem:[w_i] para los stem:[n] procesos preparados para ser ejecutados.
@@ -1149,16 +1146,16 @@ image::{chapdir}/equitativo2.svg[]
 Al empezar, el primer proceso está solo cuando se le asigna la CPU, por lo que puede consumir toda la latencia de planificación stem:[L] en el primer periodo.
 Posteriormente, cuando vuelve a la *cola de preparados* en el instante 5, han llegado el resto de procesos, por lo que tiene que competir con ellos por la CPU.
 
-A partir de ese instante el orden para asignar la CPU viene determinado por stem:[t_{fi}], cuya expresión depende de stem:[g].
+A partir de ese instante el orden para asignar la CPU viene determinado por stem:[t_(fi)], cuya expresión depende de stem:[g].
 En este caso stem:[g=M/L=5] en todo momento, puesto que hay menos procesos que porciones de tiempo stem:[M] en stem:[L].
 
-En la siguiente tabla se puede observar los valores de stem:[t_{si}] y stem:[t_{fi}] para cada proceso en el instante 5:
+En la siguiente tabla se puede observar los valores de stem:[t_(si)] y stem:[t_(fi)] para cada proceso en el instante 5:
 
 [cols="3*^" options=header]
 |===
 |Proceso
-|stem:[t_{si}]
-|stem:[t_{fi}]
+|stem:[t_(si)]
+|stem:[t_(fi)]
 
 |P1
 |5
@@ -1177,7 +1174,7 @@ En la siguiente tabla se puede observar los valores de stem:[t_{si}] y stem:[t_{
 |4
 |===
 
-Aunque el proceso stem:[P_4] es el último en llegar, es el siguiente en ser planificado, porque al tener un peso más alto su stem:[t_{f4}] es el más bajo.
+Aunque el proceso stem:[P_4] es el último en llegar, es el siguiente en ser planificado, porque al tener un peso más alto su stem:[t_f4] es el más bajo.
 Entonces se calcula el tiempo de cuanto stem:[t_4], que da 3, por lo que se planifica en la CPU durante ese tiempo.
 
 Sin embargo, stem:[P_4] no consume su tiempo de cuanto porque su ráfaga terminar antes, por lo que en el instante 7 se tiene que planificar el siguiente proceso en la *cola de preparados*.
@@ -1186,13 +1183,13 @@ En este caso sería stem:[P_3], con un tiempo de cuanto de 2.
 Para calcular stem:[t_3] es importante recordar que stem:[W = 5], puesto que stem:[P_4] ya no está en la *cola de preparados* por lo que su peso no se incluye.
 
 En el instante 9, el proceso stem:[P_3] es expulsado de la CPU y vuelve a la *cola de preparados*.
-Entonces, se tienen que actualizar sus valores para stem:[t_{si}] y stem:[t_{fi}] con el objeto de determinar cuál será el próximo proceso planificado:
+Entonces, se tienen que actualizar sus valores para stem:[t_(si)] y stem:[t_(fi)] con el objeto de determinar cuál será el próximo proceso planificado:
 
 [cols="3*^" options=header]
 |===
 |Proceso
-|stem:[t_{si}]
-|stem:[t_{fi}]
+|stem:[t_(si)]
+|stem:[t_(fi)]
 
 |P1
 |5
