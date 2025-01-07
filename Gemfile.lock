@@ -32,6 +32,7 @@ GEM
       fiber-annotation
       io-event (~> 1.1)
       timers (~> 4.1)
+    base64 (0.2.0)
     concurrent-ruby (1.2.2)
     console (1.17.2)
       fiber-annotation
@@ -68,7 +69,7 @@ GEM
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
-    nokogiri (1.16.7-x86_64-linux)
+    nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
     pdf-core (0.9.0)
     pdf-reader (2.11.0)
@@ -125,6 +126,7 @@ DEPENDENCIES
   asciidoctor-mathematical
   asciidoctor-multipage
   asciidoctor-pdf
+  base64 (~> 0.2.0)
   debase (~> 0.2.5.beta2)
   html-proofer
   nokogiri

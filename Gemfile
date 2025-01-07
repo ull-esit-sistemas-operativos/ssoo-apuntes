@@ -23,6 +23,7 @@ end
 group :pdf do
     gem "asciidoctor-mathematical"
     gem "asciidoctor-pdf"
+    gem "base64", "~> 0.2.0"
 end
 
 group :epub3 do
