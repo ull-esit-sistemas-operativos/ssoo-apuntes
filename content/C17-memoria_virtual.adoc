@@ -116,13 +116,13 @@ Sin embargo, esto no ocurre, puesto que los programas tienden a tener localidad 
 
 Como con la *paginación*, el rendimiento de un sistema con *paginación bajo demanda* también está relacionado con el concepto de *tiempo de acceso efectivo*(((tiempo, acceso, efectivo))) a la memoria, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria teniendo en cuenta mecanismos del sistema operativo.
 
-Supongamos que conocemos la probabilidad stem:[p_text(fp)] de que ocurra un fallo de página.
-El *tiempo de acceso efectivo* se podría calcular como la probabilidad de que no ocurra un fallo de página stem:[(1 - p_text(fp))] por el *tiempo de acceso* a la memoria stem:[T_text(m)], más la probabilidad de que ocurra un fallo de página stem:[p_text(fp))] por el tiempo necesario para gestionar cada fallo de página —o *tiempo de fallo de página*(((tiempo, fallo de página)))— stem:[T_text(fp)]:
+Supongamos que conocemos el tiempo de acceso a la memoria cuando hay acierto de página --es decir, si no ocurre un fallo de página-- al que llamaremos stem:[T_text(eap)], y que conocemos la probabilidad stem:[p_text(fp)] de que ocurra un fallo de página.
+Entoncesm, el *tiempo de acceso efectivo* se podría calcular como la probabilidad de que no ocurra un fallo de página stem:[(1 - p_text(fp))] por el *tiempo de acceso* a la memoria en dicho caso stem:[T_text(eap)], más la probabilidad de que ocurra un fallo de página stem:[p_text(fp))] por el tiempo necesario para gestionar cada fallo de página —o *tiempo de fallo de página*(((tiempo, fallo de página)))— stem:[T_text(fp)]:
 
 [latexmath#eq_tiempo_bajo_demanda,reftext=({counter:eqs})]
 ++++
 \begin{equation}
-T_\mathrm{em}=(1-p_{fp}) T_\mathrm{m} + p_\mathrm{fp} T_\mathrm{fp}
+T_\mathrm{em}=(1-p_{fp}) T_\mathrm{eap} + p_\mathrm{fp} T_\mathrm{fp}
 \end{equation}
 ++++
 
@@ -142,7 +142,7 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 Como se puede apreciar, la mayor parte del *tiempo de fallo de página* es debido al tiempo requerido para acceder al *dispositivo de intercambio*.
 
 Para ilustrar el cálculo del *tiempo de acceso efectivo* a la memoria, solo vamos a considerar el tiempo requerido para acceder al *dispositivo de intercambio*, ignorando las otras tareas a realizar durante el *fallo de página*, ya que comparativamente consumen mucho menos tiempo.
-Vamos a suponer que el *tiempo de acceso* a la memoria stem:[T_text(m)] es de 200 ns y que la probabilidad stem:[p_text(fp)] es muy pequeña —es decir, latexmath:[p_\mathrm{fp} \ll 1]—:
+Vamos a suponer que el *tiempo de acceso* a la memoria en caso de acierto de página stem:[T_text(eap)] es de 200 ns y que la probabilidad stem:[p_text(fp)] es muy pequeña —es decir, latexmath:[p_\mathrm{fp} \ll 1]—:
 
 [latexmath]
 ++++
@@ -158,11 +158,11 @@ Como se puede apreciar el *tiempo de acceso efectivo* es proporcional a la *tasa
 [latexmath#eq_tiempo_bajo_demanda_simplificada,reftext=({counter:eqs})]
 ++++
 \begin{equation}
-T_\mathrm{em} \approx T_\mathrm{m} + \tau_\mathrm{fp}
+T_\mathrm{em} \approx T_\mathrm{eap} + \tau_\mathrm{fp}
 \end{equation}
 ++++
 
-donde: 
+donde:
 
 [stem]
 ++++
@@ -172,9 +172,8 @@ tau_text(fp)=p_text(fp) T_text(fp)
 Por ejemplo, si un proceso causa un fallo de página en uno de cada 1000 accesos —es decir, stem:[p_text(fp)= 0.001] — el *tiempo de acceso efectivo* es de 8.2 ms, por lo que el rendimiento del sistema es 40 veces inferior debido a la *paginación bajo demanda*.
 Por tanto, es necesario mantener la *tasa de fallos de página* stem:[tau_text(fp)] lo más baja posible para mantener un rendimiento adecuado.
 
-Hemos venido considerado stem:[T_text(m)] como el tiempo de acceso a la memoria física por simplicidad. 
-Sin embargo, realmente estamos en un sistema que utiliza paginación —incluso con varios niveles— y que puede usar una TLB para mejorar su rendimiento.
-Entonces, si queremos ser más precisos, podemos considerar stem:[T_text(m)] como el *tiempo de acceso efectivo* que calculamos en el <<paginación>>.
+Respecto a stem:[T_text(eap)], el *tiempo de acceso* a la memoria en caso de acierto de página no se corresponde directamente con el tiempo de acceso a la memoria física stem:[T_text(m)], porque estamos en un sistema que utiliza paginación --que recordemos que necesita varios accesos para cada dirección de memoria virtual-- y que puede usar una TLB para mejorar su rendimiento.
+Por tanto, stem:[T_text(eap))] es el *tiempo de acceso efectivo* stem:[T_text(em))] que calculamos en el <<paginación>>.
 
 Por ejemplo, en el <<_tiempos_de_acceso_a_la_memoria>> vimos que el *tiempo de acceso efectivo* para el *método básico de paginación* con *TLB* era:
 
@@ -184,7 +183,7 @@ T_\mathrm{em} = (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}
 ++++
 
 donde stem:[p_text(TLB)] es la probabilidad de que una entrada esté en la *TLB* y stem:[T_text(m)] es el *tiempo de acceso* a la memoria física.
-Si sustitumos esta expresión por el stem:[T_text(m)] de la <<eq_tiempo_bajo_demanda_simplificada>>, obtenemos:
+Si sustituimos esta expresión por el stem:[T_text(eap)] de la <<eq_tiempo_bajo_demanda_simplificada>>, obtenemos:
 
 [latexmath]
 ++++
@@ -208,7 +207,7 @@ T_\mathrm{em} \approx ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB} + \ta
 ++++
 
 Sin embargo, debemos recordar que para obtener ambas expresiones estamos simplificando bajo la suposición de que latexmath:[p_\mathrm{fp} \ll 1].
-Si no podemos hacer esta suposición, podemos volver a la <<eq_tiempo_bajo_demanda>> original y repetir la sustitución de stem:[T_text(m)] por las expresiones para stem:[T_text(em)] en cada caso.
+Si no podemos hacer esta suposición, podemos volver a la <<eq_tiempo_bajo_demanda>> original y repetir la sustitución de stem:[T_text(eap)] por las expresiones para stem:[T_text(em)] en cada caso.
 
 Así obtenemos que el *tiempo de acceso efectivo* stem:[T_text(em)] para *tabla de páginas lineal* con *TLB* y *paginación bajo demanda* es:
 
