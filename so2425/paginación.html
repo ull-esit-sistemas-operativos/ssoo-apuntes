@@ -538,7 +538,7 @@ En ese caso \$T_text(m)\$ no tiene un valor determinado, sino que se estima un p
 </table>
 </div>
 <div class="paragraph">
-<p>El \$T_text(em)\$ del primer caso suele ser mucho mayor que el segundo porque, por lo general, \(T_\mathrm{TLB} \ll T_\mathrm{m}\).
+<p>El \$T_text(em)\$ del primer caso suele ser mucho mayor que el segundo porque, por lo general, \$T_text(TLB) ll T_text(m)\$.
 Esto hace que en muchos sistemas se pueda considerar que \$T_text(em) ~~ T_text(m)\$ cuando la dirección virtual está en la <strong>TLB</strong>.</p>
 </div>
 <div class="paragraph">
@@ -547,21 +547,17 @@ Para ello, solo es necesario sumar el \$T_text(em)\$ para ambos casos, ponderand
 </div>
 <div class="stemblock">
 <div class="content">
-\[\begin{aligned}
-T_\mathrm{em} &amp;= (1-p_\mathrm{TLB})(2T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
-       &amp;= (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}
-\end{aligned}\]
+\${:(T_"em", =, (1-p_"TLB")*(2T_"m" + T_"TLB") + p_"TLB"*(T_"m" + T_"TLB")),
+    (    , =, (2-p_"TLB")*T_"m" + T_"TLB"\qquad\qquad\qquad\qquad\qquad\ \ \ ):}\$
 </div>
 </div>
 <div class="paragraph">
-<p>Como comentamos anteriormente, esta expresión se puede simplificar si consideramos que \(T_\mathrm{TLB} \ll T_\mathrm{m}\):</p>
+<p>Como comentamos anteriormente, esta expresión se puede simplificar si consideramos que \$T_text(TLB) ll T_text(m)\$:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[\begin{aligned}
-T_\mathrm{em} &amp;= 2(1-p_\mathrm{TLB})T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
-       &amp;= (2-p_\mathrm{TLB}) T_\mathrm{m}
-\end{aligned}\]
+\${:(T_"em", =, 2*(1-p_"TLB")*T_"m" + p_"TLB"*T_"m"),
+    (    , =, (2-p_"TLB")*T_"m"\qquad\qquad\qquad\ \ \ ):}\$
 </div>
 </div>
 <div class="paragraph">
@@ -881,7 +877,7 @@ Por tanto, el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ en un si
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} = (n+1)T_\mathrm{m}\]
+\$T_"em" = (n+1)*T_"m"\$
 </div>
 </div>
 <div class="paragraph">
@@ -896,21 +892,17 @@ Mientras que, en caso contrario, el <strong>tiempo de acceso efectivo</strong> e
 </div>
 <div class="stemblock">
 <div class="content">
-\[\begin{aligned}
-T_\mathrm{em} &amp;= (1-p_\mathrm{TLB}) ((n+1)T_\mathrm{m} + T_\mathrm{TLB}) + p_\mathrm{TLB}(T_\mathrm{m} + T_\mathrm{TLB})\\
-       &amp;= ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB}
-\end{aligned}\]
+\${:(T_"em", =, (1-p_"TLB")*((n+1)*T_"m" + T_"TLB") + p_"TLB"*(T_"m" + T_"TLB")),
+    (    , =, ((1-p_"TLB")*n+1)*T_"m" + T_"TLB"\qquad\qquad\qquad\qquad\qquad\ \ ):}\$
 </div>
 </div>
 <div class="paragraph">
-<p>Esta expresión se puede simplificar si consideramos que \(T_\mathrm{TLB} \ll T_\mathrm{m}\):</p>
+<p>Esta expresión se puede simplificar si consideramos que \$T_text(TLB) ll T_text(m)\$:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[\begin{aligned}
-T_\mathrm{em} &amp;= (1-p_\mathrm{TLB})(n+1)T_\mathrm{m} + p_\mathrm{TLB}T_\mathrm{m}\\
-       &amp;= (1-p_\mathrm{TLB})n+1)T_\mathrm{m}
-\end{aligned}\]
+\${:(T_"em", =, (1-p_"TLB")*(n+1)*T_"m" + p_"TLB"*T_"m"),
+    (    , =, ((1-p_"TLB")*n+1)*T_"m"\qquad\qquad\qquad):}\$
 </div>
 </div>
 </div>

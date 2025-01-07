@@ -1033,7 +1033,7 @@ Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos 
 </div>
 <div class="stemblock">
 <div class="content">
-\[\tau_{n+1} = \alpha{}t_n + (1 - \alpha)\tau_n,\; 0 \leq \alpha \leq 1\]
+\$tau_(n+1) = alpha*t_n + (1 - alpha)*tau_n, 0 le alpha le 1\$
 </div>
 </div>
 <div class="paragraph">
@@ -1042,33 +1042,33 @@ Por ejemplo, se puede utilizar un promedio ponderado exponencial de los tiempos 
 <div class="ulist">
 <ul>
 <li>
-<p><em>&#964;</em><sub><em>n</em>+1</sub> es la estimación de tiempo de la siguiente ráfaga de CPU</p>
+<p>\$tau_(n+1)\$ es la estimación de tiempo de la siguiente ráfaga de CPU</p>
 </li>
 <li>
-<p><em>t<sub>n</sub></em> es el tiempo real de la última ráfaga</p>
+<p>\$t_n\$ es el tiempo real de la última ráfaga</p>
 </li>
 <li>
-<p><em>&#945;</em> es el peso relativo del tiempo real de la última ráfaga.</p>
+<p>\$alpha\$ es el peso relativo del tiempo real de la última ráfaga.</p>
 </li>
 <li>
-<p><em>&#964;<sub>n</sub></em> es la estimación de tiempo de la última ráfaga.</p>
+<p>\$tau_(n)\$ es la estimación de tiempo de la última ráfaga.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>La expresión es recursiva, dado que <em>&#964;<sub>n</sub></em> se calcula usando la ecuación con <em>t</em><sub><em>n</em>-1</sub> y <em>&#964;</em><sub><em>n</em>-1</sub>; que a su vez depende de <em>t</em><sub><em>n</em>-2</sub> y <em>&#964;</em><sub><em>n</em>-2</sub>, y así sucesivamente.</p>
+<p>La expresión es recursiva, dado que \$tau_n\$ se calcula usando la ecuación con \$t_(n-1)\$ y \$tau_(n-1)\$; que a su vez depende de \$t_(n-2)\$ y \$tau_(n-2)\$, y así sucesivamente.</p>
 </div>
 <div class="paragraph">
-<p>Si desarrollamos la fórmula sustituyendo los valores, veremos que <em>t<sub>n</sub></em> se pondera con <em>&#945;</em>, <em>t</em><sub><em>n</em>-1</sub> con (1 - <em>&#945;</em>)<em>&#945;</em>, <em>t</em><sub><em>n</em>-2</sub> con(1 - <em>&#945;</em>)<sup>2</sup><em>&#945;</em>, y así sucesivamente:</p>
+<p>Si desarrollamos la fórmula sustituyendo los valores, veremos que \$t_n\$ se pondera con \$alpha\$, \$t_(n-1)\$ con \$(1 - alpha)alpha\$, \$t_(n-2)\$ con \$(1 - alpha)^2alpha\$, y así sucesivamente:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[\tau_{n+1}=\alpha{}t_n + (1 - \alpha)\alpha{}t_{n-1} + (1 - \alpha)^2\alpha{}t_{n-2} + \ldots\]
+\$tau_(n+1) = alpha*t_n + (1 - alpha)*alpha*t_(n-1) + (1 - alpha)^2*alpha*t_(n-2) + ...\$
 </div>
 </div>
 <div class="paragraph">
-<p>Si <em>&#945;</em> = 1, <em>&#964;</em><sub><em>n</em>+1</sub> = <em>&#945;t<sub>n</sub></em>, ignorando el resto del histórico.
-En otro caso, dado que tanto <em>&#945;</em> como 1 - <em>&#945;</em> son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los <em>t<sub>n</sub></em> contribuyan menos cuanto más alejados del tiempo actual.</p>
+<p>Si \$alpha\$ = 1, \$tau_(n+1)\$ = \$alpha*t_n\$, ignorando el resto del histórico.
+En otro caso, dado que tanto \$alpha\$ como \$1 - alpha\$ son menores de 1, cada término sucesivo tiene menor peso que su predecesor, haciendo que los \$t_n\$ contribuyan menos cuanto más alejados del tiempo actual.</p>
 </div>
 <div class="paragraph">
 <p>El problema es que todos estos cálculos consumen tiempo de CPU, cuando el planificador debe ser lo más rápido posible, dado que se ejecuta con mucha frecuencia.</p>
@@ -1221,7 +1221,7 @@ En algunos sistemas operativos los números más grandes representan mayor prior
 En este curso utilizaremos la convención de que a menor valor, mayor prioridad.</p>
 </div>
 <div class="paragraph">
-<p>Si las prioridades se asignan en relación al tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del <strong>SJF</strong>; por lo que se considera a este último un caso particular de algoritmo de <strong>planificación con prioridades</strong>.</p>
+<p>Si las prioridades se asignan en relación con el tiempo de la próxima ráfaga de CPU, su comportamiento es el mismo que el del <strong>SJF</strong>; por lo que se considera a este último un caso particular de algoritmo de <strong>planificación con prioridades</strong>.</p>
 </div>
 <div class="paragraph">
 <p>El algoritmo de planificación con prioridades puede ser <strong>expropiativo</strong> o <strong>cooperativo</strong>:</p>
@@ -1853,15 +1853,15 @@ Por ejemplo, en el planificador de <a href="https://es.wikipedia.org/wiki/Zircon
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Instante inicial \$t_{si}\$</strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
+<p><strong>Instante inicial \$t_(si)\$</strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
 </li>
 <li>
-<p><strong>Instante final \$t_{fi}\$</strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
+<p><strong>Instante final \$t_(fi)\$</strong> de la ráfaga de CPU del proceso, en el <em>tiempo virtual</em> de la CPU.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Estos tiempos se dicen que están en <em>tiempo virtual</em> de la CPU para señalar que idealmente el proceso comenzaría su ejecución en \$t_{si}\$ y terminaría en \$t_{fi}\$, aunque esto difícilmente va a ocurrir en la realidad porque el tiempo de CPU hay que repartirlo entre los diferentes procesos.</p>
+<p>Estos tiempos se dicen que están en <em>tiempo virtual</em> de la CPU para señalar que idealmente el proceso comenzaría su ejecución en \$t_(si)\$ y terminaría en \$t_(fi)\$, aunque esto difícilmente va a ocurrir en la realidad porque el tiempo de CPU hay que repartirlo entre los diferentes procesos.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1878,22 +1878,19 @@ Sin embargo, en la versión que vamos a describir hablaremos de planificar proce
 </table>
 </div>
 <div class="paragraph">
-<p>Si \$t\$ es el instante de tiempo en el que un proceso \$P_i\$ entra en la cola de preparados, el instante inicial \$t_{si}\$ y el instante final \$t_{fi}\$ se calculan de la siguiente manera:</p>
+<p>Si \$t\$ es el instante de tiempo en el que un proceso \$P_i\$ entra en la cola de preparados, el instante inicial \$t_(si)\$ y el instante final \$t_(fi)\$ se calculan de la siguiente manera:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[\begin{split}
-t_{si} &amp;= t \\
-t_{fi} &amp;= t_{si} + gM
-\end{split}\]
+\${: (t_(si), =, t\qquad\qquad), (t_(fi), =, t_(si) + gM):}\$
 </div>
 </div>
 <div class="paragraph">
 <p>donde \$M\$ es la porción mínima de tiempo de CPU real que se puede asignar a cada proceso y \$g\$ es la cantidad de estas porciones de tiempo que se quiere repartir entre todos los procesos que están en disposición de ser ejecutados.
-Es decir, en el ejemplo anterior \$gM = 4\text( ms.)\$, por lo que si la porción mínima fuera \$M = 1\text( ms.)\$, cada periodo tendría 4 porciones de tiempo para repartir.</p>
+Es decir, en el ejemplo anterior \$gM = 4" ms"\$, por lo que si la porción mínima fuera \$M = 1" ms."\$, cada periodo tendría 4 porciones de tiempo para repartir.</p>
 </div>
 <div class="paragraph">
-<p>En la <strong>cola de preparados</strong> los procesos son ordenados por el valor de \$t_{fi}\$, de forma que primero se planifican los procesos que tiene ráfagas que virtualmente terminarían antes.</p>
+<p>En la <strong>cola de preparados</strong> los procesos son ordenados por el valor de \$t_(fi)\$, de forma que primero se planifican los procesos que tiene ráfagas que virtualmente terminarían antes.</p>
 </div>
 <div class="paragraph">
 <p>El planificador de <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> tiene una serie de parámetros ajustables:</p>
@@ -1905,7 +1902,7 @@ Es decir, en el ejemplo anterior \$gM = 4\text( ms.)\$, por lo que si la porció
 </li>
 <li>
 <p>La <strong>latencia objetivo \$L\$</strong>, que es el periodo de tiempo de CPU mínimo que se va a repartir entre los procesos.
-Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \$\text{floor}(L / M)\$ porciones de tiempo para repartir entre los procesos.</p>
+Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \$"floor"(L / M)\$ porciones de tiempo para repartir entre los procesos.</p>
 </li>
 </ul>
 </div>
@@ -1914,18 +1911,18 @@ Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \
 </div>
 <div class="stemblock">
 <div class="content">
-\[g = \text{max}\left(n, \text{floor}\left(\frac{L}{M}\right)\right)\]
+\$g = max(n, "floor"(L/M))\$
 </div>
 </div>
 <div class="paragraph">
-<p>de forma que siempre haya suficientes porciones \$M\$ para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a \$\text{floor}(L / M)\$.</p>
+<p>de forma que siempre haya suficientes porciones \$M\$ para que cada proceso pueda tener al menos una, limitando por debajo el número de porciones a repartir a \$"floor"(L / M)\$.</p>
 </div>
 <div class="paragraph">
-<p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_{i}\$ durante el que se le asignará la CPU:</p>
+<p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_i\$ durante el que se le asignará la CPU:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[t_{i} = \text{ceil}\left(\frac{g}{n}\right)M\]
+\$t_i = "ceil"(g/n)*M\$
 </div>
 </div>
 <div class="paragraph">
@@ -1933,7 +1930,7 @@ Es decir, dentro de un periodo de <strong>latencia objetivo</strong> \$L\$ hay \
 </div>
 <div class="paragraph">
 <p>Si hay muchos procesos, \$g = n\$, por lo que a cada proceso se le asigna un tiempo de CPU de \$M\$.
-Si hay pocos procesos, \$g = \text{floor}(L / M)\$, por lo que a cada proceso se le asignan varias porciones \$M\$ de tiempo de CPU del periodo \$L\$.</p>
+Si hay pocos procesos, \$g = "floor"(L / M)\$, por lo que a cada proceso se le asignan varias porciones \$M\$ de tiempo de CPU del periodo \$L\$.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1958,22 +1955,22 @@ Otro ejemplo es <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zir
 <p>En <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zircon</a> cada proceso \$P_i\$ tiene un peso \$w_i\$ que indica la importancia del proceso en el reparto del tiempo de CPU.</p>
 </div>
 <div class="paragraph">
-<p>El primer cambio —respecto a la implementación vista anteriormente— es que el instante final \$t_{fi}\$ realmente se calcula de la siguiente manera:</p>
+<p>El primer cambio —respecto a la implementación vista anteriormente— es que el instante final \$t_(fi)\$ realmente se calcula de la siguiente manera:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[t_{fi} = t_{si} + gM/w_i\]
+\$t_(fi) = t_(si) + gM/w_i\$
 </div>
 </div>
 <div class="paragraph">
-<p>de forma que es los procesos con mayor peso \$w_i\$ tiene un \$t_{fi}\$ más pequeño, por lo que se colocan antes en la <strong>cola de preparados</strong>.</p>
+<p>de forma que es los procesos con mayor peso \$w_i\$ tiene un \$t_(fi)\$ más pequeño, por lo que se colocan antes en la <strong>cola de preparados</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_{i}\$ durante el que se le asignará la CPU, asignándole un tiempo proporcional al peso del proceso \$w_i\$ respecto al peso del resto de los procesos con los que compite:</p>
+<p>Cuando se escoge un proceso para su ejecución, se calcula el cuanto real \$t_(i)\$ durante el que se le asignará la CPU, asignándole un tiempo proporcional al peso del proceso \$w_i\$ respecto al peso del resto de los procesos con los que compite:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[t_{i} = \text{ceil}(g \frac{w_i}{W})M\]
+\$t_i = "ceil"(g*w_i/W)*M\$
 </div>
 </div>
 <div class="paragraph">
@@ -2040,11 +2037,11 @@ Otro ejemplo es <a href="https://es.wikipedia.org/wiki/Zircon_(n%C3%BAcleo)">Zir
 Posteriormente, cuando vuelve a la <strong>cola de preparados</strong> en el instante 5, han llegado el resto de procesos, por lo que tiene que competir con ellos por la CPU.</p>
 </div>
 <div class="paragraph">
-<p>A partir de ese instante el orden para asignar la CPU viene determinado por \$t_{fi}\$, cuya expresión depende de \$g\$.
+<p>A partir de ese instante el orden para asignar la CPU viene determinado por \$t_(fi)\$, cuya expresión depende de \$g\$.
 En este caso \$g=M/L=5\$ en todo momento, puesto que hay menos procesos que porciones de tiempo \$M\$ en \$L\$.</p>
 </div>
 <div class="paragraph">
-<p>En la siguiente tabla se puede observar los valores de \$t_{si}\$ y \$t_{fi}\$ para cada proceso en el instante 5:</p>
+<p>En la siguiente tabla se puede observar los valores de \$t_(si)\$ y \$t_(fi)\$ para cada proceso en el instante 5:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2055,8 +2052,8 @@ En este caso \$g=M/L=5\$ en todo momento, puesto que hay menos procesos que porc
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">\$t_{si}\$</th>
-<th class="tableblock halign-center valign-top">\$t_{fi}\$</th>
+<th class="tableblock halign-center valign-top">\$t_(si)\$</th>
+<th class="tableblock halign-center valign-top">\$t_(fi)\$</th>
 </tr>
 </thead>
 <tbody>
@@ -2083,7 +2080,7 @@ En este caso \$g=M/L=5\$ en todo momento, puesto que hay menos procesos que porc
 </tbody>
 </table>
 <div class="paragraph">
-<p>Aunque el proceso \$P_4\$ es el último en llegar, es el siguiente en ser planificado, porque al tener un peso más alto su \$t_{f4}\$ es el más bajo.
+<p>Aunque el proceso \$P_4\$ es el último en llegar, es el siguiente en ser planificado, porque al tener un peso más alto su \$t_f4\$ es el más bajo.
 Entonces se calcula el tiempo de cuanto \$t_4\$, que da 3, por lo que se planifica en la CPU durante ese tiempo.</p>
 </div>
 <div class="paragraph">
@@ -2095,7 +2092,7 @@ En este caso sería \$P_3\$, con un tiempo de cuanto de 2.</p>
 </div>
 <div class="paragraph">
 <p>En el instante 9, el proceso \$P_3\$ es expulsado de la CPU y vuelve a la <strong>cola de preparados</strong>.
-Entonces, se tienen que actualizar sus valores para \$t_{si}\$ y \$t_{fi}\$ con el objeto de determinar cuál será el próximo proceso planificado:</p>
+Entonces, se tienen que actualizar sus valores para \$t_(si)\$ y \$t_(fi)\$ con el objeto de determinar cuál será el próximo proceso planificado:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2106,8 +2103,8 @@ Entonces, se tienen que actualizar sus valores para \$t_{si}\$ y \$t_{fi}\$ con 
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Proceso</th>
-<th class="tableblock halign-center valign-top">\$t_{si}\$</th>
-<th class="tableblock halign-center valign-top">\$t_{fi}\$</th>
+<th class="tableblock halign-center valign-top">\$t_(si)\$</th>
+<th class="tableblock halign-center valign-top">\$t_(fi)\$</th>
 </tr>
 </thead>
 <tbody>

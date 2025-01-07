@@ -496,14 +496,12 @@ Sin embargo, esto no ocurre, puesto que los programas tienden a tener localidad 
 <p>Como con la <strong>paginación</strong>, el rendimiento de un sistema con <strong>paginación bajo demanda</strong> también está relacionado con el concepto de <strong>tiempo de acceso efectivo</strong> a la memoria, que intenta estimar el tiempo que realmente se tarda en acceder a la memoria teniendo en cuenta mecanismos del sistema operativo.</p>
 </div>
 <div class="paragraph">
-<p>Supongamos que conocemos la probabilidad \$p_text(fp)\$ de que ocurra un fallo de página.
-El <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad de que no ocurra un fallo de página \$(1 - p_text(fp))\$ por el <strong>tiempo de acceso</strong> a la memoria \$T_text(m)\$, más la probabilidad de que ocurra un fallo de página \$p_text(fp))\$ por el tiempo necesario para gestionar cada fallo de página —o <strong>tiempo de fallo de página</strong>— \$T_text(fp)\$:</p>
+<p>Supongamos que conocemos el tiempo de acceso a la memoria cuando hay acierto de página --es decir, si no ocurre un fallo de página-- al que llamaremos \$T_text(eap)\$, y que conocemos la probabilidad \$p_text(fp)\$ de que ocurra un fallo de página.
+Entonces, el <strong>tiempo de acceso efectivo</strong> se podría calcular como la probabilidad de que no ocurra un fallo de página \$(1 - p_text(fp))\$ por el <strong>tiempo de acceso</strong> a la memoria en dicho caso \$T_text(eap)\$, más la probabilidad de que ocurra un fallo de página \$p_text(fp))\$ por el tiempo necesario para gestionar cada fallo de página —o <strong>tiempo de fallo de página</strong>— \$T_text(fp)\$:</p>
 </div>
-<div id="eq_tiempo_bajo_demanda" class="stemblock">
+<div class="stemblock">
 <div class="content">
-\[\begin{equation}
-T_\mathrm{em}=(1-p_{fp}) T_\mathrm{m} + p_\mathrm{fp} T_\mathrm{fp}
-\end{equation}\]
+\$T_"em" = (1-p_"fp")*T_"eap" + p_"fp"*T_"fp"\$
 </div>
 </div>
 <div class="paragraph">
@@ -533,25 +531,22 @@ Si incluimos el tiempo de espera en la cola de preparados, se puede tardar entre
 </div>
 <div class="paragraph">
 <p>Para ilustrar el cálculo del <strong>tiempo de acceso efectivo</strong> a la memoria, solo vamos a considerar el tiempo requerido para acceder al <strong>dispositivo de intercambio</strong>, ignorando las otras tareas a realizar durante el <strong>fallo de página</strong>, ya que comparativamente consumen mucho menos tiempo.
-Vamos a suponer que el <strong>tiempo de acceso</strong> a la memoria \$T_text(m)\$ es de 200 ns y que la probabilidad \$p_text(fp)\$ es muy pequeña —es decir, \(p_\mathrm{fp} \ll 1\)—:</p>
+Vamos a suponer que el <strong>tiempo de acceso</strong> a la memoria en caso de acierto de página \$T_text(eap)\$ es de 200 ns y que la probabilidad \$p_text(fp)\$ es muy pequeña —es decir, \$p_text(fp) ll\$1—:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[\begin{split}
-T_\mathrm{em} &amp;= (1-p_\mathrm{fp}) \cdot 200\,\text{ns}+p_\mathrm{fp} \cdot 8\,\text{ms.} \\
-       &amp;= (1-p_\mathrm{fp}) \cdot 200\,\text{ns}+p_\mathrm{fp} \cdot 8\,000\,000\,\text{ms.} \\
-       &amp;\approx 200\,\text{ns} + 7\,999\,800\,\text{ms.} \cdot p_\mathrm{fp}
-\end{split}\]
+\${:(T_"em", =, (1-p_"fp")*,200 "ns", +, p_"fp"*8 "ms" \qquad\qquad),
+   (     , =, (1-p_"fp")*,200 "ns", +, p_"fp"*8000000 "ms"),
+   (     , ~~,          ,200 "ns", +, 7999800 "ms"*p_"fp"),
+   (     , ~~,          ,        ,  , 7999800 "ms"*p_"fp"):}\$
 </div>
 </div>
 <div class="paragraph">
-<p>Como se puede apreciar el <strong>tiempo de acceso efectivo</strong> es proporcional a la <strong>tasa de fallos de página</strong> \$tau_text(fp)\$:</p>
+<p>Como se puede apreciar el <strong>tiempo de acceso efectivo</strong> prácticamente es proporcional a la <strong>tasa de fallos de página</strong> \$tau_text(fp)\$:</p>
 </div>
-<div id="eq_tiempo_bajo_demanda_simplificada" class="stemblock">
+<div class="stemblock">
 <div class="content">
-\[\begin{equation}
-T_\mathrm{em} \approx T_\mathrm{m} + \tau_\mathrm{fp}
-\end{equation}\]
+\$T_"em" ~~ T_"eap" + tau_"fp"\$
 </div>
 </div>
 <div class="paragraph">
@@ -567,25 +562,25 @@ T_\mathrm{em} \approx T_\mathrm{m} + \tau_\mathrm{fp}
 Por tanto, es necesario mantener la <strong>tasa de fallos de página</strong> \$tau_text(fp)\$ lo más baja posible para mantener un rendimiento adecuado.</p>
 </div>
 <div class="paragraph">
-<p>Hemos venido considerado \$T_text(m)\$ como el tiempo de acceso a la memoria física por simplicidad.
-Sin embargo, realmente estamos en un sistema que utiliza paginación —incluso con varios niveles— y que puede usar una TLB para mejorar su rendimiento.
-Entonces, si queremos ser más precisos, podemos considerar \$T_text(m)\$ como el <strong>tiempo de acceso efectivo</strong> que calculamos en el <a href="paginación.html">Capítulo 16</a>.</p>
+<p>Respecto a \$T_text(eap)\$, el <strong>tiempo de acceso</strong> a la memoria en caso de acierto de página no se corresponde directamente con el tiempo de acceso a la memoria física \$T_text(m)\$, porque estamos en un sistema que utiliza paginación --que recordemos que necesita varios accesos para cada dirección de memoria virtual-- y que puede usar una TLB para mejorar su rendimiento.
+Por tanto, \$T_text(eap))\$ es el <strong>tiempo de acceso efectivo</strong> \$T_text(em))\$ que calculamos en el <a href="paginación.html">Capítulo 16</a>.</p>
 </div>
 <div class="paragraph">
 <p>Por ejemplo, en el <a href="paginación.html#_tiempos_de_acceso_a_la_memoria">Apartado 16.3</a> vimos que el <strong>tiempo de acceso efectivo</strong> para el <strong>método básico de paginación</strong> con <strong>TLB</strong> era:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} = (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}\]
+\$T_"em" = (2-p_"TLB")*T_"m" + T_"TLB"\$
 </div>
 </div>
 <div class="paragraph">
 <p>donde \$p_text(TLB)\$ es la probabilidad de que una entrada esté en la <strong>TLB</strong> y \$T_text(m)\$ es el <strong>tiempo de acceso</strong> a la memoria física.
-Si sustitumos esta expresión por el \$T_text(m)\$ de la <a href="memoria_virtual.html#eq_tiempo_bajo_demanda_simplificada">(2)</a>, obtenemos:</p>
+Si sustituimos esta expresión por el \$T_text(eap)\$ en:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} \approx (2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB} + \tau_\mathrm{fp}\]
+\${:(T_"em", ~~, T_"eap" \qquad\qquad\qquad\qquad\ ,+ tau_"fp"),
+  (      , ~~, (2-p_"TLB")*T_"m" + T_"TLB" ,+ tau_"fp"):}\$
 </div>
 </div>
 <div class="paragraph">
@@ -596,7 +591,7 @@ Si sustitumos esta expresión por el \$T_text(m)\$ de la <a href="memoria_virtua
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} = ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB}\]
+\$T_"em" = ((1-p_"TLB")*n+1)*T_"m" + T_"TLB"\$
 </div>
 </div>
 <div class="paragraph">
@@ -604,19 +599,26 @@ Si sustitumos esta expresión por el \$T_text(m)\$ de la <a href="memoria_virtua
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} \approx ((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB} + \tau_\mathrm{fp}\]
+\$T_"em" ~~ ((1-p_"TLB")*n+1)*T_"m" + T_"TLB" + tau_"fp"\$
 </div>
 </div>
 <div class="paragraph">
-<p>Sin embargo, debemos recordar que para obtener ambas expresiones estamos simplificando bajo la suposición de que \(p_\mathrm{fp} \ll 1\).
-Si no podemos hacer esta suposición, podemos volver a la <a href="memoria_virtual.html#eq_tiempo_bajo_demanda">(1)</a> original y repetir la sustitución de \$T_text(m)\$ por las expresiones para \$T_text(em)\$ en cada caso.</p>
-</div>
-<div class="paragraph">
-<p>Así obtenemos que el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ para <strong>tabla de páginas lineal</strong> con <strong>TLB</strong> y <strong>paginación bajo demanda</strong> es:</p>
+<p>Sin embargo, debemos recordar que para obtener ambas expresiones estamos simplificando bajo la suposición de que \$p_text(fp) ll\$ 1.
+Si no podemos hacer esta suposición, podemos volver a la expresión original para \$T_text(em)\$, antes de la simplificación:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} = (1-p_\mathrm{fp}) \left[(2-p_\mathrm{TLB})T_\mathrm{m} + T_\mathrm{TLB}\right] + \tau_\mathrm{fp}\]
+\$T_"em" = (1-p_"fp")*T_"eap" + p_"fp"*T_"fp"\$
+</div>
+</div>
+<div class="paragraph">
+<p>y repetir la sustitución de \$T_text(eap)\$ por las expresiones para \$T_text(em)\$ calculadas en el <a href="paginación.html#_tiempos_de_acceso_a_la_memoria">Apartado 16.3</a> y el <a href="paginación.html#_tiempos_de_acceso_a_la_memoria_2">Apartado 16.6.3</a>.
+Así obtenemos que el <strong>tiempo de acceso efectivo</strong> \$T_text(em)\$ para <strong>tabla de páginas lineal</strong> con <strong>TLB</strong> y <strong>paginación bajo demanda</strong> es:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\${:(T_"em", =, (1-p_"fp")*T_"eap" \qquad\qquad\qquad\qquad\ \ \ , +, p_"fp"*T_"fp"),
+    (    , =, (1-p_"fp")*[(2-p_"TLB")*T_"m" + T_"TLB"], +, tau_"fp"\qquad):}\$
 </div>
 </div>
 <div class="paragraph">
@@ -624,7 +626,7 @@ Si no podemos hacer esta suposición, podemos volver a la <a href="memoria_virtu
 </div>
 <div class="stemblock">
 <div class="content">
-\[T_\mathrm{em} = (1-p_\mathrm{fp}) \left[((1-p_\mathrm{TLB})n+1)T_\mathrm{m} + T_\mathrm{TLB}\right] + \tau_\mathrm{fp}\]
+\$T_"em" = (1-p_"fp")*[((1-p_"TLB")*n+1)*T_"m" + T_"TLB"] + tau_"fp"\$
 </div>
 </div>
 </div>
