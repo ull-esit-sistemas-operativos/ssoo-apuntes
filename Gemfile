@@ -15,6 +15,10 @@ group :docstats do
     gem "nokogiri"
 end
 
+group :adoc do
+    gem "asciidoctor-reducer"
+end
+
 group :html5 do
     gem "asciidoctor-multipage"
     gem "webrick"

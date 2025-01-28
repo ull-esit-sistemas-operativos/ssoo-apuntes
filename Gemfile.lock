@@ -26,6 +26,8 @@ GEM
       prawn-table (~> 0.2.0)
       prawn-templates (~> 0.1.0)
       treetop (~> 1.6.0)
+    asciidoctor-reducer (1.1.0)
+      asciidoctor (~> 2.0)
     asciimath (2.0.5)
     async (2.6.2)
       console (~> 1.10)
@@ -126,6 +128,7 @@ DEPENDENCIES
   asciidoctor-mathematical
   asciidoctor-multipage
   asciidoctor-pdf
+  asciidoctor-reducer
   base64 (~> 0.2.0)
   debase (~> 0.2.5.beta2)
   html-proofer

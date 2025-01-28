@@ -1,5 +1,6 @@
 Struct.new('Config',
     :asciidoctor_args,
+    :asciidoctor_adoc_args,
     :asciidoctor_docbook_args,
     :asciidoctor_epub_args,
     :asciidoctor_html_args,
@@ -14,6 +15,7 @@ Struct.new('Config',
         def initialize()
             default_values = {
                 asciidoctor_args: [],
+                asciidoctor_adoc_args: [],
                 asciidoctor_docbook_args: [],
                 asciidoctor_epub_args:  [],
                 asciidoctor_html_args: [],

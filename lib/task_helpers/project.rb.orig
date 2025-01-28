@@ -28,7 +28,6 @@ module Project
             source_directory = File.dirname pathname
             namespaces = source_directory.sub(source_directory_regex, "").split("/")
             output_directories = {
-                :adoc => make_output_dirname(source_directory, "adoc"),
                 :docbook => make_output_dirname(source_directory, "docbook"),
                 :docx => make_output_dirname(source_directory, "docx"),
                 :epub => make_output_dirname(source_directory, "epub"),
@@ -50,7 +49,6 @@ module Project
                 ],
                 :media_files => find_media_files(source_directory),
                 :output_pathnames => {
-                    :adoc => File.join(output_directories[:adoc], get_output_filename(namespaces, "adoc")),
                     :docbook => File.join(output_directories[:docbook], get_output_filename(namespaces, "docbook")),
                     :docx => File.join(output_directories[:docx], get_output_filename(namespaces, "docx")),
                     :epub => File.join(output_directories[:epub], get_output_filename(namespaces, "epub")),

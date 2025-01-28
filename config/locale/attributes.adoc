@@ -8,4 +8,6 @@
 //
 // NOTE: Please wrap the listing-caption and preface-title entries in a preprocessor conditional directive.
 // These attributes should only be updated if set explicitly by the user.
-ifdef::lang[include::attributes-{lang}.adoc[]]
+ifdef::lang[]
+include::attributes-{lang}.adoc[]
+endif::[]
